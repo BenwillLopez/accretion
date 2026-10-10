@@ -1,30 +1,30 @@
 {
- "apps": 4248,
- "curated_apps": 726,
- "sources": 161,
- "updated": "2026-10-10 16:53 UTC",
+ "apps": 4249,
+ "curated_apps": 727,
+ "sources": 162,
+ "updated": "2026-10-10 20:21 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-10T16:53:57Z",
- "sources_total": 161,
+ "built_at": "2026-10-10T20:21:47Z",
+ "sources_total": 162,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23565,
+ "listings": 23567,
  "duplicates": 1676,
  "rejected": 6588,
  "excluded": 57,
  "dead_links_removed": 8523,
  "links_on_hold": 0,
- "developers": 702,
- "updated_7d": 718,
- "updated_30d": 1177,
+ "developers": 703,
+ "updated_7d": 721,
+ "updated_30d": 1178,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2104,
   "games": 980,
   "utilities": 332,
   "photo-video": 316,
-  "entertainment": 212,
+  "entertainment": 213,
   "lifestyle": 127,
   "developer": 108,
   "social": 69
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "Swift Radio+",
+   "version": "4.0.0",
+   "date": "2026-10-10"
+  },
+  {
    "name": "MuffinEMU",
    "version": "9.2",
    "date": "2026-10-10"
@@ -60,6 +65,16 @@
   {
    "name": "Lumisound",
    "version": "1.9.0.83",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Ito",
+   "version": "1.0.0",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "MiruShin",
+   "version": "2.9.15",
    "date": "2026-10-10"
   },
   {
@@ -75,21 +90,6 @@
   {
    "name": "Regram (Duplicate)",
    "version": "450.1.0",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "VidGrab",
-   "version": "1.3.4",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "Table Habit",
-   "version": "1.27.13",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "bitchat",
-   "version": "1.0.0",
    "date": "2026-10-10"
   }
  ],
@@ -180,17 +180,17 @@
   },
   {
    "month": "2026-08",
-   "apps": 3871
+   "apps": 3870
   },
   {
    "month": "2026-09",
-   "apps": 4069
+   "apps": 4068
   },
   {
    "month": "2026-10",
-   "apps": 4248
+   "apps": 4249
   }
  ],
- "new_30d": 359,
- "new_12m": 1671
+ "new_30d": 361,
+ "new_12m": 1672
 }
