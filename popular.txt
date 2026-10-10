@@ -1,0 +1,35 @@
+# Apps that sideloading guides, Google results and community threads (r/sideloaded and others)
+# name most often. Each one gets a boost in the store's "Most popular" list and in search
+# results, on top of how many sources carry it and what people search for on the store.
+# One bundle ID per line. Reviewed by hand; last checked 2026-10.
+
+# tweaked streaming and social apps
+com.google.ios.youtube           # YouTube Plus, uYouEnhanced, YouPro
+com.spotify.client               # Spotify++, EeveeSpotify
+com.google.ios.youtubemusic      # YouTube Music tweaks
+com.burbn.instagram              # Instagram++, Rocket
+com.atebits.Tweetie2             # Twitter / X tweaks
+com.zhiliaoapp.musically         # TikTok tweaks
+net.whatsapp.WhatsApp            # WhatsApp++
+ph.telegra.Telegraph             # Telegram tweaks
+com.hammerandchisel.discord      # Discord clients (Bunny)
+com.christianselig.Apollo        # Apollo for Reddit, kept alive by sideloading
+com.reddit.Reddit                # Reddit tweaks
+tv.twitch                        # Twitch ad-free
+com.soundcloud.TouchApp          # SoundCloud tweaks
+
+# emulators and games
+com.rileytestut.Delta            # Delta
+org.ppsspp.ppsspp                # PPSSPP
+com.libretro.RetroArchiOS11      # RetroArch
+com.libretro.dist.ios.RetroArch  # RetroArch
+org.provenance-emu.provenance    # Provenance
+com.utmapp.UTM                   # UTM virtual machines
+com.mojang.minecraftpe           # Minecraft
+
+# media and tools
+org.xbmc.kodi-ios                # Kodi
+com.firecore.infuse              # Infuse
+com.xitrix.iTorrent2             # iTorrent
+com.kdt.livecontainer            # LiveContainer
+kh.crysalis.feather              # Feather signer

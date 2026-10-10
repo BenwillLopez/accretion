@@ -451,6 +451,22 @@ class SignInProviders(unittest.TestCase):
             out = setup.smtp_settings()
         self.assertEqual((out["smtp_pass"], out["smtp_host"], out["smtp_port"]), ("p w", "smtp.b.io", "587"))
 
+    def test_popularity_counts_sources_and_web_picks(self):
+        import importlib.util
+
+        # scripts/site.py shares its name with the stdlib "site" module, so load it by path
+        spec = importlib.util.spec_from_file_location(
+            "store_site", os.path.join(os.path.dirname(__file__), "..", "scripts", "site.py")
+        )
+        store = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(store)
+        carriers = {"com.spotify.client": 18, "x.y": 2}
+        picks = {"com.spotify.client", "com.rileytestut.Delta"}
+        self.assertEqual(store.popularity("com.spotify.client", carriers, picks), 18 + store.WEB_PICK)
+        self.assertEqual(store.popularity("com.rileytestut.Delta", carriers, picks), store.WEB_PICK)
+        self.assertEqual(store.popularity("x.y", carriers, picks), 2)
+        self.assertEqual(store.popularity("nobody", carriers, picks), 0)
+
     def test_apple_secret_is_a_signed_jwt(self):
         try:
             import jwt

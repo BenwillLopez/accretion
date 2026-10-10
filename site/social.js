@@ -312,7 +312,7 @@
   }
 
   // ---------------------------------------------------------------- app page
-  async function renderAppSocial({ app, mount }) {
+  async function renderAppSocial({ app, mount, comments = mount }) {
     const { h } = A;
     mount.replaceChildren(h("p", { class: "muted small" }, "Loading community…"));
     let data;
@@ -337,12 +337,14 @@
     paintStars();
     const summary = h("span", { class: "muted small" }, avg ? `${Number(avg).toFixed(1)} ★ from ${A.fmt(data.stats.ratings)} rating${data.stats.ratings > 1 ? "s" : ""}` : "No ratings yet");
     const list = h("div", { class: "thread" });
-    const head = h("section", { class: "sec community" },
-      h("div", { class: "community-top" }, likeBtn, h("div", { class: "rate" }, starsBox, summary)),
+    const top = h("section", { class: "sec community" },
+      h("div", { class: "community-top" }, likeBtn, h("div", { class: "rate" }, starsBox, summary)));
+    const talk = h("section", { class: "sec community comments", id: "comments" },
       h("h2", {}, `Comments${data.stats.comments ? ` · ${A.fmt(data.stats.comments)}` : ""}`),
       composer({ placeholder: `Say something about ${app.n}…`, onSubmit: async (body) => { await api.createPost({ body, appId: app.i }); await loadThread(); } }),
       list);
-    mount.replaceChildren(head);
+    if (comments === mount) mount.replaceChildren(top, talk);
+    else { mount.replaceChildren(top); comments.replaceChildren(talk); }
 
     async function loadThread() {
       let rows;

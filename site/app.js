@@ -220,6 +220,10 @@
     missTimer = setTimeout(() => { if (state.f.q === q && !state.list.length) track("miss", null, q); }, 1500);
   }
   const trendScore = (a) => state.trend.get(a.i) || 0;
+  // a.p: how many sources carry the app, plus a boost for the apps guides and communities name
+  // most (popular.txt). Live store searches add on top; the square root keeps a few visits from
+  // outranking Spotify, while steady demand still climbs the list.
+  const popScore = (a) => (a.p || 0) + 4 * Math.sqrt(trendScore(a));
 
   // ---- home: shelves + grid -----------------------------------------------------
   const defaultView = (f) => !f.q && f.c === "all" && f.src === null && !f.saved;
@@ -240,12 +244,13 @@
       new: (a, b) => (a.f < b.f ? 1 : a.f > b.f ? -1 : a.n.localeCompare(b.n)),
       name: (a, b) => a.n.localeCompare(b.n, undefined, { sensitivity: "base" }),
       size: (a, b) => (b.z || 0) - (a.z || 0),
+      popular: (a, b) => popScore(b) - popScore(a) || (a.t < b.t ? 1 : -1),
     }[f.s] || ((a, b) => (a.t < b.t ? 1 : -1));
     if (f.saved) {
       list.sort((a, b) => hasUpdate(b) - hasUpdate(a) || by(a, b));
     } else if (words.length) {
       const rank = (a) => (a.n.toLowerCase().startsWith(words[0]) ? 0 : a.n.toLowerCase().includes(words[0]) ? 1 : 2);
-      list.sort((a, b) => rank(a) - rank(b) || trendScore(b) - trendScore(a) || by(a, b));
+      list.sort((a, b) => rank(a) - rank(b) || popScore(b) - popScore(a) || by(a, b));
     } else {
       list.sort(by);
     }
@@ -359,10 +364,10 @@
     const today = new Date().toISOString().slice(0, 10);
     const fresh = byUpdated.filter((a) => a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY);
     const socialShelves = h("div", { id: "social-shelves" });
-    const trending = pool.filter((a) => trendScore(a) > 0).sort((a, b) => trendScore(b) - trendScore(a));
+    const popular = pool.filter((a) => popScore(a) > 0).sort((a, b) => popScore(b) - popScore(a) || (a.t < b.t ? 1 : -1));
     box.replaceChildren(
       ...[
-        shelf("Most searched", "this week", trending, null, { ranked: true }),
+        shelf("Most popular", "this week", popular, homeHash({ ...state.f, s: "popular" }), { ranked: true }),
         shelf("Updates for your saved apps", `${savedUpd.length}`, savedUpd.slice(0, SHELF), "#/saved"),
         shelf("Fresh today", `${fmt(fresh.length)} updated`, fresh.slice(0, SHELF), homeHash({ ...state.f, s: "updated" })),
         shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new" })),
@@ -449,10 +454,11 @@
     view.replaceChildren(back, head(a, null), h("p", { class: "muted" }, "Loading details…"));
     const d = await details(bid);
     if (parse().bid !== bid) return;
-    const social = h("div", { id: "social-app" });
-    view.replaceChildren(back, head(a, d), social, ...body(a, d));
+    const social = h("div", { id: "social-app" }); // like + rating, under the header
+    const comments = h("div", { id: "social-comments" }); // comments, at the very bottom
+    view.replaceChildren(back, head(a, d), social, ...body(a, d), comments);
     if (desktop()) addQr(a);
-    document.dispatchEvent(new CustomEvent("acc:app", { detail: { app: a, mount: social } }));
+    document.dispatchEvent(new CustomEvent("acc:app", { detail: { app: a, mount: social, comments } }));
   }
 
   function head(a, d) {

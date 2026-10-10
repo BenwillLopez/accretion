@@ -19,7 +19,7 @@ import os
 import re
 import shutil
 
-from common import load_json, path
+from common import load_json, path, read_list
 
 SHARDS = 128
 OUT = path("_site")
@@ -98,11 +98,22 @@ def sitemap(site_url, apps):
         f.write(f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")
 
 
+WEB_PICK = 8  # an app in popular.txt counts like 8 more sources carrying it
+
+
+def popularity(bid, carriers, picks):
+    """How wanted an app is before anyone searches the store: sources carrying it, plus a boost
+    for the apps guides and communities name most (popular.txt)."""
+    return carriers.get(bid, 0) + (WEB_PICK if bid in picks else 0)
+
+
 def main():
     source = load_json("source.json", None)
     if not source:
         raise SystemExit("source.json not built yet")
     info = load_json("_build/origins.json", {"sources": [], "origin": {}, "first": {}})
+    carriers = info.get("carriers", {})
+    picks = set(read_list("popular.txt"))
     stats = load_json("stats.json", {})
 
     if os.path.exists(OUT):
@@ -131,6 +142,9 @@ def main():
                 "f": info["first"].get(bid, latest["date"][:10]),
             }
         )
+        pop = popularity(bid, carriers, picks)
+        if pop:
+            rows[-1]["p"] = pop
         shards[shard_of(bid)].append(
             {
                 "i": bid,

@@ -27,6 +27,11 @@ automatically.
 category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
 rebuilt with the source every 6 hours.
 
+**Most popular** ranks apps by three signals: how many of the sources carry an app (maintainers
+add what their users ask for), the apps that guides and communities name most
+([`popular.txt`](popular.txt)), and anonymous searches on the store itself. Searches that find
+nothing show up for moderators, so missing apps and sources can be added first.
+
 ## Community
 
 Sign in on the store to comment on apps, like and rate them, follow people, and post to a shared

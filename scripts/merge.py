@@ -246,7 +246,7 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
-    write_build_info(stats, best, firsts, set(manual))
+    write_build_info(stats, best, firsts, set(manual), listings)
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -309,8 +309,10 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
     }
 
 
-def write_build_info(stats, best, firsts, manual=frozenset()):
-    """Where each app came from and when it first appeared, for the website (not committed)."""
+def write_build_info(stats, best, firsts, manual=frozenset(), listings=None):
+    """Where each app came from, when it first appeared and how many sources carry it, for the
+    website (not committed). Source maintainers add what their users ask for, so an app carried
+    by many independent sources is one people want."""
     names = [
         {"name": s["name"] or s["url"].split("/")[2], "url": s["url"], "core": s["url"] in manual}
         for s in stats
@@ -320,6 +322,9 @@ def write_build_info(stats, best, firsts, manual=frozenset()):
         "sources": names,
         "origin": {bid: index[b[2]] for bid, b in best.items()},
         "first": {bid: d[:10] for bid, d in firsts.items() if bid in best},
+        "carriers": {
+            bid: len(urls) for bid, urls in (listings or {}).items() if bid in best and len(urls) > 1
+        },
     }
     os.makedirs(path("_build"), exist_ok=True)
     with open(path("_build/origins.json"), "w") as f:
