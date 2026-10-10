@@ -1,30 +1,30 @@
 {
- "apps": 4262,
+ "apps": 4261,
  "curated_apps": 1315,
  "sources": 159,
- "updated": "2026-10-10 11:34 UTC",
- "size_mb": 5.0,
- "built_at": "2026-10-10T11:34:11Z",
+ "updated": "2026-10-10 12:47 UTC",
+ "size_mb": 4.9,
+ "built_at": "2026-10-10T12:47:13Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 24483,
+ "listings": 24482,
  "duplicates": 1697,
- "rejected": 5657,
+ "rejected": 5658,
  "excluded": 57,
- "dead_links_removed": 6698,
+ "dead_links_removed": 6710,
  "links_on_hold": 0,
- "developers": 709,
+ "developers": 708,
  "updated_7d": 718,
- "updated_30d": 1190,
+ "updated_30d": 1187,
  "curated_size_mb": 0.9,
  "categories": {
-  "other": 2108,
+  "other": 2107,
   "games": 985,
   "utilities": 332,
-  "photo-video": 321,
-  "entertainment": 211,
+  "photo-video": 320,
+  "entertainment": 212,
   "lifestyle": 127,
   "developer": 109,
   "social": 69
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3363
+   "apps": 3362
   },
   {
    "name": "dsewerek's general apps",
@@ -48,10 +48,25 @@
   },
   {
    "name": "AltGallery",
-   "apps": 22
+   "apps": 21
   }
  ],
  "recent": [
+  {
+   "name": "BatSign",
+   "version": "0.0.4",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Instagram",
+   "version": "450.1.0",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Regram (Duplicate)",
+   "version": "450.1.0",
+   "date": "2026-10-10"
+  },
   {
    "name": "Lumisound",
    "version": "1.9.0.82",
@@ -75,21 +90,6 @@
   {
    "name": "bitchat",
    "version": "1.0.0",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "Hollow Knight",
-   "version": "1.5.78.11833",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "Textastic",
-   "version": "10.9.9",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "CARROT",
-   "version": "6.9.2",
    "date": "2026-10-10"
   }
  ],
@@ -136,15 +136,15 @@
   },
   {
    "month": "2025-09",
-   "apps": 2571
+   "apps": 2570
   },
   {
    "month": "2025-10",
-   "apps": 2638
+   "apps": 2637
   },
   {
    "month": "2025-11",
-   "apps": 2700
+   "apps": 2699
   },
   {
    "month": "2025-12",
@@ -176,19 +176,19 @@
   },
   {
    "month": "2026-07",
-   "apps": 3849
+   "apps": 3848
   },
   {
    "month": "2026-08",
-   "apps": 3891
+   "apps": 3890
   },
   {
    "month": "2026-09",
-   "apps": 4095
+   "apps": 4092
   },
   {
    "month": "2026-10",
-   "apps": 4262
+   "apps": 4261
   }
  ],
  "new_30d": 352,
