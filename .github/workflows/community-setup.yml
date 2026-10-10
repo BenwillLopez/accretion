@@ -5,6 +5,9 @@ name: Set up community
 # rebuilds the store. Run it again with your username after signing up to become admin.
 # Needs the SUPABASE_ACCESS_TOKEN repository secret (supabase.com/dashboard/account/tokens).
 on:
+  # monthly: re-signs the Apple sign-in key (Apple allows 6 months at most) and re-checks setup
+  schedule:
+    - cron: "23 5 1 * *"
   workflow_dispatch:
     inputs:
       admin_username:
@@ -30,6 +33,8 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      HAS_APPLE_KEY: ${{ secrets.APPLE_PRIVATE_KEY != '' }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -40,12 +45,26 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
         continue-on-error: true
+      - name: Install Apple key signing
+        if: env.HAS_APPLE_KEY == 'true'
+        run: pip install "pyjwt[crypto]==2.9.0"
       - name: Create and configure the Supabase project
         run: python scripts/supabase_setup.py
         env:
+          # sign-in providers: each one switches on when its secrets are set (see supabase/README.md)
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GH_OAUTH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
+          GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+          DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+          DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+          APPLE_SERVICES_ID: ${{ secrets.APPLE_SERVICES_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_PRIVATE_KEY: ${{ secrets.APPLE_PRIVATE_KEY }}
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           SITE_URL: ${{ steps.pages.outputs.base_url && format('{0}/', steps.pages.outputs.base_url) || '' }}
-          SUPABASE_REGION: ${{ inputs.region }}
+          SUPABASE_REGION: ${{ inputs.region || 'us-east-1' }}
           ADMIN_USERNAME: ${{ inputs.admin_username }}
       - name: Save public settings
         run: |

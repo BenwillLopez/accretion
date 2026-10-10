@@ -171,4 +171,32 @@ do $$ begin
   assert not exists (select 1 from public.posts where author = '00000000-0000-0000-0000-00000000000b'), 'posts deleted';
 end $$;
 
+-- sign-ups through Apple/Google/GitHub/Discord: handle and name come from the provider
+insert into auth.users values
+  ('00000000-0000-0000-0000-0000000000e1', '{"user_name":"octo-cat","full_name":"Octo Cat"}'),
+  ('00000000-0000-0000-0000-0000000000e2', '{"full_name":"Apple Person","email":"x@privaterelay.appleid.com"}'),
+  ('00000000-0000-0000-0000-0000000000e3', '{"preferred_username":"alice","name":"Not Alice"}');
+do $$ begin
+  assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e1') = 'octocat', 'provider handle cleaned';
+  assert (select display_name from public.profiles where id = '00000000-0000-0000-0000-0000000000e1') = 'Octo Cat', 'provider name';
+  assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e2') like 'user\_%', 'no handle: fallback';
+  assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e3') like 'user\_%', 'taken handle: fallback';
+end $$;
+
+-- people can change their own username, but not to one that is taken or invalid
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-0000000000e2');
+update public.profiles set username = 'apple_fan' where id = '00000000-0000-0000-0000-0000000000e2';
+do $$ begin
+  assert pg_temp.fails($q$update public.profiles set username = 'Alice' where id = '00000000-0000-0000-0000-0000000000e2'$q$), 'taken name rejected';
+  assert pg_temp.fails($q$update public.profiles set username = 'no spaces!' where id = '00000000-0000-0000-0000-0000000000e2'$q$), 'invalid name rejected';
+end $$;
+-- and cannot rename someone else
+update public.profiles set username = 'hijacked' where id = '00000000-0000-0000-0000-0000000000e1';
+commit;
+do $$ begin
+  assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e2') = 'apple_fan', 'own rename';
+  assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e1') = 'octocat', 'no renaming others';
+end $$;
+
 \echo 'all database checks passed'

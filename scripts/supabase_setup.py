@@ -10,7 +10,8 @@ Steps:
   3. apply supabase/schema.sql
   4. set auth URLs to the store's address, keep email confirmation on
   5. write the public URL and anon key to supabase/project.json (both are public)
-  6. optionally make ADMIN_USERNAME an admin
+  6. switch on Apple/Google/GitHub/Discord sign-in for every provider whose keys are set
+  7. optionally make ADMIN_USERNAME an admin
 """
 
 import json
@@ -118,6 +119,61 @@ def anon_key(ref):
     raise SystemExit("Couldn't find the project's anon/publishable key")
 
 
+def env(name):
+    return os.environ.get(name, "").strip()
+
+
+def apple_secret():
+    """Apple's client secret is a JWT signed with your .p8 key; Apple allows at most 6 months,
+    so the workflow re-runs monthly and signs a fresh one."""
+    if env("APPLE_SECRET"):
+        return env("APPLE_SECRET")
+    team, key_id, private_key, services_id = (
+        env("APPLE_TEAM_ID"),
+        env("APPLE_KEY_ID"),
+        os.environ.get("APPLE_PRIVATE_KEY", "").strip(),
+        env("APPLE_SERVICES_ID"),
+    )
+    if not (team and key_id and private_key and services_id):
+        return ""
+    import jwt  # PyJWT with cryptography; installed by the workflow only when Apple is set up
+
+    now = int(time.time())
+    return jwt.encode(
+        {
+            "iss": team,
+            "iat": now,
+            "exp": now + 150 * 86400,
+            "aud": "https://appleid.apple.com",
+            "sub": services_id,
+        },
+        private_key,
+        algorithm="ES256",
+        headers={"kid": key_id},
+    )
+
+
+def provider_settings():
+    """Auth settings for each sign-in provider whose keys are in the environment."""
+    found = {
+        "google": (env("GOOGLE_CLIENT_ID"), env("GOOGLE_CLIENT_SECRET")),
+        "github": (env("GH_OAUTH_CLIENT_ID"), env("GH_OAUTH_CLIENT_SECRET")),
+        "discord": (env("DISCORD_CLIENT_ID"), env("DISCORD_CLIENT_SECRET")),
+        "apple": (env("APPLE_SERVICES_ID"), apple_secret()),
+    }
+    settings = {}
+    for name, (client_id, secret) in found.items():
+        if client_id and secret:
+            settings.update(
+                {
+                    f"external_{name}_enabled": True,
+                    f"external_{name}_client_id": client_id,
+                    f"external_{name}_secret": secret,
+                }
+            )
+    return settings
+
+
 def check_public_api(url, key, attempts=10):
     """Read the public views the way the website does, to prove the setup works end to end."""
     for view in ("app_stats", "post_feed", "profile_stats"):
@@ -151,13 +207,18 @@ def main():
         sql(ref, f.read())
     log("Database tables, rules and functions are in place")
 
+    auth = provider_settings()
     if SITE_URL:
-        call(
-            "PATCH",
-            f"/projects/{ref}/config/auth",
-            {"site_url": SITE_URL, "uri_allow_list": f"{SITE_URL},{SITE_URL}**", "mailer_autoconfirm": False},
+        auth.update(
+            {"site_url": SITE_URL, "uri_allow_list": f"{SITE_URL},{SITE_URL}**", "mailer_autoconfirm": False}
         )
+    if auth:
+        call("PATCH", f"/projects/{ref}/config/auth", auth)
+    if SITE_URL:
         log(f"Sign-in links point to {SITE_URL}")
+    enabled = sorted(k.split("_")[1] for k in auth if k.endswith("_enabled"))
+    log(f"Sign-in providers switched on: {', '.join(enabled) if enabled else 'none yet (email only)'}")
+    log(f"Callback URL for provider apps: https://{ref}.supabase.co/auth/v1/callback")
 
     url = f"https://{ref}.supabase.co"
     key = anon_key(ref)

@@ -18,8 +18,80 @@ features turn on once the two settings below are set.
    username in **admin_username**.
 
 The token can manage your Supabase account, so it's kept as an encrypted GitHub secret and only
-this workflow uses it. After setup you can delete it at supabase.com; the store keeps working,
-and you can create a new one if you ever need to re-run setup.
+this workflow uses it. If you don't use Apple sign-in, you can delete it at supabase.com after
+setup; the store keeps working, and you can create a new one if you ever need to re-run setup.
+
+## Sign in with Apple, Google, GitHub and Discord
+
+Each provider needs a small "app" registered on its developer site. You give it the callback
+URL below, it gives you an ID and a secret, and you save those as GitHub secrets (**Settings →
+Secrets and variables → Actions → Secrets**). Then run **Set up community** again. Each button
+appears on the store as soon as its provider is switched on. Set up any you want, in any order.
+
+**Callback URL** for every provider:
+
+```
+https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
+```
+
+### Google (free)
+
+1. Open [console.cloud.google.com](https://console.cloud.google.com), then create a project
+   named `Accretion`.
+2. **APIs & Services → OAuth consent screen:** choose **External**. Use app name `Accretion`,
+   your support email, and app domain `benwilllopez.github.io`. Add the scopes `email`,
+   `profile` and `openid`. Then **Publish app**.
+3. **APIs & Services → Credentials → Create credentials → OAuth client ID:** choose **Web
+   application**.
+   - **Authorized JavaScript origins:** `https://benwilllopez.github.io`
+   - **Authorized redirect URIs:** the callback URL above
+4. Save these as secrets: `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+
+### Discord (free)
+
+1. Open [discord.com/developers/applications](https://discord.com/developers/applications)
+   and click **New Application**, named `Accretion`.
+2. **OAuth2 → Redirects:** add the callback URL above, then save.
+3. Copy the **Client ID**, then **Reset Secret** and copy the secret.
+4. Save these as secrets: `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`.
+
+### GitHub (free)
+
+1. Open [github.com/settings/developers](https://github.com/settings/developers), then
+   **OAuth Apps → New OAuth App**.
+   - **Homepage URL:** `https://benwilllopez.github.io/accretion/`
+   - **Authorization callback URL:** the callback URL above
+2. **Generate a new client secret.**
+3. Save these as secrets: `GH_OAUTH_CLIENT_ID` and `GH_OAUTH_CLIENT_SECRET`. GitHub doesn't
+   allow secret names starting with `GITHUB_`, hence `GH_`.
+
+### Apple (needs the Apple Developer Program, $99/year)
+
+1. At [developer.apple.com/account](https://developer.apple.com/account), go to **Certificates,
+   Identifiers & Profiles**.
+2. **Identifiers → + → App IDs:** create one (for example `io.accretion.app`) and tick **Sign in
+   with Apple**.
+3. **Identifiers → + → Services IDs:** create one (for example `io.accretion.signin`). This is
+   the client ID. Open it, tick **Sign in with Apple → Configure**, choose the App ID from step 2,
+   and set:
+   - **Domains:** `bbcjpinhvlxocjxlyplt.supabase.co`
+   - **Return URLs:** the callback URL above
+4. **Keys → +:** tick **Sign in with Apple**, configure it with the same App ID, and download the
+   `.p8` file. You can only download it once. Note the **Key ID**.
+5. Save these as secrets:
+   - `APPLE_SERVICES_ID`: the Services ID from step 3
+   - `APPLE_TEAM_ID`: your Team ID (shown top right in the developer account)
+   - `APPLE_KEY_ID`: the Key ID from step 4
+   - `APPLE_PRIVATE_KEY`: the full contents of the `.p8` file, including the BEGIN/END lines
+
+Apple's sign-in key must be renewed at least every 6 months. **Set up community** re-signs it
+automatically on the 1st of every month, so there is nothing to remember.
+
+### Turn them on
+
+Run **Actions → Set up community → Run workflow**. Its log lists the providers that are on.
+
+**Keep the access token** if you use Apple: the monthly renewal needs `SUPABASE_ACCESS_TOKEN`.
 
 ## Manual setup
 

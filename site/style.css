@@ -348,3 +348,19 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .doc h2 { font: 700 18px var(--display); margin: 26px 0 6px; }
 .doc p, .doc li { max-width: 68ch; }
 .doc ul { padding-left: 20px; display: grid; gap: 4px; }
+
+/* sign in with Apple / Google / GitHub / Discord */
+.oauth { display: grid; gap: 8px; margin-bottom: 4px; }
+.oauth-btn { justify-content: center; gap: 10px; min-height: 46px; font-size: 15px; border-radius: 12px; }
+.oauth-btn svg { width: 19px; height: 19px; flex: none; }
+.oauth-apple { background: #000; color: #fff; border-color: #000; }
+:root:not([data-theme="light"]) .oauth-apple { background: #fff; color: #000; border-color: #fff; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .oauth-apple { background: #000; color: #fff; border-color: #000; } }
+.oauth-google { background: #fff; color: #1F1F1F; border-color: #DADCE0; }
+.oauth-github { background: #24292F; color: #fff; border-color: #24292F; }
+.oauth-discord { background: #5865F2; color: #fff; border-color: #5865F2; }
+.oauth-btn:hover { filter: brightness(1.06); }
+.oauth-note { margin: 2px 0 0; }
+.or { display: flex; align-items: center; gap: 10px; color: var(--muted); font: 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; margin: 8px 0 2px; }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.welcome { margin: 0 0 4px; padding: 10px 12px; border-radius: 10px; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--fg); }

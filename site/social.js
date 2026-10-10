@@ -9,6 +9,30 @@
   if (!enabled) return;
 
   const PAGE = 30;
+  // Sign-in providers, in button order. Icons are the brands' standard marks.
+  const PROVIDERS = [
+    { id: "apple", label: "Apple", paths: [["currentColor", "M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"]] },
+    { id: "google", label: "Google", paths: [
+      ["#4285F4", "M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"],
+      ["#34A853", "M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"],
+      ["#FBBC05", "M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"],
+      ["#EA4335", "M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"]] },
+    { id: "github", label: "GitHub", paths: [["currentColor", "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"]] },
+    { id: "discord", label: "Discord", paths: [["currentColor", "M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.211.375-.445.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.618-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.009c.12.1.246.198.373.292a.077.077 0 0 1-.007.128 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.363 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z"]] },
+  ];
+  function brandIcon(paths) {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("aria-hidden", "true");
+    for (const [fill, d] of paths) {
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("fill", fill);
+      p.setAttribute("d", d);
+      svg.append(p);
+    }
+    return svg;
+  }
   const COLORS = ["8B5CF6", "22D3EE", "34D399", "F59E0B", "F43F5E", "3B82F6", "EC4899", "A3E635"];
   let A; // helpers from app.js (window.Acc), set on acc:ready
   const $ = (id) => document.getElementById(id);
@@ -44,6 +68,14 @@
         sb().auth.onAuthStateChange((_e, session) => setUser(session ? session.user : null));
         return data.session ? data.session.user : null;
       },
+      // which "Continue with …" buttons to show: the providers switched on in Supabase
+      providers: async () => {
+        const r = await fetch(`${cfg.supabaseUrl}/auth/v1/settings`, { headers: { apikey: cfg.supabaseKey } });
+        if (!r.ok) return [];
+        const ext = (await r.json()).external || {};
+        return PROVIDERS.map((p) => p.id).filter((id) => ext[id]);
+      },
+      oauth: async (provider) => ok(await sb().auth.signInWithOAuth({ provider, options: { redirectTo: location.href.split("#")[0] } })),
       signUp: async (email, password, username) => ok(await sb().auth.signUp({ email, password, options: { data: { username }, emailRedirectTo: location.href.split("#")[0] } })),
       signIn: async (email, password) => ok(await sb().auth.signInWithPassword({ email, password })),
       magicLink: async (email) => ok(await sb().auth.signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: location.href.split("#")[0] } })),
@@ -102,6 +134,14 @@
     if (!changed) return;
     me.profile = user ? await api.profileById(user.id).catch(() => null) : null;
     renderAccount();
+    if (me.profile && /^user_[0-9a-z]+$/.test(me.profile.username) && !location.hash.startsWith("#/me")) {
+      try {
+        if (!sessionStorage.getItem("acc.named")) {
+          sessionStorage.setItem("acc.named", "1");
+          location.hash = "#/me";
+        }
+      } catch { /* private mode */ }
+    }
     if (user) refreshUnread();
     if (ready) document.dispatchEvent(new CustomEvent("acc:auth"));
   }
@@ -443,11 +483,15 @@
     if (!me.user) return renderSignIn();
     const p = me.profile || (await api.profileById(me.user.id));
     let color = p.color;
+    const welcome = /^user_[0-9a-z]+$/.test(p.username);
+    const uname = h("input", { class: "input", id: "set-user", maxlength: 20, pattern: "[A-Za-z0-9_]{3,20}", required: true, value: p.username, autocomplete: "username" });
     const name = h("input", { class: "input", id: "set-name", maxlength: 40, value: p.display_name || "", placeholder: p.username });
     const bio = h("textarea", { class: "input", id: "set-bio", rows: 3, maxlength: 280, placeholder: "A line about you" });
     bio.value = p.bio || "";
     const swatches = h("div", { class: "swatches", role: "radiogroup", "aria-label": "Avatar color" }, ...COLORS.map((c) => h("button", { type: "button", class: `swatch${c === color ? " on" : ""}`, style: `--c:#${c}`, role: "radio", "aria-checked": String(c === color), "aria-label": `#${c}`, onclick: (e) => { color = c; for (const s of swatches.children) { s.classList.toggle("on", s === e.currentTarget); s.setAttribute("aria-checked", String(s === e.currentTarget)); } } })));
     const form = h("form", { class: "card-form" },
+      welcome ? h("p", { class: "welcome" }, "Welcome! Pick a username so people can find and mention you.") : null,
+      h("label", { for: "set-user" }, "Username"), uname,
       h("label", { for: "set-name" }, "Display name"), name,
       h("label", { for: "set-bio" }, "Bio"), bio,
       h("span", { class: "label" }, "Avatar color"), swatches,
@@ -455,7 +499,13 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       try {
-        await api.updateProfile({ display_name: name.value.trim(), bio: bio.value.trim(), color });
+        const username = uname.value.trim();
+        if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) throw new Error("Usernames are 3–20 letters, numbers or underscores.");
+        try {
+          await api.updateProfile({ username, display_name: name.value.trim(), bio: bio.value.trim(), color });
+        } catch (err) {
+          throw new Error(/duplicate|unique|23505/i.test(err.message) ? "That username is taken. Try another." : err.message);
+        }
         me.profile = await api.profileById(me.user.id);
         renderAccount();
         A.toast("Profile saved");
@@ -553,7 +603,21 @@
       h("button", { class: "btn ghost", type: "button", onclick: async () => { if (!email.value) return (msg.textContent = "Enter your email first."); try { await api.magicLink(email.value); msg.textContent = "Check your email for a sign-in link."; } catch (e) { msg.textContent = e.message; } } }, "Email me a sign-in link"),
       h("button", { class: "btn ghost", type: "button", onclick: async () => { if (!email.value) return (msg.textContent = "Enter your email first."); try { await api.resetPassword(email.value); msg.textContent = "Check your email to reset your password."; } catch (e) { msg.textContent = e.message; } } }, "Forgot password"));
     const fields = h("div", { class: "signup-fields" }, ...signupOnly);
-    const form = h("form", { class: "card-form auth" }, h("h1", { class: "view-title" }), h("label", { for: "au-email" }, "Email"), email, h("label", { for: "au-pass" }, "Password"), pass, fields, submit, msg, extra, switcher);
+    const social = h("div", { class: "oauth", hidden: true });
+    const form = h("form", { class: "card-form auth" }, h("h1", { class: "view-title" }), social, h("label", { for: "au-email" }, "Email"), email, h("label", { for: "au-pass" }, "Password"), pass, fields, submit, msg, extra, switcher);
+    api.providers().then((ids) => {
+      if (!ids.length) return;
+      social.replaceChildren(
+        ...PROVIDERS.filter((p) => ids.includes(p.id)).map((p) =>
+          h("button", { class: `btn oauth-btn oauth-${p.id}`, type: "button", onclick: async (e) => {
+            e.currentTarget.disabled = true;
+            rememberSpot();
+            try { await api.oauth(p.id); } catch (err) { msg.textContent = err.message; e.currentTarget.disabled = false; }
+          } }, brandIcon(p.paths), h("span", {}, `Continue with ${p.label}`))),
+        h("p", { class: "muted small oauth-note" }, "By continuing you confirm you're 13 or older and agree to the ", h("a", { href: "rules.html", target: "_blank" }, "community rules"), " and ", h("a", { href: "privacy.html", target: "_blank" }, "privacy policy"), "."),
+        h("div", { class: "or" }, h("span", {}, "or use email")));
+      social.hidden = false;
+    }).catch(() => {});
     const paint = () => {
       form.querySelector("h1").textContent = mode === "signup" ? "Create your account" : "Sign in";
       submit.textContent = mode === "signup" ? "Create account" : "Sign in";
@@ -624,6 +688,10 @@
     renderAccount();
     try {
       await setUser(await api.load());
+      if (me.user && /[?&]code=/.test(location.search)) {
+        history.replaceState(null, "", location.pathname + location.hash); // tidy the address bar
+        if (!location.hash.startsWith("#/me")) goBack();
+      }
     } catch (e) {
       $("account").replaceChildren();
       console.warn(e);
@@ -685,10 +753,12 @@
       signUp: async (email, password, username) => { const u = { id: `u${users.length + 1}`, username, display_name: "", bio: "", color: "F59E0B", role: "user", banned: false, created_at: new Date().toISOString() }; users.push(u); cur = u; return { session: { user: { id: u.id, email } } }; },
       signIn: async (email) => { cur = users.find((u) => email.startsWith(u.username)) || users[1]; return { user: { id: cur.id, email } }; },
       magicLink: async () => delay(null), resetPassword: async () => delay(null),
+      providers: async () => delay(cfg.fakeProviders || PROVIDERS.map((p) => p.id)),
+      oauth: async (provider) => { const u = { id: `u${users.length + 1}`, username: `user_${provider}${users.length}`, display_name: `${provider} person`, bio: "", color: "3B82F6", role: "user", banned: false, created_at: new Date().toISOString() }; users.push(u); cur = u; setUser({ id: u.id, email: `${provider}@example.com` }); },
       signOut: async () => { cur = null; },
       profileById: async (id) => delay(stat(users.find((u) => u.id === id))),
       profileByName: async (n) => { const u = users.find((x) => x.username.toLowerCase() === n.toLowerCase()); return delay(u ? stat(u) : null); },
-      updateProfile: async (f) => { need(); Object.assign(cur, f); },
+      updateProfile: async (f) => { need(); if (f.username && users.some((u) => u !== cur && u.username.toLowerCase() === f.username.toLowerCase())) throw new Error("duplicate key value violates unique constraint"); Object.assign(cur, f); },
       appStats: async () => { seed(); const ids = new Set([...[...appLikes].map((k) => k.split(">")[0]), ...[...ratings.keys()].map((k) => k.split(">")[0]), ...posts.filter((p) => p.app_id).map((p) => p.app_id)]); return [...ids].map((app_id) => { const rs = [...ratings].filter(([k]) => k.startsWith(`${app_id}>`)).map(([, v]) => v); return { app_id, likes: [...appLikes].filter((k) => k.startsWith(`${app_id}>`)).length, ratings: rs.length, avg_rating: rs.length ? rs.reduce((a, b) => a + b, 0) / rs.length : null, comments: posts.filter((p) => p.app_id === app_id && !p.hidden).length }; }); },
       appSocial: async (appId) => { seed(); const all = await obj.appStats(); return { stats: all.find((s) => s.app_id === appId) || {}, liked: Boolean(cur && appLikes.has(`${appId}>${cur.id}`)), stars: (cur && ratings.get(`${appId}>${cur.id}`)) || 0 }; },
       likeApp: async (a, on) => { need(); on ? appLikes.add(`${a}>${cur.id}`) : appLikes.delete(`${a}>${cur.id}`); },

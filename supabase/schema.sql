@@ -117,22 +117,44 @@ $$;
 
 -- ---------------------------------------------------------------- triggers
 
--- Create a profile for every new account, using the username chosen at sign-up
--- when it is valid and free, otherwise user_<8 chars>.
+-- Create a profile for every new account. The username is the one chosen at sign-up, or
+-- the handle from Apple/Google/GitHub/Discord when it is valid and free, otherwise
+-- user_<8 chars> (people can change it later). The display name comes from the provider.
 create or replace function public.handle_new_user() returns trigger
 language plpgsql security definer set search_path = public as $$
 declare
-  wanted text := new.raw_user_meta_data ->> 'username';
+  meta jsonb := coalesce(new.raw_user_meta_data, '{}'::jsonb);
+  wanted text;
+  candidate text;
   final text;
 begin
-  if wanted ~ '^[A-Za-z0-9_]{3,20}$'
-     and not exists (select 1 from public.profiles where username = wanted::citext) then
-    final := wanted;
-  else
-    final := 'user_' || substr(replace(new.id::text, '-', ''), 1, 8);
+  foreach candidate in array array[
+    meta ->> 'username', meta ->> 'user_name', meta ->> 'preferred_username', meta ->> 'nickname'
+  ] loop
+    candidate := left(regexp_replace(coalesce(candidate, ''), '[^A-Za-z0-9_]', '', 'g'), 20);
+    if candidate ~ '^[A-Za-z0-9_]{3,20}$'
+       and not exists (select 1 from public.profiles where username = candidate::citext) then
+      wanted := candidate;
+      exit;
+    end if;
+  end loop;
+  final := wanted;
+  if final is null then
+    -- user_ + part of the account id, longer if needed until it is free
+    for n in 8..15 loop
+      final := 'user_' || substr(replace(new.id::text, '-', ''), 1, n);
+      exit when not exists (select 1 from public.profiles where username = final::citext);
+    end loop;
+    if exists (select 1 from public.profiles where username = final::citext) then
+      final := 'user_' || substr(md5(random()::text || clock_timestamp()::text), 1, 15);
+    end if;
   end if;
   insert into public.profiles (id, username, display_name)
-  values (new.id, final, coalesce(left(new.raw_user_meta_data ->> 'display_name', 40), ''))
+  values (
+    new.id,
+    final,
+    left(coalesce(meta ->> 'display_name', meta ->> 'full_name', meta ->> 'name', ''), 40)
+  )
   on conflict (id) do nothing;
   return new;
 end;
@@ -418,7 +440,7 @@ grant usage on schema public to anon, authenticated;
 grant select on public.profiles, public.posts, public.post_likes, public.app_likes,
   public.app_ratings, public.follows, public.post_feed, public.app_stats, public.profile_stats
   to anon, authenticated;
-grant update (display_name, bio, color, role, banned) on public.profiles to authenticated;
+grant update (username, display_name, bio, color, role, banned) on public.profiles to authenticated;
 grant insert, update, delete on public.posts, public.post_likes, public.app_likes,
   public.app_ratings, public.follows to authenticated;
 grant select, insert, update on public.reports to authenticated;

@@ -371,6 +371,67 @@ class SupabaseSetup(unittest.TestCase):
             self.run_setup(projects=[{"id": "r", "name": "accretion"}], admin="x'; drop table posts;--")
 
 
+class SignInProviders(unittest.TestCase):
+    def env(self, **values):
+        from unittest import mock
+
+        keys = [
+            "GOOGLE_CLIENT_ID",
+            "GOOGLE_CLIENT_SECRET",
+            "GH_OAUTH_CLIENT_ID",
+            "GH_OAUTH_CLIENT_SECRET",
+            "DISCORD_CLIENT_ID",
+            "DISCORD_CLIENT_SECRET",
+            "APPLE_SERVICES_ID",
+            "APPLE_TEAM_ID",
+            "APPLE_KEY_ID",
+            "APPLE_PRIVATE_KEY",
+            "APPLE_SECRET",
+        ]
+        clean = dict.fromkeys(keys, "")
+        clean.update(values)
+        return mock.patch.dict(os.environ, clean)
+
+    def test_only_providers_with_keys_are_switched_on(self):
+        import supabase_setup as setup
+
+        with self.env(GOOGLE_CLIENT_ID="g-id", GOOGLE_CLIENT_SECRET="g-secret", DISCORD_CLIENT_ID="d-id"):
+            out = setup.provider_settings()
+        self.assertEqual(out["external_google_client_id"], "g-id")
+        self.assertTrue(out["external_google_enabled"])
+        self.assertNotIn("external_discord_enabled", out)  # secret missing
+        self.assertNotIn("external_apple_enabled", out)
+
+    def test_apple_secret_is_a_signed_jwt(self):
+        try:
+            import jwt
+            from cryptography.hazmat.primitives import serialization
+            from cryptography.hazmat.primitives.asymmetric import ec
+        except ImportError:
+            self.skipTest("pyjwt[crypto] not installed")
+        import supabase_setup as setup
+
+        key = ec.generate_private_key(ec.SECP256R1())
+        pem = key.private_bytes(
+            serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8, serialization.NoEncryption()
+        ).decode()
+        with self.env(
+            APPLE_SERVICES_ID="io.accretion.signin",
+            APPLE_TEAM_ID="TEAM123",
+            APPLE_KEY_ID="KEY123",
+            APPLE_PRIVATE_KEY=pem,
+        ):
+            out = setup.provider_settings()
+        token = out["external_apple_secret"]
+        claims = jwt.decode(
+            token, key.public_key(), algorithms=["ES256"], audience="https://appleid.apple.com"
+        )
+        self.assertEqual(claims["iss"], "TEAM123")
+        self.assertEqual(claims["sub"], "io.accretion.signin")
+        self.assertLessEqual(claims["exp"] - claims["iat"], 180 * 86400)  # Apple's 6-month limit
+        self.assertEqual(jwt.get_unverified_header(token)["kid"], "KEY123")
+
+
 class Discovery(unittest.TestCase):
     def test_clean_url(self):
         self.assertEqual(
