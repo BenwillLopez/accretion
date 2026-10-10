@@ -39,11 +39,11 @@ https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
 1. Open [console.cloud.google.com](https://console.cloud.google.com), then create a project
    named `Accretion`.
 2. **APIs & Services → OAuth consent screen:** choose **External**. Use app name `Accretion`,
-   your support email, and app domain `benwilllopez.github.io`. Add the scopes `email`,
+   your support email, and app domain `getaccretion.github.io`. Add the scopes `email`,
    `profile` and `openid`. Then **Publish app**.
 3. **APIs & Services → Credentials → Create credentials → OAuth client ID:** choose **Web
    application**.
-   - **Authorized JavaScript origins:** `https://benwilllopez.github.io`
+   - **Authorized JavaScript origins:** `https://getaccretion.github.io`
    - **Authorized redirect URIs:** the callback URL above
 4. Save these as secrets: `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
 
@@ -59,7 +59,7 @@ https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
 
 1. Open [github.com/settings/developers](https://github.com/settings/developers), then
    **OAuth Apps → New OAuth App**.
-   - **Homepage URL:** `https://benwilllopez.github.io/accretion/`
+   - **Homepage URL:** `https://getaccretion.github.io/Accretion/`
    - **Authorization callback URL:** the callback URL above
 2. **Generate a new client secret.**
 3. Save these as secrets: `GH_OAUTH_CLIENT_ID` and `GH_OAUTH_CLIENT_SECRET`. GitHub doesn't
@@ -102,7 +102,7 @@ Use this instead of the quick setup if you prefer to click through the dashboard
 1. Sign up at supabase.com and click **New project**. Name it `accretion`, pick the region
    closest to your users, and set a database password (keep it private).
 2. **Authentication → URL Configuration**
-   - **Site URL:** `https://benwilllopez.github.io/accretion/`
+   - **Site URL:** `https://getaccretion.github.io/Accretion/`
    - **Redirect URLs:** add the same address.
 3. **Authentication → Providers → Email:** leave **Confirm email** on. It stops throwaway
    sign-ups.

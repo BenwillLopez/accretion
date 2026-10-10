@@ -31,9 +31,11 @@ from check_links import dead_after
 from common import date_key, fetch_source, is_blocked, load_json, path, read_list, version_key
 from sanitize import clean_app, clean_news, skip_reason, validate
 
-OWNER = "benwilllopez"
-REPO = "accretion"
+OWNER = "GETAccretion"
+REPO = "Accretion"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main"
+# AltStore refuses a source whose identifier changes, so these stay as first published
+ID = "io.github.benwilllopez.accretion"
 MAX_NEWS = 50
 MAX_FEATURED = 5  # AltStore shows the first five
 MAX_BYTES = 30 * 1024 * 1024
@@ -54,9 +56,9 @@ SOURCE_INFO = {
     "tintColor": "8B5CF6",
 }
 OUTPUTS = {
-    "source.json": {"identifier": f"io.github.{OWNER}.{REPO}", "sourceURL": f"{RAW}/source.json"},
+    "source.json": {"identifier": ID, "sourceURL": f"{RAW}/source.json"},
     "curated.json": {
-        "identifier": f"io.github.{OWNER}.{REPO}.curated",
+        "identifier": f"{ID}.curated",
         "sourceURL": f"{RAW}/curated.json",
         "name": "Accretion Core",
         "subtitle": "The hand-picked core. Small and fast.",

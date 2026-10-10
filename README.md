@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/benwilllopez/accretion/actions/workflows/build.yml"><img alt="Build" src="https://github.com/benwilllopez/accretion/actions/workflows/build.yml/badge.svg"></a>
-  <a href="https://github.com/benwilllopez/accretion/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/benwilllopez/accretion/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Apps" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.apps&label=apps&color=8B5CF6">
-  <img alt="Sources" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.sources&label=sources&color=8B5CF6">
-  <img alt="Updated" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.updated&label=updated&color=555">
+  <a href="https://github.com/GETAccretion/Accretion/actions/workflows/build.yml"><img alt="Build" src="https://github.com/GETAccretion/Accretion/actions/workflows/build.yml/badge.svg"></a>
+  <a href="https://github.com/GETAccretion/Accretion/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/GETAccretion/Accretion/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Apps" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FGETAccretion%2FAccretion%2Fmain%2Fstats.json&query=%24.apps&label=apps&color=8B5CF6">
+  <img alt="Sources" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FGETAccretion%2FAccretion%2Fmain%2Fstats.json&query=%24.sources&label=sources&color=8B5CF6">
+  <img alt="Updated" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FGETAccretion%2FAccretion%2Fmain%2Fstats.json&query=%24.updated&label=updated&color=555">
 </p>
 
 In space, *accretion* is how gravity pulls scattered matter into a single body. **Accretion** does
@@ -23,7 +23,7 @@ automatically.
 
 ## Browse the store
 
-**[benwilllopez.github.io/accretion](https://benwilllopez.github.io/accretion/)**: search every app, filter by
+**[getaccretion.github.io/Accretion](https://getaccretion.github.io/Accretion/)**: search every app, filter by
 category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
 rebuilt with the source every 6 hours.
 
@@ -43,10 +43,10 @@ There are two links. Pick one:
 | **Accretion Core** (curated) | Only the hand-picked sources in [`sources.txt`](sources.txt) | small, refreshes fast |
 
 ```
-https://raw.githubusercontent.com/benwilllopez/accretion/main/source.json
+https://raw.githubusercontent.com/GETAccretion/Accretion/main/source.json
 ```
 ```
-https://raw.githubusercontent.com/benwilllopez/accretion/main/curated.json
+https://raw.githubusercontent.com/GETAccretion/Accretion/main/curated.json
 ```
 
 | App | How to add |
