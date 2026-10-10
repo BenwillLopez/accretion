@@ -11,8 +11,8 @@
     social: "Social", lifestyle: "Lifestyle", developer: "Developer", other: "Other",
   };
   const SOURCE_URL = {
-    full: "https://raw.githubusercontent.com/GETAccretion/Accretion/main/source.json",
-    core: "https://raw.githubusercontent.com/GETAccretion/Accretion/main/curated.json",
+    full: "https://getaccretion.github.io/source.json",
+    core: "https://getaccretion.github.io/curated.json",
   };
   const QR_LIB = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js";
 

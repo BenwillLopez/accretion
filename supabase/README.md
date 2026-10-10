@@ -59,7 +59,7 @@ https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
 
 1. Open [github.com/settings/developers](https://github.com/settings/developers), then
    **OAuth Apps → New OAuth App**.
-   - **Homepage URL:** `https://getaccretion.github.io/Accretion/`
+   - **Homepage URL:** `https://getaccretion.github.io/`
    - **Authorization callback URL:** the callback URL above
 2. **Generate a new client secret.**
 3. Save these as secrets: `GH_OAUTH_CLIENT_ID` and `GH_OAUTH_CLIENT_SECRET`. GitHub doesn't
@@ -108,7 +108,7 @@ Use this instead of the quick setup if you prefer to click through the dashboard
 1. Sign up at supabase.com and click **New project**. Name it `accretion`, pick the region
    closest to your users, and set a database password (keep it private).
 2. **Authentication → URL Configuration**
-   - **Site URL:** `https://getaccretion.github.io/Accretion/`
+   - **Site URL:** `https://getaccretion.github.io/`
    - **Redirect URLs:** add the same address.
 3. **Authentication → Providers → Email:** leave **Confirm email** on. It stops throwaway
    sign-ups.

@@ -32,8 +32,8 @@ from common import date_key, fetch_source, is_blocked, load_json, path, read_lis
 from sanitize import clean_app, clean_news, skip_reason, validate
 
 OWNER = "GETAccretion"
-REPO = "Accretion"
-RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main"
+REPO = "getaccretion.github.io"
+SITE = "https://getaccretion.github.io"  # GitHub Pages serves the store, the sources and the assets
 # AltStore refuses a source whose identifier changes, so these stay as first published
 ID = "io.github.benwilllopez.accretion"
 MAX_NEWS = 50
@@ -50,16 +50,16 @@ SOURCE_INFO = {
         "Apps come from third-party sources and are not reviewed. Install only what you trust.\n\n"
         f"Source list, report and issue tracker: https://github.com/{OWNER}/{REPO}"
     ),
-    "iconURL": f"{RAW}/assets/icon.png",
-    "headerURL": f"{RAW}/assets/source-header.png",  # 3:2, as AltStore recommends
-    "website": f"https://github.com/{OWNER}/{REPO}",
+    "iconURL": f"{SITE}/assets/icon.png",
+    "headerURL": f"{SITE}/assets/source-header.png",  # 3:2, as AltStore recommends
+    "website": f"{SITE}/",
     "tintColor": "8B5CF6",
 }
 OUTPUTS = {
-    "source.json": {"identifier": ID, "sourceURL": f"{RAW}/source.json"},
+    "source.json": {"identifier": ID, "sourceURL": f"{SITE}/source.json"},
     "curated.json": {
         "identifier": f"{ID}.curated",
-        "sourceURL": f"{RAW}/curated.json",
+        "sourceURL": f"{SITE}/curated.json",
         "name": "Accretion Core",
         "subtitle": "The hand-picked core. Small and fast.",
     },

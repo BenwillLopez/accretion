@@ -179,6 +179,19 @@ def main():
     if site_url:
         sitemap(site_url, source["apps"])
 
+    # the store used to live at /Accretion/: send old links and saved home screen icons home
+    legacy = os.path.join(OUT, "Accretion")
+    os.makedirs(legacy, exist_ok=True)
+    with open(os.path.join(legacy, "index.html"), "w") as f:
+        f.write(
+            '<!doctype html><meta charset="utf-8"><title>Accretion</title>'
+            '<meta name="robots" content="noindex"><link rel="canonical" href="../">'
+            "<script>location.replace('../' + location.hash)</script>"
+            '<a href="../">Accretion has moved</a>\n'
+        )
+    for name in ("source.json", "curated.json"):
+        shutil.copy(path(name), os.path.join(legacy, name))
+
     # GitHub Pages: serve files as-is (no Jekyll processing)
     open(os.path.join(OUT, ".nojekyll"), "w").close()
 

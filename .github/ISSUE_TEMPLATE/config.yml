@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: Report malware or a harmful source (private)
-    url: https://github.com/GETAccretion/Accretion/security/advisories/new
+    url: https://github.com/GETAccretion/getaccretion.github.io/security/advisories/new
     about: Only the maintainer sees these reports.
