@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-10 11:20 UTC.
+Built 2026-10-10 11:24 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4263** (5072 KB) |
+| Apps in `source.json` | **4262** (5071 KB) |
 | Apps in `curated.json` | **1315** (928 KB) |
-| Listings read | 24484 |
+| Listings read | 24482 |
 | Apps listed by more than one source (newest kept) | 1697 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 5656 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 5657 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 6665 |
+| Dead download links held back (retested every build) | 6684 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 159: 159 ok, 0 from cache, 0 failed |
 
@@ -20,8 +20,8 @@ Built 2026-10-10 11:20 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3561 | 3368 | 4493 | 2026-10-10 | discovered |
-| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1649 | 549 | 308 | 2026-10-10 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3560 | 3363 | 4494 | 2026-10-10 | discovered |
+| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1649 | 553 | 308 | 2026-10-10 | discovered |
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 129 | 0 | 2026-10-10 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 241 | 101 | 11 | 2025-01-01 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 22 | 0 | 2026-10-09 | discovered |
@@ -81,7 +81,7 @@ Built 2026-10-10 11:20 UTC.
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 922 | 0 | 390 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 106 | 0 | 10 | 2024-11-17 | discovered |
 | [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 33 | 0 | 2 | 2025-05-20 | discovered |
@@ -188,9 +188,13 @@ Built 2026-10-10 11:20 UTC.
 | MuffinEMU | 8.9 | 2026-10-10 | raw.githubusercontent.com |
 | VidGrab | 1.3.4 | 2026-10-10 | raw.githubusercontent.com |
 | Table Habit | 1.27.13 | 2026-10-10 | raw.githubusercontent.com |
+| bitchat | 1.0.0 | 2026-10-10 | raw.githubusercontent.com |
+| Hollow Knight | 1.5.78.11833 | 2026-10-10 | raw.githubusercontent.com |
 | Textastic | 10.9.9 | 2026-10-10 | raw.githubusercontent.com |
 | CARROT | 6.9.2 | 2026-10-10 | raw.githubusercontent.com |
+| Genie++ | 8.1.1 | 2026-10-10 | raw.githubusercontent.com |
 | Duolingo | 7.143.1 | 2026-10-10 | raw.githubusercontent.com |
+| Swiftgram | 999.999 | 2026-10-10 | raw.githubusercontent.com |
 | Detail | 6.0.3 | 2026-10-10 | raw.githubusercontent.com |
 | Live Transcribe | 2.91 | 2026-10-10 | raw.githubusercontent.com |
 | HoursTracker | 8.3.2 | 2026-10-10 | raw.githubusercontent.com |
@@ -199,13 +203,9 @@ Built 2026-10-10 11:20 UTC.
 | MusicHarbor | 5.3.9 | 2026-10-10 | raw.githubusercontent.com |
 | Stack | 4.1 | 2026-10-10 | raw.githubusercontent.com |
 | Grit | 6.0.2 | 2026-10-10 | raw.githubusercontent.com |
+| Five Nights at Freddy's | 2.0.5 | 2026-10-10 | raw.githubusercontent.com |
+| Alto’s Adventure - Remastered | 1.0.7 | 2026-10-10 | raw.githubusercontent.com |
+| Odyssey | 1.3.0 | 2026-10-10 | raw.githubusercontent.com |
 | Minutes | 1.12.8 | 2026-10-10 | raw.githubusercontent.com |
-| TinyDecisions | 26.10.1 | 2026-10-10 | raw.githubusercontent.com |
-| FujiXWeekly | 1.16.2 | 2026-10-10 | raw.githubusercontent.com |
-| Lingvist | 2.65.5 | 2026-10-10 | raw.githubusercontent.com |
-| FitnessAI | 25.0 | 2026-10-10 | raw.githubusercontent.com |
-| CollaNote | 5.0.6 | 2026-10-10 | raw.githubusercontent.com |
-| Mercury | 3.8.1 | 2026-10-10 | raw.githubusercontent.com |
-| Uplens | 4.3.2 | 2026-10-10 | raw.githubusercontent.com |
-| TickTick | 8.2.21 | 2026-10-10 | raw.githubusercontent.com |
-| swipewipe | 3.5.1 | 2026-10-10 | raw.githubusercontent.com |
+| Investing.com | 6.52.1 | 2026-10-10 | raw.githubusercontent.com |
+| Photify AI | 2.4.5 | 2026-10-10 | raw.githubusercontent.com |

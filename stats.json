@@ -1,42 +1,42 @@
 {
- "apps": 4263,
+ "apps": 4262,
  "curated_apps": 1315,
  "sources": 159,
- "updated": "2026-10-10 11:20 UTC",
+ "updated": "2026-10-10 11:24 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-10T11:20:34Z",
+ "built_at": "2026-10-10T11:24:35Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 24484,
+ "listings": 24482,
  "duplicates": 1697,
- "rejected": 5656,
+ "rejected": 5657,
  "excluded": 57,
- "dead_links_removed": 6665,
+ "dead_links_removed": 6684,
  "links_on_hold": 0,
- "developers": 710,
- "updated_7d": 391,
- "updated_30d": 863,
+ "developers": 709,
+ "updated_7d": 717,
+ "updated_30d": 1189,
  "curated_size_mb": 0.9,
  "categories": {
-  "other": 2106,
-  "games": 986,
+  "other": 2108,
+  "games": 985,
   "utilities": 332,
   "photo-video": 321,
-  "entertainment": 212,
-  "lifestyle": 128,
-  "developer": 108,
-  "social": 70
+  "entertainment": 211,
+  "lifestyle": 127,
+  "developer": 109,
+  "social": 69
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3368
+   "apps": 3363
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 549
+   "apps": 553
   },
   {
    "name": "Altmaker by RipeStore",
@@ -73,6 +73,16 @@
    "date": "2026-10-10"
   },
   {
+   "name": "bitchat",
+   "version": "1.0.0",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Hollow Knight",
+   "version": "1.5.78.11833",
+   "date": "2026-10-10"
+  },
+  {
    "name": "Textastic",
    "version": "10.9.9",
    "date": "2026-10-10"
@@ -80,16 +90,6 @@
   {
    "name": "CARROT",
    "version": "6.9.2",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "Duolingo",
-   "version": "7.143.1",
-   "date": "2026-10-10"
-  },
-  {
-   "name": "Detail",
-   "version": "6.0.3",
    "date": "2026-10-10"
   }
  ],
@@ -176,21 +176,21 @@
   },
   {
    "month": "2026-07",
-   "apps": 3854
+   "apps": 3851
   },
   {
    "month": "2026-08",
-   "apps": 3896
+   "apps": 3893
   },
   {
    "month": "2026-09",
-   "apps": 4097
+   "apps": 4096
   },
   {
    "month": "2026-10",
-   "apps": 4263
+   "apps": 4262
   }
  ],
- "new_30d": 348,
- "new_12m": 1677
+ "new_30d": 350,
+ "new_12m": 1676
 }
