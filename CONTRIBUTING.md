@@ -34,7 +34,7 @@ harmful, follow [SECURITY.md](SECURITY.md) instead.
 4. Open a pull request. CI runs the same checks.
 
 Do not commit generated files (`source.json`, `curated.json`, `stats.json`, `history.json`, `REPORT.md`,
-`discovered.*`, `dead_links.json`, `assets/card-*.svg`, `assets/recent-*.svg`). The workflows build them.
+`discovered.*`, `dead_links.json`, `assets/card-*`, `assets/recent-*`). The workflows build them.
 
 ## Style
 
