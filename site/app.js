@@ -18,7 +18,7 @@
   const QR_LIB = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js";
 
   const $ = (id) => document.getElementById(id);
-  const state = { apps: [], byId: new Map(), sources: [], shards: 128, list: [], shown: PAGE, f: {}, trend: new Map(), from: null };
+  const state = { apps: [], byId: new Map(), sources: [], shards: 128, list: [], shown: PAGE, f: {}, trend: new Map(), from: null, support: {} };
   const shardCache = new Map();
 
   // ---- small helpers ------------------------------------------------------------
@@ -138,6 +138,7 @@
     const app = pathPart.match(/^\/app\/(.+)$/);
     if (app) return { view: "app", bid: decodeURIComponent(app[1]) };
     if (pathPart === "/sources") return { view: "sources" };
+    if (pathPart === "/support") return { view: "support" };
     if (/^\/(feed|u\/.+|notifications|mod|me|signin)$/.test(pathPart)) return { view: "social", path: pathPart, params: Object.fromEntries(p) };
     return {
       view: "home",
@@ -174,7 +175,7 @@
   function route() {
     const r = parse();
     for (const a of document.querySelectorAll("[data-nav]")) {
-      const on = (r.view === "home" && !r.saved && a.dataset.nav === "home") || (r.view === "sources" && a.dataset.nav === "sources") || (r.view === "home" && r.saved && a.dataset.nav === "saved") || (r.view === "social" && r.path === "/feed" && a.dataset.nav === "feed");
+      const on = (r.view === "home" && !r.saved && a.dataset.nav === "home") || (r.view === "sources" && a.dataset.nav === "sources") || (r.view === "home" && r.saved && a.dataset.nav === "saved") || (r.view === "social" && r.path === "/feed" && a.dataset.nav === "feed") || (r.view === "support" && a.dataset.nav === "support");
       a.classList.toggle("on", on);
       if (on) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
@@ -182,6 +183,7 @@
     $("home").hidden = r.view !== "home";
     $("detail").hidden = r.view !== "app";
     $("sources").hidden = r.view !== "sources";
+    $("support").hidden = r.view !== "support";
     $("social").hidden = r.view !== "social";
     if (r.view === "social") {
       window.scrollTo(0, 0);
@@ -193,6 +195,11 @@
       document.title = "Sources · Accretion";
       window.scrollTo(0, 0);
       return renderSources();
+    }
+    if (r.view === "support") {
+      document.title = "Support · Accretion";
+      window.scrollTo(0, 0);
+      return renderSupport();
     }
     document.title = r.saved ? "Saved · Accretion" : "Accretion";
     const changed = JSON.stringify(r) !== JSON.stringify(state.f);
@@ -466,6 +473,61 @@
     );
   }
 
+  // ---- support: donations, supporter badge, signing certificates (support.json) -------------
+  const certs = () => (state.support.certificates || []).filter((c) => c && c.name && safeUrl(c.url));
+  const wallets = () => (state.support.crypto || []).filter((w) => w && w.name && w.address);
+  const kofi = () => safeUrl(state.support.kofi || "");
+  const hasSupport = () => Boolean(kofi() || wallets().length || certs().length);
+
+  function renderSupport() {
+    const donate = kofi() || wallets().length;
+    $("support").replaceChildren(...[
+      h("div", { class: "view-head" },
+        h("h1", { class: "view-title" }, "Support Accretion"),
+        h("p", { class: "muted" }, "Accretion is free and has no ads. If it saves you time, you can help keep it running.")),
+      donate
+        ? h("section", { class: "sec support-card" },
+            h("h2", {}, "Donate"),
+            kofi() ? h("p", {}, h("a", { class: "btn primary", href: kofi(), target: "_blank", rel: "noopener" }, "♥ Donate on Ko-fi")) : null,
+            wallets().length
+              ? h("ul", { class: "wallets" }, wallets().map((w) => h("li", {},
+                  h("b", {}, w.name),
+                  h("code", {}, w.address),
+                  h("button", { class: "btn ghost", type: "button", onclick: () => copy(w.address, `${w.name} address copied`) }, "Copy"))))
+              : null,
+            h("p", { class: "muted small" }, h("em", { class: "badge supporter" }, "♥ supporter"), " Supporters get this badge on their profile, posts and comments. Add your Accretion username to the Ko-fi message, or send it after a crypto donation, and it's added within a day."))
+        : null,
+      certs().length
+        ? h("section", { class: "sec support-card" },
+            h("h2", {}, "Signing certificates"),
+            h("p", { class: "muted" }, "A paid certificate installs apps from your iPhone for a year, with no computer and no weekly refresh."),
+            h("ul", { class: "cert-list" }, certs().map((c) => h("li", {},
+              h("div", {}, h("b", {}, c.name), c.note ? h("span", { class: "muted small" }, c.note) : null),
+              h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, "Get certificate")))),
+            h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission when you buy, at no extra cost to you."))
+        : null,
+      !hasSupport() ? h("p", { class: "empty" }, "Support options are coming soon.") : null,
+    ].filter(Boolean));
+  }
+
+  function certLine() {
+    if (!certs().length) return null;
+    const links = [];
+    certs().forEach((c, i) => {
+      if (i) links.push(" · ");
+      links.push(h("a", { href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, c.name));
+    });
+    return h("p", { class: "cert-line" }, "Need a signing certificate? ", ...links, h("span", { class: "muted" }, " · affiliate"));
+  }
+
+  function showSupportLinks() {
+    const on = hasSupport();
+    $("nav-support").hidden = !on;
+    $("nav-support-m").hidden = !on;
+    $("foot-support").hidden = !on;
+    $("foot-support-sep").hidden = !on;
+  }
+
   // ---- app page ---------------------------------------------------------------------
   async function details(bid) {
     const n = fnv1a(bid) % state.shards;
@@ -555,6 +617,7 @@
         a.s ? h("p", { class: "d-sub" }, a.s) : null,
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
         d ? actions : null,
+        d && ipa ? certLine() : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),
     );
@@ -721,8 +784,14 @@
   window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route, setTrending };
 
   // ---- boot -------------------------------------------------------------------------------
-  Promise.all([fetch("data/index.json").then((r) => r.json()), fetch("data/stats.json").then((r) => r.json()).catch(() => ({}))])
-    .then(([index, stats]) => {
+  Promise.all([
+    fetch("data/index.json").then((r) => r.json()),
+    fetch("data/stats.json").then((r) => r.json()).catch(() => ({})),
+    fetch("support.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+  ])
+    .then(([index, stats, support]) => {
+      state.support = support || {};
+      showSupportLinks();
       state.sources = index.sources;
       state.shards = index.shards;
       state.apps = index.apps.map((a) => ({ ...a, _s: `${a.n} ${a.d} ${a.i} ${a.s}`.toLowerCase() }));

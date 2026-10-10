@@ -38,6 +38,23 @@ Sign in on the store to comment on apps, like and rate them, follow people, and 
 feed. Moderators handle reports. It runs on a free Supabase project; see
 [`supabase/README.md`](supabase/README.md) for setup. Without it, the store works as before.
 
+## Support links
+
+[`support.json`](support.json) holds the store's donation and certificate links. Each part
+stays hidden until it is filled in:
+
+```json
+{
+  "kofi": "https://ko-fi.com/yourname",
+  "crypto": [{ "name": "Bitcoin", "address": "bc1..." }],
+  "certificates": [{ "name": "Shop name", "url": "https://shop.example/?ref=you", "note": "Instant · 1 year" }]
+}
+```
+
+The store then shows a ♥ Support page, and a certificate line under the install buttons on
+every app page (marked as affiliate links). Admins give donors the ♥ supporter badge from
+Moderation → Supporters.
+
 ## Add the source
 
 There are two links. Pick one:

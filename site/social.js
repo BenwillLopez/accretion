@@ -52,7 +52,7 @@
       return count !== undefined && count !== null && data === null ? count : data;
     };
     const uid = () => me.user && me.user.id;
-    const feedCols = "id,author,app_id,parent_id,body,hidden,created_at,edited_at,username,display_name,color,role,likes,replies";
+    const feedCols = "id,author,app_id,parent_id,body,hidden,created_at,edited_at,username,display_name,color,role,likes,replies,supporter";
     return {
       async load() {
         if (!window.supabase) {
@@ -122,6 +122,7 @@
       resolveReport: async (id, status) => ok(await sb().from("reports").update({ status }).eq("id", id)),
       setBanned: async (profileId, banned) => ok(await sb().from("profiles").update({ banned }).eq("id", profileId)),
       setRole: async (username, role) => ok(await sb().from("profiles").update({ role }).eq("username", username).select("username,role")),
+      setSupporter: async (username, supporter) => ok(await sb().from("profiles").update({ supporter }).eq("username", username).select("username,supporter")),
       deleteAccount: async () => ok(await sb().rpc("delete_my_account")),
       // anonymous demand counts (see supabase/schema.sql)
       track: async ({ kind, app, q }) => ok(await sb().rpc("track", { p_kind: kind, p_app: app, p_q: q })),
@@ -162,6 +163,7 @@
   }
   const isMod = () => me.profile && ["mod", "admin"].includes(me.profile.role) && !me.profile.banned;
   const roleBadge = (role) => (role === "admin" || role === "mod" ? A.h("em", { class: `badge role-${role}` }, role) : null);
+  const supporterBadge = (p) => (p && p.supporter ? A.h("em", { class: "badge supporter", title: "Supports Accretion" }, "♥ supporter") : null);
 
   function renderAccount() {
     const box = $("account");
@@ -235,7 +237,7 @@
         { class: "post-main" },
         h("div", { class: "post-head" },
           h("a", { href: `#/u/${encodeURIComponent(p.username)}`, class: "post-name" }, p.display_name || p.username),
-          h("span", { class: "post-user" }, `@${p.username}`), roleBadge(p.role),
+          h("span", { class: "post-user" }, `@${p.username}`), roleBadge(p.role), supporterBadge(p),
           h("span", { class: "post-time", title: new Date(p.created_at).toLocaleString() }, timeAgo(p.created_at)),
           p.edited_at ? h("span", { class: "post-time" }, "· edited") : null,
           p.hidden ? h("em", { class: "badge hidden-badge" }, "hidden") : null),
@@ -466,7 +468,7 @@
       h("section", { class: "profile-card" },
         avatar(p, 84),
         h("div", { class: "profile-main" },
-          h("h1", { class: "view-title" }, p.display_name || p.username, roleBadge(p.role), p.banned ? h("em", { class: "badge hidden-badge" }, "banned") : null),
+          h("h1", { class: "view-title" }, p.display_name || p.username, roleBadge(p.role), supporterBadge(p), p.banned ? h("em", { class: "badge hidden-badge" }, "banned") : null),
           h("p", { class: "muted" }, `@${p.username} · joined ${new Date(p.created_at).toLocaleDateString(undefined, { month: "short", year: "numeric" })}`),
           p.bio ? bodyText(p.bio) : null,
           h("p", { class: "profile-stats" }, h("span", {}, h("b", {}, A.fmt(p.posts)), " posts"), h("span", {}, followersEl, " followers"), h("span", {}, h("b", {}, A.fmt(p.following)), " following"), h("span", {}, h("b", {}, A.fmt(p.liked_apps)), " liked apps")),
@@ -584,11 +586,27 @@
       });
       return f;
     })() : null;
+    const supporterForm = me.profile.role === "admin" ? (() => {
+      const user = h("input", { class: "input", id: "sup-user", placeholder: "username" });
+      const give = h("button", { class: "btn primary", type: "submit" }, "Give ♥ badge");
+      const take = h("button", { class: "btn ghost", type: "button" }, "Remove");
+      const apply = async (on) => {
+        try {
+          const res = await api.setSupporter(user.value.trim().replace(/^@/, ""), on);
+          A.toast(res && res.length ? `@${res[0].username} ${on ? "is now a supporter ♥" : "is no longer a supporter"}` : "No user with that name");
+        } catch (err) { A.toast(err.message); }
+      };
+      const f = h("form", { class: "card-form" }, h("h2", {}, "Supporters"), h("p", { class: "muted small" }, "After someone donates, give them the ♥ supporter badge."), h("div", { class: "row" }, user, give, take));
+      f.addEventListener("submit", (e) => { e.preventDefault(); apply(true); });
+      take.addEventListener("click", () => apply(false));
+      return f;
+    })() : null;
     const demand = h("section", { class: "demand" }, h("p", { class: "muted" }, "Loading what people look for…"));
     page("Moderation",
       h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Moderation"), h("p", { class: "muted" }, `${rows.length} open report${rows.length === 1 ? "" : "s"}. Hidden posts stay visible to their author and to mods.`)),
       rows.length ? list : h("p", { class: "muted empty-thread" }, "No open reports."),
       demand,
+      supporterForm,
       roleForm);
     renderDemand(demand);
   }
@@ -742,7 +760,7 @@
   function fakeApi() {
     const users = [
       { id: "u1", username: "benwill", display_name: "Benwill", bio: "Built Accretion. Say hi.", color: "8B5CF6", role: "admin", banned: false, created_at: "2026-10-01T10:00:00Z" },
-      { id: "u2", username: "sideloadr", display_name: "Side Loader", bio: "Emulators all day", color: "22D3EE", role: "user", banned: false, created_at: "2026-10-03T10:00:00Z" },
+      { id: "u2", username: "sideloadr", display_name: "Side Loader", bio: "Emulators all day", color: "22D3EE", role: "user", banned: false, supporter: true, created_at: "2026-10-03T10:00:00Z" },
       { id: "u3", username: "modmia", display_name: "Mia", bio: "", color: "34D399", role: "mod", banned: false, created_at: "2026-10-04T10:00:00Z" },
     ];
     const t = (h) => new Date(Date.now() - h * 3600e3).toISOString();
@@ -764,7 +782,7 @@
     const firstApp = () => (A && A.apps()[0] ? A.apps()[0].i : "com.example");
     const view = (p) => {
       const u = users.find((x) => x.id === p.author);
-      return { ...p, username: u.username, display_name: u.display_name, color: u.color, role: u.role, likes: [...likes].filter((k) => k.startsWith(`${p.id}>`)).length, replies: posts.filter((r) => r.parent_id === p.id && !r.hidden).length };
+      return { ...p, username: u.username, display_name: u.display_name, color: u.color, role: u.role, supporter: Boolean(u.supporter), likes: [...likes].filter((k) => k.startsWith(`${p.id}>`)).length, replies: posts.filter((r) => r.parent_id === p.id && !r.hidden).length };
     };
     const stat = (u) => ({ ...u, posts: posts.filter((p) => p.author === u.id && !p.hidden).length, followers: [...follows].filter((f) => f.endsWith(`>${u.id}`)).length, following: [...follows].filter((f) => f.startsWith(`${u.id}>`)).length, liked_apps: [...appLikes].filter((k) => k.endsWith(`>${u.id}`)).length });
     const visible = (p) => !p.hidden || (cur && (cur.id === p.author || ["mod", "admin"].includes(cur.role)));
@@ -820,6 +838,7 @@
       resolveReport: async (id, status) => { reports.find((r) => r.id === id).status = status; },
       setBanned: async (id, banned) => { users.find((u) => u.id === id).banned = banned; },
       setRole: async (username, role) => { const u = users.find((x) => x.username === username); if (!u) return []; u.role = role; return [{ username, role }]; },
+      setSupporter: async (username, supporter) => { const u = users.find((x) => x.username.toLowerCase() === username.toLowerCase()); if (!u) return []; u.supporter = supporter; return [{ username: u.username, supporter }]; },
       deleteAccount: async () => { users.splice(users.indexOf(cur), 1); cur = null; },
       track: async (t) => { tracked.push(t); },
       trending: async () => { seed(); return A.apps().slice(3, 9).map((a, i) => ({ app_id: a.i, searches: 12 - i, views: 30 - i, installs: 5, score: 60 - i * 5 })); },

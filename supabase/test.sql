@@ -199,6 +199,26 @@ do $$ begin
   assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e1') = 'octocat', 'no renaming others';
 end $$;
 
+-- supporter badge: only admins give it
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-0000000000e2');
+update public.profiles set supporter = true where id = '00000000-0000-0000-0000-0000000000e2';
+commit;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+update public.profiles set supporter = true where id = '00000000-0000-0000-0000-0000000000e2';
+commit;
+do $$ begin
+  assert not (select supporter from public.profiles where id = '00000000-0000-0000-0000-0000000000e2'), 'users and mods cannot give the badge';
+end $$;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
+update public.profiles set supporter = true where username = 'apple_fan';
+commit;
+do $$ begin
+  assert (select supporter from public.profile_stats where username = 'apple_fan'), 'admin gives the badge';
+end $$;
+
 -- demand counts: anonymous, once per visitor per item per day, capped, misses private
 begin;
 select pg_temp.as_user(null);

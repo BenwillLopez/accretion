@@ -7,7 +7,7 @@ on:
     - cron: "23 */6 * * *"
   push:
     branches: [main]
-    paths: [sources.txt, blocklist.txt, dead_hosts.txt, popular.txt, "scripts/**", "site/**"]
+    paths: [sources.txt, blocklist.txt, dead_hosts.txt, popular.txt, support.json, "scripts/**", "site/**"]
   workflow_dispatch:
 
 permissions:

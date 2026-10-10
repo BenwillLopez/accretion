@@ -385,3 +385,19 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .gone .d-icon { width: 80px; height: 80px; border-radius: 18px; filter: grayscale(1); opacity: .6; }
 .gone .d-name { margin: 0 0 6px; }
 .closest { margin-top: 4px; }
+
+/* support: donations, supporter badge, certificates */
+.heart { color: #F43F5E; }
+.heart:hover { color: #F43F5E; }
+.badge.supporter { background: color-mix(in srgb, #F43F5E 18%, transparent); color: #F43F5E; margin-left: 6px; }
+.support-card { max-width: 720px; }
+.wallets, .cert-list { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 8px; }
+.wallets li, .cert-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.wallets code { font: 12px var(--mono); overflow-wrap: anywhere; flex: 1 1 220px; min-width: 0; }
+.cert-list li > div { flex: 1 1 200px; display: grid; gap: 2px; min-width: 0; }
+.cert-line { margin: 10px 0 0; font-size: 13px; }
+.nav .nav-heart { display: none; color: #F43F5E; }
+@media (max-width: 760px) {
+  .top .heart { display: none; }
+  .nav .nav-heart:not([hidden]) { display: inline-flex; flex: 0 0 44px; }
+}

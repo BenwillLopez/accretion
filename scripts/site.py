@@ -190,6 +190,10 @@ def main():
     dump("data/stats.json", stats)
     for name in ("source.json", "curated.json"):
         shutil.copy(path(name), os.path.join(OUT, name))
+    # donation and certificate links shown on the store (empty parts stay hidden)
+    support = load_json("support.json", {})
+    with open(os.path.join(OUT, "support.json"), "w") as f:
+        json.dump(support, f, ensure_ascii=False)
     for name in os.listdir(path("assets")):
         shutil.copy(path(f"assets/{name}"), os.path.join(OUT, "assets", name))
     # community features: public Supabase settings (the anon key is meant to be public)

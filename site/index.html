@@ -40,7 +40,9 @@
     <a href="#/sources" data-nav="sources">Sources</a>
     <a href="#/feed" data-nav="feed" id="nav-feed" hidden>Feed</a>
     <a href="#/saved" data-nav="saved">Saved <span id="saved-n" class="pill" hidden></span></a>
+    <a href="#/support" data-nav="support" id="nav-support-m" class="nav-heart" aria-label="Support Accretion" hidden>♥</a>
   </nav>
+  <a class="bell heart" id="nav-support" href="#/support" aria-label="Support Accretion" title="Support Accretion" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.4C.9 8.1 3 4.5 6.6 4.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.6 0 5.7 3.6 4.2 7.1C19.5 16.4 12 21 12 21Z"/></svg></a>
   <div id="account" class="account"></div>
   <button class="btn primary add-top" id="open-add" type="button">Add source</button>
 </header>
@@ -93,6 +95,7 @@
 
 <section id="detail" class="view" hidden></section>
 <section id="sources" class="view" hidden></section>
+<section id="support" class="view" hidden></section>
 <section id="social" class="view" hidden></section>
 
 <dialog id="add" class="add">
@@ -116,7 +119,7 @@
 
 <footer class="foot">
   <p>Accretion only lists what public sources publish. It hosts no files and nobody reviews the apps, so install what you trust.</p>
-  <p><a href="rules.html">Community rules</a> · <a href="privacy.html">Privacy</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io">Source code</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/blob/main/REPORT.md">Source report</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/issues/new?template=add-source.yml">Suggest a source</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/issues/new?template=report-source.yml">Report a problem</a></p>
+  <p><a href="#/support" id="foot-support" hidden>Support Accretion</a><span id="foot-support-sep" hidden> · </span><a href="rules.html">Community rules</a> · <a href="privacy.html">Privacy</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io">Source code</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/blob/main/REPORT.md">Source report</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/issues/new?template=add-source.yml">Suggest a source</a> · <a href="https://github.com/GETAccretion/getaccretion.github.io/issues/new?template=report-source.yml">Report a problem</a></p>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

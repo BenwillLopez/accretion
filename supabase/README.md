@@ -160,7 +160,7 @@ update public.profiles set role = 'admin' where username = 'your_username';
 ```
 
 You can now open **Edit profile → Open moderation** (or go to `#/mod`). From there you can hide
-posts, ban users, and give trusted people moderator rights. Mods can hide posts and ban users;
+posts, ban users, and give trusted people moderator rights. Admins can also give donors the ♥ supporter badge. Mods can hide posts and ban users;
 only admins can change roles.
 
 ## How access is enforced

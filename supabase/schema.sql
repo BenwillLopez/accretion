@@ -23,6 +23,8 @@ create table if not exists public.profiles (
   banned boolean not null default false,
   created_at timestamptz not null default now()
 );
+-- supporters (donors) get a badge; only admins can give or take it
+alter table public.profiles add column if not exists supporter boolean not null default false;
 
 create table if not exists public.posts (
   id bigint generated always as identity primary key,
@@ -176,6 +178,7 @@ begin
   new.created_at := old.created_at;
   if not public.is_admin() then
     new.role := old.role;
+    new.supporter := old.supporter;
   end if;
   if not public.is_mod() or (old.role = 'admin' and not public.is_admin()) then
     new.banned := old.banned;
@@ -402,7 +405,8 @@ select
   p.id, p.author, p.app_id, p.parent_id, p.body, p.hidden, p.created_at, p.edited_at,
   pr.username, pr.display_name, pr.color, pr.role,
   (select count(*) from public.post_likes l where l.post_id = p.id)::int as likes,
-  (select count(*) from public.posts r where r.parent_id = p.id and not r.hidden)::int as replies
+  (select count(*) from public.posts r where r.parent_id = p.id and not r.hidden)::int as replies,
+  pr.supporter
 from public.posts p
 join public.profiles pr on pr.id = p.author;
 
@@ -430,7 +434,8 @@ select
   (select count(*) from public.posts p where p.author = pr.id and not p.hidden)::int as posts,
   (select count(*) from public.follows f where f.followee = pr.id)::int as followers,
   (select count(*) from public.follows f where f.follower = pr.id)::int as following,
-  (select count(*) from public.app_likes a where a.user_id = pr.id)::int as liked_apps
+  (select count(*) from public.app_likes a where a.user_id = pr.id)::int as liked_apps,
+  pr.supporter
 from public.profiles pr;
 
 -- ---------------------------------------------------------------- demand (anonymous counts)
@@ -561,7 +566,7 @@ grant usage on schema public to anon, authenticated;
 grant select on public.profiles, public.posts, public.post_likes, public.app_likes,
   public.app_ratings, public.follows, public.post_feed, public.app_stats, public.profile_stats
   to anon, authenticated;
-grant update (username, display_name, bio, color, role, banned) on public.profiles to authenticated;
+grant update (username, display_name, bio, color, role, banned, supporter) on public.profiles to authenticated;
 grant insert, update, delete on public.posts, public.post_likes, public.app_likes,
   public.app_ratings, public.follows to authenticated;
 grant select, insert, update on public.reports to authenticated;
