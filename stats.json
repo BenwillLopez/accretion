@@ -1,41 +1,42 @@
 {
- "apps": 8790,
+ "apps": 8752,
  "curated_apps": 1657,
  "sources": 162,
- "updated": "2026-10-10 06:20 UTC",
- "size_mb": 9.7,
- "built_at": "2026-10-10T06:20:11Z",
+ "updated": "2026-10-10 06:33 UTC",
+ "size_mb": 9.8,
+ "built_at": "2026-10-10T06:33:03Z",
  "sources_total": 162,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 133,
- "listings": 30069,
- "duplicates": 2233,
- "rejected": 288,
+ "listings": 30013,
+ "duplicates": 2231,
+ "rejected": 287,
+ "excluded": 57,
  "dead_links_removed": 0,
  "links_on_hold": 0,
- "developers": 752,
- "updated_7d": 405,
- "updated_30d": 1088,
+ "developers": 729,
+ "updated_7d": 398,
+ "updated_30d": 1077,
  "curated_size_mb": 1.2,
  "categories": {
-  "other": 3832,
-  "games": 2579,
-  "photo-video": 732,
-  "utilities": 710,
-  "entertainment": 408,
-  "lifestyle": 286,
+  "other": 3833,
+  "games": 2567,
+  "photo-video": 729,
+  "utilities": 696,
+  "entertainment": 402,
+  "lifestyle": 284,
   "developer": 144,
-  "social": 99
+  "social": 97
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 7731
+   "apps": 7733
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 616
+   "apps": 619
   },
   {
    "name": "Altmaker by RipeStore",
@@ -43,7 +44,7 @@
   },
   {
    "name": "MySign IPA's",
-   "apps": 88
+   "apps": 89
   },
   {
    "name": "AppTesters IPA Repo",
