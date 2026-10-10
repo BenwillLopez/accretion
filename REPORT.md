@@ -1,18 +1,18 @@
 # Source report
 
-Built 2026-10-10 06:36 UTC.
+Built 2026-10-10 06:53 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **8750** (10019 KB) |
 | Apps in `curated.json` | **1657** (1271 KB) |
-| Listings read | 30009 |
+| Listings read | 30010 |
 | Apps listed by more than one source (newest kept) | 2231 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 287 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links removed | 0 |
 | Links on hold (whole host failing, kept for now) | 0 |
-| Sources | 161: 160 ok, 1 from cache, 0 failed |
+| Sources | 161: 161 ok, 0 from cache, 0 failed |
 
 ## Sources
 
@@ -87,8 +87,8 @@ Built 2026-10-10 06:36 UTC.
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 1296 | 0 | 16 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 155 | 0 | 0 | 2026-10-09 | discovered |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 113 | 0 | 3 | 2024-11-17 | discovered |
@@ -123,7 +123,7 @@ Built 2026-10-10 06:36 UTC.
 | [Odyssey](https://theodyssey.dev/altstore/odysseysource.json) | ok | 2 | 0 | 0 | 2023-04-03 | curated |
 | [Foxster's AltSource](https://therealfoxster.github.io/altsource/apps.json) | ok | 2 | 0 | 0 | 2026-03-04 | curated |
 | [Laoalts](https://alts.lao.sb) | ok | 1 | 0 | 0 | 2020-03-30 | discovered |
-| [Laoalts](https://alts.lao.sb/) | cached | 1 | 0 | 0 | 2020-03-30 | curated |
+| [Laoalts](https://alts.lao.sb/) | ok | 1 | 0 | 0 | 2020-03-30 | curated |
 | [SideStore Official](https://apps.sidestore.io/) | ok | 1 | 0 | 0 | 2025-07-01 | curated |
 | [Flyinghead](https://flyinghead.github.io/flycast-builds/altstore.json) | ok | 1 | 0 | 0 | 2025-05-07 | curated |
 | [iSH](https://ish.app/altstore.json) | ok | 1 | 0 | 0 | 2026-08-22 | curated |
@@ -181,10 +181,6 @@ Built 2026-10-10 06:36 UTC.
 | [CARDMATE](https://weztling.se/altstore.json) | ok | 0 | 0 | 1 |  | discovered |
 | [iTorrent Source](https://xitrix.github.io/iTorrent/AltStore.json) | ok | 0 | 0 | 1 |  | curated |
 | [iTorrent Source](https://xitrix.github.io/iTorrent/AltStoreEU.json) | ok | 0 | 0 | 1 |  | discovered |
-
-## Problems
-
-- `https://alts.lao.sb/`: cached (URLError: <urlopen error _ssl.c:993: The handshake operation timed out>)
 
 ## Recently updated
 
