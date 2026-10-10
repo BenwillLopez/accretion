@@ -30,4 +30,5 @@ https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json
 https://therealfoxster.github.io/altsource/apps.json
 https://altstore.oatmealdome.me
 https://ish.app/altstore.json
+https://source.fouadraheb.com
 https://altstore.fouadraheb.com
