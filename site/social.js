@@ -376,9 +376,9 @@
       statsCache ||= await api.appStats();
     } catch { return; }
     const known = statsCache.filter((s) => A.app(s.app_id));
-    const liked = [...known].filter((s) => s.likes > 0).sort((a, b) => b.likes - a.likes).slice(0, 18).map((s) => A.app(s.app_id));
-    const rated = [...known].filter((s) => s.ratings >= 3).sort((a, b) => b.avg_rating - a.avg_rating || b.ratings - a.ratings).slice(0, 18).map((s) => A.app(s.app_id));
-    const talked = [...known].filter((s) => s.comments > 0).sort((a, b) => b.comments - a.comments).slice(0, 18).map((s) => A.app(s.app_id));
+    const liked = [...known].filter((s) => s.likes > 0).sort((a, b) => b.likes - a.likes).slice(0, 20).map((s) => A.app(s.app_id));
+    const rated = [...known].filter((s) => s.ratings >= 3).sort((a, b) => b.avg_rating - a.avg_rating || b.ratings - a.ratings).slice(0, 20).map((s) => A.app(s.app_id));
+    const talked = [...known].filter((s) => s.comments > 0).sort((a, b) => b.comments - a.comments).slice(0, 20).map((s) => A.app(s.app_id));
     mount.replaceChildren(...[
       A.shelf("Most liked", "by the community", liked, null, { ranked: true }),
       A.shelf("Top rated", "3+ ratings", rated, null, { ranked: true }),

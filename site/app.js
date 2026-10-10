@@ -5,8 +5,8 @@
   "use strict";
 
   const PAGE = 60;
-  const SHELF = 18;
-  const LIST = 5; // apps shown per home section
+  const SHELF = 20; // apps per home section: pages of LIST rows, swiped sideways
+  const LIST = 5; // rows per page
   const CATEGORY_NAMES = {
     games: "Games", utilities: "Utilities", "photo-video": "Photo & Video", entertainment: "Entertainment",
     social: "Social", lifestyle: "Lifestyle", developer: "Developer", other: "Other",
@@ -392,11 +392,25 @@
 
   function shelf(title, note, apps, seeAll, { ranked = false } = {}) {
     if (!apps.length) return null;
+    const list = apps.slice(0, SHELF);
+    const pages = [];
+    for (let i = 0; i < list.length; i += LIST) pages.push(list.slice(i, i + LIST));
+    const scroller = h(
+      "div",
+      { class: `shelf-pages${pages.length > 1 ? " multi" : ""}` },
+      pages.map((page, p) => h("ol", { class: "shelf-list", start: String(p * LIST + 1) }, page.map((a, i) => listRow(a, ranked ? p * LIST + i + 1 : 0)))),
+    );
+    const step = (dir) => scroller.scrollBy({ left: dir * scroller.clientWidth * 0.9, behavior: "smooth" });
+    const arrows = pages.length > 1
+      ? h("span", { class: "shelf-nav" },
+          h("button", { type: "button", "aria-label": `Previous ${title}`, onclick: () => step(-1) }, "‹"),
+          h("button", { type: "button", "aria-label": `More ${title}`, onclick: () => step(1) }, "›"))
+      : null;
     return h(
       "section",
       { class: "shelf" },
-      h("div", { class: "shelf-head" }, h("h2", {}, title, note ? h("span", {}, note) : null), seeAll ? h("a", { href: seeAll }, "See all") : null),
-      h("ol", { class: "shelf-list" }, apps.slice(0, LIST).map((a, i) => listRow(a, ranked ? i + 1 : 0))),
+      h("div", { class: "shelf-head" }, h("h2", {}, title, note ? h("span", {}, note) : null), h("span", { class: "shelf-tools" }, arrows, seeAll ? h("a", { href: seeAll }, "See all") : null)),
+      scroller,
     );
   }
 
