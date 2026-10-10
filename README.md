@@ -32,6 +32,13 @@ add what their users ask for), the apps that guides and communities name most
 ([`popular.txt`](popular.txt)), and anonymous searches on the store itself. Searches that find
 nothing show up for moderators, so missing apps and sources can be added first.
 
+## Install any IPA
+
+[`#/sign`](https://getaccretion.github.io/#/sign) turns any direct `.ipa` link into one-tap installs
+for Feather (signs with your own certificate), AltStore, SideStore and TrollStore, and shows the
+closest apps already in Accretion. Nothing is uploaded. Every app page also has a Feather button,
+and the Add source dialog opens the source in Feather.
+
 ## Community
 
 Sign in on the store to comment on apps, like and rate them, follow people, and post to a shared

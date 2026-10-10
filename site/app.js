@@ -142,6 +142,7 @@
     if (app) return { view: "app", bid: decodeURIComponent(app[1]) };
     if (pathPart === "/sources") return { view: "sources" };
     if (pathPart === "/support") return { view: "support" };
+    if (pathPart === "/sign") return { view: "sign" };
     if (/^\/(feed|u\/.+|notifications|mod|me|signin)$/.test(pathPart)) return { view: "social", path: pathPart, params: Object.fromEntries(p) };
     return {
       view: "home",
@@ -189,6 +190,7 @@
     $("detail").hidden = r.view !== "app";
     $("sources").hidden = r.view !== "sources";
     $("support").hidden = r.view !== "support";
+    $("sign").hidden = r.view !== "sign";
     $("social").hidden = r.view !== "social";
     if (r.view === "social") {
       window.scrollTo(0, 0);
@@ -200,6 +202,11 @@
       document.title = "Sources · Accretion";
       window.scrollTo(0, 0);
       return renderSources();
+    }
+    if (r.view === "sign") {
+      document.title = "Install any IPA · Accretion";
+      window.scrollTo(0, 0);
+      return renderSign();
     }
     if (r.view === "support") {
       document.title = "Support · Accretion";
@@ -505,6 +512,62 @@
     );
   }
 
+  // ---- install links for on-device signers -------------------------------------------------
+  // Feather takes the plain https link after the prefix (see its FeatherApp.swift URL handler).
+  const featherInstall = (url) => `feather://install/${url}`;
+  const featherSource = (url) => `feather://source/${url}`;
+
+  function installButtons(url) {
+    return [
+      h("a", { class: "btn primary", href: featherInstall(url) }, "Sign & install in Feather"),
+      h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(url)}` }, "AltStore"),
+      h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(url)}` }, "SideStore"),
+      h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(url)}` }, "TrollStore"),
+      h("a", { class: "btn ghost", href: url, rel: "nofollow noopener" }, "Download"),
+    ];
+  }
+
+  // Install any IPA: paste a direct https link, get one-tap buttons for every installer
+  function renderSign() {
+    const input = h("input", { class: "input", id: "sign-url", type: "url", inputmode: "url", placeholder: "https://…/App.ipa", autocomplete: "off", spellcheck: "false" });
+    const out = h("div", { class: "sign-out", "aria-live": "polite" });
+    const show = () => {
+      const url = safeUrl(input.value.trim());
+      if (!url) {
+        out.replaceChildren(input.value.trim() ? h("p", { class: "warn" }, "That isn't an https link. Use the direct link to the .ipa file.") : "");
+        return;
+      }
+      const name = decodeURIComponent(url.split("?")[0].split("/").pop() || "").replace(/\.t?ipa$/i, "").replace(/[_+.-]+/g, " ").trim();
+      const near = name ? closest({ name }, 4) : [];
+      out.replaceChildren(...[
+        h("div", { class: "actions" }, installButtons(url)),
+        /\.t?ipa(\?|$)/i.test(url) ? null : h("p", { class: "muted small" }, "This link doesn't end in .ipa. If it opens a web page instead of the file, the installers can't use it."),
+        near.length ? shelf("Already in Accretion", "checked links, kept up to date", near, null) : null,
+      ].filter(Boolean));
+    };
+    input.addEventListener("input", show);
+    $("sign").replaceChildren(...[
+      h("div", { class: "view-head" },
+        h("h1", { class: "view-title" }, "Install any IPA"),
+        h("p", { class: "muted" }, "Paste a direct link to an .ipa file (GitHub releases, Dropbox and similar). Accretion turns it into one-tap installs for Feather, AltStore, SideStore and TrollStore. Nothing is uploaded: the link goes straight to the app you pick.")),
+      h("label", { class: "sign-field" }, h("span", {}, "IPA link"), input),
+      out,
+      h("section", { class: "sec" },
+        h("h2", {}, "File already on your iPhone?"),
+        h("p", { class: "muted" }, "Open it from Files or Safari downloads, tap Share, and pick Feather (or ESign, KSign). It signs with your certificate and installs.")),
+      certs().length
+        ? h("section", { class: "sec" },
+            h("h2", {}, "No certificate yet?"),
+            h("ul", { class: "cert-list" }, certs().map((c) => h("li", {},
+              h("div", {}, h("b", {}, c.name), c.note ? h("span", { class: "muted small" }, c.note) : null),
+              h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, "Get certificate")))),
+            h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
+        : null,
+    ].filter(Boolean));
+    const pre = new URLSearchParams(location.hash.split("?")[1] || "").get("url");
+    if (pre) { input.value = pre; show(); }
+  }
+
   // ---- support: donations, supporter badge, signing certificates (support.json) -------------
   const certs = () => (state.support.certificates || []).filter((c) => c && c.name && safeUrl(c.url));
   const wallets = () => (state.support.crypto || []).filter((w) => w && w.name && w.address);
@@ -670,6 +733,7 @@
       ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
       ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "AltStore") : null,
       ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "SideStore") : null,
+      ipa ? h("a", { class: "btn", href: featherInstall(ipa), onclick: installed, title: "Sign and install with your own certificate in Feather" }, "Feather") : null,
       ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "TrollStore") : null,
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
@@ -810,6 +874,7 @@
     $("add-url").textContent = url;
     $("add-altstore").href = `altstore://source?url=${encodeURIComponent(url)}`;
     $("add-sidestore").href = `sidestore://source?url=${encodeURIComponent(url)}`;
+    $("add-feather").href = featherSource(url);
   }
   $("open-add").addEventListener("click", () => {
     updateAdd();

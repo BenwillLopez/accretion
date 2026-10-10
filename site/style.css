@@ -420,3 +420,9 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .dl-offers { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
 .dl-label { font: 600 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .dl-support { margin: 12px 0 0; font-size: 14px; }
+
+/* install any IPA */
+.sign-field { display: grid; gap: 6px; max-width: 720px; font-weight: 600; }
+.sign-field .input { width: 100%; font: 15px var(--mono); }
+.sign-out { max-width: 720px; margin-top: 12px; }
+.sign-out .actions { display: flex; flex-wrap: wrap; gap: 8px; }
