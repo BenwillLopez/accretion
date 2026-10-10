@@ -214,6 +214,72 @@ def provider_settings():
     return settings
 
 
+# Sign-up, sign-in link and password reset emails, sent from the store's own mail account
+EMAILS = {
+    "confirmation": (
+        "Confirm your Accretion account",
+        "Confirm your email to finish signing up.",
+        "Confirm email",
+    ),
+    "magic_link": (
+        "Your Accretion sign-in link",
+        "Tap the button to sign in. The link works once.",
+        "Sign in",
+    ),
+    "recovery": (
+        "Reset your Accretion password",
+        "Tap the button to choose a new password.",
+        "Reset password",
+    ),
+    "email_change": (
+        "Confirm your new email",
+        "Confirm this address for your Accretion account.",
+        "Confirm email",
+    ),
+}
+EMAIL_HTML = (
+    '<div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:480px;margin:auto;'
+    'padding:24px;color:#17142C">'
+    '<h2 style="margin:0 0 12px">Accretion</h2><p>{text}</p>'
+    '<p><a href="{{{{ .ConfirmationURL }}}}" style="display:inline-block;background:#8B5CF6;color:#fff;'
+    'padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600">{button}</a></p>'
+    '<p style="color:#625E80;font-size:13px">If you didn\'t ask for this, ignore this email.</p></div>'
+)
+
+
+def smtp_credentials():
+    """Mail account for auth emails: SMTP_USER + SMTP_PASS, or one SMTP secret holding the address
+    and the app password together. Gmail shows app passwords in groups of four; spaces are dropped."""
+    user, password = env("SMTP_USER"), env("SMTP_PASS")
+    if not (user and password) and env("SMTP"):
+        tokens = env("SMTP").split()
+        user = next((t for t in tokens if "@" in t), "")
+        password = "".join(t for t in tokens if t != user)
+    if "@gmail.com" in user.lower() or "@googlemail.com" in user.lower():
+        password = password.replace(" ", "")
+    return user, password
+
+
+def smtp_settings():
+    user, password = smtp_credentials()
+    if not (user and password):
+        return {}
+    settings = {
+        "smtp_host": env("SMTP_HOST") or "smtp.gmail.com",
+        "smtp_port": env("SMTP_PORT") or "465",
+        "smtp_user": user,
+        "smtp_pass": password,
+        "smtp_admin_email": user,
+        "smtp_sender_name": "Accretion",
+        "smtp_max_frequency": 60,  # seconds between emails to the same address
+        "rate_limit_email_sent": 30,  # per hour, well under Gmail's 500 a day
+    }
+    for kind, (subject, text, button) in EMAILS.items():
+        settings[f"mailer_subjects_{kind}"] = subject
+        settings[f"mailer_templates_{kind}_content"] = EMAIL_HTML.format(text=text, button=button)
+    return settings
+
+
 def check_public_api(url, key, attempts=10):
     """Read the public views the way the website does, to prove the setup works end to end."""
     for view in ("app_stats", "post_feed", "profile_stats"):
@@ -252,8 +318,14 @@ def main():
         auth.update(
             {"site_url": SITE_URL, "uri_allow_list": f"{SITE_URL},{SITE_URL}**", "mailer_autoconfirm": False}
         )
+    mail = smtp_settings()
+    auth.update(mail)
     if auth:
         call("PATCH", f"/projects/{ref}/config/auth", auth)
+    if mail:
+        log(f"Emails are sent from {mail['smtp_user']} as 'Accretion' ({mail['smtp_host']})")
+    else:
+        log("Emails use Supabase's built-in sender (a few an hour). Add the SMTP secret to send more.")
     if SITE_URL:
         log(f"Sign-in links point to {SITE_URL}")
     enabled = sorted(k.split("_")[1] for k in auth if k.endswith("_enabled"))

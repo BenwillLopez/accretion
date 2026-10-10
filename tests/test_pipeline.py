@@ -390,6 +390,11 @@ class SignInProviders(unittest.TestCase):
             "GOOGLE_KEYS",
             "GIT_KEYS",
             "DISCORD_KEYS",
+            "SMTP",
+            "SMTP_USER",
+            "SMTP_PASS",
+            "SMTP_HOST",
+            "SMTP_PORT",
         ]
         clean = dict.fromkeys(keys, "")
         clean.update(values)
@@ -429,6 +434,22 @@ class SignInProviders(unittest.TestCase):
             self.assertEqual(setup.provider_settings()["external_discord_client_id"], did)
         with self.env(DISCORD_KEYS=did), mock.patch.object(setup, "public_client_ids", return_value={}):
             self.assertNotIn("external_discord_enabled", setup.provider_settings())  # only half
+
+    def test_mail_account_from_one_secret(self):
+        import supabase_setup as setup
+
+        with self.env():
+            self.assertEqual(setup.smtp_settings(), {})  # none set: built-in sender
+        with self.env(SMTP="getaccretion@gmail.com\nabcd efgh ijkl mnop"):
+            out = setup.smtp_settings()
+        self.assertEqual(out["smtp_user"], "getaccretion@gmail.com")
+        self.assertEqual(out["smtp_pass"], "abcdefghijklmnop")  # Gmail's spaces dropped
+        self.assertEqual((out["smtp_host"], out["smtp_port"]), ("smtp.gmail.com", "465"))
+        self.assertIn("{{ .ConfirmationURL }}", out["mailer_templates_confirmation_content"])
+        self.assertEqual(out["mailer_subjects_recovery"], "Reset your Accretion password")
+        with self.env(SMTP_USER="a@b.io", SMTP_PASS="p w", SMTP_HOST="smtp.b.io", SMTP_PORT="587"):
+            out = setup.smtp_settings()
+        self.assertEqual((out["smtp_pass"], out["smtp_host"], out["smtp_port"]), ("p w", "smtp.b.io", "587"))
 
     def test_apple_secret_is_a_signed_jwt(self):
         try:

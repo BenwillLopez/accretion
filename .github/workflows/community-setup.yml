@@ -62,6 +62,12 @@ jobs:
           GOOGLE_KEYS: ${{ secrets.GOOGLE }}
           GIT_KEYS: ${{ secrets.GIT }}
           DISCORD_KEYS: ${{ secrets.DISCORD }}
+          # mail account for sign-up and password emails (see supabase/README.md)
+          SMTP: ${{ secrets.SMTP }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
           APPLE_SERVICES_ID: ${{ secrets.APPLE_SERVICES_ID }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}

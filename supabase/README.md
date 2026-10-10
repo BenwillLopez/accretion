@@ -99,6 +99,21 @@ Run **Actions → Set up community → Run workflow**. Its log lists the provide
 
 **Keep the access token** if you use Apple: the monthly renewal needs `SUPABASE_ACCESS_TOKEN`.
 
+## Emails (free, up to 500 a day)
+
+Supabase's built-in sender only manages a few emails an hour. A dedicated Gmail account sends
+sign-up confirmations, sign-in links and password resets as "Accretion", for free:
+
+1. Create a new Gmail account just for the store (for example `getaccretion@gmail.com`).
+2. Turn on **2-Step Verification**: [myaccount.google.com/security](https://myaccount.google.com/security).
+3. Create an **app password**: [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords),
+   named `Accretion`. Google shows 16 letters in groups of four.
+4. Save a repository secret named `SMTP` with the address on the first line and the app password
+   on the second, spaces and all.
+5. Run **Set up community**. Its log says which address the emails come from.
+
+Another provider works too: save `SMTP_USER`, `SMTP_PASS`, `SMTP_HOST` and `SMTP_PORT` instead.
+
 ## Manual setup
 
 Use this instead of the quick setup if you prefer to click through the dashboard yourself.
