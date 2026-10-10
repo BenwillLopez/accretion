@@ -169,6 +169,14 @@ class VersionOrdering(unittest.TestCase):
         ):
             self.assertEqual(check_links.status("https://cdn.io/a.png"), "alive")
 
+        def page(req, timeout):  # an error or landing page instead of the file
+            r = Resp("https://host.io/404")
+            r.headers = {"Content-Type": "text/html; charset=utf-8"}
+            return r
+
+        with mock.patch.object(check_links.urllib.request, "urlopen", page):
+            self.assertEqual(check_links.status("https://host.io/download/1"), "dead")
+
     def test_icons_are_hosted_by_accretion(self):
         import io
         import tempfile
@@ -339,6 +347,18 @@ class LinkChecks(unittest.TestCase):
         self.assertNotIn("https://a.io/back.ipa", out)  # works again: reinstated on this build
         self.assertEqual(out["https://a.io/still.ipa"]["fails"], 4)  # still broken: kept, retried
         self.assertEqual(out["https://a.io/flaky.ipa"], old)  # no clear answer: unchanged
+
+    def test_confirmed_dead_hosts_need_a_real_file_to_come_back(self):
+        urls = ["https://gone.io/a.ipa", "https://gone.io/b.ipa", "https://ok.io/c.ipa"]
+        res = {
+            "https://gone.io/a.ipa": "unknown",
+            "https://gone.io/b.ipa": "alive",
+            "https://ok.io/c.ipa": "unknown",
+        }
+        out = self.run_check(urls, {}, res, dead_hosts=["gone.io"])
+        self.assertIn("https://gone.io/a.ipa", out)  # no clear answer from a confirmed-dead host
+        self.assertNotIn("https://gone.io/b.ipa", out)  # a real file again: reinstated
+        self.assertNotIn("https://ok.io/c.ipa", out)  # elsewhere, no clear answer changes nothing
 
     def test_core_list_links_and_icons_are_checked_too(self):
         core = {

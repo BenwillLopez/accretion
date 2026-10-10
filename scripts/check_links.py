@@ -7,9 +7,13 @@ ignored, because they are often temporary or caused by bot protection. merge.py 
 version as soon as its link is dead, and the app falls back to an older working version or
 another source; a link that works again comes back on the next build.
 
+A link that returns a web page (text/html) instead of a file counts as dead too: installers
+can't use it, and it's usually an error page behind a redirect.
+
 When nearly every link on one host fails at once, the host may just be briefly down, so
-those links are marked host_wide and get one more check before they are dropped, unless the
-host is listed in dead_hosts.txt (confirmed broken by hand).
+those links are marked host_wide and get one more check before they are dropped. Hosts in
+dead_hosts.txt (confirmed broken by hand) get no extra check, and their links only count again
+once the check gets a real file from them; "no clear answer" isn't enough there.
 
 Dropped links are never forgotten: they stay in dead_links.json, are tested again on every
 build, and the version is reinstated as soon as its link works.
@@ -62,6 +66,10 @@ def status(url):
                 r.read(1)
                 if r.geturl().lower().startswith("http://"):
                     return "dead"  # ends on plain http: iOS refuses it (App Transport Security)
+                if (r.headers.get("Content-Type") or "").lower().startswith("text/html"):
+                    if method == "HEAD":
+                        continue  # confirm with GET; some servers answer HEAD loosely
+                    return "dead"  # a web page (error or landing page), not a file
                 day = upload_day(r.headers)
                 if day:
                     LAST_MODIFIED[url] = day
@@ -106,13 +114,18 @@ def main():
     with ThreadPoolExecutor(32) as ex:
         results = dict(ex.map(check, urls))
 
+    # hosts confirmed broken by hand: a link only counts once it serves a real file again
+    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}
+    for url, s in results.items():
+        if s != "alive" and host(url) in confirmed:
+            results[url] = "dead"
+
     per_host = {}
     for url, s in results.items():
         counts[s] += 1
         h = per_host.setdefault(host(url), [0, 0])
         h[0] += 1
         h[1] += s == "dead"
-    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}  # broken by hand: no extra check
     host_wide = {
         h
         for h, (total, dead) in per_host.items()

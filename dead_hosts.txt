@@ -1,6 +1,6 @@
-# Download hosts confirmed broken by hand. Their links are still tested on every build, but a
-# failing link is dropped at the first failed check, without the extra check a whole-host
-# failure normally gets. As soon as a link works again it is reinstated automatically.
+# Download hosts confirmed broken by hand. Their links are still tested on every build, but they
+# stay out until the check gets a real file from them: a failure, a web page or no clear answer
+# all keep them out. As soon as a link serves its file again it is reinstated automatically.
 # One host per line.
 
 appstore.sidelix.vip  # 2026-10-10: every link (265) returns 404; confirmed by a user report
