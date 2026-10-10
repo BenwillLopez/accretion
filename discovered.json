@@ -219,7 +219,7 @@
  "https://provenance-emu.com/apps.json": {
   "name": "Provenance Emulator",
   "apps": 4,
-  "size": 26802,
+  "size": 27261,
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
@@ -296,7 +296,7 @@
  "https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json": {
   "name": "Lumisound",
   "apps": 1,
-  "size": 132581,
+  "size": 132943,
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
@@ -377,17 +377,10 @@
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
- "https://raw.githubusercontent.com/RipeStore/altmaker/main/AltMaker.json": {
-  "name": "Altmaker by RipeStore",
-  "apps": 156,
-  "size": 546991,
-  "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
- },
  "https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json": {
   "name": "Altmaker by RipeStore",
-  "apps": 155,
-  "size": 546548,
+  "apps": 156,
+  "size": 546380,
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
@@ -552,13 +545,6 @@
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
- "https://raw.githubusercontent.com/apeiraco/sidestore-bucket/main/apps.json": {
-  "name": "Apeiraco SideStore Bucket",
-  "apps": 3,
-  "size": 5575,
-  "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
- },
  "https://raw.githubusercontent.com/apikusu/altstore/main/res/osu/index.json": {
   "name": "osu!",
   "apps": 1,
@@ -709,7 +695,7 @@
  "https://raw.githubusercontent.com/gabrielchamak/solea-releases/main/sidestore.json": {
   "name": "Solea",
   "apps": 1,
-  "size": 12122,
+  "size": 14377,
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
@@ -798,16 +784,9 @@
   "last_ok": "2026-10-10"
  },
  "https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps-old.json": {
-  "name": "OpenAni",
+  "name": "OpenAni (Legacy)",
   "apps": 1,
-  "size": 15985,
-  "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
- },
- "https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps.json": {
-  "name": "OpenAni",
-  "apps": 2,
-  "size": 22753,
+  "size": 7430,
   "first_seen": "2026-10-10",
   "last_ok": "2026-10-10"
  },
