@@ -1,0 +1,33 @@
+name: Probe links
+
+# Manual: shows exactly what servers answer for some links (redirects, status, file type,
+# size), downloading only the first bytes. For checking reports like "this download doesn't work".
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "Links to probe, separated by spaces"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          for u in $URLS; do
+            case "$u" in https://*) ;; *) echo "skip (not https): $u"; continue ;; esac
+            echo "=================== $u"
+            curl -sS -L --max-redirs 10 --max-time 40 -A "AltStore/2.0" -r 0-1023 \
+              -o /tmp/head.bin -D - \
+              -w "\nfinal: %{url_effective}\nstatus: %{http_code}\ntype: %{content_type}\nredirects: %{num_redirects}\nbytes read: %{size_download}\n" \
+              "$u" | grep -iE "^(HTTP/|location:|content-type:|content-length:|content-range:|final:|status:|type:|redirects:|bytes read:)" || true
+            printf "first bytes: "; head -c 4 /tmp/head.bin | od -An -c | tr -s ' '
+            echo "(an .ipa is a zip file and starts with: P K 003 004)"
+          done
