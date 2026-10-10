@@ -211,6 +211,35 @@ class VersionOrdering(unittest.TestCase):
             ):
                 self.assertTrue(icons.mirror("https://a.io/ok.png")[1].startswith(icons.SITE + "/icons/"))
 
+    def test_fallback_links_are_checked_before_publishing(self):
+        def src(url, link, version):
+            app = {
+                "name": "App",
+                "bundleIdentifier": "com.x.app",
+                "developerName": "Dev",
+                "iconURL": "https://x.io/i.png",
+                "versions": [{"version": version, "date": "2026-01-01", "downloadURL": link, "size": 1}],
+            }
+            return url, {"name": "S", "apps": [app]}, "ok", 0
+
+        # hand-picked source first (Core); its new copy was never checked and is dead
+        loaded = [src("core", "https://gone.io/new.ipa", "2.0"), src("other", "https://ok.io/old.ipa", "1.0")]
+        checked = {"https://ok.io/old.ipa": "alive"}
+        asked = []
+
+        def check_many(urls):
+            asked.append(set(urls))
+            return {u: "dead" if "gone.io" in u else "alive" for u in urls}
+
+        dead, links = set(), {}
+        full, core, _, _ = merge.pick_checked(loaded, 1, dead, checked, check_many, links)
+        self.assertEqual(asked[0], {"https://gone.io/new.ipa"})  # only the unchecked link
+        self.assertEqual(full[0]["com.x.app"][1]["versions"][0]["downloadURL"], "https://ok.io/old.ipa")
+        self.assertNotIn("com.x.app", core[0])  # no working hand-picked copy: out of Core
+        self.assertIn("https://gone.io/new.ipa", links)  # retested on later builds
+        full, core, _, _ = merge.pick_checked(loaded, 1, set(), None, check_many, {})
+        self.assertEqual(len(asked), 1)  # no link check this build: nothing extra tested
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",

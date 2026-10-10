@@ -28,7 +28,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import sanitize
 from card import render_cards
-from check_links import dead_after
+from check_links import check_many, dead_after
 from common import date_key, fetch_source, is_blocked, load_json, path, read_list, today, version_key
 from sanitize import clean_app, clean_news, skip_reason, validate
 
@@ -144,6 +144,37 @@ def fix_icons(best, icons, dead):
             app["iconURL"] = next((i for i in icons.get(bid, []) if i not in dead), PLACEHOLDER_ICON)
             swapped += 1
     return swapped
+
+
+def published_links(*bests):
+    return {v["downloadURL"] for best in bests for _, app, _ in best.values() for v in app["versions"]}
+
+
+def pick_checked(loaded, n_manual, dead, checked, check_many, links, rounds=4):
+    """Pick the full list and Core, then test every download link they'd publish that this
+    build's link check hasn't seen (fallback copies chosen because another copy is dead).
+    Dead ones are added to dead and to links (so later builds retest them), then pick again.
+    checked is None when no link check ran: nothing extra is tested."""
+    for _ in range(rounds):
+        gone, icons = {}, {}
+        full = pick(loaded, dead, gone, icons)
+        core = pick(loaded[:n_manual], dead)
+        if checked is None:
+            break
+        new = published_links(full[0], core[0]) - set(checked) - dead
+        if not new:
+            break
+        results = check_many(new)
+        checked.update(results)
+        newly = {u for u, s in results.items() if s == "dead"}
+        print(f"checked {len(new)} links chosen as fallbacks: {len(newly)} dead")
+        if not newly:
+            break
+        now = today().isoformat()
+        for u in newly:
+            links[u] = {"fails": 1, "first": now, "last": now, "host_wide": False}
+        dead |= newly
+    return full, core, gone, icons
 
 
 def pick(loaded, dead, gone=None, icons=None):
@@ -266,8 +297,14 @@ def main():
     # real dates for versions whose source gives a placeholder (see sanitize.real_date)
     link_dates = load_json("link_dates.json", {})
     sanitize.KNOWN_DATES = link_dates
-    gone, icons = {}, {}
-    best, listings, stats, news, firsts = pick(loaded, dead, gone, icons)
+    checked = load_json("_build/checked.json", None)  # this build's link check
+    before = len(links)
+    full, core, gone, icons = pick_checked(loaded, len(manual), dead, checked, check_many, links)
+    if len(links) > before:
+        with open(path("dead_links.json"), "w") as f:
+            json.dump(dict(sorted(links.items())), f, indent=1)
+    best, listings, stats, news, firsts = full
+    cur_best, _, cur_stats, cur_news, _ = core
     print(f"{fix_icons(best, icons, dead)} dead icons replaced")
     undated = {b for b, (_, app, _) in best.items() if app["versions"][0]["downloadURL"] in sanitize.UNDATED}
     first_seen = today().isoformat()
@@ -279,7 +316,6 @@ def main():
         json.dump(link_dates, f, indent=1)
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
-    cur_best, _, cur_stats, cur_news, _ = pick(loaded[: len(manual)], dead)
     fix_icons(cur_best, icons, dead)
 
     sizes = {

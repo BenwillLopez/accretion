@@ -21,6 +21,7 @@ build, and the version is reinstated as soon as its link works.
 
 import email.utils
 import json
+import os
 import socket
 import sys
 import urllib.error
@@ -98,6 +99,17 @@ def check(url):
     return url, "unknown" if s == "unknown_retry" else s
 
 
+def check_many(urls):
+    """{url: 'alive' | 'dead' | 'unknown'}. On hosts in dead_hosts.txt only a real file counts."""
+    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}
+    with ThreadPoolExecutor(32) as ex:
+        results = dict(ex.map(check, sorted(urls)))
+    for url, s in results.items():
+        if s != "alive" and host(url) in confirmed:
+            results[url] = "dead"
+    return results
+
+
 def main():
     source = load_json("source.json", None)
     if not source:
@@ -111,15 +123,13 @@ def main():
     urls = sorted(downloads | icons | set(state))
     now = today().isoformat()
     counts = {"alive": 0, "dead": 0, "unknown": 0}
-    with ThreadPoolExecutor(32) as ex:
-        results = dict(ex.map(check, urls))
+    results = check_many(urls)
+    # merge.py checks any link it is about to publish that isn't in here
+    os.makedirs(path("_build"), exist_ok=True)
+    with open(path("_build/checked.json"), "w") as f:
+        json.dump(results, f)
 
-    # hosts confirmed broken by hand: a link only counts once it serves a real file again
-    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}
-    for url, s in results.items():
-        if s != "alive" and host(url) in confirmed:
-            results[url] = "dead"
-
+    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}  # no extra check for these
     per_host = {}
     for url, s in results.items():
         counts[s] += 1
