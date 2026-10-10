@@ -148,6 +148,7 @@
       s: p.get("s") || "updated",
       src: p.has("src") ? Number(p.get("src")) : null,
       fit: p.has("fit") ? p.get("fit") === "1" : Boolean(deviceIOS),
+      l: p.get("l") === "1", // full list (See all), without the home sections
     };
   }
   function homeHash(f) {
@@ -157,6 +158,7 @@
     if (f.s && f.s !== "updated") p.set("s", f.s);
     if (f.src !== null && f.src !== undefined) p.set("src", f.src);
     if (deviceIOS && !f.fit) p.set("fit", "0");
+    if (f.l) p.set("l", "1");
     const qs = p.toString();
     return `#${f.saved ? "/saved" : "/"}${qs ? `?${qs}` : ""}`;
   }
@@ -203,10 +205,12 @@
     }
     document.title = r.saved ? "Saved · Accretion" : "Accretion";
     const changed = JSON.stringify(r) !== JSON.stringify(state.f);
+    const leavingHome = changed && state.f.view === "home" && defaultView(state.f) && !defaultView(r) && !r.q;
     state.f = r;
     if ($("q").value !== r.q && document.activeElement !== $("q")) $("q").value = r.q;
     $("sort").value = r.s;
     if (changed || !state.list.length) apply();
+    if (leavingHome && state.scroll === undefined) window.scrollTo(0, 0);
     if (state.scroll !== undefined) {
       window.scrollTo(0, state.scroll);
       state.scroll = undefined;
@@ -268,7 +272,8 @@
   const loadGone = () => (goneData ||= fetch("data/gone.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
 
   // ---- home: shelves + grid -----------------------------------------------------
-  const defaultView = (f) => !f.q && f.c === "all" && f.src === null && !f.saved;
+  const defaultView = (f) => !f.q && f.c === "all" && f.src === null && !f.saved && !f.l;
+  const LIST_TITLES = { popular: "Most popular", updated: "Recently updated", new: "Newest apps", name: "All apps A–Z", size: "Largest apps" };
 
   function apply() {
     const f = state.f;
@@ -303,7 +308,17 @@
     const def = defaultView(f);
     $("hero").hidden = !def;
     renderShelves(def);
-    $("all-title").textContent = f.saved ? "Saved apps" : f.src !== null ? (state.sources[f.src] || {}).name || "Source" : f.q ? "Results" : "All apps";
+    $("all-title").textContent = f.saved
+      ? "Saved apps"
+      : f.src !== null
+        ? (state.sources[f.src] || {}).name || "Source"
+        : f.q
+          ? "Results"
+          : f.c !== "all"
+            ? CATEGORY_NAMES[f.c] || "Apps"
+            : f.l
+              ? LIST_TITLES[f.s] || "All apps"
+              : "All apps";
     for (const el of $("cats").children) el.setAttribute("aria-selected", String(el.dataset.cat === f.c));
     renderFit();
     renderGrid();
@@ -428,10 +443,10 @@
     const popular = pool.filter((a) => popScore(a) > 0).sort((a, b) => popScore(b) - popScore(a) || (a.t < b.t ? 1 : -1));
     box.replaceChildren(
       ...[
-        shelf("Most popular", "this week", popular, homeHash({ ...state.f, s: "popular" }), { ranked: true }),
+        shelf("Most popular", "this week", popular, homeHash({ ...state.f, s: "popular", l: true }), { ranked: true }),
         shelf("Updates for your saved apps", `${savedUpd.length}`, savedUpd.slice(0, SHELF), "#/saved"),
-        shelf("Fresh today", `${fmt(fresh.length)} updated`, fresh.slice(0, SHELF), homeHash({ ...state.f, s: "updated" })),
-        shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new" })),
+        shelf("Fresh today", `${fmt(fresh.length)} updated`, fresh.slice(0, SHELF), homeHash({ ...state.f, s: "updated", l: true })),
+        shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new", l: true })),
         shelf("From Accretion Core", "hand-picked sources", core.slice(0, SHELF), null),
         shelf("Games", "just updated", byUpdated.filter((a) => a.c === "games").slice(0, SHELF), homeHash({ ...state.f, c: "games" })),
         socialShelves,
