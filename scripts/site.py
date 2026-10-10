@@ -193,6 +193,21 @@ def main():
     dump("data/stats.json", stats)
     for name in ("source.json", "curated.json"):
         shutil.copy(path(name), os.path.join(OUT, name))
+    # app icons hosted by Accretion (scripts/icons.py keeps them in cache/icons)
+    os.makedirs(os.path.join(OUT, "icons"), exist_ok=True)
+    published = 0
+    for name in ("source.json", "curated.json"):
+        for a in load_json(name, {"apps": []})["apps"]:
+            m = re.search(r"/icons/([0-9a-f]{16})\.jpg$", a.get("iconURL", ""))
+            src = m and path(f"cache/icons/{m.group(1)}.jpg")
+            if (
+                src
+                and os.path.exists(src)
+                and not os.path.exists(os.path.join(OUT, "icons", f"{m.group(1)}.jpg"))
+            ):
+                shutil.copy(src, os.path.join(OUT, "icons", f"{m.group(1)}.jpg"))
+                published += 1
+    print(f"{published} icons published")
     # donation and certificate links shown on the store (empty parts stay hidden)
     support = load_json("support.json", {})
     with open(os.path.join(OUT, "support.json"), "w") as f:

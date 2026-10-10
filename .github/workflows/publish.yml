@@ -55,6 +55,12 @@ jobs:
       - name: Merge and validate
         run: python scripts/merge.py
 
+      # host every app icon on the store's own https address (blank/insecure icons in installers)
+      - name: Host app icons
+        run: |
+          pip install -q "pillow==11.3.0"
+          python scripts/icons.py
+
       # PNG copies of the stat cards for forums and chats that do not show SVG
       - name: Render PNG cards
         run: |

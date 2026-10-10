@@ -112,6 +112,9 @@ On older devices, or if the full list loads slowly, use Accretion Core.
   is retested on each build and the version comes back as soon as it works. An app with no
   working download left is hidden, and its page (and any old link to it) shows the closest apps
   that do work.
+- **Icons that always load.** Every app icon is copied once to Accretion's own https address
+  (180×180, about 8 KB each), so AltStore, SideStore and Feather never show blank icons or
+  refuse an icon host that redirects to plain http.
 - **Nothing is dropped for good.** A source that goes down is retried on every build, with its
   last good copy used meanwhile, and is back in full as soon as it answers. Dropped download
   links are retested every build too and reinstated the moment they work.

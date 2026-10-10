@@ -98,7 +98,8 @@ def main():
     # both published lists: Accretion Core can pick a different copy of an app than the full list
     apps = source["apps"] + load_json("curated.json", {"apps": []})["apps"]
     downloads = {v["downloadURL"] for a in apps for v in a.get("versions", [])}
-    icons = {a["iconURL"] for a in apps if a.get("iconURL")}  # merge.py swaps dead icons
+    own = source.get("website") or "https://getaccretion.github.io/"  # icons Accretion hosts itself
+    icons = {a["iconURL"] for a in apps if a.get("iconURL") and not a["iconURL"].startswith(own)}
     urls = sorted(downloads | icons | set(state))
     now = today().isoformat()
     counts = {"alive": 0, "dead": 0, "unknown": 0}

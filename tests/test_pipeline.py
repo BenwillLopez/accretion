@@ -169,6 +169,40 @@ class VersionOrdering(unittest.TestCase):
         ):
             self.assertEqual(check_links.status("https://cdn.io/a.png"), "alive")
 
+    def test_icons_are_hosted_by_accretion(self):
+        import io
+        import tempfile
+        from unittest import mock
+
+        try:
+            from PIL import Image
+        except ImportError:
+            self.skipTest("Pillow not installed")
+        import icons
+
+        png = io.BytesIO()
+        Image.new("RGBA", (512, 400), (200, 30, 30, 128)).save(png, "PNG")
+        jpeg = icons.shrink(png.getvalue())
+        with Image.open(io.BytesIO(jpeg)) as im:
+            self.assertEqual((im.format, im.size), ("JPEG", (180, 180)))
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(icons, "DIR", tmp):
+            answers = {
+                "https://a.io/ok.png": ("ok", jpeg),
+                "https://a.io/gone.png": ("gone", None),
+                "https://a.io/flaky.png": ("error", None),
+            }
+            with mock.patch.object(icons, "fetch", lambda url: answers[url]):
+                self.assertEqual(
+                    icons.mirror("https://a.io/ok.png")[1], icons.mirror_url(icons.key("https://a.io/ok.png"))
+                )
+                self.assertEqual(icons.mirror("https://a.io/gone.png")[1], icons.PLACEHOLDER_ICON)
+                self.assertIsNone(icons.mirror("https://a.io/flaky.png")[1])  # keep the original link
+            with mock.patch.object(
+                icons, "fetch", lambda url: self.fail("cached icons are not fetched again")
+            ):
+                self.assertTrue(icons.mirror("https://a.io/ok.png")[1].startswith(icons.SITE + "/icons/"))
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",
