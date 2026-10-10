@@ -133,7 +133,20 @@ def rank(app, priority):
     )
 
 
-def pick(loaded, dead, gone=None):
+PLACEHOLDER_ICON = f"{SITE}/assets/app-placeholder.png"
+
+
+def fix_icons(best, icons, dead):
+    """Replace dead icons with the same app's icon from another source, else a neutral one."""
+    swapped = 0
+    for bid, (_, app, _) in best.items():
+        if app["iconURL"] in dead:
+            app["iconURL"] = next((i for i in icons.get(bid, []) if i not in dead), PLACEHOLDER_ICON)
+            swapped += 1
+    return swapped
+
+
+def pick(loaded, dead, gone=None, icons=None):
     """Choose the newest clean copy of every app across the loaded sources.
 
     gone, when given, collects apps whose every download is dead (name, developer, category),
@@ -181,6 +194,8 @@ def pick(loaded, dead, gone=None):
             st["newest"] = max(st["newest"], date_key(app["versionDate"]))
             bid = app["bundleIdentifier"]
             listings.setdefault(bid, set()).add(url)
+            if icons is not None:
+                icons.setdefault(bid, []).append(app["iconURL"])
             dates = [d for d in (date_key(v.get("date")) for v in versions) if d]
             if dates:
                 firsts[bid] = min(firsts.get(bid, dates[0]), *dates)
@@ -251,8 +266,9 @@ def main():
     # real dates for versions whose source gives a placeholder (see sanitize.real_date)
     link_dates = load_json("link_dates.json", {})
     sanitize.KNOWN_DATES = link_dates
-    gone = {}
-    best, listings, stats, news, firsts = pick(loaded, dead, gone)
+    gone, icons = {}, {}
+    best, listings, stats, news, firsts = pick(loaded, dead, gone, icons)
+    print(f"{fix_icons(best, icons, dead)} dead icons replaced")
     undated = {b for b, (_, app, _) in best.items() if app["versions"][0]["downloadURL"] in sanitize.UNDATED}
     first_seen = today().isoformat()
     link_dates = {
@@ -264,6 +280,7 @@ def main():
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
     cur_best, _, cur_stats, cur_news, _ = pick(loaded[: len(manual)], dead)
+    fix_icons(cur_best, icons, dead)
 
     sizes = {
         "source.json": write_json("source.json", build(best, news, OUTPUTS["source.json"], stats)),

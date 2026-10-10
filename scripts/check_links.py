@@ -1,7 +1,8 @@
-"""Find download links in source.json that no longer work.
+"""Find download links and app icons in source.json that no longer work.
 
 Runs with every build (every 6 hours). A link counts as dead only on a clear answer:
-HTTP 404/410, or a host that no longer exists. Timeouts, 403s and server errors are
+HTTP 404/410, a host that no longer exists, or a redirect to plain http (iOS refuses those
+under App Transport Security). Timeouts, 403s and server errors are
 ignored, because they are often temporary or caused by bot protection. merge.py drops a
 version as soon as its link is dead, and the app falls back to an older working version or
 another source; a link that works again comes back on the next build.
@@ -59,6 +60,8 @@ def status(url):
         try:
             with urllib.request.urlopen(req, timeout=20) as r:
                 r.read(1)
+                if r.geturl().lower().startswith("http://"):
+                    return "dead"  # ends on plain http: iOS refuses it (App Transport Security)
                 day = upload_day(r.headers)
                 if day:
                     LAST_MODIFIED[url] = day
@@ -92,7 +95,9 @@ def main():
     if not source:
         sys.exit("source.json not built yet")
     state = load_json("dead_links.json", {})
-    urls = sorted({v["downloadURL"] for a in source["apps"] for v in a.get("versions", [])} | set(state))
+    downloads = {v["downloadURL"] for a in source["apps"] for v in a.get("versions", [])}
+    icons = {a["iconURL"] for a in source["apps"] if a.get("iconURL")}  # merge.py swaps dead icons
+    urls = sorted(downloads | icons | set(state))
     now = today().isoformat()
     counts = {"alive": 0, "dead": 0, "unknown": 0}
     with ThreadPoolExecutor(32) as ex:

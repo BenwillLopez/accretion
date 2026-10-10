@@ -114,6 +114,61 @@ class VersionOrdering(unittest.TestCase):
         )
         self.assertIsNone(check_links.upload_day({}))
 
+    def test_every_app_gets_a_real_subtitle(self):
+        from sanitize import make_subtitle
+
+        desc = (
+            "from @riftysIPAlibrary |\n----------------\n📱 Lake: Coloring Book for Adults\n🆔 Bundle ID: x"
+        )
+        self.assertEqual(make_subtitle(desc, "Lake", "lifestyle", "Dev"), "Lake: Coloring Book for Adults")
+        self.assertEqual(
+            make_subtitle("Watch anime anywhere. Free!", "X", "entertainment", "Dev"), "Watch anime anywhere."
+        )
+        self.assertEqual(make_subtitle("", "AAI", "games", "Unknown developer"), "Game")
+        self.assertEqual(make_subtitle("AAI", "AAI", "utilities", "Acme"), "Utility by Acme")
+
+    def test_dead_icons_are_replaced(self):
+        best = {
+            "a": (0, {"iconURL": "https://dead.io/i.png"}, "s1"),
+            "b": (0, {"iconURL": "https://dead.io/j.png"}, "s1"),
+        }
+        icons = {"a": ["https://dead.io/i.png", "https://ok.io/i.png"], "b": ["https://dead.io/j.png"]}
+        dead = {"https://dead.io/i.png", "https://dead.io/j.png"}
+        self.assertEqual(merge.fix_icons(best, icons, dead), 2)
+        self.assertEqual(best["a"][1]["iconURL"], "https://ok.io/i.png")  # another source's icon
+        self.assertEqual(best["b"][1]["iconURL"], merge.PLACEHOLDER_ICON)
+
+    def test_links_ending_on_plain_http_count_as_dead(self):
+        from unittest import mock
+
+        import check_links
+
+        class Resp:
+            def __init__(self, url):
+                self.url = url
+                self.headers = {}
+
+            def geturl(self):
+                return self.url
+
+            def read(self, n):
+                return b"x"
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        with mock.patch.object(
+            check_links.urllib.request, "urlopen", lambda req, timeout: Resp("http://cdn.io/a.png")
+        ):
+            self.assertEqual(check_links.status("https://cdn.io/a.png"), "dead")
+        with mock.patch.object(
+            check_links.urllib.request, "urlopen", lambda req, timeout: Resp("https://cdn.io/a.png")
+        ):
+            self.assertEqual(check_links.status("https://cdn.io/a.png"), "alive")
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",

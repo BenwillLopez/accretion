@@ -277,6 +277,34 @@ def skip_reason(app):
     return None
 
 
+CATEGORY_LABELS = {
+    "developer": "Developer tool",
+    "entertainment": "Entertainment app",
+    "games": "Game",
+    "lifestyle": "Lifestyle app",
+    "other": "App",
+    "photo-video": "Photo & video app",
+    "social": "Social app",
+    "utilities": "Utility",
+}
+SUBTITLE_SKIP = re.compile(r"^(from @|[-=_*~|•.\s]+$)|[|]", re.IGNORECASE)
+
+
+def make_subtitle(description, name, category, developer):
+    """A short line for apps whose source gives no subtitle. Without one, AltStore, SideStore and
+    Feather show filler text such as "An awesome application."."""
+    for line in str(description or "").splitlines():
+        line = re.sub(r"^[^\w(\"']+", "", line.strip()).strip()  # leading emoji, bullets, dashes
+        if len(line) < 4 or SUBTITLE_SKIP.search(line) or line.lower() == name.lower():
+            continue
+        line = re.split(r"(?<=[.!?])\s", line, maxsplit=1)[0]
+        if len(line) > 80:
+            line = line[:80].rsplit(" ", 1)[0].rstrip(",;:-") + "…"
+        return line
+    label = CATEGORY_LABELS.get(category, "App")
+    return label if developer in ("", "Unknown developer") else f"{label} by {developer}"[:80]
+
+
 def clean_app(app, versions):
     """Return a spec-compliant copy of app with its newest versions, or None if unusable."""
     bid = str(app.get("bundleIdentifier") or app.get("bundleID") or "").strip()
@@ -302,7 +330,9 @@ def clean_app(app, versions):
     }
     out["screenshotURLs"] = screenshot_urls(out["screenshots"])  # for older clients
     if not out["subtitle"]:
-        del out["subtitle"]
+        out["subtitle"] = make_subtitle(
+            app.get("localizedDescription"), name, out["category"], out["developerName"]
+        )
     if tint(app.get("tintColor")):
         out["tintColor"] = tint(app.get("tintColor"))
     if permissions(app.get("appPermissions")):
