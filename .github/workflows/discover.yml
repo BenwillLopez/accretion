@@ -1,0 +1,41 @@
+name: Discover sources
+
+# Scans link lists and GitHub for new sources, then rebuilds source.json.
+on:
+  schedule:
+    - cron: "41 3 * * 1"
+  push:
+    branches: [main]
+    paths: [discover.json, discover.py]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: altsource
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python discover.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
+      - run: python merge.py
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Update discovered sources"
+          git pull --rebase --autostash origin main
+          git push

@@ -1,0 +1,2 @@
+# One URL or text fragment per line. Matching sources are never used,
+# even if discover.py finds them.

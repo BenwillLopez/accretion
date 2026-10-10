@@ -1,0 +1,32 @@
+# One source URL per line. Lines starting with # are ignored.
+# Earlier sources win when two list the same app.
+
+https://driftywinds.github.io/AltStore/apps.json
+https://repos.gabrx.eu.org/cypwn.json
+https://wuxu1.github.io/wuxu-complete-plus.json
+https://community-apps.sidestore.io/sidecommunity.json
+https://raw.githubusercontent.com/lo-cafe/winston-altstore/main/apps.json
+https://raw.githubusercontent.com/yodaluca23/SpotC-AltStore-Repo/main/AltStore%20Repo.json
+https://theodyssey.dev/altstore/odysseysource.json
+https://raw.githubusercontent.com/arichornlover/arichornlover.github.io/refs/heads/main/apps2.json
+https://raw.githubusercontent.com/Balackburn/Apollo/refs/heads/main/apps.json
+https://repo.owo.network/
+https://raw.githubusercontent.com/Balackburn/YTLitePlusAltstore/main/apps.json
+https://alts.lao.sb/
+https://quarksources.github.io/dist/quantumsource%2B%2B.min.json
+https://xitrix.github.io/iTorrent/AltStore.json
+https://driftywinds.github.io/repos/esign.json
+https://raw.githubusercontent.com/WhySooooFurious/Ultimate-Sideloading-Guide/refs/heads/main/raw-files/app-repo.json
+https://raw.githubusercontent.com/khcrysalis/Feather/main/app-repo.json
+https://repos.gabrx.eu.org/nabzclan.json
+https://gablilli.github.io/stremiorepo/index.json
+https://flyinghead.github.io/flycast-builds/altstore.json
+https://repos.gabrx.eu.org/esign.json
+https://apps.sidestore.io/
+https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json
+https://raw.githubusercontent.com/vizunchik/AltStoreRus/master/apps.json
+https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json
+https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json
+https://therealfoxster.github.io/altsource/apps.json
+https://altstore.oatmealdome.me
+https://ish.app/altstore.json

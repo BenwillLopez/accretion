@@ -1,0 +1,36 @@
+{
+  "_comment": "Where discover.py looks for new sources. Every URL found is checked; only real AltStore/SideStore sources are kept.",
+  "pages": [
+    "https://raw.githubusercontent.com/victordedomenico/awesome-altstore/main/README.md",
+    "https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/README.md",
+    "https://raw.githubusercontent.com/RipeStore/repos/main/README.md",
+    "https://senumy.com/altstore-and-sidestore-sources",
+    "https://onejailbreak.com/blog/altstore-sources/",
+    "https://idevicecentral.com/repos/top-10-altstore-sources-and-repos-to-add-in-2023/"
+  ],
+  "github_repos": [
+    "RipeStore/repos",
+    "luh-99/SideStoreAndAltStore-Sources",
+    "quarksources/quarksources.github.io",
+    "SideStore/apps.json",
+    "WSF-Team/WSF"
+  ],
+  "github_topics": [
+    "altstore-repo",
+    "altstore-source",
+    "altstore-sources",
+    "altsource",
+    "altstore",
+    "sidestore",
+    "sidestore-source",
+    "altstore-pal",
+    "livecontainer"
+  ],
+  "github_code_queries": [
+    "\"bundleIdentifier\" \"downloadURL\" \"localizedDescription\" extension:json",
+    "\"bundleIdentifier\" \"versions\" \"iconURL\" \"apps\" extension:json"
+  ],
+  "max_repos_per_topic": 100,
+  "max_files_per_repo": 12,
+  "forget_after_days": 30
+}
