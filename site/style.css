@@ -426,3 +426,17 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .sign-field .input { width: 100%; font: 15px var(--mono); }
 .sign-out { max-width: 720px; margin-top: 12px; }
 .sign-out .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* sign your own apps */
+.sign-step { max-width: 760px; }
+.sign-step h2 { display: flex; align-items: center; gap: 10px; }
+.step-n { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font: 700 14px var(--mono); flex: none; }
+.imp { display: grid; gap: 10px; max-width: 520px; }
+.imp label { display: grid; gap: 4px; font-weight: 600; font-size: 14px; }
+.imp input[type=file] { font-size: 14px; max-width: 100%; }
+.custom-list { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 8px; }
+.custom-list li { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.custom-list .where { font: 12px var(--mono); color: var(--accent); }
+.faq dt { font-weight: 650; margin-top: 10px; }
+.faq dd { margin: 2px 0 0; color: var(--muted); }
+.hero-cta { margin: 14px 0 0; }

@@ -204,7 +204,7 @@
       return renderSources();
     }
     if (r.view === "sign") {
-      document.title = "Install any IPA · Accretion";
+      document.title = "Sign your own apps · Accretion";
       window.scrollTo(0, 0);
       return renderSign();
     }
@@ -527,8 +527,61 @@
     ];
   }
 
-  // Install any IPA: paste a direct https link, get one-tap buttons for every installer
-  function renderSign() {
+  // Sign your own apps: certificate -> Feather -> any app -> customize. Everything happens on the
+  // device; the certificate import builds Feather's own link in the browser and uploads nothing.
+  const FEATHER_ID = "kh.crysalis.feather";
+  // paths as they appear on Feather's signing screen (checked against its source, 2026-09)
+  const CUSTOMIZE = [
+    ["New app name", "Name", "Emojis work too."],
+    ["New bundle ID (install twice)", "Identifier", "Some apps lose their login or data when duplicated."],
+    ["New version number", "Version", ""],
+    ["Custom app icon", "Customization → Choose from Photos / Choose from Files", ""],
+    ["Install on an older iOS", "Advanced → Properties → Minimum Requirement", "Lowers the iOS version the app asks for. It may still crash if it really needs newer iOS."],
+    ["Browse the app's files", "Advanced → Properties → File Sharing / iTunes File Sharing", "Shows its Documents folder in the Files app."],
+    ["Remove PlugIns", "Advanced → Modify → Frameworks & PlugIns", "Removing extensions often fixes apps that won't sign."],
+    ["Inject tweaks (.dylib, .deb)", "Advanced → Modify → Tweaks", "Can inject into extensions too."],
+    ["iPad full screen, ProMotion, Game Mode", "Advanced → Properties → App Features", ""],
+  ];
+
+  const b64 = (buf) => {
+    let bin = "";
+    const bytes = new Uint8Array(buf);
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  };
+
+  function certImport() {
+    const p12 = h("input", { type: "file", id: "imp-p12", accept: ".p12,application/x-pkcs12" });
+    const prov = h("input", { type: "file", id: "imp-prov", accept: ".mobileprovision" });
+    const pass = h("input", { class: "input", type: "password", id: "imp-pass", placeholder: "Certificate password (if it has one)", autocomplete: "off" });
+    const msg = h("p", { class: "muted small", "aria-live": "polite" });
+    const go = h("button", { class: "btn primary", type: "submit" }, "Add to Feather");
+    const form = h("form", { class: "card-form imp" },
+      h("label", {}, h("span", {}, "Certificate (.p12)"), p12),
+      h("label", {}, h("span", {}, "Profile (.mobileprovision)"), prov),
+      h("label", {}, h("span", {}, "Password"), pass),
+      h("div", { class: "row" }, go),
+      msg,
+      h("p", { class: "muted small" }, "Your files stay on this device: the page only hands them to Feather. Nothing is uploaded to Accretion or anyone else."));
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const [a, b] = [p12.files[0], prov.files[0]];
+      if (!a || !b) { msg.textContent = "Pick both files first: the .p12 and the .mobileprovision."; return; }
+      try {
+        const [ca, cb] = await Promise.all([a.arrayBuffer(), b.arrayBuffer()]);
+        const pw = b64(new TextEncoder().encode(pass.value));
+        const link = `feather://import-certificate?p12=${encodeURIComponent(b64(ca))}&mobileprovision=${encodeURIComponent(b64(cb))}&password=${encodeURIComponent(pw)}`;
+        form.dataset.link = link; // lets the browser tests read what Feather receives
+        msg.textContent = "Opening Feather…";
+        window.location.href = link;
+      } catch {
+        msg.textContent = "Couldn't read those files. Try picking them again.";
+      }
+    });
+    return form;
+  }
+
+  function linkInstaller() {
     const input = h("input", { class: "input", id: "sign-url", type: "url", inputmode: "url", placeholder: "https://…/App.ipa", autocomplete: "off", spellcheck: "false" });
     const out = h("div", { class: "sign-out", "aria-live": "polite" });
     const show = () => {
@@ -546,26 +599,57 @@
       ].filter(Boolean));
     };
     input.addEventListener("input", show);
+    const pre = new URLSearchParams(location.hash.split("?")[1] || "").get("url");
+    if (pre) { input.value = pre; setTimeout(show); }
+    return [h("label", { class: "sign-field" }, h("span", {}, "Paste an IPA link"), input), out];
+  }
+
+  function renderSign() {
+    const feather = state.byId.get(FEATHER_ID);
+    const step = (n, title, ...kids) => h("section", { class: "sec sign-step" }, h("h2", {}, h("span", { class: "step-n" }, String(n)), title), ...kids);
     $("sign").replaceChildren(...[
       h("div", { class: "view-head" },
-        h("h1", { class: "view-title" }, "Install any IPA"),
-        h("p", { class: "muted" }, "Paste a direct link to an .ipa file (GitHub releases, Dropbox and similar). Accretion turns it into one-tap installs for Feather, AltStore, SideStore and TrollStore. Nothing is uploaded: the link goes straight to the app you pick.")),
-      h("label", { class: "sign-field" }, h("span", {}, "IPA link"), input),
-      out,
+        h("h1", { class: "view-title" }, "Sign your own apps"),
+        h("p", { class: "muted" }, "Install any app on your iPhone, even one that isn't in Accretion yet: a tweaked YouTube the day it drops, or your own IPA. No computer, no 7-day limit. Feather signs it on your phone with your certificate.")),
+      step(1, "Get a certificate",
+        h("p", { class: "muted" }, "A paid certificate (a .p12 file, a .mobileprovision file and a password) installs apps for about a year without a computer."),
+        certs().length
+          ? h("div", {},
+              h("ul", { class: "cert-list" }, certs().map((c) => h("li", {},
+                h("div", {}, h("b", {}, c.name), c.note ? h("span", { class: "muted small" }, c.note) : null),
+                h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, "Get certificate")))),
+              h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
+          : h("p", { class: "muted small" }, "Pick a seller that replaces or refunds certificates Apple revokes."),
+        h("p", { class: "muted small" }, "Free alternative: AltStore or SideStore with your own Apple ID (needs a computer once, apps refresh every 7 days).")),
+      step(2, "Add it to Feather",
+        h("p", {}, feather
+          ? h("a", { class: "btn", href: `#/app/${encodeURIComponent(FEATHER_ID)}` }, "Get Feather")
+          : null,
+          h("span", { class: "muted small" }, feather ? " Free and open source. Most certificate sellers also give you a signed copy." : "Most certificate sellers give you a signed copy of Feather.")),
+        h("p", { class: "muted" }, "Then add your certificate in one tap:"),
+        certImport(),
+        h("p", { class: "muted small" }, "Or in Feather: Settings → Certificates → + and pick the same files.")),
+      step(3, "Pick an app",
+        h("p", { class: "muted" }, "From Accretion: open any app and tap Feather. ", h("a", { href: "#/" }, "Browse apps"), " or search above."),
+        ...linkInstaller(),
+        h("p", { class: "muted small" }, "File already on your iPhone? Open it from Files or Safari downloads, tap Share and pick Feather.")),
+      step(4, "Customize before installing",
+        h("p", { class: "muted" }, "Feather opens the app's signing screen. Everything below is optional:"),
+        h("ul", { class: "custom-list" }, CUSTOMIZE.map(([what, where, note]) => h("li", {},
+          h("b", {}, what),
+          h("span", { class: "where" }, where),
+          note ? h("span", { class: "muted small" }, note) : null))),
+        h("p", { class: "muted small" }, "Then tap Start Signing. With Install After Signing on (Advanced → Properties → Post Signing), it installs right away.")),
       h("section", { class: "sec" },
-        h("h2", {}, "File already on your iPhone?"),
-        h("p", { class: "muted" }, "Open it from Files or Safari downloads, tap Share, and pick Feather (or ESign, KSign). It signs with your certificate and installs.")),
-      certs().length
-        ? h("section", { class: "sec" },
-            h("h2", {}, "No certificate yet?"),
-            h("ul", { class: "cert-list" }, certs().map((c) => h("li", {},
-              h("div", {}, h("b", {}, c.name), c.note ? h("span", { class: "muted small" }, c.note) : null),
-              h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, "Get certificate")))),
-            h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
-        : null,
+        h("h2", {}, "If something goes wrong"),
+        h("dl", { class: "faq" },
+          h("dt", {}, "The app won't open after installing"),
+          h("dd", {}, "Your certificate may be revoked. Check its status in Feather (Settings → Certificates); sellers usually replace revoked ones."),
+          h("dt", {}, "\"Redirected to a host outside the allowed list\" (iOSGods app)"),
+          h("dd", {}, "The iOSGods signer only takes links from certain hosts. Download the IPA instead and pick it with \"Tap to select .IPA file\", or use Feather, which follows any link."),
+          h("dt", {}, "It fails to sign"),
+          h("dd", {}, "Remove the PlugIns (Advanced → Modify → Frameworks & PlugIns) and try again."))),
     ].filter(Boolean));
-    const pre = new URLSearchParams(location.hash.split("?")[1] || "").get("url");
-    if (pre) { input.value = pre; show(); }
   }
 
   // ---- support: donations, supporter badge, signing certificates (support.json) -------------
@@ -757,6 +841,7 @@
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
         d ? actions : null,
         d && ipa ? certLine() : null,
+        d && ipa ? h("p", { class: "cert-line" }, h("a", { href: "#/sign" }, "How to sign your own apps →")) : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),
     );

@@ -32,12 +32,15 @@ add what their users ask for), the apps that guides and communities name most
 ([`popular.txt`](popular.txt)), and anonymous searches on the store itself. Searches that find
 nothing show up for moderators, so missing apps and sources can be added first.
 
-## Install any IPA
+## Sign your own apps
 
-[`#/sign`](https://getaccretion.github.io/#/sign) turns any direct `.ipa` link into one-tap installs
-for Feather (signs with your own certificate), AltStore, SideStore and TrollStore, and shows the
-closest apps already in Accretion. Nothing is uploaded. Every app page also has a Feather button,
-and the Add source dialog opens the source in Feather.
+[`#/sign`](https://getaccretion.github.io/#/sign) walks through installing any app on an iPhone
+with Feather, on-device and without the 7-day limit: get a certificate (the support.json
+certificate links), add it to Feather in one tap (the page builds Feather's
+`feather://import-certificate` link in the browser; nothing is uploaded), pick an app from Accretion
+or paste any `.ipa` link, then customize it (name, bundle ID, icon, minimum iOS, file sharing,
+PlugIns, tweaks) with the exact Feather menu paths. Every app page also has a Feather button and
+links to the guide.
 
 ## Community
 
