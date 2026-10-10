@@ -1,14 +1,14 @@
 # Source report
 
-Built 2026-10-10 10:34 UTC.
+Built 2026-10-10 10:41 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **8749** (10016 KB) |
-| Apps in `curated.json` | **1657** (1271 KB) |
-| Listings read | 30010 |
-| Apps listed by more than one source (newest kept) | 2232 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 287 |
+| Apps in `source.json` | **8644** (9840 KB) |
+| Apps in `curated.json` | **740** (677 KB) |
+| Listings read | 28446 |
+| Apps listed by more than one source (newest kept) | 1984 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 1851 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links removed | 0 |
 | Links on hold (whole host failing, kept for now) | 0 |
@@ -20,11 +20,11 @@ Built 2026-10-10 10:34 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 8033 | 7733 | 21 | 2026-10-10 | discovered |
-| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1942 | 619 | 15 | 2026-10-10 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 8033 | 7869 | 21 | 2026-10-10 | discovered |
+| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1674 | 363 | 283 | 2026-10-10 | discovered |
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/altmaker/main/AltMaker.json) | ok | 156 | 124 | 0 | 2026-10-10 | discovered |
-| [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 243 | 89 | 9 | 2025-01-01 | curated |
-| [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4788 | 58 | 39 | 2025-09-05 | discovered |
+| [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 243 | 90 | 9 | 2025-01-01 | curated |
+| [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4788 | 72 | 39 | 2025-09-05 | discovered |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 22 | 0 | 2026-10-09 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 21 | 9 | 0 | 2025-12-12 | discovered |
@@ -84,7 +84,6 @@ Built 2026-10-10 10:34 UTC.
 | [FileManager](https://raw.githubusercontent.com/xsxs18-dev/FileManager/main/altstore-source.json) | ok | 1 | 1 | 0 | 2026-09-21 | discovered |
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9380 | 0 | 161 | 2026-10-10 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
-| [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 1296 | 0 | 16 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
 | [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | curated |
@@ -177,6 +176,7 @@ Built 2026-10-10 10:34 UTC.
 | [cbruegg's PAL source](https://raw.githubusercontent.com/cbruegg/altstore-source/refs/heads/main/source.json) | ok | 0 | 0 | 1 |  | discovered |
 | [Tagpin](https://raw.githubusercontent.com/darthkubox/Tagpin/main/docs/templates/altstore-source.json) | ok | 0 | 0 | 1 |  | discovered |
 | [iPhanpy](https://raw.githubusercontent.com/matfantinel/iphanpy/refs/heads/main/altstore/source.json) | ok | 0 | 0 | 1 |  | discovered |
+| [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 0 | 0 | 1312 |  | curated |
 | [Volksverpetzer](https://vvpapps.b-cdn.net/source.json) | ok | 0 | 0 | 1 |  | discovered |
 | [CARDMATE](https://weztling.se/altstore.json) | ok | 0 | 0 | 1 |  | discovered |
 | [iTorrent Source](https://xitrix.github.io/iTorrent/AltStore.json) | ok | 0 | 0 | 1 |  | curated |
@@ -193,21 +193,21 @@ Built 2026-10-10 10:34 UTC.
 | Textastic | 10.9.9 | 2026-10-10 | raw.githubusercontent.com |
 | CARROT | 6.9.2 | 2026-10-10 | raw.githubusercontent.com |
 | Duolingo | 7.143.1 | 2026-10-10 | raw.githubusercontent.com |
-| Detail | 6.0.3 | 2026-10-10 | raw.githubusercontent.com |
-| Live Transcribe | 2.91 | 2026-10-10 | raw.githubusercontent.com |
-| HoursTracker | 8.3.2 | 2026-10-10 | raw.githubusercontent.com |
-| Open | 26.41 | 2026-10-10 | raw.githubusercontent.com |
-| Stippl | 3.1.6 | 2026-10-10 | raw.githubusercontent.com |
-| MusicHarbor | 5.3.9 | 2026-10-10 | raw.githubusercontent.com |
-| Stack | 4.1 | 2026-10-10 | raw.githubusercontent.com |
-| Grit | 6.0.2 | 2026-10-10 | raw.githubusercontent.com |
-| Minutes | 1.12.8 | 2026-10-10 | raw.githubusercontent.com |
-| TinyDecisions | 26.10.1 | 2026-10-10 | raw.githubusercontent.com |
-| FujiXWeekly | 1.16.2 | 2026-10-10 | raw.githubusercontent.com |
-| Lingvist | 2.65.5 | 2026-10-10 | raw.githubusercontent.com |
-| FitnessAI | 25.0 | 2026-10-10 | raw.githubusercontent.com |
-| CollaNote | 5.0.6 | 2026-10-10 | raw.githubusercontent.com |
-| Mercury | 3.8.1 | 2026-10-10 | raw.githubusercontent.com |
-| Uplens | 4.3.2 | 2026-10-10 | raw.githubusercontent.com |
-| TickTick | 8.2.21 | 2026-10-10 | raw.githubusercontent.com |
 | swipewipe | 3.5.1 | 2026-10-10 | raw.githubusercontent.com |
+| Paste | 7.0.2 | 2026-10-10 | raw.githubusercontent.com |
+| FitnessAI | 25.0 | 2026-10-10 | raw.githubusercontent.com |
+| Provenance Alpha | 3.4.0 | 2026-10-10 | provenance-emu.com |
+| iFly | 1.0.0+1791610021 | 2026-10-10 | provenance-emu.com |
+| iCube | 1.0.0-beta9-ios | 2026-10-10 | provenance-emu.com |
+| Husk | 1.1.0 | 2026-10-10 | raw.githubusercontent.com |
+| CollaNote | 5.0.6 | 2026-10-10 | raw.githubusercontent.com |
+| UpNote | 9.22.9 | 2026-10-10 | raw.githubusercontent.com |
+| Calendars | 5.39.5 | 2026-10-10 | raw.githubusercontent.com |
+| Uplens | 4.3.2 | 2026-10-10 | raw.githubusercontent.com |
+| Detail | 6.0.3 | 2026-10-10 | raw.githubusercontent.com |
+| Most | 3.5.7 | 2026-10-10 | raw.githubusercontent.com |
+| Mercury | 3.8.1 | 2026-10-10 | raw.githubusercontent.com |
+| Tripsy | 3.10.3 | 2026-10-10 | raw.githubusercontent.com |
+| Minutes | 1.12.8 | 2026-10-10 | raw.githubusercontent.com |
+| LEMOFM | 2.0.1 | 2026-10-10 | raw.githubusercontent.com |
+| FujiXWeekly | 1.16.2 | 2026-10-10 | raw.githubusercontent.com |
