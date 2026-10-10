@@ -8,7 +8,7 @@ Inputs (repo root):
 
 Outputs:
   source.json   every source           (the main link)
-  curated.json  only sources.txt       (smaller, faster to refresh)
+  curated.json  only sources.txt       ("Accretion Core": smaller, faster to refresh)
   stats.json    numbers for the README badges
   REPORT.md     what every source contributed
 
@@ -30,7 +30,7 @@ from common import date_key, fetch_source, is_blocked, load_json, path, read_lis
 from sanitize import clean_app, clean_news, validate
 
 OWNER = "benwilllopez"
-REPO = "altsource"
+REPO = "accretion"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main"
 MAX_NEWS = 50
 MAX_FEATURED = 10
@@ -38,26 +38,27 @@ DEAD_AFTER = 2
 MAX_BYTES = 30 * 1024 * 1024
 
 SOURCE_INFO = {
-    "name": "AltSource Merged",
-    "subtitle": "Every source, newest versions, one link.",
+    "name": "Accretion",
+    "subtitle": "Every source, pulled into one. Always the newest.",
     "description": (
-        "One source that combines many public AltStore and SideStore sources. It is rebuilt "
-        "every 6 hours and keeps only the newest version of each app.\n\n"
+        "Like matter drawn into a star, Accretion pulls hundreds of public AltStore and "
+        "SideStore sources into one. It is rebuilt every 6 hours and keeps only the newest "
+        "version of each app.\n\n"
         "Apps come from third-party sources and are not reviewed. Install only what you trust.\n\n"
         f"Source list, report and issue tracker: https://github.com/{OWNER}/{REPO}"
     ),
     "iconURL": f"{RAW}/assets/icon.png",
     "headerURL": f"{RAW}/assets/header.png",
     "website": f"https://github.com/{OWNER}/{REPO}",
-    "tintColor": "6D4AE8",
+    "tintColor": "8B5CF6",
 }
 OUTPUTS = {
     "source.json": {"identifier": f"io.github.{OWNER}.{REPO}", "sourceURL": f"{RAW}/source.json"},
     "curated.json": {
         "identifier": f"io.github.{OWNER}.{REPO}.curated",
         "sourceURL": f"{RAW}/curated.json",
-        "name": "AltSource Curated",
-        "subtitle": "Hand-picked sources only, newest versions.",
+        "name": "Accretion Core",
+        "subtitle": "The hand-picked core. Small and fast.",
     },
 }
 

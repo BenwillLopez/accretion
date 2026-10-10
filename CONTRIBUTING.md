@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping keep AltSource useful.
+Thanks for helping keep Accretion useful.
 
 ## Suggest a source
 

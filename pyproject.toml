@@ -1,5 +1,5 @@
 [project]
-name = "altsource"
+name = "accretion"
 version = "1.0.0"
 description = "One AltStore/SideStore source that merges public sources and keeps the newest version of every app."
 requires-python = ">=3.10"

@@ -59,7 +59,7 @@ jobs:
       - name: Commit changes
         run: |
           files="source.json curated.json stats.json REPORT.md discovered.txt discovered.json dead_links.json"
-          existing=$(for f in $files; do [ -e "$f" ] && echo "$f"; done)
+          existing=$(for f in $files; do if [ -e "$f" ]; then echo "$f"; fi; done)
           # skip commits that would only change the build time
           if [ -z "$(git status --porcelain -- source.json curated.json discovered.txt dead_links.json)" ]; then
             echo "No content changes."

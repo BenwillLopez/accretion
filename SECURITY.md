@@ -1,8 +1,8 @@
 # Security
 
-## What AltSource does and does not do
+## What Accretion does and does not do
 
-AltSource republishes app listings from public third-party sources. It does **not** host app
+Accretion republishes app listings from public third-party sources. It does **not** host app
 files, and it does **not** review the apps themselves. Each build:
 
 - uses only https links; any http download, icon or screenshot is dropped

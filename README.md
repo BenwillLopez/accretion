@@ -1,17 +1,18 @@
 <p align="center">
-  <img src="assets/header.png" alt="AltSource: every source, newest versions, one link" width="100%">
+  <img src="assets/header.png" alt="Accretion: every source, pulled into one" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/benwilllopez/altsource/actions/workflows/build.yml"><img alt="Build" src="https://github.com/benwilllopez/altsource/actions/workflows/build.yml/badge.svg"></a>
-  <a href="https://github.com/benwilllopez/altsource/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/benwilllopez/altsource/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Apps" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.apps&label=apps&color=6D4AE8">
-  <img alt="Sources" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.sources&label=sources&color=6D4AE8">
-  <img alt="Updated" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.updated&label=updated&color=555">
+  <a href="https://github.com/benwilllopez/accretion/actions/workflows/build.yml"><img alt="Build" src="https://github.com/benwilllopez/accretion/actions/workflows/build.yml/badge.svg"></a>
+  <a href="https://github.com/benwilllopez/accretion/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/benwilllopez/accretion/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Apps" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.apps&label=apps&color=8B5CF6">
+  <img alt="Sources" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.sources&label=sources&color=8B5CF6">
+  <img alt="Updated" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faccretion%2Fmain%2Fstats.json&query=%24.updated&label=updated&color=555">
 </p>
 
-AltSource is an app source in the standard **AltStore JSON format**. It combines over a hundred
-public AltStore and SideStore sources into one link. Each app appears once, at its **newest
+In space, *accretion* is how gravity pulls scattered matter into a single body. **Accretion** does
+the same for apps. It is an app source in the standard **AltStore JSON format** that pulls over a
+hundred public AltStore and SideStore sources into one link. Each app appears once, at its **newest
 version**. It is rebuilt every 6 hours, and broken entries and dead download links are removed
 automatically.
 
@@ -21,14 +22,14 @@ There are two links. Pick one:
 
 | Link | What it has | Size |
 |---|---|---|
-| **Full** | Every source this repo knows about | see [`stats.json`](stats.json) |
-| **Curated** | Only the hand-picked sources in [`sources.txt`](sources.txt) | small, refreshes fast |
+| **Accretion** (full) | Every source this repo knows about | see [`stats.json`](stats.json) |
+| **Accretion Core** (curated) | Only the hand-picked sources in [`sources.txt`](sources.txt) | small, refreshes fast |
 
 ```
-https://raw.githubusercontent.com/benwilllopez/altsource/main/source.json
+https://raw.githubusercontent.com/benwilllopez/accretion/main/source.json
 ```
 ```
-https://raw.githubusercontent.com/benwilllopez/altsource/main/curated.json
+https://raw.githubusercontent.com/benwilllopez/accretion/main/curated.json
 ```
 
 | App | How to add |
@@ -38,7 +39,7 @@ https://raw.githubusercontent.com/benwilllopez/altsource/main/curated.json
 | **SideStore** | **Sources → +**, paste the link. |
 | **Feather / ESign / others** | Paste the link wherever the app adds repos or sources. |
 
-On older devices, or if the full list loads slowly, use the curated link.
+On older devices, or if the full list loads slowly, use Accretion Core.
 
 ## What makes it different
 
@@ -92,7 +93,7 @@ A catalog of apps in the AltStore JSON format. Adding one lets you browse and in
 from inside your sideloading app.
 
 **Is it safe?**
-AltSource only gathers what public sources publish. Nobody reviews the apps themselves, so
+Accretion only gathers what public sources publish. Nobody reviews the apps themselves, so
 install only what you trust. Every link is https. Sources can be blocked; see
 [SECURITY.md](SECURITY.md) to report a bad one.
 
