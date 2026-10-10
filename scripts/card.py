@@ -112,43 +112,40 @@ def category_bars(x, y, w, cats, theme):
     return "".join(out)
 
 
-def growth(x, y, w, h, history, theme):
-    """Apps over time, one point per day."""
+def growth(x, y, w, h, m, history, theme):
+    """Catalog growth by month from release dates; falls back to daily build history."""
     c = theme
     out = [t(x, y, "GROWTH", 10, "muted", spacing=1.5, theme=c)]
-    top, bottom = y + 14, y + h
-    pts = [p["apps"] for p in history]
+    top, bottom = y + 14, y + h - 30
+    series = m.get("timeline") or [{"month": p["date"], "apps": p["apps"]} for p in history]
+    pts = [p["apps"] for p in series]
     if len(pts) < 2:
         mid = (top + bottom) / 2
         out.append(
             f'<line x1="{x}" y1="{mid}" x2="{x + w}" y2="{mid}" stroke="{c["a1"]}" '
             f'stroke-dasharray="4 5" stroke-opacity="0.7"/>'
         )
-        out.append(
-            t(
-                x,
-                bottom,
-                f"tracking since {history[0]['date'] if history else 'today'}",
-                10.5,
-                "muted",
-                theme=c,
-            )
-        )
+        out.append(t(x, y + h, "collecting data", 10.5, "muted", theme=c))
         return "".join(out)
     lo, hi = min(pts), max(pts)
     span = (hi - lo) or 1
     step = w / (len(pts) - 1)
-    coords = [(x + i * step, bottom - 18 - (p - lo) / span * (h - 34)) for i, p in enumerate(pts)]
+    coords = [(x + i * step, bottom - (p - lo) / span * (bottom - top - 6)) for i, p in enumerate(pts)]
     line = " ".join(f"{px:.1f},{py:.1f}" for px, py in coords)
-    out.append(f'<polygon points="{x},{bottom - 18} {line} {x + w},{bottom - 18}" fill="url(#area)"/>')
+    out.append(f'<polygon points="{x},{bottom} {line} {x + w},{bottom}" fill="url(#area)"/>')
     out.append(
         f'<polyline points="{line}" fill="none" stroke="url(#acc)" stroke-width="2" stroke-linejoin="round"/>'
     )
     lx, ly = coords[-1]
     out.append(f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="3.5" fill="{c["a2"]}"/>')
-    delta = pts[-1] - pts[0]
-    sign = "+" if delta >= 0 else "-"
-    out.append(t(x, bottom, f"{sign}{n(abs(delta))} apps since {history[0]['date']}", 10.5, "muted", theme=c))
+    out.append(t(x + w, y, f"{n(pts[-1])} apps", 10.5, "text", anchor="end", theme=c))
+    out.append(t(x, bottom + 12, series[0]["month"], 9.5, "muted", theme=c))
+    out.append(t(x + w, bottom + 12, "now", 9.5, "muted", anchor="end", theme=c))
+    if "new_12m" in m:
+        caption = f"+{n(m['new_12m'])} new apps in 12 months, +{n(m['new_30d'])} in 30 days"
+    else:
+        caption = f"+{n(pts[-1] - pts[0])} apps since {series[0]['month']}"
+    out.append(t(x, y + h, caption, 10.5, "muted", theme=c))
     return "".join(out)
 
 
@@ -189,7 +186,7 @@ def stats_card(m, history, theme):
     )
     parts.append(category_bars(PAD + 14, py + 22, half - 28, m["categories"], c))
     gx = PAD + half + gap + 14
-    parts.append(growth(gx, py + 22, half - 28, 90, history, c))
+    parts.append(growth(gx, py + 22, half - 28, 90, m, history, c))
     status = "all sources up" if not down else f"{down} source{'s' if down > 1 else ''} down"
     footer = [
         f"core {n(m['curated_apps'])} apps / {m['curated_size_mb']} MB",

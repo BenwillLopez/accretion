@@ -133,6 +133,7 @@ def rank(app, priority):
 def pick(loaded, dead):
     """Choose the newest clean copy of every app across the loaded sources."""
     best, listings, stats, news, news_ids = {}, {}, [], [], set()
+    firsts = {}  # bundle ID -> earliest release date seen in any source
     for priority, (url, data, status, size) in enumerate(loaded):
         st = {
             "url": url,
@@ -156,7 +157,8 @@ def pick(loaded, dead):
             if skip_reason(raw):  # Patreon or AltStore PAL: cannot install from here
                 st["excluded"] += 1
                 continue
-            app = clean_app(raw, versions_of(raw, dead))
+            versions = versions_of(raw, dead)
+            app = clean_app(raw, versions)
             if not app:
                 st["skipped"] += 1
                 continue
@@ -164,6 +166,9 @@ def pick(loaded, dead):
             st["newest"] = max(st["newest"], date_key(app["versionDate"]))
             bid = app["bundleIdentifier"]
             listings.setdefault(bid, set()).add(url)
+            dates = [d for d in (date_key(v.get("date")) for v in versions) if d]
+            if dates:
+                firsts[bid] = min(firsts.get(bid, dates[0]), *dates)
             r = rank(app, priority)
             if bid not in best or r > best[bid][0]:
                 best[bid] = (r, app, url)
@@ -171,7 +176,7 @@ def pick(loaded, dead):
             if isinstance(item, dict) and item.get("identifier") not in news_ids:
                 news_ids.add(item.get("identifier"))
                 news.append(item)
-    return best, listings, stats, news
+    return best, listings, stats, news, firsts
 
 
 def build(best, news, info, stats):
@@ -224,10 +229,10 @@ def main():
     with ThreadPoolExecutor(16) as ex:
         loaded = list(ex.map(load, manual + found))
 
-    best, listings, stats, news = pick(loaded, dead)
+    best, listings, stats, news, firsts = pick(loaded, dead)
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
-    cur_best, _, cur_stats, cur_news = pick(loaded[: len(manual)], dead)
+    cur_best, _, cur_stats, cur_news, _ = pick(loaded[: len(manual)], dead)
 
     sizes = {
         "source.json": write_json("source.json", build(best, news, OUTPUTS["source.json"], stats)),
@@ -238,6 +243,7 @@ def main():
     ok = sum(1 for s in stats if not s["status"].startswith("failed"))
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
+    numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -298,6 +304,32 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
             for _, a, _ in recent
         ],
     }
+
+
+def timeline(now, firsts, months=24):
+    """Catalog growth from release dates: how many of today's apps existed at the end of each month.
+
+    Each app counts from the earliest release date any source lists for it, so the
+    curve shows how the catalog built up over time without waiting for daily history.
+    """
+    today = now.strftime("%Y-%m-%dT%H:%M")
+    dates = sorted(min(d, today) for d in firsts.values())  # future dates from bad sources count as today
+    ends, y, m = [], now.year, now.month
+    for _ in range(months):
+        ends.append(f"{y:04d}-{m:02d}")
+        y, m = (y, m - 1) if m > 1 else (y - 1, 12)
+    ends.reverse()
+    points, i = [], 0
+    for month in ends:
+        while i < len(dates) and dates[i][:7] <= month:
+            i += 1
+        points.append({"month": month, "apps": i})
+
+    def since(days):
+        cutoff = (now - dt.timedelta(days=days)).strftime("%Y-%m-%dT%H:%M")
+        return sum(1 for d in dates if d >= cutoff)
+
+    return {"timeline": points, "new_30d": since(30), "new_12m": since(365)}
 
 
 def update_history(numbers, keep=365):

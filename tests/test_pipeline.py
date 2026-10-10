@@ -36,7 +36,7 @@ def merged(*sources, dead=frozenset()):
         (f"https://src{i}.example/apps.json", {"name": f"S{i}", "apps": apps}, "ok", 0)
         for i, apps in enumerate(sources)
     ]
-    best, _, stats, news = merge.pick(loaded, dead)
+    best, _, stats, news, _ = merge.pick(loaded, dead)
     return merge.build(best, news, merge.OUTPUTS["source.json"], stats)
 
 
@@ -148,6 +148,35 @@ class LinkChecks(unittest.TestCase):
         self.assertGreater(check_links.DEAD_AFTER_HOST_WIDE, check_links.DEAD_AFTER)
 
 
+class Growth(unittest.TestCase):
+    def test_timeline_from_first_release_dates(self):
+        import datetime as dt
+
+        now = dt.datetime(2026, 10, 10, tzinfo=dt.timezone.utc)
+        firsts = {
+            "a": "2020-01-01T00:00",
+            "b": "2026-03-05T00:00",
+            "c": "2026-10-01T00:00",
+            "d": "2030-01-01T00:00",
+        }
+        out = merge.timeline(now, firsts)
+        self.assertEqual(len(out["timeline"]), 24)
+        self.assertEqual(out["timeline"][0], {"month": "2024-11", "apps": 1})
+        self.assertEqual(out["timeline"][-1], {"month": "2026-10", "apps": 4})  # future date counts as today
+        self.assertEqual(out["new_30d"], 2)
+        self.assertEqual(out["new_12m"], 3)
+
+    def test_earliest_date_across_sources(self):
+        old = app(version="1.0", date="2021-05-01")
+        new = app(version="2.0", date="2025-05-01")
+        loaded = [
+            ("https://a/x.json", {"name": "A", "apps": [new]}, "ok", 0),
+            ("https://b/x.json", {"name": "B", "apps": [old]}, "ok", 0),
+        ]
+        _, _, _, _, firsts = merge.pick(loaded, frozenset())
+        self.assertEqual(firsts["com.example.app"][:10], "2021-05-01")
+
+
 class Cards(unittest.TestCase):
     def test_cards_are_valid_svg(self):
         import xml.etree.ElementTree as ET
@@ -194,7 +223,7 @@ class AltStoreSpec(unittest.TestCase):
 
     def test_nsfw_inherited_from_sources(self):
         loaded = [("https://a/x.json", {"name": "A", "nsfw": True, "apps": [app()]}, "ok", 0)]
-        best, _, stats, news = merge.pick(loaded, frozenset())
+        best, _, stats, news, _ = merge.pick(loaded, frozenset())
         self.assertIs(merge.build(best, news, merge.OUTPUTS["source.json"], stats)["nsfw"], True)
 
     def test_patreon_and_pal_apps_are_excluded(self):
