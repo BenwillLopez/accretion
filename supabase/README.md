@@ -89,9 +89,9 @@ automatically on the 1st of every month, so there is nothing to remember.
 
 ### Shortcut: one secret per provider
 
-Instead of two secrets, you can save one per provider named `GOOGLE`, `GIT` or `DISCORD`, with
-the client ID and the secret pasted together (on one line or two, in either order). Setup tells
-them apart.
+Instead of two secrets, you can save one per provider named `GOOGLE`, `GIT` or `DISCORD`. Paste
+the client ID and the secret together (on one line or two, in either order), or just the secret:
+client IDs are public, so they can live in [`providers.json`](providers.json) instead.
 
 ### Turn them on
 

@@ -174,10 +174,21 @@ def split_keys(provider, raw):
     return client_id, secret
 
 
+def public_client_ids():
+    try:
+        with open(path("supabase/providers.json")) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
 def keys_for(provider, id_name, secret_name, combined_name):
     if env(id_name) and env(secret_name):
         return env(id_name), env(secret_name)
-    return split_keys(provider, env(combined_name))
+    client_id, secret = split_keys(provider, env(combined_name))
+    if secret and not client_id:  # only the secret saved: the client ID is public, kept in the repo
+        client_id = public_client_ids().get(provider, "")
+    return client_id, secret
 
 
 def provider_settings():

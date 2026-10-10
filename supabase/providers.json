@@ -1,0 +1,6 @@
+{
+ "_comment": "Public OAuth client IDs (they appear in every sign-in link). The matching secrets stay in GitHub secrets: GOOGLE, GIT, DISCORD.",
+ "google": "33855298367-ivhk6418ien6vq45qhqb0jedomnojhrq.apps.googleusercontent.com",
+ "github": "Ov23liTZSUGGhHuE93v1",
+ "discord": "1558396810673004604"
+}

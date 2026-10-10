@@ -406,6 +406,8 @@ class SignInProviders(unittest.TestCase):
         self.assertNotIn("external_apple_enabled", out)
 
     def test_one_secret_can_hold_both_keys(self):
+        from unittest import mock
+
         import supabase_setup as setup
 
         gid, gsec = "123-abc.apps.googleusercontent.com", "GOCSPX-a1_b2-c3"
@@ -420,8 +422,13 @@ class SignInProviders(unittest.TestCase):
         self.assertEqual((out["external_google_client_id"], out["external_google_secret"]), (gid, gsec))
         self.assertEqual((out["external_github_client_id"], out["external_github_secret"]), (hid, hsec))
         self.assertEqual((out["external_discord_client_id"], out["external_discord_secret"]), (did, dsec))
-        with self.env(DISCORD_KEYS=did):  # only half saved
-            self.assertNotIn("external_discord_enabled", setup.provider_settings())
+        with (
+            self.env(DISCORD_KEYS=dsec),  # only the secret saved: ID comes from providers.json
+            mock.patch.object(setup, "public_client_ids", return_value={"discord": did}),
+        ):
+            self.assertEqual(setup.provider_settings()["external_discord_client_id"], did)
+        with self.env(DISCORD_KEYS=did), mock.patch.object(setup, "public_client_ids", return_value={}):
+            self.assertNotIn("external_discord_enabled", setup.provider_settings())  # only half
 
     def test_apple_secret_is_a_signed_jwt(self):
         try:
