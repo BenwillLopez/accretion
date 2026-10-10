@@ -27,6 +27,12 @@ automatically.
 category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
 rebuilt with the source every 6 hours.
 
+## Community
+
+Sign in on the store to comment on apps, like and rate them, follow people, and post to a shared
+feed. Moderators handle reports. It runs on a free Supabase project; see
+[`supabase/README.md`](supabase/README.md) for setup. Without it, the store works as before.
+
 ## Add the source
 
 There are two links. Pick one:

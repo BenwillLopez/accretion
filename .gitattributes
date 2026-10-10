@@ -11,3 +11,4 @@ assets/card-*.svg   linguist-generated=true -diff
 assets/recent-*.svg linguist-generated=true -diff
 assets/card-dark.png    linguist-generated=true
 assets/recent-dark.png  linguist-generated=true
+site/vendor/**  linguist-vendored=true

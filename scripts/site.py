@@ -165,6 +165,12 @@ def main():
         shutil.copy(path(name), os.path.join(OUT, name))
     for name in os.listdir(path("assets")):
         shutil.copy(path(f"assets/{name}"), os.path.join(OUT, "assets", name))
+    # community features: public Supabase settings (the anon key is meant to be public)
+    url, key = os.environ.get("SUPABASE_URL", "").strip(), os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    if url and key:
+        with open(os.path.join(OUT, "config.js"), "w") as f:
+            f.write(f"window.ACCRETION_CONFIG = {json.dumps({'supabaseUrl': url, 'supabaseKey': key})};\n")
+
     share_pages(source["apps"])
     site_url = os.environ.get("SITE_URL", "").rstrip("/")
     if site_url:

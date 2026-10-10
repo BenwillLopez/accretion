@@ -71,6 +71,9 @@ jobs:
         run: python scripts/site.py
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Settings > Secrets and variables > Actions > Variables (public values)
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

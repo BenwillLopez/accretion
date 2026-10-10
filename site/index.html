@@ -38,8 +38,10 @@
   <nav class="nav" aria-label="Sections">
     <a href="#/" data-nav="home">Discover</a>
     <a href="#/sources" data-nav="sources">Sources</a>
+    <a href="#/feed" data-nav="feed" id="nav-feed" hidden>Feed</a>
     <a href="#/saved" data-nav="saved">Saved <span id="saved-n" class="pill" hidden></span></a>
   </nav>
+  <div id="account" class="account"></div>
   <button class="btn primary add-top" id="open-add" type="button">Add source</button>
 </header>
 
@@ -89,6 +91,7 @@
 
 <section id="detail" class="view" hidden></section>
 <section id="sources" class="view" hidden></section>
+<section id="social" class="view" hidden></section>
 
 <dialog id="add" class="add">
   <form method="dialog" class="add-inner">
@@ -111,10 +114,12 @@
 
 <footer class="foot">
   <p>Accretion only lists what public sources publish. It hosts no files and nobody reviews the apps, so install what you trust.</p>
-  <p><a href="https://github.com/BenwillLopez/accretion">Source code</a> · <a href="https://github.com/BenwillLopez/accretion/blob/main/REPORT.md">Source report</a> · <a href="https://github.com/BenwillLopez/accretion/issues/new?template=add-source.yml">Suggest a source</a> · <a href="https://github.com/BenwillLopez/accretion/issues/new?template=report-source.yml">Report a problem</a></p>
+  <p><a href="rules.html">Community rules</a> · <a href="privacy.html">Privacy</a> · <a href="https://github.com/BenwillLopez/accretion">Source code</a> · <a href="https://github.com/BenwillLopez/accretion/blob/main/REPORT.md">Source report</a> · <a href="https://github.com/BenwillLopez/accretion/issues/new?template=add-source.yml">Suggest a source</a> · <a href="https://github.com/BenwillLopez/accretion/issues/new?template=report-source.yml">Report a problem</a></p>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="config.js"></script>
 <script src="app.js" defer></script>
+<script src="social.js" defer></script>
 </body>
 </html>

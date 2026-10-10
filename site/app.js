@@ -137,6 +137,7 @@
     const app = pathPart.match(/^\/app\/(.+)$/);
     if (app) return { view: "app", bid: decodeURIComponent(app[1]) };
     if (pathPart === "/sources") return { view: "sources" };
+    if (/^\/(feed|u\/.+|notifications|mod|me|signin)$/.test(pathPart)) return { view: "social", path: pathPart, params: Object.fromEntries(p) };
     return {
       view: "home",
       saved: pathPart === "/saved",
@@ -172,7 +173,7 @@
   function route() {
     const r = parse();
     for (const a of document.querySelectorAll("[data-nav]")) {
-      const on = (r.view === "home" && !r.saved && a.dataset.nav === "home") || (r.view === "sources" && a.dataset.nav === "sources") || (r.view === "home" && r.saved && a.dataset.nav === "saved");
+      const on = (r.view === "home" && !r.saved && a.dataset.nav === "home") || (r.view === "sources" && a.dataset.nav === "sources") || (r.view === "home" && r.saved && a.dataset.nav === "saved") || (r.view === "social" && r.path === "/feed" && a.dataset.nav === "feed");
       a.classList.toggle("on", on);
       if (on) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
@@ -180,6 +181,12 @@
     $("home").hidden = r.view !== "home";
     $("detail").hidden = r.view !== "app";
     $("sources").hidden = r.view !== "sources";
+    $("social").hidden = r.view !== "social";
+    if (r.view === "social") {
+      window.scrollTo(0, 0);
+      document.dispatchEvent(new CustomEvent("acc:route", { detail: r }));
+      return;
+    }
     if (r.view === "app") return openApp(r.bid);
     if (r.view === "sources") {
       document.title = "Sources · Accretion";
@@ -323,6 +330,7 @@
     const savedUpd = pool.filter(hasUpdate);
     const today = new Date().toISOString().slice(0, 10);
     const fresh = byUpdated.filter((a) => a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY);
+    const socialShelves = h("div", { id: "social-shelves" });
     box.replaceChildren(
       ...[
         shelf("Updates for your saved apps", `${savedUpd.length}`, savedUpd.slice(0, SHELF), "#/saved"),
@@ -330,9 +338,11 @@
         shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new" })),
         shelf("From Accretion Core", "hand-picked sources", core.slice(0, SHELF), null),
         shelf("Games", "just updated", byUpdated.filter((a) => a.c === "games").slice(0, SHELF), homeHash({ ...state.f, c: "games" })),
+        socialShelves,
         shelf("Utilities", "just updated", byUpdated.filter((a) => a.c === "utilities").slice(0, SHELF), homeHash({ ...state.f, c: "utilities" })),
       ].filter(Boolean),
     );
+    document.dispatchEvent(new CustomEvent("acc:home", { detail: { mount: socialShelves } }));
   }
 
   function buildChips() {
@@ -406,8 +416,10 @@
     view.replaceChildren(back, head(a, null), h("p", { class: "muted" }, "Loading details…"));
     const d = await details(bid);
     if (parse().bid !== bid) return;
-    view.replaceChildren(back, head(a, d), ...body(a, d));
+    const social = h("div", { id: "social-app" });
+    view.replaceChildren(back, head(a, d), social, ...body(a, d));
     if (desktop()) addQr(a);
+    document.dispatchEvent(new CustomEvent("acc:app", { detail: { app: a, mount: social } }));
   }
 
   function head(a, d) {
@@ -601,6 +613,9 @@
     navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
+  // helpers shared with social.js
+  window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route };
+
   // ---- boot -------------------------------------------------------------------------------
   Promise.all([fetch("data/index.json").then((r) => r.json()), fetch("data/stats.json").then((r) => r.json()).catch(() => ({}))])
     .then(([index, stats]) => {
@@ -620,6 +635,7 @@
       }
       buildChips();
       updateSavedCount();
+      document.dispatchEvent(new CustomEvent("acc:ready"));
       route();
     })
     .catch(() => {

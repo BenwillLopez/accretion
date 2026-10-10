@@ -5,7 +5,7 @@ on:
   pull_request:
   push:
     branches: [main]
-    paths: ["scripts/**", "site/**", "tests/**", pyproject.toml, ".github/workflows/**"]
+    paths: ["scripts/**", "site/**", "supabase/**", "tests/**", pyproject.toml, ".github/workflows/**"]
 
 permissions:
   contents: read
@@ -29,3 +29,29 @@ jobs:
       - name: Validate published files
         if: github.event_name == 'pull_request'
         run: python scripts/validate.py source.json curated.json
+      - name: Check community scripts
+        run: node --check site/social.js && node --check site/sw.js
+
+  database:
+    # Applies supabase/schema.sql to a plain Postgres and runs the access-rule checks.
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@v5
+      - run: psql -v ON_ERROR_STOP=1 -q -f supabase/auth_stub.sql
+      - run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
+      - name: Schema can be applied twice
+        run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
+      - run: psql -v ON_ERROR_STOP=1 -f supabase/test.sql
