@@ -4,7 +4,28 @@ Accounts, comments, likes, ratings, follows, the feed, notifications and moderat
 free [Supabase](https://supabase.com) project. The store works without it. The community
 features turn on once the two settings below are set.
 
-## 1. Create the project
+## Quick setup (one click)
+
+1. **Sign up** at [supabase.com](https://supabase.com) (free) and open the dashboard once.
+2. **Create an access token:** [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens)
+   → **Generate new token** → name it `accretion-setup` → copy it.
+3. **Add it to GitHub:** this repo → **Settings → Secrets and variables → Actions → Secrets →
+   New repository secret**, named `SUPABASE_ACCESS_TOKEN`, with the token as the value.
+4. **Run it:** **Actions → Set up community → Run workflow**. It creates the project, sets up
+   the database and sign-in links, saves the public settings, and rebuilds the store. That takes
+   about 3–5 minutes.
+5. **Become admin:** sign up on the store, then run **Set up community** again with your
+   username in **admin_username**.
+
+The token can manage your Supabase account, so it's kept as an encrypted GitHub secret and only
+this workflow uses it. After setup you can delete it at supabase.com; the store keeps working,
+and you can create a new one if you ever need to re-run setup.
+
+## Manual setup
+
+Use this instead of the quick setup if you prefer to click through the dashboard yourself.
+
+### 1. Create the project
 
 1. Sign up at supabase.com and click **New project**. Name it `accretion`, pick the region
    closest to your users, and set a database password (keep it private).
@@ -16,12 +37,12 @@ features turn on once the two settings below are set.
 4. Optional, against bots: **Authentication → Attack Protection → CAPTCHA** (Cloudflare
    Turnstile is free).
 
-## 2. Create the tables
+### 2. Create the tables
 
 Open **SQL Editor → New query**, paste all of [`schema.sql`](schema.sql), and click **Run**.
 You can run it again later; it only updates what changed.
 
-## 3. Turn it on in the store
+### 3. Turn it on in the store
 
 In **Project Settings → API**, copy the **Project URL** and the **anon public** key. Both are
 meant to be public. **Never use the `service_role` key here.**
@@ -37,7 +58,7 @@ variable**:
 Then run **Actions → Build source → Run workflow**. Sign in, Feed, comments and ratings appear
 on the next deploy.
 
-## 4. Make yourself admin
+### 4. Make yourself admin
 
 Create your account on the store. Then, in the SQL Editor:
 

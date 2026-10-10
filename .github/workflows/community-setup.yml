@@ -1,0 +1,62 @@
+name: Set up community
+
+# One click: creates (or reuses) the Supabase project, applies supabase/schema.sql, points
+# sign-in links at the store, saves the public URL + key to supabase/project.json, then
+# rebuilds the store. Run it again with your username after signing up to become admin.
+# Needs the SUPABASE_ACCESS_TOKEN repository secret (supabase.com/dashboard/account/tokens).
+on:
+  workflow_dispatch:
+    inputs:
+      admin_username:
+        description: "Make this store username an admin (sign up first; leave empty on the first run)"
+        required: false
+        default: ""
+      region:
+        description: "Where to host the database (pick the one closest to most users)"
+        type: choice
+        default: us-east-1
+        options: [us-east-1, us-east-2, us-west-1, sa-east-1, eu-west-1, eu-west-2, eu-central-1, ap-southeast-1, ap-northeast-1, ap-south-1]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - id: pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+      - name: Create and configure the Supabase project
+        run: python scripts/supabase_setup.py
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SITE_URL: ${{ steps.pages.outputs.base_url && format('{0}/', steps.pages.outputs.base_url) || '' }}
+          SUPABASE_REGION: ${{ inputs.region }}
+          ADMIN_USERNAME: ${{ inputs.admin_username }}
+      - name: Save public settings
+        run: |
+          if [ -z "$(git status --porcelain -- supabase/project.json)" ]; then echo "No changes."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add supabase/project.json
+          git commit -m "Community: save Supabase project settings"
+          git pull --rebase -X theirs origin main
+          git push
+
+  publish:
+    needs: setup
+    uses: ./.github/workflows/publish.yml

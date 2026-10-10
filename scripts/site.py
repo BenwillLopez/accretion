@@ -167,6 +167,9 @@ def main():
         shutil.copy(path(f"assets/{name}"), os.path.join(OUT, "assets", name))
     # community features: public Supabase settings (the anon key is meant to be public)
     url, key = os.environ.get("SUPABASE_URL", "").strip(), os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    if not (url and key):  # written by the "Set up community" workflow
+        project = load_json("supabase/project.json", {})
+        url, key = project.get("url", ""), project.get("anonKey", "")
     if url and key:
         with open(os.path.join(OUT, "config.js"), "w") as f:
             f.write(f"window.ACCRETION_CONFIG = {json.dumps({'supabaseUrl': url, 'supabaseKey': key})};\n")

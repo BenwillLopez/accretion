@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import unittest
@@ -290,6 +291,82 @@ class WebStore(unittest.TestCase):
         # Known FNV-1a 32-bit value; site/app.js implements the same function.
         self.assertEqual(store.fnv1a("a"), 0xE40C292C)
         self.assertLess(store.shard_of("com.example.app"), store.SHARDS)
+
+
+class SupabaseSetup(unittest.TestCase):
+    """The setup script against a fake Management API."""
+
+    def run_setup(self, projects, admin="", statuses=("COMING_UP", "ACTIVE_HEALTHY"), admin_rows=None):
+        import importlib
+        import tempfile
+        from unittest import mock
+
+        import supabase_setup as setup
+
+        importlib.reload(setup)
+        calls = []
+        status_iter = iter(statuses)
+
+        def fake_call(method, route, body=None, timeout=120):
+            calls.append((method, route, body))
+            if route == "/projects" and method == "GET":
+                return projects
+            if route == "/organizations":
+                return [{"id": "org-1", "name": "Ben"}]
+            if route == "/projects" and method == "POST":
+                return {"id": "newref"}
+            if route.endswith("/api-keys"):
+                return [
+                    {"name": "service_role", "api_key": "SECRET"},
+                    {"name": "anon", "api_key": "anon-key"},
+                ]
+            if route.endswith("/database/query"):
+                return admin_rows if "update public.profiles" in body["query"] else []
+            if method == "GET" and route.startswith("/projects/"):
+                return {"status": next(status_iter, "ACTIVE_HEALTHY")}
+            return {}
+
+        tmp = tempfile.mkdtemp()
+        os.makedirs(os.path.join(tmp, "supabase"))
+        with open(os.path.join(tmp, "supabase", "schema.sql"), "w") as f:
+            f.write("select 1;")
+        with (
+            mock.patch.object(setup, "call", fake_call),
+            mock.patch.object(setup, "TOKEN", "t"),
+            mock.patch.object(setup, "SITE_URL", "https://x.github.io/accretion/"),
+            mock.patch.object(setup, "ADMIN", admin),
+            mock.patch.object(setup, "path", lambda n: os.path.join(tmp, n)),
+            mock.patch.object(setup.time, "sleep", lambda s: None),
+        ):
+            setup.main()
+        with open(os.path.join(tmp, "supabase", "project.json")) as f:
+            return calls, json.load(f)
+
+    def test_creates_project_and_saves_public_settings(self):
+        calls, saved = self.run_setup(projects=[])
+        posted = next(c for c in calls if c[0] == "POST" and c[1] == "/projects")[2]
+        self.assertEqual(posted["organization_id"], "org-1")
+        self.assertGreaterEqual(len(posted["db_pass"]), 30)
+        self.assertTrue(any(c[1] == "/projects/newref/database/query" for c in calls))
+        auth = next(c for c in calls if c[1].endswith("/config/auth"))[2]
+        self.assertEqual(auth["site_url"], "https://x.github.io/accretion/")
+        self.assertEqual(
+            saved, {"url": "https://newref.supabase.co", "anonKey": "anon-key"}
+        )  # never the secret
+
+    def test_reuses_existing_project_and_makes_admin(self):
+        calls, saved = self.run_setup(
+            projects=[{"id": "oldref", "name": "accretion"}],
+            admin="ben_w",
+            admin_rows=[{"username": "ben_w", "role": "admin"}],
+        )
+        self.assertFalse(any(c[0] == "POST" and c[1] == "/projects" for c in calls))
+        self.assertEqual(saved["url"], "https://oldref.supabase.co")
+        self.assertTrue(any("ben_w" in (c[2] or {}).get("query", "") for c in calls))
+
+    def test_rejects_unsafe_admin_name(self):
+        with self.assertRaises(SystemExit):
+            self.run_setup(projects=[{"id": "r", "name": "accretion"}], admin="x'; drop table posts;--")
 
 
 class Discovery(unittest.TestCase):
