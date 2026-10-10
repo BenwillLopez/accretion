@@ -5,7 +5,7 @@ on:
   pull_request:
   push:
     branches: [main]
-    paths: ["scripts/**", "tests/**", pyproject.toml, ".github/workflows/**"]
+    paths: ["scripts/**", "site/**", "tests/**", pyproject.toml, ".github/workflows/**"]
 
 permissions:
   contents: read
@@ -23,6 +23,8 @@ jobs:
       - run: ruff check .
       - run: ruff format --check .
       - run: python -m unittest discover -s tests -v
+      - name: Check web store script
+        run: node --check site/app.js
       # on pushes the publish workflow rebuilds and validates these itself
       - name: Validate published files
         if: github.event_name == 'pull_request'

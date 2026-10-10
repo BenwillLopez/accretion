@@ -244,6 +244,7 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
+    write_build_info(stats, best, firsts)
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -304,6 +305,20 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
             for _, a, _ in recent
         ],
     }
+
+
+def write_build_info(stats, best, firsts):
+    """Where each app came from and when it first appeared, for the website (not committed)."""
+    names = [{"name": s["name"] or s["url"].split("/")[2], "url": s["url"]} for s in stats]
+    index = {s["url"]: i for i, s in enumerate(stats)}
+    info = {
+        "sources": names,
+        "origin": {bid: index[b[2]] for bid, b in best.items()},
+        "first": {bid: d[:10] for bid, d in firsts.items() if bid in best},
+    }
+    os.makedirs(path("_build"), exist_ok=True)
+    with open(path("_build/origins.json"), "w") as f:
+        json.dump(info, f, ensure_ascii=False, separators=(",", ":"))
 
 
 def timeline(now, firsts, months=24):

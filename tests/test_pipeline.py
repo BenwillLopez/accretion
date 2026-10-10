@@ -277,6 +277,21 @@ class AltStoreSpec(unittest.TestCase):
         self.assertEqual(item["caption"], "Hi")
 
 
+class WebStore(unittest.TestCase):
+    def test_shard_hash_matches_the_browser(self):
+        import importlib.util
+
+        # scripts/site.py shares its name with the stdlib "site" module, so load it by path
+        spec = importlib.util.spec_from_file_location(
+            "store_site", os.path.join(os.path.dirname(__file__), "..", "scripts", "site.py")
+        )
+        store = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(store)
+        # Known FNV-1a 32-bit value; site/app.js implements the same function.
+        self.assertEqual(store.fnv1a("a"), 0xE40C292C)
+        self.assertLess(store.shard_of("com.example.app"), store.SHARDS)
+
+
 class Discovery(unittest.TestCase):
     def test_clean_url(self):
         self.assertEqual(

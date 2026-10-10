@@ -21,6 +21,12 @@ automatically.
   <img alt="Live stats: apps, sources, listings scanned, duplicates resolved, recent updates, categories and growth" src="assets/card-light.svg" width="100%">
 </picture>
 
+## Browse the store
+
+**[benwilllopez.github.io/accretion](https://benwilllopez.github.io/accretion/)**: search every app, filter by
+category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
+rebuilt with the source every 6 hours.
+
 ## Add the source
 
 There are two links. Pick one:
