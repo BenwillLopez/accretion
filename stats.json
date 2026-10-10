@@ -2,9 +2,9 @@
  "apps": 4261,
  "curated_apps": 1315,
  "sources": 159,
- "updated": "2026-10-10 12:47 UTC",
+ "updated": "2026-10-10 14:31 UTC",
  "size_mb": 4.9,
- "built_at": "2026-10-10T12:47:13Z",
+ "built_at": "2026-10-10T14:31:56Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
@@ -13,11 +13,11 @@
  "duplicates": 1697,
  "rejected": 5658,
  "excluded": 57,
- "dead_links_removed": 6710,
+ "dead_links_removed": 6719,
  "links_on_hold": 0,
  "developers": 708,
  "updated_7d": 718,
- "updated_30d": 1187,
+ "updated_30d": 1186,
  "curated_size_mb": 0.9,
  "categories": {
   "other": 2107,
@@ -116,81 +116,81 @@
   },
   {
    "month": "2025-04",
-   "apps": 2319
+   "apps": 2318
   },
   {
    "month": "2025-05",
-   "apps": 2372
+   "apps": 2371
   },
   {
    "month": "2025-06",
-   "apps": 2401
+   "apps": 2400
   },
   {
    "month": "2025-07",
-   "apps": 2434
+   "apps": 2433
   },
   {
    "month": "2025-08",
-   "apps": 2520
+   "apps": 2519
   },
   {
    "month": "2025-09",
-   "apps": 2570
+   "apps": 2569
   },
   {
    "month": "2025-10",
-   "apps": 2637
+   "apps": 2636
   },
   {
    "month": "2025-11",
-   "apps": 2699
+   "apps": 2698
   },
   {
    "month": "2025-12",
-   "apps": 2834
+   "apps": 2833
   },
   {
    "month": "2026-01",
-   "apps": 2970
+   "apps": 2969
   },
   {
    "month": "2026-02",
-   "apps": 3126
+   "apps": 3125
   },
   {
    "month": "2026-03",
-   "apps": 3273
+   "apps": 3272
   },
   {
    "month": "2026-04",
-   "apps": 3515
+   "apps": 3514
   },
   {
    "month": "2026-05",
-   "apps": 3590
+   "apps": 3589
   },
   {
    "month": "2026-06",
-   "apps": 3726
+   "apps": 3725
   },
   {
    "month": "2026-07",
-   "apps": 3848
+   "apps": 3846
   },
   {
    "month": "2026-08",
-   "apps": 3890
+   "apps": 3888
   },
   {
    "month": "2026-09",
-   "apps": 4092
+   "apps": 4091
   },
   {
    "month": "2026-10",
    "apps": 4261
   }
  ],
- "new_30d": 352,
- "new_12m": 1676
+ "new_30d": 354,
+ "new_12m": 1677
 }
