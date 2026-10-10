@@ -24,6 +24,7 @@ import hashlib
 import json
 import os
 import sys
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 from card import render_cards
@@ -84,6 +85,18 @@ def load(url):
             with open(cache_file(url)) as f:
                 return url, json.load(f), f"cached ({err})", 0
         return url, None, f"failed ({err})", 0
+
+
+class DeadLinks(frozenset):
+    """Dead download URLs from the link checker, plus every URL on a host in dead_hosts.txt."""
+
+    def __new__(cls, urls=(), hosts=()):
+        obj = super().__new__(cls, urls)
+        obj.hosts = frozenset(h.lower() for h in hosts)
+        return obj
+
+    def __contains__(self, url):
+        return super().__contains__(url) or urllib.parse.urlsplit(str(url)).netloc.lower() in self.hosts
 
 
 def versions_of(app, dead=frozenset()):
@@ -225,7 +238,9 @@ def main():
         if u not in manual and not is_blocked(u, blocklist)
     ]
     links = load_json("dead_links.json", {})
-    dead = {u for u, v in links.items() if v.get("fails", 0) >= dead_after(v)}
+    dead = DeadLinks(
+        (u for u, v in links.items() if v.get("fails", 0) >= dead_after(v)), read_list("dead_hosts.txt")
+    )
     held = sum(1 for u, v in links.items() if u not in dead and v.get("host_wide"))
 
     with ThreadPoolExecutor(16) as ex:

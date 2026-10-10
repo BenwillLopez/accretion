@@ -52,6 +52,19 @@ class VersionOrdering(unittest.TestCase):
         self.assertEqual(date_key("2024-03-05T10:20:30Z"), "2024-03-05T10:20:30")
         self.assertEqual(date_key("March 5"), "")
 
+    def test_dead_hosts_drop_every_link_on_them(self):
+        raw = {
+            "versions": [
+                {"version": "2.0", "downloadURL": "https://appstore.sidelix.vip/download-repo-source/1"},
+                {"version": "1.0", "downloadURL": "https://github.com/a/b/releases/download/1.0/x.ipa"},
+            ]
+        }
+        dead = merge.DeadLinks((), ["AppStore.Sidelix.vip"])
+        self.assertEqual([v["version"] for v in merge.versions_of(raw, dead)], ["1.0"])
+        dead = merge.DeadLinks(["https://github.com/a/b/releases/download/1.0/x.ipa"], [])
+        self.assertEqual([v["version"] for v in merge.versions_of(raw, dead)], ["2.0"])
+        self.assertEqual(len(dead), 1)
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",

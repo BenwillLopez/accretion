@@ -77,7 +77,8 @@ On older devices, or if the full list loads slowly, use Accretion Core.
   stays live.
 - **No dead links.** Download links are tested daily. A version whose file returns 404/410 on
   two checks in a row is removed. If a whole host fails at once, which usually means it is blocking
-  automated checks or is briefly down, its links get 7 days of grace instead.
+  automated checks or is briefly down, its links get 7 days of grace instead. Hosts confirmed
+  broken by hand go in `dead_hosts.txt` and are dropped on the next build.
 - **Resilient.** If a source is down, its last good copy is used until it comes back.
 - **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
   is tested before it is used.
@@ -108,6 +109,7 @@ All three publishing workflows run the same pipeline
 |---|---|---|
 | `sources.txt` | yes | Hand-picked sources. These make up the curated link and win ties. |
 | `blocklist.txt` | yes | URLs or URL fragments that are never used |
+| `dead_hosts.txt` | yes | Download hosts known to be broken; their links are dropped |
 | `discover.json` | yes | Where discovery looks: link lists, GitHub repos and topics |
 | `discovered.txt` | no | Sources found automatically |
 | `dead_links.json` | no | Download links that stopped working |
