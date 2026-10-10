@@ -2,6 +2,94 @@
  "apps": 8790,
  "curated_apps": 1657,
  "sources": 162,
- "updated": "2026-10-10 05:52 UTC",
- "size_mb": 9.7
+ "updated": "2026-10-10 06:20 UTC",
+ "size_mb": 9.7,
+ "built_at": "2026-10-10T06:20:11Z",
+ "sources_total": 162,
+ "sources_cached": 0,
+ "sources_failed": 0,
+ "sources_discovered": 133,
+ "listings": 30069,
+ "duplicates": 2233,
+ "rejected": 288,
+ "dead_links_removed": 0,
+ "links_on_hold": 0,
+ "developers": 752,
+ "updated_7d": 405,
+ "updated_30d": 1088,
+ "curated_size_mb": 1.2,
+ "categories": {
+  "other": 3832,
+  "games": 2579,
+  "photo-video": 732,
+  "utilities": 710,
+  "entertainment": 408,
+  "lifestyle": 286,
+  "developer": 144,
+  "social": 99
+ },
+ "top_sources": [
+  {
+   "name": "fastsign (organized)",
+   "apps": 7731
+  },
+  {
+   "name": "dsewerek's general apps",
+   "apps": 616
+  },
+  {
+   "name": "Altmaker by RipeStore",
+   "apps": 124
+  },
+  {
+   "name": "MySign IPA's",
+   "apps": 88
+  },
+  {
+   "name": "AppTesters IPA Repo",
+   "apps": 58
+  }
+ ],
+ "recent": [
+  {
+   "name": "MuffinEMU",
+   "version": "8.9",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "VidGrab",
+   "version": "1.3.4",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Table Habit",
+   "version": "1.27.13",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Textastic",
+   "version": "10.9.9",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "CARROT",
+   "version": "6.9.2",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Duolingo",
+   "version": "7.143.1",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Detail",
+   "version": "6.0.3",
+   "date": "2026-10-10"
+  },
+  {
+   "name": "Live Transcribe",
+   "version": "2.91",
+   "date": "2026-10-10"
+  }
+ ]
 }

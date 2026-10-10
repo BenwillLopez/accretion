@@ -1,15 +1,16 @@
 # Source report
 
-Built 2026-10-10 05:52 UTC.
+Built 2026-10-10 06:20 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **8790** (9892 KB) |
-| Apps in `curated.json` | **1657** (1218 KB) |
+| Apps in `source.json` | **8790** (9903 KB) |
+| Apps in `curated.json` | **1657** (1219 KB) |
 | Listings read | 30069 |
 | Apps listed by more than one source (newest kept) | 2233 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 288 |
 | Dead download links removed | 0 |
+| Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 162: 162 ok, 0 from cache, 0 failed |
 
 ## Sources
