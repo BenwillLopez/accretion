@@ -155,12 +155,12 @@ def pick_checked(loaded, n_manual, dead, checked, check_many, links, rounds=4):
     build's link check hasn't seen (fallback copies chosen because another copy is dead).
     Dead ones are added to dead and to links (so later builds retest them), then pick again.
     checked is None when no link check ran: nothing extra is tested."""
-    for _ in range(rounds):
+    for round_ in range(rounds + 1):
         gone, icons = {}, {}
         full = pick(loaded, dead, gone, icons)
         core = pick(loaded[:n_manual], dead)
-        if checked is None:
-            break
+        if checked is None or round_ == rounds:
+            break  # no check ran, or out of rounds: this last pick already skips every dead link
         new = published_links(full[0], core[0]) - set(checked) - dead
         if not new:
             break
@@ -173,7 +173,7 @@ def pick_checked(loaded, n_manual, dead, checked, check_many, links, rounds=4):
         now = today().isoformat()
         for u in newly:
             links[u] = {"fails": 1, "first": now, "last": now, "host_wide": False}
-        dead |= newly
+        dead |= newly  # pick again without them
     return full, core, gone, icons
 
 

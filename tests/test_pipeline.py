@@ -240,6 +240,13 @@ class VersionOrdering(unittest.TestCase):
         full, core, _, _ = merge.pick_checked(loaded, 1, set(), None, check_many, {})
         self.assertEqual(len(asked), 1)  # no link check this build: nothing extra tested
 
+        # dead links found in the last allowed round are still left out
+        asked.clear()
+        fresh = {"https://ok.io/old.ipa": "alive"}
+        full, core, _, _ = merge.pick_checked(loaded, 1, set(), fresh, check_many, {}, rounds=1)
+        self.assertNotIn("com.x.app", core[0])
+        self.assertEqual(full[0]["com.x.app"][1]["versions"][0]["downloadURL"], "https://ok.io/old.ipa")
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",
