@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-10 07:06 UTC.
+Built 2026-10-10 07:28 UTC.
 
 | | |
 |---|---|
@@ -53,7 +53,7 @@ Built 2026-10-10 07:06 UTC.
 | [Apollo for Reddit](https://raw.githubusercontent.com/Balackburn/Apollo/refs/heads/main/apps.json) | ok | 1 | 1 | 0 | 2026-10-09 | curated |
 | [EPIC's source](https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json) | ok | 1 | 1 | 0 | 2026-09-29 | discovered |
 | [FriesI23's Source](https://raw.githubusercontent.com/FriesI23/altstore-repo/master/_site/repo/source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
-| [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-05 | discovered |
+| [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
 | [Nightshift](https://raw.githubusercontent.com/Jannehy/nightshift-ios/main/altstore.json) | ok | 1 | 1 | 0 | 2026-10-02 | discovered |
 | [MuffinEMU](https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
 | [Muffin](https://raw.githubusercontent.com/MuffinEMU/cemu-ios-muffin/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-09-13 | discovered |
@@ -186,6 +186,7 @@ Built 2026-10-10 07:06 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| Lumisound | 1.9.0.82 | 2026-10-10 | raw.githubusercontent.com |
 | MuffinEMU | 8.9 | 2026-10-10 | raw.githubusercontent.com |
 | VidGrab | 1.3.4 | 2026-10-10 | raw.githubusercontent.com |
 | Table Habit | 1.27.13 | 2026-10-10 | raw.githubusercontent.com |
@@ -210,4 +211,3 @@ Built 2026-10-10 07:06 UTC.
 | Uplens | 4.3.2 | 2026-10-10 | raw.githubusercontent.com |
 | TickTick | 8.2.21 | 2026-10-10 | raw.githubusercontent.com |
 | swipewipe | 3.5.1 | 2026-10-10 | raw.githubusercontent.com |
-| Tripsy | 3.10.3 | 2026-10-10 | raw.githubusercontent.com |
