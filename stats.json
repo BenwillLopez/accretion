@@ -1,19 +1,19 @@
 {
- "apps": 4249,
+ "apps": 4248,
  "curated_apps": 723,
  "sources": 159,
- "updated": "2026-10-10 15:11 UTC",
+ "updated": "2026-10-10 15:25 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-10T15:11:20Z",
+ "built_at": "2026-10-10T15:25:20Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23560,
- "duplicates": 1677,
- "rejected": 6580,
+ "listings": 23553,
+ "duplicates": 1676,
+ "rejected": 6588,
  "excluded": 57,
- "dead_links_removed": 8584,
+ "dead_links_removed": 8516,
  "links_on_hold": 0,
  "developers": 702,
  "updated_7d": 719,
@@ -21,7 +21,7 @@
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2104,
-  "games": 981,
+  "games": 980,
   "utilities": 332,
   "photo-video": 316,
   "entertainment": 212,
@@ -36,7 +36,7 @@
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 555
+   "apps": 554
   },
   {
    "name": "Altmaker by RipeStore",
@@ -96,99 +96,99 @@
  "timeline": [
   {
    "month": "2024-11",
-   "apps": 1894
+   "apps": 1893
   },
   {
    "month": "2024-12",
-   "apps": 1992
+   "apps": 1991
   },
   {
    "month": "2025-01",
-   "apps": 2193
+   "apps": 2192
   },
   {
    "month": "2025-02",
-   "apps": 2249
+   "apps": 2248
   },
   {
    "month": "2025-03",
-   "apps": 2277
+   "apps": 2276
   },
   {
    "month": "2025-04",
-   "apps": 2312
+   "apps": 2311
   },
   {
    "month": "2025-05",
-   "apps": 2365
+   "apps": 2364
   },
   {
    "month": "2025-06",
-   "apps": 2394
+   "apps": 2393
   },
   {
    "month": "2025-07",
-   "apps": 2427
+   "apps": 2426
   },
   {
    "month": "2025-08",
-   "apps": 2513
+   "apps": 2512
   },
   {
    "month": "2025-09",
-   "apps": 2563
+   "apps": 2562
   },
   {
    "month": "2025-10",
-   "apps": 2628
+   "apps": 2627
   },
   {
    "month": "2025-11",
-   "apps": 2690
+   "apps": 2689
   },
   {
    "month": "2025-12",
-   "apps": 2825
+   "apps": 2824
   },
   {
    "month": "2026-01",
-   "apps": 2960
+   "apps": 2959
   },
   {
    "month": "2026-02",
-   "apps": 3118
+   "apps": 3117
   },
   {
    "month": "2026-03",
-   "apps": 3265
+   "apps": 3264
   },
   {
    "month": "2026-04",
-   "apps": 3506
+   "apps": 3505
   },
   {
    "month": "2026-05",
-   "apps": 3581
+   "apps": 3580
   },
   {
    "month": "2026-06",
-   "apps": 3716
+   "apps": 3715
   },
   {
    "month": "2026-07",
-   "apps": 3831
+   "apps": 3830
   },
   {
    "month": "2026-08",
-   "apps": 3872
+   "apps": 3871
   },
   {
    "month": "2026-09",
-   "apps": 4070
+   "apps": 4069
   },
   {
    "month": "2026-10",
-   "apps": 4249
+   "apps": 4248
   }
  ],
  "new_30d": 359,
