@@ -334,8 +334,13 @@
     renderGrid();
   }
 
+  // apps built by Accretion itself (the AccretionMods/mods source; site.py marks it)
+  const isMod = (a) => !!(state.sources[a.o] || {}).mod;
+  const modBadge = () => h("em", { class: "badge mod" }, "Accretion Mod");
+
   function card(a) {
     const badges = [];
+    if (isMod(a)) badges.push(modBadge());
     if (hasUpdate(a)) badges.push(h("em", { class: "badge hot" }, "update"));
     else if (isNew(a)) badges.push(h("em", { class: "badge" }, "new"));
     return h(
@@ -408,7 +413,7 @@
           "span",
           { class: "row-body" },
           h("span", { class: "row-name" }, a.n),
-          h("span", { class: "row-meta" }, [`v${a.v}`, CATEGORY_NAMES[a.c], since(a)].filter(Boolean).join(" · ")),
+          h("span", { class: "row-meta" }, isMod(a) ? modBadge() : null, [`v${a.v}`, CATEGORY_NAMES[a.c], since(a)].filter(Boolean).join(" · ")),
         ),
         h("span", { class: "row-go", "aria-hidden": "true" }, "›"),
       ),
@@ -446,6 +451,8 @@
     const byUpdated = [...pool].sort((a, b) => (when(a) < when(b) ? 1 : -1));
     const byNew = [...pool].sort((a, b) => (a.f < b.f ? 1 : -1)).filter(isNew);
     const core = byUpdated.filter((a) => (state.sources[a.o] || {}).core);
+    const mods = byUpdated.filter(isMod);
+    const modSrc = state.sources.findIndex((s) => s.mod);
     const savedUpd = pool.filter(hasUpdate);
     const today = new Date().toISOString().slice(0, 10);
     const fresh = byUpdated.filter((a) => !a.u && (a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY));
@@ -454,6 +461,7 @@
     box.replaceChildren(
       ...[
         shelf("Most popular", "this week", popular, homeHash({ ...state.f, s: "popular", l: true }), { ranked: true }),
+        shelf("Made by Accretion", "our own mods", mods.slice(0, SHELF), mods.length > SHELF ? homeHash({ ...state.f, src: modSrc, s: "updated", l: true }) : null),
         shelf("Updates for your saved apps", `${savedUpd.length}`, savedUpd.slice(0, SHELF), "#/saved"),
         shelf("Fresh today", `${fmt(fresh.length)} updated`, fresh.slice(0, SHELF), homeHash({ ...state.f, s: "updated", l: true })),
         shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new", l: true })),
@@ -952,7 +960,9 @@
           fact("Listed by", src ? h("a", { href: homeHash({ q: "", c: "all", s: "updated", src: a.o, fit: state.f.fit, saved: false }) }, src.name) : "–"),
           fact("First seen", a.f),
         ),
-        h("p", { class: "muted small" }, "Files are hosted by the source above, not by Accretion. Install what you trust."),
+        isMod(a)
+          ? h("p", { class: "muted small" }, modBadge(), " Built by Accretion from a free or open-source app. Unsigned: sign it with your own tool. Source and build scripts: ", h("a", { href: "https://github.com/AccretionMods/mods", rel: "noopener" }, "AccretionMods/mods"), ".")
+          : h("p", { class: "muted small" }, "Files are hosted by the source above, not by Accretion. Install what you trust."),
       ),
     );
     return out.filter(Boolean);

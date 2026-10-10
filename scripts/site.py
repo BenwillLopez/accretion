@@ -23,6 +23,8 @@ from common import load_json, path, read_list
 
 SHARDS = 128
 OUT = path("_site")
+# Apps from this source are built by Accretion: the store shows them with an "Accretion Mod" badge.
+MODS_SOURCE = "https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json"
 
 
 def fnv1a(text):
@@ -125,6 +127,9 @@ def main():
     if not source:
         raise SystemExit("source.json not built yet")
     info = load_json("_build/origins.json", {"sources": [], "origin": {}, "first": {}})
+    for s in info["sources"]:
+        if s["url"] == MODS_SOURCE:
+            s["mod"] = True
     carriers = info.get("carriers", {})
     undated = set(info.get("undated", []))
     picks = set(read_list("popular.txt"))

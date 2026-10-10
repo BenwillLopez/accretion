@@ -225,6 +225,8 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 
 .badge.hot { background: color-mix(in srgb, var(--accent-2) 20%, transparent); color: var(--accent-2); }
 .badge.core { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent); margin-left: 8px; }
+.badge.mod { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--accent); }
+.row-meta .badge.mod, .small .badge.mod { margin-right: 6px; }
 .btn.on { border-color: var(--good); color: var(--good); }
 
 .view { max-width: 1180px; margin-inline: auto; padding-inline: 16px; padding-block: 20px 40px; }

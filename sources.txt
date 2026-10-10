@@ -1,6 +1,9 @@
 # One source URL per line. Lines starting with # are ignored.
 # Earlier sources win when two list the same app.
 
+# Accretion Mods: our own builds (https://github.com/AccretionMods/mods). Every mod has its own
+# io.github.accretionmods.* bundle ID, so it never replaces another source's app.
+https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json
 https://driftywinds.github.io/AltStore/apps.json
 https://repos.gabrx.eu.org/cypwn.json
 https://wuxu1.github.io/wuxu-complete-plus.json
