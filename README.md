@@ -127,7 +127,7 @@ turns on GitHub code search during discovery, which finds sources in repos that 
 
 ## Maintainer
 
-Maintained by **Benwill López**: [GitHub](https://github.com/BenwillLopez) ·
+Maintained by [@BenwillLopez](https://github.com/BenwillLopez) ·
 [iOSGods](https://iosgods.com/profile/146384-xxtototroniikxx/).
 
 ## License
