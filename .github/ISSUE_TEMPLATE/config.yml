@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report malware or a harmful source (private)
+    url: https://github.com/benwilllopez/altsource/security/advisories/new
+    about: Only the maintainer sees these reports.

@@ -1,0 +1,18 @@
+[project]
+name = "altsource"
+version = "1.0.0"
+description = "One AltStore/SideStore source that merges public sources and keeps the newest version of every app."
+requires-python = ">=3.10"
+license = "MIT"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+src = ["scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "C4", "RUF", "DTZ"]
+ignore = [
+  "SIM105",  # try/except/pass reads clearer than contextlib.suppress here
+  "RUF001",  # the ellipsis character in truncated text is intentional
+]

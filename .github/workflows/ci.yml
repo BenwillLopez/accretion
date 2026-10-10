@@ -1,0 +1,29 @@
+name: CI
+
+# Lint, unit tests and a validation pass over the published files.
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths: ["scripts/**", "tests/**", pyproject.toml, ".github/workflows/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install ruff==0.16.8
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: python -m unittest discover -s tests -v
+      # on pushes the publish workflow rebuilds and validates these itself
+      - name: Validate published files
+        if: github.event_name == 'pull_request'
+        run: python scripts/validate.py source.json curated.json

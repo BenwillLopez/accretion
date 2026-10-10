@@ -1,0 +1,40 @@
+name: Add a source
+description: Suggest an AltStore/SideStore source to include.
+title: "Add source: "
+labels: [source-request]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Source URL
+      description: The https link to the source's JSON file.
+      placeholder: https://example.com/apps.json
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Source name
+  - type: dropdown
+    id: list
+    attributes:
+      label: Which link should it be in?
+      options:
+        - Full source only
+        - Curated source as well
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What does it offer?
+      description: Apps it has that are not here yet, how often it updates, who maintains it.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The link is https and opens as JSON with an `apps` list.
+          required: true
+        - label: I checked REPORT.md and the source is not already included.
+          required: true

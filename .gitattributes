@@ -1,0 +1,8 @@
+# Built by the workflows: collapsed in diffs, excluded from language stats
+source.json     linguist-generated=true -diff
+curated.json    linguist-generated=true -diff
+stats.json      linguist-generated=true
+REPORT.md       linguist-generated=true
+discovered.json linguist-generated=true
+discovered.txt  linguist-generated=true
+dead_links.json linguist-generated=true

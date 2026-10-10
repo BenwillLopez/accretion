@@ -1,0 +1,73 @@
+name: Publish
+
+# Shared pipeline behind build.yml, discover.yml and links.yml.
+# Steps run in order: discover -> check links -> merge -> validate -> commit.
+on:
+  workflow_call:
+    inputs:
+      discover:
+        type: boolean
+        default: false
+      check_links:
+        type: boolean
+        default: false
+    secrets:
+      GH_SEARCH_TOKEN:
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      # main as it is now, not the commit that triggered the run, so runs never undo each other
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      # last good copy of every source, so a source that is down keeps its apps
+      - uses: actions/cache@v4
+        with:
+          path: cache
+          key: sources-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: sources-
+
+      - name: Discover sources
+        if: inputs.discover
+        run: python scripts/discover.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
+
+      - name: Check download links
+        if: inputs.check_links
+        run: python scripts/check_links.py
+
+      - name: Merge and validate
+        run: python scripts/merge.py
+
+      - name: Summary
+        run: cat REPORT.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit changes
+        run: |
+          files="source.json curated.json stats.json REPORT.md discovered.txt discovered.json dead_links.json"
+          existing=$(for f in $files; do [ -e "$f" ] && echo "$f"; done)
+          # skip commits that would only change the build time
+          if [ -z "$(git status --porcelain -- source.json curated.json discovered.txt dead_links.json)" ]; then
+            echo "No content changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- $existing
+          git commit -m "${{ inputs.discover && 'Discover sources and rebuild' || inputs.check_links && 'Check links and rebuild' || 'Rebuild source' }}"
+          git pull --rebase -X theirs origin main
+          git push

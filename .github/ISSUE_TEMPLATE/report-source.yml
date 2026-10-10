@@ -1,0 +1,38 @@
+name: Report a problem
+description: An app or source is broken, outdated or wrong.
+title: "Problem: "
+labels: [source-problem]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - An app will not download or install
+        - An app is outdated (a newer version exists)
+        - A source should be removed
+        - The source will not load in my app
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: App name or bundle ID
+  - type: input
+    id: source
+    attributes:
+      label: Source URL (if known)
+      description: REPORT.md lists where each app came from.
+  - type: input
+    id: client
+    attributes:
+      label: Sideloading app and iOS version
+      placeholder: iOSGods App 2.x on iOS 18.1
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What happened, and any error message.
+    validations:
+      required: true

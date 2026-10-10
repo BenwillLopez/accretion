@@ -1,55 +1,129 @@
-# altsource
+<p align="center">
+  <img src="assets/header.png" alt="AltSource: every source, newest versions, one link" width="100%">
+</p>
 
-One AltStore/SideStore source that merges every source it can find and always
-serves the newest version of each app.
+<p align="center">
+  <a href="https://github.com/benwilllopez/altsource/actions/workflows/build.yml"><img alt="Build" src="https://github.com/benwilllopez/altsource/actions/workflows/build.yml/badge.svg"></a>
+  <a href="https://github.com/benwilllopez/altsource/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/benwilllopez/altsource/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Apps" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.apps&label=apps&color=6D4AE8">
+  <img alt="Sources" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.sources&label=sources&color=6D4AE8">
+  <img alt="Updated" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fbenwilllopez%2Faltsource%2Fmain%2Fstats.json&query=%24.updated&label=updated&color=555">
+</p>
 
-**Add this URL to the app:**
+AltSource is an app source in the standard **AltStore JSON format**. It combines over a hundred
+public AltStore and SideStore sources into one link. Each app appears once, at its **newest
+version**. It is rebuilt every 6 hours, and broken entries and dead download links are removed
+automatically.
+
+## Add the source
+
+There are two links. Pick one:
+
+| Link | What it has | Size |
+|---|---|---|
+| **Full** | Every source this repo knows about | see [`stats.json`](stats.json) |
+| **Curated** | Only the hand-picked sources in [`sources.txt`](sources.txt) | small, refreshes fast |
 
 ```
 https://raw.githubusercontent.com/benwilllopez/altsource/main/source.json
 ```
+```
+https://raw.githubusercontent.com/benwilllopez/altsource/main/curated.json
+```
+
+| App | How to add |
+|---|---|
+| **iOSGods App** | Open **Sources**, paste the link at the top of the page. Adding your own sources needs App+ or ViP. |
+| **AltStore** | **Browse → Sources → +**, paste the link. |
+| **SideStore** | **Sources → +**, paste the link. |
+| **Feather / ESign / others** | Paste the link wherever the app adds repos or sources. |
+
+On older devices, or if the full list loads slowly, use the curated link.
+
+## What makes it different
+
+- **One entry per app, always the newest.** When several sources list the same bundle ID,
+  the copy with the highest version number wins. Ties go to the newest release date.
+- **Spec-checked.** Every app is cleaned to the
+  [AltStore source format](https://faq.altstore.io/developers/make-a-source) before publishing.
+  The links are https only, the categories, dates and sizes are valid, and the newest version
+  comes first. If the result fails validation, nothing is published and the last good version
+  stays live.
+- **No dead links.** Download links are tested daily. A version whose file returns 404/410 on
+  two checks in a row is removed.
+- **Resilient.** If a source is down, its last good copy is used until it comes back.
+- **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
+  is tested before it is used.
+- **Transparent.** [`REPORT.md`](REPORT.md) shows every source's status, how many apps it gave,
+  what was skipped and why, and the latest updates.
 
 ## How it works
 
-| File | What it does |
-|---|---|
-| `sources.txt` | Your own sources. Edit freely. |
-| `discovered.txt` | Sources found automatically. Written by `discover.py`; don't edit. |
-| `blocklist.txt` | URLs (or parts of URLs) that are never used. |
-| `discover.json` | Where discovery looks: link lists, GitHub repos, GitHub topics. |
-| `REPORT.md` | Written on each build: which sources work, how many apps each gave, recent updates. |
+```
+sources.txt ─┐
+             ├─► merge.py ─► sanitize + validate ─► source.json / curated.json / REPORT.md
+discovered ──┘       ▲
+ (discover.py)       └── dead_links.json (check_links.py)
+```
 
-- **Build** (`build.yml`, every 6 hours): downloads all sources and keeps one copy of
-  each app (by bundle ID): the one with the **highest version**. Ties go to the newest
-  release date, then to `sources.txt` over discovered sources. Each app keeps its 3 newest
-  versions. If a source is down, its last good copy from `cache/` is used.
-- **Discover** (`discover.yml`, every Monday): reads the link lists in `discover.json`,
-  scans GitHub repos tagged `altstore-repo`, `sidestore`, etc., and checks every JSON file
-  it finds. Only real sources are kept. Mirrors and short links of a source are only added once.
-  A source that keeps failing is dropped after 30 days.
+| Schedule | Workflow | What it does |
+|---|---|---|
+| Every 6 hours | [`build.yml`](.github/workflows/build.yml) | Fetches all sources and publishes |
+| Daily | [`links.yml`](.github/workflows/links.yml) | Tests download links, then publishes |
+| Weekly | [`discover.yml`](.github/workflows/discover.yml) | Finds new sources, then publishes |
+| Every PR | [`ci.yml`](.github/workflows/ci.yml) | Lint, unit tests, validation of the published files |
 
-## Setup (one time)
+All three publishing workflows run the same pipeline
+([`publish.yml`](.github/workflows/publish.yml)) and never overlap.
 
-1. Create a **public** repo named `altsource` on GitHub.
-2. Upload everything in this folder to it, including the hidden `.github` folder.
-3. Open **Actions**, then enable workflows if GitHub asks.
-4. Run **Actions → Discover sources → Run workflow**. It finds sources and builds
-   `source.json`. Wait for the green check.
-5. Add the URL above in AltStore or SideStore.
+| File | Edit it? | Purpose |
+|---|---|---|
+| `sources.txt` | yes | Hand-picked sources. These make up the curated link and win ties. |
+| `blocklist.txt` | yes | URLs or URL fragments that are never used |
+| `discover.json` | yes | Where discovery looks: link lists, GitHub repos and topics |
+| `discovered.txt` | no | Sources found automatically |
+| `dead_links.json` | no | Download links that stopped working |
+| `source.json`, `curated.json`, `stats.json`, `REPORT.md` | no | Published output |
 
-### Optional: wider GitHub search
+## FAQ
 
-GitHub's code search needs a personal token. With one, discovery also finds sources in
-repos that have no topic tags.
+**What is an app source?**
+A catalog of apps in the AltStore JSON format. Adding one lets you browse and install its apps
+from inside your sideloading app.
 
-1. Create a fine-grained token at **GitHub → Settings → Developer settings → Personal access
-   tokens**. Give it read-only access to public repositories only, with no extra permissions.
-2. In the `altsource` repo, go to **Settings → Secrets and variables → Actions** and add the
-   token as a secret named `GH_SEARCH_TOKEN`.
+**Is it safe?**
+AltSource only gathers what public sources publish. Nobody reviews the apps themselves, so
+install only what you trust. Every link is https. Sources can be blocked; see
+[SECURITY.md](SECURITY.md) to report a bad one.
 
-## Notes
+**Why is an app missing?**
+It may have been skipped for not meeting the format, for example an http-only download, no icon,
+no release date or an invalid bundle ID. Its download may also be dead. Search
+[`REPORT.md`](REPORT.md) for its source.
 
-- An app can only appear once per bundle ID. When two tweaked builds share one ID (for example,
-  several YouTube tweaks use `com.google.ios.youtube`), only the highest version is kept. To
-  keep a specific tweak, add the sources that carry the other builds to `blocklist.txt`.
-- Check `REPORT.md` to see which sources fail and how big `source.json` has become.
+**Why did I get a different build of an app than I expected?**
+Only one app per bundle ID fits in a source. When several tweaked builds share one ID, the
+highest version wins. To prefer a particular build, ask for the other sources to be blocked.
+
+**Can I suggest a source?**
+Yes. [Open a source request](../../issues/new?template=add-source.yml), or see
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Run it yourself
+
+The pipeline needs only Python 3.10 or newer, with no third-party packages.
+
+```sh
+python scripts/discover.py     # optional: find sources (set GITHUB_TOKEN for the GitHub scan)
+python scripts/check_links.py  # optional: test download links
+python scripts/merge.py        # build source.json, curated.json, REPORT.md
+python -m unittest discover -s tests
+```
+
+Optional: adding a fine-grained, read-only GitHub token as the `GH_SEARCH_TOKEN` Actions secret
+turns on GitHub code search during discovery, which finds sources in repos that have no topic tags.
+
+## License
+
+The code is under the [MIT](LICENSE) license. App listings, icons and files belong to their
+respective owners and sources. This project hosts no app files.

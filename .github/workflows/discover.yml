@@ -1,44 +1,25 @@
 name: Discover sources
 
-# Scans link lists and GitHub for new sources, then rebuilds source.json.
+# Weekly: look for new sources in link lists and on GitHub, then rebuild.
 on:
   schedule:
     - cron: "41 3 * * 1"
   push:
     branches: [main]
-    paths: [discover.json, discover.py]
+    paths: [discover.json, "scripts/discover.py"]
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: altsource
+  group: publish
   cancel-in-progress: false
 
 jobs:
-  discover:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      # main as it is now, not the commit that triggered the run, so runs never undo each other
-      - uses: actions/checkout@v5
-        with:
-          ref: main
-      - uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-      - run: python discover.py
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
-      - run: python merge.py
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet && exit 0
-          git commit -m "Update discovered sources"
-          git pull --rebase -X theirs origin main
-          git push
+  publish:
+    uses: ./.github/workflows/publish.yml
+    with:
+      discover: true
+    secrets:
+      GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
