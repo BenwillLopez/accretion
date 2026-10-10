@@ -16,3 +16,6 @@ ignore = [
   "SIM105",  # try/except/pass reads clearer than contextlib.suppress here
   "RUF001",  # the ellipsis character in truncated text is intentional
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/card.py" = ["E501"]  # SVG markup reads better on one line

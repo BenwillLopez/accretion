@@ -114,6 +114,13 @@ class Sanitizing(unittest.TestCase):
         self.assertEqual(out["size"], 2048)
         self.assertEqual(out["downloadURL"], out["versions"][0]["downloadURL"])
 
+    def test_category_guessed_when_missing(self):
+        self.assertEqual(category(None, "YouTube Plus com.google.ios.youtube"), "photo-video")
+        self.assertEqual(category("", "Delta emulator"), "games")
+        self.assertEqual(category(None, "TrollStore helper"), "developer")
+        self.assertEqual(category("social", "game"), "social")  # a real category always wins
+        self.assertEqual(category(None, "Mainspring IPA MOD"), "other")
+
     def test_unknown_category(self):
         self.assertEqual(category("Weird Stuff"), "other")
         self.assertEqual(category("photo-video"), "photo-video")
@@ -139,6 +146,41 @@ class LinkChecks(unittest.TestCase):
         self.assertEqual(check_links.dead_after({"fails": 1}), check_links.DEAD_AFTER)
         self.assertEqual(check_links.dead_after({"host_wide": True}), check_links.DEAD_AFTER_HOST_WIDE)
         self.assertGreater(check_links.DEAD_AFTER_HOST_WIDE, check_links.DEAD_AFTER)
+
+
+class Cards(unittest.TestCase):
+    def test_cards_are_valid_svg(self):
+        import xml.etree.ElementTree as ET
+
+        import card
+
+        out = merged(
+            [app(bid=f"com.app{i}", date=f"2025-01-{i + 1:02d}", category="games") for i in range(9)]
+        )
+        m = {
+            "apps": 9,
+            "curated_apps": 9,
+            "sources": 1,
+            "sources_total": 2,
+            "sources_failed": 1,
+            "sources_discovered": 1,
+            "listings": 12,
+            "duplicates": 3,
+            "rejected": 1,
+            "dead_links_removed": 0,
+            "updated_7d": 2,
+            "updated_30d": 5,
+            "size_mb": 0.1,
+            "curated_size_mb": 0.1,
+            "updated": "2025-01-10 00:00 UTC",
+            "categories": {"games": 9},
+            "recent": [{"name": "A <&> B", "version": "1.0", "date": "2025-01-09"}],
+        }
+        for history in ([], [{"date": "2025-01-01", "apps": 5}, {"date": "2025-01-02", "apps": 9}]):
+            for theme in card.THEMES.values():
+                ET.fromstring(card.stats_card(m, history, theme))
+                ET.fromstring(card.recent_card(m, theme))
+        self.assertTrue(out["apps"])
 
 
 class Discovery(unittest.TestCase):

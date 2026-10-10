@@ -99,9 +99,61 @@ def to_int(n):
         return None
 
 
-def category(c):
+# When a source gives no usable category, guess one from the app's name, bundle ID and
+# subtitle. Checked in order; the first match wins.
+CATEGORY_HINTS = [
+    (
+        "games",
+        r"game|games|emulator|emu|nintendo|gba|nds|psp|ps1|ps2|retroarch|minecraft|roblox|pokemon|"
+        r"puzzle|rpg|arcade|racing|chess|solitaire|clash|brawl|genshin|pubg|fortnite|geometry|sudoku",
+    ),
+    (
+        "social",
+        r"instagram|tiktok|musically|whatsapp|telegram|discord|twitter|tweet|facebook|messenger|"
+        r"snapchat|reddit|apollo|threads|bereal|tinder|bumble|wechat|line|viber|signal|mastodon|"
+        r"bluesky|pinterest|tumblr|linkedin|kik|grindr",
+    ),
+    (
+        "photo-video",
+        r"youtube|ytlite|uyou|camera|photo|photos|video|videos|vlc|infuse|editor|capcut|"
+        r"lightroom|vsco|picsart|facetune|gif|recorder|screenshot|wallpaper|filmic",
+    ),
+    (
+        "entertainment",
+        r"spotify|music|soundcloud|deezer|tidal|netflix|hulu|disney|hbo|crunchyroll|anime|"
+        r"manga|movie|movies|tv|iptv|stream|streaming|twitch|podcast|radio|stremio|plex|"
+        r"jellyfin|kodi|comic|comics|books|audible|kindle|webtoon",
+    ),
+    (
+        "developer",
+        r"terminal|ssh|shell|jailbreak|dopamine|palera1n|unc0ver|taurine|odyssey|trollstore|"
+        r"filza|sideload|sidestore|altstore|feather|esign|scarlet|ksign|gbox|livecontainer|"
+        r"developer|xcode|python|github|signer|jit|appdb|ldid",
+    ),
+    (
+        "utilities",
+        r"vpn|proxy|adblock|ad-blocker|blocker|browser|file|files|scanner|keyboard|calculator|"
+        r"translator|translate|clock|alarm|password|manager|downloader|download|cleaner|"
+        r"battery|widget|launcher|remote|torrent|backup|qr|pdf|notes|calendar|utility|tools",
+    ),
+    (
+        "lifestyle",
+        r"fitness|workout|health|diet|food|recipe|travel|weather|news|shopping|bank|finance|"
+        r"crypto|duolingo|language|learn|education|study|meditation|sleep|habit|dating|maps",
+    ),
+]
+_HINT_RES = [(cat, re.compile(rf"\b(?:{words})\b")) for cat, words in CATEGORY_HINTS]
+
+
+def category(c, hint=""):
     c = re.sub(r"[\s_/&]+", "-", str(c or "").strip().lower())
-    return c if c in CATEGORIES else CATEGORY_ALIASES.get(c, "other")
+    c = c if c in CATEGORIES else CATEGORY_ALIASES.get(c, "other")
+    if c == "other" and hint:
+        text = re.sub(r"[._\-]+", " ", hint.lower())
+        for cat, pattern in _HINT_RES:
+            if pattern.search(text):
+                return cat
+    return c
 
 
 def tint(c):
@@ -155,7 +207,10 @@ def clean_app(app, versions):
         "subtitle": subtitle,
         "localizedDescription": text(app.get("localizedDescription"), MAX_DESCRIPTION) or subtitle or name,
         "iconURL": icon,
-        "category": category(app.get("category")),
+        "category": category(
+            app.get("category"),
+            " ".join(str(app.get(k) or "") for k in ("name", "bundleIdentifier", "subtitle")),
+        ),
         "screenshotURLs": screenshots(app),
         "versions": vers,
     }

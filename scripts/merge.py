@@ -26,6 +26,7 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
+from card import render_cards
 from check_links import dead_after
 from common import date_key, fetch_source, is_blocked, load_json, path, read_list, version_key
 from sanitize import clean_app, clean_news, validate
@@ -216,24 +217,85 @@ def main():
     }
     ok = sum(1 for s in stats if not s["status"].startswith("failed"))
     now = dt.datetime.now(dt.timezone.utc)
+    numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     with open(path("stats.json"), "w") as f:
-        json.dump(
-            {
-                "apps": len(best),
-                "curated_apps": len(cur_best),
-                "sources": ok,
-                "updated": now.strftime("%Y-%m-%d %H:%M UTC"),
-                "size_mb": round(sizes["source.json"] / 1048576, 1),
-            },
-            f,
-            indent=1,
-        )
+        json.dump(numbers, f, indent=1, ensure_ascii=False)
+    history = update_history(numbers)
+    render_cards(numbers, history)
     write_report(now, stats, best, listings, sizes, len(cur_best), set(manual), len(dead), held)
     print(
         f"{len(best)} apps from {ok}/{len(stats)} sources "
         f"(source.json {sizes['source.json'] // 1024} KB, "
         f"curated.json {len(cur_best)} apps, {sizes['curated.json'] // 1024} KB)"
     )
+
+
+def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held):
+    """Every number worth showing, for stats.json, the README badges and the stat cards."""
+    apps = [b[1] for b in best.values()]
+    used = {}
+    for _, _, url in best.values():
+        used[url] = used.get(url, 0) + 1
+    names = {s["url"]: s["name"] or s["url"].split("/")[2] for s in stats}
+    categories = {}
+    for a in apps:
+        categories[a["category"]] = categories.get(a["category"], 0) + 1
+
+    def updated_within(days):
+        cutoff = (now - dt.timedelta(days=days)).strftime("%Y-%m-%dT%H:%M")
+        return sum(1 for a in apps if date_key(a["versionDate"]) >= cutoff)
+
+    recent = sorted(best.values(), key=lambda b: date_key(b[1]["versionDate"]), reverse=True)[:8]
+    return {
+        # keys used by the README badges
+        "apps": len(best),
+        "curated_apps": len(cur_best),
+        "sources": sum(1 for s in stats if not s["status"].startswith("failed")),
+        "updated": now.strftime("%Y-%m-%d %H:%M UTC"),
+        "size_mb": round(sizes["source.json"] / 1048576, 1),
+        # the rest
+        "built_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "sources_total": len(stats),
+        "sources_cached": sum(1 for s in stats if s["status"].startswith("cached")),
+        "sources_failed": sum(1 for s in stats if s["status"].startswith("failed")),
+        "sources_discovered": discovered,
+        "listings": sum(s["apps"] for s in stats),
+        "duplicates": sum(1 for v in listings.values() if len(v) > 1),
+        "rejected": sum(s["skipped"] for s in stats),
+        "dead_links_removed": dead,
+        "links_on_hold": held,
+        "developers": len({a["developerName"] for a in apps}),
+        "updated_7d": updated_within(7),
+        "updated_30d": updated_within(30),
+        "curated_size_mb": round(sizes["curated.json"] / 1048576, 1),
+        "categories": dict(sorted(categories.items(), key=lambda kv: -kv[1])),
+        "top_sources": [
+            {"name": names[u][:40], "apps": n} for u, n in sorted(used.items(), key=lambda kv: -kv[1])[:5]
+        ],
+        "recent": [
+            {"name": a["name"][:40], "version": a["version"][:20], "date": a["versionDate"][:10]}
+            for _, a, _ in recent
+        ],
+    }
+
+
+def update_history(numbers, keep=365):
+    """One point per day, so the stat card can draw growth over time."""
+    history = load_json("history.json", [])
+    point = {
+        "date": numbers["built_at"][:10],
+        "apps": numbers["apps"],
+        "sources": numbers["sources"],
+        "listings": numbers["listings"],
+    }
+    if history and history[-1]["date"] == point["date"]:
+        history[-1] = point
+    else:
+        history.append(point)
+    history = history[-keep:]
+    with open(path("history.json"), "w") as f:
+        json.dump(history, f, indent=0)
+    return history
 
 
 def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead, held):

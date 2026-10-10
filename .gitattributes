@@ -6,3 +6,6 @@ REPORT.md       linguist-generated=true
 discovered.json linguist-generated=true
 discovered.txt  linguist-generated=true
 dead_links.json linguist-generated=true
+history.json    linguist-generated=true
+assets/card-*.svg   linguist-generated=true -diff
+assets/recent-*.svg linguist-generated=true -diff

@@ -16,6 +16,11 @@ hundred public AltStore and SideStore sources into one link. Each app appears on
 version**. It is rebuilt every 6 hours, and broken entries and dead download links are removed
 automatically.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/card-dark.svg">
+  <img alt="Live stats: apps, sources, listings scanned, duplicates resolved, recent updates, categories and growth" src="assets/card-light.svg" width="100%">
+</picture>
+
 ## Add the source
 
 There are two links. Pick one:
@@ -57,7 +62,8 @@ On older devices, or if the full list loads slowly, use Accretion Core.
 - **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
   is tested before it is used.
 - **Transparent.** [`REPORT.md`](REPORT.md) shows every source's status, how many apps it gave,
-  what was skipped and why, and the latest updates.
+  what was skipped and why, and the latest updates. The stats card above is redrawn on every
+  build from [`stats.json`](stats.json).
 
 ## How it works
 
