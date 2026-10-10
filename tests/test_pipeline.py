@@ -132,6 +132,15 @@ class Sanitizing(unittest.TestCase):
         self.assertTrue(any("category" in e for e in errors))
 
 
+class LinkChecks(unittest.TestCase):
+    def test_grace_periods(self):
+        import check_links
+
+        self.assertEqual(check_links.dead_after({"fails": 1}), check_links.DEAD_AFTER)
+        self.assertEqual(check_links.dead_after({"host_wide": True}), check_links.DEAD_AFTER_HOST_WIDE)
+        self.assertGreater(check_links.DEAD_AFTER_HOST_WIDE, check_links.DEAD_AFTER)
+
+
 class Discovery(unittest.TestCase):
     def test_clean_url(self):
         self.assertEqual(

@@ -26,6 +26,7 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
+from check_links import dead_after
 from common import date_key, fetch_source, is_blocked, load_json, path, read_list, version_key
 from sanitize import clean_app, clean_news, validate
 
@@ -34,7 +35,6 @@ REPO = "accretion"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main"
 MAX_NEWS = 50
 MAX_FEATURED = 10
-DEAD_AFTER = 2
 MAX_BYTES = 30 * 1024 * 1024
 
 SOURCE_INFO = {
@@ -198,7 +198,9 @@ def main():
         for u in dict.fromkeys(read_list("discovered.txt"))
         if u not in manual and not is_blocked(u, blocklist)
     ]
-    dead = {u for u, v in load_json("dead_links.json", {}).items() if v.get("fails", 0) >= DEAD_AFTER}
+    links = load_json("dead_links.json", {})
+    dead = {u for u, v in links.items() if v.get("fails", 0) >= dead_after(v)}
+    held = sum(1 for u, v in links.items() if u not in dead and v.get("host_wide"))
 
     with ThreadPoolExecutor(16) as ex:
         loaded = list(ex.map(load, manual + found))
@@ -226,7 +228,7 @@ def main():
             f,
             indent=1,
         )
-    write_report(now, stats, best, listings, sizes, len(cur_best), set(manual), len(dead))
+    write_report(now, stats, best, listings, sizes, len(cur_best), set(manual), len(dead), held)
     print(
         f"{len(best)} apps from {ok}/{len(stats)} sources "
         f"(source.json {sizes['source.json'] // 1024} KB, "
@@ -234,7 +236,7 @@ def main():
     )
 
 
-def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead):
+def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead, held):
     won = {}
     for _, _, url in best.values():
         won[url] = won.get(url, 0) + 1
@@ -256,6 +258,7 @@ def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead):
         f"| Apps listed by more than one source (newest kept) | {multi} |",
         f"| Listings skipped (http-only, no icon, no date, bad bundle ID) | {skipped} |",
         f"| Dead download links removed | {dead} |",
+        f"| Links on hold (whole host failing, kept for now) | {held} |",
         (
             f"| Sources | {len(stats)}: {len(stats) - len(failed) - len(cached)} ok, "
             f"{len(cached)} from cache, {len(failed)} failed |"

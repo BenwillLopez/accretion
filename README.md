@@ -51,7 +51,8 @@ On older devices, or if the full list loads slowly, use Accretion Core.
   comes first. If the result fails validation, nothing is published and the last good version
   stays live.
 - **No dead links.** Download links are tested daily. A version whose file returns 404/410 on
-  two checks in a row is removed.
+  two checks in a row is removed. If a whole host fails at once, which usually means it is blocking
+  automated checks or is briefly down, its links get 7 days of grace instead.
 - **Resilient.** If a source is down, its last good copy is used until it comes back.
 - **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
   is tested before it is used.
