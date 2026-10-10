@@ -1,18 +1,18 @@
 # Source report
 
-Built 2026-10-10 15:32 UTC.
+Built 2026-10-10 15:55 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **4248** (5075 KB) |
-| Apps in `curated.json` | **723** (683 KB) |
-| Listings read | 23552 |
+| Apps in `curated.json` | **726** (706 KB) |
+| Listings read | 23559 |
 | Apps listed by more than one source (newest kept) | 1676 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6588 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links held back (retested every build) | 8523 |
 | Links on hold (whole host failing, kept for now) | 0 |
-| Sources | 159: 159 ok, 0 from cache, 0 failed |
+| Sources | 160: 160 ok, 0 from cache, 0 failed |
 
 ## Sources
 
@@ -80,7 +80,7 @@ Built 2026-10-10 15:32 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4605 | 0 | 222 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
 | [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 32 | 0 | 3 | 2025-05-20 | discovered |
@@ -94,6 +94,7 @@ Built 2026-10-10 15:32 UTC.
 | [Panda App Ru++](https://raw.githubusercontent.com/vizunchik/AltStoreRus/master/apps.json) | ok | 9 | 0 | 9 | 2020-04-19 | curated |
 | [RandomSource](https://randomblock1.com/altstore/apps.json) | ok | 8 | 0 | 0 | 2022-03-06 | discovered |
 | [Burrito's AltStore](https://burritosoftware.github.io/altstore/channels/burritosource.json) | ok | 7 | 0 | 0 | 2020-02-19 | discovered |
+| [Fouad's Source](https://altstore.fouadraheb.com) | ok | 6 | 0 | 0 | 2026-10-10 | curated |
 | [azu0609's alt repo](https://raw.githubusercontent.com/azu0609/repo/main/altstore_repo.json) | ok | 5 | 0 | 2 | 2025-01-08 | discovered |
 | [Quark Source Cracked](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource-cracked.json) | ok | 5 | 0 | 0 | 2020-12-18 | discovered |
 | [Quark Source](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource.json) | ok | 5 | 0 | 0 | 2022-10-17 | discovered |
