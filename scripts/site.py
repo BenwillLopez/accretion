@@ -6,12 +6,17 @@ Copies the static storefront from site/ and adds data generated from the build:
                         the slice that holds the app it opens
   data/stats.json       the numbers merge.py collected
   source.json, curated.json and the card images, so the store has short links too
+  app/<bundle id>/      a tiny page per app with link-preview tags (Discord, iMessage,
+                        forums) that forwards to the app's page in the store
+  sitemap.xml           when SITE_URL is set (the workflow sets it from GitHub Pages)
 
 Run after merge.py. Reads _build/origins.json for where each app came from.
 """
 
+import html
 import json
 import os
+import re
 import shutil
 
 from common import load_json, path
@@ -38,6 +43,59 @@ def screenshot_urls(app):
     if isinstance(shots, dict):
         shots = shots.get("iphone") or shots.get("ipad") or []
     return [s["imageURL"] if isinstance(s, dict) else s for s in shots]
+
+
+SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9.\-_]*$")
+
+
+def share_pages(apps):
+    """One small page per app so shared links show a name, icon and description."""
+    for a in apps:
+        bid = a["bundleIdentifier"]
+        if not SAFE_ID.match(bid):
+            continue
+        latest = a["versions"][0]
+        title = html.escape(f"{a['name']} {latest['version']}")
+        desc = html.escape(
+            (a.get("subtitle") or a.get("localizedDescription") or "")[:180].replace("\n", " ")
+        )
+        icon = html.escape(a["iconURL"])
+        target = f"../../#/app/{bid}"
+        page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} · Accretion</title>
+<meta name="description" content="{desc}">
+<meta property="og:site_name" content="Accretion">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{icon}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#07070D">
+<meta http-equiv="refresh" content="0; url={target}">
+<link rel="icon" href="../../icon-192.png">
+</head><body style="background:#07070D;color:#ECEAFF;font-family:system-ui,sans-serif;padding:24px">
+<script>location.replace({json.dumps(target)})</script>
+<p><a style="color:#22D3EE" href="{target}">Open {html.escape(a["name"])} in Accretion</a></p>
+</body></html>
+"""
+        folder = os.path.join(OUT, "app", bid)
+        os.makedirs(folder, exist_ok=True)
+        with open(os.path.join(folder, "index.html"), "w") as f:
+            f.write(page)
+
+
+def sitemap(site_url, apps):
+    urls = [f"{site_url}/"] + [
+        f"{site_url}/app/{a['bundleIdentifier']}/" for a in apps if SAFE_ID.match(a["bundleIdentifier"])
+    ]
+    with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
+        f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        )
+        f.writelines(f"<url><loc>{html.escape(u)}</loc></url>\n" for u in urls)
+        f.write("</urlset>\n")
+    with open(os.path.join(OUT, "robots.txt"), "w") as f:
+        f.write(f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")
 
 
 def main():
@@ -69,6 +127,7 @@ def main():
                 "z": latest.get("size") or 0,
                 "ic": a["iconURL"],
                 "o": info["origin"].get(bid, -1),
+                "m": latest.get("minOSVersion", ""),
                 "f": info["first"].get(bid, latest["date"][:10]),
             }
         )
@@ -106,6 +165,11 @@ def main():
         shutil.copy(path(name), os.path.join(OUT, name))
     for name in os.listdir(path("assets")):
         shutil.copy(path(f"assets/{name}"), os.path.join(OUT, "assets", name))
+    share_pages(source["apps"])
+    site_url = os.environ.get("SITE_URL", "").rstrip("/")
+    if site_url:
+        sitemap(site_url, source["apps"])
+
     # GitHub Pages: serve files as-is (no Jekyll processing)
     open(os.path.join(OUT, ".nojekyll"), "w").close()
 

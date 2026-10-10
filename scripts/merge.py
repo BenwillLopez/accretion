@@ -244,7 +244,7 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
-    write_build_info(stats, best, firsts)
+    write_build_info(stats, best, firsts, set(manual))
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -307,9 +307,12 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
     }
 
 
-def write_build_info(stats, best, firsts):
+def write_build_info(stats, best, firsts, manual=frozenset()):
     """Where each app came from and when it first appeared, for the website (not committed)."""
-    names = [{"name": s["name"] or s["url"].split("/")[2], "url": s["url"]} for s in stats]
+    names = [
+        {"name": s["name"] or s["url"].split("/")[2], "url": s["url"], "core": s["url"] in manual}
+        for s in stats
+    ]
     index = {s["url"]: i for i, s in enumerate(stats)}
     info = {
         "sources": names,

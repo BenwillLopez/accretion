@@ -62,8 +62,15 @@ jobs:
           sudo apt-get install -y -qq librsvg2-bin
           python scripts/render_png.py
 
+      # the store's public address, for the sitemap; works for any repo or custom domain
+      - id: pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+
       - name: Build web store
         run: python scripts/site.py
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

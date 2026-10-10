@@ -7,11 +7,17 @@
 <meta name="description" content="Browse every app from 160+ AltStore and SideStore sources in one place, always at the newest version.">
 <meta name="theme-color" content="#07070D" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F7F6FC" media="(prefers-color-scheme: light)">
+<meta property="og:site_name" content="Accretion">
 <meta property="og:title" content="Accretion">
 <meta property="og:description" content="Every source, pulled into one. Browse and install the newest version of every app.">
 <meta property="og:image" content="assets/source-header.png">
-<link rel="icon" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Accretion">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -20,25 +26,31 @@
 <body>
 <header class="top">
   <a class="brand" href="#/" aria-label="Accretion home">
-    <img src="assets/icon.png" alt="" width="30" height="30">
+    <img src="icon-192.png" alt="" width="30" height="30">
     <span>Accretion</span>
   </a>
   <label class="search">
     <span class="sr">Search apps</span>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.96 12.05l4.25 4.24-1.42 1.42-4.24-4.25A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></svg>
-    <input id="q" type="search" placeholder="Search apps, developers, bundle IDs" autocomplete="off" spellcheck="false">
+    <input id="q" type="search" placeholder="Search apps, developers, bundle IDs" autocomplete="off" spellcheck="false" enterkeyhint="search">
+    <kbd class="kbd" aria-hidden="true">/</kbd>
   </label>
+  <nav class="nav" aria-label="Sections">
+    <a href="#/" data-nav="home">Discover</a>
+    <a href="#/sources" data-nav="sources">Sources</a>
+    <a href="#/saved" data-nav="saved">Saved <span id="saved-n" class="pill" hidden></span></a>
+  </nav>
   <button class="btn primary add-top" id="open-add" type="button">Add source</button>
 </header>
 
-<main id="store">
-  <section class="hero">
+<main id="home">
+  <section class="hero" id="hero">
     <div class="hero-text">
       <p class="eyebrow"><span class="live" aria-hidden="true"></span> live index · <span id="built">loading</span></p>
       <h1>Every source, pulled into one.</h1>
       <p class="lede">Apps from <b id="h-sources">160+</b> public AltStore and SideStore sources, merged and cleaned. One entry per app, always the newest version.</p>
     </div>
-    <dl class="stats" id="stats">
+    <dl class="stats">
       <div><dt>apps</dt><dd id="s-apps">–</dd></div>
       <div><dt>sources</dt><dd id="s-sources">–</dd></div>
       <div><dt>updated 7d</dt><dd id="s-7d">–</dd></div>
@@ -46,26 +58,37 @@
     </dl>
   </section>
 
-  <section class="controls" aria-label="Filter apps">
-    <div class="chips" id="cats" role="tablist" aria-label="Categories"></div>
-    <label class="sort">
-      <span class="sr">Sort</span>
-      <select id="sort">
-        <option value="updated">Recently updated</option>
-        <option value="new">Newest apps</option>
-        <option value="name">Name A–Z</option>
-        <option value="size">Largest</option>
-      </select>
-    </label>
-  </section>
+  <div id="shelves"></div>
 
-  <p class="count" id="count" aria-live="polite"></p>
-  <div class="grid" id="grid"></div>
-  <div class="more" id="more" hidden><button class="btn" id="more-btn" type="button">Show more</button></div>
-  <p class="empty" id="empty" hidden>No apps match that search. Try a shorter word or another category.</p>
+  <section class="all" aria-labelledby="all-title">
+    <div class="all-head">
+      <h2 id="all-title">All apps</h2>
+      <p class="count" id="count" aria-live="polite"></p>
+    </div>
+    <div class="controls">
+      <div class="chips" id="cats" role="tablist" aria-label="Categories"></div>
+      <div class="control-row">
+        <button class="toggle" id="fit" type="button" aria-pressed="false" hidden></button>
+        <label class="sort">
+          <span class="sr">Sort</span>
+          <select id="sort">
+            <option value="updated">Recently updated</option>
+            <option value="new">Newest apps</option>
+            <option value="name">Name A–Z</option>
+            <option value="size">Largest</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <p class="filter-note" id="filter-note" hidden></p>
+    <div class="grid" id="grid"></div>
+    <div class="more" id="more" hidden><button class="btn" id="more-btn" type="button">Show more</button></div>
+    <p class="empty" id="empty" hidden></p>
+  </section>
 </main>
 
-<section id="detail" class="detail" hidden aria-live="polite"></section>
+<section id="detail" class="view" hidden></section>
+<section id="sources" class="view" hidden></section>
 
 <dialog id="add" class="add">
   <form method="dialog" class="add-inner">
@@ -82,7 +105,7 @@
       <button class="btn" id="add-copy" type="button">Copy link</button>
     </div>
     <p class="muted small">iOSGods App: open Sources and paste the link at the top. Feather, ESign, KSign: paste it where you add repos.</p>
-    <button class="btn ghost close" value="close" aria-label="Close">Close</button>
+    <button class="btn ghost close" value="close">Close</button>
   </form>
 </dialog>
 
