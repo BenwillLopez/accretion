@@ -51,8 +51,11 @@ stays hidden until it is filled in:
 }
 ```
 
-The store then shows a ♥ Support page, and a certificate line under the install buttons on
-every app page (marked as affiliate links). Admins give donors the ♥ supporter badge from
+The store then shows a ♥ Support page, a certificate line under the install buttons on every
+app page (marked as affiliate links), and a short download screen: tapping **Download IPA**
+shows the certificate offers and the support link while the download starts by itself after 4
+seconds (or at once with **Download now**). AltStore, SideStore and TrollStore buttons, and the
+sources themselves, always link straight to the file. Admins give donors the ♥ supporter badge from
 Moderation → Supporters.
 
 ## Add the source

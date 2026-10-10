@@ -401,3 +401,14 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
   .top .heart { display: none; }
   .nav .nav-heart:not([hidden]) { display: inline-flex; flex: 0 0 44px; }
 }
+
+/* download screen */
+.dl-screen { width: min(460px, calc(100vw - 32px)); max-height: calc(100vh - 48px); overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--bg); color: var(--fg); padding: 20px; }
+.dl-screen::backdrop { background: rgb(7 7 13 / .6); backdrop-filter: blur(4px); }
+.dl-head { display: flex; gap: 14px; align-items: center; }
+.dl-head h2 { font: 700 18px var(--display); margin: 0 0 4px; overflow-wrap: anywhere; }
+.dl-head p { margin: 0; }
+.dl-actions { display: flex; gap: 8px; margin: 16px 0 6px; flex-wrap: wrap; }
+.dl-offers { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+.dl-label { font: 600 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.dl-support { margin: 12px 0 0; font-size: 14px; }

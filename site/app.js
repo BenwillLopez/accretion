@@ -520,6 +520,49 @@
     return h("p", { class: "cert-line" }, "Need a signing certificate? ", ...links, h("span", { class: "muted" }, " · affiliate"));
   }
 
+  // A short screen before a direct IPA download: the download starts by itself after a few
+  // seconds (or right away with "Download now"), with certificate offers and donations meanwhile.
+  // Only the store's own Download buttons use it; AltStore/SideStore links and the sources stay direct.
+  const WAIT = 4;
+  function downloadScreen(e, a, url, version) {
+    if (!hasSupport() || e.metaKey || e.ctrlKey || e.shiftKey) return; // nothing to show, or a new tab
+    e.preventDefault();
+    let left = WAIT;
+    let timer;
+    const go = () => { clearInterval(timer); dlg.close(); window.location.href = url; };
+    const count = h("b", {}, String(left));
+    const now = h("a", { class: "btn primary", href: url, rel: "nofollow noopener", onclick: (ev) => { ev.preventDefault(); go(); } }, "Download now");
+    const offers = certs().length
+      ? h("div", { class: "dl-offers" },
+          h("p", { class: "dl-label" }, "Install it without a computer"),
+          h("ul", { class: "cert-list" }, certs().map((c) => h("li", {},
+            h("div", {}, h("b", {}, c.name), c.note ? h("span", { class: "muted small" }, c.note) : null),
+            h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener", onclick: () => clearInterval(timer) }, "Get certificate")))),
+          h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
+      : null;
+    const support = kofi() || wallets().length
+      ? h("p", { class: "dl-support" }, "Accretion is free and ad-free. ",
+          h("a", { href: kofi() || "#/support", target: kofi() ? "_blank" : null, rel: "noopener", onclick: () => { clearInterval(timer); if (!kofi()) dlg.close(); } }, "♥ Support it"))
+      : null;
+    const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "dl-title" },
+      h("div", { class: "dl-head" },
+        icon(a.ic, a.n, "icon"),
+        h("div", {},
+          h("h2", { id: "dl-title" }, `${a.n}${version ? ` ${version}` : ""}`),
+          h("p", { class: "muted", "aria-live": "polite" }, "Your download starts in ", count, " s…"))),
+      h("div", { class: "dl-actions" }, now, h("button", { class: "btn ghost", type: "button", onclick: () => { clearInterval(timer); dlg.close(); } }, "Cancel")),
+      offers,
+      support);
+    dlg.addEventListener("close", () => { clearInterval(timer); dlg.remove(); });
+    document.body.append(dlg);
+    dlg.showModal();
+    timer = setInterval(() => {
+      left -= 1;
+      count.textContent = String(left);
+      if (left <= 0) go();
+    }, 1000);
+  }
+
   function showSupportLinks() {
     const on = hasSupport();
     $("nav-support").hidden = !on;
@@ -592,7 +635,7 @@
     const actions = h(
       "div",
       { class: "actions" },
-      ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: installed }, "Download IPA") : null,
+      ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
       ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "AltStore") : null,
       ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "SideStore") : null,
       ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "TrollStore") : null,
@@ -694,7 +737,7 @@
               {},
               h("span", {}, `v${v.v}${v.b && v.b !== v.v ? ` (${v.b})` : ""}`),
               h("span", { class: "muted" }, `${v.t} · ${bytes(v.z)}${v.min ? ` · iOS ${v.min}+` : ""}`),
-              safeUrl(v.url) ? h("a", { href: v.url, rel: "nofollow noopener" }, "Download") : null,
+              safeUrl(v.url) ? h("a", { href: v.url, rel: "nofollow noopener", onclick: (e) => downloadScreen(e, a, v.url, v.v) }, "Download") : null,
               v.notes && v !== latest ? h("span", { class: "notes" }, v.notes) : null,
             ),
           ),
