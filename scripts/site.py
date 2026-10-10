@@ -126,6 +126,7 @@ def main():
         raise SystemExit("source.json not built yet")
     info = load_json("_build/origins.json", {"sources": [], "origin": {}, "first": {}})
     carriers = info.get("carriers", {})
+    undated = set(info.get("undated", []))
     picks = set(read_list("popular.txt"))
     stats = load_json("stats.json", {})
 
@@ -158,6 +159,8 @@ def main():
         pop = popularity(bid, carriers, picks)
         if pop:
             rows[-1]["p"] = pop
+        if bid in undated:
+            rows[-1]["u"] = 1  # release date unknown
         shards[shard_of(bid)].append(
             {
                 "i": bid,

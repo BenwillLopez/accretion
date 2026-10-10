@@ -14,6 +14,7 @@ Dropped links are never forgotten: they stay in dead_links.json, are tested agai
 build, and the version is reinstated as soon as its link works.
 """
 
+import email.utils
 import json
 import socket
 import sys
@@ -22,7 +23,7 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
-from common import USER_AGENT, load_json, path, read_list, today
+from common import USER_AGENT, load_json, path, plausible_day, read_list, today
 
 DEAD_AFTER = 1
 DEAD_AFTER_HOST_WIDE = 2
@@ -40,6 +41,17 @@ def host(url):
     return urllib.parse.urlsplit(url).netloc.lower()
 
 
+def upload_day(headers):
+    """The file's Last-Modified day, used to date versions whose source date is a placeholder."""
+    try:
+        return email.utils.parsedate_to_datetime(headers.get("Last-Modified")).date().isoformat()
+    except (TypeError, ValueError, AttributeError):
+        return None
+
+
+LAST_MODIFIED = {}  # url -> upload day, filled while checking
+
+
 def status(url):
     """'alive', 'dead' or 'unknown' for one download URL."""
     for method, extra in (("HEAD", {}), ("GET", {"Range": "bytes=0-0"})):
@@ -47,6 +59,9 @@ def status(url):
         try:
             with urllib.request.urlopen(req, timeout=20) as r:
                 r.read(1)
+                day = upload_day(r.headers)
+                if day:
+                    LAST_MODIFIED[url] = day
                 return "alive"
         except urllib.error.HTTPError as e:
             if e.code in DEAD_STATUS:
@@ -110,6 +125,18 @@ def main():
             new_state[url] = old  # no clear answer: keep the old count, do not add to it
     with open(path("dead_links.json"), "w") as f:
         json.dump(dict(sorted(new_state.items())), f, indent=1)
+
+    # upload days for versions whose source gives a placeholder date (see sanitize.real_date)
+    dates = load_json("link_dates.json", {})
+    for a in source["apps"]:
+        for v in a.get("versions", []):
+            if not plausible_day(v.get("date")):
+                dates.setdefault(v["downloadURL"], {})
+    for url, entry in dates.items():
+        if url in LAST_MODIFIED and plausible_day(LAST_MODIFIED[url]):
+            entry["modified"] = LAST_MODIFIED[url]
+    with open(path("link_dates.json"), "w") as f:
+        json.dump(dict(sorted(dates.items())), f, indent=1)
 
     removed = sum(1 for v in new_state.values() if v["fails"] >= dead_after(v))
     print(

@@ -108,7 +108,10 @@
   let saved = store.get("acc.saved", {});          // bundle id -> version when saved
   const lastVisit = store.get("acc.visit", null);  // YYYY-MM-DD of the previous visit
   store.set("acc.visit", new Date().toISOString().slice(0, 10));
-  const isNew = (a) => Date.now() - dayMs(a.f) < 30 * DAY;
+  const isNew = (a) => !a.u && Date.now() - dayMs(a.f) < 30 * DAY;
+  // apps whose source gives no real release date sort as oldest and never count as fresh
+  const when = (a) => (a.u ? "" : a.t);
+  const since = (a) => (a.u ? "date unknown" : ago(a.t));
   const hasUpdate = (a) => saved[a.i] !== undefined && saved[a.i] !== a.v;
   function toggleSave(a) {
     if (saved[a.i] !== undefined) {
@@ -287,7 +290,7 @@
         words.every((w) => a._s.includes(w)),
     );
     const by = {
-      updated: (a, b) => (a.t < b.t ? 1 : a.t > b.t ? -1 : a.n.localeCompare(b.n)),
+      updated: (a, b) => (when(a) < when(b) ? 1 : when(a) > when(b) ? -1 : a.n.localeCompare(b.n)),
       new: (a, b) => (a.f < b.f ? 1 : a.f > b.f ? -1 : a.n.localeCompare(b.n)),
       name: (a, b) => a.n.localeCompare(b.n, undefined, { sensitivity: "base" }),
       size: (a, b) => (b.z || 0) - (a.z || 0),
@@ -337,7 +340,7 @@
         { class: "card-body" },
         h("div", { class: "card-name" }, h("span", {}, a.n), badges),
         h("div", { class: "card-dev" }, a.d),
-        h("div", { class: "card-meta" }, h("span", { class: "v" }, `v${a.v}`), h("span", {}, ago(a.t)), a.z ? h("span", {}, bytes(a.z)) : null),
+        h("div", { class: "card-meta" }, h("span", { class: "v" }, `v${a.v}`), h("span", {}, since(a)), a.z ? h("span", {}, bytes(a.z)) : null),
       ),
     );
   }
@@ -398,7 +401,7 @@
           "span",
           { class: "row-body" },
           h("span", { class: "row-name" }, a.n),
-          h("span", { class: "row-meta" }, [`v${a.v}`, CATEGORY_NAMES[a.c], ago(a.t)].filter(Boolean).join(" · ")),
+          h("span", { class: "row-meta" }, [`v${a.v}`, CATEGORY_NAMES[a.c], since(a)].filter(Boolean).join(" · ")),
         ),
         h("span", { class: "row-go", "aria-hidden": "true" }, "›"),
       ),
@@ -433,12 +436,12 @@
     const box = $("shelves");
     if (!show) return box.replaceChildren();
     const pool = state.apps.filter((a) => !state.f.fit || fits(a));
-    const byUpdated = [...pool].sort((a, b) => (a.t < b.t ? 1 : -1));
+    const byUpdated = [...pool].sort((a, b) => (when(a) < when(b) ? 1 : -1));
     const byNew = [...pool].sort((a, b) => (a.f < b.f ? 1 : -1)).filter(isNew);
     const core = byUpdated.filter((a) => (state.sources[a.o] || {}).core);
     const savedUpd = pool.filter(hasUpdate);
     const today = new Date().toISOString().slice(0, 10);
-    const fresh = byUpdated.filter((a) => a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY);
+    const fresh = byUpdated.filter((a) => !a.u && (a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY));
     const socialShelves = h("div", { id: "social-shelves" });
     const popular = pool.filter((a) => popScore(a) > 0).sort((a, b) => popScore(b) - popScore(a) || (a.t < b.t ? 1 : -1));
     box.replaceChildren(
@@ -742,7 +745,7 @@
         { class: "facts" },
         fact("Version", latest.v),
         fact("Build", latest.b),
-        fact("Released", latest.t ? `${latest.t} · ${ago(latest.t)}` : ""),
+        fact("Released", a.u ? "Unknown (the source gives no date)" : latest.t ? `${latest.t} · ${ago(latest.t)}` : ""),
         fact("Size", bytes(latest.z)),
         fact("Min iOS", latest.min),
         fact("Category", CATEGORY_NAMES[a.c] || a.c),
@@ -875,7 +878,7 @@
       $("s-new").textContent = fmt(stats.new_30d);
       $("built").textContent = stats.updated ? `built ${stats.updated}` : "live";
       if (lastVisit) {
-        const since = state.apps.filter((a) => a.t > lastVisit).length;
+        const since = state.apps.filter((a) => !a.u && a.t > lastVisit).length;
         if (since) $("built").textContent += ` · ${fmt(since)} updated since your last visit`;
       }
       buildChips();

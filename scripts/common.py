@@ -72,6 +72,25 @@ def version_key(v):
     return tuple(int(n) for n in re.findall(r"\d+", str(v or ""))[:8])
 
 
+APP_STORE_DAY = "2008-07-10"  # nothing sideloadable is older than the App Store
+
+
+def plausible_day(day):
+    """False for placeholder dates (2000-01-01, 1970-01-01) and dates in the future."""
+    day = str(day or "")[:10]
+    return APP_STORE_DAY <= day <= (today() + dt.timedelta(days=1)).isoformat()
+
+
+def date_from_url(url):
+    """Upload date from a Unix timestamp in a download link, e.g. 'App_3.10_1737138371.ipa'."""
+    for stamp in re.findall(r"(?<!\d)(\d{10}|\d{13})(?!\d)", str(url or "")):
+        secs = int(stamp[:10])
+        day = dt.datetime.fromtimestamp(secs, dt.timezone.utc).date().isoformat()
+        if plausible_day(day):
+            return day
+    return None
+
+
 def date_key(d):
     """Normalise the many date formats sources use into a sortable string."""
     m = re.match(r"(\d{4})-(\d{1,2})-(\d{1,2})(?:[T ](\d{1,2}:\d{2}(?::\d{2})?))?", str(d or ""))

@@ -75,6 +75,45 @@ class VersionOrdering(unittest.TestCase):
         self.assertIn("com.lost.app", best)  # a working copy elsewhere wins
         self.assertEqual(gone, {})
 
+    def test_placeholder_dates_get_a_real_one(self):
+        import sanitize
+        from common import date_from_url, plausible_day
+
+        self.assertFalse(plausible_day("2000-01-01"))
+        self.assertFalse(plausible_day("1970-01-01"))
+        self.assertFalse(plausible_day("2999-01-01"))
+        self.assertTrue(plausible_day("2024-05-01T10:00:00Z"))
+        self.assertEqual(date_from_url("https://x.io/AR.Translator._3.10_1737138371.ipa"), "2025-01-17")
+        self.assertIsNone(date_from_url("https://x.io/App_v4_14_0.ipa"))
+
+        sanitize.KNOWN_DATES = {
+            "https://x.io/b.ipa": {"modified": "2024-03-02"},
+            "https://x.io/c.ipa": {"seen": "2026-10-01"},
+        }
+        sanitize.UNDATED.clear()
+        try:
+            v = {"version": "1", "downloadURL": "https://x.io/a_1737138371.ipa", "date": "1970-01-01"}
+            self.assertEqual(sanitize.clean_version(v)["date"], "2025-01-17")  # timestamp in the link
+            v = {"version": "1", "downloadURL": "https://x.io/b.ipa", "date": "2000-01-01"}
+            self.assertEqual(sanitize.clean_version(v)["date"], "2024-03-02")  # file's upload day
+            v = {"version": "1", "downloadURL": "https://x.io/c.ipa", "date": "2000-01-01"}
+            self.assertEqual(sanitize.clean_version(v)["date"], "2026-10-01")  # first seen, flagged
+            self.assertEqual(sanitize.UNDATED, {"https://x.io/c.ipa"})
+            v = {"version": "1", "downloadURL": "https://x.io/d.ipa", "date": "2023-06-01"}
+            self.assertEqual(sanitize.clean_version(v)["date"], "2023-06-01")  # real dates untouched
+        finally:
+            sanitize.KNOWN_DATES = {}
+            sanitize.UNDATED.clear()
+            sanitize.REDATED.clear()
+
+    def test_upload_day_from_last_modified(self):
+        import check_links
+
+        self.assertEqual(
+            check_links.upload_day({"Last-Modified": "Wed, 12 Mar 2025 08:00:00 GMT"}), "2025-03-12"
+        )
+        self.assertIsNone(check_links.upload_day({}))
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",

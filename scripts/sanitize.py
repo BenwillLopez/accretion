@@ -8,7 +8,7 @@ Reference: https://faq.altstore.io/developers/make-a-source
 
 import re
 
-from common import date_key, version_key
+from common import date_from_url, date_key, plausible_day, today, version_key
 
 CATEGORIES = {
     "developer",
@@ -161,9 +161,35 @@ def tint(c):
     return m.group(1).upper() if m else None
 
 
+# Download URL -> {"modified": day the file was uploaded, "seen": day Accretion first saw it},
+# loaded by merge.py from link_dates.json. Versions whose source gives an impossible date
+# (2000-01-01, 1970-01-01, future) get a real one from here; UNDATED collects the links where
+# only the first-seen day was available, so the store doesn't show those apps as new.
+KNOWN_DATES = {}
+UNDATED = set()
+REDATED = set()  # links dated from the file's upload day
+
+
+def real_date(url, date):
+    """A believable release date for a version whose source date is a placeholder."""
+    if date and plausible_day(date):
+        return date
+    known = KNOWN_DATES.get(url) or {}
+    found = date_from_url(url)
+    if not found and plausible_day(known.get("modified")):
+        found = known["modified"]
+        REDATED.add(url)
+    if found:
+        return found
+    UNDATED.add(url)
+    return known.get("seen") or today().isoformat()
+
+
 def clean_version(v):
     url = https(v.get("downloadURL"))
     date = iso_date(v.get("date"))
+    if date and url:
+        date = real_date(url, date)
     version = text(v.get("version"), 64)
     if not url or not date or not version:
         return None

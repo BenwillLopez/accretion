@@ -26,9 +26,10 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
+import sanitize
 from card import render_cards
 from check_links import dead_after
-from common import date_key, fetch_source, is_blocked, load_json, path, read_list, version_key
+from common import date_key, fetch_source, is_blocked, load_json, path, read_list, today, version_key
 from sanitize import clean_app, clean_news, skip_reason, validate
 
 OWNER = "GETAccretion"
@@ -247,8 +248,19 @@ def main():
     with ThreadPoolExecutor(16) as ex:
         loaded = list(ex.map(load, manual + found))
 
+    # real dates for versions whose source gives a placeholder (see sanitize.real_date)
+    link_dates = load_json("link_dates.json", {})
+    sanitize.KNOWN_DATES = link_dates
     gone = {}
     best, listings, stats, news, firsts = pick(loaded, dead, gone)
+    undated = {b for b, (_, app, _) in best.items() if app["versions"][0]["downloadURL"] in sanitize.UNDATED}
+    first_seen = today().isoformat()
+    link_dates = {
+        u: {**link_dates.get(u, {}), "seen": link_dates.get(u, {}).get("seen") or first_seen}
+        for u in sorted(sanitize.UNDATED | sanitize.REDATED)
+    }
+    with open(path("link_dates.json"), "w") as f:
+        json.dump(link_dates, f, indent=1)
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
     cur_best, _, cur_stats, cur_news, _ = pick(loaded[: len(manual)], dead)
@@ -263,7 +275,7 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
-    write_build_info(stats, best, firsts, set(manual), listings, gone)
+    write_build_info(stats, best, firsts, set(manual), listings, gone, undated)
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -326,7 +338,7 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
     }
 
 
-def write_build_info(stats, best, firsts, manual=frozenset(), listings=None, gone=None):
+def write_build_info(stats, best, firsts, manual=frozenset(), listings=None, gone=None, undated=()):
     """Where each app came from, when it first appeared and how many sources carry it, for the
     website (not committed). Source maintainers add what their users ask for, so an app carried
     by many independent sources is one people want."""
@@ -343,6 +355,7 @@ def write_build_info(stats, best, firsts, manual=frozenset(), listings=None, gon
             bid: len(urls) for bid, urls in (listings or {}).items() if bid in best and len(urls) > 1
         },
         "gone": gone or {},
+        "undated": sorted(undated),  # release date unknown: not shown as new or fresh
     }
     os.makedirs(path("_build"), exist_ok=True)
     with open(path("_build/origins.json"), "w") as f:

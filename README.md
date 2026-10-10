@@ -138,6 +138,7 @@ All three publishing workflows run the same pipeline
 | `discover.json` | yes | Where discovery looks: link lists, GitHub repos and topics |
 | `discovered.txt` | no | Sources found automatically |
 | `dead_links.json` | no | Download links that stopped working |
+| `link_dates.json` | no | Real dates for versions whose source gives a placeholder (2000-01-01) |
 | `source.json`, `curated.json`, `stats.json`, `REPORT.md` | no | Published output |
 
 ## FAQ
