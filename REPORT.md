@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-10 10:54 UTC.
+Built 2026-10-10 10:58 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4304** (5138 KB) |
-| Apps in `curated.json` | **1328** (939 KB) |
-| Listings read | 24569 |
-| Apps listed by more than one source (newest kept) | 1712 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 5571 |
+| Apps in `source.json` | **4274** (5097 KB) |
+| Apps in `curated.json` | **1317** (929 KB) |
+| Listings read | 24507 |
+| Apps listed by more than one source (newest kept) | 1703 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 5632 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 6193 |
+| Dead download links held back (retested every build) | 6411 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 159: 159 ok, 0 from cache, 0 failed |
 
@@ -20,13 +20,13 @@ Built 2026-10-10 10:54 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3596 | 3395 | 4458 | 2026-10-10 | discovered |
-| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1652 | 542 | 305 | 2026-10-10 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3572 | 3377 | 4482 | 2026-10-10 | discovered |
+| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1649 | 543 | 308 | 2026-10-10 | discovered |
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 129 | 0 | 2026-10-10 | discovered |
-| [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 241 | 100 | 11 | 2025-01-01 | curated |
+| [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 241 | 101 | 11 | 2025-01-01 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 22 | 0 | 2026-10-09 | discovered |
-| [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4636 | 20 | 191 | 2025-09-05 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
+| [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4616 | 8 | 211 | 2025-09-05 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 20 | 8 | 1 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-09 | discovered |
 | [RipeStore](https://bit.ly/RipeStore) | ok | 11 | 6 | 0 | 2026-07-01 | discovered |
@@ -35,8 +35,7 @@ Built 2026-10-10 10:54 UTC.
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
 | [NexSideloading App Source](https://raw.githubusercontent.com/NexSideloading/app-source/main/repo.json) | ok | 7 | 3 | 0 | 2026-09-13 | discovered |
 | [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-10 | discovered |
-| [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 936 | 2 | 376 | 2026-10-01 | curated |
-| [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 34 | 2 | 1 | 2025-05-20 | curated |
+| [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 33 | 2 | 2 | 2025-05-20 | curated |
 | [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-06 | discovered |
 | [iAnyFeature's Source](https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json) | ok | 2 | 2 | 0 | 2026-10-09 | discovered |
 | [CyPwn IPA Library](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/CyPwn%20iPA%20Library/source.json) | ok | 193 | 1 | 6 | 2025-09-01 | discovered |
@@ -80,11 +79,12 @@ Built 2026-10-10 10:54 UTC.
 | [FileManager](https://raw.githubusercontent.com/xsxs18-dev/FileManager/main/altstore-source.json) | ok | 1 | 1 | 0 | 2026-09-21 | discovered |
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9380 | 0 | 161 | 2026-10-10 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
+| [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 924 | 0 | 388 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 106 | 0 | 10 | 2024-11-17 | discovered |
-| [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 34 | 0 | 1 | 2025-05-20 | discovered |
+| [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 33 | 0 | 2 | 2025-05-20 | discovered |
 | [SideStore Team Picks](https://community-apps.sidestore.io/sidecommunity.json) | ok | 23 | 0 | 0 | 2025-02-28 | curated |
 | [SideStore Team Picks](https://raw.githubusercontent.com/RipeStore/repos/main/sidestore-community.json) | ok | 23 | 0 | 0 | 2025-02-28 | discovered |
 | [WuXu's Library](https://bit.ly/wuxuslibrary) | ok | 17 | 0 | 3 | 2026-08-06 | discovered |

@@ -1,42 +1,42 @@
 {
- "apps": 4304,
- "curated_apps": 1328,
+ "apps": 4274,
+ "curated_apps": 1317,
  "sources": 159,
- "updated": "2026-10-10 10:54 UTC",
+ "updated": "2026-10-10 10:58 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-10T10:54:08Z",
+ "built_at": "2026-10-10T10:58:04Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 24569,
- "duplicates": 1712,
- "rejected": 5571,
+ "listings": 24507,
+ "duplicates": 1703,
+ "rejected": 5632,
  "excluded": 57,
- "dead_links_removed": 6193,
+ "dead_links_removed": 6411,
  "links_on_hold": 0,
- "developers": 711,
+ "developers": 710,
  "updated_7d": 391,
- "updated_30d": 866,
+ "updated_30d": 863,
  "curated_size_mb": 0.9,
  "categories": {
-  "other": 2130,
-  "games": 993,
-  "utilities": 336,
-  "photo-video": 325,
-  "entertainment": 213,
-  "lifestyle": 129,
+  "other": 2110,
+  "games": 987,
+  "utilities": 334,
+  "photo-video": 323,
+  "entertainment": 212,
+  "lifestyle": 130,
   "developer": 108,
   "social": 70
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3395
+   "apps": 3377
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 542
+   "apps": 543
   },
   {
    "name": "Altmaker by RipeStore",
@@ -44,7 +44,7 @@
   },
   {
    "name": "MySign IPA's",
-   "apps": 100
+   "apps": 101
   },
   {
    "name": "AltGallery",
@@ -96,101 +96,101 @@
  "timeline": [
   {
    "month": "2024-11",
-   "apps": 1910
+   "apps": 1903
   },
   {
    "month": "2024-12",
-   "apps": 2011
+   "apps": 2001
   },
   {
    "month": "2025-01",
-   "apps": 2213
+   "apps": 2202
   },
   {
    "month": "2025-02",
-   "apps": 2269
+   "apps": 2258
   },
   {
    "month": "2025-03",
-   "apps": 2297
+   "apps": 2286
   },
   {
    "month": "2025-04",
-   "apps": 2334
+   "apps": 2322
   },
   {
    "month": "2025-05",
-   "apps": 2398
+   "apps": 2380
   },
   {
    "month": "2025-06",
-   "apps": 2430
+   "apps": 2411
   },
   {
    "month": "2025-07",
-   "apps": 2463
+   "apps": 2444
   },
   {
    "month": "2025-08",
-   "apps": 2549
+   "apps": 2530
   },
   {
    "month": "2025-09",
-   "apps": 2600
+   "apps": 2581
   },
   {
    "month": "2025-10",
-   "apps": 2668
+   "apps": 2648
   },
   {
    "month": "2025-11",
-   "apps": 2730
+   "apps": 2710
   },
   {
    "month": "2025-12",
-   "apps": 2864
+   "apps": 2844
   },
   {
    "month": "2026-01",
-   "apps": 3000
+   "apps": 2980
   },
   {
    "month": "2026-02",
-   "apps": 3156
+   "apps": 3136
   },
   {
    "month": "2026-03",
-   "apps": 3303
+   "apps": 3283
   },
   {
    "month": "2026-04",
-   "apps": 3545
+   "apps": 3525
   },
   {
    "month": "2026-05",
-   "apps": 3620
+   "apps": 3600
   },
   {
    "month": "2026-06",
-   "apps": 3756
+   "apps": 3736
   },
   {
    "month": "2026-07",
-   "apps": 3901
+   "apps": 3875
   },
   {
    "month": "2026-08",
-   "apps": 3960
+   "apps": 3923
   },
   {
    "month": "2026-09",
-   "apps": 4161
+   "apps": 4121
   },
   {
    "month": "2026-10",
-   "apps": 4304
+   "apps": 4274
   }
  ],
- "new_30d": 320,
- "new_12m": 1689
+ "new_30d": 331,
+ "new_12m": 1678
 }
