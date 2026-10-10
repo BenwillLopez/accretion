@@ -1,18 +1,18 @@
 # Source report
 
-Built 2026-10-10 06:33 UTC.
+Built 2026-10-10 06:36 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **8752** (10020 KB) |
+| Apps in `source.json` | **8750** (10019 KB) |
 | Apps in `curated.json` | **1657** (1271 KB) |
-| Listings read | 30013 |
+| Listings read | 30009 |
 | Apps listed by more than one source (newest kept) | 2231 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 287 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links removed | 0 |
 | Links on hold (whole host failing, kept for now) | 0 |
-| Sources | 162: 162 ok, 0 from cache, 0 failed |
+| Sources | 161: 160 ok, 1 from cache, 0 failed |
 
 ## Sources
 
@@ -25,7 +25,7 @@ Built 2026-10-10 06:33 UTC.
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/altmaker/main/AltMaker.json) | ok | 156 | 124 | 0 | 2026-10-10 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 243 | 89 | 9 | 2025-01-01 | curated |
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4788 | 58 | 39 | 2025-09-05 | discovered |
-| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 21 | 0 | 2026-10-09 | discovered |
+| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 22 | 0 | 2026-10-09 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 21 | 9 | 0 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-09 | discovered |
@@ -34,7 +34,6 @@ Built 2026-10-10 06:33 UTC.
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
 | [NexSideloading App Source](https://raw.githubusercontent.com/NexSideloading/app-source/main/repo.json) | ok | 7 | 3 | 0 | 2026-09-13 | discovered |
 | [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-10 | discovered |
-| [Apeiraco SideStore Bucket](https://raw.githubusercontent.com/apeiraco/sidestore-bucket/main/apps.json) | ok | 3 | 3 | 0 | 2026-09-22 | discovered |
 | [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 35 | 2 | 0 | 2025-05-20 | curated |
 | [NightFox](https://raw.githubusercontent.com/lyjj0912/NightFox_Repository-fork/main/NightFox.json) | ok | 14 | 2 | 0 | 2026-08-21 | discovered |
 | [haxi0's Source](https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/haxi0_2.0.json) | ok | 6 | 2 | 0 | 2023-12-05 | discovered |
@@ -88,8 +87,8 @@ Built 2026-10-10 06:33 UTC.
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 1296 | 0 | 16 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | curated |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
 | [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 155 | 0 | 0 | 2026-10-09 | discovered |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 113 | 0 | 3 | 2024-11-17 | discovered |
@@ -124,7 +123,7 @@ Built 2026-10-10 06:33 UTC.
 | [Odyssey](https://theodyssey.dev/altstore/odysseysource.json) | ok | 2 | 0 | 0 | 2023-04-03 | curated |
 | [Foxster's AltSource](https://therealfoxster.github.io/altsource/apps.json) | ok | 2 | 0 | 0 | 2026-03-04 | curated |
 | [Laoalts](https://alts.lao.sb) | ok | 1 | 0 | 0 | 2020-03-30 | discovered |
-| [Laoalts](https://alts.lao.sb/) | ok | 1 | 0 | 0 | 2020-03-30 | curated |
+| [Laoalts](https://alts.lao.sb/) | cached | 1 | 0 | 0 | 2020-03-30 | curated |
 | [SideStore Official](https://apps.sidestore.io/) | ok | 1 | 0 | 0 | 2025-07-01 | curated |
 | [Flyinghead](https://flyinghead.github.io/flycast-builds/altstore.json) | ok | 1 | 0 | 0 | 2025-05-07 | curated |
 | [iSH](https://ish.app/altstore.json) | ok | 1 | 0 | 0 | 2026-08-22 | curated |
@@ -182,6 +181,10 @@ Built 2026-10-10 06:33 UTC.
 | [CARDMATE](https://weztling.se/altstore.json) | ok | 0 | 0 | 1 |  | discovered |
 | [iTorrent Source](https://xitrix.github.io/iTorrent/AltStore.json) | ok | 0 | 0 | 1 |  | curated |
 | [iTorrent Source](https://xitrix.github.io/iTorrent/AltStoreEU.json) | ok | 0 | 0 | 1 |  | discovered |
+
+## Problems
+
+- `https://alts.lao.sb/`: cached (URLError: <urlopen error _ssl.c:993: The handshake operation timed out>)
 
 ## Recently updated
 
