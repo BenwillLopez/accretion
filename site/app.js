@@ -525,14 +525,59 @@
   const featherInstall = (url) => `feather://install/${url}`;
   const featherSource = (url) => `feather://source/${url}`;
 
+  // One-tap install: each app page's Install button hands the IPA to the installer the visitor
+  // picked once. The choice stays on this device (localStorage); nothing is sent anywhere.
+  const INSTALLERS = [
+    { id: "feather", name: "Feather", note: "Signs and installs with your own certificate (2.0 or newer).", link: (u) => featherInstall(u) },
+    { id: "altstore", name: "AltStore", note: "Signs with your Apple ID, refreshes every 7 days.", link: (u) => `altstore://install?url=${encodeURIComponent(u)}` },
+    { id: "sidestore", name: "SideStore", note: "Signs with your Apple ID, refreshes on the phone.", link: (u) => `sidestore://install?url=${encodeURIComponent(u)}` },
+    { id: "trollstore", name: "TrollStore", note: "Permanent installs, on the iOS versions it supports.", link: (u) => `apple-magnifier://install?url=${encodeURIComponent(u)}` },
+  ];
+  const installer = () => INSTALLERS.find((i) => i.id === store.get("acc.installer", null)) || null;
+
+  // Pick an installer. With a url it also starts the install; without one it only saves the choice.
+  function chooseInstaller(url, done) {
+    const remember = h("input", { type: "checkbox", checked: true });
+    const pick = (i) => {
+      if (!url || remember.checked) store.set("acc.installer", i ? i.id : null);
+      dlg.close();
+      if (done) done();
+      if (url && i) window.location.href = i.link(url);
+    };
+    const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "inst-title" },
+      h("h2", { id: "inst-title" }, url ? "Install with…" : "Install button uses…"),
+      h("p", { class: "muted small" }, "The app downloads, signs and installs in the installer you pick. ", h("a", { href: "#/sign", onclick: () => dlg.close() }, "Need one? Sign your own apps"), "."),
+      h("ul", { class: "cert-list" }, INSTALLERS.map((i) => h("li", {},
+        h("div", {}, h("b", {}, i.name), h("span", { class: "muted small" }, i.note)),
+        h("button", { class: "btn", type: "button", "aria-label": `${url ? "Install with" : "Use"} ${i.name}`, onclick: () => pick(i) }, url ? "Install" : "Use")))),
+      url
+        ? h("label", { class: "muted small" }, remember, " Remember my choice (change it later on the app page or Sign your own apps)")
+        : h("p", {}, h("button", { class: "btn ghost", type: "button", onclick: () => pick(null) }, "Ask each time")),
+      h("div", { class: "dl-actions" }, h("button", { class: "btn ghost", type: "button", onclick: () => dlg.close() }, "Cancel")));
+    dlg.addEventListener("close", () => dlg.remove());
+    document.body.append(dlg);
+    dlg.showModal();
+  }
+
   function installButtons(url) {
+    const main = installer() || INSTALLERS[0]; // Feather unless the visitor picked another
     return [
-      h("a", { class: "btn primary", href: featherInstall(url) }, "Sign & install in Feather"),
-      h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(url)}` }, "AltStore"),
-      h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(url)}` }, "SideStore"),
-      h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(url)}` }, "TrollStore"),
+      h("a", { class: "btn primary", href: main.link(url) }, main.id === "feather" ? "Sign & install in Feather" : `Install with ${main.name}`),
+      ...INSTALLERS.filter((i) => i !== main).map((i) => h("a", { class: "btn", href: i.link(url), title: i.note }, i.name)),
       h("a", { class: "btn ghost", href: url, rel: "nofollow noopener" }, "Download"),
     ];
+  }
+
+  // "Install button uses: Feather · Change" on the Sign page
+  function installerSetting() {
+    const line = h("p", { class: "muted small", id: "installer-setting" });
+    const draw = () => {
+      const i = installer();
+      line.replaceChildren("Install buttons in Accretion use ", h("b", {}, i ? i.name : "whatever you pick each time"), ". ",
+        h("button", { class: "btn ghost", type: "button", onclick: () => chooseInstaller(null, draw) }, "Change"));
+    };
+    draw();
+    return line;
   }
 
   // Sign your own apps: certificate -> Feather -> any app -> customize. Everything happens on the
@@ -642,7 +687,8 @@
         certImport(),
         h("p", { class: "muted small" }, "Or in Feather: Settings → Certificates → + and pick the same files.")),
       step(3, "Pick an app",
-        h("p", { class: "muted" }, "From Accretion: open any app and tap Feather. ", h("a", { href: "#/" }, "Browse apps"), " or search above."),
+        h("p", { class: "muted" }, "From Accretion: open any app and tap Install. ", h("a", { href: "#/" }, "Browse apps"), " or search above."),
+        installerSetting(),
         ...linkInstaller(),
         h("p", { class: "muted small" }, "File already on your iPhone? Open it from Files or Safari downloads, tap Share and pick Feather.")),
       step(4, "Customize before installing",
@@ -825,14 +871,17 @@
     const isSaved = saved[a.i] !== undefined;
     const tooNew = deviceIOS && a.m && !fits(a);
     const installed = () => track("install", a.i);
+    const pref = installer();
+    const redraw = () => { const old = $("detail").querySelector(".d-head"); if (old) old.replaceWith(head(a, d)); };
     const actions = h(
       "div",
       { class: "actions" },
-      ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
-      ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "AltStore") : null,
-      ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "SideStore") : null,
-      ipa ? h("a", { class: "btn", href: featherInstall(ipa), onclick: installed, title: "Sign and install with your own certificate in Feather (2.0 or newer)" }, "Feather") : null,
-      ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "TrollStore") : null,
+      ipa
+        ? h("a", { class: "btn primary", href: pref ? pref.link(ipa) : ipa, rel: "nofollow noopener", title: "Download, sign and install", onclick: (e) => { installed(); if (!pref) { e.preventDefault(); chooseInstaller(ipa, redraw); } } }, pref ? `Install with ${pref.name}` : "Install")
+        : null,
+      ipa && pref ? h("button", { class: "btn ghost", type: "button", onclick: () => chooseInstaller(null, redraw) }, "Change") : null,
+      ipa ? h("a", { class: "btn", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
+      ...(ipa ? INSTALLERS.filter((i) => i !== pref).map((i) => h("a", { class: "btn", href: i.link(ipa), onclick: installed, title: i.note }, i.name)) : []),
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
       ipa ? h("button", { class: "btn ghost", type: "button", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
