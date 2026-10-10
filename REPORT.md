@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-10 14:36 UTC.
+Built 2026-10-10 14:40 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4257** (5086 KB) |
+| Apps in `source.json` | **4257** (5084 KB) |
 | Apps in `curated.json` | **1315** (990 KB) |
 | Listings read | 24476 |
 | Apps listed by more than one source (newest kept) | 1693 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 5665 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 6805 |
+| Dead download links held back (retested every build) | 6812 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 159: 159 ok, 0 from cache, 0 failed |
 
