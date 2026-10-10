@@ -440,3 +440,18 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .faq dt { font-weight: 650; margin-top: 10px; }
 .faq dd { margin: 2px 0 0; color: var(--muted); }
 .hero-cta { margin: 14px 0 0; }
+
+/* desktop: categories wrap instead of showing a scrollbar */
+@media (hover: hover) and (min-width: 761px) { .chips { flex-wrap: wrap; overflow: visible; } }
+
+/* saving or printing the page: browsers drop backgrounds by default, which hid the gradient
+   headline, the numbers and the buttons; keep colours, show each list's first page whole */
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  h1, .stats dd { background: none; color: var(--fg); }
+  .top { position: static; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .shelf-pages.multi { grid-auto-columns: 100%; overflow: hidden; }
+  .shelf-nav, .toast, #more, dialog { display: none !important; }
+  .chips { flex-wrap: wrap; overflow: visible; }
+  .card, .shelf-list li, .stats div { break-inside: avoid; }
+}
