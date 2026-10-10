@@ -21,8 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      # main as it is now, not the commit that triggered the run, so runs never undo each other
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - run: python discover.py
@@ -37,5 +40,5 @@ jobs:
           git add -A
           git diff --cached --quiet && exit 0
           git commit -m "Update discovered sources"
-          git pull --rebase --autostash origin main
+          git pull --rebase -X theirs origin main
           git push
