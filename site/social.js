@@ -123,6 +123,10 @@
       setBanned: async (profileId, banned) => ok(await sb().from("profiles").update({ banned }).eq("id", profileId)),
       setRole: async (username, role) => ok(await sb().from("profiles").update({ role }).eq("username", username).select("username,role")),
       deleteAccount: async () => ok(await sb().rpc("delete_my_account")),
+      // anonymous demand counts (see supabase/schema.sql)
+      track: async ({ kind, app, q }) => ok(await sb().rpc("track", { p_kind: kind, p_app: app, p_q: q })),
+      trending: async () => ok(await sb().from("app_trending").select("app_id,searches,views,installs,score").order("score", { ascending: false }).limit(200)),
+      missing: async () => ok(await sb().from("missing_searches").select("query,hits,last_day").order("hits", { ascending: false }).limit(50)),
     };
   }
 
@@ -372,9 +376,9 @@
     const rated = [...known].filter((s) => s.ratings >= 3).sort((a, b) => b.avg_rating - a.avg_rating || b.ratings - a.ratings).slice(0, 18).map((s) => A.app(s.app_id));
     const talked = [...known].filter((s) => s.comments > 0).sort((a, b) => b.comments - a.comments).slice(0, 18).map((s) => A.app(s.app_id));
     mount.replaceChildren(...[
-      A.shelf("Most liked", "by the community", liked, null),
-      A.shelf("Top rated", "3+ ratings", rated, null),
-      A.shelf("Most discussed", "comments", talked, "#/feed"),
+      A.shelf("Most liked", "by the community", liked, null, { ranked: true }),
+      A.shelf("Top rated", "3+ ratings", rated, null, { ranked: true }),
+      A.shelf("Most discussed", "comments", talked, "#/feed", { ranked: true }),
     ].filter(Boolean));
   }
 
@@ -578,10 +582,39 @@
       });
       return f;
     })() : null;
+    const demand = h("section", { class: "demand" }, h("p", { class: "muted" }, "Loading what people look for…"));
     page("Moderation",
       h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Moderation"), h("p", { class: "muted" }, `${rows.length} open report${rows.length === 1 ? "" : "s"}. Hidden posts stay visible to their author and to mods.`)),
       rows.length ? list : h("p", { class: "muted empty-thread" }, "No open reports."),
+      demand,
       roleForm);
+    renderDemand(demand);
+  }
+
+  // What people look for: anonymous counts, to decide which apps and sources to prioritise
+  async function renderDemand(box) {
+    const { h } = A;
+    let top;
+    let missing;
+    try { [top, missing] = await Promise.all([api.trending(), api.missing()]); } catch (e) { box.replaceChildren(h("p", { class: "muted" }, e.message)); return; }
+    const searched = top.filter((r) => r.searches > 0).sort((a, b) => b.searches - a.searches || b.score - a.score).slice(0, 25);
+    const num = (n) => h("span", { class: "demand-n" }, `${A.fmt(n)} ${n === 1 ? "search" : "searches"}`);
+    const appLink = (id) => { const a = A.app(id); return h("a", { href: `#/app/${encodeURIComponent(id)}` }, a ? a.n : id); };
+    box.replaceChildren(
+      h("h2", {}, "What people look for"),
+      h("p", { class: "muted small" }, "Anonymous counts: each visitor counts once per app per day. Searches that led to an app count most."),
+      h("div", { class: "demand-grid" },
+        h("div", {},
+          h("h3", {}, "Most searched apps", h("span", { class: "muted small" }, " · 7 days")),
+          searched.length
+            ? h("ol", { class: "demand-list" }, searched.map((r) => h("li", {}, appLink(r.app_id), num(r.searches), h("span", { class: "muted small" }, `${A.fmt(r.views)} views · ${A.fmt(r.installs)} installs`))))
+            : h("p", { class: "muted small" }, "No searches counted yet.")),
+        h("div", {},
+          h("h3", {}, "Searched but not in the store", h("span", { class: "muted small" }, " · 30 days")),
+          missing.length
+            ? h("ol", { class: "demand-list" }, missing.map((r) => h("li", {}, h("span", {}, r.query), num(r.hits), h("span", { class: "muted small" }, `last ${r.last_day}`))))
+            : h("p", { class: "muted small" }, "Nothing missing so far.")),
+      ));
   }
 
   function renderSignIn(params = {}) {
@@ -677,6 +710,7 @@
   document.addEventListener("acc:route", (e) => whenReady(() => onRoute(e.detail)));
   document.addEventListener("acc:app", (e) => whenReady(() => renderAppSocial(e.detail)));
   document.addEventListener("acc:home", (e) => whenReady(() => renderHomeShelves(e.detail)));
+  document.addEventListener("acc:track", (e) => whenReady(() => api.track(e.detail).catch(() => {})));
   document.addEventListener("acc:auth", () => {
     const r = location.hash;
     if (/^#\/(feed|u\/|notifications|mod|me)/.test(r) || r.startsWith("#/app/")) A.route();
@@ -698,6 +732,7 @@
     }
     ready = true;
     queue.splice(0).forEach((fn) => fn());
+    api.trending().then((rows) => A.setTrending(rows || [])).catch(() => {});
     setInterval(() => me.user && refreshUnread(), 60000);
   });
 
@@ -717,6 +752,7 @@
     const follows = new Set(["u2>u1"]);
     const reports = [];
     const notes = [];
+    const tracked = [];
     let cur = cfg.fakeUser ? users.find((u) => u.username === cfg.fakeUser) : null;
     const add = (author, body, app_id = null, parent_id = null, hours = 1) => {
       const p = { id: ++pid, author, body, app_id, parent_id, hidden: false, created_at: t(hours), edited_at: null };
@@ -783,7 +819,11 @@
       setBanned: async (id, banned) => { users.find((u) => u.id === id).banned = banned; },
       setRole: async (username, role) => { const u = users.find((x) => x.username === username); if (!u) return []; u.role = role; return [{ username, role }]; },
       deleteAccount: async () => { users.splice(users.indexOf(cur), 1); cur = null; },
+      track: async (t) => { tracked.push(t); },
+      trending: async () => { seed(); return A.apps().slice(3, 9).map((a, i) => ({ app_id: a.i, searches: 12 - i, views: 30 - i, installs: 5, score: 60 - i * 5 })); },
+      missing: async () => [{ query: "spotify plus", hits: 7, last_day: "2026-10-10" }, { query: "cercube", hits: 3, last_day: "2026-10-09" }],
     };
+    window.__accTracked = tracked;
     return obj;
   }
 })();

@@ -6,6 +6,7 @@
 
   const PAGE = 60;
   const SHELF = 18;
+  const LIST = 5; // apps shown per home section
   const CATEGORY_NAMES = {
     games: "Games", utilities: "Utilities", "photo-video": "Photo & Video", entertainment: "Entertainment",
     social: "Social", lifestyle: "Lifestyle", developer: "Developer", other: "Other",
@@ -17,7 +18,7 @@
   const QR_LIB = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js";
 
   const $ = (id) => document.getElementById(id);
-  const state = { apps: [], byId: new Map(), sources: [], shards: 128, list: [], shown: PAGE, f: {} };
+  const state = { apps: [], byId: new Map(), sources: [], shards: 128, list: [], shown: PAGE, f: {}, trend: new Map(), from: null };
   const shardCache = new Map();
 
   // ---- small helpers ------------------------------------------------------------
@@ -205,6 +206,21 @@
     }
   }
 
+  // ---- demand: anonymous counts (sent by social.js; nothing leaves the page without it) ----
+  const counted = new Set();
+  function track(kind, app, q) {
+    const key = `${kind}|${app || q}`;
+    if (counted.has(key)) return;
+    counted.add(key);
+    document.dispatchEvent(new CustomEvent("acc:track", { detail: { kind, app: app || null, q: q || null } }));
+  }
+  let missTimer;
+  function trackMiss(q) {
+    clearTimeout(missTimer);
+    missTimer = setTimeout(() => { if (state.f.q === q && !state.list.length) track("miss", null, q); }, 1500);
+  }
+  const trendScore = (a) => state.trend.get(a.i) || 0;
+
   // ---- home: shelves + grid -----------------------------------------------------
   const defaultView = (f) => !f.q && f.c === "all" && f.src === null && !f.saved;
 
@@ -229,12 +245,13 @@
       list.sort((a, b) => hasUpdate(b) - hasUpdate(a) || by(a, b));
     } else if (words.length) {
       const rank = (a) => (a.n.toLowerCase().startsWith(words[0]) ? 0 : a.n.toLowerCase().includes(words[0]) ? 1 : 2);
-      list.sort((a, b) => rank(a) - rank(b) || by(a, b));
+      list.sort((a, b) => rank(a) - rank(b) || trendScore(b) - trendScore(a) || by(a, b));
     } else {
       list.sort(by);
     }
     state.list = list;
     state.shown = PAGE;
+    if (words.length && !list.length && !f.saved && f.src === null) trackMiss(f.q);
 
     const def = defaultView(f);
     $("hero").hidden = !def;
@@ -251,7 +268,7 @@
     else if (isNew(a)) badges.push(h("em", { class: "badge" }, "new"));
     return h(
       "a",
-      { class: "card", href: `#/app/${encodeURIComponent(a.i)}`, onclick: () => { state.scroll = window.scrollY; } },
+      { class: "card", href: `#/app/${encodeURIComponent(a.i)}`, onclick: () => { state.scroll = window.scrollY; state.from = state.f.q ? "search" : null; } },
       icon(a.ic, a.n, "icon"),
       h(
         "div",
@@ -300,23 +317,34 @@
     b.textContent = state.f.fit ? `Works on iOS ${deviceIOS} ✓` : `Show only apps for iOS ${deviceIOS}`;
   }
 
-  function tile(a) {
+  // home and app-page sections: a short vertical list (top 5) with a link to the full list
+  function listRow(a, rank) {
     return h(
-      "a",
-      { class: "tile", href: `#/app/${encodeURIComponent(a.i)}`, onclick: () => { state.scroll = window.scrollY; } },
-      icon(a.ic, a.n, "icon tile-icon"),
-      h("span", { class: "tile-name" }, a.n),
-      h("span", { class: "tile-meta" }, `v${a.v} · ${ago(a.t)}`),
+      "li",
+      {},
+      h(
+        "a",
+        { class: "row", href: `#/app/${encodeURIComponent(a.i)}`, onclick: () => { state.scroll = window.scrollY; } },
+        rank ? h("span", { class: "row-rank" }, String(rank)) : null,
+        icon(a.ic, a.n, "icon row-icon"),
+        h(
+          "span",
+          { class: "row-body" },
+          h("span", { class: "row-name" }, a.n),
+          h("span", { class: "row-meta" }, [`v${a.v}`, CATEGORY_NAMES[a.c], ago(a.t)].filter(Boolean).join(" · ")),
+        ),
+        h("span", { class: "row-go", "aria-hidden": "true" }, "›"),
+      ),
     );
   }
 
-  function shelf(title, note, apps, seeAll) {
+  function shelf(title, note, apps, seeAll, { ranked = false } = {}) {
     if (!apps.length) return null;
     return h(
       "section",
       { class: "shelf" },
       h("div", { class: "shelf-head" }, h("h2", {}, title, note ? h("span", {}, note) : null), seeAll ? h("a", { href: seeAll }, "See all") : null),
-      h("div", { class: "shelf-row" }, apps.map(tile)),
+      h("ol", { class: "shelf-list" }, apps.slice(0, LIST).map((a, i) => listRow(a, ranked ? i + 1 : 0))),
     );
   }
 
@@ -331,8 +359,10 @@
     const today = new Date().toISOString().slice(0, 10);
     const fresh = byUpdated.filter((a) => a.t >= today || Date.now() - dayMs(a.t) < 2 * DAY);
     const socialShelves = h("div", { id: "social-shelves" });
+    const trending = pool.filter((a) => trendScore(a) > 0).sort((a, b) => trendScore(b) - trendScore(a));
     box.replaceChildren(
       ...[
+        shelf("Most searched", "this week", trending, null, { ranked: true }),
         shelf("Updates for your saved apps", `${savedUpd.length}`, savedUpd.slice(0, SHELF), "#/saved"),
         shelf("Fresh today", `${fmt(fresh.length)} updated`, fresh.slice(0, SHELF), homeHash({ ...state.f, s: "updated" })),
         shelf("New this month", `${fmt(byNew.length)} apps`, byNew.slice(0, SHELF), homeHash({ ...state.f, s: "new" })),
@@ -413,6 +443,9 @@
       return;
     }
     document.title = `${a.n} · Accretion`;
+    if (state.from === "search") track("search", a.i);
+    state.from = null;
+    track("view", a.i);
     view.replaceChildren(back, head(a, null), h("p", { class: "muted" }, "Loading details…"));
     const d = await details(bid);
     if (parse().bid !== bid) return;
@@ -428,13 +461,14 @@
     const tint = d && /^[0-9A-F]{6}$/i.test(d.tint || "") ? `#${d.tint}` : null;
     const isSaved = saved[a.i] !== undefined;
     const tooNew = deviceIOS && a.m && !fits(a);
+    const installed = () => track("install", a.i);
     const actions = h(
       "div",
       { class: "actions" },
-      ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener" }, "Download IPA") : null,
-      ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}` }, "AltStore") : null,
-      ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}` }, "SideStore") : null,
-      ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}` }, "TrollStore") : null,
+      ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: installed }, "Download IPA") : null,
+      ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "AltStore") : null,
+      ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "SideStore") : null,
+      ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "TrollStore") : null,
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
       ipa ? h("button", { class: "btn ghost", type: "button", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
@@ -614,7 +648,12 @@
   }
 
   // helpers shared with social.js
-  window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route };
+  // rows from the app_trending view: [{ app_id, score }]
+  function setTrending(rows) {
+    state.trend = new Map(rows.filter((r) => state.byId.has(r.app_id) && r.score > 0).map((r) => [r.app_id, r.score]));
+    if (parse().view === "home") apply();
+  }
+  window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route, setTrending };
 
   // ---- boot -------------------------------------------------------------------------------
   Promise.all([fetch("data/index.json").then((r) => r.json()), fetch("data/stats.json").then((r) => r.json()).catch(() => ({}))])

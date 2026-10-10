@@ -199,4 +199,41 @@ do $$ begin
   assert (select username from public.profiles where id = '00000000-0000-0000-0000-0000000000e1') = 'octocat', 'no renaming others';
 end $$;
 
+-- demand counts: anonymous, once per visitor per item per day, capped, misses private
+begin;
+select pg_temp.as_user(null);
+select public.track('view', 'com.app');
+select public.track('view', 'com.app');
+select public.track('search', 'com.app');
+select public.track('install', 'com.app');
+select public.track('miss', null, '  Spotify   PLUS ');
+select public.track('miss', null, 'spotify plus');
+select public.track('miss', null, '<script>');
+select public.track('hack', 'com.app');
+do $$ begin
+  assert (select views from public.app_trending where app_id = 'com.app') = 1, 'views counted once';
+  assert (select score from public.app_trending where app_id = 'com.app') = 6, 'score 3 search + 2 install + 1 view';
+  assert pg_temp.fails($q$select * from public.search_misses$q$), 'anon cannot read missing searches';
+  assert pg_temp.fails($q$insert into public.app_hits (app_id) values ('x')$q$), 'no direct writes';
+  assert pg_temp.fails($q$select * from private.seen$q$), 'private schema hidden';
+end $$;
+commit;
+do $$ begin
+  assert (select hits from public.search_misses where query = 'spotify plus') = 1, 'miss normalised and counted once';
+  assert (select count(*) from public.search_misses) = 1, 'unsafe search text ignored';
+end $$;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+do $$ begin
+  assert (select hits from public.missing_searches where query = 'spotify plus') = 1, 'mods see missing searches';
+end $$;
+rollback;
+begin;
+select pg_temp.as_user(null);
+select public.track('view', 'cap.' || g) from generate_series(1, 400) g;
+do $$ begin
+  assert (select count(*) from public.app_hits) <= 300, 'per-visitor daily cap';
+end $$;
+commit;
+
 \echo 'all database checks passed'

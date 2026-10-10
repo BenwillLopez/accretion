@@ -433,6 +433,127 @@ select
   (select count(*) from public.app_likes a where a.user_id = pr.id)::int as liked_apps
 from public.profiles pr;
 
+-- ---------------------------------------------------------------- demand (anonymous counts)
+-- Which apps people search for, open and install, and what they search for that the store
+-- doesn't have. No accounts and no IP addresses are stored: a visitor counts once per app per
+-- day through a salted daily hash that can't be reversed, and those hashes are deleted after
+-- two days. Each visitor can add at most 300 counts a day.
+
+create schema if not exists private;
+revoke all on schema private from public;
+
+create table if not exists private.salt (
+  id int primary key default 1 check (id = 1),
+  value text not null default md5(random()::text || clock_timestamp()::text)
+);
+insert into private.salt default values on conflict do nothing;
+
+create table if not exists private.seen (
+  key text primary key,
+  day date not null default current_date
+);
+create index if not exists seen_day_idx on private.seen (day);
+
+create table if not exists private.visitor_day (
+  visitor text primary key,
+  day date not null default current_date,
+  n int not null default 0
+);
+
+create table if not exists public.app_hits (
+  app_id text not null check (char_length(app_id) between 1 and 200),
+  day date not null default current_date,
+  searches int not null default 0,
+  views int not null default 0,
+  installs int not null default 0,
+  primary key (app_id, day)
+);
+
+create table if not exists public.search_misses (
+  query text not null check (char_length(query) between 2 and 40),
+  day date not null default current_date,
+  hits int not null default 0,
+  primary key (query, day)
+);
+
+-- kind: 'search' (opened from search results), 'view' (app page), 'install' (install tapped),
+-- 'miss' (a search with no results; p_q is the search text)
+create or replace function public.track(p_kind text, p_app text default null, p_q text default null)
+returns void
+language plpgsql security definer set search_path = public, private as $$
+declare
+  v_headers json := coalesce(nullif(current_setting('request.headers', true), ''), '{}')::json;
+  v_ip text := coalesce(v_headers->>'cf-connecting-ip', v_headers->>'x-real-ip',
+                        split_part(v_headers->>'x-forwarded-for', ',', 1), '');
+  v_visitor text;
+  v_item text;
+  v_n int;
+begin
+  if p_kind is null or p_kind not in ('search', 'view', 'install', 'miss') then return; end if;
+  if p_kind = 'miss' then
+    v_item := lower(regexp_replace(btrim(coalesce(p_q, '')), '\s+', ' ', 'g'));
+    if v_item !~ '^[a-z0-9][a-z0-9 .+&''-]{1,39}$' then return; end if;
+  else
+    v_item := btrim(coalesce(p_app, ''));
+    if char_length(v_item) not between 1 and 200 then return; end if;
+  end if;
+
+  v_visitor := md5((select value from private.salt) || current_date::text || btrim(v_ip));
+  insert into private.visitor_day as d (visitor) values (v_visitor)
+    on conflict (visitor) do update set n = d.n + 1
+    returning n into v_n;
+  if v_n > 300 then return; end if;
+
+  insert into private.seen (key) values (md5(v_visitor || p_kind || v_item)) on conflict do nothing;
+  if not found then return; end if; -- already counted today
+
+  if p_kind = 'miss' then
+    insert into public.search_misses as m (query, hits) values (v_item, 1)
+      on conflict (query, day) do update set hits = m.hits + 1;
+  else
+    insert into public.app_hits as a (app_id, searches, views, installs)
+      values (v_item, (p_kind = 'search')::int, (p_kind = 'view')::int, (p_kind = 'install')::int)
+      on conflict (app_id, day) do update set
+        searches = a.searches + excluded.searches,
+        views = a.views + excluded.views,
+        installs = a.installs + excluded.installs;
+  end if;
+
+  if random() < 0.02 then
+    delete from private.seen where day < current_date - 1;
+    delete from private.visitor_day where day < current_date - 1;
+  end if;
+end;
+$$;
+revoke all on function public.track(text, text, text) from public;
+grant execute on function public.track(text, text, text) to anon, authenticated;
+
+alter table public.app_hits enable row level security;
+alter table public.search_misses enable row level security;
+drop policy if exists "app counts are public" on public.app_hits;
+create policy "app counts are public" on public.app_hits for select using (true);
+drop policy if exists "mods read missing searches" on public.search_misses;
+create policy "mods read missing searches" on public.search_misses for select to authenticated
+  using (public.is_mod());
+
+-- last 7 days; a search that leads to an app counts most
+create or replace view public.app_trending with (security_invoker = true) as
+select app_id,
+  sum(searches)::int as searches,
+  sum(views)::int as views,
+  sum(installs)::int as installs,
+  (3 * sum(searches) + 2 * sum(installs) + sum(views))::int as score
+from public.app_hits
+where day > current_date - 7
+group by app_id;
+
+-- last 30 days, mods only (through the policy on search_misses)
+create or replace view public.missing_searches with (security_invoker = true) as
+select query, sum(hits)::int as hits, max(day) as last_day
+from public.search_misses
+where day > current_date - 30
+group by query;
+
 -- ---------------------------------------------------------------- grants
 -- Supabase grants these by default; listed so the file also works on plain Postgres.
 
@@ -446,6 +567,8 @@ grant insert, update, delete on public.posts, public.post_likes, public.app_like
 grant select, insert, update on public.reports to authenticated;
 grant select, update, delete on public.notifications to authenticated;
 grant execute on function public.is_mod(), public.is_admin(), public.can_write() to anon, authenticated;
+grant select on public.app_hits, public.app_trending to anon, authenticated;
+grant select on public.search_misses, public.missing_searches to authenticated;
 
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:

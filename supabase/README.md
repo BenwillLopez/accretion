@@ -175,5 +175,8 @@ what code runs in the browser:
 - Notifications are private to their owner; reports are visible only to moderators.
 - Posting is limited to 5 a minute and 60 an hour per user, and posts are 1–2000 characters.
 - People can delete their own account, which removes their profile and everything they posted.
+- Search, view and install counts are anonymous: once per visitor per app per day, at most 300
+  a day per visitor, with no account or IP address stored. Per-app totals are public; searches
+  that found nothing are visible to moderators only (Moderation → What people look for).
 
 `test.sql` checks all of the above on a plain Postgres. CI runs it on every change.
