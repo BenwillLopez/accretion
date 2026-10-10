@@ -387,6 +387,9 @@ class SignInProviders(unittest.TestCase):
             "APPLE_KEY_ID",
             "APPLE_PRIVATE_KEY",
             "APPLE_SECRET",
+            "GOOGLE_KEYS",
+            "GIT_KEYS",
+            "DISCORD_KEYS",
         ]
         clean = dict.fromkeys(keys, "")
         clean.update(values)
@@ -401,6 +404,24 @@ class SignInProviders(unittest.TestCase):
         self.assertTrue(out["external_google_enabled"])
         self.assertNotIn("external_discord_enabled", out)  # secret missing
         self.assertNotIn("external_apple_enabled", out)
+
+    def test_one_secret_can_hold_both_keys(self):
+        import supabase_setup as setup
+
+        gid, gsec = "123-abc.apps.googleusercontent.com", "GOCSPX-a1_b2-c3"
+        hid, hsec = "Ov23liAbCdEf12345678", "0123456789abcdef0123456789abcdef01234567"
+        did, dsec = "1558396810000000000", "A" * 16 + "b-c_" * 4
+        with self.env(
+            GOOGLE_KEYS=f"{gsec}\n{gid}\n",  # reversed, two lines
+            GIT_KEYS=f"Client ID: {hid}\nClient secret: {hsec}",  # labelled
+            DISCORD_KEYS=f"{did} {dsec}",
+        ):
+            out = setup.provider_settings()
+        self.assertEqual((out["external_google_client_id"], out["external_google_secret"]), (gid, gsec))
+        self.assertEqual((out["external_github_client_id"], out["external_github_secret"]), (hid, hsec))
+        self.assertEqual((out["external_discord_client_id"], out["external_discord_secret"]), (did, dsec))
+        with self.env(DISCORD_KEYS=did):  # only half saved
+            self.assertNotIn("external_discord_enabled", setup.provider_settings())
 
     def test_apple_secret_is_a_signed_jwt(self):
         try:

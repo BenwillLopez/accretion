@@ -58,6 +58,10 @@ jobs:
           GH_OAUTH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
           DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
           DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+          # or one secret per provider holding both the client ID and the secret
+          GOOGLE_KEYS: ${{ secrets.GOOGLE }}
+          GIT_KEYS: ${{ secrets.GIT }}
+          DISCORD_KEYS: ${{ secrets.DISCORD }}
           APPLE_SERVICES_ID: ${{ secrets.APPLE_SERVICES_ID }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}

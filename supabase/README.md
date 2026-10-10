@@ -87,6 +87,12 @@ https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
 Apple's sign-in key must be renewed at least every 6 months. **Set up community** re-signs it
 automatically on the 1st of every month, so there is nothing to remember.
 
+### Shortcut: one secret per provider
+
+Instead of two secrets, you can save one per provider named `GOOGLE`, `GIT` or `DISCORD`, with
+the client ID and the secret pasted together (on one line or two, in either order). Setup tells
+them apart.
+
 ### Turn them on
 
 Run **Actions → Set up community → Run workflow**. Its log lists the providers that are on.

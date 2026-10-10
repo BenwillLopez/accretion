@@ -153,16 +153,45 @@ def apple_secret():
     )
 
 
+# What each provider's client ID and secret look like, to tell them apart when both are
+# saved in one secret (GOOGLE, GIT or DISCORD) instead of two
+KEY_SHAPES = {
+    "google": (r".+\.apps\.googleusercontent\.com", r"GOCSPX-[\w-]+"),
+    "github": (r"(Ov|Iv)[0-9A-Za-z.]{8,}|[0-9a-f]{20}", r"[0-9a-f]{40}"),
+    "discord": (r"\d{17,20}", r"[\w-]{32}"),
+}
+
+
+def split_keys(provider, raw):
+    """Pull (client ID, secret) out of one secret holding both, in any order, on one line or two,
+    with or without labels like 'Client ID:'."""
+    tokens = [t.strip("\"'`") for t in re.split(r"[\s,;|=]+|(?<!https):(?!//)", raw or "") if t.strip("\"'`")]
+    id_shape, secret_shape = KEY_SHAPES[provider]
+    client_id = next((t for t in tokens if re.fullmatch(id_shape, t)), "")
+    secret = next((t for t in tokens if t != client_id and re.fullmatch(secret_shape, t)), "")
+    if not (client_id and secret) and len(tokens) == 2:
+        client_id, secret = tokens
+    return client_id, secret
+
+
+def keys_for(provider, id_name, secret_name, combined_name):
+    if env(id_name) and env(secret_name):
+        return env(id_name), env(secret_name)
+    return split_keys(provider, env(combined_name))
+
+
 def provider_settings():
     """Auth settings for each sign-in provider whose keys are in the environment."""
     found = {
-        "google": (env("GOOGLE_CLIENT_ID"), env("GOOGLE_CLIENT_SECRET")),
-        "github": (env("GH_OAUTH_CLIENT_ID"), env("GH_OAUTH_CLIENT_SECRET")),
-        "discord": (env("DISCORD_CLIENT_ID"), env("DISCORD_CLIENT_SECRET")),
+        "google": keys_for("google", "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GOOGLE_KEYS"),
+        "github": keys_for("github", "GH_OAUTH_CLIENT_ID", "GH_OAUTH_CLIENT_SECRET", "GIT_KEYS"),
+        "discord": keys_for("discord", "DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET", "DISCORD_KEYS"),
         "apple": (env("APPLE_SERVICES_ID"), apple_secret()),
     }
     settings = {}
     for name, (client_id, secret) in found.items():
+        if bool(client_id) != bool(secret):
+            log(f"{name}: found the {'client ID' if client_id else 'secret'} but not the other one, skipped")
         if client_id and secret:
             settings.update(
                 {
