@@ -31,6 +31,5 @@
     "\"bundleIdentifier\" \"versions\" \"iconURL\" \"apps\" extension:json"
   ],
   "max_repos_per_topic": 100,
-  "max_files_per_repo": 12,
-  "forget_after_days": 30
+  "max_files_per_repo": 12
 }

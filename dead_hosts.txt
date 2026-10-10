@@ -1,6 +1,6 @@
-# Download hosts whose links are known not to work, checked by hand. Every version hosted on
-# one of these is dropped on the next build, instead of waiting out the link checker's grace
-# period. Apps fall back to an older working version or another source when there is one.
-# One host per line; remove a line when the host works again.
+# Download hosts confirmed broken by hand. Their links are still tested on every build, but a
+# failing link is dropped at the first failed check, without the extra check a whole-host
+# failure normally gets. As soon as a link works again it is reinstated automatically.
+# One host per line.
 
 appstore.sidelix.vip  # 2026-10-10: every link (265) returns 404; confirmed by a user report

@@ -78,9 +78,13 @@ On older devices, or if the full list loads slowly, use Accretion Core.
 - **No dead links.** Every download link is tested with each build, every 6 hours. A version
   whose file returns 404/410 is dropped at once and the app falls back to an older working
   version or another source; if a whole host fails at once it gets one more check first. Hosts
-  confirmed broken by hand go in `dead_hosts.txt`. An app with no working download left is
-  hidden, and its page (and any old link to it) shows the closest apps that do work.
-- **Resilient.** If a source is down, its last good copy is used until it comes back.
+  confirmed broken by hand go in `dead_hosts.txt` and skip that extra check. Every dropped link
+  is retested on each build and the version comes back as soon as it works. An app with no
+  working download left is hidden, and its page (and any old link to it) shows the closest apps
+  that do work.
+- **Nothing is dropped for good.** A source that goes down is retried on every build, with its
+  last good copy used meanwhile, and is back in full as soon as it answers. Dropped download
+  links are retested every build too and reinstated the moment they work.
 - **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
   is tested before it is used.
 - **Transparent.** [`REPORT.md`](REPORT.md) shows every source's status, how many apps it gave,
@@ -98,8 +102,8 @@ discovered ──┘       ▲
 
 | Schedule | Workflow | What it does |
 |---|---|---|
-| Every 6 hours | [`build.yml`](.github/workflows/build.yml) | Fetches all sources and publishes |
-| Daily | [`links.yml`](.github/workflows/links.yml) | Tests download links, then publishes |
+| Every 6 hours | [`build.yml`](.github/workflows/build.yml) | Fetches all sources, tests every download link, publishes |
+| On demand | [`links.yml`](.github/workflows/links.yml) | Tests download links right away, then publishes |
 | Weekly | [`discover.yml`](.github/workflows/discover.yml) | Finds new sources, then publishes |
 | Every PR | [`ci.yml`](.github/workflows/ci.yml) | Lint, unit tests, validation of the published files |
 
@@ -110,7 +114,7 @@ All three publishing workflows run the same pipeline
 |---|---|---|
 | `sources.txt` | yes | Hand-picked sources. These make up the curated link and win ties. |
 | `blocklist.txt` | yes | URLs or URL fragments that are never used |
-| `dead_hosts.txt` | yes | Download hosts known to be broken; their links are dropped |
+| `dead_hosts.txt` | yes | Download hosts confirmed broken: links drop at the first failure (still retested) |
 | `discover.json` | yes | Where discovery looks: link lists, GitHub repos and topics |
 | `discovered.txt` | no | Sources found automatically |
 | `dead_links.json` | no | Download links that stopped working |

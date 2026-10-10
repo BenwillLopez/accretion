@@ -6,11 +6,11 @@ Candidates come from:
   * GitHub code search (only when GH_SEARCH_TOKEN, a personal token, is set)
 
 Every candidate is downloaded and kept only if it is a real source. Results
-are remembered in discovered.json; a source that stops working is dropped
-after `forget_after_days`.
+are remembered in discovered.json. A source that stops working is never dropped:
+it stays in discovered.txt, merge.py retries it on every build (using its last good
+copy meanwhile), and it is back in full as soon as it answers again.
 """
 
-import datetime as dt
 import hashlib
 import json
 import os
@@ -235,7 +235,6 @@ def main():
         results = dict(ex.map(check, sorted(candidates)))
 
     now = today().isoformat()
-    forget = (today() - dt.timedelta(days=CONFIG.get("forget_after_days", 30))).isoformat()
     # fingerprints of sources already covered, so mirrors and short links are not added twice
     seen_finals, seen_prints = set(manual), set()
     new_state = {}
@@ -248,26 +247,32 @@ def main():
                 continue
             seen_finals.add(r["final_url"])
             seen_prints.add(r["fingerprint"])
-            new_state[u] = {
+            new_state[u] = {  # working (again): no down_since
                 "name": r["name"],
                 "apps": r["apps"],
                 "size": r["size"],
                 "first_seen": old.get("first_seen", now),
                 "last_ok": now,
             }
-        elif old and old.get("last_ok", "") >= forget:
-            new_state[u] = {**old, "last_error": r["error"]}
+        elif old:  # down: keep it and keep retrying until it works again
+            new_state[u] = {**old, "last_error": r["error"], "down_since": old.get("down_since", now)}
 
     with open(path("discovered.json"), "w") as f:
         json.dump(dict(sorted(new_state.items())), f, indent=1, ensure_ascii=False)
     with open(path("discovered.txt"), "w") as f:
         f.write("# Written by discover.py. Edit sources.txt or blocklist.txt instead.\n")
         for u in sorted(new_state):
-            f.write(f"{u}  # {new_state[u]['name'][:50]} ({new_state[u]['apps']} apps)\n")
+            st = new_state[u]
+            down = f", down since {st['down_since']}" if st.get("down_since") else ""
+            f.write(f"{u}  # {st['name'][:50]} ({st['apps']} apps{down})\n")
 
     added = [u for u in new_state if u not in state]
-    dropped = [u for u in state if u not in new_state]
-    log(f"\n{len(new_state)} discovered sources ({len(added)} new, {len(dropped)} dropped)")
+    dropped = [u for u in state if u not in new_state]  # only mirrors of a source already listed
+    down = [u for u in new_state if new_state[u].get("down_since")]
+    log(
+        f"\n{len(new_state)} discovered sources ({len(added)} new, {len(down)} down and retried, "
+        f"{len(dropped)} merged as mirrors)"
+    )
     for u in added:
         log(f"  + {u}")
     for u in dropped:

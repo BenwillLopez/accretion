@@ -7,7 +7,11 @@ version as soon as its link is dead, and the app falls back to an older working 
 another source; a link that works again comes back on the next build.
 
 When nearly every link on one host fails at once, the host may just be briefly down, so
-those links are marked host_wide and get one more check before they are dropped.
+those links are marked host_wide and get one more check before they are dropped, unless the
+host is listed in dead_hosts.txt (confirmed broken by hand).
+
+Dropped links are never forgotten: they stay in dead_links.json, are tested again on every
+build, and the version is reinstated as soon as its link works.
 """
 
 import json
@@ -18,7 +22,7 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
-from common import USER_AGENT, load_json, path, today
+from common import USER_AGENT, load_json, path, read_list, today
 
 DEAD_AFTER = 1
 DEAD_AFTER_HOST_WIDE = 2
@@ -85,10 +89,11 @@ def main():
         h = per_host.setdefault(host(url), [0, 0])
         h[0] += 1
         h[1] += s == "dead"
+    confirmed = {h.lower() for h in read_list("dead_hosts.txt")}  # broken by hand: no extra check
     host_wide = {
         h
         for h, (total, dead) in per_host.items()
-        if dead >= HOST_WIDE_MIN_LINKS and dead / total >= HOST_WIDE_SHARE
+        if dead >= HOST_WIDE_MIN_LINKS and dead / total >= HOST_WIDE_SHARE and h not in confirmed
     }
 
     new_state = {}

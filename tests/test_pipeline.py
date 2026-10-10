@@ -52,19 +52,6 @@ class VersionOrdering(unittest.TestCase):
         self.assertEqual(date_key("2024-03-05T10:20:30Z"), "2024-03-05T10:20:30")
         self.assertEqual(date_key("March 5"), "")
 
-    def test_dead_hosts_drop_every_link_on_them(self):
-        raw = {
-            "versions": [
-                {"version": "2.0", "downloadURL": "https://appstore.sidelix.vip/download-repo-source/1"},
-                {"version": "1.0", "downloadURL": "https://github.com/a/b/releases/download/1.0/x.ipa"},
-            ]
-        }
-        dead = merge.DeadLinks((), ["AppStore.Sidelix.vip"])
-        self.assertEqual([v["version"] for v in merge.versions_of(raw, dead)], ["1.0"])
-        dead = merge.DeadLinks(["https://github.com/a/b/releases/download/1.0/x.ipa"], [])
-        self.assertEqual([v["version"] for v in merge.versions_of(raw, dead)], ["2.0"])
-        self.assertEqual(len(dead), 1)
-
     def test_apps_with_only_dead_links_are_recorded_as_gone(self):
         def src(url, link):
             app = {
@@ -76,7 +63,7 @@ class VersionOrdering(unittest.TestCase):
             }
             return url, {"name": "S", "apps": [app]}, "ok", 0
 
-        dead = merge.DeadLinks((), ["dead.io"])
+        dead = {"https://dead.io/x.ipa"}
         gone = {}
         best, *_ = merge.pick([src("a", "https://dead.io/x.ipa")], dead, gone)
         self.assertNotIn("com.lost.app", best)
@@ -183,6 +170,51 @@ class LinkChecks(unittest.TestCase):
         self.assertEqual(check_links.dead_after({"fails": 1}), check_links.DEAD_AFTER)
         self.assertEqual(check_links.dead_after({"host_wide": True}), check_links.DEAD_AFTER_HOST_WIDE)
         self.assertGreater(check_links.DEAD_AFTER_HOST_WIDE, check_links.DEAD_AFTER)
+
+    def run_check(self, source_urls, state, results, dead_hosts=()):
+        import tempfile
+        from unittest import mock
+
+        import check_links
+
+        source = {"apps": [{"versions": [{"downloadURL": u} for u in source_urls]}]}
+        files = {"source.json": source, "dead_links.json": state}
+        with (
+            tempfile.TemporaryDirectory() as tmp,
+            mock.patch.multiple(
+                check_links,
+                load_json=lambda name, default: files.get(name, default),
+                read_list=lambda name: list(dead_hosts) if name == "dead_hosts.txt" else [],
+                path=lambda name: os.path.join(tmp, name),
+                check=lambda url: (url, results[url]),
+            ),
+        ):
+            check_links.main()
+            with open(os.path.join(tmp, "dead_links.json")) as f:
+                return json.load(f)
+
+    def test_dropped_links_are_retested_until_they_work(self):
+        old = {"fails": 3, "first": "2026-10-01", "last": "2026-10-09"}
+        state = {"https://a.io/back.ipa": old, "https://a.io/still.ipa": old, "https://a.io/flaky.ipa": old}
+        out = self.run_check(
+            ["https://a.io/ok.ipa"],  # dropped links are no longer in source.json, still retested
+            state,
+            {
+                "https://a.io/ok.ipa": "alive",
+                "https://a.io/back.ipa": "alive",
+                "https://a.io/still.ipa": "dead",
+                "https://a.io/flaky.ipa": "unknown",
+            },
+        )
+        self.assertNotIn("https://a.io/back.ipa", out)  # works again: reinstated on this build
+        self.assertEqual(out["https://a.io/still.ipa"]["fails"], 4)  # still broken: kept, retried
+        self.assertEqual(out["https://a.io/flaky.ipa"], old)  # no clear answer: unchanged
+
+    def test_confirmed_dead_hosts_skip_the_host_wide_grace(self):
+        urls = [f"https://{h}/{i}.ipa" for h in ("down.io", "gone.io") for i in range(60)]
+        out = self.run_check(urls, {}, dict.fromkeys(urls, "dead"), dead_hosts=["Gone.io"])
+        self.assertTrue(out["https://down.io/0.ipa"]["host_wide"])  # one more check first
+        self.assertFalse(out["https://gone.io/0.ipa"]["host_wide"])  # confirmed: dropped now
 
 
 class Growth(unittest.TestCase):
@@ -556,6 +588,44 @@ class Discovery(unittest.TestCase):
             discover.urls_in_text(text),
             {"https://example.com/a.json", "https://b.example/b.json", "https://c.example/c.json"},
         )
+
+    def test_down_sources_are_kept_and_retried_until_they_work(self):
+        import tempfile
+        from unittest import mock
+
+        ok = {"ok": True, "name": "Up", "apps": 3, "final_url": "u", "fingerprint": "f1", "size": 9}
+        back = {**ok, "name": "Back", "final_url": "b", "fingerprint": "f2"}
+        down = {"ok": False, "error": "HTTPError: 404"}
+        long_ago = {"name": "Old", "apps": 5, "size": 1, "first_seen": "2025-01-01", "last_ok": "2025-01-02"}
+        state = {
+            "https://up.io/s.json": {**long_ago, "name": "Up"},
+            "https://down.io/s.json": long_ago,  # down for months: still kept
+            "https://back.io/s.json": {**long_ago, "down_since": "2026-01-01"},
+        }
+        results = {"https://up.io/s.json": ok, "https://down.io/s.json": down, "https://back.io/s.json": back}
+        with (
+            tempfile.TemporaryDirectory() as tmp,
+            mock.patch.multiple(
+                discover,
+                load_json=lambda name, default: state if name == "discovered.json" else default,
+                read_list=lambda name: [],
+                from_pages=lambda: set(),
+                from_github=lambda: set(),
+                check=lambda url: (url, results[url]),
+                path=lambda name: os.path.join(tmp, name),
+                log=lambda *a: None,
+            ),
+        ):
+            discover.main()
+            with open(os.path.join(tmp, "discovered.json")) as f:
+                out = json.load(f)
+            with open(os.path.join(tmp, "discovered.txt")) as f:
+                listed = f.read()
+        self.assertIn("https://down.io/s.json", out)
+        self.assertTrue(out["https://down.io/s.json"]["down_since"])
+        self.assertIn("https://down.io/s.json", listed)  # merge keeps retrying it every build
+        self.assertNotIn("down_since", out["https://back.io/s.json"])  # working again: reinstated
+        self.assertEqual(out["https://back.io/s.json"]["name"], "Back")
 
 
 if __name__ == "__main__":
