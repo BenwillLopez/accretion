@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-10 09:50 UTC.
+Built 2026-10-10 10:34 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **8750** (10019 KB) |
+| Apps in `source.json` | **8749** (10016 KB) |
 | Apps in `curated.json` | **1657** (1271 KB) |
-| Listings read | 30011 |
+| Listings read | 30010 |
 | Apps listed by more than one source (newest kept) | 2232 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 287 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -47,7 +47,6 @@ Built 2026-10-10 09:50 UTC.
 | [Sideloading Hub](https://raw.githubusercontent.com/SimoGHcoder/iosrepo/main/apps.json) | ok | 7 | 1 | 0 | 2026-10-09 | discovered |
 | [ARMSX2 iOS](https://raw.githubusercontent.com/RipeStore/repos/main/armsx2.json) | ok | 2 | 1 | 0 | 2026-10-08 | discovered |
 | [Resonance Team](https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/ResonanceTeamRepo.json) | ok | 2 | 1 | 0 | 2024-08-27 | discovered |
-| [OpenAni](https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps.json) | ok | 2 | 1 | 0 | 2026-10-09 | discovered |
 | [Toshiaki Shirakura](https://polymorph-distribution.netlify.app/source.json) | ok | 1 | 1 | 0 | 2025-12-18 | discovered |
 | [BatSign Source](https://raw.githubusercontent.com/8yy/BatSign/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-09-25 | discovered |
 | [Apollo for Reddit](https://raw.githubusercontent.com/Balackburn/Apollo/refs/heads/main/apps.json) | ok | 1 | 1 | 0 | 2026-10-09 | curated |
@@ -75,7 +74,7 @@ Built 2026-10-10 09:50 UTC.
 | [SignOs Repository](https://raw.githubusercontent.com/ihateios/SignOs/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-09-06 | discovered |
 | [Scan2WA Source](https://raw.githubusercontent.com/ilyassbourass/Scan2WA/main/apps.json) | ok | 1 | 1 | 0 | 2026-09-26 | discovered |
 | [ScanKit Source](https://raw.githubusercontent.com/jorgepb96/scankit/main/source.json) | ok | 1 | 1 | 0 | 2026-06-07 | discovered |
-| [OpenAni](https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps-old.json) | ok | 1 | 1 | 0 | 2026-02-26 | discovered |
+| [OpenAni (Legacy)](https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps-old.json) | ok | 1 | 1 | 0 | 2026-02-26 | discovered |
 | [Dayline](https://raw.githubusercontent.com/nirobhaq/dayline-store/main/store.json) | ok | 1 | 1 | 0 | 2026-10-09 | discovered |
 | [My Source](https://raw.githubusercontent.com/noah978/AltStore-Docs/master/apps.json) | ok | 1 | 1 | 0 | 2020-04-21 | discovered |
 | [4Walls Source](https://raw.githubusercontent.com/run2u006-hue/4WALLS-AltStore/main/source.json) | ok | 1 | 1 | 0 | 2026-05-17 | discovered |
@@ -149,6 +148,7 @@ Built 2026-10-10 09:50 UTC.
 | [Feather Repository](https://raw.githubusercontent.com/khcrysalis/Feather/main/app-repo.json) | ok | 1 | 0 | 0 | 2026-07-05 | curated |
 | [lo.cafe Repository](https://raw.githubusercontent.com/lo-cafe/winston-altstore/main/apps.json) | ok | 1 | 0 | 0 | 2024-06-24 | curated |
 | [iSH](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/iSH%20AltStore%20Repo/source.json) | ok | 1 | 0 | 0 | 2025-08-30 | discovered |
+| [OpenAni](https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps.json) | ok | 1 | 0 | 0 | 2026-09-26 | discovered |
 | [TumoCompanion](https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/apps.json) | ok | 1 | 0 | 0 | 2026-10-03 | discovered |
 | [轻松签源](https://repos.gabrx.eu.org/esign.json) | ok | 1 | 0 | 0 | 2024-01-28 | curated |
 | [Taurine](https://taurine.app/altstore/taurinestore.json) | ok | 1 | 0 | 0 | 2023-08-23 | discovered |
