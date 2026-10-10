@@ -1,13 +1,13 @@
 # Source report
 
-Built 2026-10-10 07:28 UTC.
+Built 2026-10-10 09:26 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **8750** (10019 KB) |
 | Apps in `curated.json` | **1657** (1271 KB) |
-| Listings read | 30010 |
-| Apps listed by more than one source (newest kept) | 2231 |
+| Listings read | 30011 |
+| Apps listed by more than one source (newest kept) | 2232 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 287 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links removed | 0 |
@@ -89,8 +89,8 @@ Built 2026-10-10 07:28 UTC.
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
 | [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | curated |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 0 | 0 | 2026-10-10 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 155 | 0 | 0 | 2026-10-09 | discovered |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 113 | 0 | 3 | 2024-11-17 | discovered |
 | [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 35 | 0 | 0 | 2025-05-20 | discovered |
 | [SideStore Team Picks](https://community-apps.sidestore.io/sidecommunity.json) | ok | 23 | 0 | 0 | 2025-02-28 | curated |
