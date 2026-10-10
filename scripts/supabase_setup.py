@@ -118,6 +118,26 @@ def anon_key(ref):
     raise SystemExit("Couldn't find the project's anon/publishable key")
 
 
+def check_public_api(url, key, attempts=10):
+    """Read the public views the way the website does, to prove the setup works end to end."""
+    for view in ("app_stats", "post_feed", "profile_stats"):
+        req = urllib.request.Request(
+            f"{url}/rest/v1/{view}?select=*&limit=1",
+            headers={"apikey": key, "Authorization": f"Bearer {key}", "User-Agent": "accretion-setup"},
+        )
+        for attempt in range(attempts):
+            try:
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    json.loads(r.read() or b"[]")
+                    log(f"Public read OK: {view}")
+                    break
+            except urllib.error.HTTPError as e:
+                detail = e.read().decode("utf-8", "replace")[:300]
+                if attempt == attempts - 1:
+                    raise SystemExit(f"The website couldn't read {view} ({e.code}): {detail}") from None
+                time.sleep(6)  # the API can take a moment to see new tables
+
+
 def main():
     if not TOKEN:
         raise SystemExit(
@@ -145,6 +165,7 @@ def main():
         json.dump({"url": url, "anonKey": key}, f, indent=1)
         f.write("\n")
     log(f"Saved public settings for {url}")
+    check_public_api(url, key)
 
     if ADMIN:
         if not re.fullmatch(r"[A-Za-z0-9_]{3,20}", ADMIN):

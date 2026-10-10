@@ -337,6 +337,7 @@ class SupabaseSetup(unittest.TestCase):
             mock.patch.object(setup, "ADMIN", admin),
             mock.patch.object(setup, "path", lambda n: os.path.join(tmp, n)),
             mock.patch.object(setup.time, "sleep", lambda s: None),
+            mock.patch.object(setup, "check_public_api", lambda url, key: calls.append(("CHECK", url, key))),
         ):
             setup.main()
         with open(os.path.join(tmp, "supabase", "project.json")) as f:
