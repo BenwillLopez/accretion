@@ -125,6 +125,11 @@ python -m unittest discover -s tests
 Optional: adding a fine-grained, read-only GitHub token as the `GH_SEARCH_TOKEN` Actions secret
 turns on GitHub code search during discovery, which finds sources in repos that have no topic tags.
 
+## Maintainer
+
+Maintained by **Benwill López**: [GitHub](https://github.com/BenwillLopez) ·
+[iOSGods](https://iosgods.com/profile/146384-xxtototroniikxx/).
+
 ## License
 
 The code is under the [MIT](LICENSE) license. App listings, icons and files belong to their
