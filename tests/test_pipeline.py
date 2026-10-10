@@ -265,7 +265,7 @@ class LinkChecks(unittest.TestCase):
         self.assertEqual(check_links.dead_after({"host_wide": True}), check_links.DEAD_AFTER_HOST_WIDE)
         self.assertGreater(check_links.DEAD_AFTER_HOST_WIDE, check_links.DEAD_AFTER)
 
-    def run_check(self, source_urls, state, results, dead_hosts=()):
+    def run_check(self, source_urls, state, results, dead_hosts=(), curated=None):
         import tempfile
         from unittest import mock
 
@@ -273,6 +273,8 @@ class LinkChecks(unittest.TestCase):
 
         source = {"apps": [{"versions": [{"downloadURL": u} for u in source_urls]}]}
         files = {"source.json": source, "dead_links.json": state}
+        if curated is not None:
+            files["curated.json"] = curated
         with (
             tempfile.TemporaryDirectory() as tmp,
             mock.patch.multiple(
@@ -303,6 +305,28 @@ class LinkChecks(unittest.TestCase):
         self.assertNotIn("https://a.io/back.ipa", out)  # works again: reinstated on this build
         self.assertEqual(out["https://a.io/still.ipa"]["fails"], 4)  # still broken: kept, retried
         self.assertEqual(out["https://a.io/flaky.ipa"], old)  # no clear answer: unchanged
+
+    def test_core_list_links_and_icons_are_checked_too(self):
+        core = {
+            "apps": [
+                {
+                    "iconURL": "https://gone.io/icon.png",
+                    "versions": [{"downloadURL": "https://gone.io/a.ipa"}],
+                }
+            ]
+        }
+        out = self.run_check(
+            ["https://ok.io/x.ipa"],
+            {},
+            {
+                "https://ok.io/x.ipa": "alive",
+                "https://gone.io/icon.png": "dead",
+                "https://gone.io/a.ipa": "dead",
+            },
+            curated=core,
+        )
+        self.assertIn("https://gone.io/icon.png", out)
+        self.assertIn("https://gone.io/a.ipa", out)
 
     def test_confirmed_dead_hosts_skip_the_host_wide_grace(self):
         urls = [f"https://{h}/{i}.ipa" for h in ("down.io", "gone.io") for i in range(60)]

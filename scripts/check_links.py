@@ -95,8 +95,10 @@ def main():
     if not source:
         sys.exit("source.json not built yet")
     state = load_json("dead_links.json", {})
-    downloads = {v["downloadURL"] for a in source["apps"] for v in a.get("versions", [])}
-    icons = {a["iconURL"] for a in source["apps"] if a.get("iconURL")}  # merge.py swaps dead icons
+    # both published lists: Accretion Core can pick a different copy of an app than the full list
+    apps = source["apps"] + load_json("curated.json", {"apps": []})["apps"]
+    downloads = {v["downloadURL"] for a in apps for v in a.get("versions", [])}
+    icons = {a["iconURL"] for a in apps if a.get("iconURL")}  # merge.py swaps dead icons
     urls = sorted(downloads | icons | set(state))
     now = today().isoformat()
     counts = {"alive": 0, "dead": 0, "unknown": 0}
@@ -133,7 +135,7 @@ def main():
 
     # upload days for versions whose source gives a placeholder date (see sanitize.real_date)
     dates = load_json("link_dates.json", {})
-    for a in source["apps"]:
+    for a in apps:
         for v in a.get("versions", []):
             if not plausible_day(v.get("date")):
                 dates.setdefault(v["downloadURL"], {})
