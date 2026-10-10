@@ -177,18 +177,78 @@ def clean_version(v):
     return out
 
 
-def screenshots(app):
-    raw = app.get("screenshots")
-    if isinstance(raw, dict):  # {"iphone": [...], "ipad": [...]}
-        raw = raw.get("iphone") or next(iter(raw.values()), [])
-    if not isinstance(raw, list):
-        raw = app.get("screenshotURLs") or []
-    urls = []
+def _shots(raw, need_size=False):
+    """A spec list of screenshots: plain https URLs, or {imageURL, width, height} objects."""
+    out, seen = [], set()
     for s in raw if isinstance(raw, list) else []:
-        u = https(s.get("imageURL") if isinstance(s, dict) else s)
-        if u and u not in urls:
-            urls.append(u)
-    return urls[:MAX_SCREENSHOTS]
+        if isinstance(s, dict):
+            url, w, h = https(s.get("imageURL")), to_int(s.get("width")), to_int(s.get("height"))
+            item = {"imageURL": url, "width": w, "height": h} if url and w and h else url
+        else:
+            url = item = https(s)
+        if not url or url in seen or (need_size and not isinstance(item, dict)):
+            continue  # iPad screenshots must state their size
+        seen.add(url)
+        out.append(item)
+    return out[:MAX_SCREENSHOTS]
+
+
+def screenshots(app):
+    """Screenshots in the current format: a list, or {"iphone": [...], "ipad": [...]}."""
+    raw = app.get("screenshots")
+    if isinstance(raw, dict):
+        iphone, ipad = _shots(raw.get("iphone")), _shots(raw.get("ipad"), need_size=True)
+        if ipad:
+            return {"iphone": iphone, "ipad": ipad} if iphone else {"ipad": ipad}
+        return iphone
+    return _shots(raw if isinstance(raw, list) else app.get("screenshotURLs"))
+
+
+def screenshot_urls(shots):
+    """Flat iPhone URL list for the legacy screenshotURLs field."""
+    items = shots.get("iphone", []) if isinstance(shots, dict) else shots
+    return [s["imageURL"] if isinstance(s, dict) else s for s in items]
+
+
+def permissions(raw):
+    """appPermissions with string entitlements and string privacy descriptions, or None.
+
+    AltStore checks these against the downloaded app and refuses to install on a
+    mismatch, so anything malformed is dropped instead of guessed.
+    """
+    if not isinstance(raw, dict):
+        return None
+    ents = raw.get("entitlements")
+    priv = raw.get("privacy")
+    if isinstance(priv, list):  # some sources write [{"name": key, "usageDescription": text}]
+        priv = {p.get("name"): p.get("usageDescription") for p in priv if isinstance(p, dict)}
+    out = {}
+    if isinstance(ents, list):
+        out["entitlements"] = sorted({e for e in ents if isinstance(e, str) and e})
+    if isinstance(priv, dict):
+        out["privacy"] = {
+            k: text(v, 300) for k, v in priv.items() if isinstance(k, str) and k and isinstance(v, str)
+        }
+    return out or None
+
+
+def skip_reason(app):
+    """Why an app cannot be installed from a merged source, or None if it can.
+
+    - Patreon apps only download for patrons of the original source's campaign.
+    - AltStore PAL listings point at notarized ADP packages, not .ipa files, and
+      cannot install in AltStore Classic, SideStore, the iOSGods App and the like.
+    """
+    if isinstance(app.get("patreon"), dict):
+        return "patreon"
+    if app.get("marketplaceID"):
+        return "pal"
+    for v in app.get("versions") or []:
+        if isinstance(v, dict) and (
+            v.get("assetURLs") or str(v.get("downloadURL", "")).split("?")[0].endswith("manifest.json")
+        ):
+            return "pal"
+    return None
 
 
 def clean_app(app, versions):
@@ -211,15 +271,16 @@ def clean_app(app, versions):
             app.get("category"),
             " ".join(str(app.get(k) or "") for k in ("name", "bundleIdentifier", "subtitle")),
         ),
-        "screenshotURLs": screenshots(app),
+        "screenshots": screenshots(app),
         "versions": vers,
     }
+    out["screenshotURLs"] = screenshot_urls(out["screenshots"])  # for older clients
     if not out["subtitle"]:
         del out["subtitle"]
     if tint(app.get("tintColor")):
         out["tintColor"] = tint(app.get("tintColor"))
-    if isinstance(app.get("appPermissions"), dict):
-        out["appPermissions"] = app["appPermissions"]
+    if permissions(app.get("appPermissions")):
+        out["appPermissions"] = permissions(app.get("appPermissions"))
     if app.get("beta") is True:
         out["beta"] = True
     latest = vers[0]
@@ -240,7 +301,8 @@ def clean_news(item, app_ids):
     out["date"] = iso_date(item.get("date"))
     if not out.get("title") or not out.get("identifier") or not out["date"]:
         return None
-    out["title"], out["caption"] = text(out["title"], 120), text(out.get("caption"), 400)
+    out["title"] = text(out["title"], 120)
+    out["caption"] = text(out.get("caption"), 400) or out["title"]  # caption is required
     for k in ("imageURL", "url"):
         if k in out and not https(out[k]):
             del out[k]
@@ -260,6 +322,18 @@ def validate(source):
     for k in ("name", "identifier", "apps"):
         if not source.get(k):
             errors.append(f"source is missing {k}")
+    if not isinstance(source.get("nsfw"), bool):
+        errors.append("source nsfw must be true or false")
+    if len(source.get("featuredApps", [])) > 5:
+        errors.append("featuredApps lists more than the 5 AltStore shows")
+    news_ids = set()
+    for item in source.get("news", []):
+        for k in ("title", "identifier", "caption", "date"):
+            if not item.get(k):
+                errors.append(f"news {item.get('identifier')}: missing {k}")
+        if item.get("identifier") in news_ids:
+            errors.append(f"news {item.get('identifier')}: duplicate identifier")
+        news_ids.add(item.get("identifier"))
     seen = set()
     for i, a in enumerate(source.get("apps", [])):
         where = f"app {i} ({a.get('bundleIdentifier')})"
@@ -273,6 +347,18 @@ def validate(source):
             errors.append(f"{where}: bad category {a.get('category')!r}")
         if not https(a.get("iconURL")):
             errors.append(f"{where}: iconURL is not https")
+        if skip_reason(a):
+            errors.append(f"{where}: {skip_reason(a)} app cannot install from this source")
+        shots = a.get("screenshots", [])
+        if isinstance(shots, dict):
+            for s in shots.get("ipad", []):
+                if not (isinstance(s, dict) and s.get("width") and s.get("height")):
+                    errors.append(f"{where}: iPad screenshot without width/height")
+        elif not isinstance(shots, list):
+            errors.append(f"{where}: screenshots must be a list or iphone/ipad object")
+        perms = a.get("appPermissions")
+        if perms is not None and permissions(perms) != perms:
+            errors.append(f"{where}: malformed appPermissions")
         vs = a.get("versions") or []
         for v in vs:
             if not https(v.get("downloadURL")):

@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 import discover
 import merge
 from common import date_key, version_key
-from sanitize import category, clean_app, clean_news, https, validate
+from sanitize import category, clean_app, clean_news, https, permissions, screenshots, skip_reason, validate
 
 ICON = "https://example.com/icon.png"
 
@@ -36,8 +36,8 @@ def merged(*sources, dead=frozenset()):
         (f"https://src{i}.example/apps.json", {"name": f"S{i}", "apps": apps}, "ok", 0)
         for i, apps in enumerate(sources)
     ]
-    best, _, _, news = merge.pick(loaded, dead)
-    return merge.build(best, news, merge.OUTPUTS["source.json"])
+    best, _, stats, news = merge.pick(loaded, dead)
+    return merge.build(best, news, merge.OUTPUTS["source.json"], stats)
 
 
 class VersionOrdering(unittest.TestCase):
@@ -181,6 +181,71 @@ class Cards(unittest.TestCase):
                 ET.fromstring(card.stats_card(m, history, theme))
                 ET.fromstring(card.recent_card(m, theme))
         self.assertTrue(out["apps"])
+
+
+class AltStoreSpec(unittest.TestCase):
+    """Rules from https://faq.altstore.io/developers/make-a-source"""
+
+    def test_source_level_fields(self):
+        out = merged([app(bid=f"com.app{i}") for i in range(8)])
+        self.assertIs(out["nsfw"], False)
+        self.assertEqual(len(out["featuredApps"]), 5)
+        self.assertEqual(validate(out), [])
+
+    def test_nsfw_inherited_from_sources(self):
+        loaded = [("https://a/x.json", {"name": "A", "nsfw": True, "apps": [app()]}, "ok", 0)]
+        best, _, stats, news = merge.pick(loaded, frozenset())
+        self.assertIs(merge.build(best, news, merge.OUTPUTS["source.json"], stats)["nsfw"], True)
+
+    def test_patreon_and_pal_apps_are_excluded(self):
+        self.assertEqual(skip_reason(app(patreon={"pledge": 3})), "patreon")
+        self.assertEqual(skip_reason(app(marketplaceID="123")), "pal")
+        pal = app(url="https://x.example/app/manifest.json")
+        self.assertEqual(skip_reason(pal), "pal")
+        self.assertIsNone(skip_reason(app()))
+        out = merged([app(bid="com.paid", patreon={}), app(bid="com.free")])
+        self.assertEqual([a["bundleIdentifier"] for a in out["apps"]], ["com.free"])
+
+    def test_screenshots_current_format(self):
+        shots = screenshots(
+            {
+                "screenshots": {
+                    "iphone": [
+                        "https://x/1.png",
+                        {"imageURL": "https://x/2.png", "width": 2556, "height": 1179},
+                    ],
+                    "ipad": [
+                        {"imageURL": "https://x/3.png"},
+                        {"imageURL": "https://x/4.png", "width": 1, "height": 2},
+                    ],
+                }
+            }
+        )
+        self.assertEqual(shots["iphone"][0], "https://x/1.png")
+        self.assertEqual(shots["ipad"], [{"imageURL": "https://x/4.png", "width": 1, "height": 2}])
+        self.assertEqual(
+            screenshots({"screenshotURLs": ["https://x/a.png", "http://x/b.png"]}), ["https://x/a.png"]
+        )
+        out = clean_app(app(screenshots=["https://x/1.png"]), app()["versions"])
+        self.assertEqual(out["screenshots"], ["https://x/1.png"])
+        self.assertEqual(out["screenshotURLs"], ["https://x/1.png"])
+
+    def test_permissions_are_cleaned_not_guessed(self):
+        self.assertEqual(
+            permissions(
+                {"entitlements": ["b", "a", 3], "privacy": {"NSCameraUsageDescription": "cam", "x": 1}}
+            ),
+            {"entitlements": ["a", "b"], "privacy": {"NSCameraUsageDescription": "cam"}},
+        )
+        self.assertEqual(
+            permissions({"privacy": [{"name": "NSMicrophoneUsageDescription", "usageDescription": "mic"}]}),
+            {"privacy": {"NSMicrophoneUsageDescription": "mic"}},
+        )
+        self.assertIsNone(permissions([{"type": "photos"}]))  # legacy 1.x list: dropped
+
+    def test_news_caption_required(self):
+        item = clean_news({"title": "Hi", "identifier": "n1", "date": "2025-01-01"}, set())
+        self.assertEqual(item["caption"], "Hi")
 
 
 class Discovery(unittest.TestCase):

@@ -29,13 +29,13 @@ from concurrent.futures import ThreadPoolExecutor
 from card import render_cards
 from check_links import dead_after
 from common import date_key, fetch_source, is_blocked, load_json, path, read_list, version_key
-from sanitize import clean_app, clean_news, validate
+from sanitize import clean_app, clean_news, skip_reason, validate
 
 OWNER = "benwilllopez"
 REPO = "accretion"
 RAW = f"https://raw.githubusercontent.com/{OWNER}/{REPO}/main"
 MAX_NEWS = 50
-MAX_FEATURED = 10
+MAX_FEATURED = 5  # AltStore shows the first five
 MAX_BYTES = 30 * 1024 * 1024
 
 SOURCE_INFO = {
@@ -49,7 +49,7 @@ SOURCE_INFO = {
         f"Source list, report and issue tracker: https://github.com/{OWNER}/{REPO}"
     ),
     "iconURL": f"{RAW}/assets/icon.png",
-    "headerURL": f"{RAW}/assets/header.png",
+    "headerURL": f"{RAW}/assets/source-header.png",  # 3:2, as AltStore recommends
     "website": f"https://github.com/{OWNER}/{REPO}",
     "tintColor": "8B5CF6",
 }
@@ -134,13 +134,27 @@ def pick(loaded, dead):
     """Choose the newest clean copy of every app across the loaded sources."""
     best, listings, stats, news, news_ids = {}, {}, [], [], set()
     for priority, (url, data, status, size) in enumerate(loaded):
-        st = {"url": url, "status": status, "size": size, "name": "", "apps": 0, "skipped": 0, "newest": ""}
+        st = {
+            "url": url,
+            "status": status,
+            "size": size,
+            "name": "",
+            "apps": 0,
+            "skipped": 0,
+            "excluded": 0,
+            "newest": "",
+            "nsfw": False,
+        }
         stats.append(st)
         if not data:
             continue
         st["name"] = str(data.get("name") or "")[:60]
+        st["nsfw"] = data.get("nsfw") is True
         for raw in data.get("apps", []):
             if not isinstance(raw, dict):
+                continue
+            if skip_reason(raw):  # Patreon or AltStore PAL: cannot install from here
+                st["excluded"] += 1
                 continue
             app = clean_app(raw, versions_of(raw, dead))
             if not app:
@@ -160,15 +174,19 @@ def pick(loaded, dead):
     return best, listings, stats, news
 
 
-def build(best, news, info):
+def build(best, news, info, stats):
     apps = sorted((b[1] for b in best.values()), key=lambda a: (a["name"].lower(), a["bundleIdentifier"]))
     ids = {a["bundleIdentifier"] for a in apps}
     items = [n for n in (clean_news(n, ids) for n in news) if n]
     items.sort(key=lambda n: date_key(n["date"]), reverse=True)
     featured = sorted(apps, key=lambda a: date_key(a["versionDate"]), reverse=True)[:MAX_FEATURED]
+    # adult content: true if any source that supplied an app says so
+    used = {b[2] for b in best.values()}
+    nsfw = any(s["nsfw"] for s in stats if s["url"] in used)
     return dict(
         SOURCE_INFO,
         **info,
+        nsfw=nsfw,
         featuredApps=[a["bundleIdentifier"] for a in featured],
         apps=apps,
         news=items[:MAX_NEWS],
@@ -209,11 +227,13 @@ def main():
     best, listings, stats, news = pick(loaded, dead)
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
-    cur_best, _, _, cur_news = pick(loaded[: len(manual)], dead)
+    cur_best, _, cur_stats, cur_news = pick(loaded[: len(manual)], dead)
 
     sizes = {
-        "source.json": write_json("source.json", build(best, news, OUTPUTS["source.json"])),
-        "curated.json": write_json("curated.json", build(cur_best, cur_news, OUTPUTS["curated.json"])),
+        "source.json": write_json("source.json", build(best, news, OUTPUTS["source.json"], stats)),
+        "curated.json": write_json(
+            "curated.json", build(cur_best, cur_news, OUTPUTS["curated.json"], cur_stats)
+        ),
     }
     ok = sum(1 for s in stats if not s["status"].startswith("failed"))
     now = dt.datetime.now(dt.timezone.utc)
@@ -262,6 +282,7 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
         "listings": sum(s["apps"] for s in stats),
         "duplicates": sum(1 for v in listings.values() if len(v) > 1),
         "rejected": sum(s["skipped"] for s in stats),
+        "excluded": sum(s["excluded"] for s in stats),
         "dead_links_removed": dead,
         "links_on_hold": held,
         "developers": len({a["developerName"] for a in apps}),
@@ -306,6 +327,7 @@ def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead, 
     cached = [s for s in stats if s["status"].startswith("cached")]
     total = sum(s["apps"] for s in stats)
     skipped = sum(s["skipped"] for s in stats)
+    excluded = sum(s["excluded"] for s in stats)
     multi = sum(1 for v in listings.values() if len(v) > 1)
     L = [
         "# Source report",
@@ -319,6 +341,7 @@ def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead, 
         f"| Listings read | {total} |",
         f"| Apps listed by more than one source (newest kept) | {multi} |",
         f"| Listings skipped (http-only, no icon, no date, bad bundle ID) | {skipped} |",
+        f"| Listings excluded (Patreon-only or AltStore PAL, cannot install here) | {excluded} |",
         f"| Dead download links removed | {dead} |",
         f"| Links on hold (whole host failing, kept for now) | {held} |",
         (
@@ -337,7 +360,7 @@ def write_report(now, stats, best, listings, sizes, curated_apps, manual, dead, 
         name = (s["name"] or s["url"].split("/")[2]).replace("|", "/")
         L.append(
             f"| [{name}]({s['url']}) | {s['status'].split(' (')[0]} | {s['apps']} | "
-            f"{won.get(s['url'], 0)} | {s['skipped']} | {s['newest'][:10]} | "
+            f"{won.get(s['url'], 0)} | {s['skipped'] + s['excluded']} | {s['newest'][:10]} | "
             f"{'curated' if s['url'] in manual else 'discovered'} |"
         )
     if failed or cached:

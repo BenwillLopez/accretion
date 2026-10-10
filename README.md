@@ -51,7 +51,10 @@ On older devices, or if the full list loads slowly, use Accretion Core.
 - **One entry per app, always the newest.** When several sources list the same bundle ID,
   the copy with the highest version number wins. Ties go to the newest release date.
 - **Spec-checked.** Every app is cleaned to the
-  [AltStore source format](https://faq.altstore.io/developers/make-a-source) before publishing.
+  [AltStore source format](https://faq.altstore.io/developers/make-a-source) before publishing:
+  current `screenshots` format (iPad screenshots with sizes), valid `appPermissions`, an accurate
+  `nsfw` flag inherited from the sources, five `featuredApps` and a 3:2 header. Patreon-only and
+  AltStore PAL listings are left out because they cannot install from a merged source.
   The links are https only, the categories, dates and sizes are valid, and the newest version
   comes first. If the result fails validation, nothing is published and the last good version
   stays live.
