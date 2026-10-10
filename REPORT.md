@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-10 11:13 UTC.
+Built 2026-10-10 11:20 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4263** (5075 KB) |
+| Apps in `source.json` | **4263** (5072 KB) |
 | Apps in `curated.json` | **1315** (928 KB) |
-| Listings read | 24483 |
+| Listings read | 24484 |
 | Apps listed by more than one source (newest kept) | 1697 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 5656 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 6635 |
+| Dead download links held back (retested every build) | 6665 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 159: 159 ok, 0 from cache, 0 failed |
 
@@ -81,7 +81,7 @@ Built 2026-10-10 11:13 UTC.
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 922 | 0 | 390 | 2026-10-01 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 156 | 0 | 0 | 2026-10-05 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 106 | 0 | 10 | 2024-11-17 | discovered |
 | [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 33 | 0 | 2 | 2025-05-20 | discovered |
