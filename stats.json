@@ -1,19 +1,19 @@
 {
  "apps": 4257,
- "curated_apps": 841,
+ "curated_apps": 730,
  "sources": 159,
- "updated": "2026-10-10 14:46 UTC",
+ "updated": "2026-10-10 14:51 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-10T14:46:09Z",
+ "built_at": "2026-10-10T14:51:45Z",
  "sources_total": 159,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23741,
- "duplicates": 1679,
- "rejected": 6400,
+ "listings": 23589,
+ "duplicates": 1678,
+ "rejected": 6552,
  "excluded": 57,
- "dead_links_removed": 8247,
+ "dead_links_removed": 8551,
  "links_on_hold": 0,
  "developers": 705,
  "updated_7d": 718,
@@ -23,8 +23,8 @@
   "other": 2106,
   "games": 982,
   "utilities": 332,
-  "photo-video": 320,
-  "entertainment": 212,
+  "photo-video": 319,
+  "entertainment": 213,
   "lifestyle": 127,
   "developer": 109,
   "social": 69
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3358
+   "apps": 3357
   },
   {
    "name": "dsewerek's general apps",
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2251
+   "apps": 2252
   },
   {
    "month": "2025-03",
-   "apps": 2279
+   "apps": 2280
   },
   {
    "month": "2025-04",
-   "apps": 2314
+   "apps": 2315
   },
   {
    "month": "2025-05",
-   "apps": 2367
+   "apps": 2368
   },
   {
    "month": "2025-06",
-   "apps": 2396
+   "apps": 2397
   },
   {
    "month": "2025-07",
-   "apps": 2429
+   "apps": 2430
   },
   {
    "month": "2025-08",
-   "apps": 2515
+   "apps": 2516
   },
   {
    "month": "2025-09",
-   "apps": 2565
+   "apps": 2566
   },
   {
    "month": "2025-10",
-   "apps": 2630
+   "apps": 2631
   },
   {
    "month": "2025-11",
-   "apps": 2692
+   "apps": 2693
   },
   {
    "month": "2025-12",
-   "apps": 2827
+   "apps": 2828
   },
   {
    "month": "2026-01",
-   "apps": 2963
+   "apps": 2964
   },
   {
    "month": "2026-02",
@@ -164,33 +164,33 @@
   },
   {
    "month": "2026-04",
-   "apps": 3510
+   "apps": 3509
   },
   {
    "month": "2026-05",
-   "apps": 3585
+   "apps": 3584
   },
   {
    "month": "2026-06",
-   "apps": 3720
+   "apps": 3719
   },
   {
    "month": "2026-07",
-   "apps": 3834
+   "apps": 3833
   },
   {
    "month": "2026-08",
-   "apps": 3875
+   "apps": 3874
   },
   {
    "month": "2026-09",
-   "apps": 4079
+   "apps": 4078
   },
   {
    "month": "2026-10",
    "apps": 4257
   }
  ],
- "new_30d": 364,
- "new_12m": 1677
+ "new_30d": 365,
+ "new_12m": 1676
 }
