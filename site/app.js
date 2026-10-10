@@ -225,6 +225,41 @@
   // outranking Spotify, while steady demand still climbs the list.
   const popScore = (a) => (a.p || 0) + 4 * Math.sqrt(trendScore(a));
 
+  // ---- closest working apps --------------------------------------------------------
+  // When an app has no working download (or a search finds nothing), point to the apps that
+  // are most likely what the person wanted: same name words, same maker, same category.
+  const NOISE = new Set("the app apps for ios ipa and by mod mods hack hacked tweak tweaked patched beta free premium plus pro lite official unlocked cracked paid edition version new client mobile com org net io www".split(" "));
+  function words(text) {
+    return (text || "")
+      .toLowerCase()
+      .replace(/\(.*?\)|\[.*?\]/g, " ")
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length > 1 && !NOISE.has(w) && !/^v?\d+$/.test(w));
+  }
+  const appWords = (a) => (a._w ||= new Set([...words(a.n), ...words(a.i.replace(/\./g, " "))]));
+  function closest({ name = "", bid = "", dev = "", cat = "" }, n = 6) {
+    const want = [...new Set([...words(name), ...words(bid.replace(/\./g, " "))])];
+    const vendor = bid.split(".").slice(0, 2).join(".").toLowerCase();
+    const scored = [];
+    for (const a of state.apps) {
+      if (a.i === bid) continue;
+      const have = appWords(a);
+      let hit = 0;
+      for (const w of want) {
+        if (have.has(w)) hit += 1;
+        else if (w.length >= 4 && [...have].some((x) => x.length >= 4 && (x.startsWith(w) || w.startsWith(x)))) hit += 0.6;
+      }
+      let score = want.length ? (hit / want.length) * 10 : 0;
+      if (vendor.includes(".") && a.i.toLowerCase().startsWith(`${vendor}.`)) score += 4;
+      if (dev && a.d === dev) score += 2;
+      if (cat && a.c === cat && cat !== "other") score += 1;
+      if (score >= 4) scored.push([score + popScore(a) / 8, a]); // popular apps first among equals
+    }
+    return scored.sort((x, y) => y[0] - x[0]).slice(0, n).map((x) => x[1]);
+  }
+  let goneData;
+  const loadGone = () => (goneData ||= fetch("data/gone.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})));
+
   // ---- home: shelves + grid -----------------------------------------------------
   const defaultView = (f) => !f.q && f.c === "all" && f.src === null && !f.saved;
 
@@ -295,9 +330,14 @@
     $("more").hidden = state.shown >= state.list.length;
     const empty = $("empty");
     empty.hidden = state.list.length > 0;
+    const near = !state.list.length && f.q && !f.saved ? closest({ name: f.q }) : [];
+    $("closest").hidden = !near.length;
+    $("closest").replaceChildren(near.length ? shelf("Closest matches", "apps that work", near, null) : "");
     empty.textContent = f.saved
       ? "Nothing saved yet. Open any app and tap Save to get a heads-up when it updates."
-      : "No apps match. Try a shorter word, another category, or turn off the iOS filter.";
+      : near.length
+        ? `Nothing named "${f.q}". These are the closest apps that work:`
+        : "No apps match. Try a shorter word, another category, or turn off the iOS filter.";
     const note = $("filter-note");
     const hidden = f.fit && deviceIOS ? state.apps.filter((a) => !fits(a)).length : 0;
     note.hidden = !(f.src !== null || hidden);
@@ -444,7 +484,26 @@
     window.scrollTo(0, 0);
     const back = h("a", { class: "btn back", href: homeHash(state.f.view ? state.f : { q: "", c: "all", s: "updated", src: null, fit: Boolean(deviceIOS) }) }, "← Back");
     if (!a) {
-      view.replaceChildren(back, h("p", { class: "empty" }, "This app isn't in the source anymore. It may have been removed or renamed."));
+      view.replaceChildren(back, h("p", { class: "muted" }, "Looking for the closest working app…"));
+      const g = (await loadGone())[bid];
+      if (parse().bid !== bid) return;
+      const near = closest({ name: g ? g.n : "", bid, dev: g ? g.d : "", cat: g ? g.c : "" }, 8);
+      if (g) track("miss", null, g.n);
+      document.title = `${g ? g.n : "App"} unavailable · Accretion`;
+      view.replaceChildren(
+        back,
+        h(
+          "section",
+          { class: "gone" },
+          g ? icon(g.ic, g.n, "icon d-icon") : null,
+          h("div", {},
+            h("h1", { class: "d-name" }, g ? g.n : "App not found"),
+            h("p", { class: "muted" }, g
+              ? "Every download link for this app is broken right now, so it's hidden until a source fixes it. These are the closest apps that work:"
+              : "This app isn't in Accretion anymore. These are the closest apps that work:")),
+        ),
+        shelf(near.length ? "Closest working apps" : "", null, near, null) || h("p", { class: "empty" }, "Nothing close yet. Try searching for it."),
+      );
       return;
     }
     document.title = `${a.n} · Accretion`;

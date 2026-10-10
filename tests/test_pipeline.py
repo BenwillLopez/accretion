@@ -65,6 +65,29 @@ class VersionOrdering(unittest.TestCase):
         self.assertEqual([v["version"] for v in merge.versions_of(raw, dead)], ["2.0"])
         self.assertEqual(len(dead), 1)
 
+    def test_apps_with_only_dead_links_are_recorded_as_gone(self):
+        def src(url, link):
+            app = {
+                "name": "Lost App",
+                "bundleIdentifier": "com.lost.app",
+                "developerName": "Dev",
+                "iconURL": "https://x.io/i.png",
+                "versions": [{"version": "1.0", "date": "2026-01-01", "downloadURL": link, "size": 10}],
+            }
+            return url, {"name": "S", "apps": [app]}, "ok", 0
+
+        dead = merge.DeadLinks((), ["dead.io"])
+        gone = {}
+        best, *_ = merge.pick([src("a", "https://dead.io/x.ipa")], dead, gone)
+        self.assertNotIn("com.lost.app", best)
+        self.assertEqual(gone["com.lost.app"]["n"], "Lost App")
+        gone = {}
+        best, *_ = merge.pick(
+            [src("a", "https://dead.io/x.ipa"), src("b", "https://ok.io/x.ipa")], dead, gone
+        )
+        self.assertIn("com.lost.app", best)  # a working copy elsewhere wins
+        self.assertEqual(gone, {})
+
     def test_versions_of_reads_legacy_and_v2(self):
         raw = {
             "version": "1.0",

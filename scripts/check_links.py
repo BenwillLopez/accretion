@@ -1,13 +1,13 @@
 """Find download links in source.json that no longer work.
 
-A link counts as dead only on a clear answer: HTTP 404/410, or a host that no
-longer exists. Timeouts, 403s and server errors are ignored, because they are
-often temporary or caused by bot protection. merge.py drops a version once its
-link has been dead on dead_after() checks in a row.
+Runs with every build (every 6 hours). A link counts as dead only on a clear answer:
+HTTP 404/410, or a host that no longer exists. Timeouts, 403s and server errors are
+ignored, because they are often temporary or caused by bot protection. merge.py drops a
+version as soon as its link is dead, and the app falls back to an older working version or
+another source; a link that works again comes back on the next build.
 
-When nearly every link on one host fails at once, the host is more likely
-blocking automated checks or briefly down than missing every file, so those
-links are marked host_wide and get a much longer grace period.
+When nearly every link on one host fails at once, the host may just be briefly down, so
+those links are marked host_wide and get one more check before they are dropped.
 """
 
 import json
@@ -20,8 +20,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 from common import USER_AGENT, load_json, path, today
 
-DEAD_AFTER = 2
-DEAD_AFTER_HOST_WIDE = 7
+DEAD_AFTER = 1
+DEAD_AFTER_HOST_WIDE = 2
 HOST_WIDE_MIN_LINKS = 50
 HOST_WIDE_SHARE = 0.9
 DEAD_STATUS = {404, 410}

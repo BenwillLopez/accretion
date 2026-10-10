@@ -48,20 +48,33 @@ def screenshot_urls(app):
 SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9.\-_]*$")
 
 
-def share_pages(apps):
-    """One small page per app so shared links show a name, icon and description."""
+def share_pages(apps, gone=None):
+    """One small page per app so shared links show a name, icon and description. Apps with no
+    working download left (gone) keep a page that opens the store's closest matches."""
+    for bid, g in (gone or {}).items():
+        if SAFE_ID.match(bid):
+            write_share_page(
+                bid,
+                f"{g['n']} (unavailable)",
+                "No working download right now. Open to see the closest apps that work.",
+                g["ic"],
+                g["n"],
+            )
     for a in apps:
         bid = a["bundleIdentifier"]
         if not SAFE_ID.match(bid):
             continue
         latest = a["versions"][0]
-        title = html.escape(f"{a['name']} {latest['version']}")
-        desc = html.escape(
-            (a.get("subtitle") or a.get("localizedDescription") or "")[:180].replace("\n", " ")
-        )
-        icon = html.escape(a["iconURL"])
-        target = f"../../#/app/{bid}"
-        page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+        desc = (a.get("subtitle") or a.get("localizedDescription") or "")[:180].replace("\n", " ")
+        write_share_page(bid, f"{a['name']} {latest['version']}", desc, a["iconURL"], a["name"])
+
+
+def write_share_page(bid, title, desc, icon, name):
+    title = html.escape(title)
+    desc = html.escape(desc)
+    icon = html.escape(icon)
+    target = f"../../#/app/{bid}"
+    page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · Accretion</title>
 <meta name="description" content="{desc}">
@@ -75,13 +88,13 @@ def share_pages(apps):
 <link rel="icon" href="../../icon-192.png">
 </head><body style="background:#07070D;color:#ECEAFF;font-family:system-ui,sans-serif;padding:24px">
 <script>location.replace({json.dumps(target)})</script>
-<p><a style="color:#22D3EE" href="{target}">Open {html.escape(a["name"])} in Accretion</a></p>
+<p><a style="color:#22D3EE" href="{target}">Open {html.escape(name)} in Accretion</a></p>
 </body></html>
 """
-        folder = os.path.join(OUT, "app", bid)
-        os.makedirs(folder, exist_ok=True)
-        with open(os.path.join(folder, "index.html"), "w") as f:
-            f.write(page)
+    folder = os.path.join(OUT, "app", bid)
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, "index.html"), "w") as f:
+        f.write(page)
 
 
 def sitemap(site_url, apps):
@@ -188,7 +201,13 @@ def main():
         with open(os.path.join(OUT, "config.js"), "w") as f:
             f.write(f"window.ACCRETION_CONFIG = {json.dumps({'supabaseUrl': url, 'supabaseKey': key})};\n")
 
-    share_pages(source["apps"])
+    gone = {
+        b: g
+        for b, g in info.get("gone", {}).items()
+        if b not in {a["bundleIdentifier"] for a in source["apps"]}
+    }
+    dump("data/gone.json", gone)
+    share_pages(source["apps"], gone)
     site_url = os.environ.get("SITE_URL", "").rstrip("/")
     if site_url:
         sitemap(site_url, source["apps"])

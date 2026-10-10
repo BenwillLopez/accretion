@@ -1,12 +1,13 @@
 name: Build source
 
-# Every 6 hours: fetch all sources and publish the newest version of every app.
+# Every 6 hours: fetch all sources, test every download link, and publish the newest working
+# version of every app.
 on:
   schedule:
     - cron: "23 */6 * * *"
   push:
     branches: [main]
-    paths: [sources.txt, blocklist.txt, "scripts/**", "site/**"]
+    paths: [sources.txt, blocklist.txt, dead_hosts.txt, popular.txt, "scripts/**", "site/**"]
   workflow_dispatch:
 
 permissions:
@@ -21,3 +22,5 @@ concurrency:
 jobs:
   publish:
     uses: ./.github/workflows/publish.yml
+    with:
+      check_links: true

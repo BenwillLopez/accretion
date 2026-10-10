@@ -75,10 +75,11 @@ On older devices, or if the full list loads slowly, use Accretion Core.
   The links are https only, the categories, dates and sizes are valid, and the newest version
   comes first. If the result fails validation, nothing is published and the last good version
   stays live.
-- **No dead links.** Download links are tested daily. A version whose file returns 404/410 on
-  two checks in a row is removed. If a whole host fails at once, which usually means it is blocking
-  automated checks or is briefly down, its links get 7 days of grace instead. Hosts confirmed
-  broken by hand go in `dead_hosts.txt` and are dropped on the next build.
+- **No dead links.** Every download link is tested with each build, every 6 hours. A version
+  whose file returns 404/410 is dropped at once and the app falls back to an older working
+  version or another source; if a whole host fails at once it gets one more check first. Hosts
+  confirmed broken by hand go in `dead_hosts.txt`. An app with no working download left is
+  hidden, and its page (and any old link to it) shows the closest apps that do work.
 - **Resilient.** If a source is down, its last good copy is used until it comes back.
 - **Self-updating.** New sources are found weekly from public link lists and GitHub, and each one
   is tested before it is used.

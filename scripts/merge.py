@@ -145,8 +145,11 @@ def rank(app, priority):
     )
 
 
-def pick(loaded, dead):
-    """Choose the newest clean copy of every app across the loaded sources."""
+def pick(loaded, dead, gone=None):
+    """Choose the newest clean copy of every app across the loaded sources.
+
+    gone, when given, collects apps whose every download is dead (name, developer, category),
+    so the store can point people to the closest working app instead."""
     best, listings, stats, news, news_ids = {}, {}, [], [], set()
     firsts = {}  # bundle ID -> earliest release date seen in any source
     for priority, (url, data, status, size) in enumerate(loaded):
@@ -176,6 +179,15 @@ def pick(loaded, dead):
             app = clean_app(raw, versions)
             if not app:
                 st["skipped"] += 1
+                if gone is not None:
+                    lost = clean_app(raw, versions_of(raw))  # usable apart from dead links?
+                    if lost:
+                        gone[lost["bundleIdentifier"]] = {
+                            "n": lost["name"],
+                            "d": lost["developerName"],
+                            "c": lost["category"],
+                            "ic": lost["iconURL"],
+                        }
                 continue
             st["apps"] += 1
             st["newest"] = max(st["newest"], date_key(app["versionDate"]))
@@ -191,6 +203,9 @@ def pick(loaded, dead):
             if isinstance(item, dict) and item.get("identifier") not in news_ids:
                 news_ids.add(item.get("identifier"))
                 news.append(item)
+    if gone is not None:
+        for bid in [b for b in gone if b in best]:  # a working copy exists elsewhere
+            del gone[bid]
     return best, listings, stats, news, firsts
 
 
@@ -246,7 +261,8 @@ def main():
     with ThreadPoolExecutor(16) as ex:
         loaded = list(ex.map(load, manual + found))
 
-    best, listings, stats, news, firsts = pick(loaded, dead)
+    gone = {}
+    best, listings, stats, news, firsts = pick(loaded, dead, gone)
     if not best:
         sys.exit("No apps loaded; keeping the published files.")
     cur_best, _, cur_stats, cur_news, _ = pick(loaded[: len(manual)], dead)
@@ -261,7 +277,7 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     numbers = metrics(now, stats, best, listings, sizes, cur_best, len(found), len(dead), held)
     numbers.update(timeline(now, {b: firsts[b] for b in best if b in firsts}))
-    write_build_info(stats, best, firsts, set(manual), listings)
+    write_build_info(stats, best, firsts, set(manual), listings, gone)
     with open(path("stats.json"), "w") as f:
         json.dump(numbers, f, indent=1, ensure_ascii=False)
     history = update_history(numbers)
@@ -324,7 +340,7 @@ def metrics(now, stats, best, listings, sizes, cur_best, discovered, dead, held)
     }
 
 
-def write_build_info(stats, best, firsts, manual=frozenset(), listings=None):
+def write_build_info(stats, best, firsts, manual=frozenset(), listings=None, gone=None):
     """Where each app came from, when it first appeared and how many sources carry it, for the
     website (not committed). Source maintainers add what their users ask for, so an app carried
     by many independent sources is one people want."""
@@ -340,6 +356,7 @@ def write_build_info(stats, best, firsts, manual=frozenset(), listings=None):
         "carriers": {
             bid: len(urls) for bid, urls in (listings or {}).items() if bid in best and len(urls) > 1
         },
+        "gone": gone or {},
     }
     os.makedirs(path("_build"), exist_ok=True)
     with open(path("_build/origins.json"), "w") as f:

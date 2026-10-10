@@ -379,3 +379,9 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .demand-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
 .demand-list li > :first-child { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
 .demand-n { font: 600 13px var(--mono); color: var(--accent); }
+
+/* an app with no working download: what it was, then the closest apps that work */
+.gone { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; margin: 14px 0 18px; }
+.gone .d-icon { width: 80px; height: 80px; border-radius: 18px; filter: grayscale(1); opacity: .6; }
+.gone .d-name { margin: 0 0 6px; }
+.closest { margin-top: 4px; }
