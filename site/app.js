@@ -529,7 +529,9 @@
 
   // Sign your own apps: certificate -> Feather -> any app -> customize. Everything happens on the
   // device; the certificate import builds Feather's own link in the browser and uploads nothing.
-  const FEATHER_ID = "kh.crysalis.feather";
+  // the official Feather release (github.com/claration/Feather); a reupload as fallback
+  const FEATHER_IDS = ["thewonderofyou.Feather", "kh.crysalis.feather"];
+  const FEATHER_NOTE = "Needs Feather 2.2 or newer (2.0 for installs). Feather 1.x ignores these links: update it first.";
   // paths as they appear on Feather's signing screen (checked against its source, 2026-09)
   const CUSTOMIZE = [
     ["New app name", "Name", "Emojis work too."],
@@ -605,7 +607,8 @@
   }
 
   function renderSign() {
-    const feather = state.byId.get(FEATHER_ID);
+    const featherId = FEATHER_IDS.find((id) => state.byId.has(id));
+    const feather = featherId && state.byId.get(featherId);
     const step = (n, title, ...kids) => h("section", { class: "sec sign-step" }, h("h2", {}, h("span", { class: "step-n" }, String(n)), title), ...kids);
     $("sign").replaceChildren(...[
       h("div", { class: "view-head" },
@@ -623,9 +626,10 @@
         h("p", { class: "muted small" }, "Free alternative: AltStore or SideStore with your own Apple ID (needs a computer once, apps refresh every 7 days).")),
       step(2, "Add it to Feather",
         h("p", {}, feather
-          ? h("a", { class: "btn", href: `#/app/${encodeURIComponent(FEATHER_ID)}` }, "Get Feather")
+          ? h("a", { class: "btn", href: `#/app/${encodeURIComponent(featherId)}` }, `Get Feather ${feather.v}`)
           : null,
           h("span", { class: "muted small" }, feather ? " Free and open source. Most certificate sellers also give you a signed copy." : "Most certificate sellers give you a signed copy of Feather.")),
+        h("p", { class: "warn small" }, FEATHER_NOTE),
         h("p", { class: "muted" }, "Then add your certificate in one tap:"),
         certImport(),
         h("p", { class: "muted small" }, "Or in Feather: Settings → Certificates → + and pick the same files.")),
@@ -647,6 +651,8 @@
           h("dd", {}, "Your certificate may be revoked. Check its status in Feather (Settings → Certificates); sellers usually replace revoked ones."),
           h("dt", {}, "\"Redirected to a host outside the allowed list\" (iOSGods app)"),
           h("dd", {}, "The iOSGods signer only takes links from certain hosts. Download the IPA instead and pick it with \"Tap to select .IPA file\", or use Feather, which follows any link."),
+          h("dt", {}, "Tapping a Feather button does nothing"),
+          h("dd", {}, "Your Feather is too old. Check Settings in Feather for the version; 1.x doesn't understand these links. Install the current Feather, then try again."),
           h("dt", {}, "It fails to sign"),
           h("dd", {}, "Remove the PlugIns (Advanced → Modify → Frameworks & PlugIns) and try again."))),
     ].filter(Boolean));
@@ -817,7 +823,7 @@
       ipa ? h("a", { class: "btn primary", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
       ipa ? h("a", { class: "btn", href: `altstore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "AltStore") : null,
       ipa ? h("a", { class: "btn", href: `sidestore://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "SideStore") : null,
-      ipa ? h("a", { class: "btn", href: featherInstall(ipa), onclick: installed, title: "Sign and install with your own certificate in Feather" }, "Feather") : null,
+      ipa ? h("a", { class: "btn", href: featherInstall(ipa), onclick: installed, title: "Sign and install with your own certificate in Feather (2.0 or newer)" }, "Feather") : null,
       ipa ? h("a", { class: "btn", href: `apple-magnifier://install?url=${encodeURIComponent(ipa)}`, onclick: installed }, "TrollStore") : null,
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
