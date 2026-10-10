@@ -363,7 +363,8 @@ class SupabaseSetup(unittest.TestCase):
         )
         self.assertFalse(any(c[0] == "POST" and c[1] == "/projects" for c in calls))
         self.assertEqual(saved["url"], "https://oldref.supabase.co")
-        self.assertTrue(any("ben_w" in (c[2] or {}).get("query", "") for c in calls))
+        self.assertIn(("CHECK", "https://oldref.supabase.co", "anon-key"), calls)  # public read verified
+        self.assertTrue(any(isinstance(c[2], dict) and "ben_w" in c[2].get("query", "") for c in calls))
 
     def test_rejects_unsafe_admin_name(self):
         with self.assertRaises(SystemExit):
