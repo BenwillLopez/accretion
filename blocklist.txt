@@ -1,2 +1,3 @@
 # One URL or text fragment per line. Matching sources are never used,
 # even if discover.py finds them.
+raw.githubusercontent.com/apeiraco/sidestore-bucket/  # marked nsfw; keeps the full source safe for work
