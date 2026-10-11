@@ -1,30 +1,30 @@
 {
- "apps": 4255,
+ "apps": 4252,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 23:03 UTC",
+ "updated": "2026-10-11 23:50 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T23:03:44Z",
+ "built_at": "2026-10-11T23:50:27Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23573,
+ "listings": 23571,
  "duplicates": 1676,
- "rejected": 6586,
+ "rejected": 6590,
  "excluded": 57,
- "dead_links_removed": 8528,
+ "dead_links_removed": 8533,
  "links_on_hold": 0,
- "developers": 705,
- "updated_7d": 735,
- "updated_30d": 1187,
+ "developers": 704,
+ "updated_7d": 732,
+ "updated_30d": 1184,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2103,
   "games": 981,
   "utilities": 339,
-  "photo-video": 312,
-  "entertainment": 216,
+  "photo-video": 310,
+  "entertainment": 215,
   "lifestyle": 127,
   "developer": 108,
   "social": 69
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3357
+   "apps": 3356
   },
   {
    "name": "dsewerek's general apps",
@@ -48,13 +48,13 @@
   },
   {
    "name": "AltGallery",
-   "apps": 22
+   "apps": 21
   }
  ],
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.10",
+   "version": "1.0.11",
    "date": "2026-10-11"
   },
   {
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2249
+   "apps": 2248
   },
   {
    "month": "2025-03",
-   "apps": 2277
+   "apps": 2276
   },
   {
    "month": "2025-04",
-   "apps": 2312
+   "apps": 2311
   },
   {
    "month": "2025-05",
-   "apps": 2365
+   "apps": 2364
   },
   {
    "month": "2025-06",
-   "apps": 2394
+   "apps": 2393
   },
   {
    "month": "2025-07",
-   "apps": 2427
+   "apps": 2426
   },
   {
    "month": "2025-08",
-   "apps": 2513
+   "apps": 2512
   },
   {
    "month": "2025-09",
-   "apps": 2563
+   "apps": 2562
   },
   {
    "month": "2025-10",
-   "apps": 2628
+   "apps": 2627
   },
   {
    "month": "2025-11",
-   "apps": 2690
+   "apps": 2689
   },
   {
    "month": "2025-12",
-   "apps": 2825
+   "apps": 2824
   },
   {
    "month": "2026-01",
-   "apps": 2960
+   "apps": 2959
   },
   {
    "month": "2026-02",
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3506
+   "apps": 3505
   },
   {
    "month": "2026-05",
-   "apps": 3581
+   "apps": 3580
   },
   {
    "month": "2026-06",
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4255
+   "apps": 4252
   }
  ],
- "new_30d": 368,
- "new_12m": 1677
+ "new_30d": 365,
+ "new_12m": 1675
 }
