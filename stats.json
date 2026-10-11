@@ -1,30 +1,30 @@
 {
- "apps": 4250,
+ "apps": 4262,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 04:03 UTC",
+ "updated": "2026-10-11 06:05 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T04:03:30Z",
+ "built_at": "2026-10-11T06:05:29Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23569,
+ "listings": 23585,
  "duplicates": 1676,
- "rejected": 6588,
+ "rejected": 6578,
  "excluded": 57,
- "dead_links_removed": 8523,
+ "dead_links_removed": 8522,
  "links_on_hold": 0,
  "developers": 703,
- "updated_7d": 703,
- "updated_30d": 1173,
+ "updated_7d": 736,
+ "updated_30d": 1192,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2104,
-  "games": 980,
-  "utilities": 333,
-  "photo-video": 316,
-  "entertainment": 213,
+  "other": 2103,
+  "games": 981,
+  "utilities": 338,
+  "photo-video": 317,
+  "entertainment": 219,
   "lifestyle": 127,
   "developer": 108,
   "social": 69
@@ -32,11 +32,11 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3348
+   "apps": 3365
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 554
+   "apps": 550
   },
   {
    "name": "Altmaker by RipeStore",
@@ -53,44 +53,44 @@
  ],
  "recent": [
   {
-   "name": "Lumisound",
-   "version": "1.9.0.85",
-   "date": "2026-10-11"
-  },
-  {
    "name": "Accretion",
-   "version": "1.0.1",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Nuvio",
-   "version": "0.5.9",
+   "version": "1.0.3",
    "date": "2026-10-11"
   },
   {
    "name": "MuffinEMU",
-   "version": "9.5",
+   "version": "9.6",
    "date": "2026-10-11"
   },
   {
-   "name": "Pawse",
-   "version": "1.0.1",
+   "name": "Lumisound",
+   "version": "1.9.0.86",
    "date": "2026-10-11"
   },
   {
-   "name": "VidGrab",
-   "version": "1.3.5",
-   "date": "2026-10-10"
+   "name": "Bazaart",
+   "version": "27.0.4",
+   "date": "2026-10-11"
   },
   {
-   "name": "Swift Radio+",
-   "version": "4.0.0",
-   "date": "2026-10-10"
+   "name": "PiliPlus",
+   "version": "2.1.6.2",
+   "date": "2026-10-11"
   },
   {
-   "name": "MiruShin",
-   "version": "2.9.17",
-   "date": "2026-10-10"
+   "name": "iCube",
+   "version": "1.0.0-beta9-ios",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Nuvio Enhanced",
+   "version": "0.5.9",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "VideoLite",
+   "version": "624500",
+   "date": "2026-10-11"
   }
  ],
  "timeline": [
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2248
+   "apps": 2249
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2277
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2312
   },
   {
    "month": "2025-05",
-   "apps": 2364
+   "apps": 2365
   },
   {
    "month": "2025-06",
-   "apps": 2393
+   "apps": 2394
   },
   {
    "month": "2025-07",
-   "apps": 2426
+   "apps": 2427
   },
   {
    "month": "2025-08",
-   "apps": 2512
+   "apps": 2513
   },
   {
    "month": "2025-09",
-   "apps": 2562
+   "apps": 2563
   },
   {
    "month": "2025-10",
-   "apps": 2627
+   "apps": 2628
   },
   {
    "month": "2025-11",
-   "apps": 2689
+   "apps": 2690
   },
   {
    "month": "2025-12",
-   "apps": 2824
+   "apps": 2825
   },
   {
    "month": "2026-01",
-   "apps": 2959
+   "apps": 2960
   },
   {
    "month": "2026-02",
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4250
+   "apps": 4262
   }
  ],
- "new_30d": 361,
- "new_12m": 1673
+ "new_30d": 373,
+ "new_12m": 1684
 }
