@@ -2,21 +2,21 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 16:46 UTC",
+ "updated": "2026-10-11 20:17 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T16:46:03Z",
+ "built_at": "2026-10-11T20:17:44Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23581,
+ "listings": 23580,
  "duplicates": 1676,
  "rejected": 6581,
  "excluded": 57,
  "dead_links_removed": 8525,
  "links_on_hold": 0,
  "developers": 705,
- "updated_7d": 738,
+ "updated_7d": 739,
  "updated_30d": 1192,
  "curated_size_mb": 0.7,
  "categories": {
@@ -40,7 +40,7 @@
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 130
+   "apps": 129
   },
   {
    "name": "MySign IPA's",
@@ -53,13 +53,13 @@
  ],
  "recent": [
   {
-   "name": "Accretion",
-   "version": "1.0.5",
+   "name": "Lumisound",
+   "version": "1.9.0.90",
    "date": "2026-10-11"
   },
   {
-   "name": "Lumisound",
-   "version": "1.9.0.88",
+   "name": "Accretion",
+   "version": "1.0.5",
    "date": "2026-10-11"
   },
   {
