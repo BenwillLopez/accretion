@@ -1,4 +1,4 @@
-// Accretion store. Loads data/index.json once and filters in memory; an app's full
+// Accretion store. Loads data/store.json once and filters in memory; an app's full
 // details come from its shard (data/apps/NNN.json) when its page opens.
 // Routes: #/ (with ?q=&c=&s=&src=&fit=), #/app/<bundle id>, #/sources, #/saved
 (() => {
@@ -1116,7 +1116,7 @@
 
   // ---- boot -------------------------------------------------------------------------------
   Promise.all([
-    fetch("data/index.json").then((r) => r.json()),
+    fetch("data/store.json").then((r) => r.json()),
     fetch("data/stats.json").then((r) => r.json()).catch(() => ({})),
     fetch("support.json").then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
   ])

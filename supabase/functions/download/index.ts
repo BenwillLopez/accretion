@@ -5,8 +5,15 @@
 //   add &version=<x> for a particular version (sources list every version); newest otherwise
 //
 // Answers with a redirect to a 5-minute link into the private "builds" bucket, or a short
-// explanation (401 not signed in, 404 not hosted). Deployed with --no-verify-jwt so the key form
-// works without a login; the function checks the login itself.
+// explanation (401 not signed in, 404 not hosted, 426 Accretion too old). A browser that isn't
+// signed in is sent to the app's store page instead. Deployed with --no-verify-jwt so the key
+// form works without a login; the function checks the login itself.
+//
+// Old Accretion versions: the app adds &av=<its version> (1.0.5 and newer), and requests below
+// "minimumVersion" in the store's app-config.json are refused, except for downloading Accretion
+// itself, so every old copy can still update. (1.0.4 and older can't be told apart from the
+// Feather app, so the store hides everything but the update from them instead: data/index.json.)
+// The Accretion app itself is always served at its newest version.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
@@ -15,6 +22,33 @@ const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers
 const reply = (status: number, message: string) =>
   new Response(JSON.stringify({ message }), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
+const ACCRETION = "io.github.getaccretion.Accretion";
+const STORE = "https://getaccretion.github.io/";
+
+// "1.0.10" > "1.0.9"
+function older(a: string, b: string): boolean {
+  const x = a.split(".").map((n) => parseInt(n, 10) || 0);
+  const y = b.split(".").map((n) => parseInt(n, 10) || 0);
+  for (let i = 0; i < Math.max(x.length, y.length); i++) {
+    if ((x[i] ?? 0) !== (y[i] ?? 0)) return (x[i] ?? 0) < (y[i] ?? 0);
+  }
+  return false;
+}
+
+// the store's minimum Accretion version, re-read every 5 minutes
+let minimum = { version: "", at: 0 };
+async function minimumVersion(): Promise<string> {
+  if (Date.now() - minimum.at < 300_000) return minimum.version;
+  try {
+    const r = await fetch(`${STORE}app-config.json`, { headers: { "Cache-Control": "no-cache" } });
+    const json = r.ok ? await r.json() : {};
+    minimum = { version: typeof json.minimumVersion === "string" ? json.minimumVersion : "", at: Date.now() };
+  } catch {
+    minimum = { version: minimum.version, at: Date.now() };
+  }
+  return minimum.version;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
   const url = new URL(req.url);
@@ -22,6 +56,15 @@ Deno.serve(async (req) => {
   const key = url.searchParams.get("key") ?? "";
   const version = url.searchParams.get("version") ?? "";
   if (!/^[A-Za-z0-9][A-Za-z0-9.-]*$/.test(app)) return reply(400, "Which app? Add ?app=<bundle id>.");
+
+  // Accretion copies below the minimum may only fetch Accretion itself
+  const appVersion = url.searchParams.get("av") ?? "";
+  if (app !== ACCRETION && appVersion) {
+    const min = await minimumVersion();
+    if (min && older(appVersion, min)) {
+      return reply(426, "This version of Accretion is too old. Update Accretion to keep downloading apps.");
+    }
+  }
 
   // who is asking: a signed-in user, or the owner of a personal key
   let owner: string | null = null;
@@ -36,10 +79,16 @@ Deno.serve(async (req) => {
     owner = data?.owner ?? null;
     via = "key";
   }
-  if (!owner) return reply(401, "Sign in to your Accretion account to download, or use your personal source link.");
+  if (!owner) {
+    // someone opened the link in a browser: send them to the store page to sign in there
+    if ((req.headers.get("Accept") ?? "").includes("text/html")) {
+      return new Response(null, { status: 302, headers: { ...cors, Location: `${STORE}#/app/${encodeURIComponent(app)}` } });
+    }
+    return reply(401, "Sign in to your Accretion account to download, or use your personal source link.");
+  }
 
   let query = admin.from("hosted_builds").select("path").eq("bundle_id", app);
-  if (version) query = query.eq("version", version);
+  if (version && app !== ACCRETION) query = query.eq("version", version); // Accretion: newest only
   const { data: build } = await query.order("created_at", { ascending: false }).limit(1).maybeSingle();
   if (!build) return reply(404, "Accretion doesn't host this app.");
 

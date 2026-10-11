@@ -1,7 +1,10 @@
 """Build the Accretion web store into _site/ for GitHub Pages.
 
 Copies the static storefront from site/ and adds data generated from the build:
-  data/index.json       one compact row per app, everything the grid and search need
+  data/store.json       one compact row per app, everything the grid and search need
+  data/index.json       the same, listing only the Accretion app: what Accretion 1.0.4 and older
+                        read, so their store only offers the update (app-config.json sets the
+                        minimum version newer copies enforce themselves)
   data/apps/NNN.json    full details, split into SHARDS files so a phone only loads
                         the slice that holds the app it opens
   data/stats.json       the numbers merge.py collected
@@ -22,6 +25,7 @@ import shutil
 from common import load_json, path, read_list
 
 SHARDS = 128
+ACCRETION_APP = "io.github.getaccretion.Accretion"
 OUT = path("_site")
 # Apps from this source are built by Accretion: the store shows them with an "Accretion Mod" badge.
 MODS_SOURCE = "https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json"
@@ -192,7 +196,11 @@ def main():
         with open(os.path.join(OUT, rel), "w") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
 
-    dump("data/index.json", {"sources": info["sources"], "shards": SHARDS, "apps": rows})
+    dump("data/store.json", {"sources": info["sources"], "shards": SHARDS, "apps": rows})
+    dump(
+        "data/index.json",
+        {"sources": info["sources"], "shards": SHARDS, "apps": [r for r in rows if r["i"] == ACCRETION_APP]},
+    )
     for i, items in enumerate(shards):
         dump(f"data/apps/{i:03d}.json", {a["i"]: a for a in items})
     dump("data/stats.json", stats)
@@ -255,7 +263,7 @@ def main():
     # GitHub Pages: serve files as-is (no Jekyll processing)
     open(os.path.join(OUT, ".nojekyll"), "w").close()
 
-    size = os.path.getsize(os.path.join(OUT, "data/index.json"))
+    size = os.path.getsize(os.path.join(OUT, "data/store.json"))
     print(f"_site: {len(rows)} apps, index {size // 1024} KB, {SHARDS} detail files")
 
 
