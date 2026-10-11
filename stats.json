@@ -2,16 +2,16 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 20:45 UTC",
+ "updated": "2026-10-11 20:47 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T20:45:19Z",
+ "built_at": "2026-10-11T20:47:16Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23578,
+ "listings": 23581,
  "duplicates": 1676,
- "rejected": 6581,
+ "rejected": 6580,
  "excluded": 57,
  "dead_links_removed": 8523,
  "links_on_hold": 0,
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3506
+   "apps": 3505
   },
   {
    "month": "2026-05",
-   "apps": 3581
+   "apps": 3580
   },
   {
    "month": "2026-06",
