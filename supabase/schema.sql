@@ -625,6 +625,20 @@ create table if not exists public.certificate_backups (
 );
 create index if not exists certificate_backups_owner on public.certificate_backups (owner);
 
+-- at most 20 backups per account, so one account can't fill the database
+create or replace function public.limit_backups() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.certificate_backups where owner = auth.uid()) >= 20 then
+    raise exception 'You have 20 backups already. Delete an old one first';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists limit_backups on public.certificate_backups;
+create trigger limit_backups before insert on public.certificate_backups
+  for each row execute function public.limit_backups();
+
 alter table public.certificate_backups enable row level security;
 drop policy if exists "own certificate backups" on public.certificate_backups;
 create policy "own certificate backups" on public.certificate_backups for all to authenticated
