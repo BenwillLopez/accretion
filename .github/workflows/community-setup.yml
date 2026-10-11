@@ -76,6 +76,15 @@ jobs:
           SITE_URL: ${{ steps.pages.outputs.base_url && format('{0}/', steps.pages.outputs.base_url) || '' }}
           SUPABASE_REGION: ${{ inputs.region || 'us-east-1' }}
           ADMIN_USERNAME: ${{ inputs.admin_username }}
+      # Accretion-hosted builds: download (login or personal key) and personal sources.
+      # --no-verify-jwt: AltStore and friends call with a key, not a login; the functions check it.
+      - name: Deploy download functions
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          ref=$(jq -r .url supabase/project.json | sed -E 's#https://([^.]+)\..*#\1#')
+          npx --yes supabase@2.120.0 functions deploy download source \
+            --project-ref "$ref" --no-verify-jwt --use-api
       - name: Save public settings
         run: |
           if [ -z "$(git status --porcelain -- supabase/project.json)" ]; then echo "No changes."; exit 0; fi

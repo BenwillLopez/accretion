@@ -601,6 +601,82 @@ create policy "own certificate backups" on public.certificate_backups for all to
 revoke all on public.certificate_backups from anon;
 grant select, insert, delete on public.certificate_backups to authenticated;
 
+-- ---------------------------------------------------------------- hosted builds
+-- Accretion's own builds (Accretion Mods and the Accretion app) live in a private storage bucket.
+-- The `download` function hands out 5-minute links to signed-in users, or to anyone using a
+-- personal key (for AltStore, SideStore and Feather, which can't sign in). Files and the log are
+-- only reachable through the functions, which use the service role.
+
+-- storage only exists on Supabase; the CI test database skips this
+do $$
+begin
+  if to_regclass('storage.buckets') is not null then
+    insert into storage.buckets (id, name, public) values ('builds', 'builds', false)
+    on conflict (id) do update set public = false;
+  end if;
+end;
+$$;
+
+create table if not exists public.hosted_builds (
+  id bigint generated always as identity primary key,
+  bundle_id text not null check (bundle_id ~ '^[A-Za-z0-9][A-Za-z0-9.-]*$'),
+  version text not null check (char_length(version) <= 40),
+  path text not null check (char_length(path) <= 300),
+  size bigint,
+  created_at timestamptz not null default now()
+);
+create index if not exists hosted_builds_bundle on public.hosted_builds (bundle_id, created_at desc);
+
+create table if not exists public.download_keys (
+  owner uuid primary key references auth.users (id) on delete cascade default auth.uid(),
+  -- two random UUIDs (244 random bits) as 64 hex characters; no extension needed
+  key text not null unique default replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', ''),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.download_log (
+  id bigint generated always as identity primary key,
+  owner uuid references auth.users (id) on delete set null,
+  bundle_id text not null,
+  via text not null check (via in ('login', 'key')),
+  at timestamptz not null default now()
+);
+
+alter table public.hosted_builds enable row level security;
+alter table public.download_keys enable row level security;
+alter table public.download_log enable row level security;
+
+drop policy if exists "hosted builds are listed" on public.hosted_builds;
+create policy "hosted builds are listed" on public.hosted_builds for select using (true);
+drop policy if exists "own download key" on public.download_keys;
+create policy "own download key" on public.download_keys for select to authenticated using (owner = auth.uid());
+drop policy if exists "admins read download log" on public.download_log;
+create policy "admins read download log" on public.download_log for select to authenticated using (public.is_admin());
+
+-- The signed-in user's personal key, created on first use. A new key replaces the old one
+-- (rotate = true), which turns off every source link that used it.
+create or replace function public.my_download_key(rotate boolean default false) returns text
+language plpgsql security definer set search_path = public as $$
+declare result text;
+begin
+  if auth.uid() is null then
+    raise exception 'Not signed in';
+  end if;
+  if rotate then
+    delete from public.download_keys where owner = auth.uid();
+  end if;
+  insert into public.download_keys (owner) values (auth.uid()) on conflict (owner) do nothing;
+  select key into result from public.download_keys where owner = auth.uid();
+  return result;
+end;
+$$;
+revoke all on function public.my_download_key(boolean) from public;
+grant execute on function public.my_download_key(boolean) to authenticated;
+
+grant select on public.hosted_builds to anon, authenticated;
+grant select on public.download_keys to authenticated;
+grant select on public.download_log to authenticated;
+
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
 --   update public.profiles set role = 'admin' where username = 'your_username';
