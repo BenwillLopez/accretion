@@ -113,6 +113,11 @@
       hidePost: async (id, hidden) => ok(await sb().from("posts").update({ hidden }).eq("id", id)),
       myPostLikes: async (ids) => (uid() && ids.length ? ok(await sb().from("post_likes").select("post_id").eq("user_id", uid()).in("post_id", ids)).map((r) => r.post_id) : []),
       likePost: async (id, on) => ok(on ? await sb().from("post_likes").insert({ post_id: id }) : await sb().from("post_likes").delete().eq("post_id", id).eq("user_id", uid())),
+      // What's new: Accretion's own updates, posted automatically when a build is published
+      announcements: async (offset = 0) => ok(await sb().from("announcement_feed").select("*").order("created_at", { ascending: false }).range(offset, offset + PAGE - 1)),
+      myAnnouncementLikes: async (ids) => (uid() && ids.length ? ok(await sb().from("announcement_likes").select("announcement_id").eq("user_id", uid()).in("announcement_id", ids)).map((r) => r.announcement_id) : []),
+      likeAnnouncement: async (id, on) => ok(on ? await sb().from("announcement_likes").insert({ announcement_id: id }) : await sb().from("announcement_likes").delete().eq("announcement_id", id).eq("user_id", uid())),
+      postAnnouncement: async ({ title, body }) => ok(await sb().from("announcements").insert({ kind: "news", title, body })),
       isFollowing: async (id) => Boolean(uid() && ok(await sb().from("follows").select("followee").eq("follower", uid()).eq("followee", id).maybeSingle())),
       follow: async (id, on) => ok(on ? await sb().from("follows").insert({ followee: id }) : await sb().from("follows").delete().eq("follower", uid()).eq("followee", id)),
       report: async ({ postId, profileId, reason }) => ok(await sb().from("reports").insert({ post_id: postId || null, profile_id: profileId || null, reason })),
@@ -411,11 +416,13 @@
 
   async function renderFeed(params) {
     const { h } = A;
+    if (params.tab === "updates") return renderUpdates();
     const following = params.tab === "following" && me.user;
     const list = h("div", { class: "feed-list" });
     const more = h("button", { class: "btn", type: "button", hidden: true }, "Load more");
     let offset = 0;
     const tabs = h("div", { class: "tabs", role: "tablist" },
+      h("a", { href: "#/feed?tab=updates", role: "tab", "aria-selected": "false" }, "What's new"),
       h("a", { href: "#/feed", class: following ? "" : "on", role: "tab", "aria-selected": String(!following) }, "Everyone"),
       me.user ? h("a", { href: "#/feed?tab=following", class: following ? "on" : "", role: "tab", "aria-selected": String(Boolean(following)) }, "Following") : null);
     page("Feed",
@@ -435,6 +442,67 @@
     }
     more.addEventListener("click", load);
     load();
+  }
+
+  // What's new: new Accretion versions and mods (posted by the upload function), plus admin news
+  async function renderUpdates() {
+    const { h } = A;
+    const list = h("div", { class: "feed-list" });
+    const more = h("button", { class: "btn", type: "button", hidden: true }, "Load more");
+    let offset = 0;
+    const tabs = h("div", { class: "tabs", role: "tablist" },
+      h("a", { href: "#/feed?tab=updates", class: "on", role: "tab", "aria-selected": "true" }, "What's new"),
+      h("a", { href: "#/feed", role: "tab", "aria-selected": "false" }, "Everyone"),
+      me.user ? h("a", { href: "#/feed?tab=following", role: "tab", "aria-selected": "false" }, "Following") : null);
+    let news = null;
+    if (me.profile && me.profile.role === "admin") {
+      const title = h("input", { class: "input", maxlength: 120, placeholder: "Title" });
+      const body = h("textarea", { class: "input", rows: 3, maxlength: 4000, placeholder: "What changed?" });
+      news = h("form", { class: "card-form" }, h("h2", {}, "Post news"), title, body,
+        h("div", { class: "actions" }, h("button", { class: "btn primary", type: "submit" }, "Post")));
+      news.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!title.value.trim()) return A.toast("Add a title");
+        try { await api.postAnnouncement({ title: title.value.trim(), body: body.value.trim() }); title.value = ""; body.value = ""; offset = 0; list.replaceChildren(); await load(); A.toast("Posted"); } catch (err) { A.toast(err.message); }
+      });
+    }
+    page("Feed",
+      h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Feed"), h("p", { class: "muted" }, "New Accretion versions, mods and fixes, posted automatically.")),
+      news, tabs, list, h("div", { class: "more" }, more));
+    async function load() {
+      more.disabled = true;
+      let rows;
+      try { rows = await api.announcements(offset); } catch (e) { list.append(h("p", { class: "muted" }, e.message)); return; }
+      const liked = new Set(await api.myAnnouncementLikes(rows.map((r) => r.id)).catch(() => []));
+      if (!rows.length && !offset) list.append(h("p", { class: "muted empty-thread" }, "Nothing new yet."));
+      list.append(...rows.map((r) => announcementItem(r, liked.has(r.id))));
+      offset += rows.length;
+      more.hidden = rows.length < PAGE;
+      more.disabled = false;
+    }
+    more.addEventListener("click", load);
+    load();
+  }
+
+  const KIND_LABEL = { release: "Accretion update", mod: "Accretion Mod", fix: "Fix", news: "News" };
+
+  function announcementItem(r, liked) {
+    const { h } = A;
+    let count = r.likes || 0;
+    const like = h("button", { class: `btn ghost${liked ? " on" : ""}`, type: "button", "aria-pressed": String(liked) });
+    const paint = () => { like.textContent = `♥ ${count || ""}`.trim(); like.classList.toggle("on", liked); like.setAttribute("aria-pressed", String(liked)); };
+    paint();
+    like.addEventListener("click", async () => {
+      if (!requireUser()) return;
+      try { await api.likeAnnouncement(r.id, !liked); liked = !liked; count += liked ? 1 : -1; paint(); } catch (e) { A.toast(e.message); }
+    });
+    return h("article", { class: "sec announce" },
+      h("div", { class: "announce-head" },
+        h("em", { class: `badge ${r.kind === "mod" || r.kind === "release" ? "mod" : r.kind === "fix" ? "hot" : ""}` }, KIND_LABEL[r.kind] || r.kind),
+        h("span", { class: "muted small" }, timeAgo(r.created_at))),
+      h("h3", {}, r.title),
+      r.body ? h("p", { class: "announce-body" }, r.body) : null,
+      h("div", { class: "post-acts" }, like, r.link ? h("a", { class: "btn ghost", href: r.link.replace("https://getaccretion.github.io/", "") || r.link }, "Open") : null));
   }
 
   function threadItem(r, liked) {
@@ -874,6 +942,10 @@
       hidePost: async (id, hidden) => { posts.find((p) => p.id === id).hidden = hidden; },
       myPostLikes: async (ids) => (cur ? ids.filter((id) => likes.has(`${id}>${cur.id}`)) : []),
       likePost: async (id, on) => { need(); on ? likes.add(`${id}>${cur.id}`) : likes.delete(`${id}>${cur.id}`); },
+      announcements: async () => [{ id: 1, kind: "release", title: "Accretion 1.0.6", body: "• Sign your own apps guide · Remembered installer", link: null, created_at: t(2), likes: 3 }],
+      myAnnouncementLikes: async () => [],
+      likeAnnouncement: async () => { need(); },
+      postAnnouncement: async () => { need(); },
       isFollowing: async (id) => Boolean(cur && follows.has(`${cur.id}>${id}`)),
       follow: async (id, on) => { need(); on ? follows.add(`${cur.id}>${id}`) : follows.delete(`${cur.id}>${id}`); },
       report: async (r) => { need(); reports.push({ id: reports.length + 1, reporter: cur.id, status: "open", created_at: new Date().toISOString(), ...r }); },

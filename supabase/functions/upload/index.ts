@@ -3,7 +3,8 @@
 //
 //   POST /functions/v1/upload            {bundle_id, version}         → {signedUrl, path}
 //        then PUT the .ipa to signedUrl (Content-Type: application/octet-stream)
-//   POST /functions/v1/upload?finish=1   {bundle_id, version, size}   → {path}
+//   POST /functions/v1/upload?finish=1   {bundle_id, version, size, sha256?, name?, notes?}   → {path, sha256}
+//        also posts "<name> <version>" with the notes to the What's new feed (announce: false skips it)
 //
 // Every call needs "x-upload-key: <UPLOAD_KEY>", a secret only the release workflows and the
 // mods publish script hold. Deployed with --no-verify-jwt; the key is the check.
@@ -76,5 +77,20 @@ Deno.serve(async (req) => {
     sha256,
   });
   if (error) return reply(500, { message: `Couldn't record the build: ${error.message}` });
+
+  // the What's new feed: one post per published build (best effort; the build is already live)
+  const extra = body as { name?: string; notes?: string; announce?: boolean };
+  if (extra.announce !== false) {
+    const isApp = bundle === "io.github.getaccretion.Accretion";
+    const name = (extra.name ?? (isApp ? "Accretion" : bundle)).slice(0, 80);
+    await admin.from("announcements").insert({
+      kind: isApp ? "release" : "mod",
+      title: `${name} ${version}`,
+      body: (extra.notes ?? "").slice(0, 4000),
+      app_id: bundle,
+      version,
+      link: `https://getaccretion.github.io/#/app/${encodeURIComponent(bundle)}`,
+    });
+  }
   return reply(200, { path, sha256 });
 });

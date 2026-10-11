@@ -725,6 +725,71 @@ grant select on public.hosted_builds to anon, authenticated;
 grant select on public.download_keys to authenticated;
 grant select on public.download_log to authenticated;
 
+-- ---------------------------------------------------------------- what's new (announcements)
+-- Accretion's own updates feed: new Accretion versions and Accretion Mods are posted
+-- automatically when they're published (the upload function); admins can post news by hand.
+-- Anyone can read; signed-in users can like.
+create table if not exists public.announcements (
+  id bigint generated always as identity primary key,
+  kind text not null check (kind in ('release', 'mod', 'fix', 'news')),
+  title text not null check (char_length(btrim(title)) between 1 and 120),
+  body text not null default '' check (char_length(body) <= 4000),
+  app_id text check (app_id is null or char_length(app_id) <= 200),
+  version text check (version is null or char_length(version) <= 40),
+  link text check (link is null or link ~ '^https://'),
+  created_at timestamptz not null default now()
+);
+create index if not exists announcements_created on public.announcements (created_at desc);
+
+create table if not exists public.announcement_likes (
+  announcement_id bigint not null references public.announcements (id) on delete cascade,
+  user_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,
+  created_at timestamptz not null default now(),
+  primary key (announcement_id, user_id)
+);
+drop trigger if exists stamp_created on public.announcement_likes;
+create trigger stamp_created before insert on public.announcement_likes for each row execute function public.stamp_created();
+
+alter table public.announcements enable row level security;
+alter table public.announcement_likes enable row level security;
+drop policy if exists "announcements are public" on public.announcements;
+create policy "announcements are public" on public.announcements for select using (true);
+drop policy if exists "admins post announcements" on public.announcements;
+create policy "admins post announcements" on public.announcements for insert to authenticated with check (public.is_admin());
+drop policy if exists "admins remove announcements" on public.announcements;
+create policy "admins remove announcements" on public.announcements for delete to authenticated using (public.is_admin());
+drop policy if exists "announcement likes are public" on public.announcement_likes;
+create policy "announcement likes are public" on public.announcement_likes for select using (true);
+drop policy if exists "like announcements" on public.announcement_likes;
+create policy "like announcements" on public.announcement_likes for insert to authenticated
+  with check (user_id = auth.uid() and public.can_write());
+drop policy if exists "unlike announcements" on public.announcement_likes;
+create policy "unlike announcements" on public.announcement_likes for delete to authenticated using (user_id = auth.uid());
+
+create or replace view public.announcement_feed with (security_invoker = true) as
+select a.*, (select count(*) from public.announcement_likes l where l.announcement_id = a.id)::int as likes
+from public.announcements a;
+
+grant select on public.announcements, public.announcement_likes, public.announcement_feed to anon, authenticated;
+grant insert, delete on public.announcements to authenticated;
+grant insert, delete on public.announcement_likes to authenticated;
+
+-- first posts, only while the feed is empty
+insert into public.announcements (kind, title, body, app_id, version, link)
+select * from (values
+  ('mod', 'Swift Radio+ 4.0.0',
+   'Swift Radio, the open-source radio app, with the Accretion mod menu: force dark mode and keep the screen awake.',
+   'io.github.accretionmods.swiftradio', '4.0.0', 'https://getaccretion.github.io/#/app/io.github.accretionmods.swiftradio'),
+  ('release', 'Accretion 1.0.6',
+   E'• Sign your own apps guide in the app
+• Install button remembers your installer
+• Saved apps show updates first
+• Comments: like, reply, delete, report
+• Notification bell and community shelves in Discover',
+   'io.github.getaccretion.Accretion', '1.0.6', 'https://getaccretion.github.io/#/app/io.github.getaccretion.Accretion')
+) as seed (kind, title, body, app_id, version, link)
+where not exists (select 1 from public.announcements);
+
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
 --   update public.profiles set role = 'admin' where username = 'your_username';

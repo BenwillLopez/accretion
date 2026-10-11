@@ -459,3 +459,6 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 }
 .key-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; margin: 8px 0; }
 @media (max-width: 520px) { .key-row { grid-template-columns: minmax(0, 1fr) auto; } .key-row .label { grid-column: 1 / -1; } }
+.announce h3 { font: 700 18px var(--display); margin: 6px 0 4px; }
+.announce-head { display: flex; align-items: center; gap: 10px; }
+.announce-body { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 8px; }
