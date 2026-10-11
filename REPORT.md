@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-11 20:39 UTC.
+Built 2026-10-11 20:45 UTC.
 
 | | |
 |---|---|
@@ -10,7 +10,7 @@ Built 2026-10-11 20:39 UTC.
 | Apps listed by more than one source (newest kept) | 1676 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6581 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 8524 |
+| Dead download links held back (retested every build) | 8523 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 163: 163 ok, 0 from cache, 0 failed |
 
@@ -48,7 +48,7 @@ Built 2026-10-11 20:39 UTC.
 | [A29 Repository](https://raw.githubusercontent.com/Aayush9029/AltApps/main/apps.json) | ok | 1 | 1 | 1 | 2020-11-10 | discovered |
 | [Accretion Mods](https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json) | ok | 1 | 1 | 0 | 2026-10-10 | curated |
 | [Apollo for Reddit](https://raw.githubusercontent.com/Balackburn/Apollo/refs/heads/main/apps.json) | ok | 1 | 1 | 0 | 2026-10-09 | curated |
-| [EPIC's source](https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json) | ok | 1 | 1 | 0 | 2026-09-29 | discovered |
+| [EPIC's source](https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [FriesI23's Source](https://raw.githubusercontent.com/FriesI23/altstore-repo/master/_site/repo/source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
 | [Accretion App](https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-10-11 | curated |
 | [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
@@ -200,6 +200,7 @@ Built 2026-10-11 20:39 UTC.
 | PiliPlus | 2.1.6.2 | 2026-10-11 | raw.githubusercontent.com |
 | Provenance Alpha | 3.4.0 | 2026-10-11 | provenance-emu.com |
 | iCube | 1.0.0-beta9-ios | 2026-10-11 | provenance-emu.com |
+| Plezy | 2.23.0 | 2026-10-11 | raw.githubusercontent.com |
 | TumoCompanion | 1.11.27 | 2026-10-11 | raw.githubusercontent.com |
 | Nuvio Enhanced | 0.5.9 | 2026-10-11 | raw.githubusercontent.com |
 | VideoLite | 624500 | 2026-10-11 | raw.githubusercontent.com |
@@ -212,4 +213,3 @@ Built 2026-10-11 20:39 UTC.
 | Zest | 9.15.0 | 2026-10-11 | raw.githubusercontent.com |
 | Song Infos | 1.41.0 | 2026-10-11 | raw.githubusercontent.com |
 | Picoboom | 1.0.54 | 2026-10-11 | raw.githubusercontent.com |
-| ByePhotos | 2.12.0 | 2026-10-11 | raw.githubusercontent.com |
