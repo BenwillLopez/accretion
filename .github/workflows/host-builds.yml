@@ -1,0 +1,26 @@
+name: Host builds
+
+# Copies Accretion's own builds (Accretion Mods, the Accretion app) into the private Supabase
+# bucket that the download function serves. Daily, and on demand after a release.
+on:
+  schedule:
+    - cron: "41 */12 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: host-builds
+  cancel-in-progress: false
+
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Copy new builds into the private bucket
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: python scripts/host_builds.py
