@@ -46,7 +46,7 @@
   function supabaseApi() {
     let client;
     const sb = () => (client ||= window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseKey, {
-      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, flowType: "pkce" }, // tokens never in the URL
     }));
     const ok = ({ data, error, count }) => {
       if (error) throw new Error(error.message || "Something went wrong");

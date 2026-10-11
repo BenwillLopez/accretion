@@ -15,7 +15,7 @@
     full: "https://getaccretion.github.io/source.json",
     core: "https://getaccretion.github.io/curated.json",
   };
-  const QR_LIB = "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js";
+  const QR_LIB = "vendor/qrcode-generator-1.4.4.min.js"; // copied in (MIT), so no outside script runs here
 
   const $ = (id) => document.getElementById(id);
   const state = { apps: [], byId: new Map(), sources: [], shards: 128, list: [], shown: PAGE, f: {}, trend: new Map(), from: null, support: {} };
