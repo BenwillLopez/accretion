@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-11 13:12 UTC.
+Built 2026-10-11 15:51 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **4260** (5095 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23582 |
+| Listings read | 23581 |
 | Apps listed by more than one source (newest kept) | 1676 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6581 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -21,8 +21,8 @@ Built 2026-10-11 13:12 UTC.
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
 | [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3559 | 3363 | 4501 | 2026-10-11 | discovered |
-| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 550 | 330 | 2026-10-11 | discovered |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 129 | 0 | 2026-10-11 | discovered |
+| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 549 | 330 | 2026-10-11 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 130 | 0 | 2026-10-11 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 239 | 101 | 13 | 2025-01-01 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 42 | 22 | 0 | 2026-10-11 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
@@ -81,7 +81,7 @@ Built 2026-10-11 13:12 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4605 | 0 | 222 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -188,10 +188,13 @@ Built 2026-10-11 13:12 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| Lumisound | 1.9.0.87 | 2026-10-11 | raw.githubusercontent.com |
+| Manatan | 6.1.41 | 2026-10-11 | raw.githubusercontent.com |
+| Boorusama | 4.6.0 | 2026-10-11 | raw.githubusercontent.com |
+| Alyn ReSA Multiplayer | 1.0.2 | 2026-10-11 | raw.githubusercontent.com |
 | Accretion | 1.0.3 | 2026-10-11 | raw.githubusercontent.com |
 | MuffinEMU | 9.6 | 2026-10-11 | raw.githubusercontent.com |
-| Lumisound | 1.9.0.86 | 2026-10-11 | raw.githubusercontent.com |
-| Manatan | 6.1.39 | 2026-10-11 | raw.githubusercontent.com |
+| MeloNX | 2.7 | 2026-10-11 | raw.githubusercontent.com |
 | Session | 2.15.5 | 2026-10-11 | raw.githubusercontent.com |
 | Bazaart | 27.0.4 | 2026-10-11 | raw.githubusercontent.com |
 | PiliPlus | 2.1.6.2 | 2026-10-11 | raw.githubusercontent.com |
@@ -210,6 +213,3 @@ Built 2026-10-11 13:12 UTC.
 | Picoboom | 1.0.54 | 2026-10-11 | raw.githubusercontent.com |
 | ByePhotos | 2.12.0 | 2026-10-11 | raw.githubusercontent.com |
 | Homescapes | 9.2.100 | 2026-10-11 | raw.githubusercontent.com |
-| Pixiv-SwiftUI | 0.16.2 | 2026-10-11 | raw.githubusercontent.com |
-| SpotiFLAC | 5.1.1 | 2026-10-11 | raw.githubusercontent.com |
-| Lumra | 1.3.13 | 2026-10-11 | raw.githubusercontent.com |

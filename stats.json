@@ -2,22 +2,22 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 13:12 UTC",
+ "updated": "2026-10-11 15:51 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T13:12:29Z",
+ "built_at": "2026-10-11T15:51:57Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23582,
+ "listings": 23581,
  "duplicates": 1676,
  "rejected": 6581,
  "excluded": 57,
  "dead_links_removed": 8525,
  "links_on_hold": 0,
- "developers": 704,
- "updated_7d": 736,
- "updated_30d": 1190,
+ "developers": 705,
+ "updated_7d": 738,
+ "updated_30d": 1192,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2103,
@@ -36,11 +36,11 @@
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 550
+   "apps": 549
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 129
+   "apps": 130
   },
   {
    "name": "MySign IPA's",
@@ -53,6 +53,26 @@
  ],
  "recent": [
   {
+   "name": "Lumisound",
+   "version": "1.9.0.87",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Manatan",
+   "version": "6.1.41",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Boorusama",
+   "version": "4.6.0",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Alyn ReSA Multiplayer",
+   "version": "1.0.2",
+   "date": "2026-10-11"
+  },
+  {
    "name": "Accretion",
    "version": "1.0.3",
    "date": "2026-10-11"
@@ -63,33 +83,13 @@
    "date": "2026-10-11"
   },
   {
-   "name": "Lumisound",
-   "version": "1.9.0.86",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Manatan",
-   "version": "6.1.39",
+   "name": "MeloNX",
+   "version": "2.7",
    "date": "2026-10-11"
   },
   {
    "name": "Session",
    "version": "2.15.5",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Bazaart",
-   "version": "27.0.4",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "PiliPlus",
-   "version": "2.1.6.2",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Provenance Alpha",
-   "version": "3.4.0",
    "date": "2026-10-11"
   }
  ],
@@ -172,25 +172,25 @@
   },
   {
    "month": "2026-06",
-   "apps": 3715
+   "apps": 3714
   },
   {
    "month": "2026-07",
-   "apps": 3829
+   "apps": 3828
   },
   {
    "month": "2026-08",
-   "apps": 3868
+   "apps": 3867
   },
   {
    "month": "2026-09",
-   "apps": 4061
+   "apps": 4060
   },
   {
    "month": "2026-10",
    "apps": 4260
   }
  ],
- "new_30d": 372,
+ "new_30d": 373,
  "new_12m": 1683
 }
