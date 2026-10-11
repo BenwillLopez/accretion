@@ -2,9 +2,9 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 20:54 UTC",
+ "updated": "2026-10-11 21:21 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T20:54:55Z",
+ "built_at": "2026-10-11T21:21:35Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
@@ -54,7 +54,12 @@
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.6",
+   "version": "1.0.7",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Dayline",
+   "version": "1.10.13",
    "date": "2026-10-11"
   },
   {
@@ -85,11 +90,6 @@
   {
    "name": "MeloNX",
    "version": "2.7",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Session",
-   "version": "2.15.5",
    "date": "2026-10-11"
   }
  ],

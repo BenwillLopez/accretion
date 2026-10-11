@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-11 20:54 UTC.
+Built 2026-10-11 21:21 UTC.
 
 | | |
 |---|---|
@@ -71,7 +71,7 @@ Built 2026-10-11 20:54 UTC.
 | [Scan2WA Source](https://raw.githubusercontent.com/ilyassbourass/Scan2WA/main/apps.json) | ok | 1 | 1 | 0 | 2026-09-26 | discovered |
 | [ScanKit Source](https://raw.githubusercontent.com/jorgepb96/scankit/main/source.json) | ok | 1 | 1 | 0 | 2026-06-07 | discovered |
 | [OpenAni (Legacy)](https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps-old.json) | ok | 1 | 1 | 0 | 2026-02-26 | discovered |
-| [Dayline](https://raw.githubusercontent.com/nirobhaq/dayline-store/main/store.json) | ok | 1 | 1 | 0 | 2026-10-09 | discovered |
+| [Dayline](https://raw.githubusercontent.com/nirobhaq/dayline-store/main/store.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [4Walls Source](https://raw.githubusercontent.com/run2u006-hue/4WALLS-AltStore/main/source.json) | ok | 1 | 1 | 0 | 2026-05-17 | discovered |
 | [TumoCompanion](https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/apps.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [Pawse](https://raw.githubusercontent.com/thenetaji/pawse-music/main/sources/sidestore.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
@@ -188,7 +188,8 @@ Built 2026-10-11 20:54 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
-| Accretion | 1.0.6 | 2026-10-11 | raw.githubusercontent.com |
+| Accretion | 1.0.7 | 2026-10-11 | raw.githubusercontent.com |
+| Dayline | 1.10.13 | 2026-10-11 | raw.githubusercontent.com |
 | Lumisound | 1.9.0.90 | 2026-10-11 | raw.githubusercontent.com |
 | Manatan | 6.1.41 | 2026-10-11 | raw.githubusercontent.com |
 | Boorusama | 4.6.0 | 2026-10-11 | raw.githubusercontent.com |
@@ -212,4 +213,3 @@ Built 2026-10-11 20:54 UTC.
 | Eden | 5.3.5 | 2026-10-11 | raw.githubusercontent.com |
 | Zest | 9.15.0 | 2026-10-11 | raw.githubusercontent.com |
 | Song Infos | 1.41.0 | 2026-10-11 | raw.githubusercontent.com |
-| Picoboom | 1.0.54 | 2026-10-11 | raw.githubusercontent.com |
