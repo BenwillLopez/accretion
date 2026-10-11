@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-11 04:02 UTC.
+Built 2026-10-11 04:03 UTC.
 
 | | |
 |---|---|
@@ -51,7 +51,7 @@ Built 2026-10-11 04:02 UTC.
 | [EPIC's source](https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json) | ok | 1 | 1 | 0 | 2026-09-29 | discovered |
 | [FriesI23's Source](https://raw.githubusercontent.com/FriesI23/altstore-repo/master/_site/repo/source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
 | [Accretion App](https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-10-11 | curated |
-| [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
+| [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [Nightshift](https://raw.githubusercontent.com/Jannehy/nightshift-ios/main/altstore.json) | ok | 1 | 1 | 0 | 2026-10-02 | discovered |
 | [MuffinEMU](https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [Muffin](https://raw.githubusercontent.com/MuffinEMU/cemu-ios-muffin/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-09-13 | discovered |
@@ -188,12 +188,12 @@ Built 2026-10-11 04:02 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| Lumisound | 1.9.0.85 | 2026-10-11 | raw.githubusercontent.com |
 | Accretion | 1.0.1 | 2026-10-11 | raw.githubusercontent.com |
 | Nuvio | 0.5.9 | 2026-10-11 | raw.githubusercontent.com |
 | MuffinEMU | 9.5 | 2026-10-11 | raw.githubusercontent.com |
 | Pawse | 1.0.1 | 2026-10-11 | raw.githubusercontent.com |
 | VidGrab | 1.3.5 | 2026-10-10 | raw.githubusercontent.com |
-| Lumisound | 1.9.0.84 | 2026-10-10 | raw.githubusercontent.com |
 | Swift Radio+ | 4.0.0 | 2026-10-10 | raw.githubusercontent.com |
 | MiruShin | 2.9.17 | 2026-10-10 | raw.githubusercontent.com |
 | VortX | 0.5.0 | 2026-10-10 | raw.githubusercontent.com |
