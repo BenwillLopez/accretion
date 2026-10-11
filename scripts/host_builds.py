@@ -37,8 +37,11 @@ def main():
     with open(path("supabase/project.json"), encoding="utf-8") as f:
         base = json.load(f)["url"].rstrip("/")
     ref = urllib.parse.urlparse(base).hostname.split(".")[0]
-    keys = http("GET", f"https://api.supabase.com/v1/projects/{ref}/api-keys",
-                {"Authorization": f"Bearer {TOKEN}", "User-Agent": "accretion-host-builds"})
+    keys = http(
+        "GET",
+        f"https://api.supabase.com/v1/projects/{ref}/api-keys",
+        {"Authorization": f"Bearer {TOKEN}", "User-Agent": "accretion-host-builds"},
+    )
     service = next(k["api_key"] for k in keys if k.get("name") == "service_role")
     auth = {"apikey": service, "Authorization": f"Bearer {service}"}
 
@@ -66,12 +69,20 @@ def main():
                 object_path = f"{bundle}/{version}.ipa"
                 upload = {**auth, "Content-Type": "application/octet-stream", "x-upsert": "true"}
                 with open(tmp.name, "rb") as f:
-                    http("POST", f"{base}/storage/v1/object/builds/{urllib.parse.quote(object_path)}",
-                         upload, f.read(), timeout=900)
+                    http(
+                        "POST",
+                        f"{base}/storage/v1/object/builds/{urllib.parse.quote(object_path)}",
+                        upload,
+                        f.read(),
+                        timeout=900,
+                    )
             row = {"bundle_id": bundle, "version": version, "path": object_path, "size": size}
-            http("POST", f"{base}/rest/v1/hosted_builds",
-                 {**auth, "Content-Type": "application/json", "Prefer": "return=minimal"},
-                 json.dumps(row).encode())
+            http(
+                "POST",
+                f"{base}/rest/v1/hosted_builds",
+                {**auth, "Content-Type": "application/json", "Prefer": "return=minimal"},
+                json.dumps(row).encode(),
+            )
             print(f"hosted {bundle} {version} ({size // 1024} KB)")
             added += 1
     print(f"{added} new builds hosted, {len(have)} already there")
