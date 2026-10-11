@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-11 02:13 UTC.
+Built 2026-10-11 02:47 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **4250** (5078 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23571 |
+| Listings read | 23570 |
 | Apps listed by more than one source (newest kept) | 1676 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6587 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -83,7 +83,7 @@ Built 2026-10-11 02:13 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4605 | 0 | 222 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
 | [Quantum Source++](https://bit.ly/Quantumsource-plus) | ok | 32 | 0 | 3 | 2025-05-20 | discovered |
