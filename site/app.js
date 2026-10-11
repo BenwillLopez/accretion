@@ -524,10 +524,16 @@
   // Feather takes the plain https link after the prefix (see its FeatherApp.swift URL handler).
   const featherInstall = (url) => `feather://install/${url}`;
   const featherSource = (url) => `feather://source/${url}`;
+  // The Accretion app (github.com/GETAccretion/accretion-app) is a Feather fork with the same
+  // links under its own accretion:// scheme.
+  const ACCRETION_ID = "io.github.getaccretion.Accretion";
+  const accretionInstall = (url) => `accretion://install/${url}`;
+  const accretionSource = (url) => `accretion://source/${url}`;
 
   // One-tap install: each app page's Install button hands the IPA to the installer the visitor
   // picked once. The choice stays on this device (localStorage); nothing is sent anywhere.
   const INSTALLERS = [
+    { id: "accretion", name: "Accretion", note: "Our app: signs and installs with your own certificate.", link: (u) => accretionInstall(u) },
     { id: "feather", name: "Feather", note: "Signs and installs with your own certificate (2.0 or newer).", link: (u) => featherInstall(u) },
     { id: "altstore", name: "AltStore", note: "Signs with your Apple ID, refreshes every 7 days.", link: (u) => `altstore://install?url=${encodeURIComponent(u)}` },
     { id: "sidestore", name: "SideStore", note: "Signs with your Apple ID, refreshes on the phone.", link: (u) => `sidestore://install?url=${encodeURIComponent(u)}` },
@@ -560,9 +566,9 @@
   }
 
   function installButtons(url) {
-    const main = installer() || INSTALLERS[0]; // Feather unless the visitor picked another
+    const main = installer() || INSTALLERS[0]; // the Accretion app unless the visitor picked another
     return [
-      h("a", { class: "btn primary", href: main.link(url) }, main.id === "feather" ? "Sign & install in Feather" : `Install with ${main.name}`),
+      h("a", { class: "btn primary", href: main.link(url) }, `Sign & install in ${main.name}`),
       ...INSTALLERS.filter((i) => i !== main).map((i) => h("a", { class: "btn", href: i.link(url), title: i.note }, i.name)),
       h("a", { class: "btn ghost", href: url, rel: "nofollow noopener" }, "Download"),
     ];
@@ -610,24 +616,28 @@
     const prov = h("input", { type: "file", id: "imp-prov", accept: ".mobileprovision" });
     const pass = h("input", { class: "input", type: "password", id: "imp-pass", placeholder: "Certificate password (if it has one)", autocomplete: "off" });
     const msg = h("p", { class: "muted small", "aria-live": "polite" });
-    const go = h("button", { class: "btn primary", type: "submit" }, "Add to Feather");
+    // Accretion and Feather take the same import link under their own scheme
+    const apps = { accretion: "Accretion", feather: "Feather" };
     const form = h("form", { class: "card-form imp" },
       h("label", {}, h("span", {}, "Certificate (.p12)"), p12),
       h("label", {}, h("span", {}, "Profile (.mobileprovision)"), prov),
       h("label", {}, h("span", {}, "Password"), pass),
-      h("div", { class: "row" }, go),
+      h("div", { class: "row" },
+        h("button", { class: "btn primary", type: "submit", value: "accretion" }, "Add to Accretion"),
+        h("button", { class: "btn", type: "submit", value: "feather" }, "Add to Feather")),
       msg,
-      h("p", { class: "muted small" }, "Your files stay on this device: the page only hands them to Feather. Nothing is uploaded to Accretion or anyone else."));
+      h("p", { class: "muted small" }, "Your files stay on this device: the page only hands them to the app you pick. Nothing is uploaded to Accretion or anyone else."));
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      const scheme = e.submitter && apps[e.submitter.value] ? e.submitter.value : "accretion";
       const [a, b] = [p12.files[0], prov.files[0]];
       if (!a || !b) { msg.textContent = "Pick both files first: the .p12 and the .mobileprovision."; return; }
       try {
         const [ca, cb] = await Promise.all([a.arrayBuffer(), b.arrayBuffer()]);
         const pw = b64(new TextEncoder().encode(pass.value));
-        const link = `feather://import-certificate?p12=${encodeURIComponent(b64(ca))}&mobileprovision=${encodeURIComponent(b64(cb))}&password=${encodeURIComponent(pw)}`;
-        form.dataset.link = link; // lets the browser tests read what Feather receives
-        msg.textContent = "Opening Feather…";
+        const link = `${scheme}://import-certificate?p12=${encodeURIComponent(b64(ca))}&mobileprovision=${encodeURIComponent(b64(cb))}&password=${encodeURIComponent(pw)}`;
+        form.dataset.link = link; // lets the browser tests read what the app receives
+        msg.textContent = `Opening ${apps[scheme]}…`;
         window.location.href = link;
       } catch {
         msg.textContent = "Couldn't read those files. Try picking them again.";
@@ -662,11 +672,12 @@
   function renderSign() {
     const featherId = FEATHER_IDS.find((id) => state.byId.has(id));
     const feather = featherId && state.byId.get(featherId);
+    const ours = state.byId.get(ACCRETION_ID);
     const step = (n, title, ...kids) => h("section", { class: "sec sign-step" }, h("h2", {}, h("span", { class: "step-n" }, String(n)), title), ...kids);
     $("sign").replaceChildren(...[
       h("div", { class: "view-head" },
         h("h1", { class: "view-title" }, "Sign your own apps"),
-        h("p", { class: "muted" }, "Install any app on your iPhone, even one that isn't in Accretion yet: a tweaked YouTube the day it drops, or your own IPA. No computer, no 7-day limit. Feather signs it on your phone with your certificate.")),
+        h("p", { class: "muted" }, "Install any app on your iPhone, even one that isn't in Accretion yet: a tweaked YouTube the day it drops, or your own IPA. No computer, no 7-day limit. The Accretion app (or Feather) signs it on your phone with your certificate.")),
       step(1, "Get a certificate",
         h("p", { class: "muted" }, "A paid certificate (a .p12 file, a .mobileprovision file and a password) installs apps for about a year without a computer."),
         certs().length
@@ -677,15 +688,15 @@
               h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
           : h("p", { class: "muted small" }, "Pick a seller that replaces or refunds certificates Apple revokes."),
         h("p", { class: "muted small" }, "Free alternative: AltStore or SideStore with your own Apple ID (needs a computer once, apps refresh every 7 days).")),
-      step(2, "Add it to Feather",
-        h("p", {}, feather
-          ? h("a", { class: "btn", href: `#/app/${encodeURIComponent(featherId)}` }, `Get Feather ${feather.v}`)
-          : null,
-          h("span", { class: "muted small" }, feather ? " Free and open source. Most certificate sellers also give you a signed copy." : "Most certificate sellers give you a signed copy of Feather.")),
+      step(2, "Add it to the Accretion app",
+        h("p", {},
+          ours ? h("a", { class: "btn primary", href: `#/app/${encodeURIComponent(ACCRETION_ID)}` }, `Get Accretion ${ours.v}`) : null,
+          feather ? h("a", { class: "btn", href: `#/app/${encodeURIComponent(featherId)}` }, `Get Feather ${feather.v}`) : null,
+          h("span", { class: "muted small" }, " Accretion is our free, open-source app, built on Feather. Install it once with your certificate seller's signer or Sideloadly. Feather works the same way.")),
         h("p", { class: "warn small" }, FEATHER_NOTE),
         h("p", { class: "muted" }, "Then add your certificate in one tap:"),
         certImport(),
-        h("p", { class: "muted small" }, "Or in Feather: Settings → Certificates → + and pick the same files.")),
+        h("p", { class: "muted small" }, "Or in the app: Settings → Certificates → + and pick the same files.")),
       step(3, "Pick an app",
         h("p", { class: "muted" }, "From Accretion: open any app and tap Install. ", h("a", { href: "#/" }, "Browse apps"), " or search above."),
         installerSetting(),
@@ -1025,6 +1036,7 @@
     $("add-altstore").href = `altstore://source?url=${encodeURIComponent(url)}`;
     $("add-sidestore").href = `sidestore://source?url=${encodeURIComponent(url)}`;
     $("add-feather").href = featherSource(url);
+    $("add-accretion").href = accretionSource(url);
   }
   $("open-add").addEventListener("click", () => {
     updateAdd();

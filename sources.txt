@@ -4,6 +4,8 @@
 # Accretion Mods: our own builds (https://github.com/AccretionMods/mods). Every mod has its own
 # io.github.accretionmods.* bundle ID, so it never replaces another source's app.
 https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json
+# The Accretion app itself (https://github.com/GETAccretion/accretion-app)
+https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json
 https://driftywinds.github.io/AltStore/apps.json
 https://repos.gabrx.eu.org/cypwn.json
 https://wuxu1.github.io/wuxu-complete-plus.json
