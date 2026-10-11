@@ -2,16 +2,16 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 20:27 UTC",
+ "updated": "2026-10-11 20:39 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T20:27:34Z",
+ "built_at": "2026-10-11T20:39:34Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23581,
+ "listings": 23578,
  "duplicates": 1676,
- "rejected": 6580,
+ "rejected": 6581,
  "excluded": 57,
  "dead_links_removed": 8524,
  "links_on_hold": 0,
@@ -53,13 +53,13 @@
  ],
  "recent": [
   {
-   "name": "Lumisound",
-   "version": "1.9.0.90",
+   "name": "Accretion",
+   "version": "1.0.6",
    "date": "2026-10-11"
   },
   {
-   "name": "Accretion",
-   "version": "1.0.5",
+   "name": "Lumisound",
+   "version": "1.9.0.90",
    "date": "2026-10-11"
   },
   {
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3505
+   "apps": 3506
   },
   {
    "month": "2026-05",
-   "apps": 3580
+   "apps": 3581
   },
   {
    "month": "2026-06",
