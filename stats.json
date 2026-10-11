@@ -2,14 +2,14 @@
  "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 15:51 UTC",
+ "updated": "2026-10-11 16:44 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T15:51:57Z",
+ "built_at": "2026-10-11T16:44:37Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23581,
+ "listings": 23582,
  "duplicates": 1676,
  "rejected": 6581,
  "excluded": 57,
@@ -53,8 +53,13 @@
  ],
  "recent": [
   {
+   "name": "Accretion",
+   "version": "1.0.5",
+   "date": "2026-10-11"
+  },
+  {
    "name": "Lumisound",
-   "version": "1.9.0.87",
+   "version": "1.9.0.88",
    "date": "2026-10-11"
   },
   {
@@ -70,11 +75,6 @@
   {
    "name": "Alyn ReSA Multiplayer",
    "version": "1.0.2",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Accretion",
-   "version": "1.0.3",
    "date": "2026-10-11"
   },
   {
