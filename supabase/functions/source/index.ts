@@ -18,7 +18,7 @@ const SOURCES: Record<string, string> = {
 const reply = (status: number, message: string) =>
   new Response(JSON.stringify({ message }), { status, headers: { "Content-Type": "application/json" } });
 
-type Version = { downloadURL?: string };
+type Version = { version?: string; downloadURL?: string };
 type App = { bundleIdentifier?: string; downloadURL?: string; versions?: Version[] };
 
 Deno.serve(async (req) => {
@@ -43,7 +43,9 @@ Deno.serve(async (req) => {
     if (!app.bundleIdentifier || !hostedIds.has(app.bundleIdentifier)) continue;
     const link = `${base}?app=${encodeURIComponent(app.bundleIdentifier)}&key=${key}`;
     app.downloadURL = link;
-    for (const version of app.versions ?? []) version.downloadURL = link;
+    for (const version of app.versions ?? []) {
+      version.downloadURL = version.version ? `${link}&version=${encodeURIComponent(version.version)}` : link;
+    }
   }
   source.sourceURL = url.toString();
   return new Response(JSON.stringify(source), {

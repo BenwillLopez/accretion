@@ -76,14 +76,19 @@ jobs:
           SITE_URL: ${{ steps.pages.outputs.base_url && format('{0}/', steps.pages.outputs.base_url) || '' }}
           SUPABASE_REGION: ${{ inputs.region || 'us-east-1' }}
           ADMIN_USERNAME: ${{ inputs.admin_username }}
-      # Accretion-hosted builds: download (login or personal key) and personal sources.
+      # Accretion-hosted builds: download (login or personal key), personal sources, and upload
+      # (release workflows put new builds in the private bucket with ACCRETION_UPLOAD_KEY).
       # --no-verify-jwt: AltStore and friends call with a key, not a login; the functions check it.
       - name: Deploy download functions
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          UPLOAD_KEY: ${{ secrets.ACCRETION_UPLOAD_KEY }}
         run: |
           ref=$(jq -r .url supabase/project.json | sed -E 's#https://([^.]+)\..*#\1#')
-          npx --yes supabase@2.120.0 functions deploy download source \
+          if [ -n "$UPLOAD_KEY" ]; then
+            npx --yes supabase@2.120.0 secrets set --project-ref "$ref" UPLOAD_KEY="$UPLOAD_KEY"
+          fi
+          npx --yes supabase@2.120.0 functions deploy download source upload \
             --project-ref "$ref" --no-verify-jwt --use-api
       - name: Save public settings
         run: |

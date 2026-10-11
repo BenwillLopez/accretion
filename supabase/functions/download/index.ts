@@ -2,6 +2,7 @@
 //
 //   GET /functions/v1/download?app=<bundle id>             with "Authorization: Bearer <user JWT>"
 //   GET /functions/v1/download?app=<bundle id>&key=<key>   for AltStore, SideStore and Feather
+//   add &version=<x> for a particular version (sources list every version); newest otherwise
 //
 // Answers with a redirect to a 5-minute link into the private "builds" bucket, or a short
 // explanation (401 not signed in, 404 not hosted). Deployed with --no-verify-jwt so the key form
@@ -19,6 +20,7 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   const app = url.searchParams.get("app") ?? "";
   const key = url.searchParams.get("key") ?? "";
+  const version = url.searchParams.get("version") ?? "";
   if (!/^[A-Za-z0-9][A-Za-z0-9.-]*$/.test(app)) return reply(400, "Which app? Add ?app=<bundle id>.");
 
   // who is asking: a signed-in user, or the owner of a personal key
@@ -36,9 +38,9 @@ Deno.serve(async (req) => {
   }
   if (!owner) return reply(401, "Sign in to your Accretion account to download, or use your personal source link.");
 
-  const { data: build } = await admin
-    .from("hosted_builds").select("path").eq("bundle_id", app)
-    .order("created_at", { ascending: false }).limit(1).maybeSingle();
+  let query = admin.from("hosted_builds").select("path").eq("bundle_id", app);
+  if (version) query = query.eq("version", version);
+  const { data: build } = await query.order("created_at", { ascending: false }).limit(1).maybeSingle();
   if (!build) return reply(404, "Accretion doesn't host this app.");
 
   const { data: signed, error } = await admin.storage.from("builds").createSignedUrl(build.path, 300);
