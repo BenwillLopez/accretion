@@ -64,12 +64,14 @@ def main():
                 tmp.flush()
                 size = os.path.getsize(tmp.name)
                 object_path = f"{bundle}/{version}.ipa"
+                upload = {**auth, "Content-Type": "application/octet-stream", "x-upsert": "true"}
                 with open(tmp.name, "rb") as f:
                     http("POST", f"{base}/storage/v1/object/builds/{urllib.parse.quote(object_path)}",
-                         {**auth, "Content-Type": "application/octet-stream", "x-upsert": "true"}, f.read(), timeout=900)
+                         upload, f.read(), timeout=900)
+            row = {"bundle_id": bundle, "version": version, "path": object_path, "size": size}
             http("POST", f"{base}/rest/v1/hosted_builds",
                  {**auth, "Content-Type": "application/json", "Prefer": "return=minimal"},
-                 json.dumps({"bundle_id": bundle, "version": version, "path": object_path, "size": size}).encode())
+                 json.dumps(row).encode())
             print(f"hosted {bundle} {version} ({size // 1024} KB)")
             added += 1
     print(f"{added} new builds hosted, {len(have)} already there")
