@@ -316,7 +316,12 @@ def main():
     auth = provider_settings()
     if SITE_URL:
         auth.update(
-            {"site_url": SITE_URL, "uri_allow_list": f"{SITE_URL},{SITE_URL}**", "mailer_autoconfirm": False}
+            {
+                "site_url": SITE_URL,
+                # the Accretion app signs in with Google, GitHub and Discord through its own scheme
+                "uri_allow_list": f"{SITE_URL},{SITE_URL}**,accretion://auth-callback",
+                "mailer_autoconfirm": False,
+            }
         )
     mail = smtp_settings()
     auth.update(mail)
