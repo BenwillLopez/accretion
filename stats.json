@@ -1,30 +1,30 @@
 {
- "apps": 4262,
+ "apps": 4260,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-11 06:05 UTC",
+ "updated": "2026-10-11 13:12 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-11T06:05:29Z",
+ "built_at": "2026-10-11T13:12:29Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23585,
+ "listings": 23582,
  "duplicates": 1676,
- "rejected": 6578,
+ "rejected": 6581,
  "excluded": 57,
- "dead_links_removed": 8522,
+ "dead_links_removed": 8525,
  "links_on_hold": 0,
- "developers": 703,
+ "developers": 704,
  "updated_7d": 736,
- "updated_30d": 1192,
+ "updated_30d": 1190,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2103,
   "games": 981,
-  "utilities": 338,
-  "photo-video": 317,
-  "entertainment": 219,
+  "utilities": 339,
+  "photo-video": 318,
+  "entertainment": 215,
   "lifestyle": 127,
   "developer": 108,
   "social": 69
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3365
+   "apps": 3363
   },
   {
    "name": "dsewerek's general apps",
@@ -48,7 +48,7 @@
   },
   {
    "name": "AltGallery",
-   "apps": 21
+   "apps": 22
   }
  ],
  "recent": [
@@ -68,6 +68,16 @@
    "date": "2026-10-11"
   },
   {
+   "name": "Manatan",
+   "version": "6.1.39",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "Session",
+   "version": "2.15.5",
+   "date": "2026-10-11"
+  },
+  {
    "name": "Bazaart",
    "version": "27.0.4",
    "date": "2026-10-11"
@@ -78,18 +88,8 @@
    "date": "2026-10-11"
   },
   {
-   "name": "iCube",
-   "version": "1.0.0-beta9-ios",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Nuvio Enhanced",
-   "version": "0.5.9",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "VideoLite",
-   "version": "624500",
+   "name": "Provenance Alpha",
+   "version": "3.4.0",
    "date": "2026-10-11"
   }
  ],
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2249
+   "apps": 2248
   },
   {
    "month": "2025-03",
-   "apps": 2277
+   "apps": 2276
   },
   {
    "month": "2025-04",
-   "apps": 2312
+   "apps": 2311
   },
   {
    "month": "2025-05",
-   "apps": 2365
+   "apps": 2364
   },
   {
    "month": "2025-06",
-   "apps": 2394
+   "apps": 2393
   },
   {
    "month": "2025-07",
-   "apps": 2427
+   "apps": 2426
   },
   {
    "month": "2025-08",
-   "apps": 2513
+   "apps": 2512
   },
   {
    "month": "2025-09",
-   "apps": 2563
+   "apps": 2562
   },
   {
    "month": "2025-10",
-   "apps": 2628
+   "apps": 2627
   },
   {
    "month": "2025-11",
-   "apps": 2690
+   "apps": 2689
   },
   {
    "month": "2025-12",
-   "apps": 2825
+   "apps": 2824
   },
   {
    "month": "2026-01",
-   "apps": 2960
+   "apps": 2959
   },
   {
    "month": "2026-02",
@@ -176,21 +176,21 @@
   },
   {
    "month": "2026-07",
-   "apps": 3830
+   "apps": 3829
   },
   {
    "month": "2026-08",
-   "apps": 3870
+   "apps": 3868
   },
   {
    "month": "2026-09",
-   "apps": 4068
+   "apps": 4061
   },
   {
    "month": "2026-10",
-   "apps": 4262
+   "apps": 4260
   }
  ],
- "new_30d": 373,
- "new_12m": 1684
+ "new_30d": 372,
+ "new_12m": 1683
 }
