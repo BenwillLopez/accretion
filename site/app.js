@@ -895,7 +895,7 @@
       ...(ipa ? INSTALLERS.filter((i) => i !== pref).map((i) => h("a", { class: "btn", href: i.link(ipa), onclick: installed, title: i.note }, i.name)) : []),
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
-      ipa ? h("button", { class: "btn ghost", type: "button", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
+      ipa ? h("button", { class: "btn ghost", type: "button", "data-download": "", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
     );
     if (isSaved && hasUpdate(a)) {
       saved[a.i] = a.v; // seen now
@@ -1083,6 +1083,27 @@
     state.trend = new Map(rows.filter((r) => state.byId.has(r.app_id) && r.score > 0).map((r) => [r.app_id, r.score]));
     if (parse().view === "home") apply();
   }
+  // ---- downloads need an account -------------------------------------------------------
+  // Any click on a download or install link (an .ipa, or an installer's install:// link) goes to
+  // sign-in first when nobody is signed in. Adding sources stays open. Only when the community
+  // (social.js) is set up; without it there are no accounts, so nothing is gated.
+  const isDownload = (el) => {
+    if (el.dataset && el.dataset.download !== undefined) return true;
+    const href = el.getAttribute && el.getAttribute("href");
+    if (!href) return false;
+    return /\.t?ipa(\?|$)/i.test(href) || /^[a-z-]+:\/\/install/i.test(href);
+  };
+  document.addEventListener("click", (e) => {
+    const auth = window.AccAuth;
+    if (!auth || auth.signedIn()) return;
+    const el = e.target.closest && e.target.closest("a, button");
+    if (!el || !isDownload(el)) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    toast("Sign in to download apps");
+    auth.require();
+  }, true);
+
   window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route, setTrending };
 
   // ---- boot -------------------------------------------------------------------------------

@@ -304,6 +304,8 @@
     location.hash = "#/signin";
     return false;
   }
+  // app.js asks this before any download or install (downloads need an account)
+  window.AccAuth = { signedIn: () => Boolean(me.user), require: requireUser };
   function rememberSpot() {
     try { sessionStorage.setItem("acc.back", location.hash && !location.hash.startsWith("#/signin") ? location.hash : "#/feed"); } catch { /* private mode */ }
   }
