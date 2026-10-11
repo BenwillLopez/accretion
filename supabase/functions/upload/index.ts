@@ -45,6 +45,9 @@ Deno.serve(async (req) => {
   const path = `${bundle}/${version}.ipa`;
 
   if (new URL(req.url).searchParams.get("finish") !== "1") {
+    // a published version is never replaced: a leaked key can't swap a build people already have
+    const { data: existing } = await admin.from("hosted_builds").select("id").eq("bundle_id", bundle).eq("version", version).maybeSingle();
+    if (existing) return reply(409, { message: `${bundle} ${version} is already published. Bump the version.` });
     const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: true });
     if (error || !data) return reply(500, { message: `Couldn't prepare the upload: ${error?.message ?? "unknown"}` });
     return reply(200, { signedUrl: data.signedUrl, path });
@@ -55,13 +58,23 @@ Deno.serve(async (req) => {
   if (!files?.some((f: { name: string }) => f.name === `${version}.ipa`)) {
     return reply(409, { message: "The file isn't in storage yet. Upload it first." });
   }
-  await admin.from("hosted_builds").delete().eq("bundle_id", bundle).eq("version", version);
+  // fingerprint the stored file, so the app can check what it downloads is what was published
+  const { data: blob, error: readError } = await admin.storage.from("builds").download(path);
+  if (readError || !blob) return reply(500, { message: "Couldn't read the uploaded file." });
+  const digest = await crypto.subtle.digest("SHA-256", await blob.arrayBuffer());
+  const sha256 = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  const claimed = (body as { sha256?: string }).sha256;
+  if (claimed && claimed.toLowerCase() !== sha256) {
+    await admin.storage.from("builds").remove([path]);
+    return reply(422, { message: "The uploaded file doesn't match the sha256 that was sent. Upload it again." });
+  }
   const { error } = await admin.from("hosted_builds").insert({
     bundle_id: bundle,
     version,
     path,
-    size: typeof body.size === "number" ? body.size : null,
+    size: blob.size,
+    sha256,
   });
   if (error) return reply(500, { message: `Couldn't record the build: ${error.message}` });
-  return reply(200, { path });
+  return reply(200, { path, sha256 });
 });

@@ -87,14 +87,29 @@ Deno.serve(async (req) => {
     return reply(401, "Sign in to your Accretion account to download, or use your personal source link.");
   }
 
-  let query = admin.from("hosted_builds").select("path").eq("bundle_id", app);
-  if (version && app !== ACCRETION) query = query.eq("version", version); // Accretion: newest only
-  const { data: build } = await query.order("created_at", { ascending: false }).limit(1).maybeSingle();
+  // banned accounts don't download, and nobody gets more than 30 downloads in 10 minutes
+  const { data: profile } = await admin.from("profiles").select("banned").eq("id", owner).maybeSingle();
+  if (profile?.banned) return reply(403, "This account can't download right now.");
+  const since = new Date(Date.now() - 10 * 60_000).toISOString();
+  const { count } = await admin.from("download_log").select("id", { count: "exact", head: true })
+    .eq("owner", owner).gte("at", since);
+  if ((count ?? 0) >= 30) return reply(429, "Too many downloads. Try again in a few minutes.");
+
+  // newest by version number, not upload time (an old version re-uploaded can't become "newest");
+  // Accretion itself is always served at its newest version
+  const { data: rows } = await admin.from("hosted_builds").select("path,version").eq("bundle_id", app);
+  const builds = (rows ?? []) as { path: string; version: string }[];
+  const build = version && app !== ACCRETION
+    ? builds.find((b) => b.version === version)
+    : builds.sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
   if (!build) return reply(404, "Accretion doesn't host this app.");
 
   const { data: signed, error } = await admin.storage.from("builds").createSignedUrl(build.path, 300);
   if (error || !signed) return reply(500, "Couldn't prepare the download. Try again.");
 
   await admin.from("download_log").insert({ owner, bundle_id: app, via });
-  return new Response(null, { status: 302, headers: { ...cors, Location: signed.signedUrl } });
+  return new Response(null, {
+    status: 302,
+    headers: { ...cors, Location: signed.signedUrl, "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" },
+  });
 });

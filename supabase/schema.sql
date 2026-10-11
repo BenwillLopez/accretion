@@ -672,6 +672,7 @@ create table if not exists public.hosted_builds (
   created_at timestamptz not null default now()
 );
 create index if not exists hosted_builds_bundle on public.hosted_builds (bundle_id, created_at desc);
+alter table public.hosted_builds add column if not exists sha256 text check (sha256 ~ '^[0-9a-f]{64}$');
 
 create table if not exists public.download_keys (
   owner uuid primary key references auth.users (id) on delete cascade default auth.uid(),
@@ -687,6 +688,7 @@ create table if not exists public.download_log (
   via text not null check (via in ('login', 'key')),
   at timestamptz not null default now()
 );
+create index if not exists download_log_owner_at on public.download_log (owner, at desc);
 
 alter table public.hosted_builds enable row level security;
 alter table public.download_keys enable row level security;
