@@ -457,3 +457,5 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
   .chips { flex-wrap: wrap; overflow: visible; }
   .card, .shelf-list li, .stats div { break-inside: avoid; }
 }
+.key-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: center; margin: 8px 0; }
+@media (max-width: 520px) { .key-row { grid-template-columns: minmax(0, 1fr) auto; } .key-row .label { grid-column: 1 / -1; } }

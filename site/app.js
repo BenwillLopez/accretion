@@ -875,9 +875,17 @@
     document.dispatchEvent(new CustomEvent("acc:app", { detail: { app: a, mount: social, comments } }));
   }
 
+  // Accretion's own builds download through the download server with the visitor's personal key
+  // (social.js). The server only has the newest version, so older ones keep their links.
+  function hostedLink(a, url, version) {
+    const auth = window.AccAuth;
+    if (!auth || !auth.link || (version && a.v && version.v !== a.v)) return url;
+    return auth.link(a.i, url);
+  }
+
   function head(a, d) {
     const latest = d && d.versions && d.versions[0];
-    const ipa = latest && safeUrl(latest.url);
+    const ipa = latest && safeUrl(hostedLink(a, latest.url));
     const tint = d && /^[0-9A-F]{6}$/i.test(d.tint || "") ? `#${d.tint}` : null;
     const isSaved = saved[a.i] !== undefined;
     const tooNew = deviceIOS && a.m && !fits(a);
@@ -992,7 +1000,7 @@
               {},
               h("span", {}, `v${v.v}${v.b && v.b !== v.v ? ` (${v.b})` : ""}`),
               h("span", { class: "muted" }, `${v.t} · ${bytes(v.z)}${v.min ? ` · iOS ${v.min}+` : ""}`),
-              safeUrl(v.url) ? h("a", { href: v.url, rel: "nofollow noopener", onclick: (e) => downloadScreen(e, a, v.url, v.v) }, "Download") : null,
+              safeUrl(v.url) ? h("a", { href: hostedLink(a, v.url, v), rel: "nofollow noopener", onclick: (e) => downloadScreen(e, a, hostedLink(a, v.url, v), v.v) }, "Download") : null,
               v.notes && v !== latest ? h("span", { class: "notes" }, v.notes) : null,
             ),
           ),
@@ -1091,7 +1099,7 @@
     if (el.dataset && el.dataset.download !== undefined) return true;
     const href = el.getAttribute && el.getAttribute("href");
     if (!href) return false;
-    return /\.t?ipa(\?|$)/i.test(href) || /^[a-z-]+:\/\/install/i.test(href);
+    return /\.t?ipa(\?|$)/i.test(href) || /^[a-z-]+:\/\/install/i.test(href) || /\/functions\/v1\/download\?/.test(href);
   };
   document.addEventListener("click", (e) => {
     const auth = window.AccAuth;

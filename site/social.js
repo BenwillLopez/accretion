@@ -36,7 +36,8 @@
   const COLORS = ["8B5CF6", "22D3EE", "34D399", "F59E0B", "F43F5E", "3B82F6", "EC4899", "A3E635"];
   let A; // helpers from app.js (window.Acc), set on acc:ready
   const $ = (id) => document.getElementById(id);
-  const me = { user: null, profile: null, unread: 0 };
+  const me = { user: null, profile: null, unread: 0, key: null };
+  let hosted = new Set(); // bundle ids the download server serves (supabase/functions/download)
   let ready = false;
 
   // ---------------------------------------------------------------- data layer
@@ -124,6 +125,9 @@
       setRole: async (username, role) => ok(await sb().from("profiles").update({ role }).eq("username", username).select("username,role")),
       setSupporter: async (username, supporter) => ok(await sb().from("profiles").update({ supporter }).eq("username", username).select("username,supporter")),
       deleteAccount: async () => ok(await sb().rpc("delete_my_account")),
+      // Accretion's own builds: which apps the download server hosts, and your personal key for it
+      hosted: async () => ok(await sb().from("hosted_builds").select("bundle_id")).map((r) => r.bundle_id),
+      downloadKey: async (rotate = false) => ok(await sb().rpc("my_download_key", { rotate })),
       // anonymous demand counts (see supabase/schema.sql)
       track: async ({ kind, app, q }) => ok(await sb().rpc("track", { p_kind: kind, p_app: app, p_q: q })),
       trending: async () => ok(await sb().from("app_trending").select("app_id,searches,views,installs,score").order("score", { ascending: false }).limit(200)),
@@ -138,6 +142,7 @@
     me.user = user;
     if (!changed) return;
     me.profile = user ? await api.profileById(user.id).catch(() => null) : null;
+    me.key = user ? await api.downloadKey().catch(() => null) : null;
     renderAccount();
     if (me.profile && /^user_[0-9a-z]+$/.test(me.profile.username) && !location.hash.startsWith("#/me")) {
       try {
@@ -305,7 +310,16 @@
     return false;
   }
   // app.js asks this before any download or install (downloads need an account)
-  window.AccAuth = { signedIn: () => Boolean(me.user), require: requireUser };
+  // link() swaps a hosted app's public download for the download server with your personal key,
+  // so installers (which can't sign in) still get the file. Other apps keep their own links.
+  const serverLink = (bundleId, key) =>
+    `${cfg.supabaseUrl}/functions/v1/download?app=${encodeURIComponent(bundleId)}${key ? `&key=${key}` : ""}`;
+  const sourceLink = (name, key) => `${cfg.supabaseUrl}/functions/v1/source?name=${name}&key=${key}`;
+  window.AccAuth = {
+    signedIn: () => Boolean(me.user),
+    require: requireUser,
+    link: (bundleId, url) => (hosted.has(bundleId) ? serverLink(bundleId, me.key) : url),
+  };
   function rememberSpot() {
     try { sessionStorage.setItem("acc.back", location.hash && !location.hash.startsWith("#/signin") ? location.hash : "#/feed"); } catch { /* private mode */ }
   }
@@ -531,8 +545,36 @@
           if (!window.confirm("Delete your account? Your profile, posts, likes and follows are removed for good.")) return;
           try { await api.deleteAccount(); await api.signOut().catch(() => {}); await setUser(null); location.hash = "#/"; A.toast("Account deleted"); } catch (err) { A.toast(err.message); }
         } }, "Delete account")));
-    page("Edit profile", h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Edit profile"), h("p", { class: "muted" }, `@${p.username}`)), form, danger,
+    page("Edit profile", h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Edit profile"), h("p", { class: "muted" }, `@${p.username}`)), form, downloadLinks(), danger,
       isMod() ? h("p", {}, h("a", { class: "btn", href: "#/mod" }, "Open moderation")) : null);
+  }
+
+  // Personal source links for apps that can't sign in (AltStore, SideStore, Feather, ESign).
+  // Anyone with the link downloads as you, so it can be replaced at any time.
+  function downloadLinks() {
+    const { h } = A;
+    const box = h("section", { class: "card-form" });
+    const draw = () => {
+      if (!me.key) {
+        box.replaceChildren(h("h2", {}, "Your download links"), h("p", { class: "muted small" }, "Couldn't load your links. Reload the page to try again."));
+        return;
+      }
+      const row = (label, url) => h("div", { class: "key-row" },
+        h("span", { class: "label" }, label),
+        h("code", { class: "src-url" }, url.replace(me.key, `${me.key.slice(0, 6)}…`)),
+        h("button", { class: "btn", type: "button", onclick: () => A.copy(url, "Link copied") }, "Copy"));
+      box.replaceChildren(
+        h("h2", {}, "Your download links"),
+        h("p", { class: "muted small" }, "Add these to AltStore, SideStore, Feather or ESign to get Accretion Mods and the Accretion app there. They're personal: anyone with them downloads as you, so don't share them."),
+        row("Accretion Mods", sourceLink("mods", me.key)),
+        row("Accretion app", sourceLink("app", me.key)),
+        h("div", { class: "actions" }, h("button", { class: "btn ghost", type: "button", onclick: async () => {
+          if (!window.confirm("Replace your key? Your current links stop working, so you'll need to add the new ones again.")) return;
+          try { me.key = await api.downloadKey(true); draw(); A.toast("New links ready"); } catch (err) { A.toast(err.message); }
+        } }, "Replace key")));
+    };
+    draw();
+    return box;
   }
 
   async function renderNotifications() {
@@ -744,6 +786,7 @@
     renderAccount();
     try {
       await setUser(await api.load());
+      hosted = new Set(await api.hosted().catch(() => []));
       if (me.user && /[?&]code=/.test(location.search)) {
         history.replaceState(null, "", location.pathname + location.hash); // tidy the address bar
         if (!location.hash.startsWith("#/me")) goBack();
@@ -754,6 +797,7 @@
     }
     ready = true;
     queue.splice(0).forEach((fn) => fn());
+    if (hosted.size && location.hash.startsWith("#/app/")) A.route(); // redraw with download-server links
     api.trending().then((rows) => A.setTrending(rows || [])).catch(() => {});
     setInterval(() => me.user && refreshUnread(), 60000);
   });
@@ -842,6 +886,8 @@
       setRole: async (username, role) => { const u = users.find((x) => x.username === username); if (!u) return []; u.role = role; return [{ username, role }]; },
       setSupporter: async (username, supporter) => { const u = users.find((x) => x.username.toLowerCase() === username.toLowerCase()); if (!u) return []; u.supporter = supporter; return [{ username: u.username, supporter }]; },
       deleteAccount: async () => { users.splice(users.indexOf(cur), 1); cur = null; },
+      hosted: async () => [],
+      downloadKey: async () => "0".repeat(64),
       track: async (t) => { tracked.push(t); },
       trending: async () => { seed(); return A.apps().slice(3, 9).map((a, i) => ({ app_id: a.i, searches: 12 - i, views: 30 - i, installs: 5, score: 60 - i * 5 })); },
       missing: async () => [{ query: "spotify plus", hits: 7, last_day: "2026-10-10" }, { query: "cercube", hits: 3, last_day: "2026-10-09" }],
