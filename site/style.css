@@ -462,3 +462,31 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .announce h3 { font: 700 18px var(--display); margin: 6px 0 4px; }
 .announce-head { display: flex; align-items: center; gap: 10px; }
 .announce-body { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0 0 8px; }
+
+/* status page (#/status) */
+.st-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin: 12px 0; }
+.st-tile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
+.st-label { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.st-value { font: 700 28px var(--display); font-variant-numeric: tabular-nums; }
+.st-value.good { color: var(--good); }
+.st-value.warn { color: var(--warn); }
+.st-note { font: 12px var(--mono); color: var(--muted); margin: 0; }
+.st-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.st-bars { display: grid; gap: 8px; }
+.st-bar { display: grid; grid-template-columns: 110px minmax(0, 1fr) 56px; gap: 10px; align-items: center; font: 13px var(--mono); }
+.st-bar i { display: block; height: 8px; border-radius: 4px; background: var(--raised); position: relative; overflow: hidden; }
+.st-bar i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.st-bar b { text-align: right; font-weight: 400; color: var(--muted); }
+.st-growth { display: grid; gap: 6px; }
+.st-growth-head { display: flex; justify-content: space-between; align-items: baseline; }
+.st-chart { width: 100%; height: 110px; }
+.st-line { fill: none; stroke: var(--accent-2); stroke-width: 2; }
+.st-area { fill: color-mix(in srgb, var(--accent) 22%, transparent); }
+.st-dot { fill: var(--accent-2); }
+.st-axis { display: flex; justify-content: space-between; font: 11px var(--mono); color: var(--muted); }
+.st-good { color: var(--good); }
+.st-warn { color: var(--warn); }
+.st-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.st-list li { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
+.st-list li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.st-list li b { font: 12px var(--mono); color: var(--muted); font-weight: 400; white-space: nowrap; }

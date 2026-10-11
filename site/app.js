@@ -142,6 +142,7 @@
     if (app) return { view: "app", bid: decodeURIComponent(app[1]) };
     if (pathPart === "/sources") return { view: "sources" };
     if (pathPart === "/support") return { view: "support" };
+    if (pathPart === "/status") return { view: "status" };
     if (pathPart === "/sign") return { view: "sign" };
     if (/^\/(feed|u\/.+|notifications|mod|me|signin)$/.test(pathPart)) return { view: "social", path: pathPart, params: Object.fromEntries(p) };
     return {
@@ -190,6 +191,7 @@
     $("detail").hidden = r.view !== "app";
     $("sources").hidden = r.view !== "sources";
     $("support").hidden = r.view !== "support";
+    $("status").hidden = r.view !== "status";
     $("sign").hidden = r.view !== "sign";
     $("social").hidden = r.view !== "social";
     if (r.view === "social") {
@@ -212,6 +214,11 @@
       document.title = "Support · Accretion";
       window.scrollTo(0, 0);
       return renderSupport();
+    }
+    if (r.view === "status") {
+      document.title = "Status · Accretion";
+      window.scrollTo(0, 0);
+      return renderStatus();
     }
     document.title = r.saved ? "Saved · Accretion" : "Accretion";
     const changed = JSON.stringify(r) !== JSON.stringify(state.f);
@@ -729,6 +736,101 @@
   const kofi = () => safeUrl(state.support.kofi || "");
   const hasSupport = () => Boolean(kofi() || wallets().length || certs().length);
 
+  // ---- status: the whole index at a glance (data/stats.json, rebuilt every 6 hours) ------------
+  function renderStatus() {
+    const s = state.stats || {};
+    const box = $("status");
+    if (!s.apps) {
+      box.replaceChildren(h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Status")), h("p", { class: "muted" }, "Loading…"));
+      return;
+    }
+    const tile = (label, value, note, tone) =>
+      h("div", { class: "st-tile" }, h("span", { class: "st-label" }, label), h("b", { class: `st-value${tone ? ` ${tone}` : ""}` }, value), note ? h("span", { class: "st-note" }, note) : null);
+    const down = (s.sources_failed || 0) + (s.sources_cached || 0);
+    const perApp = s.apps ? (s.listings / s.apps).toFixed(1) : "–";
+
+    // categories: the five biggest, then the rest together
+    const cats = Object.entries(s.categories || {}).sort((a, b) => b[1] - a[1]);
+    const top = cats.slice(0, 5);
+    const rest = cats.slice(5).reduce((sum, [, n]) => sum + n, 0);
+    if (rest) top.push(["rest", rest]);
+    const most = Math.max(1, ...top.map(([, n]) => n));
+    const bars = h("div", { class: "st-bars" }, top.map(([name, n]) =>
+      h("div", { class: "st-bar" },
+        h("span", {}, CATEGORY_NAMES[name] || name),
+        h("i", { style: `--w:${Math.max(4, Math.round((n / most) * 100))}%` }),
+        h("b", {}, fmt(n)))));
+
+    // growth: apps per month, as a line
+    const timeline = s.timeline || [];
+    const first = timeline[0];
+    const last = timeline[timeline.length - 1];
+    const yearAgo = timeline.slice(-13)[0];
+    const growth = h("div", { class: "st-growth" },
+      h("div", { class: "st-growth-head" }, h("span", { class: "st-label" }, "Growth"), h("b", {}, `${fmt(s.apps)} apps`)),
+      growthChart(timeline),
+      h("div", { class: "st-axis" }, h("span", {}, first ? first.month : ""), h("span", {}, "now")),
+      h("p", { class: "st-note" }, yearAgo && last ? `+${fmt(last.apps - yearAgo.apps)} new apps in 12 months` : ""),
+      h("p", { class: "st-note" }, `core ${fmt(s.curated_apps || 0)} apps / ${s.curated_size_mb ?? "–"} MB · full ${s.size_mb ?? "–"} MB · `,
+        h("span", { class: down ? "st-warn" : "st-good" }, down ? `${down} source${down > 1 ? "s" : ""} down` : "all sources up")));
+
+    box.replaceChildren(
+      h("div", { class: "view-head" },
+        h("p", { class: "eyebrow" }, h("span", { class: "live", "aria-hidden": "true" }), `live index · build ${s.updated || ""}`),
+        h("h1", { class: "view-title" }, "Status"),
+        h("p", { class: "muted" }, "The whole index at a glance. Rebuilt every 6 hours from every source.")),
+      h("div", { class: "st-grid" },
+        tile("Apps", fmt(s.apps), "newest build of each"),
+        tile("Sources", `${fmt((s.sources_total || 0) - down)}/${fmt(s.sources_total || 0)}`, `${fmt(s.sources_discovered || 0)} auto-discovered`),
+        tile("Listings scanned", fmt(s.listings || 0), `${perApp} listings per app`),
+        tile("Duplicates resolved", fmt(s.duplicates || 0), "apps found on 2+ sources"),
+        tile("Updated 7d", fmt(s.updated_7d || 0), null, "good"),
+        tile("Updated 30d", fmt(s.updated_30d || 0)),
+        tile("Dead links purged", fmt(s.dead_links_removed || 0)),
+        tile("Failed spec", fmt(s.rejected || 0), null, "warn"),
+        tile("Developers", fmt(s.developers || 0)),
+        tile("Excluded", fmt(s.excluded || 0), "Patreon-only or PAL")),
+      h("div", { class: "st-split" },
+        h("section", { class: "sec" }, h("h2", {}, "Categories"), bars),
+        h("section", { class: "sec" }, growth)),
+      h("div", { class: "st-split" },
+        h("section", { class: "sec" }, h("h2", {}, "Biggest sources"),
+          h("ol", { class: "st-list" }, (s.top_sources || []).map((t) => h("li", {}, h("span", {}, t.name), h("b", {}, `${fmt(t.apps)} apps`))))),
+        h("section", { class: "sec" }, h("h2", {}, "Just updated"),
+          h("ol", { class: "st-list" }, (s.recent || []).map((r) => h("li", {}, h("span", {}, `${r.name} ${r.version}`), h("b", {}, ago(r.date))))))),
+      h("p", { class: "muted small" }, "Per-source details: ", h("a", { href: "https://github.com/GETAccretion/getaccretion.github.io/blob/main/REPORT.md" }, "source report"), "."),
+    );
+  }
+
+  // a small line chart of apps per month (SVG, no library)
+  function growthChart(points) {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 300 80");
+    svg.setAttribute("class", "st-chart");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", points.length ? `Apps per month, from ${points[0].apps} to ${points[points.length - 1].apps}` : "No history yet");
+    if (points.length < 2) return svg;
+    const min = Math.min(...points.map((p) => p.apps));
+    const max = Math.max(...points.map((p) => p.apps));
+    const xy = points.map((p, i) => [(i / (points.length - 1)) * 296 + 2, 76 - ((p.apps - min) / Math.max(1, max - min)) * 70]);
+    const d = xy.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+    const area = document.createElementNS(NS, "path");
+    area.setAttribute("d", `${d} L298,78 L2,78 Z`);
+    area.setAttribute("class", "st-area");
+    const path = document.createElementNS(NS, "path");
+    path.setAttribute("d", d);
+    path.setAttribute("class", "st-line");
+    const dot = document.createElementNS(NS, "circle");
+    const [lx, ly] = xy[xy.length - 1];
+    dot.setAttribute("cx", lx);
+    dot.setAttribute("cy", ly);
+    dot.setAttribute("r", "3");
+    dot.setAttribute("class", "st-dot");
+    svg.append(area, path, dot);
+    return svg;
+  }
+
   function renderSupport() {
     const donate = kofi() || wallets().length;
     $("support").replaceChildren(...[
@@ -1122,6 +1224,7 @@
   ])
     .then(([index, stats, support]) => {
       state.support = support || {};
+      state.stats = stats || {};
       showSupportLinks();
       state.sources = index.sources;
       state.shards = index.shards;
