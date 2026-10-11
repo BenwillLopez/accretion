@@ -575,6 +575,32 @@ grant execute on function public.is_mod(), public.is_admin(), public.can_write()
 grant select on public.app_hits, public.app_trending to anon, authenticated;
 grant select on public.search_misses, public.missing_searches to authenticated;
 
+-- ---------------------------------------------------------------- certificate backups
+-- The Accretion app backs up signing certificates to the user's account. Every payload is
+-- sealed on the phone (AES-GCM with a key derived from a passphrase only the user knows), so
+-- this table never holds a readable .p12, its password or the passphrase. Only the owner can
+-- see or change their rows; nobody else, including moderators, can read them.
+
+create table if not exists public.certificate_backups (
+  id uuid primary key default gen_random_uuid(),
+  owner uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  label text not null default '' check (char_length(label) <= 80),
+  expires timestamptz,
+  payload text not null check (char_length(payload) <= 2000000),
+  salt text not null check (char_length(salt) <= 64),
+  rounds int not null default 210000 check (rounds between 100000 and 10000000),
+  created_at timestamptz not null default now()
+);
+create index if not exists certificate_backups_owner on public.certificate_backups (owner);
+
+alter table public.certificate_backups enable row level security;
+drop policy if exists "own certificate backups" on public.certificate_backups;
+create policy "own certificate backups" on public.certificate_backups for all to authenticated
+  using (owner = auth.uid()) with check (owner = auth.uid());
+
+revoke all on public.certificate_backups from anon;
+grant select, insert, delete on public.certificate_backups to authenticated;
+
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
 --   update public.profiles set role = 'admin' where username = 'your_username';
