@@ -468,7 +468,7 @@
     }
     page("Feed",
       h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Feed"), h("p", { class: "muted" }, "New Accretion versions, mods and fixes, posted automatically.")),
-      news, tabs, list, h("div", { class: "more" }, more));
+      ...(news ? [news] : []), tabs, list, h("div", { class: "more" }, more));
     async function load() {
       more.disabled = true;
       let rows;
