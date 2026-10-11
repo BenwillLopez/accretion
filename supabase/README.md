@@ -28,6 +28,10 @@ URL below, it gives you an ID and a secret, and you save those as GitHub secrets
 Secrets and variables → Actions → Secrets**). Then run **Set up community** again. Each button
 appears on the store as soon as its provider is switched on. Set up any you want, in any order.
 
+The same sign-in works in the Accretion app (email, Google, GitHub and Discord). The app returns
+to `accretion://auth-callback`, which **Set up community** adds to the allowed redirect URLs
+([`scripts/supabase_setup.py`](../scripts/supabase_setup.py)). The providers need nothing extra.
+
 **Callback URL** for every provider:
 
 ```
@@ -124,7 +128,7 @@ Use this instead of the quick setup if you prefer to click through the dashboard
    closest to your users, and set a database password (keep it private).
 2. **Authentication → URL Configuration**
    - **Site URL:** `https://getaccretion.github.io/`
-   - **Redirect URLs:** add the same address.
+   - **Redirect URLs:** add the same address, and `accretion://auth-callback` for the app.
 3. **Authentication → Providers → Email:** leave **Confirm email** on. It stops throwaway
    sign-ups.
 4. Optional, against bots: **Authentication → Attack Protection → CAPTCHA** (Cloudflare
@@ -163,6 +167,33 @@ You can now open **Edit profile → Open moderation** (or go to `#/mod`). From t
 posts, ban users, and give trusted people moderator rights. Admins can also give donors the ♥ supporter badge. Mods can hide posts and ban users;
 only admins can change roles.
 
+## Private downloads
+
+Accretion's own builds, the Accretion app (`io.github.getaccretion.Accretion`) and Accretion Mods
+(from [AccretionMods/mods](https://github.com/AccretionMods/mods)), are kept in the private
+`builds` Storage bucket. Third-party apps are never copied there. Three Edge Functions in
+[`functions/`](functions) serve the bucket:
+
+| Function | Call | What it does |
+|---|---|---|
+| `download` | `?app=<bundle id>` with a login (`Authorization: Bearer …`), or `&key=<personal key>`; optional `&version=` | Answers with a 302 to a 5-minute signed link and logs the download. Without a login or key, a browser is sent to the app's store page. The Accretion app is always served at its newest version. |
+| `source` | `?name=mods\|app&key=<personal key>` | A personal copy of the Accretion Mods or Accretion app source, with every hosted version's download link pointing at `download` |
+| `upload` | `POST` with the `x-upload-key` header | Gives a signed upload link for a new build, then records it in `hosted_builds` |
+
+The Accretion app adds `&av=<its version>` to downloads. A request from a version below
+`minimumVersion` in [`site/app-config.json`](../site/app-config.json) gets a 426 asking to update,
+except a download of Accretion itself, so every old copy can still update.
+
+People find their source links under **Edit profile → Your download links**, with **Copy** and
+**Replace key**. Replacing the key turns the old links off.
+
+**Upload key:** the release workflows and the mods publish script upload new builds with a shared
+key. Save it as the GitHub secret `ACCRETION_UPLOAD_KEY` (at least 32 characters) in this repo and
+in the repos that release builds; **Set up community** copies it to the functions as `UPLOAD_KEY`.
+The [Host builds](../.github/workflows/host-builds.yml) workflow
+([`scripts/host_builds.py`](../scripts/host_builds.py)) is a fallback that copies any newer build
+from the public sources; new releases upload directly.
+
 ## How access is enforced
 
 Every rule lives in the database as row level security in `schema.sql`, so it holds no matter
@@ -178,5 +209,11 @@ what code runs in the browser:
 - Search, view and install counts are anonymous: once per visitor per app per day, at most 300
   a day per visitor, with no account or IP address stored. Per-app totals are public; searches
   that found nothing are visible to moderators only (Moderation → What people look for).
+- Hosted builds: anyone can see which versions are hosted (`hosted_builds`), but the files sit
+  in a private bucket and are reachable only through 5-minute signed links from `download`.
+- Personal download keys (`download_keys`) are visible only to their owner, through the
+  `my_download_key(rotate)` function; `rotate` replaces the key and the old one stops working.
+- The download log (`download_log`) is readable by admins only.
+- Only holders of the upload key can add builds; the functions check it themselves.
 
 `test.sql` checks all of the above on a plain Postgres. CI runs it on every change.

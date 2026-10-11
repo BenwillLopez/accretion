@@ -25,7 +25,14 @@ automatically.
 
 **[getaccretion.github.io](https://getaccretion.github.io/)**: search every app, filter by
 category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
-rebuilt with the source every 6 hours.
+rebuilt with the source every 6 hours. Downloading needs a free account: the website and the
+Accretion app show the download and install buttons once you sign in. For third-party apps this is
+only a gate in the store; their files stay at their sources and are never copied.
+
+The store loads its catalogue from `data/store.json`, built by [`scripts/site.py`](scripts/site.py).
+[`site/app-config.json`](site/app-config.json) sets `minimumVersion`, the oldest Accretion app
+still supported (currently 1.0.5), and newer copies of the app enforce it. Older copies read
+`data/index.json`, which lists only the Accretion app, so all they can do is update.
 
 **Most popular** ranks apps by three signals: how many of the sources carry an app (maintainers
 add what their users ask for), the apps that guides and communities name most
@@ -35,18 +42,41 @@ nothing show up for moderators, so missing apps and sources can be added first.
 ## Sign your own apps
 
 [`#/sign`](https://getaccretion.github.io/#/sign) walks through installing any app on an iPhone
-with Feather, on-device and without the 7-day limit: get a certificate (the support.json
-certificate links), add it to Feather in one tap (the page builds Feather's
-`feather://import-certificate` link in the browser; nothing is uploaded), pick an app from Accretion
+with the **Accretion app**, on-device and without the 7-day limit. The Accretion app is free and
+open source and built on Feather, so Feather still works the same way. Get a certificate (the
+support.json certificate links), add it to the Accretion app or Feather in one tap (the page builds
+the app's import-certificate link in the browser; nothing is uploaded), pick an app from Accretion
 or paste any `.ipa` link, then customize it (name, bundle ID, icon, minimum iOS, file sharing,
-PlugIns, tweaks) with the exact Feather menu paths. Every app page also has a Feather button and
-links to the guide.
+PlugIns, tweaks) with the exact menu paths. Every app page also has install buttons and links to
+the guide.
 
 ## Community
 
-Sign in on the store to comment on apps, like and rate them, follow people, and post to a shared
-feed. Moderators handle reports. It runs on a free Supabase project; see
-[`supabase/README.md`](supabase/README.md) for setup. Without it, the store works as before.
+Sign in on the store or in the Accretion app (email, Google, GitHub or Discord) to download apps,
+comment on them, like and rate them, follow people, and post to a shared feed. Moderators handle
+reports. It runs on a free Supabase project; see [`supabase/README.md`](supabase/README.md) for
+setup. Without it, the store works as before, with nothing gated.
+
+## Accretion's own builds
+
+The ~4,250 third-party apps from 160+ sources are only listed and linked, never hosted.
+Accretion's **own** builds are the exception: the Accretion app (`io.github.getaccretion.Accretion`)
+and [Accretion Mods](https://github.com/AccretionMods/mods). Their files sit in a private Supabase
+Storage bucket and are served by the Edge Functions in [`supabase/functions/`](supabase/functions):
+
+- **download** gives a signed-in user, or the holder of a personal key, a 5-minute link to the
+  file and logs the download. Anyone else who opens it in a browser is sent to the app's store page.
+- **source** makes a personal copy of the Accretion Mods or Accretion app source whose download
+  links go through the download server, for apps that can't sign in (AltStore, SideStore,
+  Feather, ESign).
+- **upload** takes new builds from the release workflows and the mods publish script.
+
+To add those sources, open **Edit profile → Your download links** on the store and **Copy** a
+link. The links are personal: anyone who has them downloads as you. **Replace key** makes new ones
+and turns the old ones off. [`host-builds.yml`](.github/workflows/host-builds.yml)
+([`scripts/host_builds.py`](scripts/host_builds.py)) is only a fallback that copies builds
+the upload missed; new releases upload directly. See
+[Private downloads](supabase/README.md#private-downloads) for the details.
 
 ## Support links
 
@@ -200,4 +230,5 @@ Maintained by [@BenwillLopez](https://github.com/BenwillLopez) ·
 ## License
 
 The code is under the [MIT](LICENSE) license. App listings, icons and files belong to their
-respective owners and sources. This project hosts no app files.
+respective owners and sources. This project hosts no third-party app files. The only files it
+hosts are its own builds (the Accretion app and Accretion Mods), privately, for account holders.

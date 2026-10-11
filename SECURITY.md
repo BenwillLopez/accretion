@@ -2,8 +2,12 @@
 
 ## What Accretion does and does not do
 
-Accretion republishes app listings from public third-party sources. It does **not** host app
-files, and it does **not** review the apps themselves. Each build:
+Accretion republishes app listings from public third-party sources. It does **not** host
+third-party app files, and it does **not** review the apps themselves. The only files it hosts
+are its own builds (the Accretion app and Accretion Mods). They are kept in a private storage
+bucket and handed out only to signed-in users or holders of a personal key, through 5-minute
+signed links; new builds can only be uploaded with a secret key that the release workflows hold.
+Each build of the source:
 
 - uses only https links; any http download, icon or screenshot is dropped
 - caps the size of every field and removes fields outside the AltStore format
