@@ -123,6 +123,19 @@ def versions_of(app, dead=frozenset()):
     return uniq
 
 
+# Accretion's own bundle IDs may only come from Accretion's own sources, so no other source can
+# replace the Accretion app or a mod by listing a higher version.
+RESERVED = {
+    "io.github.getaccretion.": "https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json",
+    "io.github.accretionmods.": "https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json",
+}
+
+
+def reserved_by_other(bid, url):
+    """True when bid belongs to an Accretion prefix and url isn't the source that owns it."""
+    return any(bid.startswith(prefix) and url != owner for prefix, owner in RESERVED.items())
+
+
 def rank(app, priority):
     v = app["versions"][0]
     return (
@@ -221,9 +234,12 @@ def pick(loaded, dead, gone=None, icons=None):
                             "ic": lost["iconURL"],
                         }
                 continue
+            bid = app["bundleIdentifier"]
+            if reserved_by_other(bid, url):
+                st["skipped"] += 1
+                continue
             st["apps"] += 1
             st["newest"] = max(st["newest"], date_key(app["versionDate"]))
-            bid = app["bundleIdentifier"]
             listings.setdefault(bid, set()).add(url)
             if icons is not None:
                 icons.setdefault(bid, []).append(app["iconURL"])

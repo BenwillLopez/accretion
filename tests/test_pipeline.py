@@ -280,6 +280,15 @@ class Merging(unittest.TestCase):
         self.assertEqual([a["bundleIdentifier"] for a in out["apps"]].count("com.example.app"), 1)
         self.assertEqual(len(out["apps"]), 3)
 
+    def test_accretion_ids_only_from_accretion_sources(self):
+        owner = merge.RESERVED["io.github.getaccretion."]
+        self.assertTrue(
+            merge.reserved_by_other("io.github.getaccretion.Accretion", "https://evil.example/s.json")
+        )
+        self.assertFalse(merge.reserved_by_other("io.github.getaccretion.Accretion", owner))
+        self.assertTrue(merge.reserved_by_other("io.github.accretionmods.x", owner))
+        self.assertFalse(merge.reserved_by_other("com.example.app", "https://evil.example/s.json"))
+
     def test_featured_apps_exist(self):
         out = merged([app(bid=f"com.app{i}", date=f"2025-01-{i + 1:02d}") for i in range(15)])
         self.assertEqual(len(out["featuredApps"]), merge.MAX_FEATURED)

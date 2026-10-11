@@ -201,6 +201,7 @@ begin
     new.author := auth.uid();
     new.hidden := false;
     new.edited_at := null;
+    new.created_at := now(); -- never the client's: it drives the rate limits and feed order
     new.body := btrim(new.body);
     if new.parent_id is not null then
       select * into parent from public.posts where id = new.parent_id;
@@ -283,7 +284,7 @@ create trigger notify_like after insert on public.post_likes for each row execut
 drop trigger if exists notify_follow on public.follows;
 create trigger notify_follow after insert on public.follows for each row execute function public.notify();
 
--- Ratings remember when they last changed.
+-- Ratings remember when they last changed (set by the server, also on insert).
 create or replace function public.touch_rating() returns trigger
 language plpgsql as $$
 begin
@@ -292,7 +293,22 @@ begin
 end;
 $$;
 drop trigger if exists touch_rating on public.app_ratings;
-create trigger touch_rating before update on public.app_ratings for each row execute function public.touch_rating();
+create trigger touch_rating before insert or update on public.app_ratings for each row execute function public.touch_rating();
+
+-- Likes and follows: the server sets created_at, never the client.
+create or replace function public.stamp_created() returns trigger
+language plpgsql as $$
+begin
+  new.created_at := now();
+  return new;
+end;
+$$;
+drop trigger if exists stamp_created on public.post_likes;
+create trigger stamp_created before insert on public.post_likes for each row execute function public.stamp_created();
+drop trigger if exists stamp_created on public.app_likes;
+create trigger stamp_created before insert on public.app_likes for each row execute function public.stamp_created();
+drop trigger if exists stamp_created on public.follows;
+create trigger stamp_created before insert on public.follows for each row execute function public.stamp_created();
 
 -- Reports: the reporter is always the signed-in user; mods record who resolved them.
 create or replace function public.check_report() returns trigger
@@ -302,6 +318,22 @@ begin
     new.reporter := auth.uid();
     new.status := 'open';
     new.resolved_by := null;
+    new.created_at := now();
+    if not public.can_write() then
+      raise exception 'Your account can''t send reports right now';
+    end if;
+    -- one open report per thing per person, and at most 20 an hour, so the queue can't be flooded
+    if exists (
+      select 1 from public.reports r
+      where r.reporter = new.reporter and r.status = 'open'
+        and r.post_id is not distinct from new.post_id and r.profile_id is not distinct from new.profile_id
+    ) then
+      raise exception 'You already reported this';
+    end if;
+    if (select count(*) from public.reports r
+        where r.reporter = new.reporter and r.created_at > now() - interval '1 hour') >= 20 then
+      raise exception 'Too many reports. Try again later';
+    end if;
   else
     new.reporter := old.reporter;
     new.post_id := old.post_id;

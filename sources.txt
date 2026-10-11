@@ -1,5 +1,6 @@
 # One source URL per line. Lines starting with # are ignored.
-# Earlier sources win when two list the same app.
+# When two sources list the same app, the higher version wins (earlier sources win ties).
+# Accretion's own bundle IDs only ever come from the two Accretion sources (merge.py RESERVED).
 
 # Accretion Mods: our own builds (https://github.com/AccretionMods/mods). Every mod has its own
 # io.github.accretionmods.* bundle ID, so it never replaces another source's app.

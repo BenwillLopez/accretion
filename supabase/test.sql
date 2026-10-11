@@ -38,7 +38,7 @@ end $$;
 -- bob posts; author is forced to bob; replies flatten to one level
 begin;
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
-insert into public.posts (body, app_id, author) values ('  first!  ', 'com.app', '00000000-0000-0000-0000-00000000000a');
+insert into public.posts (body, app_id, author, created_at) values ('  first!  ', 'com.app', '00000000-0000-0000-0000-00000000000a', '2099-01-01');
 insert into public.posts (body, parent_id) values ('reply', (select max(id) from public.posts));
 insert into public.posts (body, parent_id) values ('reply to reply', (select max(id) from public.posts));
 -- bob cannot promote himself or ban carol
@@ -48,6 +48,7 @@ commit;
 do $$ begin
   assert (select author from public.posts order by id limit 1) = '00000000-0000-0000-0000-00000000000b', 'author forced';
   assert (select body from public.posts order by id limit 1) = 'first!', 'body trimmed';
+  assert (select created_at from public.posts order by id limit 1) < now() + interval '1 minute', 'post date set by the server';
   assert (select count(*) from public.posts where parent_id = (select min(id) from public.posts)) = 2, 'replies flattened';
   assert (select app_id from public.posts order by id desc limit 1) = 'com.app', 'reply inherits app';
   assert (select role from public.profiles where username = 'bob') = 'user', 'no self promotion';
