@@ -2,9 +2,9 @@
  "apps": 4252,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 01:43 UTC",
+ "updated": "2026-10-12 02:16 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T01:43:44Z",
+ "built_at": "2026-10-12T02:16:11Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
@@ -16,23 +16,23 @@
  "dead_links_removed": 8533,
  "links_on_hold": 0,
  "developers": 704,
- "updated_7d": 697,
+ "updated_7d": 696,
  "updated_30d": 1181,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2103,
+  "other": 2102,
   "games": 981,
   "utilities": 339,
   "photo-video": 310,
   "entertainment": 215,
   "lifestyle": 127,
-  "developer": 108,
+  "developer": 109,
   "social": 69
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3356
+   "apps": 3355
   },
   {
    "name": "dsewerek's general apps",
@@ -40,7 +40,7 @@
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 130
+   "apps": 131
   },
   {
    "name": "MySign IPA's",
@@ -54,7 +54,7 @@
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.12",
+   "version": "1.0.13",
    "date": "2026-10-12"
   },
   {
@@ -66,6 +66,16 @@
    "name": "Provenance Alpha",
    "version": "3.4.0",
    "date": "2026-10-12"
+  },
+  {
+   "name": "Husk",
+   "version": "2.0.0",
+   "date": "2026-10-11"
+  },
+  {
+   "name": "VortX",
+   "version": "0.5.1",
+   "date": "2026-10-11"
   },
   {
    "name": "Dayline",
@@ -80,16 +90,6 @@
   {
    "name": "Lumisound",
    "version": "1.9.0.90",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Ito",
-   "version": "1.0.0",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Manatan",
-   "version": "6.1.41",
    "date": "2026-10-11"
   }
  ],

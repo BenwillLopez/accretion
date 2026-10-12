@@ -1,10 +1,10 @@
 # Source report
 
-Built 2026-10-12 01:43 UTC.
+Built 2026-10-12 02:16 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4252** (5084 KB) |
+| Apps in `source.json` | **4252** (5085 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
 | Listings read | 23571 |
 | Apps listed by more than one source (newest kept) | 1676 |
@@ -20,9 +20,9 @@ Built 2026-10-12 01:43 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3551 | 3356 | 4509 | 2026-10-11 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3551 | 3355 | 4509 | 2026-10-11 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 549 | 330 | 2026-10-11 | discovered |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 130 | 0 | 2026-10-11 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 131 | 0 | 2026-10-11 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 239 | 101 | 13 | 2025-01-01 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 41 | 21 | 1 | 2026-10-11 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
@@ -188,15 +188,16 @@ Built 2026-10-12 01:43 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
-| Accretion | 1.0.12 | 2026-10-12 | raw.githubusercontent.com |
+| Accretion | 1.0.13 | 2026-10-12 | raw.githubusercontent.com |
 | MuffinEMU | 9.6.1 | 2026-10-12 | raw.githubusercontent.com |
 | Provenance Alpha | 3.4.0 | 2026-10-12 | provenance-emu.com |
+| Husk | 2.0.0 | 2026-10-11 | raw.githubusercontent.com |
+| VortX | 0.5.1 | 2026-10-11 | raw.githubusercontent.com |
 | Dayline | 1.10.13 | 2026-10-11 | raw.githubusercontent.com |
 | TumoCompanion | 1.11.27 | 2026-10-11 | raw.githubusercontent.com |
 | Lumisound | 1.9.0.90 | 2026-10-11 | raw.githubusercontent.com |
 | Ito | 1.0.0 | 2026-10-11 | raw.githubusercontent.com |
 | Manatan | 6.1.41 | 2026-10-11 | raw.githubusercontent.com |
-| VortX | 0.5.0 | 2026-10-11 | raw.githubusercontent.com |
 | Boorusama | 4.6.0 | 2026-10-11 | raw.githubusercontent.com |
 | Alyn ReSA Multiplayer | 1.0.2 | 2026-10-11 | raw.githubusercontent.com |
 | MeloNX | 2.7 | 2026-10-11 | raw.githubusercontent.com |
@@ -212,4 +213,3 @@ Built 2026-10-12 01:43 UTC.
 | Drafts | 54.1 | 2026-10-11 | raw.githubusercontent.com |
 | Slopes | 2026.16 | 2026-10-11 | raw.githubusercontent.com |
 | Clarity | 5.5.27 | 2026-10-11 | raw.githubusercontent.com |
-| Eden | 5.3.5 | 2026-10-11 | raw.githubusercontent.com |
