@@ -1,30 +1,30 @@
 {
- "apps": 4267,
+ "apps": 4261,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 11:19 UTC",
+ "updated": "2026-10-12 15:51 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T11:19:29Z",
+ "built_at": "2026-10-12T15:51:10Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23585,
- "duplicates": 1673,
- "rejected": 6593,
+ "listings": 23578,
+ "duplicates": 1672,
+ "rejected": 6599,
  "excluded": 57,
- "dead_links_removed": 8594,
+ "dead_links_removed": 8600,
  "links_on_hold": 0,
  "developers": 703,
- "updated_7d": 749,
- "updated_30d": 1195,
+ "updated_7d": 743,
+ "updated_30d": 1187,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2102,
   "games": 981,
   "utilities": 341,
-  "photo-video": 317,
-  "entertainment": 223,
+  "photo-video": 313,
+  "entertainment": 221,
   "lifestyle": 126,
   "developer": 108,
   "social": 69
@@ -32,15 +32,15 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3366
+   "apps": 3360
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 552
+   "apps": 553
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 131
+   "apps": 130
   },
   {
    "name": "MySign IPA's",
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "SideInstaller",
+   "version": "1.4.0",
+   "date": "2026-10-12"
+  },
+  {
    "name": "Accretion",
    "version": "1.0.21",
    "date": "2026-10-12"
@@ -60,11 +65,6 @@
   {
    "name": "MuffinEMU",
    "version": "9.8",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "ByeTunes",
-   "version": "2.6",
    "date": "2026-10-12"
   },
   {
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4267
+   "apps": 4261
   }
  ],
- "new_30d": 379,
- "new_12m": 1685
+ "new_30d": 372,
+ "new_12m": 1679
 }
