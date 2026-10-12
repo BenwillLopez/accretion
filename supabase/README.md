@@ -179,6 +179,7 @@ Accretion's own builds, the Accretion app (`io.github.getaccretion.Accretion`) a
 | `download` | `?app=<bundle id>` with a login (`Authorization: Bearer …`), or `&key=<personal key>`; optional `&version=` | Answers with a 302 to a 5-minute signed link and logs the download. Without a login or key, a browser is sent to the app's store page. The Accretion app is always served at its newest version. |
 | `source` | `?name=mods\|app&key=<personal key>` | A personal copy of the Accretion Mods or Accretion app source, with every hosted version's download link pointing at `download` |
 | `upload` | `POST` with the `x-upload-key` header | Gives a signed upload link for a new build, then records it in `hosted_builds` |
+| `manifest` | `?bundleid=&name=&version=&fetchurl=` | The install manifest for the app's Semi Local installs. `fetchurl` must be an `.ipa` on the device or a private network address. Nothing is stored. |
 
 The Accretion app adds `&av=<its version>` to downloads. A request from a version below
 `minimumVersion` in [`site/app-config.json`](../site/app-config.json) gets a 426 asking to update,
