@@ -80,8 +80,9 @@ jobs:
       # (release workflows put new builds in the private bucket with ACCRETION_UPLOAD_KEY).
       # --no-verify-jwt: AltStore and friends call with a key, not a login; the functions check it.
       # Builds on AWS (aws/builds-cdn.yaml): switches on when the BUILDS_* and CDN_* secrets and
-      # variables are set. Existing builds are copied to S3 first, so no download breaks.
-      - name: Copy hosted builds to S3
+      # variables are set. Every build is kept in both stores first: CloudFront serves from S3, and
+      # the download function falls back to Supabase if AWS is unavailable.
+      - name: Keep hosted builds in S3 and Supabase
         if: vars.BUILDS_BUCKET != ''
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}

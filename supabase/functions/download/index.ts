@@ -17,6 +17,8 @@
 //
 // Builds are served from the CloudFront distribution in aws/builds-cdn.yaml when CDN_DOMAIN,
 // CDN_KEY_PAIR_ID and CDN_PRIVATE_KEY are set, and from the Supabase "builds" bucket otherwise.
+// Before each CloudFront redirect the function checks that CloudFront actually serves that file;
+// if AWS is down, stopped or missing the file, the Supabase copy is served instead.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 import { getSignedUrl } from "npm:@aws-sdk/cloudfront-signer@3.1149.0";
 
@@ -26,20 +28,29 @@ const CDN_DOMAIN = Deno.env.get("CDN_DOMAIN") ?? "";
 const CDN_KEY_PAIR_ID = Deno.env.get("CDN_KEY_PAIR_ID") ?? "";
 const CDN_PRIVATE_KEY = (Deno.env.get("CDN_PRIVATE_KEY") ?? "").replace(/\\n/g, "\n");
 
-// a 5-minute link to one build
-async function signedLink(path: string): Promise<string | null> {
-  if (CDN_DOMAIN && CDN_KEY_PAIR_ID && CDN_PRIVATE_KEY) {
-    try {
-      return getSignedUrl({
-        url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}`,
-        keyPairId: CDN_KEY_PAIR_ID,
-        privateKey: CDN_PRIVATE_KEY,
-        dateLessThan: new Date(Date.now() + 300_000).toISOString(),
-      });
-    } catch {
-      return null;
-    }
+// a 5-minute CloudFront link, only if CloudFront answers for that file right now
+async function cdnLink(path: string): Promise<string | null> {
+  if (!CDN_DOMAIN || !CDN_KEY_PAIR_ID || !CDN_PRIVATE_KEY) return null;
+  try {
+    const link = getSignedUrl({
+      url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}`,
+      keyPairId: CDN_KEY_PAIR_ID,
+      privateKey: CDN_PRIVATE_KEY,
+      dateLessThan: new Date(Date.now() + 300_000).toISOString(),
+    });
+    const check = await fetch(link, { method: "HEAD", signal: AbortSignal.timeout(4000) });
+    if (check.ok) return link;
+    console.warn(`CloudFront answered ${check.status} for ${path}; serving it from Supabase`);
+  } catch (e) {
+    console.warn(`CloudFront unreachable for ${path} (${e instanceof Error ? e.message : e}); serving it from Supabase`);
   }
+  return null;
+}
+
+// a 5-minute link to one build: CloudFront when it's healthy, Supabase storage otherwise
+async function signedLink(path: string): Promise<string | null> {
+  const cdn = await cdnLink(path);
+  if (cdn) return cdn;
   const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300);
   return error || !data ? null : data.signedUrl;
 }

@@ -10,11 +10,14 @@
 // mods publish script hold. Deployed with --no-verify-jwt; the key is the check.
 //
 // Builds go to the S3 bucket in aws/builds-cdn.yaml when BUILDS_BUCKET, BUILDS_REGION,
-// BUILDS_AWS_KEY_ID and BUILDS_AWS_SECRET are set, and to the Supabase "builds" bucket otherwise.
+// BUILDS_AWS_KEY_ID and BUILDS_AWS_SECRET are set and S3 answers, and to the Supabase "builds"
+// bucket otherwise. Every finished build is kept in both, so the download function can fall back
+// to Supabase whenever AWS is unavailable.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 import {
   DeleteObjectCommand,
   GetObjectCommand,
+  HeadBucketCommand,
   PutObjectCommand,
   S3Client,
 } from "npm:@aws-sdk/client-s3@3.1149.0";
@@ -33,25 +36,40 @@ const s3 = BUCKET && Deno.env.get("BUILDS_AWS_KEY_ID") && Deno.env.get("BUILDS_A
   })
   : null;
 
+const IPA = "application/octet-stream";
+
+// S3 is set up and answering right now
+async function s3Healthy(): Promise<boolean> {
+  if (!s3) return false;
+  try {
+    await s3.send(new HeadBucketCommand({ Bucket: BUCKET }), { abortSignal: AbortSignal.timeout(4000) });
+    return true;
+  } catch (e) {
+    console.warn(`S3 unavailable (${e instanceof Error ? e.message : e}); using Supabase storage`);
+    return false;
+  }
+}
+
 // where the .ipa is PUT (valid 1 hour)
 async function uploadLink(path: string): Promise<string | null> {
-  if (s3) {
+  if (s3 && await s3Healthy()) {
     return await getSignedUrl(s3, new PutObjectCommand({ Bucket: BUCKET, Key: path }), { expiresIn: 3600 });
   }
   const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: true });
   return error || !data ? null : data.signedUrl;
 }
 
-// the stored file, or null if it isn't there
-async function readBuild(path: string): Promise<Uint8Array | null> {
-  if (s3) {
-    try {
-      const object = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: path }));
-      return object.Body ? await object.Body.transformToByteArray() : null;
-    } catch {
-      return null;
-    }
+async function readFromS3(path: string): Promise<Uint8Array | null> {
+  if (!s3) return null;
+  try {
+    const object = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: path }));
+    return object.Body ? await object.Body.transformToByteArray() : null;
+  } catch {
+    return null;
   }
+}
+
+async function readFromSupabase(path: string): Promise<Uint8Array | null> {
   const [bundle, file] = path.split("/");
   const { data: files } = await admin.storage.from("builds").list(bundle, { search: file });
   if (!files?.some((f: { name: string }) => f.name === file)) return null;
@@ -59,9 +77,31 @@ async function readBuild(path: string): Promise<Uint8Array | null> {
   return blob ? new Uint8Array(await blob.arrayBuffer()) : null;
 }
 
+// the stored file and where it was found, or null if it isn't anywhere
+async function readBuild(path: string): Promise<{ bytes: Uint8Array; where: "s3" | "supabase" } | null> {
+  const fromS3 = await readFromS3(path);
+  if (fromS3) return { bytes: fromS3, where: "s3" };
+  const fromSupabase = await readFromSupabase(path);
+  return fromSupabase ? { bytes: fromSupabase, where: "supabase" } : null;
+}
+
+// keep a copy in the other store, so downloads still work if either one is down (best effort)
+async function mirrorBuild(path: string, bytes: Uint8Array, where: "s3" | "supabase") {
+  try {
+    if (where === "s3") {
+      const { error } = await admin.storage.from("builds").upload(path, bytes, { upsert: true, contentType: IPA });
+      if (error) throw error;
+    } else if (s3) {
+      await s3.send(new PutObjectCommand({ Bucket: BUCKET, Key: path, Body: bytes, ContentType: IPA }));
+    }
+  } catch (e) {
+    console.warn(`Couldn't copy ${path} from ${where} to the other store: ${e instanceof Error ? e.message : e}`);
+  }
+}
+
 async function removeBuild(path: string) {
-  if (s3) await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: path }));
-  else await admin.storage.from("builds").remove([path]);
+  if (s3) await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: path })).catch(() => {});
+  await admin.storage.from("builds").remove([path]);
 }
 
 const reply = (status: number, body: Record<string, unknown>) =>
@@ -113,8 +153,9 @@ Deno.serve(async (req) => {
   }
 
   // finish: the file must be there before the download server starts handing it out
-  const bytes = await readBuild(path);
-  if (!bytes) return reply(409, { message: "The file isn't in storage yet. Upload it first." });
+  const stored = await readBuild(path);
+  if (!stored) return reply(409, { message: "The file isn't in storage yet. Upload it first." });
+  const bytes = stored.bytes;
   // fingerprint the stored file, so the app can check what it downloads is what was published
   const digest = await crypto.subtle.digest("SHA-256", bytes as Uint8Array<ArrayBuffer>);
   const sha256 = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -131,6 +172,7 @@ Deno.serve(async (req) => {
     sha256,
   });
   if (error) return reply(500, { message: `Couldn't record the build: ${error.message}` });
+  await mirrorBuild(path, bytes, stored.where);
 
   // the What's new feed: one post per published build (best effort; the build is already live)
   const extra = body as { name?: string; notes?: string; announce?: boolean };

@@ -1,7 +1,10 @@
-"""Copy hosted builds from the Supabase "builds" bucket to the S3 bucket in aws/builds-cdn.yaml.
+"""Keep every hosted build in both stores: the Supabase "builds" bucket and the S3 bucket in
+aws/builds-cdn.yaml.
 
-Run by community-setup.yml before the download functions switch to CloudFront, so every build in
-hosted_builds is already in S3. Copies only files that aren't there yet; safe to run again.
+Run by community-setup.yml before the download functions are deployed. Builds missing from S3 are
+copied there (so CloudFront can serve them), and builds missing from Supabase are copied back (so
+the download function can fall back to Supabase when AWS is unavailable). Copies only what's
+missing; safe to run again.
 
 Needs SUPABASE_ACCESS_TOKEN, BUILDS_BUCKET, BUILDS_REGION, BUILDS_AWS_KEY_ID, BUILDS_AWS_SECRET.
 """
@@ -9,6 +12,7 @@ Needs SUPABASE_ACCESS_TOKEN, BUILDS_BUCKET, BUILDS_REGION, BUILDS_AWS_KEY_ID, BU
 import json
 import os
 import tempfile
+import urllib.error
 import urllib.request
 
 import boto3
@@ -33,6 +37,56 @@ def service_key(ref):
     raise SystemExit("Couldn't find the project's service_role key")
 
 
+class Supabase:
+    def __init__(self, url, key):
+        self.url = url
+        self.headers = {"Authorization": f"Bearer {key}", "apikey": key}
+
+    def _object(self, name):
+        return f"{self.url}/storage/v1/object/builds/{urllib.request.quote(name)}"
+
+    def has(self, name):
+        folder, _, file = name.rpartition("/")
+        req = urllib.request.Request(
+            f"{self.url}/storage/v1/object/list/builds",
+            method="POST",
+            data=json.dumps({"prefix": folder, "search": file, "limit": 100}).encode(),
+            headers={**self.headers, "Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return any(item.get("name") == file for item in json.load(r))
+
+    def download(self, name, tmp):
+        req = urllib.request.Request(self._object(name), headers=self.headers)
+        with urllib.request.urlopen(req, timeout=600) as r:
+            while chunk := r.read(1 << 20):
+                tmp.write(chunk)
+
+    def upload(self, name, tmp):
+        req = urllib.request.Request(
+            self._object(name),
+            method="POST",
+            data=tmp.read(),
+            headers={**self.headers, "Content-Type": "application/octet-stream", "x-upsert": "true"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=600):
+                pass
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", "replace")[:300]
+            raise SystemExit(f"Supabase upload of {name} failed ({e.code}): {detail}") from None
+
+
+def in_s3(s3, bucket, name):
+    try:
+        s3.head_object(Bucket=bucket, Key=name)
+        return True
+    except ClientError as e:
+        if e.response.get("Error", {}).get("Code") in ("404", "NoSuchKey", "NotFound"):
+            return False
+        raise
+
+
 def main():
     with open(path("supabase/project.json"), encoding="utf-8") as f:
         project = json.load(f)
@@ -45,31 +99,31 @@ def main():
         aws_access_key_id=env("BUILDS_AWS_KEY_ID"),
         aws_secret_access_key=env("BUILDS_AWS_SECRET"),
     )
-    key = service_key(ref)
+    supabase = Supabase(url, service_key(ref))
     rows = sql(ref, "select path from public.hosted_builds order by created_at") or []
-    copied = present = 0
+    to_s3 = to_supabase = 0
     for row in rows:
         name = row["path"]
-        try:
-            s3.head_object(Bucket=bucket, Key=name)
-            present += 1
+        there_s3, there_supabase = in_s3(s3, bucket, name), supabase.has(name)
+        if there_s3 and there_supabase:
             continue
-        except ClientError as e:
-            if e.response.get("Error", {}).get("Code") not in ("404", "NoSuchKey", "NotFound"):
-                raise
-        req = urllib.request.Request(
-            f"{url}/storage/v1/object/builds/{urllib.request.quote(name)}",
-            headers={"Authorization": f"Bearer {key}", "apikey": key},
-        )
+        if not there_s3 and not there_supabase:
+            print(f"::warning::{name} is in neither store")
+            continue
         with tempfile.TemporaryFile() as tmp:
-            with urllib.request.urlopen(req, timeout=600) as r:
-                while chunk := r.read(1 << 20):
-                    tmp.write(chunk)
-            tmp.seek(0)
-            s3.upload_fileobj(tmp, bucket, name)
-        copied += 1
-        print(f"Copied {name}")
-    print(f"Builds in S3: {present} already there, {copied} copied, {len(rows)} total")
+            if there_supabase:
+                supabase.download(name, tmp)
+                tmp.seek(0)
+                s3.upload_fileobj(tmp, bucket, name)
+                to_s3 += 1
+                print(f"Copied {name} to S3")
+            else:
+                s3.download_fileobj(bucket, name, tmp)
+                tmp.seek(0)
+                supabase.upload(name, tmp)
+                to_supabase += 1
+                print(f"Copied {name} to Supabase")
+    print(f"Builds: {len(rows)} total, {to_s3} copied to S3, {to_supabase} copied to Supabase")
 
 
 if __name__ == "__main__":
