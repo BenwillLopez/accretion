@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-12 05:31 UTC.
+Built 2026-10-12 06:00 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **4267** (5103 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23583 |
+| Listings read | 23582 |
 | Apps listed by more than one source (newest kept) | 1673 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6595 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -81,7 +81,7 @@ Built 2026-10-12 05:31 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4605 | 0 | 222 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -188,8 +188,8 @@ Built 2026-10-12 05:31 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
-| Accretion | 1.0.19 | 2026-10-12 | raw.githubusercontent.com |
-| MuffinEMU | 9.7 | 2026-10-12 | raw.githubusercontent.com |
+| Accretion | 1.0.20 | 2026-10-12 | raw.githubusercontent.com |
+| MuffinEMU | 9.8 | 2026-10-12 | raw.githubusercontent.com |
 | YTLite + Tweaks (driftywinds) | 21.41.5 | 2026-10-12 | raw.githubusercontent.com |
 | YouTube Music | 9.41.2 | 2026-10-12 | raw.githubusercontent.com |
 | Locket | 2.68.0 | 2026-10-12 | raw.githubusercontent.com |
