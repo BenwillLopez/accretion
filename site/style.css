@@ -1,5 +1,6 @@
 /* Accretion store. Layout: sticky top bar, compact hero with live numbers,
    category chips, responsive app grid; app pages open as a full view. */
+/* design tokens: generated from design/tokens.json by scripts/design_tokens.py */
 :root {
   --bg: #07070D;
   --surface: #0F0E1A;
@@ -23,16 +24,39 @@
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg: #F7F6FC; --surface: #FFFFFF; --raised: #F0EEF9; --line: #DFDAF2; --fg: #15122B;
-    --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00; --bad: #C2410C; --glow: 9%;
-    --grid-line: rgba(30, 27, 75, 0.05); color-scheme: light;
+    --bg: #F7F6FC;
+    --surface: #FFFFFF;
+    --raised: #F0EEF9;
+    --line: #DFDAF2;
+    --fg: #15122B;
+    --muted: #625E85;
+    --accent: #6D3FE0;
+    --accent-2: #0E8FB0;
+    --good: #078A5E;
+    --warn: #B76A00;
+    --bad: #C2410C;
+    --glow: 9%;
+    --grid-line: rgba(30, 27, 75, 0.05);
+    color-scheme: light;
   }
 }
 :root[data-theme="light"] {
-  --bg: #F7F6FC; --surface: #FFFFFF; --raised: #F0EEF9; --line: #DFDAF2; --fg: #15122B;
-  --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00; --bad: #C2410C; --glow: 9%;
-  --grid-line: rgba(30, 27, 75, 0.05); color-scheme: light;
+  --bg: #F7F6FC;
+  --surface: #FFFFFF;
+  --raised: #F0EEF9;
+  --line: #DFDAF2;
+  --fg: #15122B;
+  --muted: #625E85;
+  --accent: #6D3FE0;
+  --accent-2: #0E8FB0;
+  --good: #078A5E;
+  --warn: #B76A00;
+  --bad: #C2410C;
+  --glow: 9%;
+  --grid-line: rgba(30, 27, 75, 0.05);
+  color-scheme: light;
 }
+/* end design tokens */
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
