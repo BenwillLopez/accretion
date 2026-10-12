@@ -62,10 +62,10 @@ const reply = (status: number, message: string) =>
 const ACCRETION = "io.github.getaccretion.Accretion";
 const STORE = "https://getaccretion.github.io/";
 
-// "1.0.10" > "1.0.9"
+// "1.0.10" > "1.0.9": every number in order, like the app and the store pipeline: "4.0.0-mod1.10.0" > "4.0.0-mod1.9.0" > "4.0.0"
 function older(a: string, b: string): boolean {
-  const x = a.split(".").map((n) => parseInt(n, 10) || 0);
-  const y = b.split(".").map((n) => parseInt(n, 10) || 0);
+  const x = (a.match(/\d+/g) ?? []).map(Number);
+  const y = (b.match(/\d+/g) ?? []).map(Number);
   for (let i = 0; i < Math.max(x.length, y.length); i++) {
     if ((x[i] ?? 0) !== (y[i] ?? 0)) return (x[i] ?? 0) < (y[i] ?? 0);
   }
