@@ -1,14 +1,14 @@
 # Source report
 
-Built 2026-10-12 07:03 UTC.
+Built 2026-10-12 11:19 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4267** (5103 KB) |
+| Apps in `source.json` | **4267** (5101 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23584 |
+| Listings read | 23585 |
 | Apps listed by more than one source (newest kept) | 1673 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6594 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6593 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links held back (retested every build) | 8594 |
 | Links on hold (whole host failing, kept for now) | 0 |
@@ -21,8 +21,8 @@ Built 2026-10-12 07:03 UTC.
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
 | [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3562 | 3366 | 4513 | 2026-10-12 | discovered |
-| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 553 | 330 | 2026-10-12 | discovered |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 155 | 130 | 1 | 2026-10-11 | discovered |
+| [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 552 | 330 | 2026-10-12 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 131 | 0 | 2026-10-12 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 239 | 101 | 13 | 2025-01-01 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 41 | 20 | 1 | 2026-10-11 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
@@ -190,6 +190,7 @@ Built 2026-10-12 07:03 UTC.
 |---|---|---|---|
 | Accretion | 1.0.21 | 2026-10-12 | raw.githubusercontent.com |
 | MuffinEMU | 9.8 | 2026-10-12 | raw.githubusercontent.com |
+| ByeTunes | 2.6 | 2026-10-12 | raw.githubusercontent.com |
 | YTLite + Tweaks (driftywinds) | 21.41.5 | 2026-10-12 | raw.githubusercontent.com |
 | YouTube Music | 9.41.2 | 2026-10-12 | raw.githubusercontent.com |
 | Locket | 2.68.0 | 2026-10-12 | raw.githubusercontent.com |
@@ -212,4 +213,3 @@ Built 2026-10-12 07:03 UTC.
 | Astra | 3.12.67 | 2026-10-12 | raw.githubusercontent.com |
 | MoneyCircle | 3.6.2 | 2026-10-12 | raw.githubusercontent.com |
 | Riverside | 4.22.0 | 2026-10-12 | raw.githubusercontent.com |
-| Retrx | 0.0.52 | 2026-10-12 | raw.githubusercontent.com |

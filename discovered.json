@@ -4,909 +4,909 @@
   "apps": 2,
   "size": 4708,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://alt.crystall1ne.dev": {
   "name": "crystall1ne.dev",
   "apps": 2,
   "size": 15526,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://alt.getutm.app": {
   "name": "UTM Repository",
   "apps": 2,
   "size": 26953,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://alt.hackerwebapp.com/PALSource.json": {
   "name": "HackerWeb",
   "apps": 1,
   "size": 1936,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://alt.stux.me/repo.json": {
   "name": "stux",
   "apps": 7,
   "size": 15099,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://alts.lao.sb": {
   "name": "Laoalts",
   "apps": 1,
   "size": 2560,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://altstore.getnickel.site": {
   "name": "TfourJ's Apps",
   "apps": 2,
   "size": 10911,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://altstore.ignitedemulator.com": {
   "name": "Ignited Source",
   "apps": 1,
   "size": 10067,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://altstore.oatmealdome.me/": {
   "name": "OatmealDome's AltStore Source",
   "apps": 2,
   "size": 6895,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://app.bmverse.bruu.eu": {
   "name": "Merlin Baer (Metal)",
   "apps": 1,
   "size": 8292,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://appfair.net/altstore.json": {
   "name": "The App Fair Project",
   "apps": 3,
   "size": 8297,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://as.nnsnodnb.moe/source.pal.json": {
   "name": "nnsnodnb Apps Source",
   "apps": 1,
   "size": 5790,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://bit.ly/Altstore-complete": {
   "name": "AltStore Complete",
   "apps": 8,
   "size": 97160,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://bit.ly/Quantumsource": {
   "name": "Quantum Source",
   "apps": 38,
   "size": 441479,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://bit.ly/Quantumsource-plus": {
   "name": "Quantum Source++",
   "apps": 35,
   "size": 157283,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://bit.ly/RipeStore": {
   "name": "RipeStore",
   "apps": 11,
   "size": 35497,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://bit.ly/wuxuslibrary": {
   "name": "WuXu's Library",
   "apps": 20,
   "size": 75833,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://burritosoftware.github.io/altstore/channels/burritosource.json": {
   "name": "Burrito's AltStore",
   "apps": 7,
   "size": 11282,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://cdn.squadblast.com/market/marketplace.json": {
   "name": "ULTRAHORSE Market",
   "apps": 1,
   "size": 11397,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://content-download-egs.distro.on.epicgames.com/iOS/altstore/source.json": {
   "name": "Epic Games, Inc.",
   "apps": 3,
   "size": 88789,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://courtpredict-ios.web.app/PALSource.json": {
   "name": "Charon Source",
   "apps": 1,
   "size": 2109,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://esound.app/downloads/source.json": {
   "name": "Spicy Sparks",
   "apps": 1,
   "size": 7196,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://foxxoccino.github.io/PALSource.json": {
   "name": "Foxxoccino & Hoojao's Source",
   "apps": 1,
   "size": 2589,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://get.furaffinity.app/altstore": {
   "name": "Ceylo's Apps Hub",
   "apps": 1,
   "size": 23744,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://i.cizzuk.net/altstore/source.pal.json": {
   "name": "Cizzuk Source",
   "apps": 6,
   "size": 136690,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://ipa.cypwn.xyz/cypwn.json": {
   "name": "CyPwn IPA Library",
   "apps": 210,
   "size": 248582,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://marketplace.altstore.io": {
   "name": "AltStore",
   "apps": 10,
   "size": 180483,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://pal.getutm.app/config.json": {
   "name": "UTM Repository (AltStore PAL)",
   "apps": 1,
   "size": 4710,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://partyknights.app/source": {
   "name": "Party Knights - Drinking Game",
   "apps": 1,
   "size": 21604,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://pokemmo.eu/altstore/": {
   "name": "PokeMMO",
   "apps": 1,
   "size": 1216,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://polymorph-distribution.netlify.app/source.json": {
   "name": "Toshiaki Shirakura",
   "apps": 1,
   "size": 2000,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://provenance-emu.com/apps.json": {
   "name": "Provenance Emulator",
   "apps": 4,
-  "size": 27261,
+  "size": 27276,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://randomblock1.com/altstore/apps.json": {
   "name": "RandomSource",
   "apps": 8,
   "size": 12809,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/0Charliecat/altsource.js/main/example_from_altstore_docu.json": {
   "name": "My Example Source",
   "apps": 2,
   "size": 4060,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/8yy/BatSign/main/app-repo.json": {
   "name": "BatSign Source",
   "apps": 1,
-  "size": 1690,
+  "size": 1687,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Aayush9029/AltApps/main/apps.json": {
   "name": "A29 Repository",
   "apps": 2,
   "size": 3440,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json": {
   "name": "iDevPatcher",
   "apps": 21,
   "size": 28663,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Balackburn/Apollo/main/apps.json": {
   "name": "Apollo for Reddit",
   "apps": 1,
   "size": 34820,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/BatSmacker84/sidesource/master/altApps.json": {
   "name": "BatSmacker84's AltSource",
   "apps": 2,
   "size": 3776,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json": {
   "name": "EPIC's source",
   "apps": 1,
-  "size": 31385,
+  "size": 36393,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/FriesI23/altstore-repo/master/_site/repo/source.json": {
   "name": "FriesI23's Source",
   "apps": 1,
   "size": 65590,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json": {
   "name": "FrizzleM's AltSource",
   "apps": 2,
-  "size": 22057,
+  "size": 3203,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json": {
   "name": "Lumisound",
   "apps": 1,
-  "size": 132943,
+  "size": 135839,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Jannehy/nightshift-ios/main/altstore.json": {
   "name": "Nightshift",
   "apps": 1,
   "size": 6499,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Jessomadic/uYouEnhanced-AltStore/main/apps.json": {
   "name": "Jesse's uYouEnhanced Source",
   "apps": 1,
   "size": 4219,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json": {
   "name": "iAnyFeature's Source",
   "apps": 2,
   "size": 7869,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Michael-128/qBitControl-releases/main/source.json": {
   "name": "Michael-128",
   "apps": 1,
   "size": 8865,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json": {
   "name": "MuffinEMU",
   "apps": 1,
-  "size": 6174,
+  "size": 4988,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/MuffinEMU/cemu-ios-muffin/main/docs/apps.json": {
   "name": "Muffin",
   "apps": 1,
   "size": 8359,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/NexSideloading/NexStore/main/app-repo.json": {
   "name": "NexStore Repository",
   "apps": 1,
   "size": 2379,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/NexSideloading/app-source/main/repo.json": {
   "name": "NexSideloading App Source",
   "apps": 7,
   "size": 6146,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json": {
   "name": "Omni-Development IPA Repo",
   "apps": 116,
   "size": 110618,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/R3ALCYB3R/Lightning-Struck/main/apps.json": {
   "name": "R3ALCYB3R's Apps",
   "apps": 1,
   "size": 749,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RajnishOne/qbitconnect-releases/main/altstore-pal.json": {
   "name": "BlueMatter",
   "apps": 1,
   "size": 5549,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json": {
   "name": "Altmaker by RipeStore",
   "apps": 156,
-  "size": 546380,
+  "size": 547868,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/aidoku.json": {
   "name": "Aidoku Source",
   "apps": 1,
   "size": 3393,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/anymex.json": {
   "name": "AnymeX",
   "apps": 1,
   "size": 39268,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json": {
   "name": "AppTesters IPA Repo",
-  "apps": 9541,
-  "size": 8900702,
+  "apps": 9543,
+  "size": 8902576,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/armsx2.json": {
   "name": "ARMSX2 iOS",
   "apps": 2,
-  "size": 155860,
+  "size": 159009,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/driftywinds.json": {
   "name": "driftywinds' AltStore Repo",
   "apps": 10,
   "size": 23083,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/feather.json": {
   "name": "Feather Repository",
   "apps": 1,
   "size": 2843,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/RipeStore/repos/main/sidestore-community.json": {
   "name": "SideStore Team Picks",
   "apps": 23,
   "size": 75196,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/Rozkalns/SimilarPhotos/main/altstore-source.json": {
   "name": "Roberts' Apps",
   "apps": 1,
   "size": 1239,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/ShadowThijs/dopamine-altstore-repo/master/apps.json": {
   "name": "Dopamine",
   "apps": 1,
   "size": 35667,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SideStore/Community-Source/main/staticApps/Retroarch.json": {
   "name": "Official SideStore Community Store",
   "apps": 1,
   "size": 2087,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SideStore/Community-Source/main/staticApps/play.json": {
   "name": "Official SideStore Community Store",
   "apps": 1,
   "size": 2844,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SideStore/apps.json/main/_includes/source.json": {
   "name": "SideStore Official",
   "apps": 1,
   "size": 26403,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SimoGHcoder/iosrepo/main/apps.json": {
   "name": "Sideloading Hub",
-  "apps": 7,
-  "size": 14349,
+  "apps": 5,
+  "size": 14439,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SpotCompiled/SpotC-Repo/main/AltStore%20Repo.json": {
   "name": "SpotCompiled",
   "apps": 3,
   "size": 90769,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/SpotCompiled/SpotC-Repo/main/Scarlet%20Repo.json": {
   "name": "SpotCompiled",
   "apps": 2,
   "size": 75211,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/BonnieRepo_2.0.json": {
   "name": "Bonnie's Repo",
   "apps": 1,
   "size": 1349,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/ResonanceTeamRepo.json": {
   "name": "Resonance Team",
   "apps": 2,
   "size": 8170,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/essentials/mdc.essentials.json": {
   "name": "MDC Essentials",
   "apps": 4,
   "size": 6322,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/haxi0_2.0.json": {
   "name": "haxi0's Source",
   "apps": 6,
   "size": 7546,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/tvOS/ResonanceTeamTV.json": {
   "name": "Resonance Team",
   "apps": 1,
   "size": 1607,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/TheResonanceTeam/.default-sources/main/tvOS/UnofficialMojangArchive.json": {
   "name": "Unofficial Mojang Archive",
   "apps": 1,
   "size": 2887,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/WSF-Team/WSF/main/repo/app-repo.json": {
   "name": "WSF Source",
   "apps": 7,
   "size": 9830,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/aaronsuns/melarka/main/ios/source-template.json": {
   "name": "Melarka",
   "apps": 1,
   "size": 692,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/apikusu/altstore/main/res/osu/index.json": {
   "name": "osu!",
   "apps": 1,
   "size": 117367,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/apikusu/altstore/main/res/sonolus/index.json": {
   "name": "Sonolus",
   "apps": 1,
   "size": 3240,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/auties00/artemis/refs/heads/main/source_pal.json": {
   "name": "Auties00",
   "apps": 1,
   "size": 2076,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/azu0609/repo/main/altstore_repo.json": {
   "name": "azu0609's alt repo",
   "apps": 7,
   "size": 51137,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json": {
   "name": "AltGallery",
   "apps": 42,
-  "size": 199886,
+  "size": 194496,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/ARMSX2/apps.json": {
   "name": "ARMSX2",
   "apps": 1,
   "size": 4112,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AirCard/apps.json": {
   "name": "AirCard-iOS",
   "apps": 1,
   "size": 4978,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AniBaka/apps.json": {
   "name": "AniBaka",
   "apps": 1,
   "size": 3677,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AnimeFlow/apps.json": {
   "name": "AnimeFlow",
   "apps": 1,
   "size": 3527,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/Animeko/apps.json": {
   "name": "Animeko",
   "apps": 1,
   "size": 17078,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/Doer/apps.json": {
   "name": "Doer",
   "apps": 1,
-  "size": 1988,
+  "size": 1974,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/DolphiniOS/apps.json": {
   "name": "DolphiniOS",
   "apps": 1,
   "size": 2447,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/DukeX/apps.json": {
   "name": "DukeX",
   "apps": 1,
   "size": 4616,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/bebound/AltGallery/master/apps/EhPanda/apps.json": {
   "name": "EhPanda",
   "apps": 1,
   "size": 2514,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/cbruegg/altstore-source/refs/heads/main/source.json": {
   "name": "cbruegg's PAL source",
   "apps": 1,
   "size": 1445,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/cute-catgirl/Loft/main/altstore/source.json": {
   "name": "Mae's Apps",
   "apps": 1,
   "size": 1446,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/darthkubox/Tagpin/main/docs/templates/altstore-source.json": {
   "name": "Tagpin",
   "apps": 1,
   "size": 3004,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json": {
   "name": "fastsign (organized)",
-  "apps": 8054,
-  "size": 18940618,
+  "apps": 8075,
+  "size": 19021264,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json": {
   "name": "dsewerek's general apps",
   "apps": 1957,
-  "size": 11733923,
+  "size": 11749256,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/selected.json": {
   "name": "dsewerek's selected apps",
   "apps": 2,
   "size": 9157,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/fuckmmw-afk/edge-eloquent/main/feather-source.json": {
   "name": "Edge Eloquent Source",
   "apps": 1,
   "size": 6785,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/gabrielchamak/solea-releases/main/sidestore.json": {
   "name": "Solea",
   "apps": 1,
   "size": 14377,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/hesm4tt/framewise-ipa/main/framewise.json": {
   "name": "Framewise",
   "apps": 1,
   "size": 5457,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/hesm4tt/swipewipe-cleanup/main/docs/AltStoreSource.json": {
   "name": "Swipewipe Cleanup",
   "apps": 1,
   "size": 1866,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/ihateios/SignOs/main/app-repo.json": {
   "name": "SignOs Repository",
   "apps": 1,
   "size": 1682,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/ilyassbourass/Scan2WA/main/apps.json": {
   "name": "Scan2WA Source",
   "apps": 1,
   "size": 2260,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/jorgepb96/scankit/main/source.json": {
   "name": "ScanKit Source",
   "apps": 1,
   "size": 8058,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/laincat/AltStore/main/apps.json": {
   "name": "Laincat 工具箱",
   "apps": 9,
-  "size": 58015,
+  "size": 60214,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/CyPwn%20iPA%20Library/source.json": {
   "name": "CyPwn IPA Library",
   "apps": 199,
   "size": 228509,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/Qn_%E2%80%99s%20AltStore%20Repo/source.json": {
   "name": "Qn_'s AltStore Repo",
   "apps": 4,
   "size": 8049,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/iSH%20AltStore%20Repo/source.json": {
   "name": "iSH",
   "apps": 1,
   "size": 943,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json": {
   "name": "AppTesters IPA Repo",
   "apps": 4827,
   "size": 4058589,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/lyjj0912/NightFox_Repository-fork/main/NightFox.json": {
   "name": "NightFox",
   "apps": 14,
   "size": 24423,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/matfantinel/iphanpy/refs/heads/main/altstore/source.json": {
   "name": "iPhanpy",
   "apps": 1,
   "size": 5113,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/maxchang3/ani-altstore-source/main/generated/apps-old.json": {
   "name": "OpenAni (Legacy)",
   "apps": 1,
   "size": 7430,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/nirobhaq/dayline-store/main/store.json": {
   "name": "Dayline",
   "apps": 1,
-  "size": 26366,
+  "size": 27254,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/noah978/AltStore-Docs/master/apps.json": {
   "name": "My Source",
   "apps": 1,
   "size": 1869,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json": {
   "name": "Quark Source++",
   "apps": 22,
   "size": 52717,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource-cracked.json": {
   "name": "Quark Source Cracked",
   "apps": 5,
   "size": 22084,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource-testing.json": {
   "name": "Quark Source Testing",
   "apps": 5,
   "size": 10834,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource.json": {
   "name": "Quark Source",
   "apps": 5,
   "size": 11662,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/run2u006-hue/4WALLS-AltStore/main/source.json": {
   "name": "4Walls Source",
   "apps": 1,
   "size": 2525,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/squazaryu/TumoCompanion/main/apps.json": {
   "name": "TumoCompanion",
   "apps": 1,
-  "size": 162346,
+  "size": 162711,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/thenetaji/pawse-music/main/sources/sidestore.json": {
   "name": "Pawse",
   "apps": 1,
-  "size": 3653,
+  "size": 1635,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/therealFoxster/altsource/master/apps.json": {
   "name": "Foxster's AltSource",
   "apps": 2,
   "size": 25076,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/truongkma/t-location/main/source.json": {
   "name": "TLocation Source",
   "apps": 1,
   "size": 4972,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/vkr1729/MindSpace-iOS/main/apps.json": {
   "name": "MindSpace",
   "apps": 1,
   "size": 5632,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://raw.githubusercontent.com/xsxs18-dev/FileManager/main/altstore-source.json": {
   "name": "FileManager",
   "apps": 1,
   "size": 5204,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://taurine.app/altstore/taurinestore.json": {
   "name": "Taurine",
   "apps": 1,
   "size": 1769,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://vvpapps.b-cdn.net/source.json": {
   "name": "Volksverpetzer",
   "apps": 1,
   "size": 5666,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://weztling.se/altstore.json": {
   "name": "CARDMATE",
   "apps": 1,
   "size": 1536,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  },
  "https://xitrix.github.io/iTorrent/AltStoreEU.json": {
   "name": "iTorrent Source",
   "apps": 1,
   "size": 24007,
   "first_seen": "2026-10-10",
-  "last_ok": "2026-10-10"
+  "last_ok": "2026-10-12"
  }
 }

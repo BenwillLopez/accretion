@@ -2,22 +2,22 @@
  "apps": 4267,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 07:03 UTC",
+ "updated": "2026-10-12 11:19 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T07:03:54Z",
+ "built_at": "2026-10-12T11:19:29Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23584,
+ "listings": 23585,
  "duplicates": 1673,
- "rejected": 6594,
+ "rejected": 6593,
  "excluded": 57,
  "dead_links_removed": 8594,
  "links_on_hold": 0,
  "developers": 703,
  "updated_7d": 749,
- "updated_30d": 1194,
+ "updated_30d": 1195,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2102,
@@ -36,11 +36,11 @@
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 553
+   "apps": 552
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 130
+   "apps": 131
   },
   {
    "name": "MySign IPA's",
@@ -60,6 +60,11 @@
   {
    "name": "MuffinEMU",
    "version": "9.8",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "ByeTunes",
+   "version": "2.6",
    "date": "2026-10-12"
   },
   {
@@ -85,11 +90,6 @@
   {
    "name": "StikDebug",
    "version": "3.1.14",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "Husk",
-   "version": "2.0.0",
    "date": "2026-10-12"
   }
  ],
@@ -172,25 +172,25 @@
   },
   {
    "month": "2026-06",
-   "apps": 3713
+   "apps": 3711
   },
   {
    "month": "2026-07",
-   "apps": 3827
+   "apps": 3826
   },
   {
    "month": "2026-08",
-   "apps": 3865
+   "apps": 3864
   },
   {
    "month": "2026-09",
-   "apps": 4048
+   "apps": 4047
   },
   {
    "month": "2026-10",
    "apps": 4267
   }
  ],
- "new_30d": 378,
+ "new_30d": 379,
  "new_12m": 1685
 }
