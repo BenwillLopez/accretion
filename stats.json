@@ -2,18 +2,18 @@
  "apps": 4267,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 06:15 UTC",
+ "updated": "2026-10-12 07:03 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T06:15:50Z",
+ "built_at": "2026-10-12T07:03:54Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23582,
+ "listings": 23584,
  "duplicates": 1673,
- "rejected": 6595,
+ "rejected": 6594,
  "excluded": 57,
- "dead_links_removed": 8595,
+ "dead_links_removed": 8594,
  "links_on_hold": 0,
  "developers": 703,
  "updated_7d": 749,
@@ -23,8 +23,8 @@
   "other": 2102,
   "games": 981,
   "utilities": 341,
-  "photo-video": 318,
-  "entertainment": 222,
+  "photo-video": 317,
+  "entertainment": 223,
   "lifestyle": 126,
   "developer": 108,
   "social": 69
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3367
+   "apps": 3366
   },
   {
    "name": "dsewerek's general apps",
@@ -54,7 +54,7 @@
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.20",
+   "version": "1.0.21",
    "date": "2026-10-12"
   },
   {
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2248
+   "apps": 2249
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2277
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2312
   },
   {
    "month": "2025-05",
-   "apps": 2364
+   "apps": 2365
   },
   {
    "month": "2025-06",
-   "apps": 2393
+   "apps": 2394
   },
   {
    "month": "2025-07",
-   "apps": 2426
+   "apps": 2427
   },
   {
    "month": "2025-08",
-   "apps": 2512
+   "apps": 2513
   },
   {
    "month": "2025-09",
-   "apps": 2562
+   "apps": 2563
   },
   {
    "month": "2025-10",
-   "apps": 2627
+   "apps": 2628
   },
   {
    "month": "2025-11",
-   "apps": 2689
+   "apps": 2690
   },
   {
    "month": "2025-12",
-   "apps": 2823
+   "apps": 2824
   },
   {
    "month": "2026-01",
-   "apps": 2958
+   "apps": 2959
   },
   {
    "month": "2026-02",
@@ -192,5 +192,5 @@
   }
  ],
  "new_30d": 378,
- "new_12m": 1686
+ "new_12m": 1685
 }
