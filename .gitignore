@@ -5,3 +5,10 @@ cache/
 *.tmp
 _build/
 _site/
+
+# assistant files (kept in the private handbook)
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+REPLICATE.md
+PRIVATE.md
