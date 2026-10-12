@@ -1,46 +1,46 @@
 {
- "apps": 4243,
+ "apps": 4267,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 04:28 UTC",
+ "updated": "2026-10-12 04:45 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T04:28:11Z",
+ "built_at": "2026-10-12T04:45:49Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23558,
+ "listings": 23582,
  "duplicates": 1673,
- "rejected": 6605,
+ "rejected": 6595,
  "excluded": 57,
  "dead_links_removed": 8595,
  "links_on_hold": 0,
- "developers": 705,
- "updated_7d": 700,
- "updated_30d": 1166,
+ "developers": 703,
+ "updated_7d": 749,
+ "updated_30d": 1194,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2099,
-  "games": 980,
-  "utilities": 338,
-  "photo-video": 309,
-  "entertainment": 215,
-  "lifestyle": 125,
+  "other": 2102,
+  "games": 981,
+  "utilities": 341,
+  "photo-video": 318,
+  "entertainment": 222,
+  "lifestyle": 126,
   "developer": 108,
   "social": 69
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3341
+   "apps": 3367
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 552
+   "apps": 553
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 131
+   "apps": 130
   },
   {
    "name": "MySign IPA's",
@@ -48,13 +48,13 @@
   },
   {
    "name": "AltGallery",
-   "apps": 21
+   "apps": 20
   }
  ],
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.17",
+   "version": "1.0.18",
    "date": "2026-10-12"
   },
   {
@@ -63,34 +63,34 @@
    "date": "2026-10-12"
   },
   {
+   "name": "YTLite + Tweaks (driftywinds)",
+   "version": "21.41.5",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "YouTube Music",
+   "version": "9.41.2",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "Locket",
+   "version": "2.68.0",
+   "date": "2026-10-12"
+  },
+  {
    "name": "Provenance Alpha",
    "version": "3.4.0",
    "date": "2026-10-12"
   },
   {
+   "name": "StikDebug",
+   "version": "3.1.14",
+   "date": "2026-10-12"
+  },
+  {
    "name": "Husk",
    "version": "2.0.0",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "VortX",
-   "version": "0.5.1",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Dayline",
-   "version": "1.10.13",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "TumoCompanion",
-   "version": "1.11.27",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "Lumisound",
-   "version": "1.9.0.90",
-   "date": "2026-10-11"
+   "date": "2026-10-12"
   }
  ],
  "timeline": [
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4243
+   "apps": 4267
   }
  ],
- "new_30d": 354,
- "new_12m": 1662
+ "new_30d": 378,
+ "new_12m": 1686
 }
