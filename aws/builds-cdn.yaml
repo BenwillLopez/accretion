@@ -1,0 +1,199 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Private storage and download delivery for Accretion's own builds (the Accretion app and Accretion
+  Mods). IPAs sit in a private S3 bucket that only CloudFront can read, and CloudFront serves them only
+  through short-lived signed links handed out by the store's download function.
+
+Metadata:
+  AWSToolsMetrics:
+    AWSAgentToolkit: aws-cloudformation@3
+  com.aws.cloudformation.Context:
+    arch: >-
+      Supabase fn upload -> presigned S3 PUT (Uploader user); Supabase fn download -> auth/rate checks
+      -> 5 min CloudFront signed URL (KeyGroup) -> CloudFront -> OAC -> private bucket
+    must:
+      - IPAs never public: bucket private, CloudFront requires signed URLs
+      - object keys = hosted_builds.path ("<bundle id>/<version>.ipa"); published keys are never replaced
+      - private signing key and Uploader access key live only in GitHub/Supabase secrets, never in this template
+    ref:
+      - supabase/functions/download/index.ts
+      - supabase/functions/upload/index.ts
+
+Parameters:
+  SigningPublicKey:
+    Type: String
+    Description: PEM public key (RSA 2048) whose private half the download function uses to sign links.
+  SigningKeyVersion:
+    Type: String
+    Default: "1"
+    AllowedPattern: "^[0-9]+$"
+    Description: Raise when rotating SigningPublicKey (CloudFront public keys are immutable).
+
+Resources:
+  BuildsBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: holds every published IPA; versioning guards against an accidental overwrite or delete
+        must:
+          - all four public access blocks stay on
+        mutable: change-with-constraints
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      VersioningConfiguration:
+        Status: Enabled
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-old-versions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 30
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 2
+
+  BuildsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: only this distribution (via OAC) may read; plain HTTP is refused
+    Properties:
+      Bucket: !Ref BuildsBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: CloudFrontReadsBuilds
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${BuildsBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt BuildsBucket.Arn
+              - !Sub "${BuildsBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${AWS::StackName}-builds"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  SigningKey:
+    Type: AWS::CloudFront::PublicKey
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: verifies the download function's signed links
+        must:
+          - matches the private key in the CDN_PRIVATE_KEY secret; rotate both together
+    Properties:
+      PublicKeyConfig:
+        CallerReference: !Sub "${AWS::StackName}-signing-${SigningKeyVersion}"
+        Name: !Sub "${AWS::StackName}-signing-${SigningKeyVersion}"
+        EncodedKey: !Ref SigningPublicKey
+
+  SigningKeyGroup:
+    Type: AWS::CloudFront::KeyGroup
+    Properties:
+      KeyGroupConfig:
+        Name: !Sub "${AWS::StackName}-signing"
+        Items:
+          - !Ref SigningKey
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: >-
+          serves IPAs from edge caches (CloudFront's monthly free allowance covers the store's traffic);
+          builds are immutable per path, so long caching is safe
+        must:
+          - TrustedKeyGroups stays set: without it the builds are public
+          - HTTPS only
+        mutability:
+          PriceClass: free-to-tune
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: Accretion builds
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        PriceClass: PriceClass_100
+        Origins:
+          - Id: builds
+            DomainName: !GetAtt BuildsBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          TargetOriginId: builds
+          ViewerProtocolPolicy: https-only
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: false
+          # Managed-CachingOptimized
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          TrustedKeyGroups:
+            - !Ref SigningKeyGroup
+
+  Uploader:
+    Type: AWS::IAM::User
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: >-
+          identity for the Supabase upload/download functions (Supabase can't assume AWS roles);
+          its access key is made outside the template so the secret never appears in stack outputs
+        must:
+          - no console access; permissions limited to this bucket
+    Properties:
+      Policies:
+        - PolicyName: builds-bucket
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:DeleteObject
+                Resource: !Sub "${BuildsBucket.Arn}/*"
+              - Effect: Allow
+                Action: s3:ListBucket
+                Resource: !GetAtt BuildsBucket.Arn
+
+Outputs:
+  BucketName:
+    Value: !Ref BuildsBucket
+  BucketRegion:
+    Value: !Ref AWS::Region
+  CdnDomain:
+    Value: !GetAtt Distribution.DomainName
+  KeyPairId:
+    Description: CloudFront public key ID used as Key-Pair-Id in signed links
+    Value: !Ref SigningKey
+  UploaderUser:
+    Value: !Ref Uploader

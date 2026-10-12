@@ -14,9 +14,35 @@
 // itself, so every old copy can still update. (1.0.4 and older can't be told apart from the
 // Feather app, so the store hides everything but the update from them instead: data/index.json.)
 // The Accretion app itself is always served at its newest version.
+//
+// Builds are served from the CloudFront distribution in aws/builds-cdn.yaml when CDN_DOMAIN,
+// CDN_KEY_PAIR_ID and CDN_PRIVATE_KEY are set, and from the Supabase "builds" bucket otherwise.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
+import { getSignedUrl } from "npm:@aws-sdk/cloudfront-signer@3.1149.0";
 
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+
+const CDN_DOMAIN = Deno.env.get("CDN_DOMAIN") ?? "";
+const CDN_KEY_PAIR_ID = Deno.env.get("CDN_KEY_PAIR_ID") ?? "";
+const CDN_PRIVATE_KEY = (Deno.env.get("CDN_PRIVATE_KEY") ?? "").replace(/\\n/g, "\n");
+
+// a 5-minute link to one build
+async function signedLink(path: string): Promise<string | null> {
+  if (CDN_DOMAIN && CDN_KEY_PAIR_ID && CDN_PRIVATE_KEY) {
+    try {
+      return getSignedUrl({
+        url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}`,
+        keyPairId: CDN_KEY_PAIR_ID,
+        privateKey: CDN_PRIVATE_KEY,
+        dateLessThan: new Date(Date.now() + 300_000).toISOString(),
+      });
+    } catch {
+      return null;
+    }
+  }
+  const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300);
+  return error || !data ? null : data.signedUrl;
+}
 
 const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey" };
 const reply = (status: number, message: string) =>
@@ -104,12 +130,12 @@ Deno.serve(async (req) => {
     : builds.sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
   if (!build) return reply(404, "Accretion doesn't host this app.");
 
-  const { data: signed, error } = await admin.storage.from("builds").createSignedUrl(build.path, 300);
-  if (error || !signed) return reply(500, "Couldn't prepare the download. Try again.");
+  const location = await signedLink(build.path);
+  if (!location) return reply(500, "Couldn't prepare the download. Try again.");
 
   await admin.from("download_log").insert({ owner, bundle_id: app, via });
   return new Response(null, {
     status: 302,
-    headers: { ...cors, Location: signed.signedUrl, "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" },
+    headers: { ...cors, Location: location, "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" },
   });
 });

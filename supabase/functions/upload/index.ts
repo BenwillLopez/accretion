@@ -8,9 +8,61 @@
 //
 // Every call needs "x-upload-key: <UPLOAD_KEY>", a secret only the release workflows and the
 // mods publish script hold. Deployed with --no-verify-jwt; the key is the check.
+//
+// Builds go to the S3 bucket in aws/builds-cdn.yaml when BUILDS_BUCKET, BUILDS_REGION,
+// BUILDS_AWS_KEY_ID and BUILDS_AWS_SECRET are set, and to the Supabase "builds" bucket otherwise.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
+import {
+  DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from "npm:@aws-sdk/client-s3@3.1149.0";
+import { getSignedUrl } from "npm:@aws-sdk/s3-request-presigner@3.1149.0";
 
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+
+const BUCKET = Deno.env.get("BUILDS_BUCKET") ?? "";
+const s3 = BUCKET && Deno.env.get("BUILDS_AWS_KEY_ID") && Deno.env.get("BUILDS_AWS_SECRET")
+  ? new S3Client({
+    region: Deno.env.get("BUILDS_REGION") ?? "us-east-2",
+    credentials: {
+      accessKeyId: Deno.env.get("BUILDS_AWS_KEY_ID")!,
+      secretAccessKey: Deno.env.get("BUILDS_AWS_SECRET")!,
+    },
+  })
+  : null;
+
+// where the .ipa is PUT (valid 1 hour)
+async function uploadLink(path: string): Promise<string | null> {
+  if (s3) {
+    return await getSignedUrl(s3, new PutObjectCommand({ Bucket: BUCKET, Key: path }), { expiresIn: 3600 });
+  }
+  const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: true });
+  return error || !data ? null : data.signedUrl;
+}
+
+// the stored file, or null if it isn't there
+async function readBuild(path: string): Promise<Uint8Array | null> {
+  if (s3) {
+    try {
+      const object = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: path }));
+      return object.Body ? await object.Body.transformToByteArray() : null;
+    } catch {
+      return null;
+    }
+  }
+  const [bundle, file] = path.split("/");
+  const { data: files } = await admin.storage.from("builds").list(bundle, { search: file });
+  if (!files?.some((f: { name: string }) => f.name === file)) return null;
+  const { data: blob } = await admin.storage.from("builds").download(path);
+  return blob ? new Uint8Array(await blob.arrayBuffer()) : null;
+}
+
+async function removeBuild(path: string) {
+  if (s3) await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: path }));
+  else await admin.storage.from("builds").remove([path]);
+}
 
 const reply = (status: number, body: Record<string, unknown>) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
@@ -49,31 +101,33 @@ Deno.serve(async (req) => {
     // a published version is never replaced: a leaked key can't swap a build people already have
     const { data: existing } = await admin.from("hosted_builds").select("id").eq("bundle_id", bundle).eq("version", version).maybeSingle();
     if (existing) return reply(409, { message: `${bundle} ${version} is already published. Bump the version.` });
-    const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: true });
-    if (error || !data) return reply(500, { message: `Couldn't prepare the upload: ${error?.message ?? "unknown"}` });
-    return reply(200, { signedUrl: data.signedUrl, path });
+    let signedUrl: string | null = null;
+    let problem = "unknown";
+    try {
+      signedUrl = await uploadLink(path);
+    } catch (e) {
+      problem = e instanceof Error ? e.message : String(e);
+    }
+    if (!signedUrl) return reply(500, { message: `Couldn't prepare the upload: ${problem}` });
+    return reply(200, { signedUrl, path });
   }
 
   // finish: the file must be there before the download server starts handing it out
-  const { data: files } = await admin.storage.from("builds").list(bundle, { search: `${version}.ipa` });
-  if (!files?.some((f: { name: string }) => f.name === `${version}.ipa`)) {
-    return reply(409, { message: "The file isn't in storage yet. Upload it first." });
-  }
+  const bytes = await readBuild(path);
+  if (!bytes) return reply(409, { message: "The file isn't in storage yet. Upload it first." });
   // fingerprint the stored file, so the app can check what it downloads is what was published
-  const { data: blob, error: readError } = await admin.storage.from("builds").download(path);
-  if (readError || !blob) return reply(500, { message: "Couldn't read the uploaded file." });
-  const digest = await crypto.subtle.digest("SHA-256", await blob.arrayBuffer());
+  const digest = await crypto.subtle.digest("SHA-256", bytes as Uint8Array<ArrayBuffer>);
   const sha256 = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
   const claimed = (body as { sha256?: string }).sha256;
   if (claimed && claimed.toLowerCase() !== sha256) {
-    await admin.storage.from("builds").remove([path]);
+    await removeBuild(path);
     return reply(422, { message: "The uploaded file doesn't match the sha256 that was sent. Upload it again." });
   }
   const { error } = await admin.from("hosted_builds").insert({
     bundle_id: bundle,
     version,
     path,
-    size: blob.size,
+    size: bytes.byteLength,
     sha256,
   });
   if (error) return reply(500, { message: `Couldn't record the build: ${error.message}` });

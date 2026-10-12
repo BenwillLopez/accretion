@@ -79,14 +79,42 @@ jobs:
       # Accretion-hosted builds: download (login or personal key), personal sources, and upload
       # (release workflows put new builds in the private bucket with ACCRETION_UPLOAD_KEY).
       # --no-verify-jwt: AltStore and friends call with a key, not a login; the functions check it.
+      # Builds on AWS (aws/builds-cdn.yaml): switches on when the BUILDS_* and CDN_* secrets and
+      # variables are set. Existing builds are copied to S3 first, so no download breaks.
+      - name: Copy hosted builds to S3
+        if: vars.BUILDS_BUCKET != ''
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          BUILDS_BUCKET: ${{ vars.BUILDS_BUCKET }}
+          BUILDS_REGION: ${{ vars.BUILDS_REGION }}
+          BUILDS_AWS_KEY_ID: ${{ secrets.BUILDS_AWS_KEY_ID }}
+          BUILDS_AWS_SECRET: ${{ secrets.BUILDS_AWS_SECRET }}
+        run: |
+          pip install "boto3==1.43.111"
+          python scripts/copy_builds_to_s3.py
       - name: Deploy download functions
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           UPLOAD_KEY: ${{ secrets.ACCRETION_UPLOAD_KEY }}
+          BUILDS_BUCKET: ${{ vars.BUILDS_BUCKET }}
+          BUILDS_REGION: ${{ vars.BUILDS_REGION }}
+          BUILDS_AWS_KEY_ID: ${{ secrets.BUILDS_AWS_KEY_ID }}
+          BUILDS_AWS_SECRET: ${{ secrets.BUILDS_AWS_SECRET }}
+          CDN_DOMAIN: ${{ vars.CDN_DOMAIN }}
+          CDN_KEY_PAIR_ID: ${{ vars.CDN_KEY_PAIR_ID }}
+          CDN_PRIVATE_KEY: ${{ secrets.CDN_PRIVATE_KEY }}
         run: |
           ref=$(jq -r .url supabase/project.json | sed -E 's#https://([^.]+)\..*#\1#')
           if [ -n "$UPLOAD_KEY" ]; then
             npx --yes supabase@2.120.0 secrets set --project-ref "$ref" UPLOAD_KEY="$UPLOAD_KEY"
+          fi
+          if [ -n "$BUILDS_BUCKET" ] && [ -n "$CDN_PRIVATE_KEY" ]; then
+            # the private key goes in as one line ("\n" escapes); the download function restores it
+            key_one_line=$(printf '%s' "$CDN_PRIVATE_KEY" | awk 'BEGIN{ORS="\\n"} {print}')
+            npx --yes supabase@2.120.0 secrets set --project-ref "$ref" \
+              BUILDS_BUCKET="$BUILDS_BUCKET" BUILDS_REGION="$BUILDS_REGION" \
+              BUILDS_AWS_KEY_ID="$BUILDS_AWS_KEY_ID" BUILDS_AWS_SECRET="$BUILDS_AWS_SECRET" \
+              CDN_DOMAIN="$CDN_DOMAIN" CDN_KEY_PAIR_ID="$CDN_KEY_PAIR_ID" CDN_PRIVATE_KEY="$key_one_line"
           fi
           npx --yes supabase@2.120.0 functions deploy download source upload manifest \
             --project-ref "$ref" --no-verify-jwt --use-api
