@@ -34,7 +34,8 @@ def service_key(ref):
 
 
 def main():
-    project = json.loads(path("supabase/project.json").read_text())
+    with open(path("supabase/project.json"), encoding="utf-8") as f:
+        project = json.load(f)
     url = project["url"].rstrip("/")
     ref = url.split("//", 1)[1].split(".", 1)[0]
     bucket = env("BUILDS_BUCKET")
