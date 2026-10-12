@@ -490,3 +490,6 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .st-list li { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
 .st-list li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .st-list li b { font: 12px var(--mono); color: var(--muted); font-weight: 400; white-space: nowrap; }
+
+.mod-stats { margin: 18px 0; }
+.mod-stats .st-growth-head { align-items: center; gap: 10px; justify-content: flex-start; }

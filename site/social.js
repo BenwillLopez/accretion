@@ -130,6 +130,7 @@
       setRole: async (username, role) => ok(await sb().from("profiles").update({ role }).eq("username", username).select("username,role")),
       setSupporter: async (username, supporter) => ok(await sb().from("profiles").update({ supporter }).eq("username", username).select("username,supporter")),
       deleteAccount: async () => ok(await sb().rpc("delete_my_account")),
+      modStats: async () => ok(await sb().rpc("mod_stats")),
       // Accretion's own builds: which apps the download server hosts, and your personal key for it
       hosted: async () => ok(await sb().from("hosted_builds").select("bundle_id")).map((r) => r.bundle_id),
       downloadKey: async (rotate = false) => ok(await sb().rpc("my_download_key", { rotate })),
@@ -323,6 +324,8 @@
   window.AccAuth = {
     signedIn: () => Boolean(me.user),
     require: requireUser,
+    isMod: () => isMod(),
+    renderModStats: (box) => renderModStats(box),
     link: (bundleId, url) => (hosted.has(bundleId) ? serverLink(bundleId, me.key) : url),
   };
   function rememberSpot() {
@@ -666,6 +669,39 @@
     }
   }
 
+  // Community stats for moderators and admins only (public.mod_stats refuses everyone else)
+  async function renderModStats(box) {
+    const { h } = A;
+    box.replaceChildren(h("p", { class: "muted small" }, "Loading community stats…"));
+    let s;
+    try { s = await api.modStats(); } catch (e) { box.replaceChildren(h("p", { class: "muted small" }, e.message)); return; }
+    const n = (v) => A.fmt(v || 0);
+    const tile = (label, value, note, tone) =>
+      h("div", { class: "st-tile" }, h("span", { class: "st-label" }, label), h("b", { class: `st-value${tone ? ` ${tone}` : ""}` }, value), note ? h("span", { class: "st-note" }, note) : null);
+    const signups = (s.signups_by_day || []).map((d) => ({ month: d.day, apps: d.n }));
+    box.replaceChildren(
+      h("div", { class: "st-growth-head" }, h("h2", { class: "section-title" }, "Community"), h("span", { class: "badge mod" }, "moderators only")),
+      h("div", { class: "st-grid" },
+        tile("Users", n(s.users), `+${n(s.new_7d)} this week · +${n(s.new_30d)} in 30 days`),
+        tile("Active 30d", n(s.active_30d), `${n(s.signed_in_7d)} signed in this week`, "good"),
+        tile("Downloads", n(s.downloads), `${n(s.downloads_7d)} this week · ${n(s.downloaders_30d)} people in 30 days`),
+        tile("Personal links", n(s.download_keys), `${n(s.downloads_by_key_30d)} downloads by link in 30 days`),
+        tile("Posts", n(s.posts), `${n(s.comments)} comments · ${n(s.posts_7d)} this week`),
+        tile("Likes", n(s.likes), `${n(s.ratings)} ratings · ${n(s.follows)} follows`),
+        tile("Open reports", n(s.reports_open), `${n(s.banned)} banned`, s.reports_open ? "warn" : null),
+        tile("Backups", n(s.backups), `${n(s.backup_accounts)} accounts`),
+        tile("Store, 7 days", n(s.views_7d), `views · ${n(s.installs_7d)} installs`),
+        tile("Team", n(s.moderators), `moderators and admins · ${n(s.supporters)} ♥ supporters`)),
+      h("div", { class: "st-split" },
+        h("section", { class: "sec" }, h("div", { class: "st-growth" },
+          h("div", { class: "st-growth-head" }, h("span", { class: "st-label" }, "Sign-ups, 30 days"), h("b", {}, `+${n(s.new_30d)}`)),
+          A.growthChart(signups))),
+        h("section", { class: "sec" }, h("h2", {}, "Most downloaded, 30 days"),
+          (s.top_downloads_30d || []).length
+            ? h("ol", { class: "st-list" }, s.top_downloads_30d.map((t) => h("li", {}, h("span", {}, (A.app(t.app) || {}).n || t.app), h("b", {}, n(t.n)))))
+            : h("p", { class: "muted small" }, "No downloads yet."))));
+  }
+
   async function renderMod() {
     const { h } = A;
     if (!isMod()) return page("Moderation", h("p", { class: "muted" }, "Moderators only."));
@@ -714,13 +750,16 @@
       return f;
     })() : null;
     const demand = h("section", { class: "demand" }, h("p", { class: "muted" }, "Loading what people look for…"));
+    const stats = h("section", { class: "mod-stats" });
     page("Moderation",
       h("div", { class: "view-head" }, h("h1", { class: "view-title" }, "Moderation"), h("p", { class: "muted" }, `${rows.length} open report${rows.length === 1 ? "" : "s"}. Hidden posts stay visible to their author and to mods.`)),
+      stats,
       rows.length ? list : h("p", { class: "muted empty-thread" }, "No open reports."),
       demand,
       supporterForm,
       roleForm);
     renderDemand(demand);
+    renderModStats(stats);
   }
 
   // What people look for: anonymous counts, to decide which apps and sources to prioritise
@@ -845,7 +884,7 @@
   document.addEventListener("acc:track", (e) => whenReady(() => api.track(e.detail).catch(() => {})));
   document.addEventListener("acc:auth", () => {
     const r = location.hash;
-    if (/^#\/(feed|u\/|notifications|mod|me)/.test(r) || r.startsWith("#/app/")) A.route();
+    if (/^#\/(feed|u\/|notifications|mod|me|status)/.test(r) || r.startsWith("#/app/")) A.route();
   });
 
   document.addEventListener("acc:ready", async () => {
@@ -958,6 +997,7 @@
       setRole: async (username, role) => { const u = users.find((x) => x.username === username); if (!u) return []; u.role = role; return [{ username, role }]; },
       setSupporter: async (username, supporter) => { const u = users.find((x) => x.username.toLowerCase() === username.toLowerCase()); if (!u) return []; u.supporter = supporter; return [{ username: u.username, supporter }]; },
       deleteAccount: async () => { users.splice(users.indexOf(cur), 1); cur = null; },
+      modStats: async () => ({ users: 3, new_7d: 1, new_30d: 3, active_30d: 2, signed_in_7d: 2, downloads: 5, downloads_7d: 2, downloaders_30d: 2, download_keys: 1, posts: 4, comments: 2, posts_7d: 1, likes: 6, ratings: 2, follows: 1, reports_open: 1, banned: 0, backups: 1, backup_accounts: 1, views_7d: 40, installs_7d: 6, moderators: 2, supporters: 1, top_downloads_30d: [{ app: "io.github.getaccretion.Accretion", n: 3 }], signups_by_day: [] }),
       hosted: async () => [],
       downloadKey: async () => "0".repeat(64),
       track: async (t) => { tracked.push(t); },

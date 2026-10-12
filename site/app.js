@@ -800,6 +800,13 @@
           h("ol", { class: "st-list" }, (s.recent || []).map((r) => h("li", {}, h("span", {}, `${r.name} ${r.version}`), h("b", {}, ago(r.date))))))),
       h("p", { class: "muted small" }, "Per-source details: ", h("a", { href: "https://github.com/GETAccretion/getaccretion.github.io/blob/main/REPORT.md" }, "source report"), "."),
     );
+    // moderators and admins also see the community stats here
+    const auth = window.AccAuth;
+    if (auth && auth.isMod && auth.isMod()) {
+      const community = h("section", { class: "mod-stats" });
+      box.append(community);
+      auth.renderModStats(community);
+    }
   }
 
   // a small line chart of apps per month (SVG, no library)
@@ -1214,7 +1221,7 @@
     auth.require();
   }, true);
 
-  window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, app: (id) => state.byId.get(id), apps: () => state.apps, route, setTrending };
+  window.Acc = { h, toast, copy, fmt, ago, icon, safeUrl, shelf, homeHash, CATEGORY_NAMES, growthChart, app: (id) => state.byId.get(id), apps: () => state.apps, route, setTrending };
 
   // ---- boot -------------------------------------------------------------------------------
   Promise.all([

@@ -257,4 +257,18 @@ do $$ begin
 end $$;
 commit;
 
+-- community stats: moderators only
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+do $$ begin
+  assert pg_temp.fails($q$select public.mod_stats()$q$), 'regular users cannot read community stats';
+end $$;
+rollback;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+do $$ begin
+  assert (public.mod_stats()->>'users')::int >= 1, 'mods read community stats';
+end $$;
+rollback;
+
 \echo 'all database checks passed'

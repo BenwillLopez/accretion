@@ -790,6 +790,63 @@ select * from (values
 ) as seed (kind, title, body, app_id, version, link)
 where not exists (select 1 from public.announcements);
 
+-- ---------------------------------------------------------------- community stats (moderators only)
+-- One call for the moderator stats panel (website Status and Moderation pages, app Status
+-- screen). Counts only, nothing per person. Refuses anyone who isn't a moderator or admin.
+create or replace function public.mod_stats() returns jsonb
+language plpgsql stable security definer set search_path = public as $$
+declare
+  result jsonb;
+begin
+  if not public.is_mod() then
+    raise exception 'Moderators only';
+  end if;
+  select jsonb_build_object(
+    'users', (select count(*) from public.profiles),
+    'new_7d', (select count(*) from public.profiles where created_at > now() - interval '7 days'),
+    'new_30d', (select count(*) from public.profiles where created_at > now() - interval '30 days'),
+    'signed_in_7d', (select count(*) from auth.users where last_sign_in_at > now() - interval '7 days'),
+    'active_30d', (select count(distinct who) from (
+        select author as who from public.posts where created_at > now() - interval '30 days'
+        union all select user_id from public.post_likes where created_at > now() - interval '30 days'
+        union all select user_id from public.app_likes where created_at > now() - interval '30 days'
+        union all select user_id from public.app_ratings where updated_at > now() - interval '30 days'
+        union all select owner from public.download_log where at > now() - interval '30 days'
+      ) a where who is not null),
+    'banned', (select count(*) from public.profiles where banned),
+    'moderators', (select count(*) from public.profiles where role in ('mod', 'admin')),
+    'supporters', (select count(*) from public.profiles where supporter),
+    'posts', (select count(*) from public.posts where parent_id is null and not hidden),
+    'comments', (select count(*) from public.posts where app_id is not null and not hidden),
+    'posts_7d', (select count(*) from public.posts where created_at > now() - interval '7 days'),
+    'likes', (select count(*) from public.post_likes) + (select count(*) from public.app_likes),
+    'ratings', (select count(*) from public.app_ratings),
+    'follows', (select count(*) from public.follows),
+    'reports_open', (select count(*) from public.reports where status = 'open'),
+    'downloads', (select count(*) from public.download_log),
+    'downloads_7d', (select count(*) from public.download_log where at > now() - interval '7 days'),
+    'downloaders_30d', (select count(distinct owner) from public.download_log where at > now() - interval '30 days'),
+    'downloads_by_key_30d', (select count(*) from public.download_log where via = 'key' and at > now() - interval '30 days'),
+    'download_keys', (select count(*) from public.download_keys),
+    'backups', (select count(*) from public.certificate_backups),
+    'backup_accounts', (select count(distinct owner) from public.certificate_backups),
+    'whats_new_likes', (select count(*) from public.announcement_likes),
+    'views_7d', (select coalesce(sum(views), 0) from public.app_hits where day > current_date - 7),
+    'installs_7d', (select coalesce(sum(installs), 0) from public.app_hits where day > current_date - 7),
+    'top_downloads_30d', (select coalesce(jsonb_agg(jsonb_build_object('app', bundle_id, 'n', n) order by n desc), '[]'::jsonb)
+        from (select bundle_id, count(*) as n from public.download_log where at > now() - interval '30 days'
+              group by bundle_id order by n desc limit 5) t),
+    'signups_by_day', (select coalesce(jsonb_agg(jsonb_build_object('day', d::date, 'n', coalesce(c.n, 0)) order by d), '[]'::jsonb)
+        from generate_series(current_date - 29, current_date, interval '1 day') d
+        left join (select created_at::date as day, count(*) as n from public.profiles
+                   where created_at > now() - interval '30 days' group by 1) c on c.day = d::date)
+  ) into result;
+  return result;
+end;
+$$;
+revoke all on function public.mod_stats() from public;
+grant execute on function public.mod_stats() to authenticated;
+
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
 --   update public.profiles set role = 'admin' where username = 'your_username';
