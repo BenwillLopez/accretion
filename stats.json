@@ -2,14 +2,14 @@
  "apps": 4252,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 01:09 UTC",
+ "updated": "2026-10-12 01:43 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T01:09:12Z",
+ "built_at": "2026-10-12T01:43:44Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23572,
+ "listings": 23571,
  "duplicates": 1676,
  "rejected": 6590,
  "excluded": 57,
@@ -53,14 +53,19 @@
  ],
  "recent": [
   {
+   "name": "Accretion",
+   "version": "1.0.12",
+   "date": "2026-10-12"
+  },
+  {
    "name": "MuffinEMU",
    "version": "9.6.1",
    "date": "2026-10-12"
   },
   {
-   "name": "Accretion",
-   "version": "1.0.11",
-   "date": "2026-10-11"
+   "name": "Provenance Alpha",
+   "version": "3.4.0",
+   "date": "2026-10-12"
   },
   {
    "name": "Dayline",
@@ -85,11 +90,6 @@
   {
    "name": "Manatan",
    "version": "6.1.41",
-   "date": "2026-10-11"
-  },
-  {
-   "name": "VortX",
-   "version": "0.5.0",
    "date": "2026-10-11"
   }
  ],

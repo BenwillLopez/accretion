@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-12 01:09 UTC.
+Built 2026-10-12 01:43 UTC.
 
 | | |
 |---|---|
 | Apps in `source.json` | **4252** (5084 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23572 |
+| Listings read | 23571 |
 | Apps listed by more than one source (newest kept) | 1676 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6590 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -33,7 +33,7 @@ Built 2026-10-12 01:09 UTC.
 | [Quantum Source](https://bit.ly/Quantumsource) | ok | 35 | 4 | 3 | 2025-12-30 | discovered |
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
 | [NexSideloading App Source](https://raw.githubusercontent.com/NexSideloading/app-source/main/repo.json) | ok | 7 | 3 | 0 | 2026-09-13 | discovered |
-| [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-11 | discovered |
+| [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-12 | discovered |
 | [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 32 | 2 | 3 | 2025-05-20 | curated |
 | [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-06 | discovered |
 | [iAnyFeature's Source](https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json) | ok | 2 | 2 | 0 | 2026-10-09 | discovered |
@@ -49,7 +49,7 @@ Built 2026-10-12 01:09 UTC.
 | [Apollo for Reddit](https://raw.githubusercontent.com/Balackburn/Apollo/refs/heads/main/apps.json) | ok | 1 | 1 | 0 | 2026-10-09 | curated |
 | [EPIC's source](https://raw.githubusercontent.com/Epyke/plezy-sidestore-source/master/apps.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [FriesI23's Source](https://raw.githubusercontent.com/FriesI23/altstore-repo/master/_site/repo/source.json) | ok | 1 | 1 | 0 | 2026-10-10 | discovered |
-| [Accretion App](https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-10-11 | curated |
+| [Accretion App](https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-10-12 | curated |
 | [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [Nightshift](https://raw.githubusercontent.com/Jannehy/nightshift-ios/main/altstore.json) | ok | 1 | 1 | 0 | 2026-10-02 | discovered |
 | [MuffinEMU](https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-10-12 | discovered |
@@ -81,7 +81,7 @@ Built 2026-10-12 01:09 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4605 | 0 | 222 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -188,8 +188,9 @@ Built 2026-10-12 01:09 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| Accretion | 1.0.12 | 2026-10-12 | raw.githubusercontent.com |
 | MuffinEMU | 9.6.1 | 2026-10-12 | raw.githubusercontent.com |
-| Accretion | 1.0.11 | 2026-10-11 | raw.githubusercontent.com |
+| Provenance Alpha | 3.4.0 | 2026-10-12 | provenance-emu.com |
 | Dayline | 1.10.13 | 2026-10-11 | raw.githubusercontent.com |
 | TumoCompanion | 1.11.27 | 2026-10-11 | raw.githubusercontent.com |
 | Lumisound | 1.9.0.90 | 2026-10-11 | raw.githubusercontent.com |
@@ -202,7 +203,6 @@ Built 2026-10-12 01:09 UTC.
 | Session | 2.15.5 | 2026-10-11 | raw.githubusercontent.com |
 | Bazaart | 27.0.4 | 2026-10-11 | raw.githubusercontent.com |
 | PiliPlus | 2.1.6.2 | 2026-10-11 | raw.githubusercontent.com |
-| Provenance Alpha | 3.4.0 | 2026-10-11 | provenance-emu.com |
 | iCube | 1.0.0-beta9-ios | 2026-10-11 | provenance-emu.com |
 | Plezy | 2.23.0 | 2026-10-11 | raw.githubusercontent.com |
 | Nuvio Enhanced | 0.5.9 | 2026-10-11 | raw.githubusercontent.com |
