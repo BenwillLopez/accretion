@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-11 23:50 UTC.
+Built 2026-10-12 01:07 UTC.
 
 | | |
 |---|---|
@@ -52,7 +52,7 @@ Built 2026-10-11 23:50 UTC.
 | [Accretion App](https://raw.githubusercontent.com/GETAccretion/accretion-app/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-10-11 | curated |
 | [Lumisound](https://raw.githubusercontent.com/HeavenlyXenusVR/Lumisound/main/ios/altstore-source.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
 | [Nightshift](https://raw.githubusercontent.com/Jannehy/nightshift-ios/main/altstore.json) | ok | 1 | 1 | 0 | 2026-10-02 | discovered |
-| [MuffinEMU](https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-10-11 | discovered |
+| [MuffinEMU](https://raw.githubusercontent.com/MuffinEMU/Muffin-EMU/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-10-12 | discovered |
 | [Muffin](https://raw.githubusercontent.com/MuffinEMU/cemu-ios-muffin/main/docs/apps.json) | ok | 1 | 1 | 0 | 2026-09-13 | discovered |
 | [NexStore Repository](https://raw.githubusercontent.com/NexSideloading/NexStore/main/app-repo.json) | ok | 1 | 1 | 0 | 2026-07-25 | discovered |
 | [Aidoku Source](https://raw.githubusercontent.com/RipeStore/repos/main/aidoku.json) | ok | 1 | 1 | 0 | 2026-09-03 | discovered |
@@ -188,6 +188,7 @@ Built 2026-10-11 23:50 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| MuffinEMU | 9.6.1 | 2026-10-12 | raw.githubusercontent.com |
 | Accretion | 1.0.11 | 2026-10-11 | raw.githubusercontent.com |
 | Dayline | 1.10.13 | 2026-10-11 | raw.githubusercontent.com |
 | TumoCompanion | 1.11.27 | 2026-10-11 | raw.githubusercontent.com |
@@ -197,7 +198,6 @@ Built 2026-10-11 23:50 UTC.
 | VortX | 0.5.0 | 2026-10-11 | raw.githubusercontent.com |
 | Boorusama | 4.6.0 | 2026-10-11 | raw.githubusercontent.com |
 | Alyn ReSA Multiplayer | 1.0.2 | 2026-10-11 | raw.githubusercontent.com |
-| MuffinEMU | 9.6 | 2026-10-11 | raw.githubusercontent.com |
 | MeloNX | 2.7 | 2026-10-11 | raw.githubusercontent.com |
 | Session | 2.15.5 | 2026-10-11 | raw.githubusercontent.com |
 | Bazaart | 27.0.4 | 2026-10-11 | raw.githubusercontent.com |
