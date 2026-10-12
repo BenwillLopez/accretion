@@ -737,6 +737,15 @@
   const hasSupport = () => Boolean(kofi() || wallets().length || certs().length);
 
   // ---- status: the whole index at a glance (data/stats.json, rebuilt every 6 hours) ------------
+  // The live dot's colour: green within 8 hours of the last build (it runs every 6), amber within
+  // a day, red after that. `updated` is "2026-10-11 13:12 UTC".
+  function liveTone(updated) {
+    const at = updated ? Date.parse(updated.replace(" UTC", "Z").replace(" ", "T")) : NaN;
+    if (Number.isNaN(at)) return "";
+    const hours = (Date.now() - at) / 3600000;
+    return hours < 8 ? "" : hours < 24 ? "warn" : "bad";
+  }
+
   function renderStatus() {
     const s = state.stats || {};
     const box = $("status");
@@ -776,7 +785,7 @@
 
     box.replaceChildren(
       h("div", { class: "view-head" },
-        h("p", { class: "eyebrow" }, h("span", { class: "live", "aria-hidden": "true" }), `live index · build ${s.updated || ""}`),
+        h("p", { class: "eyebrow" }, h("span", { class: `live ${liveTone(s.updated)}`, "aria-hidden": "true" }), `live index · build ${s.updated || ""}`),
         h("h1", { class: "view-title" }, "Status"),
         h("p", { class: "muted" }, "The whole index at a glance. Rebuilt every 6 hours from every source.")),
       h("div", { class: "st-grid" },
@@ -1243,6 +1252,7 @@
       $("s-7d").textContent = fmt(stats.updated_7d);
       $("s-new").textContent = fmt(stats.new_30d);
       $("built").textContent = stats.updated ? `built ${stats.updated}` : "live";
+      $("live-dot").className = `live ${liveTone(stats.updated)}`;
       if (lastVisit) {
         const since = state.apps.filter((a) => !a.u && a.t > lastVisit).length;
         if (since) $("built").textContent += ` · ${fmt(since)} updated since your last visit`;

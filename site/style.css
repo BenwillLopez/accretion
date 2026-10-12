@@ -12,6 +12,8 @@
   --on-accent: #FFFFFF;
   --good: #34D399;
   --warn: #F59E0B;
+  --bad: #F87171;
+  --glow: 16%;
   --grid-line: rgba(255, 255, 255, 0.035);
   --display: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -22,13 +24,13 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
     --bg: #F7F6FC; --surface: #FFFFFF; --raised: #F0EEF9; --line: #DFDAF2; --fg: #15122B;
-    --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00;
+    --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00; --bad: #C2410C; --glow: 9%;
     --grid-line: rgba(30, 27, 75, 0.05); color-scheme: light;
   }
 }
 :root[data-theme="light"] {
   --bg: #F7F6FC; --surface: #FFFFFF; --raised: #F0EEF9; --line: #DFDAF2; --fg: #15122B;
-  --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00;
+  --muted: #625E85; --accent: #6D3FE0; --accent-2: #0E8FB0; --good: #078A5E; --warn: #B76A00; --bad: #C2410C; --glow: 9%;
   --grid-line: rgba(30, 27, 75, 0.05); color-scheme: light;
 }
 
@@ -41,6 +43,15 @@ body {
   background-size: 28px 28px; min-height: 100vh;
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+/* slow ambient light drifting behind the grid; still with reduced motion */
+body::before {
+  content: ""; position: fixed; inset: -20vmax; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(42vmax 42vmax at 30% 25%, color-mix(in srgb, var(--accent) var(--glow), transparent), transparent 70%),
+    radial-gradient(36vmax 36vmax at 75% 70%, color-mix(in srgb, var(--accent-2) calc(var(--glow) * 0.7), transparent), transparent 70%);
+}
+@media (prefers-reduced-motion: no-preference) { body::before { animation: drift 40s ease-in-out infinite alternate; will-change: transform; } }
+@keyframes drift { 0% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(6vmax, -4vmax, 0); } 100% { transform: translate3d(-5vmax, 5vmax, 0); } }
 a { color: var(--accent-2); }
 img { max-width: 100%; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -73,9 +84,11 @@ img { max-width: 100%; }
 main, .detail, .foot { max-width: 1180px; margin-inline: auto; padding-inline: 16px; }
 .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: end; padding-block: 34px 22px; }
 .eyebrow { font: 12px var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
-.live { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 60%, transparent); }
+.live { --tone: var(--good); width: 8px; height: 8px; border-radius: 50%; background: var(--tone); box-shadow: 0 0 0 0 color-mix(in srgb, var(--tone) 60%, transparent); }
+.live.warn { --tone: var(--warn); }
+.live.bad { --tone: var(--bad); }
 @media (prefers-reduced-motion: no-preference) { .live { animation: pulse 2.4s infinite; } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--good) 55%, transparent); } 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--tone) 55%, transparent); } 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 h1 { font: 700 clamp(28px, 4.6vw, 46px)/1.08 var(--display); margin: 0 0 12px; text-wrap: balance; letter-spacing: -.01em; }
 h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in srgb, var(--accent) 70%, var(--accent-2))); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { color: var(--muted); margin: 0; max-width: 58ch; }
