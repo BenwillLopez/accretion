@@ -1,6 +1,6 @@
 # Source report
 
-Built 2026-10-12 03:47 UTC.
+Built 2026-10-12 04:28 UTC.
 
 | | |
 |---|---|
@@ -188,7 +188,7 @@ Built 2026-10-12 03:47 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
-| Accretion | 1.0.16 | 2026-10-12 | raw.githubusercontent.com |
+| Accretion | 1.0.17 | 2026-10-12 | raw.githubusercontent.com |
 | MuffinEMU | 9.7 | 2026-10-12 | raw.githubusercontent.com |
 | Provenance Alpha | 3.4.0 | 2026-10-12 | provenance-emu.com |
 | Husk | 2.0.0 | 2026-10-11 | raw.githubusercontent.com |

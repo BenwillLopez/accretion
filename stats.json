@@ -2,9 +2,9 @@
  "apps": 4243,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 03:47 UTC",
+ "updated": "2026-10-12 04:28 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T03:47:07Z",
+ "built_at": "2026-10-12T04:28:11Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
@@ -54,7 +54,7 @@
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.16",
+   "version": "1.0.17",
    "date": "2026-10-12"
   },
   {
