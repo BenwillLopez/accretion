@@ -2,16 +2,16 @@
  "apps": 4275,
  "curated_apps": 726,
  "sources": 163,
- "updated": "2026-10-13 15:07 UTC",
+ "updated": "2026-10-13 17:17 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-13T15:07:15Z",
+ "built_at": "2026-10-13T17:17:03Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23592,
- "duplicates": 1673,
- "rejected": 6595,
+ "listings": 23595,
+ "duplicates": 1674,
+ "rejected": 6594,
  "excluded": 57,
  "dead_links_removed": 8652,
  "links_on_hold": 0,
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "Dayline",
+   "version": "1.10.14",
+   "date": "2026-10-13"
+  },
+  {
    "name": "MuffinEMU",
    "version": "10.0",
    "date": "2026-10-13"
@@ -85,11 +90,6 @@
   {
    "name": "SoundCloud",
    "version": "8.82.0",
-   "date": "2026-10-13"
-  },
-  {
-   "name": "Reddit",
-   "version": "2026.41.0",
    "date": "2026-10-13"
   }
  ],
@@ -176,11 +176,11 @@
   },
   {
    "month": "2026-07",
-   "apps": 3824
+   "apps": 3825
   },
   {
    "month": "2026-08",
-   "apps": 3861
+   "apps": 3862
   },
   {
    "month": "2026-09",
@@ -191,6 +191,6 @@
    "apps": 4275
   }
  ],
- "new_30d": 385,
+ "new_30d": 384,
  "new_12m": 1693
 }
