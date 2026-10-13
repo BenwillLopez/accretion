@@ -1,23 +1,23 @@
 {
  "apps": 4261,
- "curated_apps": 728,
+ "curated_apps": 726,
  "sources": 163,
- "updated": "2026-10-13 01:01 UTC",
+ "updated": "2026-10-13 05:17 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-13T01:01:43Z",
+ "built_at": "2026-10-13T05:17:45Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23580,
+ "listings": 23576,
  "duplicates": 1673,
- "rejected": 6599,
+ "rejected": 6600,
  "excluded": 57,
  "dead_links_removed": 8566,
  "links_on_hold": 0,
  "developers": 703,
- "updated_7d": 697,
- "updated_30d": 1183,
+ "updated_7d": 700,
+ "updated_30d": 1182,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2102,
@@ -53,43 +53,43 @@
  ],
  "recent": [
   {
-   "name": "Accretion",
-   "version": "1.0.25",
+   "name": "MuffinEMU",
+   "version": "10.0",
    "date": "2026-10-13"
   },
   {
-   "name": "MuffinEMU",
-   "version": "9.9",
+   "name": "KartPad",
+   "version": "0.8.1",
+   "date": "2026-10-13"
+  },
+  {
+   "name": "Accretion",
+   "version": "1.0.26",
+   "date": "2026-10-13"
+  },
+  {
+   "name": "iCube",
+   "version": "1.0.0-beta9-ios",
+   "date": "2026-10-13"
+  },
+  {
+   "name": "Dopamine",
+   "version": "3.0.11",
    "date": "2026-10-12"
   },
   {
-   "name": "MiruShin",
-   "version": "2.9.21",
+   "name": "C64 Commander",
+   "version": "1.0.8",
    "date": "2026-10-12"
   },
   {
-   "name": "Ito",
-   "version": "1.0.0",
+   "name": "Manatan",
+   "version": "6.1.43",
    "date": "2026-10-12"
   },
   {
-   "name": "Mangayomi",
-   "version": "0.9.9",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "VidGrab",
-   "version": "1.3.6",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "Boorusama",
-   "version": "4.6.1",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "SideInstaller",
-   "version": "1.4.0",
+   "name": "Sonic Unleashed",
+   "version": "1.1.0",
    "date": "2026-10-12"
   }
  ],
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3504
+   "apps": 3505
   },
   {
    "month": "2026-05",
-   "apps": 3579
+   "apps": 3580
   },
   {
    "month": "2026-06",
@@ -184,13 +184,13 @@
   },
   {
    "month": "2026-09",
-   "apps": 4047
+   "apps": 4046
   },
   {
    "month": "2026-10",
    "apps": 4261
   }
  ],
- "new_30d": 370,
+ "new_30d": 369,
  "new_12m": 1679
 }
