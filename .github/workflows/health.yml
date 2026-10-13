@@ -34,7 +34,7 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/health_check.py > health.md
-          cat health.md >> "$GITHUB_STEP_SUMMARY"
+          cat health.md | tee -a "$GITHUB_STEP_SUMMARY"
           if grep -qE '^(FAIL|WARN)' health.md; then
             open=$(gh issue list --state open --search 'in:title "Health check"' --json number -q '.[0].number')
             if [ -n "$open" ]; then
