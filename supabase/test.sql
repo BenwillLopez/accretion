@@ -277,7 +277,7 @@ select pg_temp.as_user(null);
 insert into public.install_reports (app_version, ios, mode, stage, details)
   values ('1.0.26', '26.4', 2, 'sendingPayload', 'Transfer: not finished after 45 s');
 do $$ begin
-  assert (select count(*) from public.install_reports) = 0, 'anonymous senders cannot read reports';
+  assert pg_temp.fails($q$select count(*) from public.install_reports$q$), 'anonymous senders cannot read reports';
   assert pg_temp.fails($q$insert into public.install_reports (app_version, ios, mode, stage, details) values ('1', '1', 7, 'x', 'y')$q$), 'mode must be 0-2';
 end $$;
 commit;
