@@ -847,6 +847,48 @@ $$;
 revoke all on function public.mod_stats() from public;
 grant execute on function public.mod_stats() to authenticated;
 
+-- ---------------------------------------------------------------- install reports
+-- When an install stalls, the app's diagnostic alert offers "Send Report": the install mode, the
+-- stage it reached and what the install server saw (the alert's own text). Sent only when the
+-- user taps it, with or without an account; nothing else about the device. Moderators read them.
+create table if not exists public.install_reports (
+  id bigint generated always as identity primary key,
+  reporter uuid default auth.uid() references public.profiles (id) on delete set null,
+  app_version text not null check (char_length(app_version) between 1 and 20),
+  ios text not null check (char_length(ios) between 1 and 20),
+  mode smallint not null check (mode between 0 and 2),
+  stage text not null check (char_length(stage) between 1 and 40),
+  bundle_id text check (char_length(bundle_id) <= 200),
+  details text not null check (char_length(details) between 1 and 4000),
+  created_at timestamptz not null default now()
+);
+create index if not exists install_reports_created on public.install_reports (created_at desc);
+alter table public.install_reports enable row level security;
+
+-- no impersonation, and a flood guard: at most 30 reports a minute from everyone together
+create or replace function public.check_install_report() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  new.reporter := auth.uid();
+  if (select count(*) from public.install_reports where created_at > now() - interval '1 minute') >= 30 then
+    raise exception 'Too many reports right now. Try again in a minute.';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists check_install_report on public.install_reports;
+create trigger check_install_report before insert on public.install_reports
+  for each row execute function public.check_install_report();
+
+drop policy if exists "anyone can send an install report" on public.install_reports;
+create policy "anyone can send an install report" on public.install_reports for insert to anon, authenticated
+  with check (true);
+drop policy if exists "mods read install reports" on public.install_reports;
+create policy "mods read install reports" on public.install_reports for select to authenticated
+  using (public.is_mod());
+grant insert on public.install_reports to anon, authenticated;
+grant select on public.install_reports to authenticated;
+
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
 --   update public.profiles set role = 'admin' where username = 'your_username';

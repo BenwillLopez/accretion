@@ -271,4 +271,31 @@ do $$ begin
 end $$;
 rollback;
 
+-- install reports: anyone sends, nobody but moderators reads, no impersonation
+begin;
+select pg_temp.as_user(null);
+insert into public.install_reports (app_version, ios, mode, stage, details)
+  values ('1.0.26', '26.4', 2, 'sendingPayload', 'Transfer: not finished after 45 s');
+do $$ begin
+  assert (select count(*) from public.install_reports) = 0, 'anonymous senders cannot read reports';
+  assert pg_temp.fails($q$insert into public.install_reports (app_version, ios, mode, stage, details) values ('1', '1', 7, 'x', 'y')$q$), 'mode must be 0-2';
+end $$;
+commit;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+insert into public.install_reports (reporter, app_version, ios, mode, stage, details)
+  values ('00000000-0000-0000-0000-00000000000c', '1.0.26', '26.4', 1, 'ready', 'iOS never connected');
+do $$ begin
+  assert (select count(*) from public.install_reports) = 0, 'users cannot read reports';
+end $$;
+commit;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+do $$ begin
+  assert (select count(*) from public.install_reports) = 2, 'mods read install reports';
+  assert (select reporter from public.install_reports where stage = 'ready') = '00000000-0000-0000-0000-00000000000b', 'reporter is always the sender';
+  assert (select reporter from public.install_reports where stage = 'sendingPayload') is null, 'anonymous reports have no reporter';
+end $$;
+rollback;
+
 \echo 'all database checks passed'
