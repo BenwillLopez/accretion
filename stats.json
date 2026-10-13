@@ -2,29 +2,29 @@
  "apps": 4261,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-12 23:49 UTC",
+ "updated": "2026-10-13 00:48 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-12T23:49:03Z",
+ "built_at": "2026-10-13T00:48:37Z",
  "sources_total": 163,
  "sources_cached": 0,
  "sources_failed": 0,
  "sources_discovered": 130,
  "listings": 23579,
- "duplicates": 1672,
+ "duplicates": 1673,
  "rejected": 6599,
  "excluded": 57,
  "dead_links_removed": 8575,
  "links_on_hold": 0,
  "developers": 703,
- "updated_7d": 741,
- "updated_30d": 1186,
+ "updated_7d": 697,
+ "updated_30d": 1183,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2102,
   "games": 981,
   "utilities": 341,
-  "photo-video": 313,
-  "entertainment": 221,
+  "photo-video": 314,
+  "entertainment": 220,
   "lifestyle": 126,
   "developer": 108,
   "social": 69
@@ -32,15 +32,15 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3360
+   "apps": 3361
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 553
+   "apps": 552
   },
   {
    "name": "Altmaker by RipeStore",
-   "apps": 130
+   "apps": 131
   },
   {
    "name": "MySign IPA's",
@@ -54,8 +54,8 @@
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.23",
-   "date": "2026-10-12"
+   "version": "1.0.25",
+   "date": "2026-10-13"
   },
   {
    "name": "MuffinEMU",
@@ -63,33 +63,33 @@
    "date": "2026-10-12"
   },
   {
+   "name": "MiruShin",
+   "version": "2.9.21",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "Ito",
+   "version": "1.0.0",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "Mangayomi",
+   "version": "0.9.9",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "VidGrab",
+   "version": "1.3.6",
+   "date": "2026-10-12"
+  },
+  {
+   "name": "Boorusama",
+   "version": "4.6.1",
+   "date": "2026-10-12"
+  },
+  {
    "name": "SideInstaller",
    "version": "1.4.0",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "YTLite + Tweaks (driftywinds)",
-   "version": "21.41.5",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "YouTube Music",
-   "version": "9.41.2",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "Locket",
-   "version": "2.68.0",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "Provenance Alpha",
-   "version": "3.4.0",
-   "date": "2026-10-12"
-  },
-  {
-   "name": "StikDebug",
-   "version": "3.1.14",
    "date": "2026-10-12"
   }
  ],
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2249
+   "apps": 2248
   },
   {
    "month": "2025-03",
-   "apps": 2277
+   "apps": 2276
   },
   {
    "month": "2025-04",
-   "apps": 2312
+   "apps": 2311
   },
   {
    "month": "2025-05",
-   "apps": 2365
+   "apps": 2364
   },
   {
    "month": "2025-06",
-   "apps": 2394
+   "apps": 2393
   },
   {
    "month": "2025-07",
-   "apps": 2427
+   "apps": 2426
   },
   {
    "month": "2025-08",
-   "apps": 2513
+   "apps": 2512
   },
   {
    "month": "2025-09",
-   "apps": 2563
+   "apps": 2562
   },
   {
    "month": "2025-10",
-   "apps": 2628
+   "apps": 2627
   },
   {
    "month": "2025-11",
-   "apps": 2690
+   "apps": 2689
   },
   {
    "month": "2025-12",
-   "apps": 2824
+   "apps": 2823
   },
   {
    "month": "2026-01",
-   "apps": 2959
+   "apps": 2958
   },
   {
    "month": "2026-02",
@@ -191,6 +191,6 @@
    "apps": 4261
   }
  ],
- "new_30d": 372,
+ "new_30d": 370,
  "new_12m": 1679
 }
