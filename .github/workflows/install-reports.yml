@@ -1,0 +1,35 @@
+name: Install reports
+
+# Mondays (or on demand): a digest of last week's install reports, grouped by likely cause by an
+# OpenRouter model. Posted as the run summary and as one GitHub issue per week (only when there are
+# reports). Needs the OPENROUTER_API_KEY secret; without it the digest has the raw counts only.
+on:
+  schedule:
+    - cron: "11 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Digest
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python scripts/install_reports_digest.py > digest.md
+          cat digest.md >> "$GITHUB_STEP_SUMMARY"
+          if ! grep -q "No reports this week" digest.md; then
+            gh issue create --title "Install reports: week of $(date -u +%Y-%m-%d)" --body-file digest.md
+          fi
