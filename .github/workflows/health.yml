@@ -1,0 +1,46 @@
+name: Health
+
+# Daily (or on demand): the three download sources answer for the newest Accretion build
+# (CloudFront, the Supabase copy, the Oracle copy), Supabase free-plan room, and the AWS free plan's
+# end date. Anything that needs action opens one "Health check" issue (or comments on the open one).
+on:
+  schedule:
+    - cron: "37 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q "boto3==1.43.111" "cryptography==46.0.3"
+      - name: Check
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          CDN_DOMAIN: ${{ vars.CDN_DOMAIN }}
+          CDN_KEY_PAIR_ID: ${{ vars.CDN_KEY_PAIR_ID }}
+          CDN_PRIVATE_KEY: ${{ secrets.CDN_PRIVATE_KEY }}
+          OCI_BUILDS_HOST: ${{ vars.OCI_BUILDS_HOST }}
+          OCI_LINK_SECRET: ${{ secrets.OCI_LINK_SECRET }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python scripts/health_check.py > health.md
+          cat health.md >> "$GITHUB_STEP_SUMMARY"
+          if grep -qE '^(FAIL|WARN)' health.md; then
+            open=$(gh issue list --state open --search 'in:title "Health check"' --json number -q '.[0].number')
+            if [ -n "$open" ]; then
+              gh issue comment "$open" --body-file health.md
+            else
+              gh issue create --title "Health check: action needed" --body-file health.md
+            fi
+            if grep -q '^FAIL' health.md; then exit 1; fi
+          fi
