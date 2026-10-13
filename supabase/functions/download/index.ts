@@ -21,6 +21,7 @@
 // if AWS is down, stopped or missing the file, the Supabase copy is served instead.
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 import { getSignedUrl } from "npm:@aws-sdk/cloudfront-signer@3.1149.0";
+import { createHash } from "node:crypto";
 
 const admin = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
 
@@ -47,12 +48,37 @@ async function cdnLink(path: string): Promise<string | null> {
   return null;
 }
 
-// a 5-minute link to one build: CloudFront when it's healthy, Supabase storage otherwise
+// The third copy: an Oracle Cloud server (handbook infra/) that pulls builds from S3 and serves
+// /builds/<path> only with an nginx secure_link: md5 = base64url(md5("<expires>/builds/<path> <secret>")).
+const OCI_BUILDS_HOST = Deno.env.get("OCI_BUILDS_HOST") ?? "";
+const OCI_LINK_SECRET = Deno.env.get("OCI_LINK_SECRET") ?? "";
+
+async function ociLink(path: string): Promise<string | null> {
+  if (!OCI_BUILDS_HOST || !OCI_LINK_SECRET) return null;
+  try {
+    const expires = Math.floor(Date.now() / 1000) + 300;
+    const uri = `/builds/${path}`;
+    const digest = createHash("md5").update(`${expires}${uri} ${OCI_LINK_SECRET}`).digest("base64")
+      .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    const link = `https://${OCI_BUILDS_HOST}/builds/${path.split("/").map(encodeURIComponent).join("/")}?md5=${digest}&expires=${expires}`;
+    const check = await fetch(link, { method: "HEAD", signal: AbortSignal.timeout(4000) });
+    if (check.ok) return link;
+    console.warn(`The Oracle copy answered ${check.status} for ${path}`);
+  } catch (e) {
+    console.warn(`The Oracle copy is unreachable for ${path} (${e instanceof Error ? e.message : e})`);
+  }
+  return null;
+}
+
+// a 5-minute link to one build: CloudFront when it's healthy, then the Supabase copy, then the
+// Oracle copy
 async function signedLink(path: string): Promise<string | null> {
   const cdn = await cdnLink(path);
   if (cdn) return cdn;
   const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300);
-  return error || !data ? null : data.signedUrl;
+  if (!error && data) return data.signedUrl;
+  console.warn(`No Supabase copy of ${path} (${error?.message ?? "unknown"}); trying the Oracle copy`);
+  return await ociLink(path);
 }
 
 const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey" };

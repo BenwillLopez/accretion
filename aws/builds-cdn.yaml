@@ -185,6 +185,29 @@ Resources:
                 Action: s3:ListBucket
                 Resource: !GetAtt BuildsBucket.Arn
 
+  MirrorReader:
+    Type: AWS::IAM::User
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: >-
+          identity for the third download copy (an Oracle Cloud server that pulls builds from the
+          bucket on a timer); read-only so a leaked key can't change or delete builds
+        must:
+          - no console access; read-only (GetObject, ListBucket) on this bucket only
+        mutable: change-with-constraints
+    Properties:
+      Policies:
+        - PolicyName: builds-bucket-read
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: s3:GetObject
+                Resource: !Sub "${BuildsBucket.Arn}/*"
+              - Effect: Allow
+                Action: s3:ListBucket
+                Resource: !GetAtt BuildsBucket.Arn
+
 Outputs:
   BucketName:
     Value: !Ref BuildsBucket
@@ -197,3 +220,5 @@ Outputs:
     Value: !Ref SigningKey
   UploaderUser:
     Value: !Ref Uploader
+  MirrorReaderUser:
+    Value: !Ref MirrorReader

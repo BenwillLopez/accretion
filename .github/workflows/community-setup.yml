@@ -109,6 +109,8 @@ jobs:
           CDN_DOMAIN: ${{ vars.CDN_DOMAIN }}
           CDN_KEY_PAIR_ID: ${{ vars.CDN_KEY_PAIR_ID }}
           CDN_PRIVATE_KEY: ${{ secrets.CDN_PRIVATE_KEY }}
+          OCI_BUILDS_HOST: ${{ vars.OCI_BUILDS_HOST }}
+          OCI_LINK_SECRET: ${{ secrets.OCI_LINK_SECRET }}
         run: |
           ref=$(jq -r .url supabase/project.json | sed -E 's#https://([^.]+)\..*#\1#')
           if [ -n "$UPLOAD_KEY" ]; then
@@ -121,6 +123,10 @@ jobs:
               BUILDS_BUCKET="$BUILDS_BUCKET" BUILDS_REGION="$BUILDS_REGION" \
               BUILDS_AWS_KEY_ID="$BUILDS_AWS_KEY_ID" BUILDS_AWS_SECRET="$BUILDS_AWS_SECRET" \
               CDN_DOMAIN="$CDN_DOMAIN" CDN_KEY_PAIR_ID="$CDN_KEY_PAIR_ID" CDN_PRIVATE_KEY="$key_one_line"
+          fi
+          if [ -n "$OCI_BUILDS_HOST" ] && [ -n "$OCI_LINK_SECRET" ]; then
+            # the third download copy (Oracle Cloud server, handbook infra/)
+            npx --yes supabase@2.120.0 secrets set --project-ref "$ref"               OCI_BUILDS_HOST="$OCI_BUILDS_HOST" OCI_LINK_SECRET="$OCI_LINK_SECRET"
           fi
           npx --yes supabase@2.120.0 functions deploy download source upload manifest \
             --project-ref "$ref" --no-verify-jwt --use-api
