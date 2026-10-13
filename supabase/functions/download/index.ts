@@ -13,7 +13,7 @@
 // "minimumVersion" in the store's app-config.json are refused, except for downloading Accretion
 // itself, so every old copy can still update. (1.0.4 and older can't be told apart from the
 // Feather app, so the store hides everything but the update from them instead: data/index.json.)
-// The Accretion app itself is always served at its newest version.
+// The Accretion app itself is always served at its newest release; betas (1.0.25.1) only by exact version.
 //
 // Builds are served from the CloudFront distribution in aws/builds-cdn.yaml when CDN_DOMAIN,
 // CDN_KEY_PAIR_ID and CDN_PRIVATE_KEY are set, and from the Supabase "builds" bucket otherwise.
@@ -136,9 +136,14 @@ Deno.serve(async (req) => {
   // Accretion itself is always served at its newest version
   const { data: rows } = await admin.from("hosted_builds").select("path,version").eq("bundle_id", app);
   const builds = (rows ?? []) as { path: string; version: string }[];
-  const build = version && app !== ACCRETION
+  // Accretion betas have four numbers (1.0.25.1, between 1.0.25 and 1.0.26): served only when asked
+  // for by version (app-repo-beta.json links them that way), never as "the newest Accretion"
+  const isBeta = (v: string) => /^\d+\.\d+\.\d+\.\d+$/.test(v);
+  const build = version && (app !== ACCRETION || isBeta(version))
     ? builds.find((b) => b.version === version)
-    : builds.sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
+    : builds
+      .filter((b) => app !== ACCRETION || !isBeta(b.version))
+      .sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
   if (!build) return reply(404, "Accretion doesn't host this app.");
 
   const location = await signedLink(build.path);
