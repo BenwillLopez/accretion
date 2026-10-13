@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-13 17:17 UTC.
+Built 2026-10-13 21:53 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4275** (5112 KB) |
+| Apps in `source.json` | **4275** (5113 KB) |
 | Apps in `curated.json` | **726** (706 KB) |
 | Listings read | 23595 |
 | Apps listed by more than one source (newest kept) | 1674 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6594 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 8652 |
+| Dead download links held back (retested every build) | 8660 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 163: 163 ok, 0 from cache, 0 failed |
 
@@ -22,9 +22,9 @@ Built 2026-10-13 17:17 UTC.
 |---|---|---:|---:|---:|---|---|
 | [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3574 | 3377 | 4514 | 2026-10-13 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 549 | 330 | 2026-10-13 | discovered |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 129 | 0 | 2026-10-13 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 130 | 0 | 2026-10-13 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | ok | 239 | 101 | 13 | 2025-01-01 | curated |
-| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 22 | 0 | 2026-10-13 | discovered |
+| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 21 | 0 | 2026-10-13 | discovered |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 20 | 8 | 1 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-13 | discovered |
@@ -35,7 +35,7 @@ Built 2026-10-13 17:17 UTC.
 | [NexSideloading App Source](https://raw.githubusercontent.com/NexSideloading/app-source/main/repo.json) | ok | 7 | 3 | 0 | 2026-09-13 | discovered |
 | [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-13 | discovered |
 | [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 32 | 2 | 3 | 2025-05-20 | curated |
-| [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-12 | discovered |
+| [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-13 | discovered |
 | [iAnyFeature's Source](https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json) | ok | 2 | 2 | 0 | 2026-10-09 | discovered |
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9383 | 1 | 161 | 2026-10-13 | discovered |
 | [CyPwn IPA Library](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/CyPwn%20iPA%20Library/source.json) | ok | 193 | 1 | 6 | 2025-09-01 | discovered |
@@ -188,8 +188,15 @@ Built 2026-10-13 17:17 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| SideInstaller | 1.5.0 | 2026-10-13 | raw.githubusercontent.com |
 | Dayline | 1.10.14 | 2026-10-13 | raw.githubusercontent.com |
+| VidGrab | 1.3.6 | 2026-10-13 | raw.githubusercontent.com |
+| NOOP | 12.1.0 | 2026-10-13 | raw.githubusercontent.com |
+| Onion Browser | 3.4.3 | 2026-10-13 | raw.githubusercontent.com |
+| Manatan | 6.1.44 | 2026-10-13 | raw.githubusercontent.com |
+| Tsumiru | 1.4.0 | 2026-10-13 | raw.githubusercontent.com |
 | MuffinEMU | 10.0 | 2026-10-13 | raw.githubusercontent.com |
+| MiniWatts | 1.5.1 | 2026-10-13 | raw.githubusercontent.com |
 | KartPad | 0.8.1 | 2026-10-13 | raw.githubusercontent.com |
 | Accretion | 1.0.26 | 2026-10-13 | raw.githubusercontent.com |
 | Instagram | 451.0.0 | 2026-10-13 | raw.githubusercontent.com |
@@ -204,12 +211,5 @@ Built 2026-10-13 17:17 UTC.
 | Documents | 8.22.8 | 2026-10-13 | raw.githubusercontent.com |
 | Provenance Alpha | 3.4.0 | 2026-10-13 | provenance-emu.com |
 | iCube | 1.0.0-beta9-ios | 2026-10-13 | provenance-emu.com |
-| MiniWatts | 1.5.1 | 2026-10-13 | raw.githubusercontent.com |
 | Tsumiru | 1.4.0 | 2026-10-13 | raw.githubusercontent.com |
 | CodeSnack IDE | 6.5.0 | 2026-10-13 | raw.githubusercontent.com |
-| Yazio | 26.41.2 | 2026-10-13 | raw.githubusercontent.com |
-| Elevate | 5.261.0 | 2026-10-13 | raw.githubusercontent.com |
-| SCRL | 9.59 | 2026-10-13 | raw.githubusercontent.com |
-| Cleanup | 6.24.0 | 2026-10-13 | raw.githubusercontent.com |
-| SimplyPiano | 9.10.97 | 2026-10-13 | raw.githubusercontent.com |
-| PureStatus | 2026.10 | 2026-10-13 | raw.githubusercontent.com |
