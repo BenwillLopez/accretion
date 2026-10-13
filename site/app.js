@@ -852,7 +852,7 @@
     $("support").replaceChildren(...[
       h("div", { class: "view-head" },
         h("h1", { class: "view-title" }, "Support Accretion"),
-        h("p", { class: "muted" }, "Accretion is free and has no ads. If it saves you time, you can help keep it running.")),
+        h("p", { class: "muted" }, "Accretion is free. The iOS app shows a small ad while apps download; supporters don't see ads. If it saves you time, you can help keep it running.")),
       donate
         ? h("section", { class: "sec support-card" },
             h("h2", {}, "Donate"),
@@ -909,7 +909,7 @@
           h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
       : null;
     const support = kofi() || wallets().length
-      ? h("p", { class: "dl-support" }, "Accretion is free and ad-free. ",
+      ? h("p", { class: "dl-support" }, "Accretion is free; supporters get the app without ads. ",
           h("a", { href: kofi() || "#/support", target: kofi() ? "_blank" : null, rel: "noopener", onclick: () => { clearInterval(timer); if (!kofi()) dlg.close(); } }, "♥ Support it"))
       : null;
     const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "dl-title" },
