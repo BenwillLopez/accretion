@@ -5,6 +5,8 @@
 //        then PUT the .ipa to signedUrl (Content-Type: application/octet-stream)
 //   POST /functions/v1/upload?finish=1   {bundle_id, version, size, sha256?, name?, notes?}   → {path, sha256}
 //        also posts "<name> <version>" with the notes to the What's new feed (announce: false skips it)
+//   POST /functions/v1/upload?base=put   {sha256}  → {signedUrl}  PUT a mod's private base .ipa
+//   POST /functions/v1/upload?base=get   {sha256}  → {signedUrl}  GET it back (15 minutes)
 //
 // Every call needs "x-upload-key: <UPLOAD_KEY>", a secret only the release workflows and the
 // mods publish script hold. Deployed with --no-verify-jwt; the key is the check.
@@ -129,6 +131,21 @@ Deno.serve(async (req) => {
     body = await req.json();
   } catch {
     return reply(400, { message: "Send JSON: {bundle_id, version}." });
+  }
+
+  // private base apps for mods (mods/scripts/base.py). Kept in S3 only, under bases/<sha256> (no
+  // .ipa ending, so the Oracle mirror and the store copy script skip them), never listed anywhere
+  // public. The mod build checks the file's sha256 itself.
+  const baseMode = new URL(req.url).searchParams.get("base");
+  if (baseMode === "put" || baseMode === "get") {
+    const sha = String((body as { sha256?: string }).sha256 ?? "");
+    if (!/^[0-9a-f]{64}$/.test(sha)) return reply(400, { message: "Send {sha256}: 64 lowercase hex characters." });
+    if (!s3 || !(await s3Healthy())) return reply(503, { message: "S3 isn't available for base apps right now." });
+    const Key = `bases/${sha}`;
+    const signedUrl = baseMode === "put"
+      ? await getSignedUrl(s3, new PutObjectCommand({ Bucket: BUCKET, Key }), { expiresIn: 3600 })
+      : await getSignedUrl(s3, new GetObjectCommand({ Bucket: BUCKET, Key }), { expiresIn: 900 });
+    return reply(200, { signedUrl, path: Key });
   }
   const bundle = body.bundle_id ?? "";
   const version = body.version ?? "";
