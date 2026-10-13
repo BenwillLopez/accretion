@@ -282,7 +282,7 @@ do $$ begin
 end $$;
 commit;
 begin;
-select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+select pg_temp.as_user('00000000-0000-0000-0000-0000000000e1');
 insert into public.install_reports (reporter, app_version, ios, mode, stage, details)
   values ('00000000-0000-0000-0000-00000000000c', '1.0.26', '26.4', 1, 'ready', 'iOS never connected');
 do $$ begin
@@ -293,7 +293,7 @@ begin;
 select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
 do $$ begin
   assert (select count(*) from public.install_reports) = 2, 'mods read install reports';
-  assert (select reporter from public.install_reports where stage = 'ready') = '00000000-0000-0000-0000-00000000000b', 'reporter is always the sender';
+  assert (select reporter from public.install_reports where stage = 'ready') = '00000000-0000-0000-0000-0000000000e1', 'reporter is always the sender';
   assert (select reporter from public.install_reports where stage = 'sendingPayload') is null, 'anonymous reports have no reporter';
 end $$;
 rollback;
