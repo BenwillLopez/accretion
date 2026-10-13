@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Email alert when Accretion's build downloads start failing: CloudFront's 5xx error rate for the
+  builds distribution above 5% for 15 minutes. Deploy in us-east-1 (CloudFront metrics live there).
+
+Metadata:
+  AWSToolsMetrics:
+    AWSAgentToolkit: aws-cloudformation@3
+  com.aws.cloudformation.Context:
+    arch: CloudWatch alarm on AWS/CloudFront 5xxErrorRate -> SNS topic -> email
+    must:
+      - us-east-1 only (CloudFront publishes its metrics there)
+      - the email address is a deploy-time parameter, never committed
+    ref:
+      - aws/builds-cdn.yaml
+
+Parameters:
+  DistributionId:
+    Type: String
+    AllowedPattern: "^E[A-Z0-9]+$"
+    Description: The builds distribution's ID (accretion-builds stack's distribution).
+  AlertEmail:
+    Type: String
+    AllowedPattern: "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    Description: Where alerts go. AWS sends a confirmation email first; click it once.
+
+Resources:
+  AlertTopic:
+    Type: AWS::SNS::Topic
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: one place for build-delivery alerts; email subscription needs a one-time confirmation click
+    Properties:
+      DisplayName: Accretion builds
+      KmsMasterKeyId: alias/aws/sns
+      Subscription:
+        - Protocol: email
+          Endpoint: !Ref AlertEmail
+
+  ErrorRateAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: >-
+          5xx from CloudFront means S3/origin trouble; the download function already falls back to
+          Supabase, so this is a heads-up to look, not an outage page
+        mutable: free-to-tune
+    Properties:
+      AlarmDescription: Accretion build downloads are failing at CloudFront (5xx above 5% for 15 minutes)
+      Namespace: AWS/CloudFront
+      MetricName: 5xxErrorRate
+      Dimensions:
+        - Name: DistributionId
+          Value: !Ref DistributionId
+        - Name: Region
+          Value: Global
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 3
+      DatapointsToAlarm: 3
+      Threshold: 5
+      ComparisonOperator: GreaterThanThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref AlertTopic
+      OKActions:
+        - !Ref AlertTopic
