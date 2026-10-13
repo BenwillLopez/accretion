@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: pip install ruff==0.16.8 pillow==11.3.0
@@ -49,7 +49,7 @@ jobs:
       PGPASSWORD: postgres
       PGDATABASE: postgres
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: psql -v ON_ERROR_STOP=1 -q -f supabase/auth_stub.sql
       - run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
       - name: Schema can be applied twice

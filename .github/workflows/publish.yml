@@ -26,16 +26,16 @@ jobs:
     timeout-minutes: 75
     steps:
       # main as it is now, not the commit that triggered the run, so runs never undo each other
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: main
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
       # last good copy of every source, so a source that is down keeps its apps
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: cache
           key: sources-${{ github.run_id }}-${{ github.run_attempt }}
@@ -70,7 +70,7 @@ jobs:
 
       # the store's public address, for the sitemap; works for any repo or custom domain
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         continue-on-error: true
 
       - name: Build web store
@@ -81,7 +81,7 @@ jobs:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
@@ -115,4 +115,4 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
