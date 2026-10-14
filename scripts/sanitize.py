@@ -6,6 +6,7 @@ here, and validate() refuses to publish anything that still breaks the rules.
 Reference: https://faq.altstore.io/developers/make-a-source
 """
 
+import hashlib
 import re
 
 from common import date_from_url, date_key, plausible_day, today, version_key
@@ -166,6 +167,8 @@ def tint(c):
 # (2000-01-01, 1970-01-01, future) get a real one from here; UNDATED collects the links where
 # only the first-seen day was available, so the store doesn't show those apps as new.
 KNOWN_DATES = {}
+AI_LISTINGS = {}  # bundle id -> reviewed text from ai/listings.json (merge.py loads it)
+AI_EXTRAS = {}  # bundle id -> features and tags of the listings used; the web store shows them
 UNDATED = set()
 REDATED = set()  # links dated from the file's upload day
 
@@ -305,6 +308,21 @@ def make_subtitle(description, name, category, developer):
     return label if developer in ("", "Unknown developer") else f"{label} by {developer}"[:80]
 
 
+def src_hash(name, description, cat):
+    """Fingerprint of the source text an AI listing was written from: a changed source means a new listing"""
+    return hashlib.sha256("\n".join((name, description, cat)).encode()).hexdigest()
+
+
+def ai_listing(bid, out):
+    """The AI listing for bid when it was written from this exact source text, else None"""
+    ai = AI_LISTINGS.get(bid)
+    if isinstance(ai, dict) and ai.get("src_hash") == src_hash(
+        out["name"], out["localizedDescription"], out["category"]
+    ):
+        return ai
+    return None
+
+
 def clean_app(app, versions):
     """Return a spec-compliant copy of app with its newest versions, or None if unusable."""
     bid = str(app.get("bundleIdentifier") or app.get("bundleID") or "").strip()
@@ -329,6 +347,20 @@ def clean_app(app, versions):
         "versions": vers,
     }
     out["screenshotURLs"] = screenshot_urls(out["screenshots"])  # for older clients
+    ai = ai_listing(bid, out)
+    if ai:
+        out["subtitle"] = text(ai.get("subtitle"), MAX_SUBTITLE) or out["subtitle"]
+        out["localizedDescription"] = (
+            text(ai.get("description"), MAX_DESCRIPTION) or out["localizedDescription"]
+        )
+        cat = str(ai.get("category") or "").strip().lower()
+        if cat in CATEGORIES and category(cat) == cat:
+            out["category"] = cat
+        # features and tags are not part of the AltStore format: they go to the web store only
+        AI_EXTRAS[bid] = {
+            "features": list(ai.get("features") or [])[:5],
+            "tags": list(ai.get("tags") or [])[:6],
+        }
     if not out["subtitle"]:
         out["subtitle"] = make_subtitle(
             app.get("localizedDescription"), name, out["category"], out["developerName"]

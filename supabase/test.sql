@@ -298,4 +298,32 @@ do $$ begin
 end $$;
 rollback;
 
+-- AI moderation reports: server key only, no reporter, one open AI report per post
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+do $$ begin
+  assert pg_temp.fails($q$select public.ai_report((select min(id) from public.posts), 'spam')$q$), 'users cannot file AI reports';
+end $$;
+rollback;
+begin;
+set local role service_role;
+select public.ai_report((select max(id) from public.posts), 'spam');
+do $$ begin
+  assert (select public.ai_report((select max(id) from public.posts), 'spam')) is null, 'one open AI report per post';
+end $$;
+reset role;
+do $$ begin
+  assert (select count(*) from public.reports where reporter is null and reason = 'AI: spam') = 1, 'AI report filed without a reporter';
+  assert (select status from public.reports where reporter is null) = 'open', 'AI report is open';
+end $$;
+rollback;
+begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+insert into public.reports (post_id, reason) values ((select max(id) from public.posts), 'AI: pretend');
+reset role;
+do $$ begin
+  assert (select reporter from public.reports where reason = 'AI: pretend') = '00000000-0000-0000-0000-00000000000b', 'users cannot pose as the AI';
+end $$;
+rollback;
+
 \echo 'all database checks passed'

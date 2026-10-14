@@ -1103,6 +1103,7 @@
     if (latest.notes) out.push(h("section", { class: "sec" }, h("h2", {}, "What's new"), h("p", { class: "prose" }, latest.notes)));
     const shots = (d.shots || []).map(safeUrl).filter(Boolean);
     if (shots.length) out.push(h("section", { class: "sec" }, h("h2", {}, "Screenshots"), h("div", { class: "shots" }, shots.map(shot))));
+    if (d.feat && d.feat.length) out.push(h("div", { class: "feats" }, d.feat.map((f) => h("span", { class: "feat" }, f))));
     if (d.desc) out.push(h("section", { class: "sec" }, h("h2", {}, "About"), h("p", { class: "prose" }, d.desc)));
     out.push(
       h(
@@ -1244,7 +1245,7 @@
       showSupportLinks();
       state.sources = index.sources;
       state.shards = index.shards;
-      state.apps = index.apps.map((a) => ({ ...a, _s: `${a.n} ${a.d} ${a.i} ${a.s}`.toLowerCase() }));
+      state.apps = index.apps.map((a) => ({ ...a, _s: `${a.n} ${a.d} ${a.i} ${a.s} ${(a.k || []).join(" ")}`.toLowerCase() }));
       for (const a of state.apps) state.byId.set(a.i, a);
       $("s-apps").textContent = fmt(stats.apps || state.apps.length);
       $("s-sources").textContent = fmt(stats.sources || state.sources.length);

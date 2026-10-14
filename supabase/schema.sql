@@ -83,6 +83,8 @@ create table if not exists public.reports (
   created_at timestamptz not null default now(),
   check ((post_id is not null) <> (profile_id is not null))
 );
+-- reports filed by the AI moderation job (public.ai_report) have no human reporter
+alter table public.reports alter column reporter drop not null;
 
 create table if not exists public.notifications (
   id bigint generated always as identity primary key,
@@ -314,6 +316,17 @@ create trigger stamp_created before insert on public.follows for each row execut
 create or replace function public.check_report() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
+  if tg_op = 'INSERT' and current_setting('accretion.ai_report', true) = 'on' then
+    -- only reachable through public.ai_report (server key): no human reporter, labelled reason
+    new.reporter := null;
+    new.status := 'open';
+    new.resolved_by := null;
+    new.created_at := now();
+    if new.reason not like 'AI: %' then
+      raise exception 'AI reports need a reason starting with "AI: "';
+    end if;
+    return new;
+  end if;
   if tg_op = 'INSERT' then
     new.reporter := auth.uid();
     new.status := 'open';
@@ -347,6 +360,27 @@ $$;
 drop trigger if exists check_report on public.reports;
 create trigger check_report before insert or update on public.reports
   for each row execute function public.check_report();
+
+-- The AI moderation job (scripts/ai_jobs.py moderate) flags a post for moderators: one open AI
+-- report per post. It never hides or deletes anything. Only the server key can call it.
+create or replace function public.ai_report(p_post_id bigint, p_label text) returns bigint
+language plpgsql security definer set search_path = public as $$
+declare
+  rid bigint;
+begin
+  if exists (select 1 from public.reports where post_id = p_post_id and reporter is null and status = 'open') then
+    return null;
+  end if;
+  perform set_config('accretion.ai_report', 'on', true);
+  insert into public.reports (post_id, reason)
+    values (p_post_id, left('AI: ' || coalesce(nullif(btrim(p_label), ''), 'flagged'), 500))
+    returning id into rid;
+  perform set_config('accretion.ai_report', 'off', true);
+  return rid;
+end;
+$$;
+revoke all on function public.ai_report(bigint, text) from public, anon, authenticated;
+grant execute on function public.ai_report(bigint, text) to service_role;
 
 -- Let people delete their own account; their profile, posts, likes and follows go with it.
 create or replace function public.delete_my_account() returns void

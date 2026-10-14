@@ -1,0 +1,101 @@
+name: AI
+
+# Jobs that use free language models (scripts/ai_jobs.py, models in ai/models.json):
+#   listings  4 times a day   clean store text for apps -> ai/listings.json (merge.py applies it)
+#   moderate  every 30 min    flag unsafe community posts for the moderators (never hides a post)
+#   sources   daily           sort newly found source URLs -> ai/sources.json, for the owner to review
+#   models    Mondays         test the free models and keep the best four; opens an issue on a change
+# Results are committed under ai/. Needs GEMINI_API_KEY and/or OPENROUTER_API_KEY, and for moderate
+# SUPABASE_ACCESS_TOKEN.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+    - cron: "7,37 * * * *"
+    - cron: "43 5 * * *"
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      job:
+        description: Job to run
+        type: choice
+        options: [listings, moderate, sources, models]
+        default: listings
+      limit:
+        description: Most items to handle (empty for the default of the job)
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  # one queue per job, so a long listings run never drops the half-hourly moderation runs
+  group: ai-${{ github.event.schedule || inputs.job }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Pick the job
+        id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_JOB: ${{ inputs.job }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            job="$INPUT_JOB"
+          else
+            case "$SCHEDULE" in
+              "17 */3 * * *") job=listings ;;
+              "7,37 * * * *") job=moderate ;;
+              "43 5 * * *") job=sources ;;
+              *) job=models ;;
+            esac
+          fi
+          echo "job=$job" >> "$GITHUB_OUTPUT"
+      - name: Install moderation dependencies
+        if: steps.pick.outputs.job == 'moderate'
+        run: pip install -q "boto3==1.43.111"
+      - name: Run
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          JOB: ${{ steps.pick.outputs.job }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [ -n "$LIMIT" ] && [ "$JOB" != "models" ]; then args=(--limit "$LIMIT"); fi
+          python scripts/ai_jobs.py "$JOB" "${args[@]}" | tee ai-output.txt
+          cat ai-output.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit results
+        env:
+          JOB: ${{ steps.pick.outputs.job }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ai
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "AI: $JOB results"
+          git pull --rebase
+          git push
+      - name: Open an issue when the model order changed
+        if: steps.pick.outputs.job == 'models'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if grep -q '^CHANGED' ai-output.txt; then
+            gh issue create --title "AI models: new order $(date -u +%Y-%m-%d)" --body-file ai-output.txt
+          fi

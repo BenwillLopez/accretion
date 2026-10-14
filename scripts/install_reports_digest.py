@@ -1,58 +1,19 @@
 """Weekly digest of the app's install reports (the "Send Report" button in install diagnostics).
 
-Reads the last 7 days of public.install_reports through the Supabase Management API, asks an
-OpenRouter model to group them by likely cause, and prints Markdown (the workflow puts it in the
+Reads the last 7 days of public.install_reports through the Supabase Management API, asks a free
+model (scripts/llm.py) to group them by likely cause, and prints Markdown (the workflow puts it in the
 job summary and a GitHub issue). Only the report fields go to the model: app version, iOS version,
 install mode, stage, the app's bundle ID and the diagnostic text. Never the reporter's account ID.
 
-Needs SUPABASE_ACCESS_TOKEN, and GEMINI_API_KEY (free, tried first; GEMINI_MODEL picks the model) or
-OPENROUTER_API_KEY (DIGEST_MODEL picks the model).
+Needs SUPABASE_ACCESS_TOKEN, and GEMINI_API_KEY or OPENROUTER_API_KEY (the models are in ai/models.json).
 """
 
 import json
-import os
 import sys
-import time
-import urllib.error
-import urllib.request
 
+import llm
 from common import path
 from supabase_setup import sql
-
-MODEL = os.environ.get("DIGEST_MODEL", "google/gemini-2.5-flash")
-
-
-def gemini(system, user, max_tokens):
-    """Google Gemini (free tier, GEMINI_API_KEY): the text, or None when there's no key or it fails"""
-    key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not key:
-        return None
-    model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
-    body = {
-        "systemInstruction": {"parts": [{"text": system}]},
-        "contents": [{"role": "user", "parts": [{"text": user}]}],
-        # the model reasons before answering, and that counts against the limit
-        "generationConfig": {"maxOutputTokens": max_tokens * 4},
-    }
-    req = urllib.request.Request(
-        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-        data=json.dumps(body).encode(),
-        method="POST",
-        headers={"x-goog-api-key": key, "Content-Type": "application/json"},
-    )
-    for attempt in range(2):  # one retry: the free tier answers 503 when busy
-        try:
-            with urllib.request.urlopen(req, timeout=120) as r:
-                parts = json.loads(r.read())["candidates"][0]["content"]["parts"]
-            return "".join(p.get("text", "") for p in parts).strip() or None
-        except urllib.error.HTTPError as e:
-            if e.code != 503 or attempt:
-                return None
-            time.sleep(10)
-        except (urllib.error.URLError, KeyError, IndexError, ValueError):
-            return None
-    return None
-
 
 MODES = {0: "Fully Local", 1: "Semi Local", 2: "Offline"}
 PROMPT = """You review install problem reports from Accretion, an iOS sideloading app.
@@ -69,32 +30,8 @@ Plain words, no speculation beyond the evidence, under 250 words."""
 
 
 def ask(reports):
-    text = gemini(PROMPT, json.dumps(reports, ensure_ascii=False)[:60000], 900)
-    if text:
-        return text
-    key = os.environ.get("OPENROUTER_API_KEY", "").strip()
-    if not key:
-        return "_No AI key worked (GEMINI_API_KEY, OPENROUTER_API_KEY), so no summary. Raw counts below._"
-    body = {
-        "model": MODEL,
-        "max_tokens": 900,
-        "messages": [
-            {"role": "system", "content": PROMPT},
-            {"role": "user", "content": json.dumps(reports, ensure_ascii=False)[:60000]},
-        ],
-    }
-    req = urllib.request.Request(
-        "https://openrouter.ai/api/v1/chat/completions",
-        data=json.dumps(body).encode(),
-        method="POST",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as r:
-            return json.loads(r.read())["choices"][0]["message"]["content"].strip()
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", "replace")[:200]
-        return f"_The AI summary failed ({e.code}: {detail}). Raw counts below._"
+    text = llm.ask("digest", PROMPT, json.dumps(reports, ensure_ascii=False)[:60000], max_tokens=900)
+    return text or "_No AI key worked (GEMINI_API_KEY, OPENROUTER_API_KEY), so no summary. Raw counts below._"
 
 
 def main():
@@ -123,7 +60,7 @@ def main():
     print("\n### Raw counts\n\n| Mode | Stage | Reports |\n|---|---|---|")
     for (mode, stage), n in sorted(counts.items(), key=lambda kv: -kv[1]):
         print(f"| {mode} | {stage} | {n} |")
-    print(f"\n_{len(rows)} report(s); summary by `{MODEL}` via OpenRouter._")
+    print(f"\n_{len(rows)} report(s); summary by `{llm.last_model or 'no model'}`._")
     return 0
 
 

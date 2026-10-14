@@ -138,6 +138,7 @@ def main():
     undated = set(info.get("undated", []))
     picks = set(read_list("popular.txt"))
     stats = load_json("stats.json", {})
+    extras = load_json("_build/ai_extras.json", {})  # features and tags from ai/listings.json
 
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
@@ -165,6 +166,8 @@ def main():
                 "f": info["first"].get(bid, latest["date"][:10]),
             }
         )
+        if extras.get(bid, {}).get("tags"):
+            rows[-1]["k"] = extras[bid]["tags"]
         pop = popularity(bid, carriers, picks)
         if pop:
             rows[-1]["p"] = pop
@@ -174,6 +177,7 @@ def main():
             {
                 "i": bid,
                 "desc": a.get("localizedDescription", ""),
+                "feat": extras.get(bid, {}).get("features", []),
                 "tint": a.get("tintColor", ""),
                 "shots": screenshot_urls(a)[:5],
                 "perms": a.get("appPermissions", {}),

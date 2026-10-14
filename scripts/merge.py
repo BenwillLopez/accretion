@@ -313,6 +313,7 @@ def main():
     # real dates for versions whose source gives a placeholder (see sanitize.real_date)
     link_dates = load_json("link_dates.json", {})
     sanitize.KNOWN_DATES = link_dates
+    sanitize.AI_LISTINGS = load_json("ai/listings.json", {})  # reviewed text, see scripts/ai_jobs.py
     checked = load_json("_build/checked.json", None)  # this build's link check
     before = len(links)
     full, core, gone, icons = pick_checked(loaded, len(manual), dead, checked, check_many, links)
@@ -429,6 +430,9 @@ def write_build_info(stats, best, firsts, manual=frozenset(), listings=None, gon
     os.makedirs(path("_build"), exist_ok=True)
     with open(path("_build/origins.json"), "w") as f:
         json.dump(info, f, ensure_ascii=False, separators=(",", ":"))
+    extras = {b: v for b, v in sanitize.AI_EXTRAS.items() if b in best}
+    with open(path("_build/ai_extras.json"), "w") as f:
+        json.dump(extras, f, ensure_ascii=False, separators=(",", ":"))
 
 
 def timeline(now, firsts, months=24):

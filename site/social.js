@@ -711,7 +711,7 @@
     const list = h("ul", { class: "reports" }, ...rows.map((r) => {
       const target = r.post ? r.post.author_p : r.profile;
       const li = h("li", {},
-        h("div", { class: "report-head" }, h("b", {}, r.post ? "Post" : "Profile"), h("span", { class: "muted small" }, `reported by @${(r.reporter_p || {}).username || "?"} · ${timeAgo(r.created_at)}`)),
+        h("div", { class: "report-head" }, h("b", {}, r.post ? "Post" : "Profile"), h("span", { class: "muted small" }, `${r.reporter_p ? `reported by @${r.reporter_p.username}` : "flagged by AI moderation"} · ${timeAgo(r.created_at)}`)),
         h("p", { class: "report-reason" }, `“${r.reason}”`),
         r.post ? h("blockquote", { class: "report-post" }, r.post.body) : null,
         target ? h("p", { class: "muted small" }, "Author: ", h("a", { href: `#/u/${encodeURIComponent(target.username)}` }, `@${target.username}`), target.banned ? " (banned)" : "") : null,

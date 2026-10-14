@@ -530,3 +530,5 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 
 .mod-stats { margin: 18px 0; }
 .mod-stats .st-growth-head { align-items: center; gap: 10px; justify-content: flex-start; }
+.feats { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
+.feat { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 3px 10px; font: 500 12px var(--body); color: var(--muted); }
