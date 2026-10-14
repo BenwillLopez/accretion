@@ -2,31 +2,31 @@
  "apps": 4272,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 14:52 UTC",
+ "updated": "2026-10-14 16:19 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T14:52:50Z",
+ "built_at": "2026-10-14T16:19:18Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23748,
+ "listings": 23744,
  "duplicates": 1797,
- "rejected": 6608,
+ "rejected": 6609,
  "excluded": 57,
  "dead_links_removed": 8703,
  "links_on_hold": 0,
  "developers": 700,
- "updated_7d": 880,
+ "updated_7d": 881,
  "updated_30d": 1266,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2121,
-  "games": 961,
-  "utilities": 333,
-  "photo-video": 331,
-  "entertainment": 210,
-  "lifestyle": 130,
-  "developer": 120,
+  "other": 2067,
+  "games": 971,
+  "utilities": 364,
+  "photo-video": 335,
+  "entertainment": 212,
+  "lifestyle": 136,
+  "developer": 121,
   "social": 66
  },
  "top_sources": [
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "Accretion",
+   "version": "1.0.30",
+   "date": "2026-10-14"
+  },
+  {
    "name": "SideInstaller",
    "version": "1.5.1",
    "date": "2026-10-14"
@@ -60,11 +65,6 @@
   {
    "name": "MuffinEMU",
    "version": "10.0",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "Accretion",
-   "version": "1.0.29",
    "date": "2026-10-14"
   },
   {
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3502
+   "apps": 3503
   },
   {
    "month": "2026-05",
-   "apps": 3577
+   "apps": 3578
   },
   {
    "month": "2026-06",

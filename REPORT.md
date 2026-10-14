@@ -1,14 +1,14 @@
 # Source report
 
-Built 2026-10-14 14:52 UTC.
+Built 2026-10-14 16:19 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4272** (4952 KB) |
+| Apps in `source.json` | **4272** (4949 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23748 |
+| Listings read | 23744 |
 | Apps listed by more than one source (newest kept) | 1797 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6608 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6609 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links held back (retested every build) | 8703 |
 | Links on hold (whole host failing, kept for now) | 0 |
@@ -80,7 +80,7 @@ Built 2026-10-14 14:52 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4600 | 0 | 227 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 200 | 0 | 7 | 2026-04-17 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -192,9 +192,9 @@ Built 2026-10-14 14:52 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| Accretion | 1.0.30 | 2026-10-14 | raw.githubusercontent.com |
 | SideInstaller | 1.5.1 | 2026-10-14 | raw.githubusercontent.com |
 | MuffinEMU | 10.0 | 2026-10-14 | raw.githubusercontent.com |
-| Accretion | 1.0.29 | 2026-10-14 | raw.githubusercontent.com |
 | Manatan | 6.1.45 | 2026-10-14 | raw.githubusercontent.com |
 | iTorrent | 2.2.0-1 | 2026-10-14 | raw.githubusercontent.com |
 | Gopeed-v1.8.3-ios | 1.9.3 | 2026-10-14 | raw.githubusercontent.com |
