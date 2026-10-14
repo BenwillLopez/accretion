@@ -1,4 +1,95 @@
 {
+ "DesignTech-SIA.Spendit": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Accountit is an expense tracker designed to help you manage your finances. This version includes subscription unlocked. To activate, press restore once and then dismiss the prompt.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b44ce9331a8b94d33761536562a5af2017d84edf438aa1a67cf3e85f8e38de28",
+  "subtitle": "Expense tracker with subscription unlocked",
+  "tags": [
+   "expense",
+   "tracker",
+   "budget",
+   "finance",
+   "money"
+  ]
+ },
+ "DesignTech-SIA.Spendit.watchOS": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Expense Tracker - AccountIt is a tool designed to help you manage your finances and track expenses. Subscription features are unlocked. To activate, press restore once and then close the banners.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "898256048a0b480285248aaf60c52e02def21454345232f273c99a3b2a577907",
+  "subtitle": "Track your expenses and manage your budget",
+  "tags": [
+   "expense",
+   "tracker",
+   "budget",
+   "finance",
+   "money",
+   "account"
+  ]
+ },
+ "app.aplusai": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Injected with Premium",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3dabc40eb109afe43e3b8b68aa0366626ed5419f4e4b694858e9217619ff5e33",
+  "subtitle": "Premium application",
+  "tags": [
+   "aai",
+   "premium",
+   "app"
+  ]
+ },
+ "com.365scores.365scroesapp": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Get live scores and news with this patched version of 365Scores. Stay updated with real-time sports information and enjoy an unlocked subscription experience.",
+  "features": [
+   "Subscription Unlocked",
+   "Live Scores",
+   "Sports News"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7030a684839d932e50693321f06f4b96f2d9fdb3947d71d82685c660f440175c",
+  "subtitle": "Live scores and news with subscription unlocked",
+  "tags": [
+   "sports",
+   "scores",
+   "news",
+   "live",
+   "lifestyle"
+  ]
+ },
+ "com.365scores.365scroesapp.watchkitapp": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Get live scores and news with 365Scores. This version features the subscription unlocked, providing access to enhanced features and content directly within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "44718785d9b723cd76d839b55bd1890c014ba55a1f18a629815d6c4cb5bddb7c",
+  "subtitle": "Live Scores and News with Subscription Unlocked",
+  "tags": [
+   "sports",
+   "scores",
+   "news",
+   "live",
+   "updates"
+  ]
+ },
  "com.JindoBlu.FourPlayersIOS": {
   "category": "games",
   "date": "2026-10-14",
@@ -17,6 +108,76 @@
    "party",
    "games",
    "casual"
+  ]
+ },
+ "com.JindoBlu.TwoPlayerGamesChallengeIOS": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "2PlayerGames mobile application IPA. This version includes the subscription unlocked feature. The file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "49eae27e70b2772a4bebe75879e23e650a8808f2594112c47cccb3ec75f38f04",
+  "subtitle": "2PlayerGames with subscription unlocked",
+  "tags": [
+   "2playergames",
+   "ipa",
+   "unlocked",
+   "games"
+  ]
+ },
+ "com.PixelFade.ACEAcademy": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "ACE Academy Visual Novel on iOS delivers a narrative-focused experience that blends anime aesthetics with interactive storytelling.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "de15efa4eaf470076b6ee26c8f6700e67d437c505194e38db08b63223429829f",
+  "subtitle": "Interactive anime visual novel experience",
+  "tags": [
+   "visual novel",
+   "anime",
+   "interactive",
+   "story",
+   "narrative",
+   "fiction"
+  ]
+ },
+ "com.aagame.aagame": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Play the reaction game where you tap to launch pins onto a rotating wheel. Avoid hitting other pins to succeed through the levels.",
+  "features": [
+   "Free iAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "55474bbdeb1e75958ef26416d78ba040b487867fb4173b714547edf14b1c0a15",
+  "subtitle": "Tap to launch pins",
+  "tags": [
+   "arcade",
+   "reaction",
+   "tap",
+   "pins",
+   "casual",
+   "game"
+  ]
+ },
+ "com.adobe.Adobe-Reader": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Acrobat with premium features unlocked. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "874f69477366f05edb37c251348aa2e3447969b084a0eef08704428ea9d39ca5",
+  "subtitle": "Acrobat Premium IPA",
+  "tags": [
+   "acrobat",
+   "premium",
+   "ipa",
+   "ttjb"
   ]
  },
  "com.andyworks.streaks": {
@@ -38,6 +199,22 @@
    "goals"
   ]
  },
+ "com.barnabas.absorb": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Absorb is a modern audiobookshelf client featuring a card-based player experience. Developed by a human with AI assistance.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3f388aaabc61e8be85f1e1ea65059de2c776f845d628b3febd37efbe14eab3c5",
+  "subtitle": "Modern audiobookshelf client",
+  "tags": [
+   "audiobook",
+   "player",
+   "audiobookshelf",
+   "client",
+   "audio"
+  ]
+ },
  "com.br.12min.mobile": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -54,6 +231,212 @@
    "ideas",
    "reading",
    "audio"
+  ]
+ },
+ "com.example.acela": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "This is the build submitted to Apple for TestFlight review.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bcbca19cccbf0728b1ef20af77794ecbea7f66c8c69f76fb5bdfb882e4903727",
+  "subtitle": "TestFlight build for 3Speak.tv",
+  "tags": [
+   "3speak",
+   "video",
+   "media",
+   "testflight",
+   "beta"
+  ]
+ },
+ "com.fourwalls.app": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "4 Walls is a music player featuring spatial audio playback. The application includes a local AI model capability that allows you to separate songs into individual vocal and instrumental stems directly on your device.",
+  "features": [
+   "Spatial audio",
+   "Local AI model",
+   "Vocal and instrumental stems"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d9f652e24f7b17e0345e1fd8808ce778b702325e898f1e5f7bf6d345480d94cd",
+  "subtitle": "Music player with spatial audio and AI stem separation",
+  "tags": [
+   "music",
+   "player",
+   "spatial audio",
+   "ai",
+   "audio",
+   "stems"
+  ]
+ },
+ "com.h3d2.1998cam": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "The 1998 Cam Vintage Camera offers a unique and nostalgic experience for iOS users. This application transports you to the era when film photography was prominent, allowing you to capture photos with a retro aesthetic.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0df11a2ba12d962e61046c456a3a1ce697fc19535a48e32061c683865ce409dc",
+  "subtitle": "Vintage camera experience with a nostalgic feel",
+  "tags": [
+   "camera",
+   "vintage",
+   "retro",
+   "photo",
+   "nostalgic",
+   "film"
+  ]
+ },
+ "com.hssn.anatomy3d": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "3D Anatomy on iOS delivers a powerful educational experience that transforms how users explore and understand the human body on an iPhone.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "07299cc0e8d1b85b687dc02fa452f9c0c3ea4eaf393cf9ed0179217581427668",
+  "subtitle": "Explore and understand the human body in 3D",
+  "tags": [
+   "anatomy",
+   "education",
+   "human",
+   "body",
+   "medical"
+  ]
+ },
+ "com.ipaomtk.4k.wallpapers.widgets.plaw.152558": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "4K Wallpapers, Widgets: Plaw is an iOS application package designed for iPhone and iPad users to personalize their devices with wallpapers and widgets.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "39ede32a9305bbf91a30009e3674f4f0a6cc0dd51e9bad3f30d375558f57def2",
+  "subtitle": "Wallpapers and widgets for iPhone and iPad",
+  "tags": [
+   "wallpapers",
+   "widgets",
+   "personalization",
+   "ipad",
+   "iphone"
+  ]
+ },
+ "com.ipaomtk.a.little.to.the.left.159755": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "A Little to the Left is a cozy puzzle game focused on organizing objects. Players sort, stack, and arrange household items into pleasing arrangements while keeping an eye out for a mischievous cat who likes to shake things up. Enjoy a satisfying puzzle experience with intuitive gameplay and tidy challenges.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "da53f48d8cf02b469a1a0e5031e987c9382c8b276858661468e8571671909dc7",
+  "subtitle": "A cozy puzzle game about organizing objects",
+  "tags": [
+   "puzzle",
+   "cozy",
+   "organizing",
+   "casual",
+   "cat"
+  ]
+ },
+ "com.ipaomtk.acecraft.153041": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "ACECRAFT is a rhythm-based shooting game designed for iOS devices and distributed in IPA format, allowing play.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "df41e15e0f7c4c3daf854cdada9859c0774351f3ab818d76827c0a2aeacb687d",
+  "subtitle": "Rhythm-based shooting game for iOS",
+  "tags": [
+   "acecraft",
+   "shooting",
+   "rhythm",
+   "game",
+   "ios"
+  ]
+ },
+ "com.khanov.BlockerX": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "1Blocker is an application designed to block unwanted content and enhance your browsing privacy. This version includes the subscription unlocked feature, granting access to the app's advanced capabilities straight away. Protect your personal data and browse more efficiently without distractions.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "11324e3edb7156b8bdd99e85c7090f2c045ecf2d153fd42d8ae26f158aea5d7a",
+  "subtitle": "Content blocker and privacy tool",
+  "tags": [
+   "blocker",
+   "privacy",
+   "browsing",
+   "content",
+   "security"
+  ]
+ },
+ "com.looko.acloset": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Manage your wardrobe and plan your outfits with this AI fashion assistant. This version includes expert unlocked and unlimited beans. Please note that server backup functionality may not work.",
+  "features": [
+   "Expert Unlocked",
+   "Unlimited Beans"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "c8e55b277c8bd76b1683a380d289dacf711539b6a2f8d58aaa5278d6d90f6ed8",
+  "subtitle": "AI fashion assistant with expert features unlocked",
+  "tags": [
+   "fashion",
+   "wardrobe",
+   "outfit",
+   "assistant",
+   "style"
+  ]
+ },
+ "com.lunosoft.ttheroes": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "32 Heroes: Retro RPG is a mobile game that blends old-school pixel art charm.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "87dd80b57316085ac3eae41d3956a213c335781de397c7e25a52c4cbdc3dee05",
+  "subtitle": "Retro RPG with pixel art",
+  "tags": [
+   "rpg",
+   "retro",
+   "pixel",
+   "game",
+   "heroes"
+  ]
+ },
+ "com.miniclip.8ballpoolmult": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "8BallPool is available with premium features injected. Enjoy the enhanced version of the game directly from the app testers repository.",
+  "features": [
+   "Premium Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "53f422507fec9cb7addee048d1d8c5984ffda3970f668c9249dadc98c4211646",
+  "subtitle": "Injected with Premium features",
+  "tags": [
+   "pool",
+   "billiards",
+   "sports",
+   "game",
+   "premium"
+  ]
+ },
+ "com.os.airforce": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Take to the skies and relive the legendary air battles of World War II with 1945 Air Force: Airplane Games.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "71e0d9ebdc7d139c68d24eda46470cd033da378e8609ad18b54341f2ff190c4b",
+  "subtitle": "Relive legendary World War II air battles",
+  "tags": [
+   "airplane",
+   "games",
+   "action",
+   "war",
+   "flight",
+   "arcade"
   ]
  },
  "com.pixelperfectdude.htdrive": {
@@ -73,6 +456,23 @@
    "racing"
   ]
  },
+ "com.rebelancap.2ship": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Play The Legend of Zelda: Majora's Mask on your iPhone and Apple Vision Pro. Experience the full three-day cycle.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e64205f92d83ed0a58a87b95c2ea45a4d0ccc0159418eeea16e4b279584c9360",
+  "subtitle": "Play Majora's Mask on iPhone and Apple Vision Pro",
+  "tags": [
+   "zelda",
+   "majoras mask",
+   "game",
+   "emulator",
+   "iphone",
+   "vision pro"
+  ]
+ },
  "com.studiolico.woodenstick": {
   "category": "games",
   "date": "2026-10-14",
@@ -89,6 +489,119 @@
    "stick",
    "humor",
    "ios"
+  ]
+ },
+ "com.unknown.1998vintagecamera": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Capture beautiful and vintage photos just like the sixties.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "25439b1d11bd15b22ef6b2a2b7f11983632cfe6acbaec371986e8056cc720230",
+  "subtitle": "Take vintage photos like the sixties",
+  "tags": [
+   "camera",
+   "vintage",
+   "retro",
+   "photo",
+   "sixties",
+   "filter"
+  ]
+ },
+ "com.unknown.365scores": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "This application is dedicated to games and their news. It sends you notifications about developments, goals, changes, and more.",
+  "features": [
+   "Match updates",
+   "News alerts",
+   "Goal notifications"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0ee0619e3d50e727a9b8936b4f1437998d2920b99e94ef80e364cd03b30f3778",
+  "subtitle": "Sports matches and news updates",
+  "tags": [
+   "sports",
+   "news",
+   "games",
+   "scores",
+   "notifications",
+   "matches"
+  ]
+ },
+ "com.unknown.8ballpool": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Billiard training application designed to practice skills and strengthen language comprehension alongside the text meaning. Features 14-1 case practice for billiard abilities.",
+  "features": [
+   "14-1 case practice",
+   "Skill training"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cad3953b62b28636c387726437cbeeeb473554eb284370161ab5f32857fa01e3",
+  "subtitle": "Billiard training and practice application",
+  "tags": [
+   "billiard",
+   "pool",
+   "training",
+   "practice",
+   "game",
+   "sports"
+  ]
+ },
+ "com.untitledinbrackets.untitled-ios": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "An application requiring iOS 17.6 or later, currently on version 1.19.2.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "97d1a9bea602322e7eb5c6a6414befc474d0a02368b6d56dfd69ff569b0fdf1d",
+  "subtitle": "Utility application for iOS",
+  "tags": [
+   "utility",
+   "untitled",
+   "tool"
+  ]
+ },
+ "com.vigorapps.30DayFitness": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "30DayFitness is a health and fitness application designed to help users track and maintain workout routines over a thirty day period. This version comes with subscription features unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5cbfccd7d814705e42d113e16cdbf83a3545a557d151f10f79f717568d4f9369",
+  "subtitle": "Fitness app with subscription unlocked",
+  "tags": [
+   "fitness",
+   "workout",
+   "health",
+   "exercise",
+   "training"
+  ]
+ },
+ "io.github.getaccretion.Accretion": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Accretion signs and installs apps right on your iPhone using your own certificate, with no computer needed. Browse Accretion Core, Accretion Mods, and any AltStore source. Install applications directly from the Accretion web store with a single tap. Customize your apps by renaming them, changing icons, modifying bundle IDs, and injecting tweaks. The app is built on Feather by claration and is licensed under GPL-3.0.",
+  "features": [
+   "No computer needed",
+   "One tap install",
+   "Inject tweaks",
+   "Change icons and bundle IDs",
+   "AltStore source compatible"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fdec278326d738ffa6d470ffc0ef05114a8eb34cb2547b0bfd3752041f616996",
+  "subtitle": "Sign and install apps on your iPhone without a computer",
+  "tags": [
+   "installer",
+   "signer",
+   "tweaks",
+   "apps",
+   "utility",
+   "altstore"
   ]
  }
 }
