@@ -23,6 +23,7 @@ import math
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -293,11 +294,23 @@ def similar(limit):
     hashes = {b: hashlib.sha256(t.encode()).hexdigest() for b, t in texts.items()}
     todo = [b for b in sorted(texts) if cache.get(b, {}).get("h") != hashes[b]]
     done = 0
+    # Gemini's free tier counts each text in a batch against a per-minute limit: one batch a minute,
+    # waiting out a busy minute a few times, and stopping well inside the workflow's time limit
+    deadline = time.monotonic() + 40 * 60
     for i in range(0, min(len(todo), limit), llm.EMBED_BATCH):
         batch = todo[i : min(i + llm.EMBED_BATCH, limit)]
-        vectors = llm.embed([texts[b] for b in batch], DIMS)
+        vectors = None
+        for _ in range(4):
+            if time.monotonic() > deadline:
+                break
+            vectors = llm.embed([texts[b] for b in batch], DIMS)
+            if vectors is not None or not os.environ.get("GEMINI_API_KEY"):
+                break
+            time.sleep(65)
         if vectors is None:
-            break  # busy or no key: keep what we have, go on next run
+            break  # still busy, out of time or no key: keep what we have, go on next run
+        if i + llm.EMBED_BATCH < min(len(todo), limit):
+            time.sleep(61)
         for b, vec in zip(batch, vectors, strict=True):
             scale, data = quantize(vec)
             cache[b] = {"h": hashes[b], "s": scale, "q": data}
