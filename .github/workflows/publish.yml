@@ -14,6 +14,8 @@ on:
     secrets:
       GH_SEARCH_TOKEN:
         required: false
+      FIREBASE_SERVICE_ACCOUNT:
+        required: false
 
 permissions:
   actions: write
@@ -102,6 +104,21 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      # A free mirror of the same web store on Firebase Hosting (accretion-72875.web.app), for when
+      # GitHub Pages is down. Never fails the build; skipped while the deploy secret is missing.
+      - name: Mirror to Firebase Hosting
+        continue-on-error: true
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          set -euo pipefail
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then echo "No FIREBASE_SERVICE_ACCOUNT secret; skipped."; exit 0; fi
+          creds="$RUNNER_TEMP/firebase-sa.json"
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$creds"
+          GOOGLE_APPLICATION_CREDENTIALS="$creds" npx --yes firebase-tools@15.33.0 deploy \
+            --only hosting --project accretion-72875 --non-interactive --message "Store build ${GITHUB_SHA::7}"
+          rm -f "$creds"
 
       - name: Summary
         run: cat REPORT.md >> "$GITHUB_STEP_SUMMARY"

@@ -31,3 +31,5 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       check_links: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.check_links) }}
+    secrets:
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
