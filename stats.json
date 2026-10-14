@@ -2,18 +2,18 @@
  "apps": 4273,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 06:09 UTC",
+ "updated": "2026-10-14 06:32 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T06:09:28Z",
+ "built_at": "2026-10-14T06:32:41Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23749,
+ "listings": 23754,
  "duplicates": 1801,
- "rejected": 6604,
+ "rejected": 6602,
  "excluded": 57,
- "dead_links_removed": 8698,
+ "dead_links_removed": 8697,
  "links_on_hold": 0,
  "developers": 700,
  "updated_7d": 879,
@@ -22,9 +22,9 @@
  "categories": {
   "other": 2133,
   "games": 958,
-  "photo-video": 332,
+  "photo-video": 331,
   "utilities": 327,
-  "entertainment": 209,
+  "entertainment": 210,
   "lifestyle": 128,
   "developer": 120,
   "social": 66
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3537
+   "apps": 3536
   },
   {
    "name": "dsewerek's general apps",
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2248
   },
   {
    "month": "2025-03",
-   "apps": 2275
+   "apps": 2276
   },
   {
    "month": "2025-04",
-   "apps": 2310
+   "apps": 2311
   },
   {
    "month": "2025-05",
-   "apps": 2362
+   "apps": 2363
   },
   {
    "month": "2025-06",
-   "apps": 2391
+   "apps": 2392
   },
   {
    "month": "2025-07",
-   "apps": 2423
+   "apps": 2424
   },
   {
    "month": "2025-08",
-   "apps": 2509
+   "apps": 2510
   },
   {
    "month": "2025-09",
-   "apps": 2559
+   "apps": 2560
   },
   {
    "month": "2025-10",
-   "apps": 2624
+   "apps": 2625
   },
   {
    "month": "2025-11",
-   "apps": 2686
+   "apps": 2687
   },
   {
    "month": "2025-12",
-   "apps": 2820
+   "apps": 2821
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2957
   },
   {
    "month": "2026-02",
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3504
+   "apps": 3503
   },
   {
    "month": "2026-05",
-   "apps": 3579
+   "apps": 3578
   },
   {
    "month": "2026-06",
@@ -192,5 +192,5 @@
   }
  ],
  "new_30d": 385,
- "new_12m": 1693
+ "new_12m": 1692
 }
