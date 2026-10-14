@@ -2,18 +2,18 @@
  "apps": 4273,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 07:03 UTC",
+ "updated": "2026-10-14 07:12 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T07:03:29Z",
+ "built_at": "2026-10-14T07:12:59Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23754,
+ "listings": 23753,
  "duplicates": 1801,
- "rejected": 6602,
+ "rejected": 6603,
  "excluded": 57,
- "dead_links_removed": 8697,
+ "dead_links_removed": 8698,
  "links_on_hold": 0,
  "developers": 700,
  "updated_7d": 879,
@@ -22,9 +22,9 @@
  "categories": {
   "other": 2131,
   "games": 959,
-  "photo-video": 331,
+  "photo-video": 332,
   "utilities": 328,
-  "entertainment": 210,
+  "entertainment": 209,
   "lifestyle": 128,
   "developer": 120,
   "social": 66
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3535
+   "apps": 3536
   },
   {
    "name": "dsewerek's general apps",
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2248
+   "apps": 2247
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2424
+   "apps": 2423
   },
   {
    "month": "2025-08",
-   "apps": 2510
+   "apps": 2509
   },
   {
    "month": "2025-09",
-   "apps": 2560
+   "apps": 2559
   },
   {
    "month": "2025-10",
-   "apps": 2625
+   "apps": 2624
   },
   {
    "month": "2025-11",
-   "apps": 2687
+   "apps": 2686
   },
   {
    "month": "2025-12",
-   "apps": 2821
+   "apps": 2820
   },
   {
    "month": "2026-01",
-   "apps": 2957
+   "apps": 2956
   },
   {
    "month": "2026-02",
@@ -192,5 +192,5 @@
   }
  ],
  "new_30d": 385,
- "new_12m": 1692
+ "new_12m": 1693
 }
