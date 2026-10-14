@@ -30,6 +30,9 @@ jobs:
           CDN_PRIVATE_KEY: ${{ secrets.CDN_PRIVATE_KEY }}
           OCI_BUILDS_HOST: ${{ vars.OCI_BUILDS_HOST }}
           OCI_LINK_SECRET: ${{ secrets.OCI_LINK_SECRET }}
+          ADMOB_CLIENT_ID: ${{ secrets.ADMOB_CLIENT_ID }}
+          ADMOB_CLIENT_SECRET: ${{ secrets.ADMOB_CLIENT_SECRET }}
+          ADMOB_REFRESH_TOKEN: ${{ secrets.ADMOB_REFRESH_TOKEN }}
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail

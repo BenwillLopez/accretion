@@ -88,6 +88,52 @@ def supabase_link(url, key, p):
         return f"{url}/storage/v1{json.load(r)['signedURL']}"
 
 
+ADMOB_PUBLISHER = "pub-4500603236648893"
+
+
+def admob_week():
+    """AdMob totals for the last 7 days (requests, fill, impressions, earnings), read-only.
+    Needs ADMOB_CLIENT_ID, ADMOB_CLIENT_SECRET and ADMOB_REFRESH_TOKEN (handbook INVENTORY.yaml)."""
+    cid, secret, refresh = (env(n) for n in ("ADMOB_CLIENT_ID", "ADMOB_CLIENT_SECRET", "ADMOB_REFRESH_TOKEN"))
+    if not (cid and secret and refresh):
+        return "- ok: AdMob not checked (no ADMOB_* secrets)"
+    try:
+        grant = {"client_id": cid, "client_secret": secret, "refresh_token": refresh}
+        body = urllib.parse.urlencode({**grant, "grant_type": "refresh_token"}).encode()
+        with urllib.request.urlopen("https://oauth2.googleapis.com/token", data=body, timeout=30) as r:
+            token = json.load(r)["access_token"]
+        end = datetime.datetime.now(datetime.timezone.utc).date()
+        start = end - datetime.timedelta(days=6)
+        day = lambda d: {"year": d.year, "month": d.month, "day": d.day}  # noqa: E731
+        spec = {
+            "reportSpec": {
+                "dateRange": {"startDate": day(start), "endDate": day(end)},
+                "metrics": ["AD_REQUESTS", "MATCHED_REQUESTS", "IMPRESSIONS", "ESTIMATED_EARNINGS"],
+            }
+        }
+        req = urllib.request.Request(
+            f"https://admob.googleapis.com/v1/accounts/{ADMOB_PUBLISHER}/networkReport:generate",
+            data=json.dumps(spec).encode(),
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=60) as r:
+            parts = json.load(r)
+    except (urllib.error.URLError, KeyError, ValueError, OSError) as e:
+        # an expired or revoked refresh token shows here: redo the one-time consent (PLAYBOOK)
+        return f"WARN: AdMob report failed ({type(e).__name__}); the AdMob sign-in may need renewing"
+    values = {}
+    for part in parts:
+        for name, v in (part.get("row", {}).get("metricValues") or {}).items():
+            values[name] = values.get(name, 0) + int(v.get("integerValue") or v.get("microsValue") or 0)
+    requests_, matched = values.get("AD_REQUESTS", 0), values.get("MATCHED_REQUESTS", 0)
+    fill = f"{matched / requests_:.0%}" if requests_ else "n/a"
+    earnings = values.get("ESTIMATED_EARNINGS", 0) / 1e6
+    return (
+        f"- ok: AdMob last 7 days: {requests_} ad requests, {fill} filled, "
+        f"{values.get('IMPRESSIONS', 0)} impressions, ${earnings:.2f} estimated"
+    )
+
+
 def google_sign_in(url):
     """Google sign-in reaches Google's account page (not "Access blocked", e.g. redirect_uri_mismatch
     when the OAuth client in Google Cloud loses Supabase's callback address)"""
@@ -150,6 +196,7 @@ def main():
         lines.append(f"{level}: {label} {used:.0f} MB of {limit} MB ({used / limit:.0%})")
 
     lines.append(google_sign_in(url))
+    lines.append(admob_week())
 
     left = (AWS_FREE_PLAN_ENDS - datetime.datetime.now(datetime.timezone.utc).date()).days
     level = "WARN" if left <= WARN_DAYS else "- ok"
