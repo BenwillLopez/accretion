@@ -2,29 +2,29 @@
  "apps": 4275,
  "curated_apps": 726,
  "sources": 163,
- "updated": "2026-10-13 23:01 UTC",
+ "updated": "2026-10-14 01:57 UTC",
  "size_mb": 5.0,
- "built_at": "2026-10-13T23:01:48Z",
+ "built_at": "2026-10-14T01:57:50Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23595,
- "duplicates": 1674,
+ "listings": 23593,
+ "duplicates": 1673,
  "rejected": 6595,
  "excluded": 57,
- "dead_links_removed": 8661,
+ "dead_links_removed": 8660,
  "links_on_hold": 0,
  "developers": 703,
- "updated_7d": 762,
- "updated_30d": 1200,
+ "updated_7d": 731,
+ "updated_30d": 1196,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 2103,
   "games": 987,
   "utilities": 341,
-  "photo-video": 320,
-  "entertainment": 222,
+  "photo-video": 319,
+  "entertainment": 223,
   "lifestyle": 126,
   "developer": 108,
   "social": 68
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3378
+   "apps": 3377
   },
   {
    "name": "dsewerek's general apps",
@@ -58,8 +58,23 @@
    "date": "2026-10-13"
   },
   {
+   "name": "COD4iOS",
+   "version": "1.0.4",
+   "date": "2026-10-13"
+  },
+  {
+   "name": "Edge",
+   "version": "0.11.3",
+   "date": "2026-10-13"
+  },
+  {
    "name": "SideInstaller",
    "version": "1.5.0",
+   "date": "2026-10-13"
+  },
+  {
+   "name": "Ito",
+   "version": "1.0.0",
    "date": "2026-10-13"
   },
   {
@@ -75,21 +90,6 @@
   {
    "name": "NOOP",
    "version": "12.1.0",
-   "date": "2026-10-13"
-  },
-  {
-   "name": "Onion Browser",
-   "version": "3.4.3",
-   "date": "2026-10-13"
-  },
-  {
-   "name": "Manatan",
-   "version": "6.1.44",
-   "date": "2026-10-13"
-  },
-  {
-   "name": "Tsumiru",
-   "version": "1.4.0",
    "date": "2026-10-13"
   }
  ],
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2248
+   "apps": 2249
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2277
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2312
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2364
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2393
   },
   {
    "month": "2025-07",
-   "apps": 2425
+   "apps": 2426
   },
   {
    "month": "2025-08",
-   "apps": 2511
+   "apps": 2512
   },
   {
    "month": "2025-09",
-   "apps": 2561
+   "apps": 2562
   },
   {
    "month": "2025-10",
-   "apps": 2626
+   "apps": 2627
   },
   {
    "month": "2025-11",
-   "apps": 2688
+   "apps": 2689
   },
   {
    "month": "2025-12",
-   "apps": 2822
+   "apps": 2823
   },
   {
    "month": "2026-01",
-   "apps": 2957
+   "apps": 2958
   },
   {
    "month": "2026-02",
@@ -176,15 +176,15 @@
   },
   {
    "month": "2026-07",
-   "apps": 3825
+   "apps": 3824
   },
   {
    "month": "2026-08",
-   "apps": 3862
+   "apps": 3861
   },
   {
    "month": "2026-09",
-   "apps": 4035
+   "apps": 4034
   },
   {
    "month": "2026-10",
@@ -192,5 +192,5 @@
   }
  ],
  "new_30d": 384,
- "new_12m": 1694
+ "new_12m": 1692
 }
