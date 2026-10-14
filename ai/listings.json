@@ -1,4 +1,20 @@
 {
+ "Cristian-Teichner.Analogue": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Analogue is an application featuring an unlocked subscription.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6fa41e2f1e343936ea3d7eb8b21744965e26022e82ab7a68ab223b5b297559d8",
+  "subtitle": "Subscription Unlocked",
+  "tags": [
+   "analogue",
+   "unlocked",
+   "subscription"
+  ]
+ },
  "DesignTech-SIA.Spendit": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -36,6 +52,81 @@
    "account"
   ]
  },
+ "adguardhome.remote.app": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AdGuard Home Remote lets you manage your AdGuard Home server directly from your iOS device. This version includes the Pro unlock feature, providing full access to all capabilities. The IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "378995746b6f37877054c07a8d647f936e485500c58bd526384ece112ebfd4d3",
+  "subtitle": "Control and manage your AdGuard Home server",
+  "tags": [
+   "adguard",
+   "home",
+   "remote",
+   "server",
+   "dns",
+   "network"
+  ]
+ },
+ "age.of.civilizations2.jakowski.lukasz.ios.europe": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Age of History II Europe is a strategy game focused on the European region.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2c0f93cbd90c1b377727874c26f48d375607f0f25409da7988167753b6b19b07",
+  "subtitle": "Age of History II Europe",
+  "tags": [
+   "strategy",
+   "europe",
+   "history",
+   "game"
+  ]
+ },
+ "ani.baka": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AniBaka \u662f\u4e00\u4e2a\u57fa\u4e8e Flutter \u7684\u8de8\u5e73\u53f0\u756a\u5267\u805a\u5408\u4e0e\u5a92\u4f53\u64ad\u653e\u5ba2\u6237\u7aef\uff0c\u652f\u6301\u591a\u756a\u5267\u6e90\u3001\u5f39\u5e55\u3001\u5b57\u5e55\u3001\u79bb\u7ebf\u7f13\u5b58\u4e0e\u672c\u5730\u5a92\u4f53\u5e93\uff0c\u5e76\u63d0\u4f9b\u52a8\u6f2b\u5b9e\u65f6\u8d85\u5206\u8fa8\u7387\u753b\u8d28\u589e\u5f3a\u3002",
+  "features": [
+   "\u591a\u756a\u5267\u6e90",
+   "\u5f39\u5e55\u5b57\u5e55",
+   "\u79bb\u7ebf\u7f13\u5b58",
+   "\u672c\u5730\u5a92\u4f53\u5e93",
+   "\u8d85\u5206\u8fa8\u7387\u589e\u5f3a"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "407ab4b6f76f66fa7c6ff87b350298e7cd8508b58f8f081b3cb86bfa27ab871c",
+  "subtitle": "\u8de8\u5e73\u53f0\u756a\u5267\u805a\u5408\u4e0e\u5a92\u4f53\u64ad\u653e\u5ba2\u6237\u7aef",
+  "tags": [
+   "\u52a8\u6f2b",
+   "\u64ad\u653e\u5668",
+   "\u756a\u5267",
+   "\u5f39\u5e55",
+   "\u5a92\u4f53\u5e93"
+  ]
+ },
+ "app.aidoku.Aidoku": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Aidoku is a free and open source manga reading application designed for iOS and iPadOS devices. Read your favorite manga directly on your Apple devices with this clean and lightweight reading tool.",
+  "features": [
+   "Open source",
+   "Free"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "182f3ce8de7a37a413b4abb8f31751de306feb33c328f9686f037c52f5757ce1",
+  "subtitle": "Open source manga reader for iOS and iPadOS",
+  "tags": [
+   "manga",
+   "reader",
+   "comics",
+   "opensource",
+   "books"
+  ]
+ },
  "app.aplusai": {
   "category": "other",
   "date": "2026-10-14",
@@ -50,6 +141,22 @@
    "aai",
    "premium",
    "app"
+  ]
+ },
+ "co.appnation.geniechat.watchapp": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "An alternative AI chatbot application provided as a replacement when other options like AI Chat Smith do not meet expectations. Genie appears to be more promising in terms of performance based on user testing.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "31d346621d6e002bdae4f85a705925d2d80c123f0774fb1ede5bef40e94a69bc",
+  "subtitle": "An alternative AI chatbot app",
+  "tags": [
+   "ai",
+   "chatbot",
+   "genie",
+   "assistant",
+   "chat"
   ]
  },
  "com.365scores.365scroesapp": {
@@ -90,6 +197,25 @@
    "updates"
   ]
  },
+ "com.AnotherLife.LifeSimulator": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Another Life is a life simulation game that lets players experience virtual lives. This iOS version includes a cheat menu and removes ads for uninterrupted gameplay.",
+  "features": [
+   "Cheat Menu",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "257f515d835a2690b7860880a7469371041f6bd7640302b363b664ea2882a229",
+  "subtitle": "Life simulation game with cheat menu",
+  "tags": [
+   "simulation",
+   "life",
+   "game",
+   "strategy",
+   "virtual"
+  ]
+ },
  "com.JindoBlu.FourPlayersIOS": {
   "category": "games",
   "date": "2026-10-14",
@@ -125,6 +251,23 @@
    "ipa",
    "unlocked",
    "games"
+  ]
+ },
+ "com.JoySparkGames.AgesOfConflict": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Ages of Conflict World War Sim is a large-scale geopolitical simulation game for iOS devices. Observe and participate in complex world wars, political simulations, and historical scenarios. Manage conflicts and watch the simulation unfold on your device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "da7a3a18ac5a485bab1665f651f10bef452fffefa34b0031eb632d9a54091cb2",
+  "subtitle": "Large-scale geopolitical world war simulation",
+  "tags": [
+   "simulation",
+   "strategy",
+   "geopolitics",
+   "war",
+   "world",
+   "game"
   ]
  },
  "com.PixelFade.ACEAcademy": {
@@ -163,6 +306,63 @@
    "game"
   ]
  },
+ "com.adbanao": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AdBanao is an application designed to help you make automatic posters, banners, and videos for your brand. Generate promotional materials quickly and easily for your business needs using built-in design tools.",
+  "features": [
+   "Poster maker",
+   "Video maker",
+   "Automatic banners",
+   "Subscription unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b3011b1c140de1993dd4d9d5339326de19b9632dd3f1e4bf7f8d89e4554452e7",
+  "subtitle": "Poster and video maker for brands",
+  "tags": [
+   "poster",
+   "video",
+   "banner",
+   "brand",
+   "maker",
+   "design"
+  ]
+ },
+ "com.adguard.AdguardExtension": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AdGuard is an application injected with Subscription Unlocked. It provides tools for managing advertisements and enhancing your browsing experience on your device. All core functionalities included in the unlocked subscription are available for use.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "86fa0a0d1661fcf4a63d2c4fb2aa826c11c017a2e5ac60d920bf077a5f8e90ce",
+  "subtitle": "Ad blocking and privacy protection",
+  "tags": [
+   "adguard",
+   "privacy",
+   "blocking",
+   "utilities"
+  ]
+ },
+ "com.adguard.AdguardPro": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "This application includes Pro features and has been verified and compiled by the TTJB Team.",
+  "features": [
+   "Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7adf805bbd9d687dd674f16ea12e15886a47b68d4b6a13d84f948818d7f9bfc9",
+  "subtitle": "Pro IPA verified and compiled by TTJB Team",
+  "tags": [
+   "adguard",
+   "pro",
+   "ipa",
+   "ttjb",
+   "utilities"
+  ]
+ },
  "com.adobe.Adobe-Reader": {
   "category": "other",
   "date": "2026-10-14",
@@ -178,6 +378,440 @@
    "premium",
    "ipa",
    "ttjb"
+  ]
+ },
+ "com.adobe.fresco.ios": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AdobeFresco is available with the subscription unlocked. This application provides professional digital painting and drawing tools.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f8cd7b012abe0c2e54de9d054f32894be9044c2bba7c2e174630946192c102b9",
+  "subtitle": "AdobeFresco with Subscription Unlocked",
+  "tags": [
+   "adobe",
+   "fresco",
+   "drawing",
+   "painting",
+   "art",
+   "creative"
+  ]
+ },
+ "com.adobe.post": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Create social graphics, flyers, logos, and more with Adobe Express. This version includes the subscription unlocked feature.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1a0d996a7e6eb5b9e923d58812dc6c8e39bef84e75bee84c16fb492d7209eea3",
+  "subtitle": "Adobe Express mobile app",
+  "tags": [
+   "adobe",
+   "design",
+   "graphics",
+   "creator",
+   "editor"
+  ]
+ },
+ "com.adobe.scan.ios": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AdobeScan is a document scanning application injected with premium features. Scan receipts, forms, business cards, and whiteboards into high-quality PDFs. Capture any document on the go, convert it, and access it instantly. The app includes unlocked premium capabilities as specified in the source configuration. Use it to streamline your daily paperwork and document management directly from your mobile device.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c6fadfa90cd1d544b2b3869d2f8e757f5bec6bc1beef4579f87cd66ca7eaf851",
+  "subtitle": "Document and receipt scanner with premium features",
+  "tags": [
+   "scanner",
+   "pdf",
+   "documents",
+   "receipts",
+   "premium"
+  ]
+ },
+ "com.adventurechef": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Adventure Chef brings together two genres that rarely cross paths: culinary simulation and adventurous exploration.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "51c367cf3c8830264952ef544be349ecfdfdd88bd344a3efbfc533d37f21e5e0",
+  "subtitle": "Culinary simulation and adventurous exploration",
+  "tags": [
+   "adventure",
+   "chef",
+   "cooking",
+   "simulation",
+   "exploration",
+   "game"
+  ]
+ },
+ "com.aether.ps4ios": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "AetherPS4 is an experimental PlayStation 4 emulator for iOS. It is built on shadPS4 and features an ARM64-ported FEXCore x86-64 to ARM64 JIT, combined with a native SwiftUI front.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "757b44f7f6b2148db0d8dfdd540e16d20b75ae153f67802a56d96c6d651bdcb6",
+  "subtitle": "Experimental PlayStation 4 emulation for iOS",
+  "tags": [
+   "playstation",
+   "ps4",
+   "emulator",
+   "gaming",
+   "arm64",
+   "shadps4"
+  ]
+ },
+ "com.age.sails": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Experience the world of mobile gaming with Age Of Sails. Enjoy free upgrades and no ads as you navigate through your gameplay.",
+  "features": [
+   "Free Upgrade",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "521ca947b8da34e11df1da31e5af52382f519aa7bbe7d545f30c83414a678b63",
+  "subtitle": "Sail the world in this mobile gaming experience",
+  "tags": [
+   "sails",
+   "strategy",
+   "mobile",
+   "game",
+   "upgrade"
+  ]
+ },
+ "com.aheadsolutions.aHead": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Ahead is an emotions coach app. This version includes the subscription unlocked tweak, providing access to all features and content within the application.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "745e9b901e62504a2308a320c5de48191903926a9eb3792f31c864a9d166a4cd",
+  "subtitle": "Emotions coach and guidance",
+  "tags": [
+   "ahead",
+   "emotions",
+   "coach",
+   "lifestyle",
+   "mental"
+  ]
+ },
+ "com.ai.logo.animation.ios.app": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Whether you are a small business owner, a freelancer, or an aspiring entrepreneur, the AI Logo Maker Logo Creator app can be used to generate custom logos for your projects and brand.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "66d7aa4f2ac2fa440c9a12769ce4176fae0f579102c10c51c1d429716692090e",
+  "subtitle": "Create professional logos for your business",
+  "tags": [
+   "logo",
+   "maker",
+   "creator",
+   "business",
+   "design",
+   "ai"
+  ]
+ },
+ "com.ai.math.solver.solve.math.problems.solutions": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Math AI is designed to help students, learners, and professionals tackle math problems.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0b22df4d394f4ad25c5e1d8b75263c6a812d278e32c62929734ce5b81639d162",
+  "subtitle": "Solve math problems on iOS",
+  "tags": [
+   "math",
+   "solver",
+   "ai",
+   "student",
+   "education"
+  ]
+ },
+ "com.ai.tattoo.generator.app": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AITattoo is a mobile application available as a Pro IPA file. This version includes added functions and has been thoroughly tested and compiled by the TTJB Team.",
+  "features": [
+   "Pro Version",
+   "Tested by TTJB Team"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d1c3a86c1a516aecd6bf9366605a60cac5a630e6433eb1dfe43b856fb9e9b833",
+  "subtitle": "Pro version IPA for tattoo planning",
+  "tags": [
+   "aitattoo",
+   "pro",
+   "ipa",
+   "tattoo",
+   "ttjb"
+  ]
+ },
+ "com.aiby.aiart": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "This is a modified IPA file of AIArtaPublic tested and compiled by the TTJB Team. It includes an in-app purchase modification feature where users can tap to buy and then cancel.",
+  "features": [
+   "In-app purchase hack"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "15bae10e71cd04dd7e446ca2ea6b67a2a122426c940baf6d693e6051c878bc2c",
+  "subtitle": "AIArtaPublic IPA modification",
+  "tags": [
+   "aiartapublic",
+   "ipa",
+   "ttjb",
+   "modified",
+   "utility"
+  ]
+ },
+ "com.aichat.writingchatbot": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Chatbot App is an artificial intelligence assistant for iOS devices. Access AI assistance directly from your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b0c63f01185538a4f0010c0f7ba8dc7a9ef257975cf5cf62e59b7736402d3d53",
+  "subtitle": "Artificial intelligence assistant for iOS",
+  "tags": [
+   "ai",
+   "chatbot",
+   "assistant",
+   "ipa",
+   "utilities"
+  ]
+ },
+ "com.aiporn.aichat": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "FastSign is operated by CertFish to provide an easy way to sideload applications.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "dae4d198f3c95db2c8e13d6708b904026ffe6e79e636bca50b57cacd6cd06a12",
+  "subtitle": "Sideload apps easily",
+  "tags": [
+   "sideload",
+   "fastsign",
+   "certfish",
+   "apps",
+   "utilities"
+  ]
+ },
+ "com.airnav.radarbox": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AirNav Radar is a flight tracking application for iOS devices. Track flights in real time. Compatible with iOS version 15.1 and higher. App version 3.4.8.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d9280092e37375c1b1dc13d214759fc424d08039daa35183a8b85e1284e8fed2",
+  "subtitle": "Flight Tracker",
+  "tags": [
+   "flight",
+   "tracker",
+   "radar",
+   "aviation",
+   "planes",
+   "travel"
+  ]
+ },
+ "com.alevioos.app": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AlevioOS app injected with Subscription Unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1750e5a085be4a38f1589514c5cc8e817be3c1c03aefa01765863fd365b828da",
+  "subtitle": "AlevioOS with Subscription Unlocked",
+  "tags": [
+   "alevioos",
+   "unlocked",
+   "utility"
+  ]
+ },
+ "com.alightcreative.motion": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AlightMotion is a video and animation editing application. This version includes an injected subscription unlocked feature, providing access to premium editing tools and content within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d1f7c59c0419873c11e999f5f5c22be81b23dd7bff906c49455e23781a23a4d9",
+  "subtitle": "Video and animation editor",
+  "tags": [
+   "video",
+   "animation",
+   "editor",
+   "motion",
+   "design",
+   "graphics"
+  ]
+ },
+ "com.alltrails.AllTrails": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AllTrails is available with Pro features injected for enhanced trail exploration and navigation.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8c6ce8e729b926b7431a3aa97c9fbf35a6997d66d302938746b515d1dca7e518",
+  "subtitle": "Explore trails with Pro features",
+  "tags": [
+   "alltrails",
+   "hiking",
+   "trails",
+   "outdoor",
+   "navigation",
+   "pro"
+  ]
+ },
+ "com.alohabrowser.alohabrowser": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Aloha is an application featuring an injected subscription unlocked modification.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2b47bca622d2e4a124d1982beeab903551dfa1629892a6d0124c1ac29bf5baf8",
+  "subtitle": "Aloha app with injected subscription unlocked",
+  "tags": [
+   "aloha",
+   "unlocked",
+   "subscription"
+  ]
+ },
+ "com.alohabrowser.vpn": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AlohaVPN provides virtual private network services to secure your internet connection and protect your online privacy. This version includes injected premium features.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c0838c5f3b27bcf13e51b749063e60319edfebadaa480a5f5ef7de9b1b85da6e",
+  "subtitle": "VPN service with premium features",
+  "tags": [
+   "vpn",
+   "privacy",
+   "security",
+   "network",
+   "proxy"
+  ]
+ },
+ "com.alphaprogression.alphaprogression": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AlphaProgr is an application injected with Pro features. Designed for users seeking enhanced functionality, this app delivers advanced capabilities directly to your device.",
+  "features": [
+   "Injected with Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4f652983372f7d9c628cee6f15835a5dcbefaec0809946b1240d960eb585104a",
+  "subtitle": "Injected with Pro features",
+  "tags": [
+   "alphaprogr",
+   "pro",
+   "injected",
+   "app"
+  ]
+ },
+ "com.alpinquest.app": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "GPS navigation for outdoor activities with offline maps and route tracking.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a3cc0a55dffbb8a1c6b97fb2f0c3359ddf716eb1021de6b459f1658b93786aa7",
+  "subtitle": "Outdoor GPS and offline maps",
+  "tags": [
+   "gps",
+   "navigation",
+   "maps",
+   "outdoor",
+   "tracking",
+   "offline"
+  ]
+ },
+ "com.alyn.resamp.launcher": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "An iOS client for San Andreas Multiplayer. Features native code, live server discovery, and a launcher built around how people actually play on an iPhone.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d55e727b219e5a7811cb7bb40ad4f12afd723f47bac3fdee9da2240788805089",
+  "subtitle": "iOS client for San Andreas Multiplayer",
+  "tags": [
+   "multiplayer",
+   "launcher",
+   "client",
+   "gaming",
+   "utilities"
+  ]
+ },
+ "com.andydev.alpenglow": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Alpenglow provides sunset predictions to help you plan your day. Requires iOS 18.0 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5ca4a3e317b839bc2a43e671f2904b34b152c55ea0657688fa538976dfeaa3bf",
+  "subtitle": "Sunset prediction app",
+  "tags": [
+   "sunset",
+   "prediction",
+   "sky",
+   "weather",
+   "utilities"
+  ]
+ },
+ "com.andydev.alpenglow.watchkitapp": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Alpenglow is a sunset prediction app. This version includes the pro version unlocked.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "add72c1945f05cff441744351d5b00a146e350bfad1faabb843848d467ac25d2",
+  "subtitle": "Sunset prediction app",
+  "tags": [
+   "sunset",
+   "prediction",
+   "weather",
+   "photography",
+   "nature"
+  ]
+ },
+ "com.andyworks.calculator": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "andyworkscalculator is a utility application designed to help you with your work-related calculations. Subscription is unlocked upon installation.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "034267c0f3d40e1852fc06e1ba4316259176ff64c7143552b2ba840203c4c2da",
+  "subtitle": "Calculate and manage your work hours",
+  "tags": [
+   "calculator",
+   "work",
+   "utilities",
+   "subscription"
   ]
  },
  "com.andyworks.streaks": {
@@ -199,6 +833,90 @@
    "goals"
   ]
  },
+ "com.anime.animeRiftApp": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Anime Land Official App on iOS is designed for anime fans who want quick, organized, and reliable access to their favorite series directly from their mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "29dd42171d797875aa70a27f7576c806207286adf57d621422d3962d2df08b9a",
+  "subtitle": "Quick and reliable access to your favorite series",
+  "tags": [
+   "anime",
+   "series",
+   "shows",
+   "fans",
+   "entertainment"
+  ]
+ },
+ "com.anime.starztrivia": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Anime Starz on iOS is an anime-focused entertainment application designed for fans.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7ace4db8511bb950d12701118b0c968ac026db3dd00b7d2b640c2327285dd5be",
+  "subtitle": "Anime Entertainment Hub on iPhone",
+  "tags": [
+   "anime",
+   "entertainment",
+   "hub",
+   "video",
+   "shows"
+  ]
+ },
+ "com.apalonapps.alarmclockfree": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AlarmClockforMe is an alarm clock application. This version includes Pro features.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "140e4172ba4caa38025aab984500b2b9a8aa4b128ff63f8d9b208df4b5712af0",
+  "subtitle": "Alarm Clock application",
+  "tags": [
+   "alarm",
+   "clock",
+   "timer",
+   "utilities",
+   "pro",
+   "app"
+  ]
+ },
+ "com.autonavi.amap": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AMap is a navigation and mapping application developed by OwO Source. This version includes the TuCeng 1.0.4 injection.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3708322e94bf9123fd7d6e84f47a4dc5fdb66677844e0f2b5be829de22c61da2",
+  "subtitle": "AMap navigation and mapping application",
+  "tags": [
+   "map",
+   "navigation",
+   "travel",
+   "gps",
+   "transit",
+   "location"
+  ]
+ },
+ "com.axiel7.AniHyou": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AniHyou is an open-source and modern AniList client for iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a66056e842764457fe7e9e174299922e6d9d75d4bf073ad29b25c3a6c826c520",
+  "subtitle": "Modern AniList client for iOS",
+  "tags": [
+   "anilist",
+   "anime",
+   "manga",
+   "client",
+   "open-source"
+  ]
+ },
  "com.barnabas.absorb": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -213,6 +931,23 @@
    "audiobookshelf",
    "client",
    "audio"
+  ]
+ },
+ "com.bgames.ageofrun": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Age of Run! on iOS is an arcade-style runner game that blends fast movement with progression mechanics built around historical evolution.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "15430b481daf036f49823f593dd811ba7f3a28a5383cbe6c21f97f2ee56b68a0",
+  "subtitle": "Arcade runner with historical evolution mechanics",
+  "tags": [
+   "runner",
+   "arcade",
+   "evolution",
+   "historical",
+   "action",
+   "game"
   ]
  },
  "com.br.12min.mobile": {
@@ -233,6 +968,139 @@
    "audio"
   ]
  },
+ "com.chatgtp.gpt-3.Chat-GPT": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AIChatGP is an AI assistant app designed to hold promise for intriguing features. Further testing is warranted to determine its performance and efficacy accurately.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9993a398a0f9ef1e550406376078f7f88559d44f40361add995e6b394bb2e005",
+  "subtitle": "An AI assistant powered by ChatGPT-4 technology",
+  "tags": [
+   "ai",
+   "chatgpt",
+   "assistant",
+   "chat"
+  ]
+ },
+ "com.connect.fps.shooter": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Alien World is an action game for iOS devices. Experience alien gameplay with unlocked missions and campaigns. Enjoy ad-free gameplay with all weapons unlocked, unlimited ammo, and no weapon recoil.",
+  "features": [
+   "Unlock All Missions",
+   "Remove Ads",
+   "Unlock All Weapons",
+   "Unlimited Ammo",
+   "No Weapon Recoil"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "194b08e80b7016ad053c7143fa35f0c103064fb70557ffc1df1826f85f1d0149",
+  "subtitle": "Alien action game for iOS",
+  "tags": [
+   "alien",
+   "action",
+   "game",
+   "campaign",
+   "weapons"
+  ]
+ },
+ "com.coremoose.eraser": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Object Remover \u2013 AI Eraser is an advanced iOS application designed to help users remove unwanted objects, people, or details from their photos effortlessly.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c7a6af080f8dc0b61c0ff4801fcca6193813b3db0b498ff335aca41440e24369",
+  "subtitle": "Remove unwanted objects and people with AI",
+  "tags": [
+   "ai",
+   "remover",
+   "eraser",
+   "photo",
+   "edit",
+   "object"
+  ]
+ },
+ "com.daymore.Across": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Across is an application that comes injected with premium features. It is made available through the AppTesters IPA Repo for users looking for an enhanced version of the app.",
+  "features": [
+   "Injected with Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "abf5ba6c86f2b915306b3bb354cb4e3e2ab0d61e2c741e5e592fefab3a033a4e",
+  "subtitle": "Injected with Premium",
+  "tags": [
+   "across",
+   "premium",
+   "apptesters",
+   "ipa"
+  ]
+ },
+ "com.developlab.AnimationSpeed": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "TS app to change animation speed.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "168f32025205845e1245cb23d8ff109bee508640e5a5414ad4fdff5a03237a22",
+  "subtitle": "Change animation speed",
+  "tags": [
+   "animation",
+   "speed",
+   "utility",
+   "ts"
+  ]
+ },
+ "com.enjoy.aichat.chatbot.openchat": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI chat application cracked by Ravand.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bd2e7e0dd0378d8ccdf2a2acd40061bb9dcbc6a49d1aee8512c08f7150ba5b4d",
+  "subtitle": "AI chat application",
+  "tags": [
+   "ai",
+   "chat",
+   "assistant"
+  ]
+ },
+ "com.errorerrorerror.animenow": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "AnimeNow",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fa0c13c1fa00253cb6931e25787170bc1b638ebabf6244b2d6119fb184de2ef2",
+  "subtitle": "Anime streaming application",
+  "tags": [
+   "anime",
+   "streaming",
+   "video",
+   "entertainment",
+   "shows"
+  ]
+ },
+ "com.estudev.chatbot": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Talk is an iPhone app designed to bring conversational artificial intelligence to your mobile device, acting as a chatbot and personal AI assistant.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1944d7b167314a58351b0cbc0d85768648c51c2090faf4fb0325d55a94fbf027",
+  "subtitle": "Conversational artificial intelligence chatbot and assistant",
+  "tags": [
+   "ai",
+   "chatbot",
+   "assistant",
+   "chat",
+   "artificial intelligence",
+   "iphone"
+  ]
+ },
  "com.example.acela": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -247,6 +1115,25 @@
    "media",
    "testflight",
    "beta"
+  ]
+ },
+ "com.finalwire.aida64": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AIDA64 for iOS provides hardware and software information about your device. View details regarding your device's hardware, display, battery, thermal sensors, and operating system.",
+  "features": [
+   "Hardware detection",
+   "System information"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f87e3e6b6c851e1639c3558512ef381e17f09e533cf721054e090091f0911333",
+  "subtitle": "Hardware detection and system information",
+  "tags": [
+   "system",
+   "hardware",
+   "info",
+   "device",
+   "diagnostics"
   ]
  },
  "com.fourwalls.app": {
@@ -270,6 +1157,111 @@
    "stems"
   ]
  },
+ "com.future.kapi": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Action is an application featuring an injected subscription unlocked modification. This version provides access to subscribed features directly without requiring separate purchase verification.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "319edfc881af7ccce60b0a988e63da3f2d84979555d6c2f0818d1c17b69e2b6d",
+  "subtitle": "Action app with injected subscription unlocked",
+  "tags": [
+   "action",
+   "unlocked",
+   "app"
+  ]
+ },
+ "com.gameberrystudio.animals": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Animal Quest Idle RPG is a mobile game that combines the addictive nature of idle games. Send your animals on quests and progress through the adventure effortlessly.",
+  "features": [
+   "One Hit Kill",
+   "Never Die"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2f3c9f66293845aacafb49ae74bce3db0ae1b69f8422f07904578a799a84da39",
+  "subtitle": "An enchanting idle role playing game",
+  "tags": [
+   "rpg",
+   "idle",
+   "animal",
+   "adventure",
+   "quest",
+   "game"
+  ]
+ },
+ "com.gamegos.adventure.bay.paradise.farm": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Adventure Bay Farm Games is an immersive experience that transports players to a lush, vibrant land. Build and manage your farm in this engaging game designed for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b009f94a4f1be9df59b91f12e8fa9ff38251739989b1bead36b339e007939e08",
+  "subtitle": "Immersive farm adventure game for iOS",
+  "tags": [
+   "adventure",
+   "farm",
+   "games",
+   "ios",
+   "simulation"
+  ]
+ },
+ "com.gameinsight.airportcity": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Manage your own airport city with hack features including a free store where items are available without using real money. Build and expand your airport operations.",
+  "features": [
+   "Free Store"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0b20d89f0429fe47ce64ede92c4b8d81b552a35101624dcb9a4e042221f9a6fe",
+  "subtitle": "Build and manage your own airport city",
+  "tags": [
+   "airport",
+   "city",
+   "management",
+   "strategy",
+   "simulation",
+   "games"
+  ]
+ },
+ "com.gameloft.AmazingSpiderMan2": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "TASM2 offline patch for The Amazing Spider-Man 2 iOS version 1.3.1. Since Gameloft servers are no longer active, the game hangs on downloading profile. This patch enables the game to launch, play, and save entirely offline. It includes nine instructions in the arm64 slice, derived from disassembly and verified on the binary. There is no new save format, no injected code, and no size change. Verified on device with continuous playthroughs through the prologue, chapter 1, and chapter 2, including force-quits. Settings, trophies, exploration, skills, position, tutorial state, and the story cursor all save properly.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c0003ffaf3e0ba61adf329bc98498495d9b9c27c6f6e454cc56eb188b4893865",
+  "subtitle": "Offline patch for The Amazing Spider-Man 2",
+  "tags": [
+   "patch",
+   "offline",
+   "game",
+   "utility",
+   "fix",
+   "tools"
+  ]
+ },
+ "com.guistudios.advance.car.parking.car.driver.simulator": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Advance Car Parking Game on iOS offers a focused driving simulation experience centered on precision rather than speed.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ee882aa030989994fae208a11c6ef20a1dc244978fdaf7e77563c8433749af25",
+  "subtitle": "Precision driving simulation experience",
+  "tags": [
+   "car",
+   "parking",
+   "driving",
+   "simulation",
+   "precision",
+   "game"
+  ]
+ },
  "com.h3d2.1998cam": {
   "category": "photo-video",
   "date": "2026-10-14",
@@ -287,6 +1279,73 @@
    "film"
   ]
  },
+ "com.hassantaleb.mockup": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Animock is available with the Pro version injected.",
+  "features": [
+   "Pro Version"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ada199c2e7191f94e3b9d6281fbabc0e69d58e384f1492f27ea183529a1e4997",
+  "subtitle": "Pro version injected",
+  "tags": [
+   "animock",
+   "pro",
+   "injected",
+   "utilities"
+  ]
+ },
+ "com.headupgames.agadah": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AGADAH offers a collection of modified IPAs tested and compiled by the TTJB Team. Access added mod functions directly through the app.",
+  "features": [
+   "Mods included",
+   "Tested IPAs"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aeebba6c0bfaa19d763a512786bda7a16523883c93981800022d2a8680faa8d8",
+  "subtitle": "Modified IPA collection and tools",
+  "tags": [
+   "ipa",
+   "mods",
+   "ttjb",
+   "tools",
+   "collection"
+  ]
+ },
+ "com.hitpaw.photoenhancer": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AIMarvels is an application injected with premium features. Access enhanced capabilities directly through your device without additional purchases or modifications. This app provides the core functionality of AIMarvels combined with unlocked premium content for users seeking an upgraded experience out of the box.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b61ab27b943136461057e850d8319fb079eed9426f9bdb3b7f3848bd5ee423ee",
+  "subtitle": "Injected with Premium",
+  "tags": [
+   "aimarvels",
+   "premium",
+   "unlocked"
+  ]
+ },
+ "com.homagames.studio.allinhole": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "All in Hole Black Hole Games brings a refreshing twist to mobile arcade gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4995d7d52e00cbe16a47b2ec2c4f33b7ed6823236b91f312ec4cb809d5338182",
+  "subtitle": "Black hole arcade gameplay",
+  "tags": [
+   "arcade",
+   "games",
+   "hole",
+   "mobile"
+  ]
+ },
  "com.hssn.anatomy3d": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -301,6 +1360,77 @@
    "human",
    "body",
    "medical"
+  ]
+ },
+ "com.ignm.animalmafia": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Animal Mafia on iOS delivers a distinctive blend of strategy and simulation wrapped into one gaming experience.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "73617861cc88ce6928c5e3cb85600572989ba15dabaa74d385b282c63c78e499",
+  "subtitle": "A fresh take on strategy gaming",
+  "tags": [
+   "strategy",
+   "simulation",
+   "animal",
+   "mafia",
+   "game"
+  ]
+ },
+ "com.infocuslab.cleaner": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Clean is an iOS app designed to help users clean storage space and optimize their smart device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f94224113bc675ca9a0752ac7abfc2f606589ddf24dd936234efbcbc9967ff12",
+  "subtitle": "Clean Storage Space for iPhone",
+  "tags": [
+   "storage",
+   "cleaner",
+   "optimization",
+   "device",
+   "space",
+   "iphone"
+  ]
+ },
+ "com.inkboard.animatic": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Animatic app with premium features included. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "df0c73c120b4f2c1e03449fadeeaf9799072e3c574e03ff1ac5d04a27b3d3a48",
+  "subtitle": "Animatic IPA",
+  "tags": [
+   "animatic",
+   "ipa",
+   "premium",
+   "ttjb"
+  ]
+ },
+ "com.innersloth.amongus": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Play Among Us with modified features including all skins, pets, and hats unlocked. Enjoy gameplay without advertisements.",
+  "features": [
+   "All Skins Unlocked",
+   "All Pets Unlocked",
+   "All Hats Unlocked",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3f065c9089fbc28cab672d9d29915950db4c52a67e5d2bb81f770b946411c870",
+  "subtitle": "Among Us with unlocked items",
+  "tags": [
+   "among us",
+   "skins",
+   "pets",
+   "hats",
+   "no ads"
   ]
  },
  "com.ipaomtk.4k.wallpapers.widgets.plaw.152558": {
@@ -351,6 +1481,174 @@
    "ios"
   ]
  },
+ "com.ipaomtk.adventure.of.white.chord.152601": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Adventure of White Chord is an iOS role-playing game package that allows iPhone users to explore an immersive gaming experience. Dive into a fantasy world and enjoy role-playing gameplay on your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "25750f7255222c0b6525bd8b009d2eafecd46597db78463fb21b58acecf217c5",
+  "subtitle": "An iOS role-playing game adventure",
+  "tags": [
+   "rpg",
+   "adventure",
+   "game",
+   "ios",
+   "role-playing"
+  ]
+ },
+ "com.ipaomtk.ai.interior.home.design.160270": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "AI Interior and Home Design is an iOS application package that allows users to instantly design interior and home spaces using artificial intelligence.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1b46f630abcd11453ce95c6d04c629dbcc132fab6086f98c38a0d91b41366d5b",
+  "subtitle": "AI Interior and Home Design iOS app",
+  "tags": [
+   "interior",
+   "design",
+   "home",
+   "ai",
+   "architecture",
+   "decor"
+  ]
+ },
+ "com.ipaomtk.ai.video.generator.e2.8b.85.ai.photo.160264": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Video Generator \u22c5 AI Photo is an iOS application package that allows users to generate AI videos and photos directly on their devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "79930b283a19a2fd7688c2a4d4160899bb67139a287853b090a69efc43fe2ee2",
+  "subtitle": "AI Video and Photo Generator for iOS",
+  "tags": [
+   "ai",
+   "video",
+   "photo",
+   "generator",
+   "ipa",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.aido.ai.photo.enhancer.154228": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Aido \u2013 AI Photo Enhancer is an iOS photo editing app package that allows iPhone users to enhance their photos.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "46cb7f3e2b0b9ff0a10b15528785f25724e6bdca65ea674025aae2bf3ddb9ec5",
+  "subtitle": "AI photo editing app for iPhone",
+  "tags": [
+   "photo",
+   "enhancer",
+   "editor",
+   "ai",
+   "iphone",
+   "ipa"
+  ]
+ },
+ "com.ipaomtk.airship.knights.zero.154098": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Airship Knights: Zero is an iOS idle role-playing game package that allows iPhone users to explore.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f7e89a85160f00a79e7a7d6e76ff6545694629789b89273f42d7d918f748664b",
+  "subtitle": "Idle role-playing game for iOS",
+  "tags": [
+   "airship",
+   "knights",
+   "idle",
+   "rpg",
+   "game",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.ambers.airline.high.hopes.159779": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Amber\u2019s Airline \u2013 High Hopes IPA is the iOS installable version of a time management simulation game. Manage airline tasks and progress through the simulation.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cfb617b4e5f47d0079369e204195a0e891812c0478f576e1a1d7a0f93e1e1fd4",
+  "subtitle": "Time management simulation game",
+  "tags": [
+   "simulation",
+   "time management",
+   "game",
+   "airline",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.analogue.pro.camera.159622": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Analogue \u2013 Pro Camera is an iOS installation package that allows users to install a professional camera application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "59fe80738052946323308844327bda11a7cb6e30760e9876826e401cf5a89b9e",
+  "subtitle": "Professional camera app for iOS",
+  "tags": [
+   "camera",
+   "pro",
+   "photo",
+   "video",
+   "ios",
+   "analogue"
+  ]
+ },
+ "com.jacekdojwa.abg": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Generate drum loops that are sampled and remixed using the Amen Break Generator. This app focuses on audio looping and remixing functionality for creating rhythm tracks.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "645f2efa747a280b577d1e0659bf3beaf75ba1aa890e3af89f0737866ca90d23",
+  "subtitle": "Drum loops sampled and remixed",
+  "tags": [
+   "drum loops",
+   "sampler",
+   "remix",
+   "audio",
+   "music"
+  ]
+ },
+ "com.kalavision.alfred": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Transform your unused smartphones into home security cameras. Monitor your home remotely with live video streaming and motion detection alerts.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b6eca72000b08a67deec232941ee2da0e56297359988bf6be9fb4c88992ad320",
+  "subtitle": "Turn old phones into security cameras",
+  "tags": [
+   "security",
+   "camera",
+   "monitor",
+   "home",
+   "streaming"
+  ]
+ },
+ "com.kawsar.artgenerator": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "AI Art Generator is an iOS application designed for creative photo and art generation.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b657bbdb4d8309f57109d27ba8f19bebd90454a424fd90dd2c9e87ddb15af9f5",
+  "subtitle": "Creative application for generating AI art and photos",
+  "tags": [
+   "ai",
+   "art",
+   "photo",
+   "generator",
+   "creative",
+   "ipa"
+  ]
+ },
  "com.khanov.BlockerX": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -367,6 +1665,130 @@
    "browsing",
    "content",
    "security"
+  ]
+ },
+ "com.kongregate.mobile.adventurecapitalist": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "AdVenture Capitalist is an iOS mobile application that offers an innovative way to invest. This version features unlimited gold to enhance your gameplay experience.",
+  "features": [
+   "Unlimited Gold"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6a4e1fb6a334bf7096b17f342c120a43afec56472e9e5e9c0cbbec6efc70aab0",
+  "subtitle": "An innovative mobile application for investment simulation",
+  "tags": [
+   "invest",
+   "gold",
+   "capitalist",
+   "simulator"
+  ]
+ },
+ "com.kongregate.mobile.adventurecommunist": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "AdVenture Communist is an addictive and immensely popular iOS game designed to challenge your strategic thinking and entrepreneurial skills.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f3a1522b57fa37094a8834b0a61664a3955c813621112dbf256a2f8d388eacf9",
+  "subtitle": "Challenge your strategic thinking and entrepreneurial skills",
+  "tags": [
+   "strategy",
+   "simulation",
+   "idle",
+   "communism",
+   "game",
+   "adventure"
+  ]
+ },
+ "com.lagagggggg.MyBatteries": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AllMyBatteries is a battery tracking application. It requires iOS 14.0 or later and is compatible with Trollstore. The application includes support for purchasing the Ultimate version.",
+  "features": [
+   "Battery Tracking",
+   "Ultimate Version Support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ce02b8dd9dda0e39647dba2290cb8455df26a3f8e6731e81dbe2960a4241b87c",
+  "subtitle": "Track Battery",
+  "tags": [
+   "battery",
+   "tracker",
+   "trollstore",
+   "utilities"
+  ]
+ },
+ "com.ld.TakeBrowser": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Alook Browser offers fast web browsing speeds. Designed for efficiency, this application provides a streamlined mobile browsing experience. Version 22.9.",
+  "features": [
+   "8x Speed"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3d724c12cf093129f7d04a57fa9b6ae76870ec2c44967ddadd21c2b645a7e81a",
+  "subtitle": "High speed web browser",
+  "tags": [
+   "browser",
+   "web",
+   "speed",
+   "internet",
+   "utilities"
+  ]
+ },
+ "com.leolam.Activity-Moniter": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Bring an enhanced version of the macOS activity monitor to your iOS device. Clean your RAM for free and enjoy most features at no cost. The application features a user interface designed to look like the Mac version, with customizable theme selection coming in a future update.",
+  "features": [
+   "Free to clean RAM",
+   "Mac interface design",
+   "Most features free"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f7944b746259a49696778e6788bf6dc7290bcee690f63e1678e38b723ed759b7",
+  "subtitle": "An enhanced system monitor for iOS with a Mac UI",
+  "tags": [
+   "monitor",
+   "ram",
+   "cleaner",
+   "system",
+   "macos",
+   "utility"
+  ]
+ },
+ "com.ligg.anime_flow": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "AnimeFlow is a cross-platform anime video player available for iOS, Android, Windows, macOS, and Linux. It includes built-in multiple data sources and custom XPath crawler configurations. The app supports real-time video 4K super resolution based on Anime4K, connects with Bangumi to sync collections and watchlist data, and provides multi-platform danmaku sources along with extensive danmaku settings.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2622d0d824ecd770b335298e81741a2c1944852018e74185db2a635c57a306d4",
+  "subtitle": "Cross-platform anime video streaming application",
+  "tags": [
+   "anime",
+   "video",
+   "player",
+   "streaming",
+   "bangumi",
+   "danmaku"
+  ]
+ },
+ "com.londonappstudio.Charging-Animation": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Introduction to Charging Animation: Wallpapers on iOS. Charging Animation: Wallpapers is an iOS customization app designed to enhance the charging experience with visual wallpapers.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b00c7c671e81eeb1614580134a4c8cc4f4a5b77a75729797a5268cd9a3f0e3d8",
+  "subtitle": "iOS customization app for charging animation wallpapers",
+  "tags": [
+   "animations",
+   "charging",
+   "wallpapers",
+   "customization",
+   "ios"
   ]
  },
  "com.looko.acloset": {
@@ -404,6 +1826,63 @@
    "heroes"
   ]
  },
+ "com.madboxgames.thechase": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Amer: Cop Pursuit on iOS brings adrenaline-filled driving action focused on intense police pursuits and fast decision-making.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "39589e514af623fe45a2ab28619c37c9eb5ae9cf09c71e4cf89ef73dd8c6d89d",
+  "subtitle": "Intense police pursuits and fast driving action",
+  "tags": [
+   "driving",
+   "police",
+   "pursuit",
+   "action",
+   "cars",
+   "game"
+  ]
+ },
+ "com.magicv.AirBrush": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Face photo editor application with advanced editing tools unlocked for photo enhancement.",
+  "features": [
+   "Premium unlocked",
+   "Advanced editing tools"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c405c9b0648c3081eaf5647e729fe6f730f9cc204cdf1e49847cee052eade243",
+  "subtitle": "Face photo editor",
+  "tags": [
+   "airbrush",
+   "photo",
+   "editor",
+   "face",
+   "enhancement"
+  ]
+ },
+ "com.mak5er.aircard": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Customize Apple Wallet card artwork, lock screen passcode dialers, and PosterBoard wallpapers directly on your device without a jailbreak. Requires iOS 27.",
+  "features": [
+   "No Jailbreak Required",
+   "Card Artwork Customization",
+   "Passcode Dialer Themes",
+   "PosterBoard Wallpapers"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "46ac2d3cdb3fbc9e1861fd0ce3f05113785d2e7ca81dec50c1af92dfc7e849ff",
+  "subtitle": "Customize Apple Wallet cards and lock screen elements",
+  "tags": [
+   "wallet",
+   "customization",
+   "lockscreen",
+   "wallpaper",
+   "theme"
+  ]
+ },
  "com.miniclip.8ballpoolmult": {
   "category": "games",
   "date": "2026-10-14",
@@ -420,6 +1899,57 @@
    "sports",
    "game",
    "premium"
+  ]
+ },
+ "com.miniclip.agar.io": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Agar.io is a massively popular online multiplayer game that has captivated millions of players around the world. This simple yet add",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aa4777cfa6047430dfaa7618eaec7d361c76d69a282a4a500392c97af295532f",
+  "subtitle": "Massively popular online multiplayer game",
+  "tags": [
+   "agar.io",
+   "multiplayer",
+   "game",
+   "online",
+   "action"
+  ]
+ },
+ "com.moderngames.aerthlings": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Aerthlings is a fantasy role-playing game available as an iOS installation file format.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "22c76478694c70d390d569b7282e130857dcc1c6844a24c877ca27e04a2b2cf8",
+  "subtitle": "Fantasy role-playing game",
+  "tags": [
+   "aerthlings",
+   "rpg",
+   "adventure",
+   "game",
+   "fantasy",
+   "ios"
+  ]
+ },
+ "com.ndemiccreations.survivors": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AfterInc modified IPA. This version includes added mods and has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Mods included",
+   "Tested and compiled"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9a253e28ea60dc107ecf37b5abd11a64f2568dd67026f9c4ea1ac00dee2e00e1",
+  "subtitle": "Modified IPA file",
+  "tags": [
+   "afterinc",
+   "mod",
+   "ipa",
+   "ttjb"
   ]
  },
  "com.os.airforce": {
@@ -439,6 +1969,58 @@
    "arcade"
   ]
  },
+ "com.perfectcorp.yat": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AIChatSy is an advanced iOS application designed to deliver intelligent, conversational assistance.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ce4cf7d8832964ffe8b2bf69dffcc1504889dcc14e4e6f4ac5287121a4dcc362",
+  "subtitle": "Advanced AI conversational assistance",
+  "tags": [
+   "ai",
+   "chat",
+   "chatbot",
+   "assistant",
+   "conversation"
+  ]
+ },
+ "com.picretouch.photoeditor": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "AIRetouch provides advanced photo editing and retouching tools to help you improve your images directly on your device. The app features built-in enhancements designed to streamline your photo editing workflow.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c73d522bb2386283b8f2fcf8f5500880cc181affd6fc9192b4e8eaf746616b63",
+  "subtitle": "Edit your photos with advanced retouching tools",
+  "tags": [
+   "airetouch",
+   "photo",
+   "retouch",
+   "editor",
+   "images"
+  ]
+ },
+ "com.picspacehd.anilistclient": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AniClient is an application injected with Pro features. Get access to the Pro version directly through this modified build.",
+  "features": [
+   "Pro Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2991f429b383537fec0594b288ff2b0090d1d4792d99972e4d162d7b59361e0c",
+  "subtitle": "AniClient IPA with Pro Injected",
+  "tags": [
+   "aniclient",
+   "pro",
+   "injected",
+   "ipa",
+   "app"
+  ]
+ },
  "com.pixelperfectdude.htdrive": {
   "category": "games",
   "date": "2026-10-14",
@@ -456,6 +2038,93 @@
    "racing"
   ]
  },
+ "com.playkot.ageofmagic": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Age of Magic is an epic turn-based RPG set in a fantasy world of magicians, warriors and monsters. Experience a critically acclaimed adventure with strategic battles and immersive gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fbb2d361d3252e97fb4339ef2f3b311a6f0929b2b267a59b27fc99fa4aa8252d",
+  "subtitle": "Epic turn-based fantasy RPG",
+  "tags": [
+   "rpg",
+   "fantasy",
+   "turn-based",
+   "strategy",
+   "magic",
+   "monsters"
+  ]
+ },
+ "com.playrion.airportmanager": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "If you have ever dreamed of managing your own airport, this game is perfect for you. Step into the world of Airport Simulator Plane City and take charge of airport operations.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "07158543c81ab25d99e825ad6b2098790bfef3ea3c164d748a1b8e59739d45b6",
+  "subtitle": "Manage your own airport and plane city",
+  "tags": [
+   "airport",
+   "simulator",
+   "plane",
+   "city",
+   "management",
+   "game"
+  ]
+ },
+ "com.qingbin.Addons": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AddonsPro is a robust Safari browser extension that offers a variety of features, including support for Tampermonkey scripts, ad blocking, and intelligent search.",
+  "features": [
+   "Tampermonkey support",
+   "Ad blocking",
+   "Intelligent search"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c9d32055cd0931722651eded4ff0bc91c3e29fea7901866562b92fecad51e214",
+  "subtitle": "Safari browser extension with scripts and ad blocking",
+  "tags": [
+   "safari",
+   "extension",
+   "scripts",
+   "ad blocker",
+   "browser",
+   "utilities"
+  ]
+ },
+ "com.ray.games.ancient.defense": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Ancient Defense is a tower defense strategy game for iPhone. Build your defenses and embark on a strategic adventure with timeless appeal.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d28bd2bd1f319159582c72387e58e976e03168a00fad832baa9d7883c645c5d8",
+  "subtitle": "A strategic tower defense adventure with timeless appeal",
+  "tags": [
+   "strategy",
+   "tower defense",
+   "defense",
+   "game",
+   "adventure"
+  ]
+ },
+ "com.realmzer.allflexing": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Open FLEX anywhere. Long press the status bar or use a three-finger long press anywhere on the screen to activate FLEX.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aa5b2573de3b6550bcdce69003ba91b3f70aded7c6d4bd111e44031df9f47855",
+  "subtitle": "Open FLEX anywhere on your screen",
+  "tags": [
+   "flex",
+   "developer",
+   "debug",
+   "tools",
+   "status bar"
+  ]
+ },
  "com.rebelancap.2ship": {
   "category": "other",
   "date": "2026-10-14",
@@ -471,6 +2140,172 @@
    "emulator",
    "iphone",
    "vision pro"
+  ]
+ },
+ "com.rethinkingstudio.AICookBook": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "NutriPick is a meal planning application designed to help you organize your meals. Requires iOS 18.0 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "553d757374d66191e2feeafc72491de9a859874ce2fea52f6dd7096edf760739",
+  "subtitle": "NutriPick meal planner",
+  "tags": [
+   "meal",
+   "planner",
+   "nutripick",
+   "food",
+   "utilities"
+  ]
+ },
+ "com.rileytestut.AltStore": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AltStore is an alternative app store for non-jailbroken devices. This version of AltStore allows you to install Delta, an all-in-one emulator for iOS, as well as sideload other .ipa files from the Files app.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6af263e6a3c9ce069be52fad8e2b2990cea6a3203054b5fc670258b327b89cd7",
+  "subtitle": "Alternative app store for non-jailbroken devices",
+  "tags": [
+   "altstore",
+   "emulator",
+   "delta",
+   "sideload",
+   "apps"
+  ]
+ },
+ "com.rileytestut.AltStore.Alpha": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "AltStore is an alternative app store designed for non-jailbroken devices. This beta release allows you to install Delta as well as any app using an .ipa file directly from the Files app.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4187cf2441dd9e97379578bd83c853c5ccd2d4f3d6359cefaece983e530c3d5e",
+  "subtitle": "Alternative app store for non-jailbroken devices",
+  "tags": [
+   "altstore",
+   "appstore",
+   "delta",
+   "beta",
+   "ipa",
+   "utilities"
+  ]
+ },
+ "com.rileytestut.AltStore.Beta": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "AltStore is an alternative app store for non-jailbroken iOS devices. This beta release of AltStore adds support for third-party sources, allowing you to download apps from other developers directly through AltStore.",
+  "features": [
+   "Beta release",
+   "Third-party source support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cf897dc877a59b701b85a335c1e1fae47067c2394fe5c0eceafe5f7159713d3c",
+  "subtitle": "Alternative app store for non-jailbroken devices",
+  "tags": [
+   "altstore",
+   "app store",
+   "beta",
+   "developer",
+   "sources"
+  ]
+ },
+ "com.rovio.abcasual": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Angry Birds is an iconic mobile game that has captivated players since its initial launch in 2009.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2dfd052c87e755b525260f8fc6413d51a607515480a8332438346a6bccbf9724",
+  "subtitle": "The iconic mobile game captivating players since 2009",
+  "tags": [
+   "angry",
+   "birds",
+   "game",
+   "mobile",
+   "iconic"
+  ]
+ },
+ "com.rovio.baba": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Angry Birds 2 modified application featuring currency freeze. Note that users are advised not to abuse the feature or upgrade birds to maximum progress too quickly to avoid being banned.",
+  "features": [
+   "Freeze Currencies"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "189aa279f664a0a5d8903bdabbec6db78b747ef23da9cb054598bf9822b655f1",
+  "subtitle": "Angry Birds 2 hack with currency freeze feature",
+  "tags": [
+   "angry birds",
+   "strategy",
+   "birds",
+   "hack",
+   "game"
+  ]
+ },
+ "com.skybornegames.adorablegarden": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Adorable Garden IPA brings a blossoming mobile gaming experience with a wide variety of gameplay genres to capture your imagination.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "868468ce7246175dbbc867c0955218fdf365dcee6ff9cf68d70855efcc69bb94",
+  "subtitle": "Adorable Garden mobile game",
+  "tags": [
+   "adorable",
+   "garden",
+   "game",
+   "mobile",
+   "ipa"
+  ]
+ },
+ "com.snowman.altos-adventure.the-spirit-of-the-mountain": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Alto\u2019s Adventure Remastered version 1.7.0. This tweak includes unlimited coins. Experience the snowboarding journey with modified resources.",
+  "features": [
+   "Unlimited Coins"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "15e9bb0cb2459e6c06908374deff993e63221aae6d11adf8a7b172a6dde65657",
+  "subtitle": "Alto's Adventure Remastered tweak with unlimited coins",
+  "tags": [
+   "altos adventure",
+   "remastered",
+   "unlimited coins",
+   "game tweak"
+  ]
+ },
+ "com.snowman.altos-adventure.the-spirit-of-the-mountian": {
+  "category": "social",
+  "date": "2026-10-14",
+  "description": "Join my telegram: t.me/riftysIPAlibrary",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "985dc224050cff1554b7bc73abd4b02fe75c9ceec6210ebb15d2cdf02e8e4424",
+  "subtitle": "Join my telegram for Altos Adventure",
+  "tags": [
+   "altos",
+   "adventure",
+   "telegram",
+   "library"
+  ]
+ },
+ "com.sprrrint.amble": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Amble is a step counter and race application. Track your steps and race with others. Requires iOS 18.0 or later. Version 1.0.10.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ac2632b77810a6ab596a23b9082c26680614bd3742b1df9c7dacb4ad6a10571b",
+  "subtitle": "Step Counter and Race",
+  "tags": [
+   "step counter",
+   "race",
+   "steps",
+   "fitness",
+   "walking"
   ]
  },
  "com.studiolico.woodenstick": {
@@ -549,6 +2384,264 @@
    "sports"
   ]
  },
+ "com.unknown.acrobat": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Prime features are unlocked. Please note that logging in with an account is required to use the app.",
+  "features": [
+   "Prime Unlocked",
+   "Account Login Required"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8039b0ccc5abf130787b0d40c4e116a061ccb114503b39b85aa56cbc8c95ad5f",
+  "subtitle": "Acrobat prime features unlocked",
+  "tags": [
+   "acrobat",
+   "prime",
+   "unlocked",
+   "tools"
+  ]
+ },
+ "com.unknown.agario": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Agar.io modified application featuring custom macro and fast macro options, classic macro V, and a good adjustable zoom movement. The app is integrated with the iGG tool.",
+  "features": [
+   "Macro and fast macro",
+   "Classic macro V",
+   "Adjustable zoom",
+   "iGG tool integrated"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "10a29e23f16317db3c342faa620c2bec5fa8e4824cfe3e9724eb260fd3739bdb",
+  "subtitle": "Agar.io mod with custom tools and zoom",
+  "tags": [
+   "agar.io",
+   "macro",
+   "zoom",
+   "igg",
+   "game",
+   "action"
+  ]
+ },
+ "com.unknown.aichat": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "\u0626\u06d5\u067e\u06ce\u06a9 \u0628\u06c6 \u0686\u0627\u062a\u06a9\u0631\u062f\u0646 \u0628\u06d5 \u0632\u06cc\u0631\u06d5\u06a9\u06cc \u062f\u06d5\u0633\u062a\u06a9\u0631\u062f",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1164ad6ed696869e127e86da31ccb4caae5ac30d65054b2162b20d22bdec16ed",
+  "subtitle": "\u0626\u06d5\u067e\u06ce\u06a9 \u0628\u06c6 \u0686\u0627\u062a\u06a9\u0631\u062f\u0646 \u0628\u06d5 \u0632\u06cc\u0631\u06d5\u06a9\u06cc \u062f\u06d5\u0633\u062a\u06a9\u0631\u062f",
+  "tags": [
+   "ai",
+   "chat",
+   "kurdish",
+   "\u0632\u06cc\u0631\u06d5\u06a9\u06cc",
+   "\u062f\u06d5\u0633\u062a\u06a9\u0631\u062f"
+  ]
+ },
+ "com.unknown.ailogogenerator": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Logo Generator is an application designed to help users create logos. Use artificial intelligence to generate unique logo designs quickly and easily for your brand, business, or personal projects.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d8672f587cc893158c722ce1915791c7dd3781967afb78f7852f87b628b23ec6",
+  "subtitle": "Generate logos using artificial intelligence",
+  "tags": [
+   "logo",
+   "generator",
+   "ai",
+   "design",
+   "branding",
+   "graphics"
+  ]
+ },
+ "com.unknown.ailogomaker": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "An application for designing logos using artificial intelligence in a short time.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "380243176a929cda93a9fdc3cc387fba0d892720ed17a07a4bef57dd74038eb2",
+  "subtitle": "Design logos with artificial intelligence",
+  "tags": [
+   "logo",
+   "design",
+   "ai",
+   "creator",
+   "graphics"
+  ]
+ },
+ "com.unknown.aiphotoenhancer": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Improve image quality using artificial intelligence.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "eea4c76864d4cb3a758918dcb5e260ebb3c9456d7e75bb3d8d5b85317a25d593",
+  "subtitle": "Improve image quality using artificial intelligence",
+  "tags": [
+   "photo",
+   "enhancer",
+   "ai",
+   "image",
+   "quality"
+  ]
+ },
+ "com.unknown.airbrush": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "\u0628\u06d5\u0631\u0646\u0627\u0645\u06d5\u06cc\u06d5\u06a9 \u0628\u06c6 \u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c24663a581b0f3b5317cc165dca570dc41db14434ef2ab9757b59408c5b632b5",
+  "subtitle": "\u0628\u06d5\u0631\u0646\u0627\u0645\u06d5\u06cc\u06d5\u06a9 \u0628\u06c6 \u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5",
+  "tags": [
+   "\u0648\u06ce\u0646\u06d5",
+   "\u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc",
+   "airbrush",
+   "\u0695\u0648\u05d5\u05e7\u06d5\u0634"
+  ]
+ },
+ "com.unknown.alghtmotion": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "This version includes all paid features unlocked. It only supports Esign. Please note that you are required to register yourself.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cdc5a7340bc1e2949ddd19fb2b977bd79753c46c6b048c91fedead4604933848",
+  "subtitle": "Alght Motion mod with all paid features unlocked",
+  "tags": [
+   "alght motion",
+   "esign",
+   "unlocked",
+   "paid features",
+   "karbin-store"
+  ]
+ },
+ "com.unknown.alltrailspro": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Access professional features for your trails and outdoor activities. This version includes unlocked Pro functionality to enhance your navigation and route planning experience without restrictions.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8e49e536f7ae5595ce232ffecd1bd67c289aabd7970001af1bf7f54db5c4bd7f",
+  "subtitle": "Pro features unlocked",
+  "tags": [
+   "trails",
+   "hiking",
+   "maps",
+   "outdoors",
+   "navigation",
+   "gps"
+  ]
+ },
+ "com.unknown.almosaly": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "\u0626\u06d5\u067e\u0644\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9 \u0628\u06c6 \u0632\u0627\u0646\u06cc\u0646\u06cc \u06a9\u0627\u062a\u06d5\u06a9\u0627\u0646\u06cc \u0646\u0648\u06ce\u0698 \u0648 \u0626\u0627\u0631\u0627\u0633\u062a\u06d5\u06cc \u0642\u06cc\u0628\u0644\u06d5\u060c \u0648\u06d5 \u0628\u06d5\u0634\u06ce\u06a9\u06cc \u0647\u06d5\u06cc\u06d5 \u0628\u06c6 \u062f\u0648\u0639\u0627 \u0648 \u0632\u06cc\u06a9\u0631\u06d5\u06a9\u0627\u0646\u060c \u0644\u06d5\u06af\u06d5\u06b5 \u0647\u06d5\u0645\u0648\u0648 \u0633\u0648\u0648\u062f\u06d5\u06a9\u0627\u0646\u06cc",
+  "features": [
+   "\u06a9\u0627\u062a\u06d5\u06a9\u0627\u0646\u06cc \u0646\u0648\u06ce\u0698",
+   "\u0626\u0627\u0631\u0627\u0633\u062a\u06d5\u06cc \u0642\u06cc\u0628\u0644\u06d5",
+   "\u062f\u0648\u0639\u0627",
+   "\u0632\u06cc\u06a9\u0631\u06d5\u06a9\u0627\u0646"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "87e3918442b7f507a031816b5fcafc3dae995f1187e44fec76a57d8070d33406",
+  "subtitle": "\u06a9\u0627\u062a\u06d5\u06a9\u0627\u0646\u06cc \u0646\u0648\u06ce\u0698 \u0648 \u0626\u0627\u0631\u0627\u0633\u062a\u06d5\u06cc \u0642\u06cc\u0628\u0644\u06d5",
+  "tags": [
+   "\u0646\u0648\u06ce\u0698",
+   "\u0642\u06cc\u0628\u0644\u06d5",
+   "\u062f\u0648\u0639\u0627",
+   "\u0632\u06cc\u06a9\u0631",
+   "\u0626\u06cc\u0633\u0644\u0627\u0645\u06cc"
+  ]
+ },
+ "com.unknown.alook": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Download Alook for free. Ads have been successfully removed from the application.",
+  "features": [
+   "No Ads",
+   "Free"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9700efcd9930dce73ab6259c956f978d3ec48dce2fc516822a2bd485726e92bf",
+  "subtitle": "Alook app available for free",
+  "tags": [
+   "alook",
+   "browser",
+   "no ads",
+   "free"
+  ]
+ },
+ "com.unknown.americanmarksman": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Hunt animals and birds while facing dangerous creatures in this game. Develop your skills over time and manage your weapons and shelter.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "97311b206e9a0f5218d32f488acdcfd67bec167cf3724be33b23339748874abf",
+  "subtitle": "Hunt animals and survive dangerous encounters",
+  "tags": [
+   "hunting",
+   "survival",
+   "animals",
+   "action",
+   "shooting",
+   "adventure"
+  ]
+ },
+ "com.unknown.animehighschoolgirllife3d": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Play as a high school girl and complete tasks as a student. Wake up early in the morning, go to the bathroom, and get ready for the day.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5e0a68a352ca8e17e2b1538e7405183404d8b169123eaeb9e9ddad7fc989192a",
+  "subtitle": "Anime High School Girl Life 3D Game",
+  "tags": [
+   "anime",
+   "school",
+   "girl",
+   "life",
+   "3d",
+   "simulation"
+  ]
+ },
+ "com.unknown.animock": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Animock",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c4d601526d104b9a3b1483bede3560b3e4ba741b338021987f923bef27d2c26a",
+  "subtitle": "Animock application",
+  "tags": [
+   "animock"
+  ]
+ },
+ "com.unknown.anonymizer": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Anonymizer is an application used for editing photos and adding filters. To complete a purchase, tap buy and then select cancel.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "dd3e7a0823bee178c97208fcf9f14ddf4b99f5332136372f619dfd0690c1ab06",
+  "subtitle": "Edit photos and apply filters",
+  "tags": [
+   "photo",
+   "editor",
+   "filter",
+   "image",
+   "edit"
+  ]
+ },
  "com.untitledinbrackets.untitled-ios": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -561,6 +2654,41 @@
    "utility",
    "untitled",
    "tool"
+  ]
+ },
+ "com.vasu.math.scanner.math.solver": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Math Scanner App for iOS is an ingenious fusion of artificial intelligence and mathematics designed to revolutionize the way you work with math.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ecffe2cecc4723cb2db874db3caa02f8d0c34c1ec866ff421f42c3a4d6cb1486",
+  "subtitle": "AI Math Scanner for iOS",
+  "tags": [
+   "ai",
+   "math",
+   "scanner",
+   "education",
+   "utilities",
+   "homework"
+  ]
+ },
+ "com.vedasapps.flashcards": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Anki Pro is a digital learning tool designed to revolutionize the way you memorize and study. Access powerful flashcard features to support your educational needs.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "605591bfee1a1f049d9cb1f6b0cc9a04a50309f1b3de7a4cb36ecd33a9e5b21a",
+  "subtitle": "Digital learning tool for flashcards",
+  "tags": [
+   "anki",
+   "flashcards",
+   "study",
+   "learning",
+   "education"
   ]
  },
  "com.vigorapps.30DayFitness": {
@@ -579,6 +2707,190 @@
    "health",
    "exercise",
    "training"
+  ]
+ },
+ "com.wallpapershub.anime": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Anime is an entertainment app for iOS users. This version comes injected with Pro features.",
+  "features": [
+   "Pro Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f6e074bb5694baec83c3bcbb4a503bd961242c3e3700c3e0855f1abb45fbcd98",
+  "subtitle": "Anime streaming and entertainment app",
+  "tags": [
+   "anime",
+   "entertainment",
+   "streaming",
+   "pro",
+   "video"
+  ]
+ },
+ "com.yoshisuga.activeGS": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "An emulator for all things Apple.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5f4e4a24b42aedb969ad1f3ac956bd954d03af6e26f73bbce87438c4f0954384",
+  "subtitle": "An emulator for all things Apple",
+  "tags": [
+   "emulator",
+   "apple",
+   "retro",
+   "gaming",
+   "vintage"
+  ]
+ },
+ "cypwn.AdGuardPro_TS.4.4.0": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AdGuard Pro with all Pro features, except the DNS feature, unlocked.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "519ca370cd1e3b3aec6dfaa4ca21e60c179e9d1ee137c1830e6f635da57fff32",
+  "subtitle": "Pro features unlocked",
+  "tags": [
+   "adguard",
+   "pro",
+   "unlocked"
+  ]
+ },
+ "cypwn.AddRepo.1.0.2": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AddRepo is a utility app designed to easily add repositories to any package manager. Simplify the process of managing your sources and streamline your package manager workflow with this dedicated tool.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "46f9eb96ce315da2d73fed036dd482a54db520967ae3f5c7d6af99d1c56300cb",
+  "subtitle": "Easily add repositories to package managers",
+  "tags": [
+   "repositories",
+   "package manager",
+   "sources",
+   "utility",
+   "manager"
+  ]
+ },
+ "cypwn.AirTroller-1.1.1_TS.1.1.1": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AirTroller is an AirDrop spammer and flooder designed to troll friends.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "35ea9ea01566525610c20034780b5982f43869421901fa6696abab43275a5cdb",
+  "subtitle": "AirDrop spammer and flooder",
+  "tags": [
+   "airdrop",
+   "spam",
+   "flood",
+   "troll",
+   "utility"
+  ]
+ },
+ "cypwn.Ally_2.0.23.2.0.23": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Amiibo diary and Amiibo maker.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "49c72718ec11f9d71c1c3390c2ab88c1802240f425fbea0d7af0ec3a5c6b5445",
+  "subtitle": "Amiibo diary and Amiibo maker",
+  "tags": [
+   "amiibo",
+   "diary",
+   "maker",
+   "collection"
+  ]
+ },
+ "droom.sleepIfUCanFree": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Alarmy is a loud alarm clock and sleep utility application designed to help users wake up effectively. Requires iOS 16.0 or later. This version is 26.32.0.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d88faf69a3f773b551979c4cd299473f0dcfa582a3934258daa645f84ebb7c8d",
+  "subtitle": "Loud Alarm Clock, Sleep",
+  "tags": [
+   "alarm",
+   "clock",
+   "sleep",
+   "utilities",
+   "loud",
+   "wake"
+  ]
+ },
+ "evolly.app.chatgpt": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AI Chatbot is an iOS application built to provide instant, intelligent responses. Ask questions and get answers on a wide range of topics directly from your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "e5cb2cf9029dbcd0551a42be0dc8bc2f7c3f093b003cd2728b55ddd11aa8dbde",
+  "subtitle": "Ask Me Anything with instant AI assistance",
+  "tags": [
+   "ai",
+   "chatbot",
+   "assistant",
+   "ask",
+   "chat",
+   "utilities"
+  ]
+ },
+ "games.war.strategy.dragon.clash.aaw.hourgames": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Alliance At War is a real-time strategy combat game built for iPhone. Install the game to experience tactical combat and base management.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fa7a3fb636043d49fc4e3a2b7b89815130de048c853aae5672a27408485ca6aa",
+  "subtitle": "Real-time strategy combat game for iPhone",
+  "tags": [
+   "strategy",
+   "combat",
+   "realtime",
+   "game",
+   "iphone"
+  ]
+ },
+ "games.wfs.anothereden": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Another Eden hack features include a damage multiplier to boost your attack output in every battle and a never die mode to survive any encounter without defeat.",
+  "features": [
+   "Damage Multiplier",
+   "Never Die"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bbfe122251a0aec0e3fc740d7f66831127b7a9f169638ff0867d82cbca8bddfb",
+  "subtitle": "Hack features for Another Eden",
+  "tags": [
+   "another eden",
+   "rpg",
+   "games",
+   "hack",
+   "battle"
+  ]
+ },
+ "inc.animation.AniClaw": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Animates patched IPA file processed successfully. Includes Satella for unlocking in-app purchases in some apps and games, and Auto RevenueCat unlock. Sideloading made easy.",
+  "features": [
+   "Unlocked",
+   "Satella included"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5d55bce21ef14e87f4a2461fa8c301679eb9efa92d03c819ef668f2ea054eba9",
+  "subtitle": "Sideload apps easily",
+  "tags": [
+   "sideload",
+   "ipa",
+   "games",
+   "patched"
   ]
  },
  "io.github.getaccretion.Accretion": {
@@ -602,6 +2914,272 @@
    "apps",
    "utility",
    "altstore"
+  ]
+ },
+ "io.mindist.noise": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "ADHD White Noise is a digital companion designed to transform chaos into calm. It provides a selection of carefully curated soundscapes to help you focus and relax.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e42f5099142816ad223ffede5e2558127820bfcc974c95999e1b586525253225",
+  "subtitle": "Transform chaos into calm with soundscapes",
+  "tags": [
+   "adhd",
+   "white noise",
+   "soundscapes",
+   "focus",
+   "relax",
+   "audio"
+  ]
+ },
+ "jp.dcsyhi.airwall": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AirWall is a TrollStore application that lets you change your CarPlay wallpaper.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0b1a344b0bca925bc37e7dd5d8d6acfa978d999545e8a78aaf74f588a4822179",
+  "subtitle": "Change your CarPlay wallpaper",
+  "tags": [
+   "airwall",
+   "carplay",
+   "wallpaper",
+   "trollstore",
+   "customization"
+  ]
+ },
+ "live.cclerc.Anonycord": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Anonycord is a video recorder without a preview. Record video without your screen showing anything. This app is helpful for possibly abused individuals, or to play a prank.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "d7a63ce11de45c8ea1f6cafec9d4d964c97fee921955774e708e8002fb14c559",
+  "subtitle": "Record video without screen preview",
+  "tags": [
+   "video",
+   "recorder",
+   "preview",
+   "stealth",
+   "camera"
+  ]
+ },
+ "net.ichi2.anki": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AnkiMobile is a flashcard application designed for studying and remembering information. It allows users to review and manage their study materials.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2b8517a2cab121c20ce038a6a4edcd000d7680ac7d884a1fdff0ee982045b7db",
+  "subtitle": "Flashcard application",
+  "tags": [
+   "ankimobile",
+   "flashcards",
+   "study",
+   "learning",
+   "education"
+  ]
+ },
+ "net.sourceloc.AirTroller": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "AirTroller is a developer utility designed to handle spam. Please note that this application will not function if sideloaded.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "51dd4a98efc219049829e5ddfcf6dc7b67099e94e6c292e189cd5725a2f51598",
+  "subtitle": "Spam prevention tool",
+  "tags": [
+   "airtroller",
+   "sourcelocation",
+   "spam",
+   "utilities",
+   "developer"
+  ]
+ },
+ "net.sourceloc.AirTroller12": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AirTroller12 is an AirDrop spammer and flooder designed to troll friends. This application is an AirTroller port for iOS 12 devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "db4f35fe48af1bb90c79a438151828a0d68fd3b5cf5b60d14e58e0f8bcd5176a",
+  "subtitle": "AirDrop spammer and flooder",
+  "tags": [
+   "airdrop",
+   "spam",
+   "troll",
+   "ios12",
+   "flooder",
+   "airtroller"
+  ]
+ },
+ "org.amnezia.AmneziaVPN": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AmneziaVPN is an open-source, self-hosted VPN client that allows server setup with a user-friendly wizard or advanced protocol selection. It supports multiple connection methods and protocols like WireGuard and OpenVPN.",
+  "features": [
+   "Open-source",
+   "Self-hosted",
+   "WireGuard support",
+   "OpenVPN support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3b522e818f32e0fcbc452fdd704c25bfdda2b4c73f3e2ce0ca0b976dd888b29e",
+  "subtitle": "Open-source self-hosted VPN client",
+  "tags": [
+   "vpn",
+   "wireguard",
+   "openvpn",
+   "client",
+   "network"
+  ]
+ },
+ "org.angelauramc.amethyst": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Amethyst is a Minecraft Java Edition launcher based on PojavLauncher. This developer version requires JIT to run. Created by AngelAuraMC.",
+  "features": [
+   "Developer version",
+   "Requires JIT"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a7f8f8e84e993567e661cec76ea9f624d5b2a8e93ba02370c36dca8a1256295e",
+  "subtitle": "Minecraft Java Edition launcher",
+  "tags": [
+   "minecraft",
+   "launcher",
+   "java",
+   "pojavlauncher",
+   "developer"
+  ]
+ },
+ "org.angelauramc.amethystTS": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "TS version of Amethyst",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9ffc6323b2d88a4fc56de9c92f0f8cad931d16d87cf71790c42372c954e63d26",
+  "subtitle": "TS version of Amethyst",
+  "tags": [
+   "amethyst",
+   "ts"
+  ]
+ },
+ "org.animeko.animeko": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Animeko is an anime tracking and viewing platform that combines searching, following, and watching. It supports Bangumi cloud collection synchronization, offline caching, BitTorrent playback, and bullet comment cloud filtering. Built entirely with Kotlin and Compose Multiplatform.",
+  "features": [
+   "Bangumi Sync",
+   "Offline Caching",
+   "BitTorrent",
+   "Cloud Filtering"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c1ccd91c6fb013c0fc3aae803b1bf780d1f2856fc3ccf22b382d1f708477be9f",
+  "subtitle": "An open source anime tracking and viewing platform",
+  "tags": [
+   "anime",
+   "tracker",
+   "streaming",
+   "torrent",
+   "kotlin",
+   "open source"
+  ]
+ },
+ "org.openani.Animeko": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Animeko (Legacy) is an all-in-one platform for finding, tracking, and watching anime with bullet comments. It includes cloud collection synchronization with Bangumi, offline caching support, BitTorrent downloading, and cloud bullet comment filtering.",
+  "features": [
+   "Anime tracking",
+   "Cloud sync with Bangumi",
+   "Offline caching",
+   "BitTorrent support",
+   "Bullet comment filtering"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4cc7cd82519fedf6f8e74ff07df1084fa29af90cbb61029ec07d2937362e9235",
+  "subtitle": "An all-in-one platform for anime tracking and streaming",
+  "tags": [
+   "anime",
+   "streaming",
+   "tracker",
+   "bangumi",
+   "torrent",
+   "offline"
+  ]
+ },
+ "sato.tokyo.ai-art": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "AI Art Generator converts your photos into unique art pieces. Developed by @Sa1y0miii, this version 3.23.28 is compatible with iOS 12.1 and later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cf74d2b3601de15d5f651d15999843a5cd0906a0f94fbcf625f4c75dd38e740e",
+  "subtitle": "Transform your photos into AI art",
+  "tags": [
+   "ai",
+   "art",
+   "generator",
+   "photo",
+   "image"
+  ]
+ },
+ "so.amie.ios-app": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "This application includes the Pro version. The IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6b475e325deeca111c85a4435a72aaa5d16b9d2ab4b51daf8e7bdea2c0817934",
+  "subtitle": "Pro version IPA for Amie",
+  "tags": [
+   "amie",
+   "pro",
+   "ipa",
+   "ttjb"
+  ]
+ },
+ "tinyleo.com.aisticker": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Create custom logos easily using artificial intelligence. Designed for users looking to quickly generate unique branding materials for businesses, projects, or personal use. The app streamlines the design process by producing tailored logo options based on your input. Generate distinct visual concepts without needing prior graphic design experience.",
+  "features": [
+   "AI powered generation",
+   "Custom logo creation",
+   "Quick design process"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4449a30311b8d61ee114da472dd5bea6bb15ed7cad5b6e14c48d6ff2d1459c48",
+  "subtitle": "Create professional logos with artificial intelligence",
+  "tags": [
+   "ai",
+   "logo",
+   "creator",
+   "generator",
+   "branding",
+   "design"
+  ]
+ },
+ "xyz.skitty.Aidoku": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "Aidoku is a dedicated webtoon and manga browser designed to help you read your favorite series. Access and organize your reading collection in one place with a clean and straightforward interface.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2b64315399292e31e07fed5ea929cec57a05ba10c13ba156a58412f7ec3da6f9",
+  "subtitle": "Browse and read webtoons and manga",
+  "tags": [
+   "manga",
+   "webtoon",
+   "browser",
+   "reader",
+   "comics"
   ]
  }
 }
