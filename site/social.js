@@ -162,6 +162,21 @@
     if (ready) document.dispatchEvent(new CustomEvent("acc:auth"));
   }
 
+  // Google AdSense on the real domain only (not mirrors or local tests), skipped for supporters,
+  // moderators and admins. Google's own consent message (AdSense Privacy & messaging) runs first
+  // in regions that need it.
+  function loadAds() {
+    const p = me.profile;
+    if (location.hostname !== "getaccretion.app" || document.getElementById("adsbygoogle-js")) return;
+    if (p && (p.supporter || ["mod", "admin"].includes(p.role))) return;
+    const s = document.createElement("script");
+    s.id = "adsbygoogle-js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4500603236648893";
+    document.head.append(s);
+  }
+
   async function refreshUnread() {
     try { me.unread = await api.unread(); } catch { me.unread = 0; }
     renderAccount();
@@ -903,6 +918,7 @@
       console.warn(e);
     }
     ready = true;
+    loadAds();
     queue.splice(0).forEach((fn) => fn());
     if (hosted.size && location.hash.startsWith("#/app/")) A.route(); // redraw with download-server links
     api.trending().then((rows) => A.setTrending(rows || [])).catch(() => {});
