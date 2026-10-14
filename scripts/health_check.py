@@ -138,7 +138,7 @@ def admob_week():
 def google_sign_in(url):
     """Google sign-in reaches Google's account page (not "Access blocked", e.g. redirect_uri_mismatch
     when the OAuth client in Google Cloud loses Supabase's callback address)"""
-    start = f"{url}/auth/v1/authorize?provider=google&redirect_to=https://getaccretion.github.io/"
+    start = f"{url}/auth/v1/authorize?provider=google&redirect_to=https://getaccretion.app/"
     req = urllib.request.Request(start, headers={"User-Agent": "Mozilla/5.0 (accretion health check)"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:

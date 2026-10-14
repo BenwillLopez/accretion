@@ -86,7 +86,7 @@ const reply = (status: number, message: string) =>
   new Response(JSON.stringify({ message }), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
 const ACCRETION = "io.github.getaccretion.Accretion";
-const STORE = "https://getaccretion.github.io/";
+const STORE = "https://getaccretion.app/";
 
 // "1.0.10" > "1.0.9": every number in order, like the app and the store pipeline: "4.0.0-mod1.10.0" > "4.0.0-mod1.9.0" > "4.0.0"
 function older(a: string, b: string): boolean {

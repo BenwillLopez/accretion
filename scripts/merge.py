@@ -34,7 +34,7 @@ from sanitize import clean_app, clean_news, skip_reason, validate
 
 OWNER = "GETAccretion"
 REPO = "getaccretion.github.io"
-SITE = "https://getaccretion.github.io"  # GitHub Pages serves the store, the sources and the assets
+SITE = "https://getaccretion.app"  # GitHub Pages serves the store, the sources and the assets
 # AltStore refuses a source whose identifier changes, so these stay as first published
 ID = "io.github.benwilllopez.accretion"
 MAX_NEWS = 50

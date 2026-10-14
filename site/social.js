@@ -505,7 +505,7 @@
         h("span", { class: "muted small" }, timeAgo(r.created_at))),
       h("h3", {}, r.title),
       r.body ? h("p", { class: "announce-body" }, r.body) : null,
-      h("div", { class: "post-acts" }, like, r.link ? h("a", { class: "btn ghost", href: r.link.replace("https://getaccretion.github.io/", "") || r.link }, "Open") : null));
+      h("div", { class: "post-acts" }, like, r.link ? h("a", { class: "btn ghost", href: r.link.replace(/^https:\/\/getaccretion\.(app|github\.io)\//, "") || r.link }, "Open") : null));
   }
 
   function threadItem(r, liked) {

@@ -250,7 +250,7 @@ Deno.serve(async (req) => {
       body: (extra.notes ?? "").slice(0, 4000),
       app_id: bundle,
       version,
-      link: `https://getaccretion.github.io/#/app/${encodeURIComponent(bundle)}`,
+      link: `https://getaccretion.app/#/app/${encodeURIComponent(bundle)}`,
     });
   }
   return reply(200, { path, sha256 });

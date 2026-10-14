@@ -12,8 +12,8 @@
     social: "Social", lifestyle: "Lifestyle", developer: "Developer", other: "Other",
   };
   const SOURCE_URL = {
-    full: "https://getaccretion.github.io/source.json",
-    core: "https://getaccretion.github.io/curated.json",
+    full: "https://getaccretion.app/source.json",
+    core: "https://getaccretion.app/curated.json",
   };
   const QR_LIB = "vendor/qrcode-generator-1.4.4.min.js"; // copied in (MIT), so no outside script runs here
 

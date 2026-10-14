@@ -104,7 +104,7 @@ def write_share_page(bid, title, desc, icon, name):
         f.write(page)
 
 
-SITE_URL = "https://getaccretion.github.io"  # used for the sitemap when SITE_URL is not set
+SITE_URL = "https://getaccretion.app"  # used for the sitemap when SITE_URL is not set
 SITEMAP_LIMIT = 50000  # most URLs one sitemap file may list
 
 
