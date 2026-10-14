@@ -13,7 +13,7 @@ Metadata:
       -> 5 min CloudFront signed URL (KeyGroup) -> CloudFront -> OAC -> private bucket
     must:
       - IPAs never public: bucket private, CloudFront requires signed URLs
-      - object keys = hosted_builds.path ("<bundle id>/<version>.ipa"); published keys are never replaced
+      - final object keys = hosted_builds.path; published keys are never replaced
       - private signing key and Uploader access key live only in GitHub/Supabase secrets, never in this template
     ref:
       - supabase/functions/download/index.ts
@@ -39,6 +39,7 @@ Resources:
         why: holds every published IPA; versioning guards against an accidental overwrite or delete
         must:
           - all four public access blocks stay on
+          - current-object expiry is limited to staging/; published artifacts and bases/ must survive
         mutable: change-with-constraints
     Properties:
       PublicAccessBlockConfiguration:
@@ -57,6 +58,13 @@ Resources:
         Status: Enabled
       LifecycleConfiguration:
         Rules:
+          # Failed/incomplete uploads have unique staging keys and are never catalogue paths.
+          - Id: expire-staging-uploads
+            Status: Enabled
+            Prefix: staging/
+            ExpirationInDays: 2
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 2
           - Id: expire-old-versions
             Status: Enabled
             NoncurrentVersionExpiration:

@@ -34,6 +34,22 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+
+      # Scheduled rebuilds publish directly, so validate the checked-out code before using it.
+      - name: Validate publishing code
+        run: |
+          pip install -q ruff==0.16.8 pillow==11.3.0 boto3==1.43.111 cryptography==46.0.3
+          ruff check .
+          ruff format --check .
+          python -m unittest discover -s tests -q
+          node --test tests/edge/*.test.cjs
+          node --check site/app.js
+          node --check site/social.js
+          node --check site/sw.js
+
       # last good copy of every source, so a source that is down keeps its apps
       - uses: actions/cache@v4
         with:

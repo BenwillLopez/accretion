@@ -2,6 +2,7 @@ name: CI
 
 # Lint, unit tests and a validation pass over the published files.
 on:
+  workflow_call:
   pull_request:
   push:
     branches: [main]
@@ -19,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install ruff==0.16.8 pillow==11.3.0
+      - run: pip install ruff==0.16.8 pillow==11.3.0 boto3==1.43.111 cryptography==46.0.3
       - run: ruff check .
       - run: ruff format --check .
       - run: python -m unittest discover -s tests -v
@@ -55,3 +56,14 @@ jobs:
       - name: Schema can be applied twice
         run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
       - run: psql -v ON_ERROR_STOP=1 -f supabase/test.sql
+
+  edge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - run: node --test tests/edge/*.test.cjs
+      - run: npx --yes deno@2.9.6 check supabase/functions/download/index.ts supabase/functions/source/index.ts supabase/functions/upload/index.ts supabase/functions/manifest/index.ts

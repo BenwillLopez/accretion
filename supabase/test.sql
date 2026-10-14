@@ -330,4 +330,68 @@ do $$ begin
 end $$;
 rollback;
 
+-- A version has exactly one published object, even if two upload jobs finish together.
+begin;
+set local role service_role;
+insert into public.hosted_builds (bundle_id, version, path, sha256)
+  values ('com.fixture.unique', '1.0.0', 'com.fixture.unique/one.ipa', repeat('a', 64));
+do $$ begin
+  assert pg_temp.fails($q$insert into public.hosted_builds (bundle_id, version, path, sha256)
+    values ('com.fixture.unique', '1.0.0', 'com.fixture.unique/two.ipa', repeat('b', 64))$q$),
+    'a second publication cannot replace the same bundle/version';
+end $$;
+rollback;
+
+-- Report dates are server-controlled; a client cannot evade or extend the global flood guard.
+begin;
+delete from public.install_reports;
+select pg_temp.as_user(null);
+insert into public.install_reports (app_version, ios, mode, stage, details, created_at)
+  values ('1', '16', 1, 'future', 'fictional report', '2099-01-01'),
+         ('1', '16', 1, 'past', 'fictional report', '2000-01-01');
+reset role;
+do $$ begin
+  assert (select count(*) from public.install_reports
+    where created_at between now() - interval '1 minute' and clock_timestamp() + interval '1 second') = 2,
+    'future and past dates are replaced with server receipt time';
+end $$;
+select pg_temp.as_user(null);
+insert into public.install_reports (app_version, ios, mode, stage, details, created_at)
+  select '1', '16', 1, 'past', 'fictional report', '2000-01-01'::timestamptz from generate_series(1, 28);
+do $$ begin
+  assert pg_temp.fails($q$insert into public.install_reports
+    (app_version, ios, mode, stage, details, created_at)
+    values ('1', '16', 1, 'past', 'fictional report', '2000-01-01')$q$),
+    'backdated reports still count toward the flood guard';
+end $$;
+rollback;
+
+-- Download issuance has a server-controlled quota and checks bans in the same transaction.
+begin;
+set local role service_role;
+insert into public.download_log (owner, bundle_id, via, at)
+  select '00000000-0000-0000-0000-0000000000e1', 'com.fixture', 'key', '2000-01-01'::timestamptz
+  from generate_series(1, 30);
+reset role;
+do $$ begin
+  assert (select count(*) from public.download_log where at > now() - interval '1 minute') = 30,
+    'download receipt time is server-controlled';
+end $$;
+set local role service_role;
+do $$ begin
+  assert pg_temp.fails($q$insert into public.download_log (owner, bundle_id, via)
+    values ('00000000-0000-0000-0000-0000000000e1', 'com.fixture', 'key')$q$), '31st download is refused';
+  assert pg_temp.fails($q$insert into public.download_log (owner, bundle_id, via)
+    values ('00000000-0000-0000-0000-00000000000d', 'com.fixture', 'key')$q$), 'banned account is refused';
+end $$;
+rollback;
+
+-- Sensitive RPC grants do not depend on whether the installation uses default grants.
+do $$ begin
+  assert not has_function_privilege('anon', 'public.mod_stats()', 'execute'), 'anonymous cannot execute stats RPC';
+  assert not has_function_privilege('anon', 'public.my_download_key(boolean)', 'execute'), 'anonymous cannot execute key RPC';
+  assert not has_function_privilege('anon', 'public.delete_my_account()', 'execute'), 'anonymous cannot execute account deletion';
+  assert not has_function_privilege('authenticated', 'public.check_install_report()', 'execute'), 'trigger helper is not a direct RPC';
+end $$;
+
 \echo 'all database checks passed'

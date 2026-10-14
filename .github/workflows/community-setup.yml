@@ -34,7 +34,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
   setup:
+    needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:

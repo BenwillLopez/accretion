@@ -1,9 +1,9 @@
 // upload: puts a new build of Accretion's own apps (the Accretion app, Accretion Mods) straight
 // into the private "builds" bucket, so release files never sit in a public GitHub release.
 //
-//   POST /functions/v1/upload            {bundle_id, version}         → {signedUrl, path}
+//   POST /functions/v1/upload            {bundle_id, version, sha256} → {signedUrl, path, upload_id}
 //        then PUT the .ipa to signedUrl (Content-Type: application/octet-stream)
-//   POST /functions/v1/upload?finish=1   {bundle_id, version, size, sha256?, name?, notes?}   → {path, sha256}
+//   POST /functions/v1/upload?finish=1   {bundle_id, version, sha256, upload_id, name?, notes?} → {path, sha256}
 //        also posts "<name> <version>" with the notes to the What's new feed (announce: false skips it)
 //   POST /functions/v1/upload?base=put   {sha256}  → {signedUrl}  PUT a mod's private base .ipa
 //   POST /functions/v1/upload?base=get   {sha256}  → {signedUrl}  GET it back (15 minutes)
@@ -57,7 +57,7 @@ async function uploadLink(path: string): Promise<string | null> {
   if (s3 && await s3Healthy()) {
     return await getSignedUrl(s3, new PutObjectCommand({ Bucket: BUCKET, Key: path }), { expiresIn: 3600 });
   }
-  const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: true });
+  const { data, error } = await admin.storage.from("builds").createSignedUploadUrl(path, { upsert: false });
   return error || !data ? null : data.signedUrl;
 }
 
@@ -72,8 +72,10 @@ async function readFromS3(path: string): Promise<Uint8Array | null> {
 }
 
 async function readFromSupabase(path: string): Promise<Uint8Array | null> {
-  const [bundle, file] = path.split("/");
-  const { data: files } = await admin.storage.from("builds").list(bundle, { search: file });
+  const slash = path.lastIndexOf("/");
+  const folder = path.slice(0, slash);
+  const file = path.slice(slash + 1);
+  const { data: files } = await admin.storage.from("builds").list(folder, { search: file });
   if (!files?.some((f: { name: string }) => f.name === file)) return null;
   const { data: blob } = await admin.storage.from("builds").download(path);
   return blob ? new Uint8Array(await blob.arrayBuffer()) : null;
@@ -91,13 +93,13 @@ async function readBuild(path: string): Promise<{ bytes: Uint8Array; where: "s3"
 async function mirrorBuild(path: string, bytes: Uint8Array, where: "s3" | "supabase") {
   try {
     if (where === "s3") {
-      const { error } = await admin.storage.from("builds").upload(path, bytes, { upsert: true, contentType: IPA });
+      const { error } = await admin.storage.from("builds").upload(path, bytes, { upsert: false, contentType: IPA });
       if (error) throw error;
     } else if (s3) {
-      await s3.send(new PutObjectCommand({ Bucket: BUCKET, Key: path, Body: bytes, ContentType: IPA }));
+      await s3.send(new PutObjectCommand({ Bucket: BUCKET, Key: path, Body: bytes, ContentType: IPA, IfNoneMatch: "*" }));
     }
   } catch (e) {
-    console.warn(`Couldn't copy ${path} from ${where} to the other store: ${e instanceof Error ? e.message : e}`);
+    console.warn(`Couldn't copy ${path} from ${where} to the other store`);
   }
 }
 
@@ -107,7 +109,27 @@ async function removeBuild(path: string) {
 }
 
 const reply = (status: number, body: Record<string, unknown>) =>
-  new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+  new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+
+// Final paths contain the content hash and are written without replacement. Upload links only
+// address separate staging objects, so even a reusable signed PUT cannot change a publication.
+async function storeBuild(path: string, bytes: Uint8Array): Promise<"s3" | "supabase" | null> {
+  if (s3) {
+    try {
+      await s3.send(new PutObjectCommand({ Bucket: BUCKET, Key: path, Body: bytes, ContentType: IPA, IfNoneMatch: "*" }));
+      return "s3";
+    } catch (e) {
+      if ((e as { $metadata?: { httpStatusCode?: number } }).$metadata?.httpStatusCode === 412) return "s3";
+    }
+  }
+  const { error } = await admin.storage.from("builds").upload(path, bytes, { upsert: false, contentType: IPA });
+  if (!error || String(error.statusCode) === "409") return "supabase";
+  return null;
+}
+
+async function existingBuild(bundle: string, version: string) {
+  return await admin.from("hosted_builds").select("path,sha256").eq("bundle_id", bundle).eq("version", version).maybeSingle();
+}
 
 // constant-time comparison, so the key can't be guessed one character at a time
 function same(a: string, b: string): boolean {
@@ -126,11 +148,12 @@ Deno.serve(async (req) => {
     return reply(401, { message: "Not allowed." });
   }
 
-  let body: { bundle_id?: string; version?: string; size?: number };
+  let body: { bundle_id?: string; version?: string; size?: number; sha256?: string; upload_id?: string; name?: string; notes?: string; announce?: boolean };
   try {
     body = await req.json();
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("Invalid body");
   } catch {
-    return reply(400, { message: "Send JSON: {bundle_id, version}." });
+    return reply(400, { message: "Send a JSON object with bundle_id, version and sha256." });
   }
 
   // private base apps for mods (mods/scripts/base.py). Kept in S3 only, under bases/<sha256> (no
@@ -149,38 +172,55 @@ Deno.serve(async (req) => {
   }
   const bundle = body.bundle_id ?? "";
   const version = body.version ?? "";
-  if (!/^[A-Za-z0-9][A-Za-z0-9.-]*$/.test(bundle) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,39}$/.test(version)) {
+  const claimed = body.sha256 ?? "";
+  if (typeof bundle !== "string" || typeof version !== "string" || typeof claimed !== "string" ||
+      !/^[A-Za-z0-9][A-Za-z0-9.-]{0,199}$/.test(bundle) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,39}$/.test(version)) {
     return reply(400, { message: "bundle_id or version looks wrong." });
   }
-  const path = `${bundle}/${version}.ipa`;
-
-  if (new URL(req.url).searchParams.get("finish") !== "1") {
-    // a published version is never replaced: a leaked key can't swap a build people already have
-    const { data: existing } = await admin.from("hosted_builds").select("id").eq("bundle_id", bundle).eq("version", version).maybeSingle();
-    if (existing) return reply(409, { message: `${bundle} ${version} is already published. Bump the version.` });
-    let signedUrl: string | null = null;
-    let problem = "unknown";
-    try {
-      signedUrl = await uploadLink(path);
-    } catch (e) {
-      problem = e instanceof Error ? e.message : String(e);
-    }
-    if (!signedUrl) return reply(500, { message: `Couldn't prepare the upload: ${problem}` });
-    return reply(200, { signedUrl, path });
+  if (!/^[0-9a-f]{64}$/.test(claimed)) return reply(400, { message: "Send sha256: 64 lowercase hex characters." });
+  if ((body.name !== undefined && typeof body.name !== "string") ||
+      (body.notes !== undefined && typeof body.notes !== "string") ||
+      (body.announce !== undefined && typeof body.announce !== "boolean")) {
+    return reply(400, { message: "name and notes must be text; announce must be true or false." });
   }
 
-  // finish: the file must be there before the download server starts handing it out
-  const stored = await readBuild(path);
+  const existing = await existingBuild(bundle, version);
+  if (existing.error) return reply(503, { message: "Couldn't check publication state. Try again." });
+  if (existing.data) {
+    if (existing.data.sha256 !== claimed) return reply(409, { message: "This version is already published. Bump the version." });
+    return reply(200, { published: true, path: existing.data.path, sha256: claimed });
+  }
+
+  if (new URL(req.url).searchParams.get("finish") !== "1") {
+    const upload_id = crypto.randomUUID();
+    const path = `staging/${upload_id}/${bundle}/${version}.upload`;
+    let signedUrl: string | null = null;
+    try {
+      signedUrl = await uploadLink(path);
+    } catch {
+      console.warn("Couldn't prepare a staging upload");
+    }
+    if (!signedUrl) return reply(500, { message: "Couldn't prepare the upload. Try again." });
+    return reply(200, { signedUrl, path, upload_id });
+  }
+
+  const upload_id = body.upload_id ?? "";
+  if (typeof upload_id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(upload_id)) {
+    return reply(400, { message: "Finish needs the upload_id returned when preparing the upload." });
+  }
+  const staging = `staging/${upload_id}/${bundle}/${version}.upload`;
+  const stored = await readBuild(staging);
   if (!stored) return reply(409, { message: "The file isn't in storage yet. Upload it first." });
   const bytes = stored.bytes;
   // fingerprint the stored file, so the app can check what it downloads is what was published
   const digest = await crypto.subtle.digest("SHA-256", bytes as Uint8Array<ArrayBuffer>);
   const sha256 = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
-  const claimed = (body as { sha256?: string }).sha256;
-  if (claimed && claimed.toLowerCase() !== sha256) {
-    await removeBuild(path);
+  if (claimed !== sha256) {
     return reply(422, { message: "The uploaded file doesn't match the sha256 that was sent. Upload it again." });
   }
+  const path = `${bundle}/${version}-${sha256}.ipa`;
+  const where = await storeBuild(path, bytes);
+  if (!where) return reply(503, { message: "Couldn't keep the finished build. Try again." });
   const { error } = await admin.from("hosted_builds").insert({
     bundle_id: bundle,
     version,
@@ -188,8 +228,16 @@ Deno.serve(async (req) => {
     size: bytes.byteLength,
     sha256,
   });
-  if (error) return reply(500, { message: `Couldn't record the build: ${error.message}` });
-  await mirrorBuild(path, bytes, stored.where);
+  if (error) {
+    if (error.code === "23505") {
+      const winner = await existingBuild(bundle, version);
+      if (winner.data?.sha256 === sha256) return reply(200, { published: true, path: winner.data.path, sha256 });
+      return reply(409, { message: "This version is already published. Bump the version." });
+    }
+    return reply(503, { message: "Couldn't record the build. Try again." });
+  }
+  await mirrorBuild(path, bytes, where);
+  await removeBuild(staging).catch(() => console.warn("Couldn't remove a completed staging upload"));
 
   // the What's new feed: one post per published build (best effort; the build is already live)
   const extra = body as { name?: string; notes?: string; announce?: boolean };

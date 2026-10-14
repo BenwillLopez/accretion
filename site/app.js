@@ -1151,7 +1151,9 @@
         ),
         isMod(a)
           ? h("p", { class: "muted small" }, modBadge(), " Built by Accretion from a free or open-source app. Unsigned: sign it with your own tool. Source and build scripts: ", h("a", { href: "https://github.com/AccretionMods/mods", rel: "noopener" }, "AccretionMods/mods"), ".")
-          : h("p", { class: "muted small" }, "Files are hosted by the source above, not by Accretion. Install what you trust."),
+          : h("p", { class: "muted small" }, a.i === "io.github.getaccretion.Accretion"
+            ? "This build is hosted privately by Accretion. Sign in to download it."
+            : "Files are hosted by the source above. Install what you trust."),
       ),
     );
     return out.filter(Boolean);

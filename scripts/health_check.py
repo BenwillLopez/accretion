@@ -17,6 +17,7 @@ import datetime
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -96,7 +97,7 @@ def admob_week():
     Needs ADMOB_CLIENT_ID, ADMOB_CLIENT_SECRET and ADMOB_REFRESH_TOKEN (handbook INVENTORY.yaml)."""
     cid, secret, refresh = (env(n) for n in ("ADMOB_CLIENT_ID", "ADMOB_CLIENT_SECRET", "ADMOB_REFRESH_TOKEN"))
     if not (cid and secret and refresh):
-        return "- ok: AdMob not checked (no ADMOB_* secrets)"
+        return "WARN: AdMob not checked (ADMOB_* configuration is incomplete)"
     try:
         grant = {"client_id": cid, "client_secret": secret, "refresh_token": refresh}
         body = urllib.parse.urlencode({**grant, "grant_type": "refresh_token"}).encode()
@@ -161,6 +162,7 @@ def main():
     lines = []
 
     rows = sql(ref, f"select version, path from public.hosted_builds where bundle_id = '{ACCRETION}'") or []
+    rows = [row for row in rows if not re.fullmatch(r"\d+\.\d+\.\d+\.\d+", row["version"])]
     if not rows:
         lines.append("FAIL: no hosted Accretion builds found")
     else:
@@ -168,15 +170,19 @@ def main():
         p = newest["path"]
         lines.append(f"Newest Accretion build: {newest['version']} (`{p}`)\n")
         sources = []
-        if env("CDN_DOMAIN") and env("CDN_PRIVATE_KEY"):
+        if all(env(name) for name in ("CDN_DOMAIN", "CDN_KEY_PAIR_ID", "CDN_PRIVATE_KEY")):
             sources.append(("CloudFront", lambda: cloudfront_link(p)))
+        else:
+            lines.append("FAIL: CloudFront configuration is incomplete")
         sources.append(("Supabase copy", lambda: supabase_link(url, service_key(ref), p)))
         if env("OCI_BUILDS_HOST") and env("OCI_LINK_SECRET"):
             sources.append(("Oracle copy", lambda: oracle_link(p)))
+        else:
+            lines.append("FAIL: Oracle copy configuration is incomplete")
         for name, link in sources:
             try:
                 status = answers(link())
-            except Exception as e:
+            except (Exception, SystemExit) as e:
                 status, note = 0, f" ({type(e).__name__})"
             else:
                 note = ""
