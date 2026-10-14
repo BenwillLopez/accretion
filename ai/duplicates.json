@@ -1,1 +1,12 @@
-[]
+[
+ [
+  "com.TDMbest.doom2",
+  "com.TDMbest.doomfinal",
+  0.9812
+ ],
+ [
+  "com.TDMbest.doom1",
+  "com.TDMbest.doom2",
+  0.9722
+ ]
+]
