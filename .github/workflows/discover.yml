@@ -26,3 +26,4 @@ jobs:
       discover: true
     secrets:
       GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
