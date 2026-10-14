@@ -2,6 +2,7 @@ name: CI
 
 # Lint, unit tests and a validation pass over the published files.
 on:
+  workflow_dispatch:
   workflow_call:
   pull_request:
   push:
@@ -28,7 +29,7 @@ jobs:
         run: node --check site/app.js
       # on pushes the publish workflow rebuilds and validates these itself
       - name: Validate published files
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
         run: python scripts/validate.py source.json curated.json
       - name: Check community scripts
         run: node --check site/social.js && node --check site/sw.js
