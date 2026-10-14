@@ -1,30 +1,30 @@
 {
- "apps": 4273,
+ "apps": 4262,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 07:12 UTC",
+ "updated": "2026-10-14 12:13 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T07:12:59Z",
+ "built_at": "2026-10-14T12:13:02Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23753,
- "duplicates": 1801,
- "rejected": 6603,
+ "listings": 23737,
+ "duplicates": 1797,
+ "rejected": 6618,
  "excluded": 57,
- "dead_links_removed": 8698,
+ "dead_links_removed": 8716,
  "links_on_hold": 0,
  "developers": 700,
- "updated_7d": 879,
- "updated_30d": 1267,
+ "updated_7d": 880,
+ "updated_30d": 1266,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2131,
-  "games": 959,
-  "photo-video": 332,
+  "other": 2128,
+  "games": 951,
+  "photo-video": 331,
   "utilities": 328,
-  "entertainment": 209,
+  "entertainment": 210,
   "lifestyle": 128,
   "developer": 120,
   "social": 66
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3536
+   "apps": 3525
   },
   {
    "name": "dsewerek's general apps",
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "SideInstaller",
+   "version": "1.5.1",
+   "date": "2026-10-14"
+  },
+  {
    "name": "MuffinEMU",
    "version": "10.0",
    "date": "2026-10-14"
@@ -60,11 +65,6 @@
   {
    "name": "Accretion",
    "version": "1.0.29",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "Nuvio",
-   "version": "0.5.10",
    "date": "2026-10-14"
   },
   {
@@ -96,101 +96,101 @@
  "timeline": [
   {
    "month": "2024-11",
-   "apps": 1892
+   "apps": 1884
   },
   {
    "month": "2024-12",
-   "apps": 1990
+   "apps": 1982
   },
   {
    "month": "2025-01",
-   "apps": 2191
+   "apps": 2182
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2239
   },
   {
    "month": "2025-03",
-   "apps": 2275
+   "apps": 2267
   },
   {
    "month": "2025-04",
-   "apps": 2310
+   "apps": 2302
   },
   {
    "month": "2025-05",
-   "apps": 2362
+   "apps": 2353
   },
   {
    "month": "2025-06",
-   "apps": 2391
+   "apps": 2382
   },
   {
    "month": "2025-07",
-   "apps": 2423
+   "apps": 2414
   },
   {
    "month": "2025-08",
-   "apps": 2509
+   "apps": 2500
   },
   {
    "month": "2025-09",
-   "apps": 2559
+   "apps": 2550
   },
   {
    "month": "2025-10",
-   "apps": 2624
+   "apps": 2615
   },
   {
    "month": "2025-11",
-   "apps": 2686
+   "apps": 2677
   },
   {
    "month": "2025-12",
-   "apps": 2820
+   "apps": 2811
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2945
   },
   {
    "month": "2026-02",
-   "apps": 3114
+   "apps": 3102
   },
   {
    "month": "2026-03",
-   "apps": 3261
+   "apps": 3248
   },
   {
    "month": "2026-04",
-   "apps": 3503
+   "apps": 3490
   },
   {
    "month": "2026-05",
-   "apps": 3578
+   "apps": 3565
   },
   {
    "month": "2026-06",
-   "apps": 3710
+   "apps": 3697
   },
   {
    "month": "2026-07",
-   "apps": 3824
+   "apps": 3811
   },
   {
    "month": "2026-08",
-   "apps": 3859
+   "apps": 3846
   },
   {
    "month": "2026-09",
-   "apps": 4019
+   "apps": 4005
   },
   {
    "month": "2026-10",
-   "apps": 4273
+   "apps": 4262
   }
  ],
- "new_30d": 385,
- "new_12m": 1693
+ "new_30d": 386,
+ "new_12m": 1691
 }
