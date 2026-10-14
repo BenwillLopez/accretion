@@ -123,9 +123,20 @@ def listings(limit):
             continue
         todo.append(app)
     done = skipped = 0
+    # Free tiers mostly limit requests per minute: when every model is busy, wait a minute and go on,
+    # until a daily cap (a few waits in a row with nothing done) or the time limit stops the run
+    deadline = time.monotonic() + 45 * 60
+    waits_in_a_row = 0
     for app in todo[:limit]:
-        entry = make_listing(app)
+        while True:
+            entry = make_listing(app)
+            if entry or not all_busy() or waits_in_a_row >= 3 or time.monotonic() + 70 > deadline:
+                break
+            waits_in_a_row += 1
+            time.sleep(65)
+            llm.busy.clear()
         if entry:
+            waits_in_a_row = 0
             have[app["bundleIdentifier"]] = entry
             done += 1
             if done % SAVE_EVERY == 0:
@@ -133,7 +144,7 @@ def listings(limit):
         else:
             skipped += 1
             if all_busy():
-                break  # every usable model is busy: stop and keep what we have
+                break  # still busy after waiting (daily caps) or out of time: keep what we have
     save("ai/listings.json", have)
     left = len(todo) - done - skipped
     print(f"listings: {done} done, {skipped} skipped, {left} left, {len(llm.busy)} model(s) busy")
