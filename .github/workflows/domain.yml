@@ -1,13 +1,17 @@
 name: Domain
 
-# Cloudflare DNS for the store's custom domain. Manual only. Without apply it only reports the zone
-# and its records; with apply it points the apex and www at GitHub Pages (DNS only, so Pages can
-# issue its HTTPS certificate).
+# Keeps getaccretion.app's Cloudflare DNS equal to dns.json (scripts/dns.py). A push that changes
+# dns.json applies it; the weekly run and manual runs without apply only check and fail on drift.
 on:
+  push:
+    branches: [main]
+    paths: [dns.json, scripts/dns.py]
+  schedule:
+    - cron: "17 6 * * 1"
   workflow_dispatch:
     inputs:
       apply:
-        description: Create or update the GitHub Pages records
+        description: Create and remove records to match dns.json
         type: boolean
         default: false
 
@@ -20,68 +24,12 @@ jobs:
   dns:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    env:
-      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      APPLY: ${{ inputs.apply }}
     steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
       - name: Cloudflare DNS
-        shell: python
-        run: |
-          import json, os, sys, urllib.request
-
-          API = "https://api.cloudflare.com/client/v4"
-          token = os.environ["CF_TOKEN"]
-          if not token:
-              sys.exit("CLOUDFLARE_API_TOKEN is not available to this repository")
-
-          def cf(method, path, body=None):
-              req = urllib.request.Request(API + path, method=method,
-                                           data=json.dumps(body).encode() if body else None,
-                                           headers={"Authorization": "Bearer " + token,
-                                                    "Content-Type": "application/json"})
-              try:
-                  with urllib.request.urlopen(req, timeout=30) as r:
-                      return json.load(r)["result"]
-              except urllib.error.HTTPError as e:
-                  errors = json.load(e).get("errors")
-                  sys.exit(f"{method} {path.split('?')[0]}: HTTP {e.code} {errors}")
-
-          zones = cf("GET", "/zones?per_page=50")
-          for z in zones:
-              print(f"zone {z['name']}: {z['status']}, name servers {', '.join(z['name_servers'])}")
-          if len(zones) != 1:
-              sys.exit(f"expected exactly one zone, found {len(zones)}")
-          zone = zones[0]
-          name = zone["name"]
-          records = cf("GET", f"/zones/{zone['id']}/dns_records?per_page=500")
-          for r in records:
-              print(f"  {r['type']:5} {r['name']} -> {r['content']} (proxied={r.get('proxied')})")
-
-          want = ([("A", name, ip) for ip in
-                   ("185.199.108.153", "185.199.109.153", "185.199.110.153", "185.199.111.153")]
-                  + [("AAAA", name, ip) for ip in
-                     ("2606:50c0:8000::153", "2606:50c0:8001::153",
-                      "2606:50c0:8002::153", "2606:50c0:8003::153")]
-                  + [("CNAME", "www." + name, "getaccretion.github.io")])
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as s:
-              s.write(f"Zone `{name}` ({zone['status']})\n")
-          if os.environ.get("APPLY") != "true":
-              print("Report only; run with apply to set the GitHub Pages records")
-              sys.exit(0)
-
-          # Records on the apex and www that would conflict with the Pages set are removed first.
-          wanted = {(t, n, c.lower()) for t, n, c in want}
-          for r in records:
-              key = (r["type"], r["name"], r["content"].lower())
-              if r["name"] in (name, "www." + name) and r["type"] in ("A", "AAAA", "CNAME"):
-                  if key in wanted and not r.get("proxied"):
-                      wanted.discard(key)
-                      continue
-                  cf("DELETE", f"/zones/{zone['id']}/dns_records/{r['id']}")
-                  print(f"removed {r['type']} {r['name']} -> {r['content']}")
-          for t, n, c in want:
-              if (t, n, c.lower()) in wanted:
-                  cf("POST", f"/zones/{zone['id']}/dns_records",
-                     {"type": t, "name": n, "content": c, "ttl": 1, "proxied": False})
-                  print(f"added {t} {n} -> {c}")
-          print("GitHub Pages records in place")
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python scripts/dns.py ${{ (github.event_name == 'push' || inputs.apply) && '--apply' || '' }}
