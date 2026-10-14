@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import unittest
+from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
@@ -576,6 +577,67 @@ class WebStore(unittest.TestCase):
         # Known FNV-1a 32-bit value; site/app.js implements the same function.
         self.assertEqual(store.fnv1a("a"), 0xE40C292C)
         self.assertLess(store.shard_of("com.example.app"), store.SHARDS)
+
+
+class SitemapTest(unittest.TestCase):
+    def load_site(self):
+        import importlib.util
+
+        # scripts/site.py shares its name with the stdlib "site" module, so load it by path
+        spec = importlib.util.spec_from_file_location(
+            "store_site", os.path.join(os.path.dirname(__file__), "..", "scripts", "site.py")
+        )
+        store = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(store)
+        return store
+
+    def test_lists_the_store_and_every_app_page_with_robots(self):
+        import tempfile
+        import xml.etree.ElementTree as ET
+
+        store = self.load_site()
+        apps = [
+            {
+                "bundleIdentifier": "com.a.one",
+                "versions": [{"date": "2025-01-02T10:00:00"}, {"date": "2026-03-04"}],
+            },
+            {"bundleIdentifier": "com.b&two", "versions": [{"date": "bad"}]},
+            {"bundleIdentifier": "com.c.three", "versions": []},
+        ]
+        with tempfile.TemporaryDirectory() as out:
+            store.sitemap("https://getaccretion.github.io/", apps, out)
+            ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+            rows = ET.parse(os.path.join(out, "sitemap.xml")).getroot().findall("s:url", ns)
+            urls = [r.find("s:loc", ns).text for r in rows]
+            lastmod = {r.find("s:loc", ns).text: r.find("s:lastmod", ns) for r in rows}
+            with open(os.path.join(out, "robots.txt")) as f:
+                robots = f.read()
+        self.assertEqual(
+            urls,
+            [
+                "https://getaccretion.github.io/",
+                "https://getaccretion.github.io/app/com.a.one/",
+                "https://getaccretion.github.io/app/com.c.three/",
+            ],  # com.b&two is not a safe page name, so it has no page
+        )
+        self.assertEqual(lastmod["https://getaccretion.github.io/app/com.a.one/"].text, "2026-03-04")
+        self.assertIsNone(lastmod["https://getaccretion.github.io/app/com.c.three/"])
+        self.assertEqual(
+            robots, "User-agent: *\nAllow: /\nSitemap: https://getaccretion.github.io/sitemap.xml\n"
+        )
+
+    def test_splits_into_an_index_above_the_limit(self):
+        import tempfile
+
+        store = self.load_site()
+        apps = [{"bundleIdentifier": f"com.a.app{i}", "versions": []} for i in range(5)]
+        with tempfile.TemporaryDirectory() as out, mock.patch.object(store, "SITEMAP_LIMIT", 3):
+            store.sitemap("https://x.example", apps, out)
+            with open(os.path.join(out, "sitemap.xml")) as f:
+                index = f.read()
+            files = sorted(f for f in os.listdir(out) if f.startswith("sitemap-"))
+        self.assertIn("<sitemapindex", index)
+        self.assertEqual(files, ["sitemap-1.xml", "sitemap-2.xml"])
 
 
 class SupabaseSetup(unittest.TestCase):

@@ -19,7 +19,7 @@ import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
-from common import USER_AGENT, load_json, path
+from common import USER_AGENT, hide_nsfw_icons, load_json, nsfw_icon_keys, path
 from merge import PLACEHOLDER_ICON, SITE, write_json
 
 DIR = path("cache/icons")
@@ -95,14 +95,20 @@ def main():
     }
     with ThreadPoolExecutor(24) as ex:
         new = {u: n for u, n in ex.map(mirror, sorted(urls)) if n}
+    flagged = nsfw_icon_keys()  # icons ai/images.json marks nsfw get the placeholder
+    hidden = 0
     for name, data in files.items():
+        hidden += hide_nsfw_icons(data["apps"], PLACEHOLDER_ICON, flagged, new)
         for a in data["apps"]:
             a["iconURL"] = new.get(a["iconURL"], a["iconURL"])
         write_json(name, data)
     hosted = sum(1 for n in new.values() if n != PLACEHOLDER_ICON)
     gone = sum(1 for n in new.values() if n == PLACEHOLDER_ICON)
     kept = len(urls) - hosted - gone
-    print(f"{len(urls)} icons: {hosted} hosted by Accretion, {gone} gone (placeholder), {kept} kept as is")
+    print(
+        f"{len(urls)} icons: {hosted} hosted by Accretion, {gone} gone (placeholder), {kept} kept as is; "
+        f"{hidden} flagged nsfw (placeholder)"
+    )
     if not hosted and urls:
         sys.exit("No icon could be fetched; is Pillow installed?")
 

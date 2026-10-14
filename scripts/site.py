@@ -11,7 +11,7 @@ Copies the static storefront from site/ and adds data generated from the build:
   source.json, curated.json and the card images, so the store has short links too
   app/<bundle id>/      a tiny page per app with link-preview tags (Discord, iMessage,
                         forums) that forwards to the app's page in the store
-  sitemap.xml           when SITE_URL is set (the workflow sets it from GitHub Pages)
+  sitemap.xml, robots.txt  every per-app page with its newest version date (SITE_URL, else the default)
 
 Run after merge.py. Reads _build/origins.json for where each app came from.
 """
@@ -22,7 +22,8 @@ import os
 import re
 import shutil
 
-from common import load_json, path, read_list
+from common import hide_nsfw_icons, load_json, nsfw_icon_keys, path, read_list
+from merge import PLACEHOLDER_ICON
 
 SHARDS = 128
 ACCRETION_APP = "io.github.getaccretion.Accretion"
@@ -103,18 +104,52 @@ def write_share_page(bid, title, desc, icon, name):
         f.write(page)
 
 
-def sitemap(site_url, apps):
-    urls = [f"{site_url}/"] + [
-        f"{site_url}/app/{a['bundleIdentifier']}/" for a in apps if SAFE_ID.match(a["bundleIdentifier"])
+SITE_URL = "https://getaccretion.github.io"  # used for the sitemap when SITE_URL is not set
+SITEMAP_LIMIT = 50000  # most URLs one sitemap file may list
+
+
+def newest_date(app):
+    """YYYY-MM-DD of the app's newest version, or '' when no version has a usable date"""
+    dates = [str(v.get("date") or "")[:10] for v in app.get("versions", [])]
+    return max((d for d in dates if re.match(r"^\d{4}-\d{2}-\d{2}$", d)), default="")
+
+
+def sitemap(site_url, apps, out=None):
+    """sitemap.xml (a sitemap index plus sitemap-N.xml files above 50,000 URLs) and robots.txt.
+    Lists the store and every per-app page; nothing public is blocked."""
+    out = out or OUT
+    site_url = site_url.rstrip("/")
+    entries = [(f"{site_url}/", "")] + [
+        (f"{site_url}/app/{a['bundleIdentifier']}/", newest_date(a))
+        for a in apps
+        if SAFE_ID.match(a["bundleIdentifier"])
     ]
-    with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
-        f.write(
-            '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    head = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    ns = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+
+    def urlset(items):
+        body = "".join(
+            f"<url><loc>{html.escape(u)}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>\n"
+            for u, d in items
         )
-        f.writelines(f"<url><loc>{html.escape(u)}</loc></url>\n" for u in urls)
-        f.write("</urlset>\n")
-    with open(os.path.join(OUT, "robots.txt"), "w") as f:
-        f.write(f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")
+        return f"{head}<urlset {ns}>\n{body}</urlset>\n"
+
+    def write(name, data):
+        with open(os.path.join(out, name), "w", encoding="utf-8") as f:
+            f.write(data)
+
+    if len(entries) <= SITEMAP_LIMIT:
+        write("sitemap.xml", urlset(entries))
+    else:
+        parts = [entries[i : i + SITEMAP_LIMIT] for i in range(0, len(entries), SITEMAP_LIMIT)]
+        for n, part in enumerate(parts, 1):
+            write(f"sitemap-{n}.xml", urlset(part))
+        refs = "".join(
+            f"<sitemap><loc>{html.escape(f'{site_url}/sitemap-{n}.xml')}</loc></sitemap>\n"
+            for n in range(1, len(parts) + 1)
+        )
+        write("sitemap.xml", f"{head}<sitemapindex {ns}>\n{refs}</sitemapindex>\n")
+    write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {site_url}/sitemap.xml\n")
 
 
 WEB_PICK = 8  # an app in popular.txt counts like 8 more sources carrying it
@@ -139,6 +174,10 @@ def main():
     picks = set(read_list("popular.txt"))
     stats = load_json("stats.json", {})
     extras = load_json("_build/ai_extras.json", {})  # features and tags from ai/listings.json
+    similar = load_json("ai/similar.json", {})  # bundle id -> similar bundle ids (ai_jobs.py similar)
+    known = {a["bundleIdentifier"] for a in source["apps"]}
+    # icons flagged nsfw by ai_jobs.py images show the placeholder (the app stays)
+    hide_nsfw_icons(source["apps"], PLACEHOLDER_ICON, nsfw_icon_keys())
 
     if os.path.exists(OUT):
         shutil.rmtree(OUT)
@@ -178,6 +217,7 @@ def main():
                 "i": bid,
                 "desc": a.get("localizedDescription", ""),
                 "feat": extras.get(bid, {}).get("features", []),
+                "sim": [b for b in similar.get(bid, []) if b in known and b != bid][:6],
                 "tint": a.get("tintColor", ""),
                 "shots": screenshot_urls(a)[:5],
                 "perms": a.get("appPermissions", {}),
@@ -247,9 +287,7 @@ def main():
     }
     dump("data/gone.json", gone)
     share_pages(source["apps"], gone)
-    site_url = os.environ.get("SITE_URL", "").rstrip("/")
-    if site_url:
-        sitemap(site_url, source["apps"])
+    sitemap(os.environ.get("SITE_URL", "").strip() or SITE_URL, source["apps"])
 
     # the store used to live at /Accretion/: send old links and saved home screen icons home
     legacy = os.path.join(OUT, "Accretion")

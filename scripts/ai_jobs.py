@@ -3,6 +3,9 @@
   listings --limit N   clean store text (subtitle, description, features, category, tags) -> ai/listings.json
   moderate --limit N   flag unsafe community posts for the moderators (never hides or deletes a post)
   sources  --limit N   sort newly found source URLs into real app sources and junk -> ai/sources.json
+  similar  --limit N   free Gemini embeddings -> ai/embeddings.json (cache), ai/similar.json (6 similar apps
+                       per app) and ai/duplicates.json (near-identical pairs, for the owner to review)
+  images   --limit N   Gemini checks each app icon -> ai/images.json (nsfw icons get the placeholder)
   models               test the free models on ai/eval/listings.json and keep the best four in ai/models.json
 
 Keys: GEMINI_API_KEY, OPENROUTER_API_KEY; moderate also needs SUPABASE_ACCESS_TOKEN. Every job saves
@@ -10,8 +13,13 @@ as it goes, so a timeout keeps the progress made.
 """
 
 import argparse
+import array
+import base64
 import datetime
+import hashlib
+import heapq
 import json
+import math
 import os
 import re
 import sys
@@ -19,7 +27,8 @@ import urllib.error
 import urllib.request
 
 import llm
-from common import path
+from common import USER_AGENT, icon_key, path
+from merge import PLACEHOLDER_ICON
 from sanitize import CATEGORIES, MAX_DESCRIPTION, src_hash, text
 
 SAVE_EVERY = 25
@@ -213,6 +222,195 @@ def sources(limit):
     return 0
 
 
+# --- similar apps (free Gemini embeddings) ---
+
+DIMS = 256
+TOP = 6  # similar apps kept per app
+DUPLICATE_AT = 0.97  # cosine similarity from which two different apps are listed as duplicates
+MAX_DUPLICATES = 300
+
+
+def embed_text(app, listings):
+    """What an app is about: name, category, subtitle and the start of the description. Uses the
+    AI-cleaned listing when it was written from this source text, else the source text."""
+    entry = listings.get(app["bundleIdentifier"])
+    if entry and entry.get("src_hash") == src_hash(
+        app["name"], app.get("localizedDescription", ""), app["category"]
+    ):
+        subtitle, desc, cat = entry.get("subtitle", ""), entry.get("description", ""), entry["category"]
+    else:
+        subtitle, desc, cat = app.get("subtitle", ""), app.get("localizedDescription", ""), app["category"]
+    return f"{app['name']}. {cat}. {subtitle}. {desc[:400]}"
+
+
+def quantize(vec):
+    """(scale, base64 of int8 values): about a quarter of the size of the floats, 1% error"""
+    peak = max((abs(x) for x in vec), default=0) or 1.0
+    scale = peak / 127
+    return scale, base64.b64encode(array.array("b", [round(x / scale) for x in vec]).tobytes()).decode()
+
+
+def dequantize(scale, data):
+    return [x * scale for x in array.array("b", base64.b64decode(data))]
+
+
+def unit(vec):
+    norm = math.sqrt(sum(x * x for x in vec)) or 1.0
+    return [x / norm for x in vec]
+
+
+def top_similar(vectors, k=TOP, duplicate_at=DUPLICATE_AT):
+    """({id: [up to k most similar other ids, best first]}, [(a, b, similarity) at or above duplicate_at])
+    from {id: vector}. Cosine similarity, every pair once."""
+    ids = sorted(vectors)
+    vecs = [unit(vectors[i]) for i in ids]
+    heaps = [[] for _ in ids]  # per app: min-heap of (similarity, other index)
+    dups = []
+    for a in range(len(ids)):
+        va = vecs[a]
+        for b in range(a + 1, len(ids)):
+            sim = sum(map(float.__mul__, va, vecs[b]))
+            for heap, other in ((heaps[a], b), (heaps[b], a)):
+                if len(heap) < k:
+                    heapq.heappush(heap, (sim, other))
+                elif sim > heap[0][0]:
+                    heapq.heapreplace(heap, (sim, other))
+            if sim >= duplicate_at:
+                dups.append((ids[a], ids[b], round(sim, 4)))
+    result = {
+        ids[a]: [ids[o] for _, o in sorted(heaps[a], key=lambda t: (-t[0], ids[t[1]]))]
+        for a in range(len(ids))
+    }
+    return result, sorted(dups, key=lambda t: (-t[2], t[0], t[1]))
+
+
+def similar(limit):
+    apps = load("source.json", {"apps": []})["apps"]
+    listings = load("ai/listings.json", {})
+    cache = load("ai/embeddings.json", {})
+    texts = {a["bundleIdentifier"]: embed_text(a, listings) for a in apps}
+    cache = {b: v for b, v in cache.items() if b in texts}  # apps that left the store drop out
+    hashes = {b: hashlib.sha256(t.encode()).hexdigest() for b, t in texts.items()}
+    todo = [b for b in sorted(texts) if cache.get(b, {}).get("h") != hashes[b]]
+    done = 0
+    for i in range(0, min(len(todo), limit), llm.EMBED_BATCH):
+        batch = todo[i : min(i + llm.EMBED_BATCH, limit)]
+        vectors = llm.embed([texts[b] for b in batch], DIMS)
+        if vectors is None:
+            break  # busy or no key: keep what we have, go on next run
+        for b, vec in zip(batch, vectors, strict=True):
+            scale, data = quantize(vec)
+            cache[b] = {"h": hashes[b], "s": scale, "q": data}
+        done += len(batch)
+        save("ai/embeddings.json", cache)
+    save("ai/embeddings.json", cache)
+    ready = {b: dequantize(v["s"], v["q"]) for b, v in cache.items() if v["h"] == hashes.get(b)}
+    have = load("ai/similar.json", None)
+    if done or have is None or set(have) != set(ready):
+        result, dups = top_similar(ready)
+        save("ai/similar.json", result)
+        save("ai/duplicates.json", [list(d) for d in dups[:MAX_DUPLICATES]])
+    else:
+        dups = load("ai/duplicates.json", [])
+    print(
+        f"similar: {done} embedded, {len(todo) - done} left, {len(ready)} apps compared, "
+        f"{len(dups)} duplicate pair(s)"
+    )
+    return 0
+
+
+# --- icon checks (free Gemini vision) ---
+
+IMAGE_TYPES = ("image/png", "image/jpeg", "image/webp", "image/gif")
+IMAGE_MAX_BYTES = 2 * 1024 * 1024
+IMAGE_STATUSES = ["ok", "broken", "placeholder", "nsfw"]
+IMAGE_SCHEMA = {"status": IMAGE_STATUSES, "note": "str"}
+IMAGE_SYSTEM = (
+    "You check the icon of an iOS app in an app store. Reply status ok for a normal app icon. broken: "
+    "the picture is empty, a solid color, an error page or corrupted. placeholder: a generic stand-in "
+    "such as a default silhouette, a gray box, a question mark or a missing-image symbol. nsfw: "
+    "sexually explicit or graphically violent content. note: one short sentence saying why."
+)
+RETRY_BROKEN_DAYS = 14  # a download failure may be temporary: check again after this long
+
+
+def fetch_image(url):
+    """(mime, bytes) of an icon, or (None, reason) when it can't be fetched as a small image"""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/*"})
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            mime = (r.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+            if mime not in IMAGE_TYPES:
+                return None, f"download is not an image ({mime or 'no type'})"
+            data = r.read(IMAGE_MAX_BYTES + 1)
+    except urllib.error.HTTPError as e:
+        return None, f"download answered {e.code}"
+    except (urllib.error.URLError, TimeoutError, OSError, ValueError) as e:
+        return None, f"download failed ({type(e).__name__})"
+    if len(data) > IMAGE_MAX_BYTES:
+        return None, "download is larger than 2 MB"
+    if not data:
+        return None, "download is empty"
+    return mime, data
+
+
+def check_image(url):
+    """The entry for ai/images.json, or None when no Gemini model answered"""
+    mime, data = fetch_image(url)
+    if mime is None:
+        return {"status": "broken", "note": data[:120], "model": "", "date": today(), "url": url}
+    verdict = llm.ask_image("images", IMAGE_SYSTEM, "Check this app icon.", mime, data, IMAGE_SCHEMA)
+    if verdict is None:
+        return None
+    note = re.sub(r"\s+", " ", str(verdict["note"])).strip()[:120]
+    return {"status": verdict["status"], "note": note, "model": llm.last_model, "date": today(), "url": url}
+
+
+def gemini_all_busy():
+    gem = [m for m in llm.config().get("order", []) if m.startswith("gemini:") and llm.usable(m)]
+    return not gem or all(m in llm.busy for m in gem)
+
+
+def image_due(entry):
+    """True for an icon never checked, or one whose download failed a while ago"""
+    if not entry:
+        return True
+    if entry.get("status") != "broken" or not str(entry.get("note", "")).startswith("download"):
+        return False
+    age = datetime.date.fromisoformat(today()) - datetime.date.fromisoformat(entry.get("date", today()))
+    return age.days >= RETRY_BROKEN_DAYS
+
+
+def images(limit):
+    apps = load("source.json", {"apps": []})["apps"]
+    have = load("ai/images.json", {})
+    urls = sorted({a["iconURL"] for a in apps if a.get("iconURL") and a["iconURL"] != PLACEHOLDER_ICON})
+    todo = [u for u in urls if image_due(have.get(icon_key(u)))]
+    done = skipped = 0
+    for url in todo[:limit]:
+        entry = check_image(url)
+        if entry:
+            have[icon_key(url)] = entry
+            done += 1
+            if done % SAVE_EVERY == 0:
+                save("ai/images.json", have)
+        else:
+            skipped += 1
+            if gemini_all_busy():
+                break
+    save("ai/images.json", have)
+    live = {icon_key(u) for u in urls}
+    counts = {
+        s: sum(1 for k, v in have.items() if k in live and v.get("status") == s) for s in IMAGE_STATUSES
+    }
+    print(f"images: {done} checked, {skipped} skipped, {len(todo) - done - skipped} left")
+    print(
+        f"images: {counts['ok']} ok, {counts['nsfw']} nsfw (placeholder icon), {counts['broken']} broken "
+        f"and {counts['placeholder']} placeholder (for the owner, see ai/images.json)"
+    )
+    return 0
+
+
 def get_json(url, headers=None):
     req = urllib.request.Request(url, headers=headers or {})
     with urllib.request.urlopen(req, timeout=60) as r:
@@ -306,13 +504,20 @@ def models():
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("job", choices=["listings", "moderate", "sources", "models"])
+    ap.add_argument("job", choices=["listings", "moderate", "sources", "similar", "images", "models"])
     ap.add_argument("--limit", type=int, default=None)
     args = ap.parse_args()
     if args.job == "models":
         return models()
-    default = {"listings": 150, "moderate": 200, "sources": 50}[args.job]
-    return {"listings": listings, "moderate": moderate, "sources": sources}[args.job](args.limit or default)
+    default = {"listings": 150, "moderate": 200, "sources": 50, "similar": 10000, "images": 100}[args.job]
+    jobs = {
+        "listings": listings,
+        "moderate": moderate,
+        "sources": sources,
+        "similar": similar,
+        "images": images,
+    }
+    return jobs[args.job](args.limit or default)
 
 
 if __name__ == "__main__":

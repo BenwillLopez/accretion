@@ -1133,6 +1133,8 @@
     }
     const sameDev = state.apps.filter((x) => x.d === a.d && x.i !== a.i).sort((x, y) => (x.t < y.t ? 1 : -1)).slice(0, SHELF);
     const similar = state.apps.filter((x) => x.c === a.c && x.i !== a.i && x.d !== a.d && x.c !== "other").sort((x, y) => (x.t < y.t ? 1 : -1)).slice(0, SHELF);
+    const simApps = (d.sim || []).map((id) => state.byId.get(id)).filter(Boolean);
+    out.push(shelf("Similar apps", "by what they do", simApps, null));
     out.push(shelf(`More from ${a.d}`, null, sameDev, null));
     out.push(shelf(`More ${CATEGORY_NAMES[a.c] || ""}`.trim(), "recently updated", similar, homeHash({ q: "", c: a.c, s: "updated", src: null, fit: state.f.fit, saved: false })));
     out.push(

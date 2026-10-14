@@ -4,12 +4,15 @@ ask() tries the models in ai/models.json in order and returns the first usable a
 A model that answers 429 (rate limited), 503 (busy) or 404 (gone) is skipped for the rest of the
 run. Providers without a key (GEMINI_API_KEY, OPENROUTER_API_KEY) are skipped. Only free models are
 ever called: OpenRouter ids must end in ":free". llm.last_model names the model that answered.
+embed() gives free Gemini embeddings; ask_image() asks the Gemini models about one image.
 """
 
+import base64
 import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -141,5 +144,107 @@ def ask(task, system, user, schema=None, max_tokens=800):
             if data is not None:
                 last_model = spec
                 return data
+            prompt = f"{user}\n\nYour last reply was rejected: {error}. Reply with valid JSON only."
+    return None
+
+
+EMBED_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents"
+EMBED_BATCH = 100  # most texts one request may carry
+EMBED_PAUSE = 20  # seconds to wait before the one retry after a 429 or 503
+
+
+def embed(texts, dims=256, pause=EMBED_PAUSE):
+    """One vector (list of floats) per text from the free Gemini embedding model, or None when the
+    key is missing or the model stays busy (429/503: one retry after a pause) or fails."""
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key:
+        return None
+    out = []
+    for i in range(0, len(texts), EMBED_BATCH):
+        chunk = texts[i : i + EMBED_BATCH]
+        body = {
+            "requests": [
+                {
+                    "model": "models/gemini-embedding-001",
+                    "content": {"parts": [{"text": t}]},
+                    "outputDimensionality": dims,
+                }
+                for t in chunk
+            ]
+        }
+        for attempt in range(2):
+            try:
+                data = post(EMBED_URL, {"x-goog-api-key": key}, body)
+                vectors = [e["values"] for e in data["embeddings"]]
+                if len(vectors) != len(chunk):
+                    raise ValueError("wrong number of embeddings")
+                out.extend(vectors)
+                break
+            except urllib.error.HTTPError as e:
+                print(f"llm[embed]: answered {e.code}", file=sys.stderr)
+                if e.code in (429, 503) and attempt == 0:
+                    time.sleep(pause)
+                    continue
+                return None
+            except (urllib.error.URLError, KeyError, IndexError, ValueError, TimeoutError, OSError) as e:
+                print(f"llm[embed]: failed ({type(e).__name__})", file=sys.stderr)
+                return None
+    return out
+
+
+def call_image(spec, system, user, mime, data, max_tokens):
+    """One Gemini request with an inline image: the answer text."""
+    model = spec.partition(":")[2]
+    key = os.environ.get(KEYS["gemini"], "").strip()
+    body = {
+        "systemInstruction": {"parts": [{"text": system}]},
+        "contents": [
+            {
+                "role": "user",
+                "parts": [
+                    {"text": user},
+                    {"inlineData": {"mimeType": mime, "data": base64.b64encode(data).decode()}},
+                ],
+            }
+        ],
+        "generationConfig": {"maxOutputTokens": max_tokens * 4},
+    }
+    out = post(GEMINI_URL.format(model), {"x-goog-api-key": key}, body)
+    parts = out["candidates"][0]["content"]["parts"]
+    return "".join(p.get("text", "") for p in parts).strip()
+
+
+def ask_image(task, system, user, mime, data, schema, max_tokens=200):
+    """Like ask() for one image and a JSON schema; only Gemini models from ai/models.json are used.
+    Returns the dict or None."""
+    global last_model
+    last_model = None
+    system += (
+        "\n\nReply with one JSON object only, no markdown fences and no other text. Keys: "
+        + ", ".join(
+            f"{k} ({'one of ' + '/'.join(map(str, s)) if isinstance(s, (list, tuple, set)) else s})"
+            for k, s in schema.items()
+        )
+        + "."
+    )
+    for spec in config().get("order", []):
+        if not spec.startswith("gemini:") or spec in busy or not usable(spec):
+            continue
+        prompt = user
+        for _ in range(2):
+            try:
+                raw = call_image(spec, system, prompt, mime, data, max_tokens)
+            except urllib.error.HTTPError as e:
+                if e.code in BUSY_CODES:
+                    busy.add(spec)
+                print(f"llm[{task}]: {spec} answered {e.code}", file=sys.stderr)
+                break
+            except (urllib.error.URLError, KeyError, IndexError, ValueError, TimeoutError, OSError) as e:
+                print(f"llm[{task}]: {spec} failed ({type(e).__name__})", file=sys.stderr)
+                break
+            parsed, error = parse(raw, schema)
+            if parsed is not None:
+                last_model = spec
+                return parsed
             prompt = f"{user}\n\nYour last reply was rejected: {error}. Reply with valid JSON only."
     return None

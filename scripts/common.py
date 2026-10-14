@@ -1,6 +1,7 @@
 """Helpers shared by discover.py and merge.py."""
 
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -98,3 +99,30 @@ def date_key(d):
         return ""
     y, mo, da, t = m.groups()
     return f"{y}-{int(mo):02d}-{int(da):02d}T{t or '00:00'}"
+
+
+def icon_key(url):
+    """Key of an icon URL in ai/images.json"""
+    return hashlib.sha256(str(url).encode()).hexdigest()
+
+
+def nsfw_icon_keys():
+    """icon_key()s of the icons the images job flagged as nsfw"""
+    data = load_json("ai/images.json", {})
+    return {k for k, v in data.items() if isinstance(v, dict) and v.get("status") == "nsfw"}
+
+
+def hide_nsfw_icons(apps, placeholder, keys, mirrored=None):
+    """Give apps whose icon is flagged the placeholder icon (never drops an app). An icon counts as
+    flagged by its own URL or by the URL it is mirrored to (mirrored: original -> new). Returns how many."""
+    n = 0
+    for a in apps:
+        url = a.get("iconURL")
+        if (
+            url
+            and url != placeholder
+            and (icon_key(url) in keys or icon_key((mirrored or {}).get(url)) in keys)
+        ):
+            a["iconURL"] = placeholder
+            n += 1
+    return n
