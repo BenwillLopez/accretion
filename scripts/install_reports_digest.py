@@ -5,12 +5,14 @@ OpenRouter model to group them by likely cause, and prints Markdown (the workflo
 job summary and a GitHub issue). Only the report fields go to the model: app version, iOS version,
 install mode, stage, the app's bundle ID and the diagnostic text. Never the reporter's account ID.
 
-Needs SUPABASE_ACCESS_TOKEN and OPENROUTER_API_KEY. DIGEST_MODEL picks the model.
+Needs SUPABASE_ACCESS_TOKEN, and GEMINI_API_KEY (free, tried first; GEMINI_MODEL picks the model) or
+OPENROUTER_API_KEY (DIGEST_MODEL picks the model).
 """
 
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -18,6 +20,40 @@ from common import path
 from supabase_setup import sql
 
 MODEL = os.environ.get("DIGEST_MODEL", "google/gemini-2.5-flash")
+
+
+def gemini(system, user, max_tokens):
+    """Google Gemini (free tier, GEMINI_API_KEY): the text, or None when there's no key or it fails"""
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key:
+        return None
+    model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
+    body = {
+        "systemInstruction": {"parts": [{"text": system}]},
+        "contents": [{"role": "user", "parts": [{"text": user}]}],
+        # the model reasons before answering, and that counts against the limit
+        "generationConfig": {"maxOutputTokens": max_tokens * 4},
+    }
+    req = urllib.request.Request(
+        f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+        data=json.dumps(body).encode(),
+        method="POST",
+        headers={"x-goog-api-key": key, "Content-Type": "application/json"},
+    )
+    for attempt in range(2):  # one retry: the free tier answers 503 when busy
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                parts = json.loads(r.read())["candidates"][0]["content"]["parts"]
+            return "".join(p.get("text", "") for p in parts).strip() or None
+        except urllib.error.HTTPError as e:
+            if e.code != 503 or attempt:
+                return None
+            time.sleep(10)
+        except (urllib.error.URLError, KeyError, IndexError, ValueError):
+            return None
+    return None
+
+
 MODES = {0: "Fully Local", 1: "Semi Local", 2: "Offline"}
 PROMPT = """You review install problem reports from Accretion, an iOS sideloading app.
 Each report has the Accretion version, iOS version, install mode, the stage the install stopped at,
@@ -33,9 +69,12 @@ Plain words, no speculation beyond the evidence, under 250 words."""
 
 
 def ask(reports):
+    text = gemini(PROMPT, json.dumps(reports, ensure_ascii=False)[:60000], 900)
+    if text:
+        return text
     key = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if not key:
-        return "_OPENROUTER_API_KEY isn't set, so there's no AI summary. The raw counts are below._"
+        return "_No AI key worked (GEMINI_API_KEY, OPENROUTER_API_KEY), so no summary. Raw counts below._"
     body = {
         "model": MODEL,
         "max_tokens": 900,

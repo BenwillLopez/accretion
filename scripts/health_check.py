@@ -88,6 +88,26 @@ def supabase_link(url, key, p):
         return f"{url}/storage/v1{json.load(r)['signedURL']}"
 
 
+def google_sign_in(url):
+    """Google sign-in reaches Google's account page (not "Access blocked", e.g. redirect_uri_mismatch
+    when the OAuth client in Google Cloud loses Supabase's callback address)"""
+    start = f"{url}/auth/v1/authorize?provider=google&redirect_to=https://getaccretion.github.io/"
+    req = urllib.request.Request(start, headers={"User-Agent": "Mozilla/5.0 (accretion health check)"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            final, body = r.geturl(), r.read(200000).decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        final, body = e.geturl() or "", e.read(200000).decode("utf-8", "replace")
+    except OSError as e:
+        return f"FAIL: Google sign-in unreachable ({type(e).__name__})"
+    if "oauth/error" in final or "redirect_uri_mismatch" in body or "invalid_client" in body:
+        return "FAIL: Google sign-in is blocked by Google (check the OAuth client's redirect URIs)"
+    if "accounts.google.com" not in final:
+        host = urllib.parse.urlsplit(final).netloc or "no answer"
+        return f"FAIL: Google sign-in didn't reach Google ({host})"
+    return "- ok: Google sign-in reaches Google's account page"
+
+
 def main():
     with open(path("supabase/project.json"), encoding="utf-8") as f:
         url = json.load(f)["url"].rstrip("/")
@@ -128,6 +148,8 @@ def main():
     ):
         level = "WARN" if used >= WARN_AT * limit else "- ok"
         lines.append(f"{level}: {label} {used:.0f} MB of {limit} MB ({used / limit:.0%})")
+
+    lines.append(google_sign_in(url))
 
     left = (AWS_FREE_PLAN_ENDS - datetime.datetime.now(datetime.timezone.utc).date()).days
     level = "WARN" if left <= WARN_DAYS else "- ok"
