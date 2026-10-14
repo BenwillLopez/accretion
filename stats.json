@@ -1,154 +1,154 @@
 {
- "apps": 4275,
- "curated_apps": 726,
+ "apps": 4286,
+ "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 02:10 UTC",
- "size_mb": 5.0,
- "built_at": "2026-10-14T02:10:23Z",
+ "updated": "2026-10-14 04:01 UTC",
+ "size_mb": 4.9,
+ "built_at": "2026-10-14T04:01:15Z",
  "sources_total": 163,
- "sources_cached": 5,
+ "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23595,
- "duplicates": 1674,
- "rejected": 6595,
+ "listings": 23768,
+ "duplicates": 1803,
+ "rejected": 6588,
  "excluded": 57,
- "dead_links_removed": 8661,
+ "dead_links_removed": 8651,
  "links_on_hold": 0,
- "developers": 703,
- "updated_7d": 731,
- "updated_30d": 1196,
+ "developers": 700,
+ "updated_7d": 878,
+ "updated_30d": 1282,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2103,
-  "games": 987,
-  "utilities": 341,
-  "photo-video": 320,
-  "entertainment": 222,
-  "lifestyle": 126,
-  "developer": 108,
-  "social": 68
+  "other": 2140,
+  "games": 962,
+  "photo-video": 332,
+  "utilities": 328,
+  "entertainment": 210,
+  "lifestyle": 128,
+  "developer": 120,
+  "social": 66
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3378
+   "apps": 3552
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 549
-  },
-  {
-   "name": "Altmaker by RipeStore",
-   "apps": 130
+   "apps": 534
   },
   {
    "name": "MySign IPA's",
    "apps": 101
   },
   {
-   "name": "AltGallery",
-   "apps": 21
+   "name": "Quark Source++",
+   "apps": 9
+  },
+  {
+   "name": "iDevPatcher",
+   "apps": 8
   }
  ],
  "recent": [
   {
    "name": "Accretion",
-   "version": "1.0.28",
+   "version": "1.0.29",
    "date": "2026-10-14"
   },
   {
-   "name": "COD4iOS",
-   "version": "1.0.4",
-   "date": "2026-10-13"
+   "name": "Nuvio",
+   "version": "0.5.10",
+   "date": "2026-10-14"
   },
   {
-   "name": "Edge",
-   "version": "0.11.3",
-   "date": "2026-10-13"
+   "name": "iTorrent",
+   "version": "2.2.0-1",
+   "date": "2026-10-14"
   },
   {
-   "name": "SideInstaller",
-   "version": "1.5.0",
-   "date": "2026-10-13"
+   "name": "Gopeed-v1.8.3-ios",
+   "version": "1.9.3",
+   "date": "2026-10-14"
   },
   {
-   "name": "Ito",
-   "version": "1.0.0",
-   "date": "2026-10-13"
+   "name": "Flappy Bird",
+   "version": "4.5",
+   "date": "2026-10-14"
   },
   {
-   "name": "Dayline",
-   "version": "1.10.14",
-   "date": "2026-10-13"
+   "name": "Ready",
+   "version": "1.6.1",
+   "date": "2026-10-14"
   },
   {
-   "name": "VidGrab",
-   "version": "1.3.6",
-   "date": "2026-10-13"
+   "name": "VCMI",
+   "version": "1.7.5",
+   "date": "2026-10-14"
   },
   {
-   "name": "NOOP",
-   "version": "12.1.0",
-   "date": "2026-10-13"
+   "name": "Yattee",
+   "version": "2.0.0",
+   "date": "2026-10-14"
   }
  ],
  "timeline": [
   {
    "month": "2024-11",
-   "apps": 1893
+   "apps": 1892
   },
   {
    "month": "2024-12",
-   "apps": 1991
+   "apps": 1990
   },
   {
    "month": "2025-01",
-   "apps": 2192
+   "apps": 2191
   },
   {
    "month": "2025-02",
-   "apps": 2248
+   "apps": 2247
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2425
+   "apps": 2424
   },
   {
    "month": "2025-08",
-   "apps": 2511
+   "apps": 2510
   },
   {
    "month": "2025-09",
-   "apps": 2561
+   "apps": 2560
   },
   {
    "month": "2025-10",
-   "apps": 2626
+   "apps": 2625
   },
   {
    "month": "2025-11",
-   "apps": 2688
+   "apps": 2687
   },
   {
    "month": "2025-12",
-   "apps": 2822
+   "apps": 2821
   },
   {
    "month": "2026-01",
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3505
+   "apps": 3504
   },
   {
    "month": "2026-05",
-   "apps": 3580
+   "apps": 3579
   },
   {
    "month": "2026-06",
@@ -180,7 +180,7 @@
   },
   {
    "month": "2026-08",
-   "apps": 3862
+   "apps": 3861
   },
   {
    "month": "2026-09",
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4275
+   "apps": 4286
   }
  ],
- "new_30d": 383,
- "new_12m": 1693
+ "new_30d": 395,
+ "new_12m": 1705
 }
