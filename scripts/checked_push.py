@@ -134,6 +134,26 @@ def publish(profile, *, repo, cwd=None, runner=subprocess.run, timeout=2400, pol
         raise RuntimeError(f"Validation timed out; retained {branch}")
     if current_main() != base:
         raise RuntimeError(f"Main changed during validation; retained {branch}, no rebase performed")
+    # Manual workflow job checks are not evaluated by branch rulesets. Transport only
+    # these already-verified results as commit statuses, linking each actual run.
+    # Do not report any context until every workflow and required job above passed.
+    for workflow, identifier in runs.items():
+        for context in sorted(PROFILES[profile][workflow]):
+            command(
+                "gh",
+                "api",
+                "--method",
+                "POST",
+                f"repos/{repo}/statuses/{sha}",
+                "-f",
+                "state=success",
+                "-f",
+                f"context={context}",
+                "-f",
+                f"description=Validated {workflow} run {identifier}",
+                "-f",
+                f"target_url=https://github.com/{repo}/actions/runs/{identifier}",
+            )
     # A concurrent update after the fetch is still rejected by the ordinary fast-forward push.
     git("push", "origin", sha + ":refs/heads/main")
     print(f"Published validated commit {sha[:12]} to main", flush=True)

@@ -17,6 +17,7 @@ on:
 
 permissions:
   actions: write
+  statuses: write
   contents: write
   pages: write
   id-token: write
