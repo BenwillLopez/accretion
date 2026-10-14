@@ -53,6 +53,7 @@ class CheckedPush(unittest.TestCase):
         self.statuses = []
         self.status_api_error = False
         self.failed_workflow = ""
+        self.delete_error = False
 
     def git(self, *args, cwd=None):
         return subprocess.check_output(
@@ -74,6 +75,8 @@ class CheckedPush(unittest.TestCase):
             if self.push_race and args[1] == "push" and args[-1].endswith(":refs/heads/main"):
                 self.push_race = False
                 self.advance_remote()
+            if self.delete_error and args[1] == "push" and "--delete" in args:
+                return subprocess.CompletedProcess(args, 1, stdout="", stderr="fictional denied")
             return subprocess.run(args, **kwargs)
         self.assertEqual(args[0], "gh")
         if args[1:3] == ["workflow", "run"]:
@@ -135,6 +138,22 @@ class CheckedPush(unittest.TestCase):
         self.publish()
         self.assertEqual(self.remote_main(), self.sha)
         self.assertEqual([wf for wf, _ in self.dispatched], ["ci.yml"])
+
+    def automation_branches(self):
+        return self.git(
+            "--git-dir", str(self.remote), "for-each-ref", "--format=%(refname)", "refs/heads/automation/"
+        )
+
+    def test_successful_publication_deletes_its_validation_branch(self):
+        self.publish()
+        self.assertEqual(self.remote_main(), self.sha)
+        self.assertEqual(self.automation_branches().strip(), "")
+
+    def test_failed_branch_cleanup_never_fails_a_publication(self):
+        self.delete_error = True
+        self.publish()
+        self.assertEqual(self.remote_main(), self.sha)
+        self.assert_retained()
 
     def test_failed_checks_do_not_change_main_and_retain_generated_branch(self):
         self.failure = True

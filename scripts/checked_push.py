@@ -157,6 +157,13 @@ def publish(profile, *, repo, cwd=None, runner=subprocess.run, timeout=2400, pol
     # A concurrent update after the fetch is still rejected by the ordinary fast-forward push.
     git("push", "origin", sha + ":refs/heads/main")
     print(f"Published validated commit {sha[:12]} to main", flush=True)
+    # main now holds this commit, so its validation branch has done its job. Failed or unverified
+    # publications return earlier and keep theirs for recovery. Best effort: never fails a publish.
+    try:
+        git("push", "origin", "--delete", branch)
+        print(f"Deleted {branch}", flush=True)
+    except RuntimeError:
+        print(f"Couldn't delete {branch}; it is safe to delete by hand", flush=True)
     return branch
 
 
