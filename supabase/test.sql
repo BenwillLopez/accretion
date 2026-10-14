@@ -306,6 +306,9 @@ do $$ begin
 end $$;
 rollback;
 begin;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+insert into public.posts (body) values ('cheap followers at spam.example');
+reset role;
 set local role service_role;
 select public.ai_report((select max(id) from public.posts), 'spam');
 do $$ begin
@@ -318,11 +321,12 @@ do $$ begin
 end $$;
 rollback;
 begin;
-select pg_temp.as_user('00000000-0000-0000-0000-00000000000b');
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000c');
+insert into public.posts (body) values ('a normal post');
 insert into public.reports (post_id, reason) values ((select max(id) from public.posts), 'AI: pretend');
 reset role;
 do $$ begin
-  assert (select reporter from public.reports where reason = 'AI: pretend') = '00000000-0000-0000-0000-00000000000b', 'users cannot pose as the AI';
+  assert (select reporter from public.reports where reason = 'AI: pretend') = '00000000-0000-0000-0000-00000000000c', 'users cannot pose as the AI';
 end $$;
 rollback;
 

@@ -368,6 +368,9 @@ language plpgsql security definer set search_path = public as $$
 declare
   rid bigint;
 begin
+  if not exists (select 1 from public.posts where id = p_post_id) then
+    return null;
+  end if;
   if exists (select 1 from public.reports where post_id = p_post_id and reporter is null and status = 'open') then
     return null;
   end if;
