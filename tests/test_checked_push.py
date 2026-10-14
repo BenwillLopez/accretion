@@ -50,6 +50,9 @@ class CheckedPush(unittest.TestCase):
         self.push_race = False
         self.queued = False
         self.missing_job = False
+        self.statuses = []
+        self.status_api_error = False
+        self.failed_workflow = ""
 
     def git(self, *args, cwd=None):
         return subprocess.check_output(
@@ -93,7 +96,9 @@ class CheckedPush(unittest.TestCase):
                     "headBranch": branch,
                     "event": "workflow_dispatch",
                     "status": "in_progress" if self.queued else "completed",
-                    "conclusion": "failure" if self.failure else "success",
+                    "conclusion": "failure"
+                    if self.failure or workflow == self.failed_workflow
+                    else "success",
                     "jobs": [
                         {"name": name, "status": "completed", "conclusion": "success"} for name in required
                     ],
@@ -102,6 +107,13 @@ class CheckedPush(unittest.TestCase):
             if self.race:
                 self.race = False
                 self.advance_remote()
+        elif args[1] == "api":
+            self.assertNotIn("-R", args)
+            fields = dict(args[index + 1].split("=", 1) for index, value in enumerate(args) if value == "-f")
+            self.statuses.append((args[4], fields))
+            if self.status_api_error:
+                return subprocess.CompletedProcess(args, 1, stdout="", stderr="fictional denied")
+            data = "{}"
         else:
             self.fail(f"Unexpected gh operation: {args[1:3]}")
         return subprocess.CompletedProcess(args, 0, stdout=data, stderr="")
@@ -130,18 +142,21 @@ class CheckedPush(unittest.TestCase):
             self.publish()
         self.assertEqual(self.remote_main(), self.base)
         self.assert_retained()
+        self.assertEqual(self.statuses, [])
 
     def test_sha_mismatch_fails_before_main_push(self):
         self.bad_sha = True
         with self.assertRaises(RuntimeError):
             self.publish()
         self.assertEqual(self.remote_main(), self.base)
+        self.assertEqual(self.statuses, [])
 
     def test_successful_run_with_missing_required_jobs_does_not_publish(self):
         self.missing_job = True
         with self.assertRaises(RuntimeError):
             self.publish()
         self.assertEqual(self.remote_main(), self.base)
+        self.assertEqual(self.statuses, [])
 
     def test_remote_main_race_during_checks_does_not_rebase_or_overwrite(self):
         self.race = True
@@ -174,10 +189,44 @@ class CheckedPush(unittest.TestCase):
         self.publish("app")
         self.assertEqual(self.remote_main(), self.sha)
         self.assertEqual([wf for wf, _ in self.dispatched], ["release.yml", "tests.yml"])
+        links = {fields["context"]: fields["target_url"] for _, fields in self.statuses}
+        self.assertEqual(
+            links,
+            {
+                "build": "https://github.com/Example/project/actions/runs/1",
+                "core": "https://github.com/Example/project/actions/runs/2",
+                "scripts": "https://github.com/Example/project/actions/runs/2",
+            },
+        )
 
     def test_mods_validates_its_ci_workflow(self):
         self.publish("mods")
         self.assertEqual(self.remote_main(), self.sha)
+        self.assertEqual([fields["context"] for _, fields in self.statuses], ["check"])
+
+    def test_verified_results_are_reported_as_commit_statuses_for_exact_sha(self):
+        self.publish()
+        self.assertEqual({fields["context"] for _, fields in self.statuses}, {"test", "database", "edge"})
+        for endpoint, fields in self.statuses:
+            self.assertEqual(endpoint, f"repos/Example/project/statuses/{self.sha}")
+            self.assertEqual(fields["state"], "success")
+            self.assertEqual(fields["target_url"], "https://github.com/Example/project/actions/runs/1")
+            self.assertIn("ci.yml run 1", fields["description"])
+
+    def test_status_api_failure_prevents_main_publication(self):
+        self.status_api_error = True
+        with self.assertRaises(RuntimeError):
+            self.publish()
+        self.assertEqual(self.remote_main(), self.base)
+        self.assertEqual(len(self.statuses), 1)
+        self.assert_retained()
+
+    def test_no_statuses_are_reported_if_later_app_validation_fails(self):
+        self.failed_workflow = "tests.yml"
+        with self.assertRaises(RuntimeError):
+            self.publish("app")
+        self.assertEqual(self.statuses, [])
+        self.assertEqual(self.remote_main(), self.base)
 
 
 if __name__ == "__main__":
