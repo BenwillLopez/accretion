@@ -25,6 +25,7 @@ on:
         default: false
 
 permissions:
+  actions: write
   contents: write
   pages: write
   id-token: write
@@ -40,7 +41,7 @@ jobs:
   setup:
     needs: verify
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     env:
       HAS_APPLE_KEY: ${{ secrets.APPLE_PRIVATE_KEY != '' }}
     steps:
@@ -135,14 +136,15 @@ jobs:
           npx --yes supabase@2.120.0 functions deploy download source upload manifest \
             --project-ref "$ref" --no-verify-jwt --use-api
       - name: Save public settings
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [ -z "$(git status --porcelain -- supabase/project.json)" ]; then echo "No changes."; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add supabase/project.json
-          git commit -m "Community: save Supabase project settings"
-          git pull --rebase -X theirs origin main
-          git push
+          git commit -m "Community: save Supabase project settings" -m "Co-Authored-By: Codex <noreply@openai.com>"
+          python scripts/checked_push.py store
 
   publish:
     needs: setup
