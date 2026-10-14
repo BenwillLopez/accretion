@@ -2,9 +2,9 @@
  "apps": 4273,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 06:34 UTC",
+ "updated": "2026-10-14 06:56 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T06:34:20Z",
+ "built_at": "2026-10-14T06:56:07Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
@@ -20,10 +20,10 @@
  "updated_30d": 1267,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2133,
-  "games": 958,
+  "other": 2131,
+  "games": 959,
   "photo-video": 331,
-  "utilities": 327,
+  "utilities": 328,
   "entertainment": 210,
   "lifestyle": 128,
   "developer": 120,
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3536
+   "apps": 3535
   },
   {
    "name": "dsewerek's general apps",
@@ -68,6 +68,11 @@
    "date": "2026-10-14"
   },
   {
+   "name": "Manatan",
+   "version": "6.1.45",
+   "date": "2026-10-14"
+  },
+  {
    "name": "iTorrent",
    "version": "2.2.0-1",
    "date": "2026-10-14"
@@ -85,11 +90,6 @@
   {
    "name": "Ready",
    "version": "1.6.1",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "VCMI",
-   "version": "1.7.5",
    "date": "2026-10-14"
   }
  ],

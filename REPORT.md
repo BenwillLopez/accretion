@@ -1,10 +1,10 @@
 # Source report
 
-Built 2026-10-14 06:34 UTC.
+Built 2026-10-14 06:56 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4273** (4953 KB) |
+| Apps in `source.json` | **4273** (4955 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
 | Listings read | 23754 |
 | Apps listed by more than one source (newest kept) | 1801 |
@@ -20,15 +20,15 @@ Built 2026-10-14 06:34 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3728 | 3536 | 4523 | 2026-10-14 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3728 | 3535 | 4523 | 2026-10-14 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1627 | 535 | 330 | 2026-10-13 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | cached | 239 | 101 | 13 | 2025-01-01 | curated |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 20 | 8 | 1 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-14 | discovered |
 | [RipeStore](https://bit.ly/RipeStore) | ok | 11 | 6 | 0 | 2026-07-01 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 5 | 0 | 2026-10-14 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 203 | 4 | 6 | 2026-07-23 | curated |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 4 | 0 | 2026-10-13 | discovered |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 4 | 0 | 2026-10-13 | discovered |
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
 | [Quantum Source](https://bit.ly/Quantumsource) | ok | 35 | 3 | 3 | 2025-12-30 | discovered |
@@ -195,6 +195,7 @@ Built 2026-10-14 06:34 UTC.
 | MuffinEMU | 10.0 | 2026-10-14 | raw.githubusercontent.com |
 | Accretion | 1.0.29 | 2026-10-14 | raw.githubusercontent.com |
 | Nuvio | 0.5.10 | 2026-10-14 | raw.githubusercontent.com |
+| Manatan | 6.1.45 | 2026-10-14 | raw.githubusercontent.com |
 | iTorrent | 2.2.0-1 | 2026-10-14 | raw.githubusercontent.com |
 | Gopeed-v1.8.3-ios | 1.9.3 | 2026-10-14 | raw.githubusercontent.com |
 | Flappy Bird | 4.5 | 2026-10-14 | raw.githubusercontent.com |
@@ -216,4 +217,3 @@ Built 2026-10-14 06:34 UTC.
 | The Blockheads | 1.7.4 | 2026-10-14 | raw.githubusercontent.com |
 | Suwatte | 6.0.1 | 2026-10-14 | raw.githubusercontent.com |
 | Palladium | 1.4.4 | 2026-10-14 | raw.githubusercontent.com |
-| SceneBox | 1.0.4 | 2026-10-14 | raw.githubusercontent.com |
