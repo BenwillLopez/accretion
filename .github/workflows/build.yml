@@ -1,7 +1,7 @@
 name: Build source
 
-# Every 6 hours: fetch all sources, test every download link, and publish the newest working
-# version of every app.
+# Scheduled runs check every download link. Code/site pushes rebuild immediately;
+# manual runs can opt into the slower link scan.
 on:
   schedule:
     - cron: "23 */6 * * *"
@@ -9,6 +9,11 @@ on:
     branches: [main]
     paths: [sources.txt, blocklist.txt, dead_hosts.txt, popular.txt, support.json, "scripts/**", "site/**"]
   workflow_dispatch:
+    inputs:
+      check_links:
+        description: "Check download links before rebuilding (slower)"
+        type: boolean
+        default: false
 
 permissions:
   actions: write
@@ -25,4 +30,4 @@ jobs:
   publish:
     uses: ./.github/workflows/publish.yml
     with:
-      check_links: true
+      check_links: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.check_links) }}
