@@ -1,1 +1,94 @@
-{}
+{
+ "com.JindoBlu.FourPlayersIOS": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Enjoy local multiplayer games for one to four players on a single device. This version is patched to version 3.2.9 and requires minimum operating system version 13.0.",
+  "features": [
+   "No Ads",
+   "Local multiplayer",
+   "Up to 4 players"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3e7206dc6d5d8c05a4f4776bee63706b62221043964e491e4011807102e6668c",
+  "subtitle": "Play local multiplayer games with friends",
+  "tags": [
+   "multiplayer",
+   "local",
+   "party",
+   "games",
+   "casual"
+  ]
+ },
+ "com.andyworks.streaks": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Manage your daily habits and build streaks with !Habits. This application requires iOS 18.0 or later. It includes patched features with the subscription unlocked for full access to all habit tracking tools.",
+  "features": [
+   "Subscription Unlocked",
+   "Patched"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d0641c722a13706b37f020f43915e0d81b00425e52a02b44bf401d082916a70e",
+  "subtitle": "Habits tracking app with unlocked subscription",
+  "tags": [
+   "habits",
+   "streaks",
+   "tracking",
+   "routine",
+   "goals"
+  ]
+ },
+ "com.br.12min.mobile": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Access book summaries and ideas with 12min. This version includes premium unlocked. Please note that downloading does not work and fast forwarding is bugged.",
+  "features": [
+   "Premium Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b5a3177d2b37e6a841d8c39516891111db8d965ab4bdc1751b0dc4fd98812172",
+  "subtitle": "Book Summaries and Ideas",
+  "tags": [
+   "books",
+   "summaries",
+   "ideas",
+   "reading",
+   "audio"
+  ]
+ },
+ "com.pixelperfectdude.htdrive": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Drive in this mobile game. Version 3.1.397 is available with free in-app purchases included.",
+  "features": [
+   "Free iAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "50f104173487754e62594ef003bf49f7e70a90b42453d2abe093cc70850d41ba",
+  "subtitle": "Driving game",
+  "tags": [
+   "drive",
+   "game",
+   "car",
+   "racing"
+  ]
+ },
+ "com.studiolico.woodenstick": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "An exciting and unconventional iOS action game that combines quirky humor with action gameplay. Experience unique combat with a reinforced wooden stick and master special abilities including God Mode.",
+  "features": [
+   "God Mode"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "612502fd9a5dfafc32f6a0346a441545a412968fdfc47486bb1bdc3a62fcdc7b",
+  "subtitle": "An unconventional iOS action game with quirky humor",
+  "tags": [
+   "action",
+   "game",
+   "stick",
+   "humor",
+   "ios"
+  ]
+ }
+}
