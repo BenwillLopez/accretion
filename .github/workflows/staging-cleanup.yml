@@ -1,0 +1,40 @@
+name: Staging cleanup
+
+# Daily maintenance removes only old staging uploads; manual runs default to inspection.
+# Publishing this schedule requires approval of its bounded recurring deletion scope.
+on:
+  schedule:
+    - cron: "53 12 * * *"
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Remove at most 100 private staging objects older than 48 hours"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: staging-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q "boto3==1.43.111"
+      - name: Inspect or remove old staging uploads
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          APPLY: ${{ github.event_name == 'schedule' || inputs.apply }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [ "$APPLY" = true ]; then args+=(--apply); fi
+          python scripts/staging_cleanup.py "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"

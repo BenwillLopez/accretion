@@ -12,6 +12,8 @@ Needs SUPABASE_ACCESS_TOKEN, BUILDS_BUCKET, BUILDS_REGION, BUILDS_AWS_KEY_ID, BU
 
 import json
 import os
+import re
+import sys
 import tempfile
 import urllib.error
 import urllib.request
@@ -35,7 +37,9 @@ def env(name):
 def service_key(ref):
     for k in call("GET", f"/projects/{ref}/api-keys?reveal=true") or []:
         if k.get("name") == "service_role" and k.get("api_key"):
-            print(f"::add-mask::{k['api_key']}")
+            # Report consumers capture stdout as Markdown; runner commands belong on stderr.
+            if os.environ.get("GITHUB_ACTIONS") == "true":
+                print(f"::add-mask::{k['api_key']}", file=sys.stderr, flush=True)
             return k["api_key"]
     raise SystemExit("Couldn't find the project's service_role key")
 
@@ -153,14 +157,18 @@ def main():
 
 
 def mirrored(rows, keep):
-    """The paths Supabase keeps a fallback copy of: each app's newest `keep` versions."""
+    """Keep recent versions plus the stable Accretion build served by default."""
     by_app = {}
     for row in rows:
         by_app.setdefault(row["bundle_id"], []).append(row)
     paths = set()
-    for builds in by_app.values():
+    for bundle, builds in by_app.items():
         newest = sorted(builds, key=lambda r: version_key(r["version"]), reverse=True)[:keep]
         paths.update(r["path"] for r in newest)
+        if bundle == "io.github.getaccretion.Accretion":
+            stable = [r for r in builds if not re.fullmatch(r"\d+\.\d+\.\d+\.\d+", r["version"])]
+            if stable:
+                paths.add(max(stable, key=lambda r: version_key(r["version"]))["path"])
     return paths
 
 

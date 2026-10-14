@@ -6,6 +6,8 @@ create role service_role nologin bypassrls;
 -- like Supabase: the server key can read and write every table created later
 alter default privileges in schema public grant all on tables to service_role;
 alter default privileges in schema public grant all on sequences to service_role;
+-- Supabase also grants function execution directly: tests must catch incomplete revokes.
+alter default privileges in schema public grant execute on functions to anon, authenticated;
 grant usage on schema public to service_role;
 create schema auth;
 create table auth.users (id uuid primary key, raw_user_meta_data jsonb default '{}', last_sign_in_at timestamptz);

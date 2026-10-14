@@ -45,13 +45,25 @@ def call(method, route, body=None, timeout=120):
             "User-Agent": "accretion-setup",
         },
     )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            raw = r.read()
-            return json.loads(raw) if raw else None
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", "replace")[:500]
-        raise SystemExit(f"Supabase API {method} {route} failed ({e.code}): {detail}") from None
+    attempts = 3 if method.upper() == "GET" else 1
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                raw = r.read()
+                return json.loads(raw) if raw else None
+        except urllib.error.HTTPError as e:
+            retry = e.code in (429, 500, 502, 503, 504) and attempt + 1 < attempts
+            e.close()
+            if retry:
+                time.sleep(2**attempt)
+                continue
+            # Provider error bodies can echo settings/credentials. Never include them in logs.
+            raise SystemExit(f"Supabase API {method} {route} failed ({e.code})") from None
+        except (urllib.error.URLError, TimeoutError, OSError):
+            if attempt + 1 < attempts:
+                time.sleep(2**attempt)
+                continue
+            raise SystemExit(f"Supabase API {method} {route} unreachable") from None
 
 
 def sql(ref, query):

@@ -151,16 +151,19 @@ Deno.serve(async (req) => {
   }
 
   // banned accounts don't download, and nobody gets more than 30 downloads in 10 minutes
-  const { data: profile } = await admin.from("profiles").select("banned").eq("id", owner).maybeSingle();
-  if (profile?.banned) return reply(403, "This account can't download right now.");
+  const { data: profile, error: profileError } = await admin.from("profiles").select("banned").eq("id", owner).maybeSingle();
+  if (profileError) return reply(503, "Couldn't check account access. Try again.");
+  if (!profile || profile.banned) return reply(403, "This account can't download right now.");
   const since = new Date(Date.now() - 10 * 60_000).toISOString();
-  const { count } = await admin.from("download_log").select("id", { count: "exact", head: true })
+  const { count, error: quotaError } = await admin.from("download_log").select("id", { count: "exact", head: true })
     .eq("owner", owner).gte("at", since);
+  if (quotaError || count === null) return reply(503, "Couldn't check download limits. Try again.");
   if ((count ?? 0) >= 30) return reply(429, "Too many downloads. Try again in a few minutes.");
 
   // newest by version number, not upload time (an old version re-uploaded can't become "newest");
   // Accretion itself is always served at its newest version
-  const { data: rows } = await admin.from("hosted_builds").select("path,version").eq("bundle_id", app);
+  const { data: rows, error: buildsError } = await admin.from("hosted_builds").select("path,version").eq("bundle_id", app);
+  if (buildsError) return reply(503, "Couldn't check available builds. Try again.");
   const builds = (rows ?? []) as { path: string; version: string }[];
   // Accretion betas have four numbers (1.0.25.1, between 1.0.25 and 1.0.26): served only when asked
   // for by version (app-repo-beta.json links them that way), never as "the newest Accretion"
@@ -175,7 +178,10 @@ Deno.serve(async (req) => {
   const location = await signedLink(build.path);
   if (!location) return reply(500, "Couldn't prepare the download. Try again.");
 
-  await admin.from("download_log").insert({ owner, bundle_id: app, via });
+  const { error: logError } = await admin.from("download_log").insert({ owner, bundle_id: app, via });
+  if (logError?.code === "PT403") return reply(403, "This account can't download right now.");
+  if (logError?.code === "PT429") return reply(429, "Too many downloads. Try again in a few minutes.");
+  if (logError) return reply(503, "Couldn't record the download. Try again.");
   return new Response(null, {
     status: 302,
     headers: { ...cors, Location: location, "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" },

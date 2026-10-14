@@ -288,7 +288,7 @@ create trigger notify_follow after insert on public.follows for each row execute
 
 -- Ratings remember when they last changed (set by the server, also on insert).
 create or replace function public.touch_rating() returns trigger
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 begin
   new.updated_at := now();
   return new;
@@ -299,7 +299,7 @@ create trigger touch_rating before insert or update on public.app_ratings for ea
 
 -- Likes and follows: the server sets created_at, never the client.
 create or replace function public.stamp_created() returns trigger
-language plpgsql as $$
+language plpgsql set search_path = public as $$
 begin
   new.created_at := now();
   return new;
@@ -413,21 +413,22 @@ drop policy if exists "profiles are public" on public.profiles;
 create policy "profiles are public" on public.profiles for select using (true);
 drop policy if exists "edit own profile or moderate" on public.profiles;
 create policy "edit own profile or moderate" on public.profiles for update
-  using (id = auth.uid() or public.is_mod()) with check (id = auth.uid() or public.is_mod());
+  using (id = (select auth.uid()) or (select public.is_mod()))
+  with check (id = (select auth.uid()) or (select public.is_mod()));
 
 drop policy if exists "visible posts are public" on public.posts;
 create policy "visible posts are public" on public.posts for select
-  using (not hidden or author = auth.uid() or public.is_mod());
+  using (not hidden or author = (select auth.uid()) or (select public.is_mod()));
 drop policy if exists "write own posts" on public.posts;
 create policy "write own posts" on public.posts for insert to authenticated
-  with check (public.can_write());
+  with check ((select public.can_write()));
 drop policy if exists "edit own posts or moderate" on public.posts;
 create policy "edit own posts or moderate" on public.posts for update to authenticated
-  using ((author = auth.uid() and public.can_write()) or public.is_mod())
-  with check ((author = auth.uid() and public.can_write()) or public.is_mod());
+  using ((author = (select auth.uid()) and (select public.can_write())) or (select public.is_mod()))
+  with check ((author = (select auth.uid()) and (select public.can_write())) or (select public.is_mod()));
 drop policy if exists "delete own posts or moderate" on public.posts;
 create policy "delete own posts or moderate" on public.posts for delete to authenticated
-  using (author = auth.uid() or public.is_mod());
+  using (author = (select auth.uid()) or (select public.is_mod()));
 
 -- likes, app likes, ratings and follows share the same shape: public reads, own writes
 do $$
@@ -440,31 +441,31 @@ begin
     execute format('drop policy if exists "public read" on public.%I', t);
     execute format('create policy "public read" on public.%I for select using (true)', t);
     execute format('drop policy if exists "own insert" on public.%I', t);
-    execute format('create policy "own insert" on public.%I for insert to authenticated with check (%I = auth.uid() and public.can_write())', t, col);
+    execute format('create policy "own insert" on public.%I for insert to authenticated with check (%I = (select auth.uid()) and (select public.can_write()))', t, col);
     execute format('drop policy if exists "own update" on public.%I', t);
-    execute format('create policy "own update" on public.%I for update to authenticated using (%I = auth.uid() and public.can_write()) with check (%I = auth.uid())', t, col, col);
+    execute format('create policy "own update" on public.%I for update to authenticated using (%I = (select auth.uid()) and (select public.can_write())) with check (%I = (select auth.uid()))', t, col, col);
     execute format('drop policy if exists "own delete" on public.%I', t);
-    execute format('create policy "own delete" on public.%I for delete to authenticated using (%I = auth.uid())', t, col);
+    execute format('create policy "own delete" on public.%I for delete to authenticated using (%I = (select auth.uid()))', t, col);
   end loop;
 end;
 $$;
 
 drop policy if exists "anyone signed in can report" on public.reports;
 create policy "anyone signed in can report" on public.reports for insert to authenticated
-  with check (auth.uid() is not null);
+  with check ((select auth.uid()) is not null);
 drop policy if exists "mods read reports" on public.reports;
-create policy "mods read reports" on public.reports for select to authenticated using (public.is_mod());
+create policy "mods read reports" on public.reports for select to authenticated using ((select public.is_mod()));
 drop policy if exists "mods resolve reports" on public.reports;
 create policy "mods resolve reports" on public.reports for update to authenticated
-  using (public.is_mod()) with check (public.is_mod());
+  using ((select public.is_mod())) with check ((select public.is_mod()));
 
 drop policy if exists "own notifications" on public.notifications;
-create policy "own notifications" on public.notifications for select to authenticated using (user_id = auth.uid());
+create policy "own notifications" on public.notifications for select to authenticated using (user_id = (select auth.uid()));
 drop policy if exists "mark own notifications" on public.notifications;
 create policy "mark own notifications" on public.notifications for update to authenticated
-  using (user_id = auth.uid()) with check (user_id = auth.uid());
+  using (user_id = (select auth.uid())) with check (user_id = (select auth.uid()));
 drop policy if exists "clear own notifications" on public.notifications;
-create policy "clear own notifications" on public.notifications for delete to authenticated using (user_id = auth.uid());
+create policy "clear own notifications" on public.notifications for delete to authenticated using (user_id = (select auth.uid()));
 
 -- ---------------------------------------------------------------- views
 -- security_invoker: the views run with the caller's rights, so the policies above apply.
@@ -608,7 +609,7 @@ drop policy if exists "app counts are public" on public.app_hits;
 create policy "app counts are public" on public.app_hits for select using (true);
 drop policy if exists "mods read missing searches" on public.search_misses;
 create policy "mods read missing searches" on public.search_misses for select to authenticated
-  using (public.is_mod());
+  using ((select public.is_mod()));
 
 -- last 7 days; a search that leads to an app counts most
 create or replace view public.app_trending with (security_invoker = true) as
@@ -679,7 +680,7 @@ create trigger limit_backups before insert on public.certificate_backups
 alter table public.certificate_backups enable row level security;
 drop policy if exists "own certificate backups" on public.certificate_backups;
 create policy "own certificate backups" on public.certificate_backups for all to authenticated
-  using (owner = auth.uid()) with check (owner = auth.uid());
+  using (owner = (select auth.uid())) with check (owner = (select auth.uid()));
 
 revoke all on public.certificate_backups from anon;
 grant select, insert, delete on public.certificate_backups to authenticated;
@@ -709,6 +710,8 @@ create table if not exists public.hosted_builds (
   created_at timestamptz not null default now()
 );
 create index if not exists hosted_builds_bundle on public.hosted_builds (bundle_id, created_at desc);
+-- Stop deployment on conflicting historical rows rather than deleting a published record.
+create unique index if not exists hosted_builds_bundle_version on public.hosted_builds (bundle_id, version);
 alter table public.hosted_builds add column if not exists sha256 text check (sha256 ~ '^[0-9a-f]{64}$');
 
 create table if not exists public.download_keys (
@@ -727,6 +730,29 @@ create table if not exists public.download_log (
 );
 create index if not exists download_log_owner_at on public.download_log (owner, at desc);
 
+-- Serialize issuance per account. The Edge Function must successfully record the download
+-- before returning its signed URL, so parallel requests cannot race the quota or a ban.
+create or replace function public.check_download() returns trigger
+language plpgsql security definer set search_path = public as $$
+declare blocked boolean;
+begin
+  select banned into blocked from public.profiles where id = new.owner for update;
+  if not found or blocked then
+    raise exception using errcode = 'PT403', message = 'Account cannot download';
+  end if;
+  new.at := clock_timestamp();
+  if (select count(*) from public.download_log
+      where owner = new.owner and at > new.at - interval '10 minutes') >= 30 then
+    raise exception using errcode = 'PT429', message = 'Download limit reached';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists check_download on public.download_log;
+create trigger check_download before insert on public.download_log
+  for each row execute function public.check_download();
+revoke execute on function public.check_download() from public, anon, authenticated;
+
 alter table public.hosted_builds enable row level security;
 alter table public.download_keys enable row level security;
 alter table public.download_log enable row level security;
@@ -734,9 +760,9 @@ alter table public.download_log enable row level security;
 drop policy if exists "hosted builds are listed" on public.hosted_builds;
 create policy "hosted builds are listed" on public.hosted_builds for select using (true);
 drop policy if exists "own download key" on public.download_keys;
-create policy "own download key" on public.download_keys for select to authenticated using (owner = auth.uid());
+create policy "own download key" on public.download_keys for select to authenticated using (owner = (select auth.uid()));
 drop policy if exists "admins read download log" on public.download_log;
-create policy "admins read download log" on public.download_log for select to authenticated using (public.is_admin());
+create policy "admins read download log" on public.download_log for select to authenticated using ((select public.is_admin()));
 
 -- The signed-in user's personal key, created on first use. A new key replaces the old one
 -- (rotate = true), which turns off every source link that used it.
@@ -792,16 +818,16 @@ alter table public.announcement_likes enable row level security;
 drop policy if exists "announcements are public" on public.announcements;
 create policy "announcements are public" on public.announcements for select using (true);
 drop policy if exists "admins post announcements" on public.announcements;
-create policy "admins post announcements" on public.announcements for insert to authenticated with check (public.is_admin());
+create policy "admins post announcements" on public.announcements for insert to authenticated with check ((select public.is_admin()));
 drop policy if exists "admins remove announcements" on public.announcements;
-create policy "admins remove announcements" on public.announcements for delete to authenticated using (public.is_admin());
+create policy "admins remove announcements" on public.announcements for delete to authenticated using ((select public.is_admin()));
 drop policy if exists "announcement likes are public" on public.announcement_likes;
 create policy "announcement likes are public" on public.announcement_likes for select using (true);
 drop policy if exists "like announcements" on public.announcement_likes;
 create policy "like announcements" on public.announcement_likes for insert to authenticated
-  with check (user_id = auth.uid() and public.can_write());
+  with check (user_id = (select auth.uid()) and (select public.can_write()));
 drop policy if exists "unlike announcements" on public.announcement_likes;
-create policy "unlike announcements" on public.announcement_likes for delete to authenticated using (user_id = auth.uid());
+create policy "unlike announcements" on public.announcement_likes for delete to authenticated using (user_id = (select auth.uid()));
 
 create or replace view public.announcement_feed with (security_invoker = true) as
 select a.*, (select count(*) from public.announcement_likes l where l.announcement_id = a.id)::int as likes
@@ -906,8 +932,11 @@ alter table public.install_reports enable row level security;
 create or replace function public.check_install_report() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
+  -- Serialize the shared quota and use receipt time after waiting for the lock.
+  perform pg_advisory_xact_lock(hashtext('accretion.install_reports'));
   new.reporter := auth.uid();
-  if (select count(*) from public.install_reports where created_at > now() - interval '1 minute') >= 30 then
+  new.created_at := clock_timestamp();
+  if (select count(*) from public.install_reports where created_at > clock_timestamp() - interval '1 minute') >= 30 then
     raise exception 'Too many reports right now. Try again in a minute.';
   end if;
   return new;
@@ -922,9 +951,30 @@ create policy "anyone can send an install report" on public.install_reports for 
   with check (true);
 drop policy if exists "mods read install reports" on public.install_reports;
 create policy "mods read install reports" on public.install_reports for select to authenticated
-  using (public.is_mod());
+  using ((select public.is_mod()));
 grant insert on public.install_reports to anon, authenticated;
 grant select on public.install_reports to authenticated;
+
+-- Index referencing columns as well as primary keys: deletes and moderation lookups use these.
+create index if not exists announcement_likes_user on public.announcement_likes (user_id);
+create index if not exists app_likes_user on public.app_likes (user_id);
+create index if not exists app_ratings_user on public.app_ratings (user_id);
+create index if not exists install_reports_reporter on public.install_reports (reporter);
+create index if not exists notifications_actor on public.notifications (actor);
+create index if not exists notifications_post on public.notifications (post_id);
+create index if not exists post_likes_user on public.post_likes (user_id);
+create index if not exists reports_post on public.reports (post_id);
+create index if not exists reports_profile on public.reports (profile_id);
+create index if not exists reports_reporter on public.reports (reporter);
+create index if not exists reports_resolved_by on public.reports (resolved_by);
+
+-- Supabase may grant roles EXECUTE directly through default privileges. Revoking PUBLIC alone
+-- does not remove those grants. Trigger-only functions do not need to be public RPCs.
+revoke execute on function public.handle_new_user(), public.check_post(), public.check_report(),
+  public.notify(), public.limit_backups(), public.check_install_report(), public.protect_profile(),
+  public.touch_rating(), public.stamp_created() from public, anon, authenticated;
+revoke execute on function public.mod_stats(), public.my_download_key(boolean),
+  public.delete_my_account() from public, anon;
 
 -- ---------------------------------------------------------------- make yourself admin
 -- After you sign up on the site, run this once with your username:
