@@ -2,14 +2,14 @@
  "apps": 4272,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-14 21:59 UTC",
+ "updated": "2026-10-14 22:23 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-14T21:59:44Z",
+ "built_at": "2026-10-14T22:23:33Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23749,
+ "listings": 23748,
  "duplicates": 1797,
  "rejected": 6609,
  "excluded": 57,
@@ -53,13 +53,13 @@
  ],
  "recent": [
   {
-   "name": "MuffinEMU",
-   "version": "10.1",
+   "name": "Accretion",
+   "version": "1.0.31",
    "date": "2026-10-14"
   },
   {
-   "name": "Accretion",
-   "version": "1.0.30",
+   "name": "MuffinEMU",
+   "version": "10.1",
    "date": "2026-10-14"
   },
   {
