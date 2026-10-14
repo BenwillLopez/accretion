@@ -1,10 +1,10 @@
 # Source report
 
-Built 2026-10-14 21:56 UTC.
+Built 2026-10-14 21:59 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4272** (4949 KB) |
+| Apps in `source.json` | **4272** (4948 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
 | Listings read | 23749 |
 | Apps listed by more than one source (newest kept) | 1797 |
