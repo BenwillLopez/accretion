@@ -1,16 +1,16 @@
 # Source report
 
-Built 2026-10-14 12:13 UTC.
+Built 2026-10-14 14:52 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4262** (4942 KB) |
+| Apps in `source.json` | **4272** (4952 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23737 |
+| Listings read | 23748 |
 | Apps listed by more than one source (newest kept) | 1797 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6618 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6608 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
-| Dead download links held back (retested every build) | 8716 |
+| Dead download links held back (retested every build) | 8703 |
 | Links on hold (whole host failing, kept for now) | 0 |
 | Sources | 163: 162 ok, 1 from cache, 0 failed |
 
@@ -20,7 +20,7 @@ Built 2026-10-14 12:13 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3717 | 3525 | 4534 | 2026-10-14 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3727 | 3535 | 4524 | 2026-10-14 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1626 | 535 | 331 | 2026-10-14 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | cached | 239 | 101 | 13 | 2025-01-01 | curated |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
@@ -80,7 +80,7 @@ Built 2026-10-14 12:13 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4600 | 0 | 227 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
