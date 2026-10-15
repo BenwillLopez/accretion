@@ -887,15 +887,6 @@
     return safeUrl(url) || safeUrl(c.url);
   }
 
-  function certLine(a) {
-    if (!certs().length) return null;
-    const links = [];
-    certs().forEach((c, i) => {
-      if (i) links.push(" · ");
-      links.push(h("a", { href: certUrl(c, a), target: "_blank", rel: "sponsored noopener" }, c.name));
-    });
-    return h("p", { class: "cert-line" }, "Need a signing certificate? ", ...links, h("span", { class: "muted" }, " · affiliate"));
-  }
 
   // A short screen before a direct IPA download: the download starts by itself after a few
   // seconds (or right away with "Download now"), with certificate offers and donations meanwhile.
@@ -1026,8 +1017,23 @@
         ? h("a", { class: "btn primary", href: pref ? pref.link(ipa) : ipa, rel: "nofollow noopener", title: "Download, sign and install", onclick: (e) => { installed(); if (!pref) { e.preventDefault(); chooseInstaller(ipa, redraw); } } }, pref ? `Install with ${pref.name}` : "Install")
         : null,
       ipa && pref ? h("button", { class: "btn ghost", type: "button", onclick: () => chooseInstaller(null, redraw) }, "Change") : null,
-      ipa ? h("a", { class: "btn", href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "Download IPA") : null,
-      ...(ipa ? INSTALLERS.filter((i) => i !== pref).map((i) => h("a", { class: "btn", href: i.link(ipa), onclick: installed, title: i.note }, i.name)) : []),
+    );
+    // Every other way to get the app, one row each (like the app's install sheet)
+    const way = (attrs, glyph, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
+      h("span", { class: "way-ic", "aria-hidden": "true" }, glyph),
+      h("span", { class: "way-txt" }, h("b", {}, name), note ? h("span", { class: "muted small" }, note) : null),
+      h("span", { class: "way-go", "aria-hidden": "true" }, "›")));
+    const ways = ipa
+      ? h("div", { class: "ways-box" },
+          h("h2", { class: "ways-head" }, "Install another way"),
+          h("ul", { class: "ways" },
+            way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "⬇", "Download IPA", "Save the file and sign it yourself."),
+            ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: installed }, "◆", i.name, i.note)),
+            ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener" }, "✓", `Sign with ${c.name}`, c.note))))
+      : null;
+    const more = h(
+      "div",
+      { class: "actions small-actions" },
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
       ipa ? h("button", { class: "btn ghost", type: "button", "data-download": "", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
@@ -1048,8 +1054,9 @@
         h("p", { class: "d-dev" }, h("a", { href: homeHash({ q: a.d, c: "all", s: "updated", src: null, fit: state.f.fit, saved: false }) }, a.d)),
         a.s ? h("p", { class: "d-sub" }, a.s) : null,
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
-        d ? actions : null,
-        d && ipa ? certLine(a) : null,
+        d && ipa ? actions : null,
+        d ? ways : null,
+        d ? more : null,
         d && ipa ? h("p", { class: "cert-line" }, h("a", { href: "#/sign" }, "How to sign your own apps →")) : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),

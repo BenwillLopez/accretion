@@ -473,6 +473,22 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .wallets code { font: 12px var(--mono); overflow-wrap: anywhere; flex: 1 1 220px; min-width: 0; }
 .cert-list li > div { flex: 1 1 200px; display: grid; gap: 2px; min-width: 0; }
 .cert-line { margin: 10px 0 0; font-size: 13px; }
+/* App page: other ways to install, one row each (like the app's install sheet) */
+.ways-box { margin-top: 16px; max-width: 520px; }
+.ways-head { margin: 0 0 8px; font: 600 12px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.ways { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.ways li + li { border-top: 1px solid var(--line); }
+.way { display: flex; align-items: center; gap: 12px; padding: 10px 12px; color: var(--fg); text-decoration: none; }
+.way:hover, .way:focus-visible { background: var(--raised); }
+.way-ic { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); font-size: 15px; }
+.way-txt { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.way-txt b { font-size: 14px; }
+.way-go { flex: none; color: var(--muted); font-size: 20px; line-height: 1; }
+/* Phones: icon at the top, the list and small buttons use the full card width (80px icon + 14px gap) */
+@media (max-width: 760px) {
+  .d-head { align-items: start; }
+  .d-main > .ways-box, .d-main > .small-actions { margin-left: -94px; }
+}
 .nav .nav-heart { display: none; color: #F43F5E; }
 @media (max-width: 760px) {
   .top .heart { display: none; }
