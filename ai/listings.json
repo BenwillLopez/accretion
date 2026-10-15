@@ -86,6 +86,23 @@
    "utility"
   ]
  },
+ "Mailroom.Canary-iOS": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Canary is an iOS application that provides a secure and private email experience for users.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "1c8d085e1ea664210537e717966a2c2e41b260f8a131189751b48bed014737f7",
+  "subtitle": "Secure and private email client",
+  "tags": [
+   "email",
+   "mail",
+   "canary",
+   "secure",
+   "private",
+   "client"
+  ]
+ },
  "Quanticapps.Athan.watchkitapp": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -315,6 +332,23 @@
    "tracker"
   ]
  },
+ "app.chopa.chopito": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chopa Chef is a recipe keeper app for iOS 15.1 and later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "779beff352701368e198aabf150e69320e3268560a3a711c9e0f06bb32819ef8",
+  "subtitle": "Recipe Keeper",
+  "tags": [
+   "recipes",
+   "keeper",
+   "cooking",
+   "food",
+   "chef",
+   "utilities"
+  ]
+ },
  "appcake2.iphonecake.com": {
   "category": "other",
   "date": "2026-10-15",
@@ -366,6 +400,24 @@
    "build"
   ]
  },
+ "boomer.Smart-Video": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Enhance your talking videos with Captions. This version includes premium unlocked features. To activate the subscription status, press restore once and then close the application.",
+  "features": [
+   "Premium Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "564e7b57e8dc475249588d0f562fcb31e00f0efd162134ade2dfc22787d5ed4e",
+  "subtitle": "Premium Unlocked for Talking Videos",
+  "tags": [
+   "captions",
+   "videos",
+   "talking",
+   "editing",
+   "premium"
+  ]
+ },
  "br.com.tapps.bidwars2": {
   "category": "games",
   "date": "2026-10-15",
@@ -399,6 +451,22 @@
    "system"
   ]
  },
+ "ca.bomberfish.CAPerfHudSwift": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "CAPerfHUDSwift is an alternative to CAPerfHUD, developed by CAPerfHUDSwift and CyPwn. This tool provides performance monitoring capabilities for your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9ebe68e3a60f7fdbd1251114b03800763c583024fb71c778dbecefc57debbf3a",
+  "subtitle": "Performance HUD alternative",
+  "tags": [
+   "performance",
+   "hud",
+   "monitor",
+   "developer",
+   "tools"
+  ]
+ },
  "castle.heroes.tower.defense.kingdom.magic.battle.archer": {
   "category": "games",
   "date": "2026-10-15",
@@ -415,6 +483,21 @@
    "game",
    "castle",
    "defense"
+  ]
+ },
+ "chaoge.ChargeLimiter": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Charge limiter for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "41112aa0b7bbe2c90db7343cf8fda6a6b41bd76bbeec22d34cc9158d65ae6111",
+  "subtitle": "Charge limiter for iOS",
+  "tags": [
+   "battery",
+   "charge",
+   "limiter",
+   "ios"
   ]
  },
  "chat.bitchat": {
@@ -562,6 +645,39 @@
    "adventure"
   ]
  },
+ "co.imba.cw": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Champion Wars IPA is the iOS installation package of the action-strategy combat game designed for iPhone.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7c60df9d5632216fcf7f402e1db84380dc4878181386ba1d5d2870795d5792bf",
+  "subtitle": "Action-strategy combat game for iPhone",
+  "tags": [
+   "champion wars",
+   "strategy",
+   "combat",
+   "action",
+   "game",
+   "ios"
+  ]
+ },
+ "co.vulcanlabs.moodtracker": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chat Smith is an iOS application designed to provide intelligent conversational assistance.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "13722680246d330e57590617b472845af233495f19fdf153964e8c66da638804",
+  "subtitle": "AI Chatbot and Agent",
+  "tags": [
+   "ai",
+   "chatbot",
+   "assistant",
+   "chat",
+   "agent"
+  ]
+ },
  "com.34306.waifuts": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -700,6 +816,22 @@
    "unlocked"
   ]
  },
+ "com.CanYouJB.SamoXcZ": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "A straightforward tool designed to detect jailbreaks on iOS devices running version 15.0 through 17.0. Developed upon user request.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c6113a4f4875be1b7272b95fb8264c7185d6fea5dae0a1e6c11a44b1dc4181ca",
+  "subtitle": "Detect jailbreaks on iOS 15.0 to 17.0",
+  "tags": [
+   "jailbreak",
+   "detector",
+   "ios",
+   "security",
+   "tool"
+  ]
+ },
  "com.DoorTeam.BagMaster": {
   "category": "games",
   "date": "2026-10-15",
@@ -713,6 +845,23 @@
    "isekai",
    "bag",
    "battle",
+   "game",
+   "ipa"
+  ]
+ },
+ "com.DreamsStudio.CatLegendsIdleRPGs": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Step into the shoes of a dedicated cat enthusiast, tasked with nurturing and managing a thriving cat setup in this idle role-playing game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e36a9b01300ef7e98367f444c1660786896859d6ebfa19a148524682a5c2184c",
+  "subtitle": "Idle RPG with cats",
+  "tags": [
+   "cat",
+   "legends",
+   "idle",
+   "rpg",
    "game",
    "ipa"
   ]
@@ -805,6 +954,22 @@
    "game"
   ]
  },
+ "com.MISHIKinc.Caucasus-Parking": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Caucasus Parking 3D is a 3D parking simulation game that transports iPhone players into intricately designed environments to test and improve their parking skills.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0505bb6032f659e435db5bf8b7672e3e2bb8957bcb049d7c25ebebc6046e50c3",
+  "subtitle": "3D parking simulation game for iOS",
+  "tags": [
+   "parking",
+   "simulation",
+   "3d",
+   "game",
+   "ios"
+  ]
+ },
  "com.N2BunpouApp.yuki": {
   "category": "lifestyle",
   "date": "2026-10-15",
@@ -821,6 +986,23 @@
    "learn",
    "education",
    "platinum"
+  ]
+ },
+ "com.OPNeonGame.TCGShopGame": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "TCG Card Shop Tycoon 2 is a game where you explore the exciting world of running a card shop. Manage your store and build your business.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "67255f4e6dedb5b0c0e6e12ec364246088bf7f0df6656e028bca9a2634ed7189",
+  "subtitle": "Build and manage your own card shop",
+  "tags": [
+   "card",
+   "shop",
+   "tycoon",
+   "simulation",
+   "games",
+   "tcg"
   ]
  },
  "com.PIXELCELLS.AntColony2": {
@@ -906,6 +1088,22 @@
    "game"
   ]
  },
+ "com.ViewPassion.CatvsCucumber": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cat vs Cucumber on iOS is a lighthearted game that takes inspiration from internet culture, offering a playful mobile gaming experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d9c1cf27276f100318448d09b79c31fd464461cd151242d0adbfd63e348c6a65",
+  "subtitle": "A playful mobile gaming experience",
+  "tags": [
+   "cat",
+   "cucumber",
+   "game",
+   "mobile",
+   "playful"
+  ]
+ },
  "com.aagame.aagame": {
   "category": "games",
   "date": "2026-10-14",
@@ -941,6 +1139,23 @@
    "traffic",
    "game",
    "noads"
+  ]
+ },
+ "com.acomazs.fovih.box": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Stream movies and shows with this application. This is a movie streamer that has been modified to remove advertisements. Performance can be inconsistent, meaning some shows and movies may fail to play at all.",
+  "features": [
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ea7c58e4bdf526cea2a348d806befebe358f589e2294e2e094c9586e770020e0",
+  "subtitle": "Movie streamer app",
+  "tags": [
+   "movies",
+   "streamer",
+   "shows",
+   "entertainment"
   ]
  },
  "com.adbanao": {
@@ -1248,6 +1463,61 @@
    "utilities"
   ]
  },
+ "com.aichatbot.chatturbo.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Chatbot app with premium features included. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0b0c3706d7d3a9d7e7689bfca7aa6e31cb259717c86dc7d68a8cc1fa20a88c13",
+  "subtitle": "Chatbot assistant",
+  "tags": [
+   "chatbot",
+   "assistant",
+   "ai",
+   "chat",
+   "premium"
+  ]
+ },
+ "com.aidana.cardriving.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Car Parking Multiplayer modification features provided by kamohacks. Includes free in-app purchases allowing you to purchase premium content.",
+  "features": [
+   "Free In-App-Purchase"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "60195cbee3fc68601dd4308da51b729489b681ee1a214c805ff8ed2d02920fd5",
+  "subtitle": "Car Parking Multiplayer modification features",
+  "tags": [
+   "car",
+   "parking",
+   "multiplayer",
+   "hack",
+   "kamohacks"
+  ]
+ },
+ "com.aidana.ovx-btiv.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Car Parking Multiplayer modified with injected VIP access. This version includes VIP features enabled directly within the app for an enhanced experience.",
+  "features": [
+   "VIP Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4b98d890606cc5191fe169278115be06639f7b850c1cd48b9aff615b6d94df94",
+  "subtitle": "Car Parking Multiplayer IPA",
+  "tags": [
+   "car",
+   "parking",
+   "multiplayer",
+   "vip",
+   "ipa",
+   "game"
+  ]
+ },
  "com.aiporn.aichat": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1279,6 +1549,22 @@
    "aviation",
    "planes",
    "travel"
+  ]
+ },
+ "com.akuma.chatgptv15": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "ChatGPT for iOS 15.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "987a4d9458949fa4506596ae64f3a2ba3e707d85d3f134e74ccc02bf7de3f5fc",
+  "subtitle": "ChatGPT for iOS 15",
+  "tags": [
+   "chatgpt",
+   "ai",
+   "assistant",
+   "ios15",
+   "chat"
   ]
  },
  "com.alevioos.app": {
@@ -1470,6 +1756,24 @@
    "subscription"
   ]
  },
+ "com.andyworks.camera": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Camera is a photo and video app injected with subscription unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e1855857b3108c686c657bf3b178200e3f7c04bb42ed88a3076c5a4fa8627274",
+  "subtitle": "Camera with subscription unlocked",
+  "tags": [
+   "camera",
+   "photo",
+   "video",
+   "subscription",
+   "unlocked"
+  ]
+ },
  "com.andyworks.streaks": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1537,6 +1841,23 @@
    "clap"
   ]
  },
+ "com.ap-dev.bday-reminder": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "CandlesUp is a birthday countdown application that helps you keep track of upcoming birthdays and important dates.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "cf399f3de254610861e47b64514ce91b44d1d6c1dabb9df06f66fd578a6f7a71",
+  "subtitle": "Birthday countdown tracker",
+  "tags": [
+   "birthday",
+   "countdown",
+   "tracker",
+   "reminder",
+   "events",
+   "dates"
+  ]
+ },
  "com.apalonapps.alarmclockfree": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1589,6 +1910,58 @@
    "training"
   ]
  },
+ "com.app.hd.chargingwallpapers": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Charging Wall is an iOS app that transforms the standard charging screen on iPhone and iPad into a visually engaging display. It adds an overview island and custom charging animations to your device when connected to power.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "49d0ceaf0c58b4a990b4bcae7fa10d1e29ef0d11c38ce34754b6e3c659e6bf6e",
+  "subtitle": "Transform your iPhone and iPad charging screen",
+  "tags": [
+   "charging",
+   "animations",
+   "battery",
+   "screen",
+   "widget",
+   "customization"
+  ]
+ },
+ "com.appitate.callrecorder": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Call Recorder iCall version 3.2.4 allows you to record phone calls. This version includes subscription unlocked functionality.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1e9aa5568b8e5c3469ae51d7f5ce9cf452e70947085bb84926548e8fef24a02b",
+  "subtitle": "Record calls on your iOS device",
+  "tags": [
+   "call recorder",
+   "icall",
+   "recorder",
+   "phone",
+   "calls",
+   "audio"
+  ]
+ },
+ "com.apple.mobilephone-call": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CallAssist is a Chinese alternative to NiceCaller, aimed at optimizing and expanding the capabilities of the system phone application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "89675b965d1bfced61ec811a6e7482d481a57d127103aa1da4b19b90c3582c54",
+  "subtitle": "Chinese alternative to NiceCaller for phone optimization",
+  "tags": [
+   "callassist",
+   "nicecaller",
+   "phone",
+   "dialer",
+   "optimizer"
+  ]
+ },
  "com.apple.terminal": {
   "category": "developer",
   "date": "2026-10-15",
@@ -1622,6 +1995,23 @@
    "stories",
    "relaxation",
    "audio"
+  ]
+ },
+ "com.appsoleut.car.driving.multiplayer": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Car Driving Multiplayer is a realistic driving simulation game designed to give players the thrill of open-world exploration.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4294c40c19258446420b2eb685070eb303c86354c0d37aad9e579ebce7b21a0c",
+  "subtitle": "Realistic open-world driving simulation game",
+  "tags": [
+   "car",
+   "driving",
+   "multiplayer",
+   "simulation",
+   "open world",
+   "game"
   ]
  },
  "com.ar.trace.drawing": {
@@ -1860,6 +2250,27 @@
    "mobile"
   ]
  },
+ "com.avangelista.CarTube": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "CarTube brings YouTube to your CarPlay screen without requiring a jailbreak. Enjoy your favorite video content directly in your vehicle with built-in support for ad blocking and automatic skipping of sponsored segments using SponsorBlock. The app also includes various system integrations for a seamless in-car viewing experience.",
+  "features": [
+   "No Ads",
+   "SponsorBlock",
+   "No Jailbreak Required",
+   "System Integrations"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "854e25eeba7972ffe5b3e63b5239766fdd502c70831bbe9a28ac24116c760c5a",
+  "subtitle": "YouTube for CarPlay without jailbreak",
+  "tags": [
+   "cartube",
+   "carplay",
+   "youtube",
+   "video",
+   "streaming"
+  ]
+ },
  "com.awesomepiece.axisblade": {
   "category": "games",
   "date": "2026-10-15",
@@ -2027,6 +2438,24 @@
    "utilities"
   ]
  },
+ "com.beauchamp.Messenger.external": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Chai is a social application featuring injected premium content. Connect with others and enjoy an enhanced user experience without interruptions.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b18df2bdca613c7d653e366f650b2c1e6258777cf3702cf35695ac0a3d5c8e96",
+  "subtitle": "Social application with premium features",
+  "tags": [
+   "chai",
+   "social",
+   "chat",
+   "premium",
+   "friends"
+  ]
+ },
  "com.beelinguapp.beelinguapp": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -2063,6 +2492,26 @@
    "processor",
    "device",
    "info"
+  ]
+ },
+ "com.bethsoft.stronghold": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play The Elder Scrolls Castles on iOS with modified gameplay features including damage multiplier and never die options. Experience the immersive world and complex lore of the series with these modifications applied directly to the application.",
+  "features": [
+   "Damage Multiplier",
+   "Never Die"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fe4168d6b34266c10af5321319ccb2df38ef5e052782f8475e58ce0cf62bf204",
+  "subtitle": "The Elder Scrolls Castles IPA mod",
+  "tags": [
+   "rpg",
+   "castle",
+   "mod",
+   "elder",
+   "scrolls",
+   "game"
   ]
  },
  "com.bgames.ageofrun": {
@@ -2311,6 +2760,140 @@
    "premium"
   ]
  },
+ "com.caliberfitness.app": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Caliber is an application featuring an injected subscription unlocked modification. All features and content normally restricted by a subscription are accessible directly within the app without requiring additional purchases.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7b30c08378a86a54c80bbc4f75dd66deabcb67bfa9bb829846afe5a4e90e8b3b",
+  "subtitle": "Subscription Unlocked",
+  "tags": [
+   "caliber",
+   "unlocked",
+   "subscription",
+   "app",
+   "utility"
+  ]
+ },
+ "com.calimoto.calimoto": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Plan motorcycle tours and navigate with voice directions. Features turn by turn navigation, recorded routes, and customizable trip planning. Injected with premium access.",
+  "features": [
+   "Turn by turn navigation",
+   "Route recording",
+   "Trip planning",
+   "Voice guidance",
+   "Injected with premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a5846ba53883368289587e1f575a4490087eaec615fe7fe809896fe58793aa22",
+  "subtitle": "GPS navigation for motorcycle riders",
+  "tags": [
+   "navigation",
+   "motorcycle",
+   "gps",
+   "routes",
+   "travel",
+   "maps"
+  ]
+ },
+ "com.calm.calmapp": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Calm is an application that helps users with mindfulness and relaxation. This version includes injected premium access.",
+  "features": [
+   "Premium Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d78d00a0adb29f7168fdc9bd56ca0560cdb2ea0bf1d62feeed89fbf4dfee3ebb",
+  "subtitle": "Mindfulness and relaxation app",
+  "tags": [
+   "calm",
+   "mindfulness",
+   "relaxation",
+   "meditation",
+   "premium"
+  ]
+ },
+ "com.carxtech.sr": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Active Premium",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1726d45c597a89ee5b7372b8d7d3155a6bc85f6998a53dfe26670ce6c02f9ddc",
+  "subtitle": "Active Premium",
+  "tags": [
+   "carx",
+   "street",
+   "thinhk",
+   "active",
+   "premium"
+  ]
+ },
+ "com.censorblur.app": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CensorText is an application for censoring text content. This version includes an unlocked subscription feature. The application package has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "70a7cb0676180312363a8c198c66b43eb3fb9c6ccbd6abcf4bfa9a4520aea4ed",
+  "subtitle": "Text censoring application",
+  "tags": [
+   "censor",
+   "text",
+   "privacy",
+   "utility",
+   "tools"
+  ]
+ },
+ "com.chaninicholas.chaniapp": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "CHANI is your personal astrology guide. This version includes premium features unlocked for full access to your astrological insights and guidance.",
+  "features": [
+   "Premium Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "403c4846d6f1e7c4bdbbf8f1803f04053086c2ef58e9d23f3324dbd644017da4",
+  "subtitle": "Your Astrology Guide",
+  "tags": [
+   "astrology",
+   "guide",
+   "chani",
+   "premium",
+   "horoscope"
+  ]
+ },
+ "com.channelsapp.channels": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Channels allows you to watch live TV and sport events for free on your iPhone, iPad or iPod Touch. Access daily live events for NBA, NFL and soccer directly from your mobile device.",
+  "features": [
+   "Live TV",
+   "Sport Events",
+   "NBA Coverage",
+   "NFL Coverage",
+   "Soccer Coverage"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3f14db350ccc23b9c42fd2decb2c44e1ff8510d6344dbbb351b2019855320e1c",
+  "subtitle": "Watch live TV and sports events for free",
+  "tags": [
+   "tv",
+   "sports",
+   "live",
+   "nba",
+   "nfl",
+   "soccer"
+  ]
+ },
  "com.chatgtp.gpt-3.Chat-GPT": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2324,6 +2907,23 @@
    "chatgpt",
    "assistant",
    "chat"
+  ]
+ },
+ "com.check.appgroup": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CertificateCheck is a utility application designed to verify the permissions of app installation certificates. By checking for the appropriate rights, this tool helps ensure that applications installed via certificates can successfully run VPN services, extensions, and share functionality.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "54557a36a2129e7496e656cc98dedbef72345f5da19b659f34c74d33f135728f",
+  "subtitle": "Check app installation certificate permissions",
+  "tags": [
+   "certificate",
+   "permissions",
+   "vpn",
+   "extension",
+   "utilities",
+   "ipa"
   ]
  },
  "com.christianselig.Apollo": {
@@ -2346,6 +2946,38 @@
    "social",
    "browser",
    "forum"
+  ]
+ },
+ "com.cinemtt.apt": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Cin\u00e9 Mate brings a fresh cinematic experience to the heart of the city. Discover what is playing at your local movie theater and enjoy a delightful movie outing in a central location.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cc5a1898b109ec715dbbfa655a8abfa46eb38d658e3bfde7026138f2112001db",
+  "subtitle": "Your local movie theater cinema experience",
+  "tags": [
+   "cinema",
+   "movies",
+   "theater",
+   "film",
+   "entertainment"
+  ]
+ },
+ "com.cisc0freak.cardio": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "App for changing apple pay images using CoreTrust bug that affects iOS 14.0 to 15.4.1 and 15.5b4.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "640fab90379357ed66ee88f9799cda25fe424796ead04a47be1f8dabc621fbb6",
+  "subtitle": "Change Apple Pay images using CoreTrust bug",
+  "tags": [
+   "apple pay",
+   "coretrust",
+   "ios",
+   "customization",
+   "images"
   ]
  },
  "com.cldscoreapp.liveones": {
@@ -2487,6 +3119,42 @@
    "xone"
   ]
  },
+ "com.crunchyroll.gv.cato": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Welcome to Crunchyroll CATO IPA MOD, the ultimate way to experience premium anime streaming on iOS without restrictions.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d6bbc44520467eef76cef465c87af2909620a9c3060379e4a43aa87518519d78",
+  "subtitle": "Premium anime streaming for iOS",
+  "tags": [
+   "crunchyroll",
+   "anime",
+   "streaming",
+   "video",
+   "entertainment",
+   "ipa"
+  ]
+ },
+ "com.curiousminds.chunkapp": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chunk patched. Unlocks in-app purchases in some apps and games. Automatically unlocks RevenueCat. The easy way to sideload.",
+  "features": [
+   "Unlocked",
+   "Auto RevenueCat"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d4c09a413b99cc2c4035ee865179633075074df3e11c88faeb76b0a4cce398b5",
+  "subtitle": "Sideload apps easily",
+  "tags": [
+   "chunk",
+   "patched",
+   "sideload",
+   "revenuecat",
+   "games"
+  ]
+ },
  "com.darkpigeon.awaken": {
   "category": "games",
   "date": "2026-10-15",
@@ -2619,6 +3287,52 @@
    "hero"
   ]
  },
+ "com.dmg.carsalessimulator": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Car Sales Simulator 25 is the iOS installable version of a detailed business simulation game. Run your own car sales business on your mobile device, manage operations, and experience realistic simulation gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4202e93fc66474d8b18f674e916095816c2cc81b0f612ac061b73644df83a700",
+  "subtitle": "Detailed business simulation game for iOS",
+  "tags": [
+   "car",
+   "sales",
+   "simulator",
+   "business",
+   "simulation",
+   "game"
+  ]
+ },
+ "com.dmytrocheverda.Charades": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Charades is a family and party game for iOS. Enjoy playing with friends and family.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aa245130242de92fdf9fe6ecf3a2784e01a659cbb884c97399e613be44608e48",
+  "subtitle": "Family and party charades game",
+  "tags": [
+   "charades",
+   "party",
+   "family",
+   "game"
+  ]
+ },
+ "com.dro1d.droid-weather": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Cat Weather is a weather application developed by @Sa1y0miii. This version requires iOS 26.0 or later and is app version 5.1.2.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "22d093fdad5577b9390ca3a0651b312473da32d7f6f3a580d6e2277b3e1ce043",
+  "subtitle": "Weather app by @Sa1y0miii",
+  "tags": [
+   "weather",
+   "cat weather",
+   "utilities"
+  ]
+ },
  "com.dynamicappdesign.breatheplus": {
   "category": "lifestyle",
   "date": "2026-10-15",
@@ -2635,6 +3349,22 @@
    "breathing",
    "health",
    "wellness"
+  ]
+ },
+ "com.dynamicdust.CharlieTheSteak": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Charlie The Steak is an ultimate stress-breaker. It is a scapegoat we have created just for you, so you don\u2019t hurt yourself or someone else when you are angry. Don\u2019t worry, he\u2019s not a real person nor he is a living creature. He is a steak!",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0b98aea16735ff0b41fc4d217a885c1d2640f34e6324178cc528aa10c3be6efd",
+  "subtitle": "An ultimate stress-breaker steak simulator",
+  "tags": [
+   "steak",
+   "stress",
+   "breaker",
+   "casual",
+   "game"
   ]
  },
  "com.ea.ios.bejeweledskies": {
@@ -2669,6 +3399,22 @@
    "ipa"
   ]
  },
+ "com.efezgames.caseopener": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Case Opener is a modified version of the popular iOS game designed for collectors and enthusiasts. Experience case opening gameplay directly on your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "58e5af89cba803e1e1a07cee8eb9d61010906cdc69b2161e312dce025ecac9e6",
+  "subtitle": "A case opening game for collectors and enthusiasts",
+  "tags": [
+   "case",
+   "opener",
+   "collector",
+   "game",
+   "mod"
+  ]
+ },
  "com.eifrig.blitzerdepro": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -2683,6 +3429,22 @@
    "blitzerde",
    "pro",
    "utilities"
+  ]
+ },
+ "com.electrateam.chimera": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "Jailbreak iOS 12.2 through 12.5.7 on all supported devices. The IPA file has been tested and compiled by the TTJB Team.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f8f78a7da1a03546ccc2bca65ab56adb1eeb45ff7ceef0a2cbc65877c1ce4c89",
+  "subtitle": "Jailbreak tool for iOS 12.2 to 12.5.7",
+  "tags": [
+   "jailbreak",
+   "chimera",
+   "ios12",
+   "ipa",
+   "ttjb"
   ]
  },
  "com.elevateapp.kamino.kamino": {
@@ -2701,6 +3463,22 @@
    "sleep",
    "relaxation",
    "mindfulness"
+  ]
+ },
+ "com.elsonbaty.chillio": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Chillio is an IPTV smart player designed to provide access to an extensive range of live TV channels and movies.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "de38c9661993c418ba21087e5b95d4572e38b84d91fecf47f78c0b3740762bd0",
+  "subtitle": "IPTV Smart Player for live TV and movies",
+  "tags": [
+   "iptv",
+   "player",
+   "live tv",
+   "movies",
+   "streaming"
   ]
  },
  "com.endavomedia.dmiondemand": {
@@ -2732,6 +3510,23 @@
    "ai",
    "chat",
    "assistant"
+  ]
+ },
+ "com.epicoro.castleclashers": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Castle Clashers is a fast-paced strategy and castle battle game for iOS devices. Plan your defenses, build your stronghold, and engage in tactical castle battles against opponents. Experience action-packed strategy gameplay designed for mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7df3e9072136127429dddf815ae1adc8904dc0884d6c7471dabbf526564e4224",
+  "subtitle": "Fast-paced strategy and castle battle game",
+  "tags": [
+   "strategy",
+   "battle",
+   "castle",
+   "action",
+   "tactics",
+   "ios"
   ]
  },
  "com.errorerrorerror.animenow": {
@@ -2893,6 +3688,40 @@
    "stems"
   ]
  },
+ "com.fungames.epiccardgamebeta": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Castle Crush is a card-based battle game featuring vibrant graphics, engaging gameplay, and strategic depth. Players can experience captivating tactical battles using various cards.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2005d5bfd6e33c6eef8d3f8d1b3fbdbc2e78f547c9f101f85bbcd62db8f15d2d",
+  "subtitle": "Card-based battle strategy game",
+  "tags": [
+   "card",
+   "battle",
+   "strategy",
+   "game",
+   "tactical"
+  ]
+ },
+ "com.funnmedia.calory": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Calory is an application featuring injected in-app purchases.",
+  "features": [
+   "Injected IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "38f8f65f0ef8367749c5e95d0e791d07bf6f4414049deb18d70c2332d18d1313",
+  "subtitle": "Calory app with injected in-app purchases",
+  "tags": [
+   "calory",
+   "health",
+   "tracker",
+   "diet",
+   "nutrition"
+  ]
+ },
  "com.future.kapi": {
   "category": "other",
   "date": "2026-10-14",
@@ -2907,6 +3736,27 @@
    "action",
    "unlocked",
    "app"
+  ]
+ },
+ "com.futurebright.chefplease": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chef Please is an exciting and interactive cooking simulation game for iOS devices. Manage your kitchen and test your cooking skills.",
+  "features": [
+   "Freeze Money",
+   "Freeze Coin",
+   "Infinite Money Booster",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a311f50c3125535bae1b4cbd190eeb9b69b1105a0f16a3e66fa2e061afe332cf",
+  "subtitle": "An exciting and interactive cooking simulation game",
+  "tags": [
+   "cooking",
+   "simulation",
+   "chef",
+   "kitchen",
+   "game"
   ]
  },
  "com.gameberrystudio.animals": {
@@ -2998,6 +3848,23 @@
    "tools"
   ]
  },
+ "com.gamoper.candysweetstory.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Candy Pop Story Match 3 is an engaging and colorful puzzle game designed exclusively for iOS devices. Experience an enchanting game filled with matching challenges and vibrant visuals.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bbe1b6f85101dfeddd9c6dfae470208c08819c9d5182cb7f55efe4ba49300275",
+  "subtitle": "Colorful match 3 puzzle game for iOS",
+  "tags": [
+   "puzzle",
+   "match",
+   "candy",
+   "game",
+   "ios",
+   "colorful"
+  ]
+ },
  "com.github.auties00.artemis": {
   "category": "entertainment",
   "date": "2026-10-15",
@@ -3031,6 +3898,21 @@
    "learning",
    "builder",
    "education"
+  ]
+ },
+ "com.google.chrome.ios": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chrome for iOS 15 and later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "90998174dbd1899454c13d081c6e9041dea56fa7808633793b287ccabd81e294",
+  "subtitle": "Chrome for iOS 15 and later",
+  "tags": [
+   "chrome",
+   "browser",
+   "google",
+   "web"
   ]
  },
  "com.google.ios.youtube.asjtube.1.4.0": {
@@ -3082,6 +3964,44 @@
    "icons",
    "customization",
    "brass"
+  ]
+ },
+ "com.grailr.CARROTweather": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "CARROT Weather provides weather alerts and radar tracking. This version requires iOS 15.0 or later and includes premium modifications.",
+  "features": [
+   "Weather alerts",
+   "Radar tracking",
+   "Premium unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8de9819057dd851f44b0d63643538854f508d1b15c9419d458e4c5d2948fe3bb",
+  "subtitle": "Weather alerts and radar",
+  "tags": [
+   "weather",
+   "radar",
+   "alerts",
+   "carrot",
+   "forecast"
+  ]
+ },
+ "com.grandgames.carmatch": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Car Match is a traffic puzzle game. This patched version includes free in-app purchases. Solve traffic puzzles and manage cars.",
+  "features": [
+   "Free iAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4731e6f1a7412c4e64a24d61749fa8ab65425c7d3f0f1b975782baf290dbcd9a",
+  "subtitle": "Traffic puzzle game",
+  "tags": [
+   "car",
+   "match",
+   "puzzle",
+   "traffic",
+   "game"
   ]
  },
  "com.greenwormsentertainment.beastevo": {
@@ -3360,6 +4280,22 @@
    "tool"
   ]
  },
+ "com.hidea.cat": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cats And Soup IPA is an iOS game that offers a unique and entertaining experience for users. This game combines the beloved feline companion.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cd0ea9edc77fc98862891c8a9ca1e2b3a8a7c32fb14c2a06e0bef8b7ae38101d",
+  "subtitle": "A unique and entertaining feline companion iOS game",
+  "tags": [
+   "cats",
+   "soup",
+   "game",
+   "feline",
+   "ios"
+  ]
+ },
  "com.hilalbeber.reference.beberref": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -3474,6 +4410,23 @@
    "files"
   ]
  },
+ "com.iViNi.BMWhatLite2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Carly is available with the premium injection included. This version provides the premium experience directly out of the box based on the AppTesters IPA Repo release.",
+  "features": [
+   "Injected with Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "da52afe060df8b757faeb9e15c1b4a9249257cd9aac3132c8be73256e52aee8b",
+  "subtitle": "Carly app release",
+  "tags": [
+   "carly",
+   "premium",
+   "ipa",
+   "app"
+  ]
+ },
  "com.ignm.animalmafia": {
   "category": "games",
   "date": "2026-10-14",
@@ -3488,6 +4441,25 @@
    "animal",
    "mafia",
    "game"
+  ]
+ },
+ "com.inakitajes.Calisthenial": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Calisteniapp is a calisthenics training application featuring Pro Unlocked. Access structured workout routines and exercises to support your fitness goals directly from your device.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aa7170390b3a50233088c9a6a48cd335d8fb83e244c3e178dcb0c9d5ba54a286",
+  "subtitle": "Calisthenics workout and training app",
+  "tags": [
+   "calisthenics",
+   "fitness",
+   "workout",
+   "training",
+   "exercise",
+   "health"
   ]
  },
  "com.incpt.mobis.CalculatorInfinite": {
@@ -3538,6 +4510,22 @@
    "ipa",
    "premium",
    "ttjb"
+  ]
+ },
+ "com.inkitt.app.galateatv": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CandyJarTV is an entertainment tool designed for users who prefer flexible access to digital content.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "80bdd8f8978ce70cdfc5425579725494c2172148a701a0838c5edcb096596590",
+  "subtitle": "Flexible entertainment access tool",
+  "tags": [
+   "entertainment",
+   "media",
+   "streaming",
+   "video",
+   "tools"
   ]
  },
  "com.innersloth.amongus": {
@@ -3977,6 +4965,222 @@
    "arithmetic"
   ]
  },
+ "com.ipaomtk.camera.pro.camera.editor.155015": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Camera+: Pro Camera and Editor is an iOS photography app package designed for iPhone users.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a62cf2ea1f45734326087669dfb7f395dc2c18cd88fd349071dd8a49fdce2e22",
+  "subtitle": "Pro camera and photo editor for iPhone",
+  "tags": [
+   "camera",
+   "photo",
+   "editor",
+   "photography",
+   "iphone",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.card.crawl.2.152816": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Card Crawl 2 is a strategic card-based dungeon crawler designed for iPhone. Experience tactical card gameplay and dungeon crawling challenges directly on your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cb46e561616d4e092fce19436dc02f75f98f07028d0090bfa5f0107e2937c312",
+  "subtitle": "Strategic card-based dungeon crawler for iPhone",
+  "tags": [
+   "cards",
+   "dungeon",
+   "strategy",
+   "crawler",
+   "iphone",
+   "game"
+  ]
+ },
+ "com.ipaomtk.card.queenduel.152824": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Card Queen: Duel is a strategic card battle game designed for iPhone.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2ffc17c451165934a8f56a4d772630c8006be59d0191bc79244e497127442805",
+  "subtitle": "Strategic card battle game for iPhone",
+  "tags": [
+   "card",
+   "battle",
+   "strategy",
+   "game",
+   "duel"
+  ]
+ },
+ "com.ipaomtk.carpet.bombing.2.159989": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Carpet Bombing 2 is an iOS game that lets players experience the sequel to the action-packed bombing arcade game. Take control of aircraft and execute strategic bombing missions directly from your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5b9214c59e7e66faa489cbb4a51271fd5a0ae77262bfeb389756a7cf4240c4e7",
+  "subtitle": "The sequel to the classic arcade bombing game",
+  "tags": [
+   "arcade",
+   "action",
+   "strategy",
+   "sequel",
+   "airplane"
+  ]
+ },
+ "com.ipaomtk.carpet.bombing.bomber.attack.159986": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Carpet Bombing \u2013 Bomber Attack is an iOS game package that allows players to experience bomber attack gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7a155c6cda22a8452fe2120de47223bfd1582532d0ff6b6d68d7ebb064e191f1",
+  "subtitle": "An iOS bomber attack game package",
+  "tags": [
+   "game",
+   "bomber",
+   "attack",
+   "arcade"
+  ]
+ },
+ "com.ipaomtk.castle.defender.idle.defense.152827": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Castle Defender: Idle Defense is a strategy-based idle defense game for iOS. Protect your castle using strategic planning and defense mechanics.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3fcb792c402f0842c5e4f4b0039cae3cf475251599046fa8d3b7f8ffcd9918ff",
+  "subtitle": "Strategy-based idle defense iOS game",
+  "tags": [
+   "castle",
+   "defender",
+   "idle",
+   "strategy",
+   "defense",
+   "game"
+  ]
+ },
+ "com.ipaomtk.chainsaw.juice.king.idle.shop.151912": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chainsaw Juice King Idle Shop is an iOS idle simulation game. Manage your shop and progress through the simulation gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "df60cafdd3bc85dd34ea18f09c6adf08f0aca1c51b5187f1c03ee6d20d102f53",
+  "subtitle": "Unique idle simulation game",
+  "tags": [
+   "chainsaw",
+   "juice",
+   "king",
+   "idle",
+   "shop",
+   "simulation"
+  ]
+ },
+ "com.ipaomtk.chaos.world.159766": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "CHAOS WORLD is a role-playing game for iOS that combines hero collection and strategic gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d508cc5e286ee684a8e453738525ad08e8adb534fe087c705b3618205512ef02",
+  "subtitle": "Role-playing game with hero collection and strategy",
+  "tags": [
+   "chaos world",
+   "rpg",
+   "role playing",
+   "strategy",
+   "hero collection",
+   "game"
+  ]
+ },
+ "com.ipaomtk.charging.fun.screen.animation.156961": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Charging Fun Screen Animation is a personalization app for iOS devices that provides custom charging screen animations.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "71358fc8870ca3fe46daf402e46b5c705a979c0b1d56f1fcebb169b648f3b013",
+  "subtitle": "Personalization app for charging screen animations",
+  "tags": [
+   "charging",
+   "animation",
+   "screen",
+   "personalization",
+   "utility",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.charlie.in.underworld.154652": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Charlie in Underworld! is an adventure-driven iOS game that combines narrative storytelling with exploration.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fd78fadd50382e5cf32218c641178a180ca457155c445cc1095d25d2ca2b38b8",
+  "subtitle": "An adventure-driven iOS game with narrative storytelling",
+  "tags": [
+   "charlie",
+   "underworld",
+   "adventure",
+   "game",
+   "storytelling",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.chartscan.ai.chart.analysis.152526": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "ChartScan is an iOS application designed for iPhone and iPad users who want to scan, analyze, and interpret charts using artificial intelligence.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "24d1b37d81303a2a711cb8166195efb1d48bee593fd5364595564fb859505731",
+  "subtitle": "Scan and analyze charts with AI",
+  "tags": [
+   "chart",
+   "scan",
+   "ai",
+   "analysis",
+   "ipad",
+   "iphone"
+  ]
+ },
+ "com.ipaomtk.chimeras.11.f2p.154693": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chimeras 11: F2P brings a richly detailed hidden object adventure to your iOS device. Dive into a deep puzzle adventure featuring challenging hidden object gameplay and intricate puzzles to solve.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ed9c1cabbe955c951cc94c78a3606d0b487c6643e54bffb9a6d94724c50c6eb1",
+  "subtitle": "A deep puzzle adventure with hidden object excellence",
+  "tags": [
+   "puzzles",
+   "hidden object",
+   "adventure",
+   "games",
+   "strategy"
+  ]
+ },
+ "com.ipaomtk.chroma.hue.160082": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chroma Hue is an iOS application package that allows users to install a powerful color editing game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c0ec04efe13a080f89574c13d2b0cc90e157eb45b8d73cf6eade54a42e0fafb5",
+  "subtitle": "A powerful color editing iOS game",
+  "tags": [
+   "chroma",
+   "hue",
+   "color",
+   "editing",
+   "game",
+   "ios"
+  ]
+ },
  "com.iphonecake.appcakej": {
   "category": "games",
   "date": "2026-10-15",
@@ -4023,6 +5227,25 @@
    "png",
    "photo",
    "editor"
+  ]
+ },
+ "com.joincarbon.nutrition": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Carbon is a macro coach and tracker application. This version includes the subscription unlocked feature.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7c63d941e583620000500c2e4e14b14bbd8da8d435c10d1a7378eda362d7e246",
+  "subtitle": "Macro Coach and Tracker",
+  "tags": [
+   "carbon",
+   "macro",
+   "coach",
+   "tracker",
+   "health",
+   "fitness"
   ]
  },
  "com.josessolmaximo.blackout": {
@@ -4154,6 +5377,23 @@
    "3d"
   ]
  },
+ "com.kommadot.casesimulator": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Case Chase Clicker: CSGO Skins is an iOS clicker-style game that allows iPhone users to play a case opening and skin collection experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e40ae1512cd995a6ca3b11558b04bd25455fd950648d68875a7206d688997899",
+  "subtitle": "CSGO skins clicker game for iOS",
+  "tags": [
+   "csgo",
+   "skins",
+   "clicker",
+   "game",
+   "iphone",
+   "case"
+  ]
+ },
  "com.kongregate.mobile.adventurecapitalist": {
   "category": "games",
   "date": "2026-10-14",
@@ -4186,6 +5426,23 @@
    "communism",
    "game",
    "adventure"
+  ]
+ },
+ "com.krivtsova.charging": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Charging Animation Play: Fun is an iOS customization app designed to personalize your device charging screen. Turn your charging routine into an engaging experience with fun animations.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "08d73911329bd4ab723e849b9537cdcf96d34c5f842ef39f50758f65529cf8d7",
+  "subtitle": "Creative Way to Personalize Your Charging Screen",
+  "tags": [
+   "charging",
+   "animation",
+   "personalization",
+   "customization",
+   "screen",
+   "iphone"
   ]
  },
  "com.kuro121vn.battletask": {
@@ -4223,6 +5480,37 @@
    "utilities"
   ]
  },
+ "com.lappir.carnivore": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Carnivore is available with the subscription unlocked feature enabled. This application provides the functionality associated with Carnivore without requiring an active subscription.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "59668eb895c59b747e089828727d51a597a59fa0594df50fa3fd40f28cf7d23f",
+  "subtitle": "Carnivore app with subscription unlocked",
+  "tags": [
+   "carnivore",
+   "unlocked",
+   "subscription"
+  ]
+ },
+ "com.latenitesoft.CameraPlus2": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Camera+ version 24.5.3 available for iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "90c28746d4d86ee493cd41a09a882190adb577d1f9b402a9edb76de6e2025f63",
+  "subtitle": "Camera+ App Store version",
+  "tags": [
+   "camera",
+   "photo",
+   "video",
+   "latenite"
+  ]
+ },
  "com.lazyboydevelopments.boxingsuperstar": {
   "category": "games",
   "date": "2026-10-15",
@@ -4255,6 +5543,42 @@
    "speed",
    "internet",
    "utilities"
+  ]
+ },
+ "com.lemon.Ivoverseas": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "CapCut with most premium features unlocked.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bff4a861ce509e9b4f43b808f334f09d6437827be31ad2603eec6182d110e304",
+  "subtitle": "CapCut with premium features unlocked",
+  "tags": [
+   "capcut",
+   "video",
+   "editor",
+   "premium",
+   "unlocked"
+  ]
+ },
+ "com.lemon.lvoverseas": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "CapCut is a video editing application with pro functions included. This modified version includes unlocked pro features and has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "180fba3d278436188647ec686d8a45b843c67c4e816813c25e50a0c3e368a976",
+  "subtitle": "Video editor with pro features unlocked",
+  "tags": [
+   "capcut",
+   "video",
+   "editor",
+   "pro",
+   "ttjb"
   ]
  },
  "com.leolam.Activity-Moniter": {
@@ -4364,6 +5688,24 @@
    "ipa"
   ]
  },
+ "com.livintis.chatty": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Chatty.ai is an artificial intelligence chatbot application. This version includes the subscription unlocked tweak, giving access to premium features without an active subscription. Interact with the AI assistant for various conversational tasks.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "79ba53019385c55b3096c77a0a3b2631c824c64150d3584dbd34faeae737ff72",
+  "subtitle": "AI Chatbot with subscription unlocked",
+  "tags": [
+   "ai",
+   "chat",
+   "chatbot",
+   "assistant",
+   "chatty"
+  ]
+ },
  "com.lkv.audiobookplayerapp": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -4455,6 +5797,22 @@
    "ipa",
    "ttjb",
    "graphics"
+  ]
+ },
+ "com.lunch.cellstosingularity": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cell to Singularity Evolution is a revolutionary game that allows you to witness the incredible transformation of a single cell.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "01a4541ded4a6827bc1869b2879db8f2a7ab416b799e1e142fe690add5d04df4",
+  "subtitle": "Witness the transformation of a single cell",
+  "tags": [
+   "evolution",
+   "cell",
+   "game",
+   "singularity",
+   "simulation"
   ]
  },
  "com.lunosoft.ttheroes": {
@@ -4564,6 +5922,23 @@
    "utility"
   ]
  },
+ "com.match.cheftreat.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chef Treat offers fun challenges that blend creativity, strategy, and time management.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "babb01f1a23d136825757d6be8ed17de7bc88caa375587e4efdd77cf7591eb44",
+  "subtitle": "fun cooking challenges and time management",
+  "tags": [
+   "chef",
+   "treat",
+   "cooking",
+   "strategy",
+   "games",
+   "ios"
+  ]
+ },
  "com.mbh.athkari": {
   "category": "other",
   "date": "2026-10-15",
@@ -4579,6 +5954,78 @@
    "remembrance",
    "iphone",
    "ipad"
+  ]
+ },
+ "com.mibo.castlecrush.apple": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Castle Crush is a match 3 puzzle game for iOS. This version includes built-in modifications such as unlimited coins, lives, stars, a moves freeze option, boosters, and an auto win feature where you just hit the target to clear levels.",
+  "features": [
+   "Coins",
+   "Lives",
+   "Stars",
+   "Moves Freeze",
+   "Auto Win"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8d01e155657942b9651081f2eddd88462bc9d054f2ea08247f026c0e0ac93a91",
+  "subtitle": "Match 3 puzzle game with cheats",
+  "tags": [
+   "castle crush",
+   "match 3",
+   "puzzle",
+   "strategy",
+   "ios",
+   "game"
+  ]
+ },
+ "com.midasplayer.apps.candycrushjellysaga1": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Candy Crush Jelly Saga is a game released by King that takes players on an enchanting journey through sugary landscapes on iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "08223527a0545bbe698c28c1d84c2727e1b9e7edc517d3a96a8d417f4948dda5",
+  "subtitle": "An enchanting journey through sugary landscapes",
+  "tags": [
+   "candy crush",
+   "jelly saga",
+   "king",
+   "puzzle",
+   "ios"
+  ]
+ },
+ "com.midasplayer.apps.candycrushsaga": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Candy Crush Saga is an iconic puzzle game released for iOS. Match candies through various levels in this classic matching puzzle experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "92b2d625e88b860d336e88455e0c32c3c89a7eb59450549914666884ff9440b3",
+  "subtitle": "An iconic puzzle game for iOS",
+  "tags": [
+   "puzzle",
+   "candy",
+   "match",
+   "game",
+   "saga"
+  ]
+ },
+ "com.midasplayer.apps.candycrushsodasaga": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Candy Crush Soda Saga has captivated millions of players around the globe. Developed by King, this sweet puzzle game offers challenging levels and engaging gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c054a240051c8424fd320fdd900a997b922adfd4f37af58e7fc1f6ec724c346c",
+  "subtitle": "A sweet puzzle game developed by King",
+  "tags": [
+   "puzzle",
+   "game",
+   "candy",
+   "soda",
+   "king",
+   "saga"
   ]
  },
  "com.mind.quiz.brain.out": {
@@ -4666,6 +6113,22 @@
    "bounce"
   ]
  },
+ "com.minogames.cats.beta": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Welcome to the world of Cat Game \u2013 The Cats Collector IPA for iOS. If you are a cat lover looking for a new and exciting game to play on your mobile device, this app offers a cat collecting experience designed for feline enthusiasts.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2fdbebb0ac940a340ca199fc6cb94d1783cf09fe8606af43f2de1cbc569a2952",
+  "subtitle": "Collect and care for cats in this game",
+  "tags": [
+   "cat",
+   "game",
+   "collector",
+   "feline",
+   "pets"
+  ]
+ },
  "com.mmt.bookvo": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -4698,6 +6161,25 @@
    "game",
    "fantasy",
    "ios"
+  ]
+ },
+ "com.moffatman.chan": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chance is an imageboard browser built using Flutter and designed for use on iOS devices. It features a multi-column layout optimized for larger screens and supports WEBM video playback.",
+  "features": [
+   "Multi-column layout",
+   "WEBM playback"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "45ec199bae8724023e1d78ce03c68931ff507dde4d2538e83da4e31f27823a90",
+  "subtitle": "Imageboard browser built using Flutter",
+  "tags": [
+   "imageboard",
+   "browser",
+   "flutter",
+   "webm",
+   "utilities"
   ]
  },
  "com.mudsplasher.AppleGotTrolled": {
@@ -4767,6 +6249,22 @@
    "beats"
   ]
  },
+ "com.nanotribe.games.cashier3d": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cashier 3D is an iOS simulation game package that allows iPhone users to experience the role of a cashier.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e81e14ab670f715ef0a3299a064e4b3367cdea428254f86ae7e7b346a4ce4b9e",
+  "subtitle": "Experience the role of a cashier",
+  "tags": [
+   "cashier",
+   "simulation",
+   "game",
+   "ios",
+   "iphone"
+  ]
+ },
  "com.ndemiccreations.survivors": {
   "category": "other",
   "date": "2026-10-14",
@@ -4800,6 +6298,23 @@
    "strategy",
    "game",
    "netflix"
+  ]
+ },
+ "com.newintco.charginganimation": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Charging Play and Emoji Battery on iOS offers a unique approach to everyday device management.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "78c6be93c5e58138f512af8b058bd7b3ce752962b2a97de9da06085f69091676",
+  "subtitle": "Unique approach to everyday device management",
+  "tags": [
+   "charging",
+   "battery",
+   "emoji",
+   "management",
+   "utilities",
+   "ios"
   ]
  },
  "com.nextep.learning.kids.games": {
@@ -4903,6 +6418,25 @@
    "javascript"
   ]
  },
+ "com.olzhas.carparking.multyplayer2.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Car Parking 2 offers unlimited money and unlimited diamonds for players.",
+  "features": [
+   "Unlimited Money",
+   "Unlimited Diamonds"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9aa5baa1b475ab5bb7434b6446e941ea3136409266765eaa7f43495c4ec0238e",
+  "subtitle": "Car Parking 2 with unlimited money and diamonds",
+  "tags": [
+   "car",
+   "parking",
+   "game",
+   "unlimited",
+   "money"
+  ]
+ },
  "com.onicore.backpack.rush": {
   "category": "games",
   "date": "2026-10-15",
@@ -4917,6 +6451,26 @@
    "game",
    "ios",
    "entertainment"
+  ]
+ },
+ "com.oppanagames.car.simulator": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Car Simulator 2 offers a driving simulation experience with hack features including free in-app purchases and infinite coins. Purchase your own certificate or use an Apple ID with paid games.",
+  "features": [
+   "Free In-App Purchases",
+   "Infinite Coins"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5b58962ab590bea140664562a3d78f3f4803b038ecb20cfdb1c24a36825f0b1a",
+  "subtitle": "Drive and explore in Car Simulator 2",
+  "tags": [
+   "car",
+   "simulator",
+   "driving",
+   "games",
+   "vehicles",
+   "simulation"
   ]
  },
  "com.optiflow.imposter": {
@@ -4968,6 +6522,60 @@
    "war",
    "flight",
    "arcade"
+  ]
+ },
+ "com.osk3apps.CarPlex": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "CarPlex allows you to access and use your Plex content directly from your vehicle CarPlay system. Enjoy your media on the road with seamless integration.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5e013b2dcec281a61a375d1b7a1ccd3783873b897786b91af18bb030b0ca8d15",
+  "subtitle": "Use Plex content from your CarPlay system",
+  "tags": [
+   "carplay",
+   "plex",
+   "media",
+   "streaming",
+   "entertainment"
+  ]
+ },
+ "com.overdesigned.Cheatsheet": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Cheatsheet is a sticky note widget app. This patched version includes the subscription unlocked.",
+  "features": [
+   "Subscription Unlocked",
+   "Sticky Note Widget"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5e611483eb8a728dc51858aff2cd1521180315cd70012e0b7e72ac7d596e53a8",
+  "subtitle": "Sticky Note Widget",
+  "tags": [
+   "cheatsheet",
+   "widget",
+   "sticky",
+   "notes",
+   "utility"
+  ]
+ },
+ "com.overdesigned.Cheatsheet.watchkitapp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Cheatsheet is a sticky note widget app for iOS. This version includes subscription unlocked features. Keep your important notes and information easily accessible directly from your home screen.",
+  "features": [
+   "Subscription Unlocked",
+   "Sticky Note Widget"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bdc4fa3dad665e70e59d29a6a2cac2bcfb4a4f678c2cd0e4f23d541a0290a279",
+  "subtitle": "Sticky Note Widget",
+  "tags": [
+   "cheatsheet",
+   "widget",
+   "notes",
+   "sticky",
+   "utilities"
   ]
  },
  "com.panicbyte.byephotos": {
@@ -5241,6 +6849,23 @@
    "game"
   ]
  },
+ "com.playsidestudios.candycritters": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Candy Critters Idle Merge is a puzzle game designed for iOS devices, combining engaging and idle merge gameplay mechanics.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1cd29483727b3274db455b07886291a101966c33d51ebbc8228f0a2fd6d706ba",
+  "subtitle": "Idle merge puzzle game for iOS",
+  "tags": [
+   "puzzle",
+   "merge",
+   "idle",
+   "candy",
+   "critters",
+   "game"
+  ]
+ },
  "com.plr.expeditionscapes": {
   "category": "games",
   "date": "2026-10-15",
@@ -5330,6 +6955,24 @@
    "adventure"
   ]
  },
+ "com.readdle.CalendarsLite": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Calendars by blatants is a schedule planner app for iOS. This version is updated to 5.37.34 and requires iOS 17.5 or later.",
+  "features": [
+   "Patched"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "383744bbb58558a94b1b6f50f63f4c308e1c3df95eed25cad91ef1e6d668422e",
+  "subtitle": "Schedule planner and calendar app",
+  "tags": [
+   "calendar",
+   "planner",
+   "schedule",
+   "events",
+   "organizer"
+  ]
+ },
  "com.realmzer.allflexing": {
   "category": "developer",
   "date": "2026-10-14",
@@ -5376,6 +7019,38 @@
    "unlock",
    "performance",
    "utility"
+  ]
+ },
+ "com.realmzer.comdinohunter": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Experience Call of Mini Dino Hunter on your new device with this port. Hunt dinosaurs and play the action game tailored to run on modern hardware.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7febd9c5d05f454f105d07e6d0b5901eebcb4bcd806357d0e6bd64d0d11ea03e",
+  "subtitle": "A port of Call of Mini Dino Hunter for new devices",
+  "tags": [
+   "action",
+   "dino",
+   "hunter",
+   "port",
+   "game"
+  ]
+ },
+ "com.realmzer.comz2": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Embark on a journey to save the world from the undead in Call of Mini Zombies 2, the action sequel where you directly confront hordes of zombies. Players are equipped with an arsenal of 10 lethal weapons to fend off the zombie outbreak and restore peace.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9170ec926ab5e8f3254f925bd6198ecc8716abe566957fde2f37242d796d9044",
+  "subtitle": "Fight the undead horde to save the world",
+  "tags": [
+   "zombies",
+   "action",
+   "shooter",
+   "weapons",
+   "sequel"
   ]
  },
  "com.rebelancap.2ship": {
@@ -5444,6 +7119,23 @@
    "trollstore",
    "developer",
    "tool"
+  ]
+ },
+ "com.retrytech.TimeTag": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "CamTag is a timestamp camera application for iOS 18.0 and later.",
+  "features": [
+   "Timestamp camera"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "57df7f2363637409ed5d69f05d62316aeb3c1f68038408bb1b9e482fe3536e01",
+  "subtitle": "Timestamp Camera",
+  "tags": [
+   "camera",
+   "timestamp",
+   "photo",
+   "video"
   ]
  },
  "com.revoicers.autocc": {
@@ -5807,6 +7499,138 @@
    "combat"
   ]
  },
+ "com.spaceapegames.carsuperstar": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Chrome Valley Customs IPA MOD mobile application for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a2e346b2672a533123c4ee5f9f935ecc1fa98bb1061b701a099fd465301a6328",
+  "subtitle": "Chrome Valley Customs iOS application",
+  "tags": [
+   "chrome",
+   "valley",
+   "customs",
+   "mobile",
+   "ios",
+   "app"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.0.50.0.beta.not.patched.9.1.78": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "This is a modded version of Spotify compatible with SideStore. This release includes Chroma.pw cracked.",
+  "features": [
+   "Modded version",
+   "SideStore compatible",
+   "Chroma.pw cracked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "92abb21b8dd1371ec218a5260cd428c315eb5f3389284d004bb22e161ce3b348",
+  "subtitle": "Modded music streaming app",
+  "tags": [
+   "spotify",
+   "music",
+   "streaming",
+   "mod",
+   "audio"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.0.50.0.cracked.patched.9.1.78": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "This is a modded version of Spotify featuring Chroma.pw cracked and patched. Please note that this version does not work with Sidestore.",
+  "features": [
+   "Patched version",
+   "Chroma cracked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "11230efc8fbbf1efe6f70369f900818fd0f093ba9736f55cffa1591a517c45b0",
+  "subtitle": "Modded audio streaming application",
+  "tags": [
+   "spotify",
+   "music",
+   "streaming",
+   "audio",
+   "mod"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.0.51.0.beta.1.not.patched.9.1.78": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "This is a modded version of Spotify that works with SideStore and includes Chroma.pw cracked. FastSign is operated by CertFish.",
+  "features": [
+   "Cracked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5720f6812dc1d8b1626a6ba2aab1c1fe53827c617b5df750c113ee9d0cd7fbb6",
+  "subtitle": "Modded version of Spotify",
+  "tags": [
+   "spotify",
+   "chroma",
+   "mod",
+   "music",
+   "sidestore"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.0.51.0.beta.1.not.patched.9.1.90": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "This is a modded version of Spotify featuring Chroma.pw cracked. The application is designed to work with sidestore for easy sideloading.",
+  "features": [
+   "Cracked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5720f6812dc1d8b1626a6ba2aab1c1fe53827c617b5df750c113ee9d0cd7fbb6",
+  "subtitle": "Modded audio streaming experience",
+  "tags": [
+   "spotify",
+   "chroma",
+   "modded",
+   "streaming",
+   "music",
+   "audio"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.eeveespotifyreincarnated.0.50.0.beta.not.patched.9.1.78": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Modded version of Spotify featuring Chroma.pw cracked and EeveeSpotifyReincarnated. This application works with SideStore for sideloading.",
+  "features": [
+   "Cracked",
+   "Sideload support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "41ea125fdf24d0a2470ab2b7e875f840f8cbc7dff240077e25fd765622166260",
+  "subtitle": "Modded Spotify client for sideloading",
+  "tags": [
+   "spotify",
+   "music",
+   "modded",
+   "audio",
+   "sidestore"
+  ]
+ },
+ "com.spotify.client.ios.chroma.pw.eeveespotifyreincarnated.0.50.0.cracked.patched.9.1.78": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "This is a modded version of Spotify featuring both Chroma.pw cracked and EeveeSpotifyReincarnated. Please note that this application does not work with Sidestore.",
+  "features": [
+   "Modded Spotify",
+   "Chroma.pw cracked",
+   "EeveeSpotifyReincarnated"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "690d7d472f723fb0565b490de43be6e5e733773158afff8d64fdc4e420f56a3f",
+  "subtitle": "Modded Spotify with Chroma and Eevee integration",
+  "tags": [
+   "spotify",
+   "music",
+   "modded",
+   "audio",
+   "streaming"
+  ]
+ },
  "com.sprrrint.amble": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -5929,6 +7753,41 @@
    "game"
   ]
  },
+ "com.talgat.AIChat": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Access chatbot AI capabilities with premium features included. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8cc1d28b639837796bb2e45c6b92e0b90c260da4c1b6cef70f627b2d974ffb95",
+  "subtitle": "AI chatbot assistant with premium features",
+  "tags": [
+   "chatbot",
+   "ai",
+   "assistant",
+   "premium",
+   "utilities"
+  ]
+ },
+ "com.tcn.cking": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Embark on an exciting journey starting from humble beginnings and gradually building your wealth in this tycoon money-earning game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "140cf17c90d32a25fbf57cfb245758d2c25e5c8501580f6342c21f090849595a",
+  "subtitle": "Build your wealth from humble beginnings",
+  "tags": [
+   "cash",
+   "king",
+   "tycoon",
+   "earn",
+   "money",
+   "game"
+  ]
+ },
  "com.telltalegames.BAT100": {
   "category": "games",
   "date": "2026-10-15",
@@ -5963,6 +7822,22 @@
    "hardcore",
    "combat",
    "atmospheric"
+  ]
+ },
+ "com.thegentlebros.project-star": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cat Quest III continues the cherished franchise legacy, bringing adventurous felines heading into a brand-new chapter.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4c16076e3ca8434002307b7ab4eb8771cad94c2ac2a68a9ea2a5293413d4fdf8",
+  "subtitle": "An adventurous feline chapter in the cherished franchise",
+  "tags": [
+   "cat quest",
+   "adventure",
+   "feline",
+   "rpg",
+   "game"
   ]
  },
  "com.tigisoftware.ADManager": {
@@ -6043,6 +7918,38 @@
    "tactical",
    "battle",
    "game"
+  ]
+ },
+ "com.tree.idle.cat.city": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cat Snack Bar: City Simulation is a charming iOS simulation game that combines casual city-building gameplay. Manage your cat city and experience simulation fun.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4398cf8893bf4bb690fef0b2e1fe1c9a251af22c3f3f171e174977a800e7f8ea",
+  "subtitle": "Charming casual cat city simulation game",
+  "tags": [
+   "simulation",
+   "city",
+   "cat",
+   "casual",
+   "game"
+  ]
+ },
+ "com.tree.idle.cat.school": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cat School is an idle cute simulation game where you manage a school for cats. This iOS installation package lets you experience charming idle tycoon gameplay directly on your mobile device. Build and expand your feline academy, oversee daily activities, and progress through the simulation at your own pace without any external site dependencies.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "65312a3153aaa2f4290399ce2bf8f92a0ae2a5e9fe1e1282f361370ccad91e60",
+  "subtitle": "Idle cute simulation game for iOS",
+  "tags": [
+   "cats",
+   "school",
+   "idle",
+   "simulation",
+   "tycoon"
   ]
  },
  "com.unicostudio.braintest": {
@@ -6711,6 +8618,267 @@
    "utility"
   ]
  },
+ "com.unknown.camai": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Communicate with artificial intelligence. To make a purchase, tap buy and then select cancel.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "46cd948991411bfcdb6c06dac871ed9393eea93e4cb6f4e3913135ffefd2ed25",
+  "subtitle": "Chat with artificial intelligence",
+  "tags": [
+   "ai",
+   "chat",
+   "assistant",
+   "intelligence"
+  ]
+ },
+ "com.unknown.candycrushfriends": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Play Candy Crush Friends with an unlimited number of moves.",
+  "features": [
+   "Unlimited moves"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ce4e18e00d129c42ec838b5517848e2df77f31999fc79de9ea711ebaad556900",
+  "subtitle": "Unlimited moves for Candy Crush Friends",
+  "tags": [
+   "candy",
+   "crush",
+   "friends",
+   "moves",
+   "game"
+  ]
+ },
+ "com.unknown.candycrushsaga": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play Candy Crush Saga with unlimited lives and unlimited boosters. Enjoy uninterrupted gameplay with these enhancements for your gaming experience.",
+  "features": [
+   "Unlimited lives",
+   "Unlimited boosters"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "14dbf3fb680547a09ff43a8ca5b7eeb904344a92df10686d6c7880d79b81593b",
+  "subtitle": "Unlimited lives and boosters",
+  "tags": [
+   "candy",
+   "crush",
+   "saga",
+   "game",
+   "boosters",
+   "lives"
+  ]
+ },
+ "com.unknown.cannonattack": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Cannon Attack by Karbin-Store.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f9e26ce8c90b920d6911bfd9311f074048c0f34e01a2d089d74119aa373ee94d",
+  "subtitle": "Cannon Attack",
+  "tags": [
+   "cannon",
+   "attack",
+   "game",
+   "action"
+  ]
+ },
+ "com.unknown.capcuthack": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "This application features unlocked premium content and removes advertisements. It also includes a fix for unexpected crashes that cause the app to close.",
+  "features": [
+   "Unlocked features",
+   "No ads",
+   "Crash fixes"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9ddf5dfe18d98cadf7c8c5be9e7f62f084ed406c4f55c1863d17e8f5137525d5",
+  "subtitle": "CapCut modified version",
+  "tags": [
+   "capcut",
+   "video",
+   "editor",
+   "media"
+  ]
+ },
+ "com.unknown.captions": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Captions is a video editing application that utilizes artificial intelligence. Premium features are activated directly inside the application.",
+  "features": [
+   "AI Powered",
+   "Premium Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8aa3bd6b6e22de84687f32456b234c82eea84b1bb99315da6846811001e46046",
+  "subtitle": "AI-powered video editing application",
+  "tags": [
+   "captions",
+   "video editor",
+   "ai",
+   "montage",
+   "premium"
+  ]
+ },
+ "com.unknown.carbridgepro": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Stream YouTube directly to your car. Control car functions. Access all locked features and manage in-app purchases with restore options.",
+  "features": [
+   "YouTube for cars",
+   "Car control",
+   "Unlocked features",
+   "IAP support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "076d1018291b11f3bf19b1ae550fa44b08a18c80b62e5a39452cb9ccd7c61e51",
+  "subtitle": "Connect YouTube to your car and control vehicle features",
+  "tags": [
+   "car",
+   "youtube",
+   "vehicle",
+   "stream",
+   "control"
+  ]
+ },
+ "com.unknown.card2phone": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "\u062e\u06c6\u062a \u0632\u06d5\u062e\u0645 \u0628\u06a9\u06d5 \u0644\u06d5 \u0646\u0627\u0648 \u062e\u0632\u0645\u06d5\u06a9\u0627\u0646\u062a \u0628\u06d5\u0645 \u0628\u06d5\u0631\u0646\u0627\u0645\u06d5",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c288cac2236b26129c569a0dbe566f3db6f3e6e790e938299e084d94274a2118",
+  "subtitle": "\u062e\u06c6\u062a \u0632\u06d5\u062e\u0645 \u0628\u06a9\u06d5 \u0644\u06d5 \u0646\u0627\u0648 \u062e\u0632\u0645\u06d5\u06a9\u0627\u0646\u062a",
+  "tags": [
+   "card2phone",
+   "karbin",
+   "store",
+   "kurdish"
+  ]
+ },
+ "com.unknown.carista": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "The Carista mobile DIY car mechanic app is in the palm of your hands. Features include coding capabilities, diagnostic trouble light identification, and live data monitoring.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2e21182fdeb0bb89219235cd70104021f6fc0c52eee0498c0f59dd98ab51b329",
+  "subtitle": "DIY car mechanic and diagnostic app",
+  "tags": [
+   "car",
+   "mechanic",
+   "diagnostic",
+   "coding",
+   "diy",
+   "auto"
+  ]
+ },
+ "com.unknown.carsimulator2": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "This application provides a helper method for Car Simulator 2. To make a purchase within the game, tap buy and then select cancel.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "34762b9166103392d661f37e6a45923847ab159e395791ed73b5e27413a5ee5b",
+  "subtitle": "Car Simulator 2 game utility",
+  "tags": [
+   "car",
+   "simulator",
+   "game",
+   "utility",
+   "helper"
+  ]
+ },
+ "com.unknown.cartube": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CarTube is an application designed to play YouTube on supported CarPlay vehicles.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1c4937c39c8f94be7484817825a1d828b0d5886a7225879f31ffedec585febe1",
+  "subtitle": "YouTube playback for supported CarPlay vehicles",
+  "tags": [
+   "cartube",
+   "carplay",
+   "youtube",
+   "media",
+   "car"
+  ]
+ },
+ "com.unknown.carxrally": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "CarX Rally lets you experience off-road racing action. Enjoy free in-app purchases as you compete on various rally tracks. Test your driving skills and navigate challenging courses in this racing title.",
+  "features": [
+   "Free IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a4c7e08a59409571d80fb2b389a0892d947ed3bce860d2dc11b909aaa96b665e",
+  "subtitle": "Rally racing game with free in-app purchases",
+  "tags": [
+   "rally",
+   "racing",
+   "cars",
+   "offroad",
+   "driving"
+  ]
+ },
+ "com.unknown.causality": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Causality is a puzzle game about manipulating time, change, and the sequence of events to alter the outcome of each level. Price is 2 dollars in the App Store.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2ab12e3899b500cccb7a7572c7e47ee24ca3741ceb56851f9e36d50587e7cdb4",
+  "subtitle": "A puzzle game about manipulating time and events",
+  "tags": [
+   "puzzle",
+   "time",
+   "causality",
+   "strategy",
+   "game"
+  ]
+ },
+ "com.unknown.chatsmith": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AI chatbot app that enables conversations using artificial intelligence. Premium activation is available inside the application by clicking purchase and then canceling.",
+  "features": [
+   "AI Chatbot",
+   "Premium Activation"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "63a6a2154a11cbe6e71b3cd66ae4b7e2a5eed249128b9fe587ab134d92cb8bf9",
+  "subtitle": "AI chatbot application",
+  "tags": [
+   "chat",
+   "ai",
+   "chatbot",
+   "assistant"
+  ]
+ },
+ "com.unknown.citygasstation": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "City Gas Station is a simulation game where players manage and operate a gas station. Turn on the Free Store option directly from the in-game menu to access free items. Experience day-to-day operations and management tasks within the game environment.",
+  "features": [
+   "Free Store"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ccd5885c7fe3a056c575baa85a2e8a7a146e39fe0f8ac82368495f69aa2001ae",
+  "subtitle": "City Gas Station simulation game",
+  "tags": [
+   "simulation",
+   "gas station",
+   "management",
+   "game",
+   "strategy"
+  ]
+ },
  "com.unofficial.balatro": {
   "category": "games",
   "date": "2026-10-15",
@@ -6882,6 +9050,22 @@
    "travel"
   ]
  },
+ "com.waldostudiobv.century": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Century is a health and fitness application for iOS devices. Track your wellness routine with this utility app, which requires iOS 15.1 or later. The current version is 1.45.0.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "357d7ee57cf1d1dc44c31a3e75877f8fe8aed2664ddeebe3de71510d5f8f813a",
+  "subtitle": "Health and fitness tracker",
+  "tags": [
+   "health",
+   "fitness",
+   "tracker",
+   "wellness",
+   "century"
+  ]
+ },
  "com.wallpapershub.anime": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -6916,6 +9100,22 @@
    "speaking",
    "training",
    "audio"
+  ]
+ },
+ "com.wemagineai.citrus": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Citrus uses artificial intelligence to help you achieve the perfect photo with a single tap. Requires iOS 15.0 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0a5d575c2a5c252d39168a559c16f3793a977e1cf31750544cc25bb07f80c966",
+  "subtitle": "AI 1 Tap Perfect Photo",
+  "tags": [
+   "citrus",
+   "photo",
+   "ai",
+   "editor",
+   "camera"
   ]
  },
  "com.wolf.piggy": {
@@ -6999,6 +9199,22 @@
    "lock",
    "iphone",
    "utilities"
+  ]
+ },
+ "com.yfactorysoft.CatCrunch": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cat Crunch is a colorful puzzle game built for iPhone and iPad players who love match 3 gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ad9914024b3fa7c806259beae5b141ccdb000a433b4fbe3bbc348531c684a4de",
+  "subtitle": "Colorful match 3 puzzle game",
+  "tags": [
+   "puzzle",
+   "match3",
+   "cat",
+   "crunch",
+   "game"
   ]
  },
  "com.yoshisuga.activeGS": {
@@ -7116,6 +9332,24 @@
    "plus",
    "mod",
    "entertainment"
+  ]
+ },
+ "com.zuev.recorder.Z9HHLMN695": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Call Recorder with premium features unlocked. Record your phone calls easily and efficiently.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "02891a80a6718def12eb5d8ad33e93809eb666c3b5edc34219d58acd1dc718d3",
+  "subtitle": "Record calls with premium features unlocked",
+  "tags": [
+   "call",
+   "recorder",
+   "phone",
+   "recording",
+   "premium"
   ]
  },
  "com.zuuks.bus.simulator.ultimate": {
@@ -7429,6 +9663,89 @@
    "clipboard"
   ]
  },
+ "cypwn.CamScannerGold_TS.6.27.0": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "CamScanner version 6.27.0 with Gold membership unlocked, cracked by Sopranox.",
+  "features": [
+   "Gold Membership"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5d0805f283809085f3f996401495577f0062ed8b1f65144f4e39ac26a1a8b50f",
+  "subtitle": "CamScanner Gold v6.27.0",
+  "tags": [
+   "camscanner",
+   "gold",
+   "membership",
+   "scanner",
+   "utility"
+  ]
+ },
+ "cypwn.Candy_Crush.1.226.0": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Candy Crush modded application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2ba8fac56ee2765c60b0694c2a8daca206d83ae6a34bd13b3b41d5bc1366f6e6",
+  "subtitle": "Modded version of Candy Crush",
+  "tags": [
+   "candy",
+   "crush",
+   "mod",
+   "game"
+  ]
+ },
+ "cypwn.Cardio_TS.1.0": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Cardio v1.1 allows you to customize Apple Pay cards in your Wallet. Manage and personalize your payment cards directly from the application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4915bc88176f618b7d181848bd35b8a52c1c3b6ef2f1a51a8151e2b422e7fecb",
+  "subtitle": "Customize Apple Pay cards in Wallet",
+  "tags": [
+   "cardio",
+   "apple pay",
+   "wallet",
+   "cards",
+   "customize",
+   "finance"
+  ]
+ },
+ "cypwn.CarrotUltra_TS.5.8.1": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "CarrotUltra_TS provides Carrot Weather version 5.8.1 with the Ultra tier unlocked. Developed by CarrotUltra_TS x CyPwn, this version grants access to the weather application's premium Ultra features.",
+  "features": [
+   "Ultra Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ccacf776c497a378977ed2e9e8dad1317477946f518c1bd8ddc4d982b17274a1",
+  "subtitle": "Carrot Weather with Ultra unlocked",
+  "tags": [
+   "weather",
+   "carrot",
+   "ultra",
+   "lifestyle"
+  ]
+ },
+ "cypwn.ChromaHue_2.1.0.2.1.0": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Create clean wallpapers with gradients and edge outlines.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b50845581d1e07c9dd14692d37d1fd50aa8f98ed1628e7b990815cfd0f3f34ff",
+  "subtitle": "Create clean wallpapers with gradients",
+  "tags": [
+   "wallpapers",
+   "gradients",
+   "backgrounds",
+   "design",
+   "custom"
+  ]
+ },
  "de.BodyFast.BodyFast2": {
   "category": "other",
   "date": "2026-10-15",
@@ -7445,6 +9762,22 @@
    "health",
    "pro",
    "tracker"
+  ]
+ },
+ "dev.leoestremadoyro.AnimeTracker": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Chisato is an anime list tracker application for iOS 18.0 and later. Keep track of your anime watching progress efficiently with this dedicated tracking tool developed by @Sa1y0miii.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "272a1b88fa805bdbde880da41cf6a8b36b10ede9aa13a420a4af2468d084d346",
+  "subtitle": "Anime List Tracker",
+  "tags": [
+   "anime",
+   "tracker",
+   "list",
+   "watchlist",
+   "entertainment"
   ]
  },
  "dev.vodik7.atvtools.atvTools": {
@@ -7513,6 +9846,23 @@
    "utilities"
   ]
  },
+ "faisalkhalid.charginganimations": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Charging Animations Play Show IPA is a creative iOS customization app designed to enhance the visual experience that appear when charging your device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0a67c9bb88c935ca7116094c96cb37bbe116cb76f9a074f6b4eaafb110d3fe35",
+  "subtitle": "Creative iOS charging customization app",
+  "tags": [
+   "charging",
+   "animations",
+   "customization",
+   "visual",
+   "ipa",
+   "experience"
+  ]
+ },
  "fr.blaukke": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -7564,6 +9914,54 @@
    "battle"
   ]
  },
+ "gay.rooot.celestemeow": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b254341bbc53b3818e441fb249186acb586791f14cab0f7e4020cfacc548aef1",
+  "subtitle": "Help Madeline survive her inner demons on Celeste Mountain",
+  "tags": [
+   "platformer",
+   "adventure",
+   "challenge",
+   "mountain",
+   "action"
+  ]
+ },
+ "gay.rooot.celestemeowvc": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b63d739a3fa3910a6c10773aae7676b014b096590a8ee39f623ae6371b04693f",
+  "subtitle": "Help Madeline survive her inner demons on Celeste Mountain",
+  "tags": [
+   "platformer",
+   "adventure",
+   "challenge",
+   "mountain",
+   "indie"
+  ]
+ },
+ "gay.rooot.celestemeowvcfs": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain. This version includes a virtual controller in fullscreen.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a6769203543876d0a9e1c4de68a1b9d1756ca3f56ff12619344bca88ec57ce19",
+  "subtitle": "Help Madeline survive her inner demons on Celeste Mountain",
+  "tags": [
+   "platformer",
+   "celeste",
+   "mountain",
+   "adventure",
+   "controller"
+  ]
+ },
  "hedonic.games.arrowrush.td": {
   "category": "games",
   "date": "2026-10-15",
@@ -7579,6 +9977,23 @@
    "roguelike",
    "action",
    "game"
+  ]
+ },
+ "idle.castle.breaker": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Castle Cracker delivers an energetic and entertaining action-strategy experience where players assault enemy castles on iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7cf875aca22cc264e7565a00879bc92c081f354760eb3e18e582eff405654d8c",
+  "subtitle": "Action-strategy castle assault experience for iOS",
+  "tags": [
+   "castle",
+   "cracker",
+   "strategy",
+   "action",
+   "game",
+   "ios"
   ]
  },
  "inc.animation.AniClaw": {
@@ -7754,6 +10169,23 @@
    "developer"
   ]
  },
+ "jp.co.applibot.chiikawapocketgl": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Chiikawa Pocket brings a charming and whimsical mobile gaming experience to players. Enter a delightful virtual world featuring endearing characters and engaging gameplay designed for mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "832c94961ea3a1ad279abfa7908644b8efbbd1bd9f3f2dc83ccabf8361c754e3",
+  "subtitle": "A charming and whimsical mobile gaming experience",
+  "tags": [
+   "chiikawa",
+   "pocket",
+   "game",
+   "mobile",
+   "whimsical",
+   "casual"
+  ]
+ },
  "jp.co.gcgames.bc": {
   "category": "games",
   "date": "2026-10-15",
@@ -7773,6 +10205,22 @@
    "game"
   ]
  },
+ "jp.dcsyhi.CarMovie": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Enables users to play their preferred videos through CarPlay. A demo illustrating video customization is accessible, with forthcoming features encompassing future updates.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5d82e51445edb6ea0e1f25d90bf3c56d52d44de70a76fb584eedb8863f8e93c4",
+  "subtitle": "Play preferred videos through CarPlay",
+  "tags": [
+   "carmovie",
+   "carplay",
+   "video",
+   "player",
+   "media"
+  ]
+ },
  "jp.dcsyhi.airwall": {
   "category": "other",
   "date": "2026-10-14",
@@ -7787,6 +10235,23 @@
    "wallpaper",
    "trollstore",
    "customization"
+  ]
+ },
+ "jp.okakichi.heroes": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Changokushi! Heroes is a mobile game designed exclusively for iOS devices that brings together the excitement of role-playing.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "782a80ac469952232ede13193ecbb9fac29b0afe9dffd91d93e646047dccf731",
+  "subtitle": "A captivating mobile role-playing game for iOS",
+  "tags": [
+   "changokushi",
+   "heroes",
+   "rpg",
+   "game",
+   "ios",
+   "mobile"
   ]
  },
  "jp.shunsuke-osawa.AutoVideoBlur": {
@@ -7854,6 +10319,22 @@
    "health",
    "tracker",
    "unlocked"
+  ]
+ },
+ "nanotube.chooser": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chooser is a lightweight and powerful iOS app designed to help users make decisions quickly and fairly by removing hesitation.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fbad5288cd7953e00205221653b6c667a889cc754f3767a8baa9d83835410f21",
+  "subtitle": "Make decisions quickly and fairly",
+  "tags": [
+   "decision",
+   "chooser",
+   "picker",
+   "fair",
+   "tools"
   ]
  },
  "net.gameduo.bbc": {
@@ -8009,6 +10490,22 @@
    "communication"
   ]
  },
+ "om.devjash-Capp-App": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "A fake cash app designed for prank purposes.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "59a26dbbdbfe2982fc56c4920baf77a1cbdf3a61571f214cfd3ade7078db28d9",
+  "subtitle": "Fake cash app prank tool",
+  "tags": [
+   "prank",
+   "fake",
+   "cash",
+   "app",
+   "utilities"
+  ]
+ },
  "org.amnezia.AmneziaVPN": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -8084,6 +10581,39 @@
    "open source"
   ]
  },
+ "org.chromium.chrome.ios.dev": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Chromium is the open source version of Google's Chrome browser for iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5797a57ad1f0b137dc33cc9ca2f691c1ddb2813b78b51fa188e4804c1c6ad0a9",
+  "subtitle": "Open source version of Chrome",
+  "tags": [
+   "browser",
+   "chromium",
+   "google",
+   "open source",
+   "web"
+  ]
+ },
+ "org.ericbetts.CattleGrid": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "CattleGrid allows you to create your own amiibo utilizing ntag215 on a jailbroken or TrollStore device. Note: After you have installed the app, manual configuration is required.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9fd43d3ded83f3004317bb9b58a8b4b21160a8e67242cfaaf008314cb0cd03d4",
+  "subtitle": "Create custom amiibo using ntag215",
+  "tags": [
+   "amiibo",
+   "ntag215",
+   "jailbreak",
+   "trollstore",
+   "creator",
+   "developer"
+  ]
+ },
  "org.htf65jud.balatro": {
   "category": "other",
   "date": "2026-10-15",
@@ -8118,6 +10648,42 @@
    "bangumi",
    "torrent",
    "offline"
+  ]
+ },
+ "ovz.Car-Scanner": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CarScanner is a utility app injected with Pro features.",
+  "features": [
+   "Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e763b2307a59c5ec5727cb7dedf450b497fadc4627cd174af573720db645b054",
+  "subtitle": "Pro version injected",
+  "tags": [
+   "car",
+   "scanner",
+   "pro",
+   "utility",
+   "diagnostic"
+  ]
+ },
+ "race.arena.io": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Engage in vehicular combat in Race Arena - Fall Car Battle. Battle against other cars in an arena setting where staying on the platform is key to survival. Ram opponents, avoid falling off, and outlast the competition to win. Features free in-app purchases.",
+  "features": [
+   "Free iAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7ce4f66c27f03c56ada1360aaf7aa31d15bdc947f131c173c46e5636febc0acd",
+  "subtitle": "Fall car battle arena game",
+  "tags": [
+   "car",
+   "battle",
+   "arena",
+   "race",
+   "io"
   ]
  },
  "reels-maker-one": {
@@ -8220,6 +10786,23 @@
    "generator",
    "branding",
    "design"
+  ]
+ },
+ "tk.apollov.CBNfreeIAP": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Cataclysm Dark Days Ahead and BN IPA is the iOS installation package for the popular post-apocalyptic game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cc68c776f282762c606694ed44831f73feb801c8acb77b5c85db640caaf69e0f",
+  "subtitle": "Post-apocalyptic survival game iOS package",
+  "tags": [
+   "cdda",
+   "cbn",
+   "game",
+   "survival",
+   "ipa",
+   "post-apocalyptic"
   ]
  },
  "uclort.com.AppInfo": {
