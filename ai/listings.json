@@ -1,4 +1,21 @@
 {
+ "AlexisBarreyat.BeReal": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "BeReal is a social media application focused on daily photo sharing and real-time connections with your friends.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "4b0119b4db3eca6c3f6cfdfdb8a8e2a7e077312e893517ebf430f241de721e37",
+  "subtitle": "Daily real-time photo sharing with friends",
+  "tags": [
+   "bereal",
+   "social",
+   "photos",
+   "friends",
+   "daily",
+   "sharing"
+  ]
+ },
  "Cristian-Teichner.Analogue": {
   "category": "other",
   "date": "2026-10-14",
@@ -119,6 +136,24 @@
    "game"
   ]
  },
+ "ai.befreed.freed-frontend-rn": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "BeFreed is a learning application designed to help users learn anything. This patched version comes with the subscription unlocked feature enabled, granting full access to all available content and tools without requiring a paid subscription. Access your learning materials and resources directly through the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b02d795669bb37d77f57359c325852c38778f65ffce7c545187134d5600c15f7",
+  "subtitle": "Learn anything with subscription unlocked",
+  "tags": [
+   "learning",
+   "education",
+   "study",
+   "skills",
+   "courses"
+  ]
+ },
  "ai.devl.aurora": {
   "category": "games",
   "date": "2026-10-15",
@@ -138,6 +173,22 @@
    "games",
    "emulator",
    "play"
+  ]
+ },
+ "alexgerrese.summarize": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Bookshelf is a book tracker and list app designed to help you organize your reading. Keep track of the books you want to read, are currently reading, and have finished. Manage your personal library efficiently on your iOS device. Requires iOS 17.0 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8b11f5ad18f196c44568125abfc410074423a3d3be1ae518194621b92aff46a9",
+  "subtitle": "Book Tracker & List",
+  "tags": [
+   "books",
+   "tracker",
+   "reading",
+   "library",
+   "bookshelf"
   ]
  },
  "ani.baka": {
@@ -230,6 +281,40 @@
    "feather"
   ]
  },
+ "app.benkyo.Benkyo": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Benky is an application injected with Pro features.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "09b3517032fa3c7362833b2119c1044eb5fbfd29613358315a8be7c9ff85d72b",
+  "subtitle": "Injected with Pro",
+  "tags": [
+   "benky",
+   "pro",
+   "utility"
+  ]
+ },
+ "app.budgetbestie.budgetbestie": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Budget Bestie helps you manage your finances and track spending. Requires iOS 16.0 or later. This application operates on a subscription basis.",
+  "features": [
+   "Subscription required"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "149599acbd5d4e28848700c709356c8d649e2fa21abbe9163eba867967ab1c30",
+  "subtitle": "Track your budget and expenses easily",
+  "tags": [
+   "budget",
+   "finance",
+   "expenses",
+   "money",
+   "tracker"
+  ]
+ },
  "appcake2.iphonecake.com": {
   "category": "other",
   "date": "2026-10-15",
@@ -265,6 +350,39 @@
    "sports"
   ]
  },
+ "blog.blurt.blurt": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "The build which was also submitted to the Apple for AppStore review.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "545eeff46fd8ea1c0bb2f5d02123768d7e87f3dcf1f5e028adfcbb7c6ca9fb97",
+  "subtitle": "Blurt blog application build",
+  "tags": [
+   "blog",
+   "blurt",
+   "app",
+   "submission",
+   "build"
+  ]
+ },
+ "br.com.tapps.bidwars2": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bid Wars 2 IPA MOD iOS is an immersive mobile game where you can experience the thrill of running a pawn shop and building your own business empire.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "81ad20cc68378a66f9b144f94b69a05853d2262277b5c2a75c98b83d8f87d33f",
+  "subtitle": "Become a professional pawn shop owner",
+  "tags": [
+   "pawn",
+   "wars",
+   "empire",
+   "bid",
+   "game",
+   "strategy"
+  ]
+ },
  "ca.bomberfish.AppCommander": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -279,6 +397,56 @@
    "utility",
    "trollstore",
    "system"
+  ]
+ },
+ "castle.heroes.tower.defense.kingdom.magic.battle.archer": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Boom Castle is a tower defense game featuring strategic gameplay. This version includes enemy status HP DEF modifications.",
+  "features": [
+   "Enemy Status HP DEF"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "2d1f888edb53998148edcc4c55eb9534adbcc3c9e3b972ed56484f4b91890add",
+  "subtitle": "Tower defense game with strategic gameplay",
+  "tags": [
+   "tower defense",
+   "strategy",
+   "game",
+   "castle",
+   "defense"
+  ]
+ },
+ "chat.bitchat": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "bitchat is a decentralized messaging application created by @binnichtaktivsipas.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9fb1df6fdc1126b2f5b9c7701e54735051d2b9410242cfad79ecdfd3459cc4f6",
+  "subtitle": "Decentralized messaging tool",
+  "tags": [
+   "chat",
+   "messaging",
+   "decentralized",
+   "communication"
+  ]
+ },
+ "club.boxbox.widgets-ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BoxBox is an application injected with premium features. It provides enhanced functionality out of the box based on the injected configuration.",
+  "features": [
+   "Injected Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "db6796ebc92bbc335299fc1a6dc157d29a929934160ea24c88a75749ca4825be",
+  "subtitle": "Injected with Premium",
+  "tags": [
+   "boxbox",
+   "premium",
+   "injected",
+   "app"
   ]
  },
  "cn.bswbw.AppsDump": {
@@ -467,6 +635,71 @@
    "virtual"
   ]
  },
+ "com.AppInstalleriOS.BlizzardBoard": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BlizzardBoard is a theming engine for iOS devices that has seen success over the years.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e7b7f831daec9bcc39e987a2c5e7934668ee3eff026d7e5648954bd19a6b5aac",
+  "subtitle": "Theming engine for iOS devices",
+  "tags": [
+   "theming",
+   "engine",
+   "ios",
+   "device",
+   "blizzardboard"
+  ]
+ },
+ "com.Bodly": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bodly is a health and performance application designed for iOS. Track and monitor your fitness metrics efficiently with this mobile utility.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "264600ea3322c7dcde7b6a18c526a978c99533916a4139aa9f54631bb8d4a5c4",
+  "subtitle": "Health and performance tracking app",
+  "tags": [
+   "health",
+   "performance",
+   "fitness",
+   "tracker",
+   "utility"
+  ]
+ },
+ "com.Buckshot": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Buckshot Roulette Survival 3D is an intense iOS survival game that blends psychological tension with high-risk decision making.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d0917bb46e1468815f2e4ccab6b4915c52e699d8cee6e8a0c7608d07d56e6fc8",
+  "subtitle": "An intense iOS survival game with psychological tension",
+  "tags": [
+   "survival",
+   "game",
+   "strategy",
+   "action",
+   "ios"
+  ]
+ },
+ "com.CalculatorForiPad.InternetRocks": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CalculatorAir with unlocked subscription features. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "228272c071ebc79996c94c6670bce7131a1ef8930c5ba02fc74194d6e8ad1cb1",
+  "subtitle": "Modified calculator application",
+  "tags": [
+   "calculator",
+   "utilities",
+   "ipa",
+   "unlocked"
+  ]
+ },
  "com.DoorTeam.BagMaster": {
   "category": "games",
   "date": "2026-10-15",
@@ -482,6 +715,40 @@
    "battle",
    "game",
    "ipa"
+  ]
+ },
+ "com.EduAlexxis.MusicManager": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "ByeTunes is a native iOS application that allows users to inject music and ringtones directly into their device, eliminating the need for iTunes synchronization. Supported audio formats include MP3, M4A, FLAC, and WAV.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b0ce2165f9956aaad64b795cccad1f03a6dc8cfc4e6f51d8916feaaf284f2bfd",
+  "subtitle": "Inject music and ringtones directly to iOS",
+  "tags": [
+   "music",
+   "ringtones",
+   "mp3",
+   "flac",
+   "audio",
+   "sideload"
+  ]
+ },
+ "com.EnsarEray.bbtf": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BoardBattleTeamFight features added mods. The IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Mods"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1d37e492d54df658c5bf9a1d0a6375f8ca29985eaa84dd18c4e822b43daa018d",
+  "subtitle": "BoardBattleTeamFight mod IPA",
+  "tags": [
+   "boardbattleteamfight",
+   "mod",
+   "ipa",
+   "ttjb"
   ]
  },
  "com.JindoBlu.FourPlayersIOS": {
@@ -536,6 +803,24 @@
    "war",
    "world",
    "game"
+  ]
+ },
+ "com.N2BunpouApp.yuki": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Bunpo is an application for learning Japanese. This version includes Platinum Unlocked features.",
+  "features": [
+   "Platinum Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b090250c226b710687925782cac0242f44597d75e599cf9305a9fa79c975d702",
+  "subtitle": "Learn Japanese with Platinum Unlocked",
+  "tags": [
+   "bunpo",
+   "japanese",
+   "learn",
+   "education",
+   "platinum"
   ]
  },
  "com.PIXELCELLS.AntColony2": {
@@ -638,6 +923,24 @@
    "pins",
    "casual",
    "game"
+  ]
+ },
+ "com.abi.busjam.sortpuzzle": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BusEscapeTrafficJam is a puzzle game where you navigate through traffic jams. This version includes no ads. The IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4f74e632dfa0cffb8b86d2e31d12c3147b1a621afd3fb4f78aa790f36f7aa1a4",
+  "subtitle": "Escape traffic jam puzzle game",
+  "tags": [
+   "puzzle",
+   "bus",
+   "traffic",
+   "game",
+   "noads"
   ]
  },
  "com.adbanao": {
@@ -1253,6 +1556,39 @@
    "app"
   ]
  },
+ "com.apalonapps.plants": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Blossom with subscription unlocked.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d6c799588990f116c650bba9d7499fcdca28bc4e63ee91175f7e14fdbf2ba1f7",
+  "subtitle": "Blossom application",
+  "tags": [
+   "blossom",
+   "unlocked",
+   "subscription"
+  ]
+ },
+ "com.app.BXNGApp": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "BXNG is a sports and fitness application featuring subscription unlocked content.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d94be03abe0e9ecf0765bc02e2296d21899d5263f3f69f1688897e8b6ae08577",
+  "subtitle": "Boxing app with subscription unlocked",
+  "tags": [
+   "bxng",
+   "sports",
+   "fitness",
+   "training"
+  ]
+ },
  "com.apple.terminal": {
   "category": "developer",
   "date": "2026-10-15",
@@ -1363,6 +1699,40 @@
    "console"
   ]
  },
+ "com.artifexmundi.bladebound": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Blade Bound: Immortal Dark brings dark fantasy action to mobile gaming. Experience intense combat and explore a darker world.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ec6e2ad022f35165eb6615ffadfdb45dcab3a282ccc82417a5f0dced739e0aff",
+  "subtitle": "An immersive dark action role-playing game",
+  "tags": [
+   "action",
+   "rpg",
+   "dark",
+   "fantasy",
+   "game",
+   "combat"
+  ]
+ },
+ "com.atebits.Tweetie1": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "A tweak for X that brings back the old look and feel of Twitter while keeping the new functionality of X. It also includes multiple tweaks from BHX++.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4f278d0e2dabce249c9a326f28aa2c5db92b34e35a42ed26503087432998e642",
+  "subtitle": "Restore the classic look of Twitter on X",
+  "tags": [
+   "twitter",
+   "x",
+   "tweak",
+   "classic",
+   "theme",
+   "social"
+  ]
+ },
  "com.atrasis.original": {
   "category": "games",
   "date": "2026-10-15",
@@ -1400,6 +1770,25 @@
    "streaming",
    "unlocked",
    "player"
+  ]
+ },
+ "com.ausappstudio.brainbuddy": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Brainbuddy helps users quit porn and recover from addiction. This version includes premium unlocked content. To access, restart the application when you reach the purchase page and create an account through the login page.",
+  "features": [
+   "Premium Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5ae3acc06bd511d4e7b048fd8c24ebe375013da28f89f49e13e678411b47e8b5",
+  "subtitle": "Quit porn and track your progress",
+  "tags": [
+   "brainbuddy",
+   "quit",
+   "porn",
+   "recovery",
+   "habit",
+   "tracker"
   ]
  },
  "com.autodesk.autocadws": {
@@ -1571,6 +1960,24 @@
    "audio"
   ]
  },
+ "com.basenji.mood": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Breeze is an application designed to help you start your journey of self-discovery. Version 3.6.1 includes the subscription unlocked tweak. If the subscription does not unlock immediately upon starting the app, simply restart the application to apply the changes.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a2673b174184971caafd7d0e64a419c0f6c71614fb70fea4fee7056635d04179",
+  "subtitle": "Begin your journey of self-discovery",
+  "tags": [
+   "self discovery",
+   "lifestyle",
+   "wellness",
+   "breeze",
+   "utilities"
+  ]
+ },
  "com.battlecamp.monsters": {
   "category": "games",
   "date": "2026-10-15",
@@ -1603,6 +2010,40 @@
    "game",
    "multiplayer",
    "action"
+  ]
+ },
+ "com.bearmore": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Measure what matters with Bearmore. Requires iOS 15.1 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "09d2a58d17ffd32e8d4e8933891668aff51ec7f354d69b79a582e3ed00c22f04",
+  "subtitle": "Measure what matters",
+  "tags": [
+   "bearmore",
+   "measure",
+   "tracking",
+   "utilities"
+  ]
+ },
+ "com.beelinguapp.beelinguapp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Beelinguapp is a language learning application that allows users to read and listen to stories in different languages simultaneously. The app displays text side by side in your native language and the language you are learning. This version includes premium features injected.",
+  "features": [
+   "Injected with Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "dbb876588ef8e5e3346823457f1d8c31f3637e13ca8ac002c8b9e33764619786",
+  "subtitle": "Language learning with audiobooks",
+  "tags": [
+   "languages",
+   "audiobooks",
+   "learning",
+   "education",
+   "reading",
+   "audio"
   ]
  },
  "com.benchu.ARMCPUZ": {
@@ -1641,6 +2082,160 @@
    "game"
   ]
  },
+ "com.bid.master.war.auction.battle": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bid Master is a mobile game that combines the thrill of bidding, village building, and strategic adventures.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "07814537a5c9a32d9851c7b9ac3b002abdb552b51d1b1c081d33d09aace208a5",
+  "subtitle": "Bidding, village building and strategic adventures",
+  "tags": [
+   "bid",
+   "master",
+   "strategy",
+   "village",
+   "building",
+   "game"
+  ]
+ },
+ "com.bilibili.inter": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BilibiliIntl is a client application developed by OwO Source. This software is provided as an injected release containing no modifications.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f4c5ae3f455c0ff4efee27fec25bc6a09a1d06ca8f3396a42bb74b68d3522aba",
+  "subtitle": "Bilibili client application",
+  "tags": [
+   "bilibili",
+   "client",
+   "video",
+   "streaming"
+  ]
+ },
+ "com.bitalyze.app": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bitalyze is a utility application for iOS devices running iOS 15.1 and later. This version 1.4.4 release provides core functionality with a restore option available within the app. FastSign is operated by CertFish.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "89d2c49a10ae30f0fd6a890f3e09fe626c398c63b860e16029994367b8451a2e",
+  "subtitle": "Bitalyze utility app",
+  "tags": [
+   "bitalyze",
+   "utility",
+   "sideload",
+   "fastsign"
+  ]
+ },
+ "com.blayzegames.iosfps": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bullet Force IPA iOS offers an immersive gaming experience that will keep you hooked for hours.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "303f5b8630eea555e84846ad38803e28098c1285428c5c930e384631ac68bce2",
+  "subtitle": "An immersive and thrilling gaming experience",
+  "tags": [
+   "bullet force",
+   "game",
+   "shooter",
+   "action"
+  ]
+ },
+ "com.blockpuzzle.us.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Block Blast! version 7.3.3. This is a patched version featuring removed advertisements. Requires minimum operating system version 13.0.",
+  "features": [
+   "No Ads",
+   "Patched"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f492140a110724ade31f449d9ac7625c8653a9ea7907e467fbfb91835bbfae2c",
+  "subtitle": "Block Blast! Tweak",
+  "tags": [
+   "block blast",
+   "puzzle",
+   "no ads",
+   "patched",
+   "game"
+  ]
+ },
+ "com.bloomberg.Bloomberg": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Access business news daily with Bloomberg. Read the latest market updates, financial analysis and global news. This version includes subscription unlocked functionality. Simply log in and restart the application to activate the subscription features.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "169512fff046be26e7c501e36a156321f85a071aaa3a08e46816704ed75b723c",
+  "subtitle": "Business News Daily",
+  "tags": [
+   "bloomberg",
+   "news",
+   "business",
+   "finance",
+   "market"
+  ]
+ },
+ "com.bowery-digital.bend": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Improve your stretching and flexibility with Bend. This version includes the subscription unlocked tweak.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e692ea5ce122ca826f3cd98c85a53ce63be10b6cc9332055246c130f7a65fd10",
+  "subtitle": "Stretching and flexibility app",
+  "tags": [
+   "bending",
+   "stretching",
+   "flexibility",
+   "fitness",
+   "health"
+  ]
+ },
+ "com.bowery-digital.bend.watchkitapp": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Stretching and flexibility app designed to help users improve their range of motion and movement. This version includes subscription unlocked features.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ad5e1258659e541e033dee27862c34d2dd18f94866f6bb0b63d88a7ec7125ce0",
+  "subtitle": "Stretching and flexibility app",
+  "tags": [
+   "stretching",
+   "flexibility",
+   "bend",
+   "fitness",
+   "health"
+  ]
+ },
+ "com.bpmhealth.boostfitness": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Boostcamp is an app with injected Pro functionality.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d099bbc3ac86bb6b2e2fc4cd57847f5cd364ddea4ac6bc0205cead9a29da073d",
+  "subtitle": "Injected with Pro features",
+  "tags": [
+   "boostcamp",
+   "pro",
+   "fitness",
+   "workout",
+   "gym",
+   "training"
+  ]
+ },
  "com.br.12min.mobile": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1657,6 +2252,63 @@
    "ideas",
    "reading",
    "audio"
+  ]
+ },
+ "com.breathwrk.ios": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Breathwrk: Breathing Exercises provides guided breathing routines to help you relax, focus, and manage your day. This version comes with the subscription unlocked, giving you full access to all exercises and content included in the app without additional purchases.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "683b4b5d136a7509359426b7b23052a4a1c4a70d9227819ac63e8cb673f40bce",
+  "subtitle": "Breathing exercises with subscription unlocked",
+  "tags": [
+   "breathing",
+   "exercises",
+   "relaxation",
+   "wellness",
+   "health"
+  ]
+ },
+ "com.brotato.shooting.survivors.action.games.bullethell.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Brotato MOD IPA offers a new and enjoyable gaming experience for iOS users with unlocked full and VIP features.",
+  "features": [
+   "Unlocked Full",
+   "VIP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c64062768041266a92c041f64063626e11041154f4f6b4c2f01a9d4c83dfc2ca",
+  "subtitle": "Play Brotato MOD IPA on iOS",
+  "tags": [
+   "brotato",
+   "mod",
+   "ipa",
+   "game",
+   "action",
+   "ios"
+  ]
+ },
+ "com.busuu.english.app": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Busuu is a language learning application. This version includes injected premium features.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5df72fca92d896ee37294acf0bda70b7c473881b9c68eacefd2e4fd37a8fa0c9",
+  "subtitle": "Language learning app",
+  "tags": [
+   "busuu",
+   "languages",
+   "learning",
+   "education",
+   "study",
+   "premium"
   ]
  },
  "com.chatgtp.gpt-3.Chat-GPT": {
@@ -1696,6 +2348,23 @@
    "forum"
   ]
  },
+ "com.cldscoreapp.liveones": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Buz Sports is a football-focused iOS application that delivers real-time scores, match results, and detailed statistics.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1028d35fe4f1e609d02724a512d4b199f297c0be817416c52ec097289f662869",
+  "subtitle": "Football live scores and match results",
+  "tags": [
+   "sports",
+   "football",
+   "scores",
+   "results",
+   "stats",
+   "live"
+  ]
+ },
  "com.cokepokes.AppStorePlus": {
   "category": "other",
   "date": "2026-10-15",
@@ -1708,6 +2377,24 @@
    "appstore",
    "api",
    "update"
+  ]
+ },
+ "com.commsource.BeautyPlus": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "BeautyPlus is a photo editing application injected with premium features. Access enhanced tools and options for your photo editing needs directly within the app.",
+  "features": [
+   "Injected with Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "33bcfea77aba77f33f86d8d84e4c394414b50df9520906c8ddceabe86f022afc",
+  "subtitle": "Photo editing app with injected premium features",
+  "tags": [
+   "beautyplus",
+   "photo editor",
+   "premium",
+   "camera",
+   "editing"
   ]
  },
  "com.connect.fps.shooter": {
@@ -1747,6 +2434,57 @@
    "photo",
    "edit",
    "object"
+  ]
+ },
+ "com.cpdigitaldarkroom.bundlr": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bundlr is an app designed to quickly search up and copy bundle IDs from App Store apps. Use this utility tool to find and copy identifiers efficiently without unnecessary steps.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d454c66b1182df78250fad26c4c21accc37997c0b8ccc73eced8aaf39b47f49c",
+  "subtitle": "Search and copy bundle IDs from App Store apps",
+  "tags": [
+   "bundleid",
+   "appstore",
+   "search",
+   "utility",
+   "developer"
+  ]
+ },
+ "com.crunchyroll.bleachsoulres": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "BLEACH Soul Resonance offers hack features including no cooldown, allowing users to use abilities instantly without waiting, and infinite dodge energy to evade attacks continuously.",
+  "features": [
+   "No Cooldown",
+   "Infinite Dodge Energy"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bebad3c78f84e924eecd11ce11bad80a9228bc6ab61f027662b421e3b396937c",
+  "subtitle": "Bleach Soul Resonance mod features",
+  "tags": [
+   "bleach",
+   "soul",
+   "resonance",
+   "game",
+   "mod"
+  ]
+ },
+ "com.crunchyroll.gv.beybladexxone": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Beyblade X Xone IPA is the iOS installation package of the Beyblade X Xone game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cbee739666787bfa5caf1b6ce30ddac2ba4ac4324f5e974c74cec36c394611ed",
+  "subtitle": "iOS installation package for Beyblade X Xone",
+  "tags": [
+   "beyblade",
+   "game",
+   "ipa",
+   "ios",
+   "xone"
   ]
  },
  "com.darkpigeon.awaken": {
@@ -1800,6 +2538,22 @@
    "ipa"
   ]
  },
+ "com.degenk.boorusama": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Boorusama is an unofficial, cross-platform client for major booru imageboards. It covers all core functionality and gives you total control over browsing imageboards.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "90c8737f98d51c3d72f05d751e94f6f918edc5795b1331b910576101de7fcea4",
+  "subtitle": "Unofficial cross-platform client for major boorus",
+  "tags": [
+   "boorusama",
+   "booru",
+   "imageboard",
+   "client",
+   "photos"
+  ]
+ },
  "com.developlab.AnimationSpeed": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1831,6 +2585,23 @@
    "status"
   ]
  },
+ "com.dino.bus.out": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bus Out is a fast-paced action game for iPhone that blends chaotic driving, strategic escapes, and dynamic gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f606d57f2c9596bb879e4e720e4219d9203c6f67ce9fccdc97911671b95168be",
+  "subtitle": "Fast-paced action and strategic bus escape game",
+  "tags": [
+   "bus",
+   "action",
+   "driving",
+   "strategy",
+   "game",
+   "iphone"
+  ]
+ },
  "com.dino.weapon.backpack": {
   "category": "games",
   "date": "2026-10-15",
@@ -1848,6 +2619,40 @@
    "hero"
   ]
  },
+ "com.dynamicappdesign.breatheplus": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Breathe+ provides guided breathing exercises to help you relax and manage stress. This version includes the subscription unlocked feature.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e1e7f36491b8c9f27fbd86aff4e9f30c94092ff1974d6d934aaa92e6239311d6",
+  "subtitle": "Breathing exercises with subscription unlocked",
+  "tags": [
+   "breathe",
+   "relaxation",
+   "breathing",
+   "health",
+   "wellness"
+  ]
+ },
+ "com.ea.ios.bejeweledskies": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play Bejeweled Stars, a match-three puzzle game for iOS devices. Match gems to clear the board, progress through levels, and utilize tips and strategies to improve your gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "af9b29ac8b9a1223f710e335be07d25fd403e676e481a49d65bd61f5ed3bbde3",
+  "subtitle": "Match and clear gems in this puzzle game",
+  "tags": [
+   "puzzle",
+   "match",
+   "gems",
+   "strategy",
+   "game"
+  ]
+ },
  "com.eastmoon.gk2live": {
   "category": "other",
   "date": "2026-10-15",
@@ -1862,6 +2667,22 @@
    "adventure",
    "hero",
    "ipa"
+  ]
+ },
+ "com.eifrig.blitzerdepro": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BlitzerdePRO is available with Pro features injected. Use the application to access the upgraded capabilities included in this release.",
+  "features": [
+   "Injected with Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "80ffa6592a16eac80baf7ac9a0b107e545ea870481df73d9c1ea7c45486bbf6d",
+  "subtitle": "BlitzerdePRO version",
+  "tags": [
+   "blitzerde",
+   "pro",
+   "utilities"
   ]
  },
  "com.elevateapp.kamino.kamino": {
@@ -1981,6 +2802,40 @@
    "beta"
   ]
  },
+ "com.fanqu.b9": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bounce Breaker: Ruins Survival is a high-energy survival game designed for iPhone. Test your survival skills in ruin environments.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "75663cc8907aad2f5c5b971717d1eb379e68c6c3de782482fe40f156a6ac874b",
+  "subtitle": "High-energy survival game for iPhone",
+  "tags": [
+   "survival",
+   "bounce",
+   "breaker",
+   "game",
+   "ruins",
+   "action"
+  ]
+ },
+ "com.featherweightgames.fx": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Botworld Adventure IPA MOD iOS provides an immersive mobile gaming experience. Join the adventure and explore the world of Botworld with this modified version for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fb9119d017aea6ab495306de389d7238acc93e0d61295d8320fa727a91ce4d66",
+  "subtitle": "Botworld Adventure IPA MOD for iOS",
+  "tags": [
+   "botworld",
+   "adventure",
+   "ipa",
+   "mod",
+   "ios",
+   "game"
+  ]
+ },
  "com.finalwire.aida64": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1998,6 +2853,23 @@
    "info",
    "device",
    "diagnostics"
+  ]
+ },
+ "com.flingex.brainnotes": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Brainnotes is a note-taking application injected with premium features.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2917c7901426e72187b84e6e03d845540cdc885b04531d7d494fcf32bd26fe4a",
+  "subtitle": "Brainnotes note-taking application",
+  "tags": [
+   "brainnotes",
+   "notes",
+   "productivity",
+   "utility"
   ]
  },
  "com.fourwalls.app": {
@@ -2071,6 +2943,23 @@
    "games",
    "ios",
    "simulation"
+  ]
+ },
+ "com.gamegos.mobile.cafeland": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Mobile gamers will be pleased to know that Cafeland Restaurant Cooking IPA has been released. This latest version of Cafeland is now available for download.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "007457d61aa35f1e4aa19b6015727fb994aecf572f23565e490cf8cdb7a6bc34",
+  "subtitle": "Cafeland Restaurant Cooking IPA",
+  "tags": [
+   "cafeland",
+   "restaurant",
+   "cooking",
+   "game",
+   "ipa",
+   "mobile"
   ]
  },
  "com.gameinsight.airportcity": {
@@ -2175,6 +3064,46 @@
    "media"
   ]
  },
+ "com.gorilla.brass": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Brass allows you to customize your device with custom icon themes and widgets. This version includes premium features unlocked for full access to all styling options and customization tools.",
+  "features": [
+   "Premium Unlocked",
+   "Icon Themes",
+   "Widgets"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2642c8dafcb3c418b4cd359c02a0de75ecb231e19910b41e9ace9d7d31e946d5",
+  "subtitle": "Icon themes and widgets",
+  "tags": [
+   "themes",
+   "widgets",
+   "icons",
+   "customization",
+   "brass"
+  ]
+ },
+ "com.greenwormsentertainment.beastevo": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Beast Evo Blade Survivor hacked version with modified features. Includes unlimited diamonds for premium currency upgrades and unlocks, as well as unlimited rare gems.",
+  "features": [
+   "Unlimited Diamonds",
+   "Unlimited Gems"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "415a8e9013ac6337320c3f7210514e78ac9f50a8787361826ca481197f5619a2",
+  "subtitle": "Blade Survivor modded version",
+  "tags": [
+   "beast",
+   "evo",
+   "blade",
+   "survivor",
+   "hack",
+   "mod"
+  ]
+ },
  "com.guistudios.advance.car.parking.car.driver.simulator": {
   "category": "games",
   "date": "2026-10-14",
@@ -2225,6 +3154,87 @@
    "mobile"
   ]
  },
+ "com.halfbrick.bluey": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Blueys Quest for The Gold Pen is an exciting iOS game designed for players who enjoy vibrant adventures and clever puzzles. Embark on a journey through engaging levels and test your problem-solving skills in this unique adventure.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5b4d1da13563ffc1aaaa9c1a6a1d1fe69fea571a703c2acf1428a9fb8c7df291",
+  "subtitle": "An exciting iOS game with vibrant adventures and puzzles",
+  "tags": [
+   "adventure",
+   "puzzle",
+   "game",
+   "gold",
+   "pen",
+   "ios"
+  ]
+ },
+ "com.hammerandchisel.bunny": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "A Discord client that is currently discontinued but still working.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2b05c81c43225314041d83fd73f79558797879cca66428f5d0f5011676fcb91d",
+  "subtitle": "Discontinued Discord client",
+  "tags": [
+   "discord",
+   "client",
+   "chat",
+   "messaging",
+   "social"
+  ]
+ },
+ "com.hammerandchisel.discord": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Bunny",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "df4d4b0b09051ddfdbbd82f6ad94ce7f7c3479e7628a83fc950e1f352586fe1a",
+  "subtitle": "Social networking app",
+  "tags": [
+   "bunny",
+   "social",
+   "chat",
+   "connect",
+   "messaging"
+  ]
+ },
+ "com.hammerandchisel.discord.testflight": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Bunny is a client modification for Discord, available through TestFlight builds.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c34f3341116a0ab7bfbd3fa6098f3d6a887784d5ffcb89ab71f32bee97052787",
+  "subtitle": "A client mod for Discord",
+  "tags": [
+   "discord",
+   "client",
+   "mod",
+   "testflight",
+   "chat"
+  ]
+ },
+ "com.hammerandchisel.discord2": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Bunny Discord is a Discord modification that provides support for most plugins.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ed1844a9ebf5fad00d645d81047ad1fb6afb1c45c2b4837cc92af57250f213ca",
+  "subtitle": "Discord modification with plugin support",
+  "tags": [
+   "discord",
+   "mod",
+   "plugins",
+   "chat",
+   "social"
+  ]
+ },
  "com.happykamp.aquariumland": {
   "category": "games",
   "date": "2026-10-15",
@@ -2244,6 +3254,22 @@
    "underwater",
    "fish",
    "simulation"
+  ]
+ },
+ "com.happymary.brushes": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Brushes for Procreate IPA is the iOS installation file of a companion app designed to expand your brush collection.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "050eb883cc6f95d8edf3ce17034c31f985c63c56807e2adc42b8d49ae2ece124",
+  "subtitle": "Companion app to expand brushes for Procreate",
+  "tags": [
+   "brushes",
+   "procreate",
+   "companion",
+   "ipa",
+   "utilities"
   ]
  },
  "com.hassantaleb.mockup": {
@@ -2334,6 +3360,24 @@
    "tool"
   ]
  },
+ "com.hilalbeber.reference.beberref": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BeberRef version 1.0 brings back the yellow bank application. This release is distributed via TestFlight and is designed to operate exclusively through TrollStore. Created by GLESign.",
+  "features": [
+   "TestFlight release",
+   "TrollStore required"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "60a010c872e3be95b5c9d1c0942941d6d63751aca34e5e81a9b11dff0eba2d7b",
+  "subtitle": "The yellow bank app for TrollStore",
+  "tags": [
+   "banking",
+   "trollstore",
+   "testflight",
+   "utility"
+  ]
+ },
  "com.hitpaw.photoenhancer": {
   "category": "other",
   "date": "2026-10-14",
@@ -2365,6 +3409,22 @@
    "mobile"
   ]
  },
+ "com.hortor.juliancysj": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Builda is an innovative iOS application that empowers users to design, build, and play games directly on their device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "27634f53ad5953df055ed5c130c5c578e3a2c332315a5823b3f2545ff791a6a9",
+  "subtitle": "Create and play games directly",
+  "tags": [
+   "games",
+   "create",
+   "play",
+   "design",
+   "build"
+  ]
+ },
  "com.hssn.anatomy3d": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2381,6 +3441,39 @@
    "medical"
   ]
  },
+ "com.iPwners.Plonkan": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Buddy is an app injected with premium features. It comes from the AppTesters IPA Repo.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "dfe80a48e511f166ee63e9e2d66d4688a4ad9e1a5e3f2c1e6105da8ac6c9fddd",
+  "subtitle": "Buddy with injected premium",
+  "tags": [
+   "buddy",
+   "premium",
+   "ipa",
+   "app"
+  ]
+ },
+ "com.iRayanKhan.BundleReader": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Examine the contents of IPA files directly on your device. View internal file structures and inspect package contents with a simple utility.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6fb3165609be7dbc569e2274bd1bc6089c6e1d9c07e44f64ab3be8d1f5170442",
+  "subtitle": "Inspect IPA contents",
+  "tags": [
+   "ipa",
+   "reader",
+   "contents",
+   "utility",
+   "files"
+  ]
+ },
  "com.ignm.animalmafia": {
   "category": "games",
   "date": "2026-10-14",
@@ -2395,6 +3488,22 @@
    "animal",
    "mafia",
    "game"
+  ]
+ },
+ "com.incpt.mobis.CalculatorInfinite": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Calculator \u221e is a paid calculation application available for iOS devices running minimum operating system version 12.1. Perform everyday math tasks with this dedicated utility app.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fe19625ed38b83d6d8e498e76117fa7b76839498caa4f7a026822363915331bb",
+  "subtitle": "Advanced calculation tool",
+  "tags": [
+   "calculator",
+   "math",
+   "utilities",
+   "finance",
+   "tools"
   ]
  },
  "com.infocuslab.cleaner": {
@@ -2450,6 +3559,25 @@
    "pets",
    "hats",
    "no ads"
+  ]
+ },
+ "com.inyourwalls.blossom": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Live wallpapers app compatible with TrollStore on iOS 17.0 without requiring a jailbreak.",
+  "features": [
+   "Live wallpapers",
+   "TrollStore compatible",
+   "No jailbreak required"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2cf595540c9b4e2c11254ada2ddc707f8b6473567b0a7b6a609e8421c3e7b786",
+  "subtitle": "Live wallpapers for iOS",
+  "tags": [
+   "wallpaper",
+   "live wallpaper",
+   "trollstore",
+   "ios 17"
   ]
  },
  "com.ipaomtk.4k.wallpapers.widgets.plaw.152558": {
@@ -2733,6 +3861,122 @@
    "ios"
   ]
  },
+ "com.ipaomtk.big.helmets.heroes.of.destiny.153051": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Big Helmets: Heroes of Destiny is a hero-based strategy and adventure game for iOS devices. Lead your heroes into battle, strategize your moves, and embark on an epic adventure.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bb0bc91fd9e14905aab2f03f46284d881c274a676e81d187a049f32cc18ecba9",
+  "subtitle": "A hero-based strategy and adventure game",
+  "tags": [
+   "strategy",
+   "adventure",
+   "heroes",
+   "battle",
+   "game"
+  ]
+ },
+ "com.ipaomtk.bloomberg.business.news.daily.155435": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Bloomberg: Business News Daily is an iOS installation package that allows users to access business news.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "58cecb59099813ad727edc5f9c26c0cb27d074019057c887153c6a34e6f5f9ca",
+  "subtitle": "Access Bloomberg business news on iOS",
+  "tags": [
+   "bloomberg",
+   "business",
+   "news",
+   "daily",
+   "ipa",
+   "finance"
+  ]
+ },
+ "com.ipaomtk.bomber.ace.ww2.war.plane.game.153058": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bomber Ace: WW2 War Plane Game is a World War II-themed aerial combat game designed for players interested in historical plane battles.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d124321d806e07eb0b1a1a0ec7238d80ce1793b1a67e47ceecb79efc9e9a9afa",
+  "subtitle": "World War II aerial combat game",
+  "tags": [
+   "bomber",
+   "ww2",
+   "plane",
+   "game",
+   "combat",
+   "aerial"
+  ]
+ },
+ "com.ipaomtk.bounty.go.157213": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bounty-Go is a strategy-driven roguelike RPG that blends dice-based movement with tactical gameplay. Experience adventure on iOS with this strategy-focused role-playing game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7654470791640b2e63bf2cec05b1598c8d5a69be640bd867b2136a67b821bc38",
+  "subtitle": "Strategy roguelike RPG with dice-based movement",
+  "tags": [
+   "rpg",
+   "strategy",
+   "roguelike",
+   "dice",
+   "game"
+  ]
+ },
+ "com.ipaomtk.box.head.roguelike.155023": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Box Head: Roguelike is an iOS action shooter game package that allows iPhone users to experience action gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "150d9bb3aad2f70a88cd15a0891775d36d747f8b615260d0d1a4af1181528163",
+  "subtitle": "Action shooter game for iPhone",
+  "tags": [
+   "action",
+   "shooter",
+   "roguelike",
+   "game",
+   "box head",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.brainwaves.binaural.beats.157105": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Brainwaves \u2014 Binaural Beats is a sound therapy application designed for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5d84f2c216c4179a72fb4a449d37483733abd1c73589b3fa891b2ea25e0ffab5",
+  "subtitle": "Sound therapy application",
+  "tags": [
+   "brainwaves",
+   "binaural",
+   "beats",
+   "sound",
+   "therapy",
+   "audio"
+  ]
+ },
+ "com.ipaomtk.calcbot.2.159667": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Calcbot 2 is a modern calculator app designed to go beyond basic arithmetic.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cf07f228d94f66576c656d8f8bcb265432ba9efd7afee1f7175ca91a9255d605",
+  "subtitle": "Modern calculator app for iOS",
+  "tags": [
+   "calculator",
+   "math",
+   "utilities",
+   "calcbot",
+   "arithmetic"
+  ]
+ },
  "com.iphonecake.appcakej": {
   "category": "games",
   "date": "2026-10-15",
@@ -2763,6 +4007,63 @@
    "remix",
    "audio",
    "music"
+  ]
+ },
+ "com.jarustudios.BackgroundEraser": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Background Eraser is a tool designed to help you master the art of creating PNG images directly from your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "014aedebe3acf5b8f9b0c2a898267a26be3b674892204d932024803e5f9b9363",
+  "subtitle": "Transform your iOS device into a studio for PNG creation",
+  "tags": [
+   "background",
+   "eraser",
+   "png",
+   "photo",
+   "editor"
+  ]
+ },
+ "com.josessolmaximo.blackout": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Blackout allows you to censor, blur, and redact sensitive information in your images. This version comes with the subscription unlocked for full access to all features.",
+  "features": [
+   "Subscription Unlocked",
+   "Censor",
+   "Blur",
+   "Redact"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6b1f949898eae57045dc182ffc7d659245f9e9b0234a354663787de181baad0a",
+  "subtitle": "Censor, blur, and redact your photos",
+  "tags": [
+   "blackout",
+   "censor",
+   "blur",
+   "redact",
+   "privacy",
+   "utilities"
+  ]
+ },
+ "com.kakarod.bighunter": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Big Hunter version 3.0.1 featuring IGameGod added for unlimited currencies. Hunt prehistoric animals in this action game.",
+  "features": [
+   "Unlimited Currencies",
+   "IGameGod Added"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f3cfa34d2630c62853b96ef849a710b3abca54d9d24f22332488cf621c01c709",
+  "subtitle": "Hunting action game with IGameGod tweak",
+  "tags": [
+   "big hunter",
+   "action",
+   "game",
+   "hunting",
+   "igamegod"
   ]
  },
  "com.kalavision.alfred": {
@@ -2836,6 +4137,23 @@
    "video"
   ]
  },
+ "com.klab.bleach": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bleach Brave Souls IPA Anime Game is a 3D action role-playing game based on the popular manga series by Tite Kubo. Released in 2016, Ble",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8f799de3b19f5ba8d324da6035ebd390406c870c0d480aa209f4f32b07a8d652",
+  "subtitle": "3D action role-playing game based on the manga series",
+  "tags": [
+   "bleach",
+   "anime",
+   "action",
+   "rpg",
+   "game",
+   "3d"
+  ]
+ },
  "com.kongregate.mobile.adventurecapitalist": {
   "category": "games",
   "date": "2026-10-14",
@@ -2903,6 +4221,22 @@
    "tracker",
    "trollstore",
    "utilities"
+  ]
+ },
+ "com.lazyboydevelopments.boxingsuperstar": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Boxing Superstar is a high-energy sports game on iPhone that brings the intensity of the boxing ring to your mobile device. Experience fast-paced action and competitive gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2c05c928dcf8fbee1551da46be96546251016ab85b29b1f98ed56fbd5490325e",
+  "subtitle": "High-energy sports game for iPhone",
+  "tags": [
+   "boxing",
+   "sports",
+   "game",
+   "action",
+   "iphone"
   ]
  },
  "com.ld.TakeBrowser": {
@@ -3028,6 +4362,29 @@
    "ttjb",
    "art",
    "ipa"
+  ]
+ },
+ "com.lkv.audiobookplayerapp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Play your favorite audiobooks in MP3, M4B, M4A, and MP4 formats. This version includes premium features unlocked for a complete listening experience. Enjoy uninterrupted playback of your personal audio library directly on your iOS device.",
+  "features": [
+   "Premium Unlocked",
+   "MP3 Support",
+   "M4B Support",
+   "M4A Support",
+   "MP4 Support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "090d460528425551a5963b2eff3ca4f6e4f59b6ffb066707ad1ad1dcc7a09fe9",
+  "subtitle": "Audiobook player for MP3, M4B, M4A, and MP4 files",
+  "tags": [
+   "audiobook",
+   "player",
+   "mp3",
+   "m4b",
+   "media",
+   "books"
   ]
  },
  "com.londonappstudio.Charging-Animation": {
@@ -3224,6 +4581,41 @@
    "ipad"
   ]
  },
+ "com.mind.quiz.brain.out": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BrainOut is a puzzle application injected with premium features. Test your problem-solving skills and brain power with various challenges.",
+  "features": [
+   "Premium Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e846d662f14d0a20a041b5bd472f13c6c846bb66562ab15b9d4c5fe95eca09aa",
+  "subtitle": "BrainOut puzzle app",
+  "tags": [
+   "brainout",
+   "puzzle",
+   "brain",
+   "ipa",
+   "premium"
+  ]
+ },
+ "com.mind.quiz.brainout2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Brainout2 app with added features. This IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5a4f6f8aae5e33f904b8983ed5e8fba85651fa0249167a1cdbc9b362e8ee0f4c",
+  "subtitle": "Brainout2 modified version",
+  "tags": [
+   "brainout2",
+   "ttjb",
+   "ipa",
+   "noads"
+  ]
+ },
  "com.miniclip.8ballpoolmult": {
   "category": "games",
   "date": "2026-10-14",
@@ -3258,6 +4650,39 @@
    "action"
   ]
  },
+ "com.minigamelab.bouncedefense": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bounce Defense is an exciting and engaging tower defense game that brings a fresh twist to the classic genre.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "83ceed7fb4037a407a696290564f153f4eb8d4dd5ea8841179dc47b4e46c061b",
+  "subtitle": "A tower defense game with a fresh twist",
+  "tags": [
+   "defense",
+   "tower",
+   "strategy",
+   "game",
+   "bounce"
+  ]
+ },
+ "com.mmt.bookvo": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bookvo is an English learning application designed for iOS 13.6 and later. Improve your English language skills using this mobile utility.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3b075e0e90627cbf16b80c0aa6778ae4e5cda63ede6c0998d865314c97f4c3df",
+  "subtitle": "English learning application",
+  "tags": [
+   "bookvo",
+   "english",
+   "learning",
+   "education",
+   "language",
+   "study"
+  ]
+ },
  "com.moderngames.aerthlings": {
   "category": "games",
   "date": "2026-10-14",
@@ -3290,6 +4715,23 @@
    "tool"
   ]
  },
+ "com.multicastgames.butcher": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Butcher Hero: Hook\u2019n\u2019Chew RPG is an action RPG for iPhone offering a fresh take on the genre with humor and depth.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2017d8327c26065847df25a8650454ffde806a2a9d222ceb946796d637e7cc2f",
+  "subtitle": "An action RPG with humor and depth",
+  "tags": [
+   "action",
+   "rpg",
+   "butcher",
+   "hero",
+   "hook",
+   "game"
+  ]
+ },
  "com.mwm.bananai": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -3305,6 +4747,24 @@
    "unlocked",
    "subscription",
    "app"
+  ]
+ },
+ "com.mwm.sampler-app": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BeatMakerPro with injected Pro features.",
+  "features": [
+   "Pro Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d34f9eef6e28a3d144503447ff5643271154adc91ef3dab30d47a26af452bc66",
+  "subtitle": "Pro version injected",
+  "tags": [
+   "beatmaker",
+   "music",
+   "pro",
+   "audio",
+   "beats"
   ]
  },
  "com.ndemiccreations.survivors": {
@@ -3323,6 +4783,23 @@
    "mod",
    "ipa",
    "ttjb"
+  ]
+ },
+ "com.netflix.NGP.BloonsTDSix": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bloons TD 6 NETFLIX for iOS offers engaging tower defense gameplay. Build powerful towers, upgrade your defenses, and strategize to defeat incoming waves of bloons. Captivating players with strategic depth and colorful action, this version is available for mobile gaming enthusiasts.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c9dd892ec270eaaf37c5fba4c0e15846fd74716d276abb8cc617d85a01cd00e5",
+  "subtitle": "Defend your towers in Bloons TD 6 Netflix edition",
+  "tags": [
+   "bloons",
+   "tower",
+   "defense",
+   "strategy",
+   "game",
+   "netflix"
   ]
  },
  "com.nextep.learning.kids.games": {
@@ -3373,6 +4850,59 @@
    "utilities"
   ]
  },
+ "com.ninjakiwi.bloonstd6": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play BloonsTD6, the premium tower defense game. This IPA version is tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7825df26fe543ae3e4052abbf20b6d889b353cef7d9eb2740a6395e3bc8c665f",
+  "subtitle": "Premium tower defense game",
+  "tags": [
+   "bloonstd6",
+   "strategy",
+   "tower",
+   "defense",
+   "game"
+  ]
+ },
+ "com.nitrogames.boltgunboom": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Boltgun Boom provides hack features for Warhammer 40,000: Boltgun. Amplify your firepower against all enemies with a damage multiplier and survive any encounter with the never die mode.",
+  "features": [
+   "Damage Multiplier",
+   "Never Die"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5be44ef1fff714735dd3f9dbfe39b584e91ee2367d0bf2619afae5b8249fcf98",
+  "subtitle": "Warhammer 40,000 Boltgun hack features",
+  "tags": [
+   "boltgun",
+   "warhammer",
+   "hack",
+   "damage",
+   "games"
+  ]
+ },
+ "com.nodesclock.blinkerfluid.ios12": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Blinker Fluid is an experimental privacy-focused browser that ports Chromium's Blink rendering engine and V8 JavaScript engine to iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "05ea9f3bdb72cf8f2ac7e64e8705ae3e39199e606f6605f1c80d2af7b1aad87b",
+  "subtitle": "Experimental privacy-focused browser for iOS",
+  "tags": [
+   "browser",
+   "privacy",
+   "chromium",
+   "blink",
+   "javascript"
+  ]
+ },
  "com.onicore.backpack.rush": {
   "category": "games",
   "date": "2026-10-15",
@@ -3408,6 +4938,21 @@
    "apps"
   ]
  },
+ "com.orwinik.chesspanel": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play live chess. Requires iOS 15.1 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "20164d5c1ddf7c7babd8053679a392f7f6a7dc0d9a11c7d05502eb3a551d2a19",
+  "subtitle": "Live Chess",
+  "tags": [
+   "chess",
+   "live chess",
+   "board game",
+   "strategy"
+  ]
+ },
  "com.os.airforce": {
   "category": "games",
   "date": "2026-10-14",
@@ -3425,6 +4970,24 @@
    "arcade"
   ]
  },
+ "com.panicbyte.byephotos": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "ByePhotos helps you free up storage space on your device. Manage and remove unwanted photos efficiently to reclaim storage capacity. Requires iOS 17.0 or later.",
+  "features": [
+   "Free Up Storage"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9cb55fa3046fe2d8d42bbb5cc1ca3febcc640a3fc0dd13748f88e78983cb8dda",
+  "subtitle": "Free up storage on your device",
+  "tags": [
+   "storage",
+   "photos",
+   "cleanup",
+   "utility",
+   "management"
+  ]
+ },
  "com.panteon.arcanearena": {
   "category": "games",
   "date": "2026-10-15",
@@ -3438,6 +5001,23 @@
    "strategy",
    "games",
    "battle"
+  ]
+ },
+ "com.panthera.boxheadzombiesmustdie": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Box Head: Zombies Must Die! offers immersive gameplay where you fight against zombie hordes. Keep yourself on the edge of your seat as you survive the attacks and battle through the levels. This iOS game provides action-packed entertainment as you take on waves of the undead.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "92febb464a407118df4ac60445f33b84c4c71aba2ed16c44230bae49d1a3d4af",
+  "subtitle": "Fight hordes of zombies in immersive gameplay",
+  "tags": [
+   "box head",
+   "zombies",
+   "action",
+   "survival",
+   "shooter",
+   "game"
   ]
  },
  "com.perfectcorp.yat": {
@@ -3492,6 +5072,23 @@
    "app"
   ]
  },
+ "com.pid.beholderconductor": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Beholder: Conductor is an adventure strategy game set in a dystopian world where players manage a state-controlled train. Oversee operations, handle passengers, and navigate through challenging scenarios aboard your locomotive.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "40628f0c00d793f841d28a7857c10ace32b1473bd46fae3d594912d92142484e",
+  "subtitle": "Adventure strategy in a dystopian world",
+  "tags": [
+   "strategy",
+   "adventure",
+   "dystopian",
+   "train",
+   "management",
+   "game"
+  ]
+ },
  "com.pikpok.br.iosstore": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -3507,6 +5104,24 @@
    "rescue",
    "adventure",
    "simulation"
+  ]
+ },
+ "com.pinguo.msgAries": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Blurrr is a video editing application. This version comes injected with premium access enabled. Use the editing tools and features included with the premium upgrade.",
+  "features": [
+   "Injected Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "60ff0d83e14f7fa618edc14cfc64658f938192e82c5b688eb18008c2e4d42448",
+  "subtitle": "Video editor with injected premium features",
+  "tags": [
+   "blurrr",
+   "video editor",
+   "premium",
+   "editing",
+   "app"
   ]
  },
  "com.pixeldev.APEXRacers": {
@@ -3558,6 +5173,21 @@
    "maker",
    "design",
    "graphics"
+  ]
+ },
+ "com.playgendary.bowmasters": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bowmasters Multiplayer is a mobile game that allows you to compete against friends or random opponents.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1f1503676cd13b358c2073ac4c83567254f322f3f93c569733c021a782acb40b",
+  "subtitle": "Compete against friends in multiplayer matches",
+  "tags": [
+   "bowmasters",
+   "multiplayer",
+   "game",
+   "action"
   ]
  },
  "com.playhardlab.defenders": {
@@ -3626,6 +5256,22 @@
    "iphone",
    "austin",
    "odyssey"
+  ]
+ },
+ "com.puzzle1studio.ap.brickoutshoottheball": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BrickOut is an arcade style brick breaking game. Break through walls of bricks using a paddle and a ball to clear each level. The app includes injected content from IGG.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a695ebc34ba756688eea96ea335452a374566276832872030fc169f05a6f42ad",
+  "subtitle": "Brick breaking arcade game",
+  "tags": [
+   "brickout",
+   "arcade",
+   "retro",
+   "balls",
+   "bricks"
   ]
  },
  "com.qiiwi.backpackergo": {
@@ -3715,6 +5361,23 @@
    "utility"
   ]
  },
+ "com.realmzer.cahighfps": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "CA-High-FPS unlocks higher frames per second limits for selected applications. This utility tool modifies application frame rate caps based on your configuration.",
+  "features": [
+   "Unlock FPS"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "038913d8ff94d778240b7d767f6d2d364f72effb06c39c0f888c2537cc7b7d99",
+  "subtitle": "Unlocks higher frames per second in applications",
+  "tags": [
+   "fps",
+   "unlock",
+   "performance",
+   "utility"
+  ]
+ },
  "com.rebelancap.2ship": {
   "category": "other",
   "date": "2026-10-14",
@@ -3761,6 +5424,26 @@
    "nutripick",
    "food",
    "utilities"
+  ]
+ },
+ "com.retr0dev.binarysign": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "BinarySigner iOS is a tool designed to help you sign any binary executable file. This application requires TrollStore support.",
+  "features": [
+   "Sign binaries",
+   "TrollStore supported"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0a4af927bf9c1dd9ca3dccb33cb8a7c93934807e384549b02e7363a46fc79b37",
+  "subtitle": "Sign binary executable files",
+  "tags": [
+   "binary",
+   "signer",
+   "executable",
+   "trollstore",
+   "developer",
+   "tool"
   ]
  },
  "com.revoicers.autocc": {
@@ -3831,6 +5514,22 @@
    "sources"
   ]
  },
+ "com.rockstargames.bully": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Download Bully for free instead of paying on the App Store.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4187331e5b5ee06291266af17ebd37977d5b561f9dcac4f5fc580d40934216d0",
+  "subtitle": "Download Bully for free",
+  "tags": [
+   "bully",
+   "free",
+   "karbin-store",
+   "app",
+   "download"
+  ]
+ },
  "com.rovio.BadPiggies": {
   "category": "games",
   "date": "2026-10-15",
@@ -3882,6 +5581,25 @@
    "game"
   ]
  },
+ "com.runawayplay.birdbnb": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bird BnB is a management game where you run a bed and breakfast for birds. This modified version includes infinite coin so you can spend freely on upgrades and decorations. It also includes infinite cash so you can purchase premium items.",
+  "features": [
+   "Infinite Coin",
+   "Infinite Cash"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d61eb3be5e45b83c0f9a78fad34d2005a7c9a01fe0fd7714b5afaa1250c8f268",
+  "subtitle": "Manage a bird bed and breakfast with infinite resources",
+  "tags": [
+   "bird",
+   "bnb",
+   "management",
+   "simulation",
+   "strategy"
+  ]
+ },
  "com.ryan.anymex": {
   "category": "entertainment",
   "date": "2026-10-15",
@@ -3897,6 +5615,23 @@
    "myanimelist",
    "simkl",
    "manga"
+  ]
+ },
+ "com.ryki.fps.zombie": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bulletstorm Zombie Waves is a mobile action game that features intense waves of zombies. Experience the evolving mobile gaming landscape with this engaging title.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a8b9ebc05a62f0f064b6d438a1d459bfe30ae5e35b6457e93300fd96b35545ab",
+  "subtitle": "Action mobile game featuring zombie waves",
+  "tags": [
+   "bulletstorm",
+   "zombie",
+   "waves",
+   "action",
+   "game",
+   "mobile"
   ]
  },
  "com.saulawa.areaandvolumecalc.lite": {
@@ -3950,6 +5685,45 @@
    "apps",
    "details",
    "entitlements"
+  ]
+ },
+ "com.shadow.blackhole.ios.15.11.2": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Music player with downloads.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "de0c5f4a1bc113add847a548ef1be6da70565e94ecbf17d1fcefb47baba322b3",
+  "subtitle": "Music player with downloads",
+  "tags": [
+   "music",
+   "player",
+   "downloads",
+   "audio",
+   "songs"
+  ]
+ },
+ "com.shadow.blackhole1160.ios": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "BlackHole is a music player featuring a user interface that streams audio directly from YouTube Music. The application supports downloading tracks for offline listening, creating custom playlists, and importing existing playlists. Additionally, users can perform app backups to secure their data and music library configurations.",
+  "features": [
+   "Stream music",
+   "Download tracks",
+   "Create playlists",
+   "Import playlists",
+   "App backups"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "13498bff976625de3540c5f31e1fefbae9dca15b4c5d75db2d95ad71c9cd3a9f",
+  "subtitle": "Stream and download music from YouTube Music",
+  "tags": [
+   "music",
+   "player",
+   "stream",
+   "download",
+   "playlist",
+   "audio"
   ]
  },
  "com.skybornegames.adorablegarden": {
@@ -4067,6 +5841,22 @@
    "ios"
   ]
  },
+ "com.sun.player.bob": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "BOB PLAYER is an iOS media player app package that allows iPhone users to stream and play video content.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "158119cefa842e4b25ec28e83652a2036e6560a46646e7a112e193edfd4a833b",
+  "subtitle": "Stream and play video content on your iPhone",
+  "tags": [
+   "media player",
+   "video player",
+   "stream",
+   "video",
+   "ios"
+  ]
+ },
  "com.supercell.magic": {
   "category": "games",
   "date": "2026-10-15",
@@ -4105,6 +5895,40 @@
    "adventure"
   ]
  },
+ "com.superplanet.boomerang": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Boomerang RPG IPA MOD is an exciting game that takes you on an unforgettable adventure. Experience engaging gameplay and explore the world of Boomerang RPG on your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "a954a11189d9b34228f9db164e8e5ba6c4a37a34bef68c51af2d3bf82cfa12ea",
+  "subtitle": "An exciting game for an unforgettable adventure",
+  "tags": [
+   "boomerang",
+   "rpg",
+   "adventure",
+   "game",
+   "mod",
+   "ios"
+  ]
+ },
+ "com.sybogames.brim": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Blades of Brim is an exciting and action-packed game that features stunning graphics and immersive gameplay. Take on quests, battle hordes of goons, and explore a vibrant fantasy world as you run, jump, and slash your way through various environments.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "699a7d30634cfa7793359519fe4fba7b6fe450ff1b8e888777658d656b56e4b3",
+  "subtitle": "Action-packed endless runner adventure",
+  "tags": [
+   "action",
+   "runner",
+   "fantasy",
+   "adventure",
+   "battle",
+   "game"
+  ]
+ },
  "com.telltalegames.BAT100": {
   "category": "games",
   "date": "2026-10-15",
@@ -4124,6 +5948,23 @@
    "gotham"
   ]
  },
+ "com.thegamekitchen.blasphemous": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Blasphemous is an atmospheric metroidvania platformer featuring hardcore combat, deep lore, and dark aesthetics. Explore a gloomy world and test your skills in challenging battles. This is a paid app from the AppStore.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ce41b7aae2a00438152c50896e3b35d5271e2ed2d5ea5d1d7ffe34a6466a13cd",
+  "subtitle": "Atmospheric metroidvania platformer with hardcore combat",
+  "tags": [
+   "platformer",
+   "metroidvania",
+   "action",
+   "hardcore",
+   "combat",
+   "atmospheric"
+  ]
+ },
  "com.tigisoftware.ADManager": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -4136,6 +5977,56 @@
    "manager",
    "apps",
    "utility"
+  ]
+ },
+ "com.timi2506.Browser": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Browser is a web browser built with SwiftUI and WebView, featuring a visionOS style interface.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "39f41846f379320260a2f7385c0c8186369b7cdf3cdccb39187002d22dd568df",
+  "subtitle": "visionOS Style Browser",
+  "tags": [
+   "browser",
+   "visionos",
+   "swiftui",
+   "webview",
+   "utilities"
+  ]
+ },
+ "com.topfreegames.bikeracefree": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bike Race Free Style Games is a physics-based motorcycle racing game for iOS. Experience fast-paced racing action and test your riding skills across challenging tracks.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ddf43d4bc8051c667946fcd67596bccd7d354557e5c23b405b6d7465e4c0afb7",
+  "subtitle": "Physics-based motorcycle racing game",
+  "tags": [
+   "bike",
+   "race",
+   "motorcycle",
+   "physics",
+   "game",
+   "racing"
+  ]
+ },
+ "com.totoventures.blend": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Blend Overlay Photos offers a wide range of advanced features, allowing you to seamlessly edit your photos using a comprehensive editing suite.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bc9553afc88e692ba7f8457a7835ebc2e786f1d9ab42e7ffb3028b000e9e2e5d",
+  "subtitle": "Comprehensive photo editing suite with advanced features",
+  "tags": [
+   "blend",
+   "overlay",
+   "photos",
+   "photo",
+   "editing",
+   "suite"
   ]
  },
  "com.traplight.battleslides": {
@@ -4152,6 +6043,77 @@
    "tactical",
    "battle",
    "game"
+  ]
+ },
+ "com.unicostudio.braintest": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BrainTest is a mobile application featuring injected with IAP functionality.",
+  "features": [
+   "Injected with IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e4de32e9bc0c3e233e8a593b58401f03b224f3c8281239d09ee49ed3ce3b5925",
+  "subtitle": "BrainTest app",
+  "tags": [
+   "braintest",
+   "iap",
+   "puzzle",
+   "quiz"
+  ]
+ },
+ "com.unicostudio.braintest2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BrainTest2 is a mobile application featuring injected in-app purchases. This release comes from the AppTesters IPA Repo and provides the modified application package for your device.",
+  "features": [
+   "Injected IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "060647b21383a5c344d3fc8535654ba616de3d4cd7516a93e4546d06275d9b6d",
+  "subtitle": "BrainTest2 with injected in-app purchases",
+  "tags": [
+   "braintest2",
+   "apptesters",
+   "ipa",
+   "mod",
+   "iap"
+  ]
+ },
+ "com.unicostudio.braintest3": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BrainTest3 is a puzzle and brain training game. This version is injected with IAP.",
+  "features": [
+   "Injected with IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f34f10f5139273b487f70f6bad94c9624798b9fdcee255b24b24322c23dcd839",
+  "subtitle": "Brain training and puzzle game",
+  "tags": [
+   "braintest",
+   "puzzle",
+   "brain",
+   "game",
+   "iap"
+  ]
+ },
+ "com.unicostudio.braintest4": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Brain Test 4 with injected in-app purchases.",
+  "features": [
+   "Injected IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2c8af38a6f59be53748c26f93fbca14603fe4296f747ead7d28048919694c238",
+  "subtitle": "Brain Test 4",
+  "tags": [
+   "brain",
+   "test",
+   "puzzle",
+   "games",
+   "ipa"
   ]
  },
  "com.unknown.1998vintagecamera": {
@@ -4652,6 +6614,103 @@
    "\u0626\u06d5\u067e\u06b5\u06cc\u06a9\u06d5\u06cc\u0634\u0646"
   ]
  },
+ "com.unknown.beatjumper": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "The goal is to jump as high as you can. Move right or left and automatically jump from platform edges while listening to music and catching the rhythm.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cad8a2fbaefda889969dc537db0180ca608a2ded2f2cc3ea0681f1a32a71eaaa",
+  "subtitle": "Jump on platforms while listening to music rhythms",
+  "tags": [
+   "jump",
+   "music",
+   "rhythm",
+   "platform",
+   "arcade"
+  ]
+ },
+ "com.unknown.bgeraaer": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "\u0626\u06d5\u067e\u0644\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9 \u0628\u06c6 \u0644\u0627\u0628\u0631\u062f\u0646\u06cc \u0634\u062a\u06d5 \u0632\u06cc\u0627\u062f\u06d5\u06a9\u0627\u0646 \u0644\u06d5 \u0648\u06ce\u0646\u06d5\u06a9\u0627\u0646",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ae34e6108ba63edf9febc15ffe383603eafe48dbb294c6b4e7af4fd76bac5d69",
+  "subtitle": "\u0626\u06d5\u067e\u0644\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9 \u0628\u06c6 \u0644\u0627\u0628\u0631\u062f\u0646\u06cc \u0634\u062a\u06d5 \u0632\u06cc\u0627\u062f\u06d5\u06a9\u0627\u0646 \u0644\u06d5 \u0648\u06ce\u0646\u06d5\u06a9\u0627\u0646",
+  "tags": [
+   "\u0648\u06ce\u0646\u06d5",
+   "\u0644\u0627\u0628\u0631\u062f\u0646",
+   "\u0626\u06d5\u067e",
+   "\u0628\u06ce\u06a9\u06d5\u0633"
+  ]
+ },
+ "com.unknown.blockblast": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Block Blast is a puzzle game available on Karbin-Store. This version can be used without advertisements.",
+  "features": [
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "568b5f061f67a0a466d5946133413c5839d440f32e0adc6f3b87c1945763100c",
+  "subtitle": "Block Blast puzzle game",
+  "tags": [
+   "block",
+   "blast",
+   "puzzle",
+   "game",
+   "no ads"
+  ]
+ },
+ "com.unknown.bloonstd": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play Bloons TD, available with the IGG add-on included.",
+  "features": [
+   "IGG Add-on"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ce26aa4c20bd97c840990a9a92f5b7c21f929e4141c6b3cf7d34e1e2bb209326",
+  "subtitle": "Bloons TD strategy game",
+  "tags": [
+   "bloons",
+   "td",
+   "strategy",
+   "game",
+   "igg"
+  ]
+ },
+ "com.unknown.brakefield": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Unlock Premium with Brakefield, developed by Karbin-Store. Access premium content directly.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3d2c67273e3dd3401ede923c042c1e6b7ba09a337e7707dfd5fcfba7fed715f2",
+  "subtitle": "Unlock Premium features",
+  "tags": [
+   "brakefield",
+   "premium",
+   "unlock"
+  ]
+ },
+ "com.unknown.bunny": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Bunny is an application developed by Karbin-Store.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b44dedf6a5680ddc1ee88008833f6e068a9cb862130846ce7da244f1600f6264",
+  "subtitle": "Bunny application",
+  "tags": [
+   "bunny",
+   "karbin-store",
+   "utility"
+  ]
+ },
  "com.unofficial.balatro": {
   "category": "games",
   "date": "2026-10-15",
@@ -4666,6 +6725,24 @@
    "cards",
    "game",
    "strategy"
+  ]
+ },
+ "com.unofficialcalculators.payplan": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bill Tracker Pro helps you keep track of your bills and manage your expenses. This version includes the full version unlocked, providing complete access to all features for your financial planning and bill management needs.",
+  "features": [
+   "Full Version Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "de2818378e5d11fbb3bbd958eee08c2576ac9fe21050eb62692e4b2362a34689",
+  "subtitle": "Track your bills and manage expenses easily",
+  "tags": [
+   "bills",
+   "tracker",
+   "expenses",
+   "finance",
+   "manager"
   ]
  },
  "com.untitledinbrackets.untitled-ios": {
@@ -4771,6 +6848,23 @@
    "training"
   ]
  },
+ "com.viraldevelopment.CalAI": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Cal AI Calorie Tracker is an iOS health and fitness app package that allows iPhone users to track calories.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1f04b0eb8633457497d110214fad975bff26a5de0e7fe6bcc87b22e666ec5ed4",
+  "subtitle": "Calorie tracker iOS health and fitness app",
+  "tags": [
+   "health",
+   "fitness",
+   "tracker",
+   "calories",
+   "ipa",
+   "ios"
+  ]
+ },
  "com.vqw.aelh": {
   "category": "lifestyle",
   "date": "2026-10-15",
@@ -4804,6 +6898,56 @@
    "streaming",
    "pro",
    "video"
+  ]
+ },
+ "com.wellocution.iosapp": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "BoldVoice is an app that helps users improve their speaking voice and reduce accents. This version includes the subscription unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6cb9e4f201882a23b5f52226be025e475780f1eb63f89f2735e2c54292581af8",
+  "subtitle": "Voice training and accent reduction",
+  "tags": [
+   "voice",
+   "accent",
+   "speaking",
+   "training",
+   "audio"
+  ]
+ },
+ "com.wolf.piggy": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Beast Heroes is a fantasy idle role-playing game for iOS devices. Experience idle gameplay mechanics designed for role-playing game enthusiasts.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f243bb0ae5b57c38d20f813af28f56c19fa11838e843e3149b54df5087248512",
+  "subtitle": "Fantasy Idle RPG for iOS",
+  "tags": [
+   "rpg",
+   "idle",
+   "fantasy",
+   "game",
+   "heroes"
+  ]
+ },
+ "com.wtfapps.apollo16": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BitLife is one of the most popular life simulation games available for iOS devices, offering players the chance to experience a virtual life journey from birth to death.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "906d0a673fd7c907412d80e26047c4b5da43f8ff51a881b29fd5651bb16d915d",
+  "subtitle": "Popular life simulation game for iOS",
+  "tags": [
+   "simulation",
+   "life",
+   "game",
+   "ios",
+   "virtual"
   ]
  },
  "com.xq.archeroii": {
@@ -4887,6 +7031,124 @@
    "apple",
    "official",
    "utilities"
+  ]
+ },
+ "com.yummygum.Billy": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bobby is a subscription tracking application. This version includes everything unlocked. Manage your recurring payments and track your subscriptions easily.",
+  "features": [
+   "Everything Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "95180813b3896fb29a4fba61e49ad4a06c810d60628def7051be82ec96ab7216",
+  "subtitle": "Track subscriptions",
+  "tags": [
+   "subscriptions",
+   "tracker",
+   "payments",
+   "bills",
+   "management"
+  ]
+ },
+ "com.yunti.zzm.dxiao": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BigBrotherMovies is an application developed by OwO Source.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f9e2a2bb39df1889f2cad0a8b975724867b3511dc3c008530d84277c3f3a9b51",
+  "subtitle": "BigBrotherMovies app",
+  "tags": [
+   "bigbrothermovies",
+   "owo source"
+  ]
+ },
+ "com.zalmayapps.borderwars": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Border Wars: Army Games RTS on iOS brings classic real-time strategy gameplay to mobile devices. Experience real-time strategy mechanics designed for iOS.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "65d1e8918e397e385d1f3db0c110c9737fb556c880542ee06c6d09bc13546961",
+  "subtitle": "Classic real-time strategy gameplay on mobile",
+  "tags": [
+   "strategy",
+   "rts",
+   "army",
+   "games",
+   "war",
+   "tactics"
+  ]
+ },
+ "com.zephyr.breeze": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Breeze is a manga reader built with Flutter. It supports multiple manga sources through a plugin mechanism, including popular platforms such as Bika, Juman, E-Hentai, nhentai, Copy Manga, and Baozi Manga. The source code is available under the MPL-2.0 open source license.",
+  "features": [
+   "Plugin sources",
+   "Open source"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e466ea301ec03327008c8d212ec2cc1a0db26a256d7983b13e46f70db7f1f66d",
+  "subtitle": "Manga reader built with Flutter",
+  "tags": [
+   "manga",
+   "reader",
+   "comics",
+   "flutter",
+   "plugins"
+  ]
+ },
+ "com.zhiliaoapp.musically": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "BHTikTokPlus is a modified application injected with Plus features. It provides an alternative way to access social media content with added modifications for users seeking enhanced functionality.",
+  "features": [
+   "Plus injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "77397f41a4123f9b79a84128bfbb3196682fb55f7639a4c31728e152ddc922e4",
+  "subtitle": "Modified social networking experience",
+  "tags": [
+   "social",
+   "video",
+   "plus",
+   "mod",
+   "entertainment"
+  ]
+ },
+ "com.zuuks.bus.simulator.ultimate": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "The simulation genre on mobile devices offers players the chance to experience specialized activities from the comfort of your device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f4a1b3a6eeff9e0035a0edd769af715e5efc1cb3fb2efe1ce3d5e89c3f698106",
+  "subtitle": "Experience bus simulation on mobile devices",
+  "tags": [
+   "simulation",
+   "bus",
+   "simulator",
+   "driving",
+   "mobile"
+  ]
+ },
+ "com.zynga.borderlandsmobile": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Borderlands Mobile IPA is the iOS installation package of the popular looter-shooter franchise adapted for mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e800409c552eff4328157df16f88f8510307497910457e90efb0831390c0acdd",
+  "subtitle": "iOS installation package of the looter-shooter",
+  "tags": [
+   "borderlands",
+   "mobile",
+   "ipa",
+   "shooter",
+   "looter",
+   "ios"
   ]
  },
  "cypwn.AdGuardPro_TS.4.4.0": {
@@ -5082,6 +7344,22 @@
    "aurora"
   ]
  },
+ "cypwn.BIDFetcher_TS.1.0": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Download any app icons from the App Store by searching the bundle ID. Use this tool with Bundlr to find the Bundle ID.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "51ee51a00b7fda71d6b01f256a9d346fc97892929cc50cf5ad2602aed6d00be6",
+  "subtitle": "Download app icons by bundle ID",
+  "tags": [
+   "icons",
+   "appstore",
+   "bundle id",
+   "download",
+   "utilities"
+  ]
+ },
  "cypwn.BackupAZ4_Crack_TS.1.3.1": {
   "category": "utilities",
   "date": "2026-10-15",
@@ -5118,6 +7396,57 @@
    "power"
   ]
  },
+ "cypwn.BeReal_0.31.0.0.31.0": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "This application includes a feature to unblur photos and view content in the BeReal feed.",
+  "features": [
+   "Unblur Photos"
+  ],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "4d0f62faa0c7b4e9b6811f397f391f06b649adb2eee5fb87bd21b9cda116365f",
+  "subtitle": "Unblur photos on BeReal",
+  "tags": [
+   "bereal",
+   "unblur",
+   "photos",
+   "social"
+  ]
+ },
+ "cypwn.Bundlr_TS.1.0": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Easily search App Bundle IDs and copy them to clipboard.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "da2805d9c87786dbdfbaf6a1c7fcc6562492ab069d9bef65542a16b0d5dad475",
+  "subtitle": "Search and copy app bundle IDs easily",
+  "tags": [
+   "bundle",
+   "search",
+   "developer",
+   "tools",
+   "clipboard"
+  ]
+ },
+ "de.BodyFast.BodyFast2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BodyFast is an intermittent fasting application that provides access to Pro features. Manage your fasting schedule and track your progress with the injected Pro version.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "707d91479df8b7c5d26a698e30a6f24643117eb51c9755344a0f0526d71c9dbc",
+  "subtitle": "Intermittent fasting app",
+  "tags": [
+   "bodyfast",
+   "fasting",
+   "health",
+   "pro",
+   "tracker"
+  ]
+ },
  "dev.vodik7.atvtools.atvTools": {
   "category": "entertainment",
   "date": "2026-10-15",
@@ -5132,6 +7461,22 @@
    "google",
    "entertainment",
    "tools"
+  ]
+ },
+ "digital.dong.braille": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Braille Academy is an iOS installable package designed to help users play and learn Braille. This application provides an interactive platform for mastering Braille characters and reading skills through gameplay and structured learning modules.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "efab4a8873245ca023554b8e15e385a2aca9de72bd591e8b53e84b9effb0cf56",
+  "subtitle": "Play and learn Braille on iOS",
+  "tags": [
+   "braille",
+   "learn",
+   "play",
+   "education",
+   "accessibility"
   ]
  },
  "droom.sleepIfUCanFree": {
@@ -5166,6 +7511,22 @@
    "ask",
    "chat",
    "utilities"
+  ]
+ },
+ "fr.blaukke": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Blaukke is a gym and fitness application designed to help you track your workouts. The app requires iOS 16.4 or later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1a92ae096d710192866488f9cb4d2295984dc3aa1b44b55fec8c4ffd4d405556",
+  "subtitle": "Gym and fitness tracker",
+  "tags": [
+   "fitness",
+   "gym",
+   "workout",
+   "tracker",
+   "health"
   ]
  },
  "games.war.strategy.dragon.clash.aaw.hourgames": {
@@ -5293,6 +7654,41 @@
    "retro"
   ]
  },
+ "io.konveier.timo": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "This application includes premium features. The IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7b9acbaa26376ae5d667c3e994ee2353f2d683ab6d639b3f4e6d4662fbc49797",
+  "subtitle": "Premium IPA app version",
+  "tags": [
+   "brite",
+   "ipa",
+   "ttjb",
+   "premium"
+  ]
+ },
+ "io.konveier.timo.budgetplanner": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Manage your finances with the Budget Planner App. This version includes pro features unlocked. To activate the subscription, press restore and then restart the app.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9a71086aaf52a29758d608567e539a81aa0d0f69e5ee8adb061fa8e0a023677e",
+  "subtitle": "Budget planner app with pro features unlocked",
+  "tags": [
+   "budget",
+   "planner",
+   "finance",
+   "money",
+   "tracker"
+  ]
+ },
  "io.mindist.noise": {
   "category": "other",
   "date": "2026-10-14",
@@ -5310,6 +7706,39 @@
    "audio"
   ]
  },
+ "io.supercent.burgersimulator": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Burger Simulator is a restaurant management simulation game designed for iOS devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0d965fb7570f52d5923a8922d3fd26d4274b0c7b35cd3fd0bf73f0355e1ce411",
+  "subtitle": "Restaurant management simulation game",
+  "tags": [
+   "burger",
+   "simulator",
+   "restaurant",
+   "management",
+   "simulation",
+   "game"
+  ]
+ },
+ "io.voodoo.blockpals": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Block Pals is an iOS puzzle and construction-based mobile game featuring colorful blocks. Players can enjoy solving puzzles and building within the game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "af231a49e42280a33784d209de59ea438bc379a9d19bec26d5e86cfab738dca3",
+  "subtitle": "Colorful puzzle and construction-based mobile game",
+  "tags": [
+   "puzzle",
+   "construction",
+   "blocks",
+   "game",
+   "mobile"
+  ]
+ },
  "it.ned.appdb-ios": {
   "category": "developer",
   "date": "2026-10-15",
@@ -5323,6 +7752,25 @@
    "client",
    "ios",
    "developer"
+  ]
+ },
+ "jp.co.gcgames.bc": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Brave Frontier Versus brings a fresh and dynamic spin to the classic Brave Frontier experience. Enjoy updated gameplay mechanics and engaging battles in this modified application version.",
+  "features": [
+   "Modded Version"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "58441e7b1e91799cc85e1d529a21292f3fff8de0c4802410fa39c5e346e7e469",
+  "subtitle": "A fresh spin on classic Brave Frontier",
+  "tags": [
+   "brave",
+   "frontier",
+   "versus",
+   "ipa",
+   "mod",
+   "game"
   ]
  },
  "jp.dcsyhi.airwall": {
@@ -5408,6 +7856,27 @@
    "unlocked"
   ]
  },
+ "net.gameduo.bbc": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Stone Island Simulator hack features include a damage multiplier, defense multiplier, and the ability to freeze currencies. You can also tap to buy your own certificate.",
+  "features": [
+   "Damage Multiplier",
+   "Defense Multiplier",
+   "Freeze Currencies",
+   "Buy Certificate"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "750045479c7982df18a664b9831befc79ed60d2bafe0f8cbe1df6b16a948a2a0",
+  "subtitle": "Stone Island Simulator hack version",
+  "tags": [
+   "simulator",
+   "stone island",
+   "hack",
+   "game",
+   "strategy"
+  ]
+ },
  "net.ichi2.anki": {
   "category": "other",
   "date": "2026-10-14",
@@ -5459,6 +7928,24 @@
    "recorder"
   ]
  },
+ "net.shinyfrog.bear-iOS": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bear Notes app with pro features unlocked. Back up your existing notes from the App Store version before force installing this version.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bf6c6a65b41ad17cd29cdc8de159cfff92bd46ed6c62d33ef7a0ddf201faae4a",
+  "subtitle": "Bear Notes with pro features unlocked",
+  "tags": [
+   "notes",
+   "bear",
+   "pro",
+   "utilities",
+   "backup"
+  ]
+ },
  "net.sourceloc.AirTroller": {
   "category": "developer",
   "date": "2026-10-14",
@@ -5490,6 +7977,36 @@
    "ios12",
    "flooder",
    "airtroller"
+  ]
+ },
+ "no.agens.bukkenebruse": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "The Three Billy Goats Gruff on iOS transforms a well-known fairy tale into an interactive digital experience designed especially for children.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "015786743822291a466fd795aa34f6118b7be4103c14af5171e166c7a1662c6b",
+  "subtitle": "Interactive fairy tale experience for children",
+  "tags": [
+   "fairy tale",
+   "kids",
+   "interactive",
+   "stories",
+   "books"
+  ]
+ },
+ "nochat.bitchat.hehbveh": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "bitchat for iOS 15 and up.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d2d5e4645d7f97df0f7303f6a625390f9a98d08ee49cca9bfd98558b7489df6b",
+  "subtitle": "bitchat for iOS 15 and up",
+  "tags": [
+   "bitchat",
+   "ios15",
+   "communication"
   ]
  },
  "org.amnezia.AmneziaVPN": {
@@ -5603,6 +8120,22 @@
    "offline"
   ]
  },
+ "reels-maker-one": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Access the app with the subscription unlocked feature.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "074ca0d014948ef3037e2d16ed6cabb319247a88dd3d7942cb8d8451e77d26d1",
+  "subtitle": "Subscription Unlocked",
+  "tags": [
+   "beat",
+   "subscription",
+   "unlocked"
+  ]
+ },
  "rn.notes.best": {
   "category": "developer",
   "date": "2026-10-15",
@@ -5652,6 +8185,22 @@
    "ttjb"
   ]
  },
+ "so.empty.bookology": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bookology is a book tracker app designed to help you keep track of your reading. Manage your reading list and monitor your book collection directly from your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5eb2e55ec74b12396578ed63c08b83340f8f5afa16193f8a1e5a0f89ee2eb1db",
+  "subtitle": "Track your books easily",
+  "tags": [
+   "books",
+   "tracker",
+   "reading",
+   "library",
+   "utilities"
+  ]
+ },
  "tinyleo.com.aisticker": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -5687,6 +8236,25 @@
    "details",
    "utility",
    "tools"
+  ]
+ },
+ "uk.gleissner.c64commander": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "C64 Commander allows you to control and manage a Commodore 64 Ultimate from your device on your local network. Connect to your hardware and manage it directly.",
+  "features": [
+   "Dev"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "60d6b427a3a69d04382d7d946b332c1265a378f2705df360d4b990944b8f22ce",
+  "subtitle": "Control and manage a Commodore 64 Ultimate",
+  "tags": [
+   "c64",
+   "commodore",
+   "ultimate",
+   "controller",
+   "manager",
+   "retro"
   ]
  },
  "wiki.qaq.Asspp": {
