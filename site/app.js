@@ -906,6 +906,15 @@
     return safeUrl(url) || safeUrl(c.url);
   }
 
+  function certLine(a) {
+    if (!certs().length) return null;
+    const links = [];
+    certs().forEach((c, i) => {
+      if (i) links.push(" · ");
+      links.push(h("a", { href: certUrl(c, a), target: "_blank", rel: "sponsored noopener" }, c.name));
+    });
+    return h("p", { class: "cert-line" }, "Need a signing certificate? ", ...links);
+  }
 
   // A short screen before a direct IPA download: the download starts by itself after a few
   // seconds (or right away with "Download now"), with certificate offers and donations meanwhile.
@@ -1057,6 +1066,7 @@
         a.s ? h("p", { class: "d-sub" }, a.s) : null,
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
         d ? actions : null,
+        d && ipa ? certLine(a) : null,
         d && ipa ? h("p", { class: "cert-line" }, h("a", { href: "#/sign" }, "How to sign your own apps →")) : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),
