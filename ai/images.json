@@ -6,6 +6,34 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00691c783cf7518f.jpg"
  },
+ "01f045afd3431a5c3326646bca2b7e92b52bd3908c58850442367914cf3d7998": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The icon features an expressive emoji inside a circular frame.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/011b0601437d947c.jpg"
+ },
+ "037f10719feae0239d20ec58581ef260cf06bc1f9889c909a57eeff9373d63e7": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a clean gaming controller symbol on a blue gradient background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00b3a133fa9addaf.jpg"
+ },
+ "1578d15a57155fdb450b9b64cfbd33e33cc7e9eb8be351c3ec109c5aa470884a": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays text on a colorful gradient background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0018a16c9db44d5d.jpg"
+ },
+ "18d70c9765fc06a4463a9f7dc52f4050a1016c7ddf65bd7fcd4bc57ca6e43fee": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a film strip graphic with the text 'AI'.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/017b9c406eea2b7e.jpg"
+ },
  "2581bdbd61c8c329a2c290db28c704361bf24ce5d88b26cae26e54118076003a": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -20,12 +48,89 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00c0f502756fc084.jpg"
  },
+ "25b356934ecc2d8078f91244520569c80b87c872e60e78c9d60ca01d4edc7cba": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The icon depicts a cute glowing animal character.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0106176129c1afa8.jpg"
+ },
+ "25ebb4f3c5a9db816a587c5ab2b197db085ed13de58d4c8b1eeda420785c5bcc": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays a katana sword with the word RONIN clearly.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/001b501af8bb93b2.jpg"
+ },
+ "2f0bdd0d40217f85ace7edd3c92023bf582c8441838a0df394e8887788fc2b8f": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a white letter S with a gold crown on a red background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01ff90327872e7a0.jpg"
+ },
+ "3996c4ffbe629a95c8940b4cf45eba8780b87a872a3251a014e794550955cd57": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a truck graphic with text.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01c175ea9a96e8ba.jpg"
+ },
+ "3c8594fd20073fa855ef8030e8282ef80229911b77c64fd88cc106b878180270": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a stylized illustration of a cowboy holding a gun.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00777209e0ed5137.jpg"
+ },
+ "4011da55f3def6ef26a6878a07bea359ec7cbc337fc679e42ea562d0adf5b5a7": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a clear, stylized green plant scanner design.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0229a667e50412f8.jpg"
+ },
+ "4c8fe3ef10a012af12582bb5f35408d3b99b088ba5bd4e5667ba7f86d3194197": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon depicts a music note symbol on layered cards with a blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00c0f502756fc084.jpg"
+ },
  "4f1021c9f6a52480d03bdbe44a40597e583e1574518a94662a1850cb2131fa4b": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
   "note": "The app icon displays a stylized cartoon character with a sword.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00b28d5a07b4b630.jpg"
+ },
+ "546c41c76673211db18a6afeddeb9e9de5d59e64d9bd23e44578533b1943316a": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon features a stylized white symbol on a black background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00e53cabf2a29f06.jpg"
+ },
+ "60bc4d278be6daf1fc63fc9835b6017993cd764ba0f5509f3d1c92e7b72962fc": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The image is a normal app icon featuring a blue Chrome-style logo.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01edbad81ab961d7.jpg"
+ },
+ "6f22be1ebb22986dcb727123b964c8f27478f1f2d07b40f844d1181a20e76a39": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon features a 3D blue square frame on a dark background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01bb71d5ee867282.jpg"
+ },
+ "716a2e53facd7813e4274089bd3366a1a73ef2d8b61ecf4b502a338b1a81cf69": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a stylized graphic of a deer wearing glasses.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/008a7cf667c4d148.jpg"
  },
  "7193545565aede2cc223d07b61f6e7ea0c8e02e0c99d6fefae059e299f26aa0c": {
   "date": "2026-10-14",
@@ -34,12 +139,47 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00e53cabf2a29f06.jpg"
  },
+ "79858a1f05e07d38132fc227c382257d0065ca66d6b16022172a9f41fae07c14": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a character holding a sword in a stylized illustration.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00b28d5a07b4b630.jpg"
+ },
+ "8206d572bc3f99b80d20594dc2a438213710f389a437b71f6843a3f0918d29bc": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The icon depicts a samurai mask surrounded by knives on a red background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00d1d099ddcc5667.jpg"
+ },
+ "8421f67d96eae942de13e0c4682b4a10f04848b03a376fcaa457adebfb2b8bd7": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a stylized white logo on a dark background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00e388b3dc72a1f4.jpg"
+ },
+ "8749aa8505eeee6610307335ae35c905963c4140af41468ad90be5dd407402a4": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon depicts a cartoon clownfish surrounded by smaller yellow fish.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0241e8bdb50660bc.jpg"
+ },
  "8abd3795d4f71b19aefa43a57c7e99727325deaf81ef9e8b8debd567597984f5": {
   "date": "2026-10-14",
   "model": "",
   "note": "download is not an image (image/heic)",
   "status": "broken",
   "url": "https://get.furaffinity.app/altstore/AppIconLG.heic"
+ },
+ "8c579a2c21dd2aebf2df17889b07d05f277a95cb96d14e059e2324c488d986b6": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon features the Smule logo with microphones and musical notes on a colorful background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/015950c67c8b1caa.jpg"
  },
  "929d2ff22d3dcb8195ca90bcbbc96cbb71b3b37612b419e21dd00f1ddfc32947": {
   "date": "2026-10-14",
@@ -54,6 +194,13 @@
   "note": "The icon features a well-designed graphic with concentric circles.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/004b74639080e00d.jpg"
+ },
+ "9f2a9ec369e8232c8e5ab14d9d1c97684ee0ce055e699dffce82acd8fb9751b0": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a character with a microphone and '4th ANNIV.' text.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/00691c783cf7518f.jpg"
  },
  "a2a31708b57c7038e4cbe7209a47e259a4908220eaec8607b3d29cb0eb210810": {
   "date": "2026-10-14",
@@ -75,6 +222,41 @@
   "note": "The app icon displays the text 'STORY FONT' on a pink-to-red gradient background.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/0018a16c9db44d5d.jpg"
+ },
+ "a487393c391cf029e688a0380ad803c700b338225632bb69cbbe26cf1e90f23c": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays an illustrated character in a mask holding cards.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0077f23912e7d7fe.jpg"
+ },
+ "bcf0dde1dc12375b00335752e0ebf19bd66fc332d8077e759830077cce38420b": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon depicts a stylized parrot illustration inside a green circular frame.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/022e7886944a0ee8.jpg"
+ },
+ "c0750f478fb34f8d25a624b51814fa90cbc19fd4a5d1e5e4def299bb542aac07": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon is properly rendered with a design.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/004b74639080e00d.jpg"
+ },
+ "caebc3cde74363ecfeeed17ef0a9285269d5e0b23d5ed5b3edd26a8a92508155": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The icon depicts a stylus on a purple background with geometric lines.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01d91687bd16c0f6.jpg"
+ },
+ "cc225bc58e435742bfff73a59a5cec169df9f5e94039041f9b73c635fe159031": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The icon features a pink gear with a wrench inside.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0032655a55661175.jpg"
  },
  "d57ad1b88c431af31147c2c8af4933d53ba27ed365be7246044220c3f8ad5c79": {
   "date": "2026-10-14",
@@ -104,6 +286,20 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/assets/icon.png"
  },
+ "dd3a5f9e905c71f5bcfdc5aac765de35484ea40439f5ba6a5d2b1f27d545abb7": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features a custom cartoon character with text.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02084eee8d9c3f39.jpg"
+ },
+ "e0e4e4ce133869df8f6614b1c19421958cffb3d7e6b1774826f95afa5a3543c2": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a 3D rendering of Mario's head against a blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/018c64391dc45051.jpg"
+ },
  "e62efff45646f83ce03a9aa65f03fefe3f91734b2aa700ea7806aaa2a8c40f56": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -118,11 +314,32 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00b3a133fa9addaf.jpg"
  },
+ "f546fb5744c6195c73f7d57073b8bfed31c144c04d0184d29f4bebe20a9bcf19": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon depicts a white mosque silhouette against a watermelon background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01787004399b39ae.jpg"
+ },
+ "fa715cec750b8e7ea8d2d93dc4f583720d6d4d7865a98ab41a46ea76406379d6": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a clean corporate logo with the word XEELA on a dark blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/01531e27dc4a147a.jpg"
+ },
  "fbab9110777b90e268b9c17e62b0765355013d344fdecb673496d3f35ee0682c": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
   "note": "The app icon displays a stylized white logo on a dark background.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00e388b3dc72a1f4.jpg"
+ },
+ "fbdc8105d9d4a1a50f8d97ddf42380e74827d83ba5c948d5374a0d3c82d7e17a": {
+  "date": "2026-10-15",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features an illustration of pink flowers on a white background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0241befc9d958a1d.jpg"
  }
 }
