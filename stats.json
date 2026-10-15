@@ -2,16 +2,16 @@
  "apps": 4268,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-15 21:21 UTC",
+ "updated": "2026-10-15 22:35 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-15T21:21:41Z",
+ "built_at": "2026-10-15T22:35:57Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23749,
+ "listings": 23745,
  "duplicates": 1797,
- "rejected": 6613,
+ "rejected": 6614,
  "excluded": 57,
  "dead_links_removed": 8782,
  "links_on_hold": 0,
@@ -20,13 +20,13 @@
  "updated_30d": 1262,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 1958,
-  "games": 1002,
-  "utilities": 413,
+  "other": 1911,
+  "games": 1021,
+  "utilities": 434,
   "photo-video": 341,
   "entertainment": 213,
-  "lifestyle": 148,
-  "developer": 126,
+  "lifestyle": 154,
+  "developer": 127,
   "social": 67
  },
  "top_sources": [
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3502
+   "apps": 3503
   },
   {
    "month": "2026-05",
-   "apps": 3577
+   "apps": 3578
   },
   {
    "month": "2026-06",
