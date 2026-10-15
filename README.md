@@ -74,8 +74,9 @@ Storage bucket and are served by the Edge Functions in [`supabase/functions/`](s
 To add those sources, open **Edit profile → Your download links** on the store and **Copy** a
 link. The links are personal: anyone who has them downloads as you. **Replace key** makes new ones
 and turns the old ones off. [`host-builds.yml`](.github/workflows/host-builds.yml)
-([`scripts/host_builds.py`](scripts/host_builds.py)) is only a fallback that copies builds
-the upload missed; new releases upload directly. See
+([`scripts/host_builds.py`](scripts/host_builds.py)) is only a manual fallback that copies a build
+the upload missed, and only when the source declares its `sha256` and the file matches; new
+releases upload directly. See
 [Private downloads](supabase/README.md#private-downloads) for the details.
 
 ## Support links

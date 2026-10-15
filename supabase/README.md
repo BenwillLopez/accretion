@@ -191,9 +191,11 @@ People find their source links under **Edit profile → Your download links**, w
 **Upload key:** the release workflows and the mods publish script upload new builds with a shared
 key. Save it as the GitHub secret `ACCRETION_UPLOAD_KEY` (at least 32 characters) in this repo and
 in the repos that release builds; **Store: set up backend** copies it to the functions as `UPLOAD_KEY`.
-The [Host builds](../.github/workflows/host-builds.yml) workflow
-([`scripts/host_builds.py`](../scripts/host_builds.py)) is a fallback that copies any newer build
-from the public sources; new releases upload directly.
+The [Store: copy app builds](../.github/workflows/host-builds.yml) workflow
+([`scripts/host_builds.py`](../scripts/host_builds.py)) is a manual fallback for a build the
+upload missed: run it by hand, and it copies a newer build from the public sources only when the
+source declares the build's `sha256` and the downloaded file matches it, so the app can verify
+the download like any other hosted build. New releases upload directly.
 
 ## How access is enforced
 
