@@ -11,6 +11,9 @@ concurrency:
   group: host-builds
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   host:
     runs-on: ubuntu-latest

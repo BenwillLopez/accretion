@@ -146,6 +146,7 @@ jobs:
   pages:
     needs: publish
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     continue-on-error: true
     environment:
       name: github-pages
