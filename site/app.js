@@ -878,12 +878,21 @@
     ].filter(Boolean));
   }
 
-  function certLine() {
+  // A seller's optional "app_url" fills {name} and {icon} with this app (e.g. Signulous's
+  // sign-apps page); without it, or for a non-https result, the plain "url" is used.
+  function certUrl(c, a) {
+    if (!a || typeof c.app_url !== "string") return safeUrl(c.url);
+    const ic = safeUrl(a.ic) || "";
+    const url = c.app_url.replace(/\{name\}/g, encodeURIComponent(a.n || "")).replace(/\{icon\}/g, encodeURIComponent(ic));
+    return safeUrl(url) || safeUrl(c.url);
+  }
+
+  function certLine(a) {
     if (!certs().length) return null;
     const links = [];
     certs().forEach((c, i) => {
       if (i) links.push(" · ");
-      links.push(h("a", { href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, c.name));
+      links.push(h("a", { href: certUrl(c, a), target: "_blank", rel: "sponsored noopener" }, c.name));
     });
     return h("p", { class: "cert-line" }, "Need a signing certificate? ", ...links, h("span", { class: "muted" }, " · affiliate"));
   }
@@ -1040,7 +1049,7 @@
         a.s ? h("p", { class: "d-sub" }, a.s) : null,
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
         d ? actions : null,
-        d && ipa ? certLine() : null,
+        d && ipa ? certLine(a) : null,
         d && ipa ? h("p", { class: "cert-line" }, h("a", { href: "#/sign" }, "How to sign your own apps →")) : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),
