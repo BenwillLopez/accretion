@@ -1,30 +1,30 @@
 {
- "apps": 4268,
+ "apps": 4258,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-15 21:21 UTC",
+ "updated": "2026-10-15 21:38 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-15T21:21:41Z",
+ "built_at": "2026-10-15T21:38:38Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23749,
+ "listings": 23738,
  "duplicates": 1797,
- "rejected": 6613,
+ "rejected": 6624,
  "excluded": 57,
- "dead_links_removed": 8782,
+ "dead_links_removed": 8803,
  "links_on_hold": 0,
  "developers": 700,
- "updated_7d": 868,
- "updated_30d": 1262,
+ "updated_7d": 864,
+ "updated_30d": 1252,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 1958,
   "games": 1002,
   "utilities": 413,
-  "photo-video": 341,
-  "entertainment": 213,
+  "photo-video": 332,
+  "entertainment": 212,
   "lifestyle": 148,
   "developer": 126,
   "social": 67
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3527
+   "apps": 3518
   },
   {
    "name": "dsewerek's general apps",
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2246
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2424
+   "apps": 2423
   },
   {
    "month": "2025-08",
-   "apps": 2510
+   "apps": 2509
   },
   {
    "month": "2025-09",
-   "apps": 2560
+   "apps": 2559
   },
   {
    "month": "2025-10",
-   "apps": 2625
+   "apps": 2624
   },
   {
    "month": "2025-11",
-   "apps": 2687
+   "apps": 2686
   },
   {
    "month": "2025-12",
-   "apps": 2821
+   "apps": 2820
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2955
   },
   {
    "month": "2026-02",
@@ -188,9 +188,9 @@
   },
   {
    "month": "2026-10",
-   "apps": 4268
+   "apps": 4258
   }
  ],
- "new_30d": 382,
- "new_12m": 1685
+ "new_30d": 372,
+ "new_12m": 1676
 }
