@@ -1,42 +1,42 @@
 {
- "apps": 4262,
+ "apps": 4257,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-15 08:56 UTC",
+ "updated": "2026-10-15 17:17 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-15T08:56:20Z",
+ "built_at": "2026-10-15T17:17:29Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23740,
- "duplicates": 1796,
- "rejected": 6619,
+ "listings": 23736,
+ "duplicates": 1797,
+ "rejected": 6625,
  "excluded": 57,
- "dead_links_removed": 8782,
+ "dead_links_removed": 8804,
  "links_on_hold": 0,
- "developers": 700,
- "updated_7d": 823,
- "updated_30d": 1247,
+ "developers": 699,
+ "updated_7d": 863,
+ "updated_30d": 1251,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 2060,
-  "games": 969,
-  "utilities": 363,
-  "photo-video": 335,
+  "other": 2006,
+  "games": 984,
+  "utilities": 392,
+  "photo-video": 330,
   "entertainment": 212,
-  "lifestyle": 136,
-  "developer": 121,
-  "social": 66
+  "lifestyle": 141,
+  "developer": 125,
+  "social": 67
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3517
+   "apps": 3518
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 540
+   "apps": 537
   },
   {
    "name": "MySign IPA's",
@@ -63,8 +63,18 @@
    "date": "2026-10-15"
   },
   {
-   "name": "MuffinEMU",
-   "version": "10.2",
+   "name": "Bunny",
+   "version": "349.0",
+   "date": "2026-10-15"
+  },
+  {
+   "name": "Alarmy",
+   "version": "26.36.2",
+   "date": "2026-10-15"
+  },
+  {
+   "name": "Provenance Alpha",
+   "version": "3.4.0",
    "date": "2026-10-15"
   },
   {
@@ -73,24 +83,14 @@
    "date": "2026-10-15"
   },
   {
-   "name": "Accretion",
-   "version": "1.0.31",
-   "date": "2026-10-14"
+   "name": "StikDebug",
+   "version": "3.1.15",
+   "date": "2026-10-15"
   },
   {
-   "name": "Manatan",
-   "version": "6.1.47",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "Theft4",
-   "version": "0.3.2",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "Palladium",
-   "version": "1.4.5",
-   "date": "2026-10-14"
+   "name": "VidGrab",
+   "version": "1.3.6c",
+   "date": "2026-10-15"
   }
  ],
  "timeline": [
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2246
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2424
+   "apps": 2423
   },
   {
    "month": "2025-08",
-   "apps": 2510
+   "apps": 2509
   },
   {
    "month": "2025-09",
-   "apps": 2560
+   "apps": 2559
   },
   {
    "month": "2025-10",
-   "apps": 2625
+   "apps": 2624
   },
   {
    "month": "2025-11",
-   "apps": 2687
+   "apps": 2686
   },
   {
    "month": "2025-12",
-   "apps": 2821
+   "apps": 2820
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2955
   },
   {
    "month": "2026-02",
@@ -176,21 +176,21 @@
   },
   {
    "month": "2026-07",
-   "apps": 3822
+   "apps": 3821
   },
   {
    "month": "2026-08",
-   "apps": 3856
+   "apps": 3855
   },
   {
    "month": "2026-09",
-   "apps": 4002
+   "apps": 4001
   },
   {
    "month": "2026-10",
-   "apps": 4262
+   "apps": 4257
   }
  ],
- "new_30d": 375,
- "new_12m": 1679
+ "new_30d": 371,
+ "new_12m": 1675
 }
