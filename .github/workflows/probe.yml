@@ -1,4 +1,4 @@
-name: Probe links
+name: "Store: probe links"
 
 # Manual: shows exactly what servers answer for some links (redirects, status, file type,
 # size), downloading only the first bytes. For checking reports like "this download doesn't work".
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       urls:
-        description: "Links to probe, separated by spaces"
+        description: "Links to probe, separated by spaces, like https://example.com/app.ipa"
         required: true
 
 permissions:
@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Probe
+      - name: Probe the links
+        id: probe
         env:
           URLS: ${{ inputs.urls }}
         run: |
@@ -31,3 +32,27 @@ jobs:
             printf "first bytes: "; head -c 4 /tmp/head.bin | od -An -c | tr -s ' '
             echo "(an .ipa is a zip file and starts with: P K 003 004)"
           done
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+          URLS: ${{ inputs.urls }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### Probe finished"
+            else
+              echo "### Probe failed"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log, then run it again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+            echo
+            echo "| Fact | Value |"
+            echo "| --- | --- |"
+            echo "| Links given | $(echo $URLS | wc -w) |"
+          } >> "$GITHUB_STEP_SUMMARY"

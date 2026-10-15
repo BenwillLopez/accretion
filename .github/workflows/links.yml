@@ -1,4 +1,4 @@
-name: Check links
+name: "Store: check links"
 
 # Manual link check. Every scheduled build (build.yml) already tests every link; run this to
 # check right away.

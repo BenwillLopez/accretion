@@ -1,4 +1,4 @@
-name: Set up community
+name: "Store: set up backend"
 
 # One click: creates (or reuses) the Supabase project, applies supabase/schema.sql, points
 # sign-in links at the store, saves the public URL + key to supabase/project.json, then
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       admin_username:
-        description: "Make this store username an admin (sign up first; leave empty on the first run)"
+        description: "Store username to make an admin (sign up on the store first; leave empty on the first run)"
         required: false
         default: ""
       region:
@@ -46,19 +46,24 @@ jobs:
     env:
       HAS_APPLE_KEY: ${{ secrets.APPLE_PRIVATE_KEY != '' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
-      - id: pages
+      - name: Find the store address
+        id: pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
         continue-on-error: true
       - name: Install Apple key signing
+        id: apple-key
         if: env.HAS_APPLE_KEY == 'true'
         run: pip install "pyjwt[crypto]==2.9.0"
       - name: Create and configure the Supabase project
+        id: supabase-project
         run: python scripts/supabase_setup.py
         env:
           # sign-in providers: each one switches on when its secrets are set (see supabase/README.md)
@@ -93,6 +98,7 @@ jobs:
       # variables are set. Every build is kept in both stores first: CloudFront serves from S3, and
       # the download function falls back to Supabase if AWS is unavailable.
       - name: Keep hosted builds in S3 and Supabase
+        id: hosted-builds
         if: vars.BUILDS_BUCKET != ''
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -105,6 +111,7 @@ jobs:
           pip install "boto3==1.43.111"
           python scripts/copy_builds_to_s3.py
       - name: Deploy download functions
+        id: download-functions
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
           UPLOAD_KEY: ${{ secrets.ACCRETION_UPLOAD_KEY }}
@@ -137,16 +144,72 @@ jobs:
           npx --yes supabase@2.120.0 functions deploy download source upload manifest \
             --project-ref "$ref" --no-verify-jwt --use-api
       - name: Save public settings
+        id: save-settings
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -z "$(git status --porcelain -- supabase/project.json)" ]; then echo "No changes."; exit 0; fi
+          if [ -z "$(git status --porcelain -- supabase/project.json)" ]; then echo "No changes."; echo "saved=no" >> "$GITHUB_OUTPUT"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add supabase/project.json
           git commit -m "Community: save Supabase project settings"
           python scripts/checked_push.py store
+          echo "saved=yes" >> "$GITHUB_OUTPUT"
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+          REGION: ${{ inputs.region || 'us-east-1' }}
+          PRUNE: ${{ inputs.prune_supabase }}
+          SAVED: ${{ steps.save-settings.outputs.saved }}
+          HOSTED_BUILDS: ${{ vars.BUILDS_BUCKET != '' }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### The community backend is set up"
+            else
+              echo "### Community setup did not finish"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log. A missing token or secret is the usual cause: check the secrets named in supabase/README.md, then run this workflow again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+            echo
+            echo "| Fact | Value |"
+            echo "| --- | --- |"
+            echo "| Database region | $REGION |"
+            echo "| Supabase project | $(jq -r .url supabase/project.json 2> /dev/null || echo unknown) |"
+            echo "| Builds kept in S3 and Supabase | $([ "$HOSTED_BUILDS" = true ] && echo yes || echo no) |"
+            echo "| Old Supabase copies pruned | $([ "$PRUNE" = true ] && echo yes || echo no) |"
+            echo "| Project settings saved to the repo | $([ "$SAVED" = yes ] && echo yes || echo no) |"
+          } >> "$GITHUB_STEP_SUMMARY"
 
   publish:
     needs: setup
     uses: ./.github/workflows/publish.yml
+
+  alert:
+    # Scheduled runs only: opens one issue when the run fails, closes it when a later run passes.
+    needs: [verify, setup, publish]
+    if: always() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # an alert that cannot be sent must not turn a good run red
+    continue-on-error: true
+    permissions:
+      actions: read
+      contents: read
+      issues: write
+    steps:
+      - name: Check out the alert action
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: .github/actions
+      - name: Open or close the failure issue
+        uses: ./.github/actions/alert
+        with:
+          status: ${{ contains(needs.*.result, 'failure') && 'failure' || contains(needs.*.result, 'cancelled') && 'cancelled' || 'success' }}
+          workflow: "Store: set up backend"

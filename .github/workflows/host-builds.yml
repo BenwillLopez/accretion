@@ -1,4 +1,4 @@
-name: Host builds
+name: "Store: copy app builds"
 
 # Copies Accretion's own builds (Accretion Mods, the Accretion app) into the private Supabase
 # bucket that the download function serves. Every 12 hours and on manual runs.
@@ -19,11 +19,62 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
       - name: Copy new builds into the private bucket
+        id: copy-builds
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-        run: python scripts/host_builds.py
+        run: |
+          set -euo pipefail
+          python scripts/host_builds.py | tee host-builds.txt
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### App builds copied to the private bucket"
+            else
+              echo "### Copying the app builds failed"
+              echo "Failed step: ${failed:-unknown}. A bad or expired SUPABASE_ACCESS_TOKEN is the usual cause: check that secret, then run this workflow again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+            echo
+            echo "| Fact | Value |"
+            echo "| --- | --- |"
+            echo "| Result | $(tail -n 1 host-builds.txt 2> /dev/null || echo no output) |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  alert:
+    # Scheduled runs only: opens one issue when the run fails, closes it when a later run passes.
+    needs: [host]
+    if: always() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # an alert that cannot be sent must not turn a good run red
+    continue-on-error: true
+    permissions:
+      actions: read
+      contents: read
+      issues: write
+    steps:
+      - name: Check out the alert action
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: .github/actions
+      - name: Open or close the failure issue
+        uses: ./.github/actions/alert
+        with:
+          status: ${{ contains(needs.*.result, 'failure') && 'failure' || contains(needs.*.result, 'cancelled') && 'cancelled' || 'success' }}
+          workflow: "Store: copy app builds"

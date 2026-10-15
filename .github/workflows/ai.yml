@@ -1,4 +1,4 @@
-name: AI
+name: "Store: AI jobs"
 
 # Jobs that use free language models (scripts/ai_jobs.py, models in ai/models.json):
 #   listings  4 times a day   clean store text for apps -> ai/listings.json (merge.py applies it)
@@ -25,7 +25,7 @@ on:
         options: [listings, moderate, sources, similar, images, models]
         default: listings
       limit:
-        description: Most items to handle (empty for the default of the job)
+        description: Most items to handle, like 20 (empty for the job's own default)
         type: string
         default: ""
 
@@ -45,10 +45,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: main
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
       - name: Pick the job
@@ -75,7 +77,7 @@ jobs:
       - name: Install moderation dependencies
         if: steps.pick.outputs.job == 'moderate'
         run: pip install -q "boto3==1.43.111"
-      - name: Run
+      - name: Run the AI job
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -109,3 +111,26 @@ jobs:
           if grep -q '^CHANGED' ai-output.txt; then
             gh issue create --title "AI models: new order $(date -u +%Y-%m-%d)" --body-file ai-output.txt
           fi
+
+  alert:
+    # Scheduled runs only: opens one issue when the run fails, closes it when a later run passes.
+    needs: [run]
+    if: always() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # an alert that cannot be sent must not turn a good run red
+    continue-on-error: true
+    permissions:
+      actions: read
+      contents: read
+      issues: write
+    steps:
+      - name: Check out the alert action
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: .github/actions
+      - name: Open or close the failure issue
+        uses: ./.github/actions/alert
+        with:
+          status: ${{ contains(needs.*.result, 'failure') && 'failure' || contains(needs.*.result, 'cancelled') && 'cancelled' || 'success' }}
+          workflow: "Store: AI jobs"

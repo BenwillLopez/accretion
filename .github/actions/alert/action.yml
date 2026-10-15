@@ -1,0 +1,62 @@
+name: Alert on scheduled failure
+description: Opens (or comments on) one issue when a scheduled run fails, and closes it when a later scheduled run passes.
+
+inputs:
+  status:
+    description: "Result of the run: success, failure or cancelled"
+    required: true
+  workflow:
+    description: Name of the workflow, used in the issue title
+    required: true
+  hint:
+    description: One plain sentence on what to check
+    required: false
+    default: Open the run, read the log of the failed step, fix the cause, then run the workflow again from the Actions tab.
+
+runs:
+  using: composite
+  steps:
+    - name: Open, update or close the issue
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        STATUS: ${{ inputs.status }}
+        WORKFLOW: ${{ inputs.workflow }}
+        HINT: ${{ inputs.hint }}
+        REPO: ${{ github.repository }}
+        RUN_ID: ${{ github.run_id }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: |
+        set -euo pipefail
+        title="Scheduled run failed: $WORKFLOW"
+        number=$(gh issue list -R "$REPO" --state open --limit 200 --json number,title \
+          | jq -r --arg t "$title" 'map(select(.title == $t)) | first | .number // empty')
+        case "$STATUS" in
+          failure)
+            failed=$(gh api "repos/$REPO/actions/runs/$RUN_ID/jobs?per_page=100" --jq '.jobs[] | select(.conclusion == "failure") | "- " + .name + ": " + ([.steps[]? | select(.conclusion == "failure") | .name] | join(", ") | sub(": $"; ""))' || true)
+            body="$(mktemp)"
+            {
+              echo "The scheduled run of **$WORKFLOW** failed."
+              echo
+              echo "Run: $RUN_URL"
+              echo
+              echo "Failed job and step:"
+              if [ -n "$failed" ]; then echo "$failed"; else echo "- (could not read the job list; open the run)"; fi
+              echo
+              echo "What to check: $HINT"
+            } > "$body"
+            if [ -n "$number" ]; then
+              gh issue comment "$number" -R "$REPO" --body-file "$body"
+            else
+              gh issue create -R "$REPO" --title "$title" --body-file "$body"
+            fi
+            ;;
+          success)
+            if [ -n "$number" ]; then
+              gh issue close "$number" -R "$REPO" --comment "A later scheduled run passed: $RUN_URL. Closing this issue."
+            fi
+            ;;
+          *)
+            echo "The run ended as $STATUS; nothing to do."
+            ;;
+        esac

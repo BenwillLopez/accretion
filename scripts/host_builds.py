@@ -4,7 +4,7 @@ For every app in the Accretion Mods source and the Accretion app's source, downl
 .ipa, upload it to builds/<bundle id>/<version>.ipa and record it in hosted_builds. Versions
 already hosted are skipped. The download and source functions then serve them to account holders.
 
-Needs SUPABASE_ACCESS_TOKEN (the same token "Set up community" uses); the service key is fetched
+Needs SUPABASE_ACCESS_TOKEN (the same token "Store: set up backend" uses); the service key is fetched
 with it at run time and never stored. Usage: python scripts/host_builds.py
 """
 

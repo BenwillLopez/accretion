@@ -1,4 +1,4 @@
-name: CI
+name: "Store: checks"
 
 # Lint, unit tests and a validation pass over the published files.
 on:
@@ -17,22 +17,54 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
-      - run: pip install ruff==0.16.8 pillow==11.3.0 boto3==1.43.111 cryptography==46.0.3
-      - run: ruff check .
-      - run: ruff format --check .
-      - run: python -m unittest discover -s tests -v
+      - name: Install tools
+        id: install-tools
+        run: pip install ruff==0.16.8 pillow==11.3.0 boto3==1.43.111 cryptography==46.0.3
+      - name: Lint
+        id: lint
+        run: ruff check .
+      - name: Check formatting
+        id: check-formatting
+        run: ruff format --check .
+      - name: Unit tests
+        id: unit-tests
+        run: python -m unittest discover -s tests -v
       - name: Check web store script
+        id: web-store-script
         run: node --check site/app.js
       # on pushes the publish workflow rebuilds and validates these itself
       - name: Validate published files
+        id: validate-files
         if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
         run: python scripts/validate.py source.json curated.json
       - name: Check community scripts
+        id: community-scripts
         run: node --check site/social.js && node --check site/sw.js
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### Store checks passed: lint, unit tests and published files"
+            else
+              echo "### Store checks failed"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log, fix it, then run this workflow again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+          } >> "$GITHUB_STEP_SUMMARY"
 
   database:
     # Applies supabase/schema.sql to a plain Postgres and runs the access-rule checks.
@@ -51,20 +83,72 @@ jobs:
       PGPASSWORD: postgres
       PGDATABASE: postgres
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - run: psql -v ON_ERROR_STOP=1 -q -f supabase/auth_stub.sql
-      - run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
-      - name: Schema can be applied twice
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Load the sign-in stub
+        id: sign-in-stub
+        run: psql -v ON_ERROR_STOP=1 -q -f supabase/auth_stub.sql
+      - name: Apply the schema
+        id: apply-schema
         run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
-      - run: psql -v ON_ERROR_STOP=1 -f supabase/test.sql
+      - name: Schema can be applied twice
+        id: schema-twice
+        run: psql -v ON_ERROR_STOP=1 -q -f supabase/schema.sql
+      - name: Access rule tests
+        id: access-rules
+        run: psql -v ON_ERROR_STOP=1 -f supabase/test.sql
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### Database checks passed: the schema applies twice and the access rules hold"
+            else
+              echo "### Database checks failed"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log, fix it, then run this workflow again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+          } >> "$GITHUB_STEP_SUMMARY"
 
   edge:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24'
-      - run: node --test tests/edge/*.test.cjs
-      - run: npx --yes deno@2.9.6 check supabase/functions/download/index.ts supabase/functions/source/index.ts supabase/functions/upload/index.ts supabase/functions/manifest/index.ts
+      - name: Edge function tests
+        id: edge-tests
+        run: node --test tests/edge/*.test.cjs
+      - name: Type-check the edge functions
+        id: type-check
+        run: npx --yes deno@2.9.6 check supabase/functions/download/index.ts supabase/functions/source/index.ts supabase/functions/upload/index.ts supabase/functions/manifest/index.ts
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" = success ]; then
+              echo "### Edge function checks passed"
+            else
+              echo "### Edge function checks failed"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log, fix it, then run this workflow again."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+          } >> "$GITHUB_STEP_SUMMARY"

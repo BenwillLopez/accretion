@@ -11,10 +11,10 @@ features turn on once the two settings below are set.
    → **Generate new token** → name it `accretion-setup` → copy it.
 3. **Add it to GitHub:** this repo → **Settings → Secrets and variables → Actions → Secrets →
    New repository secret**, named `SUPABASE_ACCESS_TOKEN`, with the token as the value.
-4. **Run it:** **Actions → Set up community → Run workflow**. It creates the project, sets up
+4. **Run it:** **Actions → Store: set up backend → Run workflow**. It creates the project, sets up
    the database and sign-in links, saves the public settings, and rebuilds the store. That takes
    about 3–5 minutes.
-5. **Become admin:** sign up on the store, then run **Set up community** again with your
+5. **Become admin:** sign up on the store, then run **Store: set up backend** again with your
    username in **admin_username**.
 
 The token can manage your Supabase account, so it's kept as an encrypted GitHub secret and only
@@ -25,11 +25,11 @@ setup; the store keeps working, and you can create a new one if you ever need to
 
 Each provider needs a small "app" registered on its developer site. You give it the callback
 URL below, it gives you an ID and a secret, and you save those as GitHub secrets (**Settings →
-Secrets and variables → Actions → Secrets**). Then run **Set up community** again. Each button
+Secrets and variables → Actions → Secrets**). Then run **Store: set up backend** again. Each button
 appears on the store as soon as its provider is switched on. Set up any you want, in any order.
 
 The same sign-in works in the Accretion app (email, Google, GitHub and Discord). The app returns
-to `accretion://auth-callback`, which **Set up community** adds to the allowed redirect URLs
+to `accretion://auth-callback`, which **Store: set up backend** adds to the allowed redirect URLs
 ([`scripts/supabase_setup.py`](../scripts/supabase_setup.py)). The providers need nothing extra.
 
 **Callback URL** for every provider:
@@ -88,7 +88,7 @@ https://bbcjpinhvlxocjxlyplt.supabase.co/auth/v1/callback
    - `APPLE_KEY_ID`: the Key ID from step 4
    - `APPLE_PRIVATE_KEY`: the full contents of the `.p8` file, including the BEGIN/END lines
 
-Apple's sign-in key must be renewed at least every 6 months. **Set up community** re-signs it
+Apple's sign-in key must be renewed at least every 6 months. **Store: set up backend** re-signs it
 automatically on the 1st of every month, so there is nothing to remember.
 
 ### Shortcut: one secret per provider
@@ -99,7 +99,7 @@ client IDs are public, so they can live in [`providers.json`](providers.json) in
 
 ### Turn them on
 
-Run **Actions → Set up community → Run workflow**. Its log lists the providers that are on.
+Run **Actions → Store: set up backend → Run workflow**. Its log lists the providers that are on.
 
 **Keep the access token** if you use Apple: the monthly renewal needs `SUPABASE_ACCESS_TOKEN`.
 
@@ -114,7 +114,7 @@ sign-up confirmations, sign-in links and password resets as "Accretion", for fre
    named `Accretion`. Google shows 16 letters in groups of four.
 4. Save a repository secret named `SMTP` with the address on the first line and the app password
    on the second, spaces and all.
-5. Run **Set up community**. Its log says which address the emails come from.
+5. Run **Store: set up backend**. Its log says which address the emails come from.
 
 Another provider works too: save `SMTP_USER`, `SMTP_PASS`, `SMTP_HOST` and `SMTP_PORT` instead.
 
@@ -152,7 +152,7 @@ variable**:
 | `SUPABASE_URL` | the Project URL, like `https://abcd1234.supabase.co` |
 | `SUPABASE_ANON_KEY` | the anon public key |
 
-Then run **Actions → Build source → Run workflow**. Sign in, Feed, comments and ratings appear
+Then run **Actions → Store: build and publish → Run workflow**. Sign in, Feed, comments and ratings appear
 on the next deploy.
 
 ### 4. Make yourself admin
@@ -190,7 +190,7 @@ People find their source links under **Edit profile → Your download links**, w
 
 **Upload key:** the release workflows and the mods publish script upload new builds with a shared
 key. Save it as the GitHub secret `ACCRETION_UPLOAD_KEY` (at least 32 characters) in this repo and
-in the repos that release builds; **Set up community** copies it to the functions as `UPLOAD_KEY`.
+in the repos that release builds; **Store: set up backend** copies it to the functions as `UPLOAD_KEY`.
 The [Host builds](../.github/workflows/host-builds.yml) workflow
 ([`scripts/host_builds.py`](../scripts/host_builds.py)) is a fallback that copies any newer build
 from the public sources; new releases upload directly.
