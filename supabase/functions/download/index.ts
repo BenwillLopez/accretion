@@ -29,12 +29,21 @@ const CDN_DOMAIN = Deno.env.get("CDN_DOMAIN") ?? "";
 const CDN_KEY_PAIR_ID = Deno.env.get("CDN_KEY_PAIR_ID") ?? "";
 const CDN_PRIVATE_KEY = (Deno.env.get("CDN_PRIVATE_KEY") ?? "").replace(/\\n/g, "\n");
 
+// The name the browser saves the file as ("Accretion_1.0.32.ipa"), not the storage path's
+// "<version>-<sha256>.ipa". Every copy honours it: CloudFront (the dl parameter, read by the
+// distribution's viewer-response function), Supabase (its download option), Oracle (nginx, $arg_dl).
+function fileName(bundle: string, version: string): string {
+  const name = (bundle.split(".").pop() ?? "app").replace(/[^A-Za-z0-9-]/g, "") || "app";
+  return `${name}_${version.replace(/[^A-Za-z0-9.-]/g, "")}.ipa`;
+}
+
 // a 5-minute CloudFront link, only if CloudFront answers for that file right now
-async function cdnLink(path: string): Promise<string | null> {
+async function cdnLink(path: string, name: string): Promise<string | null> {
   if (!CDN_DOMAIN || !CDN_KEY_PAIR_ID || !CDN_PRIVATE_KEY) return null;
   try {
     const link = getSignedUrl({
-      url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}`,
+      // dl is part of the signed URL, so it can't be swapped for another name
+      url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}?dl=${encodeURIComponent(name)}`,
       keyPairId: CDN_KEY_PAIR_ID,
       privateKey: CDN_PRIVATE_KEY,
       dateLessThan: new Date(Date.now() + 300_000).toISOString(),
@@ -53,14 +62,14 @@ async function cdnLink(path: string): Promise<string | null> {
 const OCI_BUILDS_HOST = Deno.env.get("OCI_BUILDS_HOST") ?? "";
 const OCI_LINK_SECRET = Deno.env.get("OCI_LINK_SECRET") ?? "";
 
-async function ociLink(path: string): Promise<string | null> {
+async function ociLink(path: string, name: string): Promise<string | null> {
   if (!OCI_BUILDS_HOST || !OCI_LINK_SECRET) return null;
   try {
     const expires = Math.floor(Date.now() / 1000) + 300;
     const uri = `/builds/${path}`;
     const digest = createHash("md5").update(`${expires}${uri} ${OCI_LINK_SECRET}`).digest("base64")
       .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-    const link = `https://${OCI_BUILDS_HOST}/builds/${path.split("/").map(encodeURIComponent).join("/")}?md5=${digest}&expires=${expires}`;
+    const link = `https://${OCI_BUILDS_HOST}/builds/${path.split("/").map(encodeURIComponent).join("/")}?md5=${digest}&expires=${expires}&dl=${encodeURIComponent(name)}`;
     const check = await fetch(link, { method: "HEAD", signal: AbortSignal.timeout(4000) });
     if (check.ok) return link;
     console.warn(`The Oracle copy answered ${check.status} for ${path}`);
@@ -72,13 +81,13 @@ async function ociLink(path: string): Promise<string | null> {
 
 // a 5-minute link to one build: CloudFront when it's healthy, then the Supabase copy, then the
 // Oracle copy
-async function signedLink(path: string): Promise<string | null> {
-  const cdn = await cdnLink(path);
+async function signedLink(path: string, name: string): Promise<string | null> {
+  const cdn = await cdnLink(path, name);
   if (cdn) return cdn;
-  const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300);
+  const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300, { download: name });
   if (!error && data) return data.signedUrl;
   console.warn(`No Supabase copy of ${path} (${error?.message ?? "unknown"}); trying the Oracle copy`);
-  return await ociLink(path);
+  return await ociLink(path, name);
 }
 
 const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey" };
@@ -175,7 +184,7 @@ Deno.serve(async (req) => {
       .sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
   if (!build) return reply(404, "Accretion doesn't host this app.");
 
-  const location = await signedLink(build.path);
+  const location = await signedLink(build.path, fileName(app, build.version));
   if (!location) return reply(500, "Couldn't prepare the download. Try again.");
 
   const { error: logError } = await admin.from("download_log").insert({ owner, bundle_id: app, via });

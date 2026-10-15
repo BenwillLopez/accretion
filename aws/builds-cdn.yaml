@@ -132,6 +132,33 @@ Resources:
         Items:
           - !Ref SigningKey
 
+  SaveAsName:
+    Type: AWS::CloudFront::Function
+    Metadata:
+      com.aws.cloudformation.Context:
+        why: >-
+          stored keys are "<bundle>/<version>-<sha256>.ipa"; the download function adds ?dl=<App>_<version>.ipa
+          to the signed link and this sets the name the browser saves the file as
+        must:
+          - only names matching the pattern pass; anything else gets no header (never echo raw input)
+    Properties:
+      Name: !Sub "${AWS::StackName}-save-as-name"
+      AutoPublish: true
+      FunctionConfig:
+        Comment: Content-Disposition from the signed dl parameter
+        Runtime: cloudfront-js-2.0
+      FunctionCode: |
+        function handler(event) {
+          var response = event.response;
+          var dl = event.request.querystring.dl;
+          var name = "";
+          try { name = dl && dl.value ? decodeURIComponent(dl.value) : ""; } catch (e) { name = ""; }
+          if (/^[A-Za-z0-9-]{1,64}_[A-Za-z0-9.-]{1,32}\.ipa$/.test(name)) {
+            response.headers["content-disposition"] = { value: 'attachment; filename="' + name + '"' };
+          }
+          return response;
+        }
+
   Distribution:
     Type: AWS::CloudFront::Distribution
     Metadata:
@@ -167,6 +194,9 @@ Resources:
           CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
           TrustedKeyGroups:
             - !Ref SigningKeyGroup
+          FunctionAssociations:
+            - EventType: viewer-response
+              FunctionARN: !GetAtt SaveAsName.FunctionMetadata.FunctionARN
 
   Uploader:
     Type: AWS::IAM::User
