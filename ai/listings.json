@@ -52,6 +52,23 @@
    "account"
   ]
  },
+ "Lilliana.AzulaApp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Azula is an app for injecting dynamic libraries (dylibs) into IPA files on iOS 14-16 and macOS 11-13.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "529e4f1c2c75a76e3ac81b291d6a0d7a014a0a19b35725b23fa6ddf5fd63280b",
+  "subtitle": "Inject dylibs into IPA files",
+  "tags": [
+   "dylib",
+   "injection",
+   "ipa",
+   "ios",
+   "macos",
+   "utility"
+  ]
+ },
  "adguardhome.remote.app": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -84,6 +101,28 @@
    "europe",
    "history",
    "game"
+  ]
+ },
+ "ai.devl.aurora": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play RPG Maker games on iPhone and iPad, supporting XP, VX, VX Ace, MV, and MZ. Includes multiplayer, overlays, upscaling, and full save management.",
+  "features": [
+   "Multiplayer",
+   "Overlays",
+   "Upscaling",
+   "Save Management"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d855cdda113567542cc6be021676f4edd168f155208c12e9885a989dbfb810fd",
+  "subtitle": "Play RPG Maker games on iOS",
+  "tags": [
+   "rpg",
+   "maker",
+   "multiplayer",
+   "upscaling",
+   "overlays",
+   "save"
   ]
  },
  "ani.baka": {
@@ -143,6 +182,129 @@
    "app"
   ]
  },
+ "app.bannrs.ios": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bannrs is an LED banner maker for iOS. It requires iOS 26.0 or later. Current version is 4.6. Developed by Sa1y0miii. Available on the App Store.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "df14dac732004fed722f115d7027ab297a2ba9d7c63e0e279d564d6858b43f96",
+  "subtitle": "LED banner maker for iOS",
+  "tags": [
+   "led",
+   "banner",
+   "maker",
+   "ios",
+   "utility",
+   "app"
+  ]
+ },
+ "app.batsign.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BatSign is an on-device signing store that provides App Store-style automatic updates, background signing, and certificate renewal. It is built on the open-source Feather project.",
+  "features": [
+   "On-Device Signing",
+   "Auto Updates",
+   "Background Signing",
+   "Cert Renewal",
+   "Open Source"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "e2831549e89d8fa959fd79bb2fe8efeda6900aab7ae6137944d293b54c2e466a",
+  "subtitle": "On-device signing store with auto updates",
+  "tags": [
+   "signing",
+   "store",
+   "updates",
+   "background",
+   "certificate",
+   "feather"
+  ]
+ },
+ "appcake2.iphonecake.com": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "iOS app for iPhoneCake featuring a newer user interface, dark mode support, and a slightly more user-friendly experience. This version features fewer search results than AppCake v6.1.3 and combines elements of AppCake 6 and 7 into a single release.",
+  "features": [
+   "Dark Mode",
+   "Newer UI"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c34bf852336592c73874aa12d0ce22f07f0bb8e0240eb606e7db4ad4c56f4d33",
+  "subtitle": "iOS app for iPhoneCake with dark mode support",
+  "tags": [
+   "appcake",
+   "iphonecake",
+   "ipa",
+   "ios",
+   "dark mode"
+  ]
+ },
+ "archery.clash.game": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "ipaomtk.com | Archery Clash IPA MOD iOS is a thrilling mobile game that puts your archery skills to the test. Developed by a talented team of game ent",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "9db612534c251dced6f84681a00c6e814b457b64cd839e42dc588ab503ebbd9e",
+  "subtitle": "Archery skill-based mobile game",
+  "tags": [
+   "archery",
+   "clash",
+   "game",
+   "ios",
+   "mobile",
+   "skill"
+  ]
+ },
+ "ca.bomberfish.AppCommander": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AppCommander is a utility for iOS apps supporting versions 15.0 to 16.6.1 and 17.0.0. TrollStore is required to use this application, and support for MDC-only devices has been dropped. Warning: this application could brick your device. Current functionality includes listing apps and opening apps. Backups and data management are currently missing features. IPA decryption is broken and IPA export is missing.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "01595770c00b1d5a3d8f7ad75a7b7dd618be6f68b3abf77d210e92ea821789e3",
+  "subtitle": "A swiss army knife for your iPhone apps",
+  "tags": [
+   "appcommander",
+   "trollstore",
+   "manager",
+   "utilities",
+   "ios"
+  ]
+ },
+ "cn.bswbw.AppsDump": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Decrypt IPA files. To start decryption, open the target app at least once. Filza may be required.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "ead6dfb602dab15f40debf23097631736f9c196c6246c88e367e3231b897b184",
+  "subtitle": "Decrypt IPA files on iOS",
+  "tags": [
+   "ipa",
+   "decrypt",
+   "ios",
+   "filza",
+   "appdump2",
+   "cypwn"
+  ]
+ },
+ "cn.gblw.AppsDump": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppsDump3 version 4.0.9 developed by AppsDump3 x CyPwn.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "261e396ec4a7c691b9661ff2866620ef341939b0dbde3320761cf4e9202800df",
+  "subtitle": "AppsDump3 v4.0.9",
+  "tags": [
+   "appsdump3",
+   "4.0.9",
+   "cypwn"
+  ]
+ },
  "co.appnation.geniechat.watchapp": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -157,6 +319,73 @@
    "genie",
    "assistant",
    "chat"
+  ]
+ },
+ "co.appnation.interiordesigner": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Arch is an app from an unknown developer. Source references @binnichtaktivsipas. No further details about functionality or features are provided in the source material.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d955d0d3130819cdce7c316b0ace8a64c4b5e06e33fea372993993c2fcbe794a",
+  "subtitle": "Arch app by unknown developer",
+  "tags": [
+   "arch",
+   "unknown",
+   "developer"
+  ]
+ },
+ "co.bazaart.app": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Injected with Premium",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "17d471a38efd5215ddd4d67779acf41326c1977c70ed3624cd882a39df5c7b1c",
+  "subtitle": "Bazaart by AppTesters IPA Repo",
+  "tags": [
+   "bazaart",
+   "apptesters",
+   "ipa",
+   "repo",
+   "premium"
+  ]
+ },
+ "co.codeleap.bearable": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Bearable is a symptom tracking application version 1.0.607 requiring iOS 15.1 or later. Bundle identifier co.codeleap.bearable. This build is patched with a subscription modifier applied.",
+  "features": [
+   "Patched",
+   "Subscription"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "0e7051924657594feb09715604acec5cebe5eafafcd81cc561839950a6fe273c",
+  "subtitle": "Symptom tracker for health monitoring",
+  "tags": [
+   "symptom",
+   "tracker",
+   "health",
+   "monitoring",
+   "ios",
+   "patched"
+  ]
+ },
+ "com.34306.waifuts": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Batteried is a battery monitoring application for iOS devices. The app provides information about battery status and health.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "632e7799ccda7e567d64027b2ff03800b0ae20d862e10ce86a4a08d6c2e6d16d",
+  "subtitle": "Battery monitoring utility",
+  "tags": [
+   "battery",
+   "monitor",
+   "health",
+   "status",
+   "ios",
+   "utility"
   ]
  },
  "com.365scores.365scroesapp": {
@@ -216,6 +445,23 @@
    "virtual"
   ]
  },
+ "com.DoorTeam.BagMaster": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BagMaster Isekai \u2013 Bag Battle is an iOS game package. The source identifies it as an iOS installation package (IPA) for the title BagMaster Isekai \u2013 Bag Battle. No further details about gameplay, mechanics, or content are provided in the source text.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c1049ed8017b7a2fb02c68f14ba6104485c5b548e883016e7521b2e5074eea17",
+  "subtitle": "Isekai-themed bag battle game for iOS",
+  "tags": [
+   "isekai",
+   "bag",
+   "battle",
+   "game",
+   "ipa",
+   "rpg"
+  ]
+ },
  "com.JindoBlu.FourPlayersIOS": {
   "category": "games",
   "date": "2026-10-14",
@@ -270,6 +516,24 @@
    "game"
   ]
  },
+ "com.PIXELCELLS.AntColony2": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Play AntColony with added mods. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Mods included",
+   "Tested by TTJB Team"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cbb37d07e2be4947bf7973b0eedc9a2e649781ff3860536057ae9b0fea7960ad",
+  "subtitle": "AntColony IPA Mod",
+  "tags": [
+   "antcolony",
+   "mod",
+   "ipa",
+   "ttjb"
+  ]
+ },
  "com.PixelFade.ACEAcademy": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -285,6 +549,56 @@
    "story",
    "narrative",
    "fiction"
+  ]
+ },
+ "com.RayanKhan.APNS-Demo": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "APNS_Demo is a SwiftUI application designed to test notifications. Use this tool to verify and check notification functionality on your iOS device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "71d5c9394c9f3db92a15212faf65ac9472b2949b680690108e899df063ca2836",
+  "subtitle": "Test notifications on SwiftUI",
+  "tags": [
+   "apns",
+   "notifications",
+   "swiftui",
+   "test",
+   "developer"
+  ]
+ },
+ "com.TDMbest.balls": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Balls? by dani ported to iOS. This is the only port of the game to iOS. It is the developer's first Unity port, worked on since August.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "693ae7e1cb08fee37131e3317761cb464679698f0e36081ff9d407c237e6c9d0",
+  "subtitle": "Port of Balls? game to iOS",
+  "tags": [
+   "balls",
+   "game",
+   "ios",
+   "port",
+   "unity",
+   "dani"
+  ]
+ },
+ "com.TeamSparta.battleshipgo": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Ship Go: Monster Wave is an action-packed iOS naval combat game that blends classic battleship gameplay.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d63508eb742ca2f0353743da6b30c24e5f2b187abe35817d5e76cdc937d51b32",
+  "subtitle": "Action naval combat game with classic battleship elements",
+  "tags": [
+   "naval",
+   "combat",
+   "battleship",
+   "action",
+   "ios",
+   "game"
   ]
  },
  "com.aagame.aagame": {
@@ -592,6 +906,24 @@
    "utilities"
   ]
  },
+ "com.aichatbot.assistant": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AIChatbot is an AI chat application with professional features unlocked. This version has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "749c8948c689cd6026ee2ba2c87a550423b0f802bcec42489c4a92a7b3f1dd39",
+  "subtitle": "Pro AI chat assistant",
+  "tags": [
+   "aichat",
+   "chatbot",
+   "assistant",
+   "pro",
+   "ai"
+  ]
+ },
  "com.aiporn.aichat": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -865,6 +1197,22 @@
    "shows"
   ]
  },
+ "com.antilost.app": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "AntiLost is an iOS utility app designed to help you locate your misplaced phone by clapping. It is available as an IPA installation package.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "38e53bd7c0f8daf7d3c57cef514e409d54de68757baa67df29286298c9d28026",
+  "subtitle": "Clap to Find Phone",
+  "tags": [
+   "antilost",
+   "utility",
+   "phone",
+   "find",
+   "clap"
+  ]
+ },
  "com.apalonapps.alarmclockfree": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -884,6 +1232,73 @@
    "app"
   ]
  },
+ "com.apple.terminal": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Official macOS terminal ported to iOS. Requires TrollStore with CVE-2022-46689 exploit.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "26728f8da3fe3c6d59899c7d4e7c086c1a953546a4ba8e987019936a6ba0e381",
+  "subtitle": "Official macOS Terminal on iOS",
+  "tags": [
+   "terminal",
+   "macos",
+   "trollstore",
+   "command-line",
+   "developer-tools",
+   "port"
+  ]
+ },
+ "com.ar.trace.drawing": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "AR Drawing lets you create images using augmented reality technology. The app provides tools to draw and visualize artwork in a real-world environment through your device camera.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "ac8c288251f0cee91132e7a4b3cf12f1d0897988f80da56b243a838e703567ad",
+  "subtitle": "Create drawings with augmented reality",
+  "tags": [
+   "ar",
+   "drawing",
+   "art",
+   "sketch",
+   "creative",
+   "augmented"
+  ]
+ },
+ "com.audiomack.iphone": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Audiomack provides music streaming with a subscription unlock feature. The IPA has been tested and compiled by TTJB Team.",
+  "features": [
+   "Subscription Unlock"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "fec26334bc716260ece6a065ef8e3ab1aca0d19b879d859a792b6b7df767c091",
+  "subtitle": "Music streaming with unlocked subscription",
+  "tags": [
+   "music",
+   "streaming",
+   "subscription",
+   "unlock",
+   "ipa",
+   "tested"
+  ]
+ },
+ "com.autodesk.autocadws": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Injected with Pro",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "e8461ef93de3f43a5c5fb34181abed6e004e1c8556be4092701c4068ab99c66f",
+  "subtitle": "AutoCAD Pro",
+  "tags": [
+   "autocad",
+   "pro",
+   "injected"
+  ]
+ },
  "com.autonavi.amap": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -899,6 +1314,56 @@
    "gps",
    "transit",
    "location"
+  ]
+ },
+ "com.avalar.atwo.epl.as": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Avalar: Raid of Shadow IPA iOS is a mobile fantasy RPG that has become one of the most engaging titles for iPhone.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "f53f50822cc42a295caeb01429f86d8724b46452fc3e6e614d0751564732e834",
+  "subtitle": "Fantasy RPG for iOS",
+  "tags": [
+   "avalar",
+   "raid",
+   "shadow",
+   "ipa",
+   "ios",
+   "fantasy"
+  ]
+ },
+ "com.avangelista.Appabetical": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "Appabetical is designed to help you manage your digital life on your smartphone. In today's fast-paced digital world, keeping your applications organized is essential for efficient daily use. This tool assists in streamlining your device experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2c3beb626cf8a750b7f97e446aa8b9b79ae1f8f585865e6d556d9d098ea8178b",
+  "subtitle": "Organize and access your smartphone apps efficiently",
+  "tags": [
+   "apps",
+   "organize",
+   "smartphone",
+   "manager",
+   "utilities"
+  ]
+ },
+ "com.awesomepiece.axisblade": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "AXIS BLADE is an action-packed RPG game that has captivated iOS gamers with its fast-paced gameplay and stunning visuals.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "fe56c7db2d99f80bcaac797453643ba9ab88cadf5be6de500b0108115e699a8a",
+  "subtitle": "Action-packed RPG with fast-paced gameplay",
+  "tags": [
+   "rpg",
+   "action",
+   "fast-paced",
+   "visuals",
+   "ios",
+   "game"
   ]
  },
  "com.axiel7.AniHyou": {
@@ -917,6 +1382,59 @@
    "open-source"
   ]
  },
+ "com.badoo.BadooSPP": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "This is a modified version of the Badoo dating app with premium features injected. Published by AppTesters IPA Repo.",
+  "features": [
+   "Premium Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c7912735d206b54110aab3f56af5d92f04c00b96f6729f7fdee4eafdbba28862",
+  "subtitle": "Badoo with premium features unlocked",
+  "tags": [
+   "badoo",
+   "dating",
+   "premium",
+   "modified",
+   "ipa",
+   "social"
+  ]
+ },
+ "com.baidu.map.watchkitapp": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BaiduMap by OwO Source. Injected with Nothing. Category: other.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "965738954a0a63f089d0fcb303ad4da1f75857fe48f8273ede1632a6c5569357",
+  "subtitle": "Modified Baidu Maps from OwO Source",
+  "tags": [
+   "baidumap",
+   "maps",
+   "navigation",
+   "china",
+   "modded",
+   "owo"
+  ]
+ },
+ "com.bandlab.bandlab.iphone": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Injected with Boost Membership",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "4cf5d9715e40b8e3dc0cbf8d53d66be1e29ac39ba63a149f139ef41ad2ede4b4",
+  "subtitle": "BandLab from AppTesters IPA Repo",
+  "tags": [
+   "bandlab",
+   "apptesters",
+   "ipa",
+   "repo",
+   "boost",
+   "membership"
+  ]
+ },
  "com.barnabas.absorb": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -931,6 +1449,57 @@
    "audiobookshelf",
    "client",
    "audio"
+  ]
+ },
+ "com.battlecamp.monsters": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "A fusion of strategy, adventure, and community-driven engagement. This dynamic game transports players to a vibrant world where they build teams, battle monsters, and cooperate with other players.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d78a9a494388bd5cad4a1f78ba60b7d96dd432d9fc9d0b2e65e7960d103b4cb9",
+  "subtitle": "Strategy adventure with community gameplay",
+  "tags": [
+   "strategy",
+   "adventure",
+   "community",
+   "multiplayer",
+   "rpg",
+   "battle"
+  ]
+ },
+ "com.battleon.aq3d": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Adventure Quest 3D is a massively multiplayer online role-playing game (MMO RPG) where players explore a fantasy world, complete quests, and battle together.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b967a2e2f081625e262db14196185cdffc3128168c08842f63ac319cc155d742",
+  "subtitle": "Adventure Quest 3D MMO RPG",
+  "tags": [
+   "aq3d",
+   "mmo",
+   "rpg",
+   "adventure",
+   "multiplayer",
+   "online"
+  ]
+ },
+ "com.benchu.ARMCPUZ": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "ARMCPUZ has been injected with Pro.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "42bb2cf126b27ae17368f57ce27c797cced79a894325f45cb5551f9b888a6f90",
+  "subtitle": "ARMCPUZ \u2013 Injected with Pro",
+  "tags": [
+   "arm",
+   "cpu",
+   "pro",
+   "injected",
+   "app",
+   "tool"
   ]
  },
  "com.bgames.ageofrun": {
@@ -983,6 +1552,39 @@
    "chat"
   ]
  },
+ "com.christianselig.Apollo": {
+  "category": "social",
+  "date": "2026-10-14",
+  "description": "Apollo is a Reddit app built for customizability, smoothness, gestures, and taking advantage of iOS features. Designed for fast navigation, it includes the Jump Bar, customizable gestures, and a media viewer. Browse Reddit with a tabbed interface, markdown composer, inline Imgur uploading, compact or large post views, dark mode, Safari View Controller, inline media previews in comments, and 3D Touch support.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "37ec9aedfe58fcae9dc7bfb9533a4480aad77f77a38c968fc00ec74aefc2da33",
+  "subtitle": "A custom and fast Reddit client for iOS",
+  "tags": [
+   "reddit",
+   "client",
+   "social",
+   "browsing",
+   "forums"
+  ]
+ },
+ "com.cokepokes.AppStorePlus": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppStore++ with new API.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "f808a500d4db5dbfe4588bdcdce1b899d20018c6fb126770f14f05422e8f2642",
+  "subtitle": "AppStore++ with new API",
+  "tags": [
+   "appstore",
+   "api",
+   "new",
+   "client",
+   "ios",
+   "store"
+  ]
+ },
  "com.connect.fps.shooter": {
   "category": "games",
   "date": "2026-10-14",
@@ -1022,6 +1624,42 @@
    "object"
   ]
  },
+ "com.darkpigeon.awaken": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Step into a world of mystery, action, and destiny with AWAKEN: AstralBlade IPA MOD for iOS.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "162e31b98d0fff861eea1f8a145390b2ea9555099122889f6c71584486a9faa3",
+  "subtitle": "Step into a world of mystery, action, and destiny",
+  "tags": [
+   "awaken",
+   "astralblade",
+   "ios",
+   "mod",
+   "action",
+   "mystery"
+  ]
+ },
+ "com.dawinstone.b2ba": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "B2BApocalypse is a modified application distributed through the AppTesters IPA repository. The app has been injected with modifications as indicated by the source.",
+  "features": [
+   "Injected Mods"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "6bf32d2149348bf57c46717bfdad266f2927128a65e957eec5840358c2088fac",
+  "subtitle": "Modified app with injected modifications",
+  "tags": [
+   "modified",
+   "ipa",
+   "injected",
+   "mods",
+   "app",
+   "repository"
+  ]
+ },
  "com.daymore.Across": {
   "category": "other",
   "date": "2026-10-14",
@@ -1052,6 +1690,93 @@
    "speed",
    "utility",
    "ts"
+  ]
+ },
+ "com.developlab.BatteryInfo": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Battery Info is a utility app that displays battery information on your device.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "a047ea9296424dbc86b35bba3408fac4733a58a9e47c950f3b9505cb43413962",
+  "subtitle": "Check battery information",
+  "tags": [
+   "battery",
+   "info",
+   "utility",
+   "check",
+   "device",
+   "information"
+  ]
+ },
+ "com.dino.weapon.backpack": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Hero: Merge Weapons is a unique strategy-focused game that transforms inventory management by merging weapons.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "8cc7df972769112bc23c0ad048d420d81efd8a4440ea7abf84eea8efa4a46f94",
+  "subtitle": "Strategy game merging weapons in inventory",
+  "tags": [
+   "strategy",
+   "merge",
+   "weapons",
+   "inventory",
+   "game"
+  ]
+ },
+ "com.eastmoon.gk2live": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Arcane Knight is an enchanting adventure where players step into the polished shoes of a valiant hero tasked with navigating a mysterious world.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "994b087c7277be0a7224e98d885aec4a94478308678a0d78d116fbc7ecd0f834",
+  "subtitle": "Enchanting adventure as a valiant hero",
+  "tags": [
+   "arcane",
+   "knight",
+   "adventure",
+   "hero",
+   "valiant",
+   "navigating"
+  ]
+ },
+ "com.elevateapp.kamino.kamino": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Balance is a meditation and sleep application. This version includes a tweak that unlocks the subscription features. The app is patched and provided by a third-party source. Version 1.207.0.",
+  "features": [
+   "Subscription Unlocked",
+   "Patched"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b34380cc4ef15d0406745b2c5152e4c3bf33f28c6c9d8d7ba4aecb2efd32fe60",
+  "subtitle": "Meditation & sleep app with unlocked subscription",
+  "tags": [
+   "meditation",
+   "sleep",
+   "wellness",
+   "relaxation",
+   "mindfulness",
+   "health"
+  ]
+ },
+ "com.endavomedia.dmiondemand": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Awaan is a popular iOS streaming application designed for users who enjoy Arabic entertainment content.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "07c832ef7ba68dbc52aa0eae7e0f4a3e570ef8310e1b62c62b1d5c8d656df301",
+  "subtitle": "Arabic streaming entertainment app",
+  "tags": [
+   "arabic",
+   "streaming",
+   "entertainment",
+   "ios",
+   "app",
+   "video"
   ]
  },
  "com.enjoy.aichat.chatbot.openchat": {
@@ -1099,6 +1824,28 @@
    "chat",
    "artificial intelligence",
    "iphone"
+  ]
+ },
+ "com.eu.eud3": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "ATHENA: Blood Twins includes hack features such as damage multiplier and defense multiplier. It also offers a certificate purchase option and a paid Apple ID.",
+  "features": [
+   "Damage Multiplier",
+   "Defense Multiplier",
+   "Certificate Purchase",
+   "Paid Apple ID"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c8344123b6563c6474b45e3a9ab17099e74354c163c659ec2d41ffd4186e42fa",
+  "subtitle": "Hack features for ATHENA: Blood Twins",
+  "tags": [
+   "athena",
+   "blood twins",
+   "hack",
+   "damage multiplier",
+   "defense multiplier",
+   "certificate"
   ]
  },
  "com.example.acela": {
@@ -1245,6 +1992,67 @@
    "tools"
   ]
  },
+ "com.github.auties00.artemis": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Artemis is an alternative, open source streaming client for HIDIVE.",
+  "features": [
+   "Open Source"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "dd8c3c2222ba8d6ec1603ac0e43961a677b9340b63dae3a7619437503ad6a389",
+  "subtitle": "Open source HIDIVE streaming client",
+  "tags": [
+   "streaming",
+   "hidive",
+   "open-source",
+   "client",
+   "alternative",
+   "video"
+  ]
+ },
+ "com.google.ios.youtube.asjtube.1.4.0": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "ASJTube is a modified version of YouTube created by asjrx with additional tweaks by mrdrvt99. The bonus tweaks include YouPiP for picture-in-picture, YTABConfig for configuration options, and YouQ for queue management. Version 1.4.0.",
+  "features": [
+   "YouPiP",
+   "YTABConfig",
+   "YouQ",
+   "Modded YouTube"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "e4e67776d294f3fb9fbe3a71f5e78454e9221438e1f9879da5fc78a605d6b99f",
+  "subtitle": "Modded YouTube with YouPiP, YTABConfig, YouQ",
+  "tags": [
+   "youtube",
+   "mod",
+   "pip",
+   "tweaks",
+   "video",
+   "sideload"
+  ]
+ },
+ "com.google.ios.youtube.asjtube.1.4.0.ios16": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "ASJTube is a modified version of the YouTube application created by asjrx. The mod supports iOS 16 and later versions. Source code and additional information are available on GitHub at github.com/asjrx/A. The app can be installed through sideloading using services such as FastSign operated by CertFish.",
+  "features": [
+   "iOS 16+ Support",
+   "Modded Version"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d85df64cda25ba6279e175da0f4be0ed5719b33ac1885f36955f9d9882d201ed",
+  "subtitle": "Modded YouTube client with iOS 16+ support",
+  "tags": [
+   "youtube",
+   "mod",
+   "ios16",
+   "sideload",
+   "video",
+   "player"
+  ]
+ },
  "com.guistudios.advance.car.parking.car.driver.simulator": {
   "category": "games",
   "date": "2026-10-14",
@@ -1277,6 +2085,43 @@
    "photo",
    "nostalgic",
    "film"
+  ]
+ },
+ "com.habby.archero": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archero is a wildly popular action-adventure game that has taken the mobile gaming world by storm. Initially released for Android.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "e65448e2e7fe66d32e64fae26c52c71b65400b6779f26e10d60b03b6887bc3d9",
+  "subtitle": "Action-adventure mobile game",
+  "tags": [
+   "archero",
+   "action",
+   "adventure",
+   "mobile",
+   "game",
+   "popular"
+  ]
+ },
+ "com.happykamp.aquariumland": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Aquarium Land lets players dive into a vibrant aquarium world with features like freeze money, freeze diamond, and no ads.",
+  "features": [
+   "Freeze Money",
+   "Freeze Diamond",
+   "No Ads"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "be3109434990854f0515b200569b533e068abad945fa1ff824f033abd79005f4",
+  "subtitle": "Build and manage your own aquarium",
+  "tags": [
+   "aquarium",
+   "simulation",
+   "freeze-money",
+   "freeze-diamond",
+   "no-ads"
   ]
  },
  "com.hassantaleb.mockup": {
@@ -1313,6 +2158,23 @@
    "ttjb",
    "tools",
    "collection"
+  ]
+ },
+ "com.headupgames.bridgeconstructorstudio": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bridge Constructor Studio is an engineering puzzle game where players design and test bridges to overcome challenges. It targets players who enjoy creative problem solving.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "2d951373cbbaee1dc7558f62b65e807f45aae64f1b588673b77efbefb7e082dc",
+  "subtitle": "Engineering puzzle game for creative builders",
+  "tags": [
+   "bridge",
+   "constructor",
+   "studio",
+   "engineering",
+   "puzzle",
+   "game"
   ]
  },
  "com.hitpaw.photoenhancer": {
@@ -1598,6 +2460,123 @@
    "analogue"
   ]
  },
+ "com.ipaomtk.backpack.defense.zombie.td.154155": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Defense: Zombie TD is a survival strategy game for iOS where players defend against waves of zombies using tower defense mechanics.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "de0265eec69c842f6e9c34842064cc9aa086ad1b4ac375107a6da99982ccccf2",
+  "subtitle": "Survival strategy tower defense game",
+  "tags": [
+   "survival",
+   "strategy",
+   "tower",
+   "defense",
+   "zombie",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.baseball.boy.158396": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baseball Boy! is the iOS installable version of a popular arcade-style baseball game.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "13f8f2e2dbf93e41e0c57f60f7c95ef270e43a14347cf1c312f1eb691760db2b",
+  "subtitle": "Arcade-style baseball game for iOS",
+  "tags": [
+   "baseball",
+   "arcade",
+   "game",
+   "sports",
+   "ios",
+   "ipa"
+  ]
+ },
+ "com.ipaomtk.baseball.rising.star.151605": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baseball Rising Star is a baseball game available as an iOS installation package. The app provides a baseball gaming experience on iOS devices.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "a9b33d6b507102a211f6d591d32d0adf6f01610b0a6c80797aeff7fd16c01525",
+  "subtitle": "Baseball simulation game for iOS",
+  "tags": [
+   "baseball",
+   "sports",
+   "simulation",
+   "game",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.basketball.clash.multiplayer.152330": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Basketball Clash: Multiplayer is an iOS sports game package that allows iPhone users to play multiplayer basketball matches.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "462d25aef2453d806aa8b89da86c7e6995907da3b051523bb5963d6f1f257017",
+  "subtitle": "Multiplayer basketball sports game for iPhone",
+  "tags": [
+   "basketball",
+   "multiplayer",
+   "sports",
+   "game",
+   "ios",
+   "iphone"
+  ]
+ },
+ "com.ipaomtk.battle.guys.royale.154182": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Guys : Royale is an iOS multiplayer party royale game package that allows iPhone users to",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "9e1ae896a8f664efe0e4c1c5dda21f238fbeed753f7d4759c96c0bf884809f48",
+  "subtitle": "Multiplayer party royale game for iPhone",
+  "tags": [
+   "multiplayer",
+   "party",
+   "royale",
+   "ios",
+   "game",
+   "iphone"
+  ]
+ },
+ "com.ipaomtk.battlemons.156235": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battlemons is a monster-collecting RPG designed for iPhone and iPad. The IPA file allows installation on iOS devices.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c6687a86c8f19f35a1898de694b9c27c671f613f9bb1d7a89c9b0dee96ac5abc",
+  "subtitle": "Monster-collecting RPG for iPhone and iPad",
+  "tags": [
+   "monster",
+   "rpg",
+   "collecting",
+   "iphone",
+   "ipad",
+   "ipa"
+  ]
+ },
+ "com.iphonecake.appcakej": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "AppCake is an unofficial alternative app store that provides access to thousands of free apps and games.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b6b37000ba4e0aee21b20fb24e0e7e18497ec9a3073d860a57a24728b83ea5a9",
+  "subtitle": "Alternative app store with thousands of free items",
+  "tags": [
+   "app store",
+   "games",
+   "apps",
+   "alternative",
+   "free"
+  ]
+ },
  "com.jacekdojwa.abg": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -1701,6 +2680,23 @@
    "adventure"
   ]
  },
+ "com.kuro121vn.battletask": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BattleTask is a gamified to\u2011do list that turns tasks into a role\u2011playing game. It requires iOS 16.4 or later and is currently at version 4.0.0. The app is available on the App Store.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "bd3fa62692d8b21949ecd1c5376081bf2e70f6d1cab9cc486417e16a6fdbae1c",
+  "subtitle": "Gamified to\u2011do RPG for iOS 16.4+",
+  "tags": [
+   "gamified",
+   "todo",
+   "rpg",
+   "ios",
+   "productivity",
+   "task"
+  ]
+ },
  "com.lagagggggg.MyBatteries": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1775,6 +2771,58 @@
    "danmaku"
   ]
  },
+ "com.lilucat.applock.us": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppLockPro is a privacy app that helps keep your sensitive apps private and secure on your device. Last updated 08-02-2024.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "20229dbd3d0fd47a238c6d8d3caeb486deb817085c087a1047cdf560231d8ff0",
+  "subtitle": "Privacy lock for sensitive apps",
+  "tags": [
+   "privacy",
+   "applock",
+   "security",
+   "app",
+   "lock",
+   "protect"
+  ]
+ },
+ "com.linecorp.b612": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "B612 is a camera and photo editing application. This version has been modified to unlock subscription features that normally require payment. The app includes filters, beauty effects, AR stickers, and editing tools for photos and videos.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "216abe11aa8d77e5160d4dbb33bfb57d1d10ba908f61d52183dafdd3f0484187",
+  "subtitle": "Camera app with subscription features unlocked",
+  "tags": [
+   "camera",
+   "photo",
+   "editor",
+   "filters",
+   "selfie",
+   "unlocked"
+  ]
+ },
+ "com.livingcodelabs.bakerbusiness3": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baker Business 3 is an idle business simulation game for iPhone that places players in charge of a bakery operation.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "f77761266d9aa95ecc13e05599242644f18375ab2ef0c03aa1035a28408f5707",
+  "subtitle": "Idle bakery business simulation game",
+  "tags": [
+   "idle",
+   "simulation",
+   "bakery",
+   "business",
+   "tycoon"
+  ]
+ },
  "com.londonappstudio.Charging-Animation": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1810,6 +2858,40 @@
    "style"
   ]
  },
+ "com.loop.apple.grapple": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "Welcome to the exciting world of Apple Grapple Survivor, a thrilling new game designed specifically for iOS devices. As mobile gaming",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "449309c9f86712c7e2eb0ea941ee2f3422b4c1b586f5bb924ddbde1d58d47675",
+  "subtitle": "Apple Grapple Survivor \u2013 iOS action game",
+  "tags": [
+   "apple",
+   "grapple",
+   "survivor",
+   "ios",
+   "game",
+   "action"
+  ]
+ },
+ "com.luckyclan.artstudio2.ios": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Artstudio Pro is a professional drawing and painting application. This Pro version IPA has been tested and compiled by the TTJB Team for sideloading on iOS devices.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "40417ec4fe7a26d684519657abea157dcb9d8bd77d580490c26292cd4676e418",
+  "subtitle": "Professional drawing and painting studio",
+  "tags": [
+   "art",
+   "drawing",
+   "painting",
+   "pro",
+   "ipa",
+   "creative"
+  ]
+ },
  "com.lunosoft.ttheroes": {
   "category": "games",
   "date": "2026-10-14",
@@ -1840,6 +2922,23 @@
    "pursuit",
    "action",
    "cars",
+   "game"
+  ]
+ },
+ "com.maf.BackpackRush": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Rush: Merge Defense is an iOS game that combines merge mechanics with tower defense strategy. Players merge items to defend against waves of enemies in a strategic adventure.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "5aac7dab66acfe6eb29e937c0da9dea52505a21277ff3318a5aec17681b6b523",
+  "subtitle": "Merge defense adventure game",
+  "tags": [
+   "merge",
+   "defense",
+   "strategy",
+   "adventure",
+   "ios",
    "game"
   ]
  },
@@ -1881,6 +2980,42 @@
    "lockscreen",
    "wallpaper",
    "theme"
+  ]
+ },
+ "com.mangolabs.copypaste": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AutoPaste is a keyboard tweak for iOS. The subscription is unlocked. Version 1.1.39. Developed by Pro App Company Limited. Bundle identifier org.fontkeyboard.copypastekeyboard. Note: press Restore Purchase to activate.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "43ab14040a3b69d5c8e3707a8cab30810836dfdb46e71f8abc1d8a0bc240561b",
+  "subtitle": "AutoPaste Keyboard \u2013 Subscription Unlocked",
+  "tags": [
+   "autopaste",
+   "keyboard",
+   "tweak",
+   "subscription",
+   "unlocked",
+   "ios"
+  ]
+ },
+ "com.mbh.athkari": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Athkari \u2013 Calm your heart with the remembrance of Allah is an installation file (IPA) for iPhone and iPad that lets users download the app.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "8198a33877aa53bc8536b4558de9df581312cd13c3246e744d2fc3817fa9fc71",
+  "subtitle": "Islamic remembrance app for iPhone & iPad",
+  "tags": [
+   "islamic",
+   "azkar",
+   "remembrance",
+   "iphone",
+   "ipad",
+   "ipa"
   ]
  },
  "com.miniclip.8ballpoolmult": {
@@ -1934,6 +3069,25 @@
    "ios"
   ]
  },
+ "com.mwm.bananai": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Bananai is an IPA package with subscription features unlocked. Provided by AppTesters IPA Repo.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "7a09a61f63fe1a3682758f421318c40f040616d24e57eac28cbc9a73a0bbb557",
+  "subtitle": "Bananai: Subscription Unlocked",
+  "tags": [
+   "bananai",
+   "subscription",
+   "unlocked",
+   "ipa",
+   "testers",
+   "repo"
+  ]
+ },
  "com.ndemiccreations.survivors": {
   "category": "other",
   "date": "2026-10-14",
@@ -1952,6 +3106,78 @@
    "ttjb"
   ]
  },
+ "com.ngame.allstar.eu": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arena of Valor is a mobile multiplayer online battle arena game developed by Tencent Games. It has gained popularity among mobile gamers.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "ee8a69243c2a65046d2a8456a4326218fe4191d2cacb9ddced2bf84fa702af67",
+  "subtitle": "MOBA by Tencent Games",
+  "tags": [
+   "moba",
+   "multiplayer",
+   "battle arena",
+   "tencent",
+   "mobile game",
+   "pvp"
+  ]
+ },
+ "com.niceios.Battery.Battery": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "In today\u2019s fast-paced digital world, our devices have become an integral part of our lives. Whether it\u2019s for work or leisure, we rely on them for essential tasks.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "87e659f1eabef1bd9e57746ab23e180f8a583489192bb61cf9193a55d717470d",
+  "subtitle": "Track battery status and health",
+  "tags": [
+   "battery",
+   "monitor",
+   "health",
+   "utility",
+   "device",
+   "power"
+  ]
+ },
+ "com.onicore.backpack.rush": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Backpack Rush is a new title that aims to capture players' attention and provide entertainment.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "45404026f8f75ab4f238a82d4dd21d9bf3afda237328d842b31fd7d836767626",
+  "subtitle": "New title aiming to capture player attention",
+  "tags": [
+   "backpack",
+   "rush",
+   "game",
+   "entertainment",
+   "ios",
+   "new"
+  ]
+ },
+ "com.optiflow.imposter": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BAM is a modded IPA package that has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Mods",
+   "Tested",
+   "Compiled"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "67ade1dd9f665193c2e2f62ff089229d0681667942ad497448f5971b07fe648d",
+  "subtitle": "Modded IPA compiled by TTJB Team",
+  "tags": [
+   "bam",
+   "ipa",
+   "mods",
+   "ttjb",
+   "tested",
+   "compiled"
+  ]
+ },
  "com.os.airforce": {
   "category": "games",
   "date": "2026-10-14",
@@ -1967,6 +3193,22 @@
    "war",
    "flight",
    "arcade"
+  ]
+ },
+ "com.panteon.arcanearena": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arcane Arena is a tower defense game featuring strategic gameplay, tense battles, and replay value. Build defenses and face waves of enemies in this mobile strategy title.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "aacd7096bbd9580d8aa8d50759fcde4d26c516eb8b475d90768637a361b80d16",
+  "subtitle": "Tower defense strategy battles",
+  "tags": [
+   "tower defense",
+   "strategy",
+   "mobile game",
+   "battle",
+   "replay"
   ]
  },
  "com.perfectcorp.yat": {
@@ -2021,6 +3263,40 @@
    "app"
   ]
  },
+ "com.pikpok.br.iosstore": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Barbie Horse Ride & Rescue is a cozy adventure simulation game for iOS. The IPA file allows installation on iOS devices. Players ride horses and complete rescue missions in a family-friendly setting.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "4c71953e106c5e0cec1818170e2a06d259f8aeadf60711b871cfbf84d87ff84c",
+  "subtitle": "Cozy horse adventure simulation game",
+  "tags": [
+   "barbie",
+   "horse",
+   "ride",
+   "rescue",
+   "simulation",
+   "adventure"
+  ]
+ },
+ "com.pixeldev.APEXRacers": {
+  "category": "games",
+  "date": "2026-10-14",
+  "description": "APEX Racer is a racing game that delivers a thrilling driving experience directly to your mobile device. Compete in races and enjoy engaging gameplay designed for racing enthusiasts.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "61aa381204a63b362f2e0e98014832e41c1ad563163a32df32ce4a582da23763",
+  "subtitle": "High speed mobile racing experience",
+  "tags": [
+   "racing",
+   "game",
+   "cars",
+   "speed",
+   "drive",
+   "apex"
+  ]
+ },
  "com.pixelperfectdude.htdrive": {
   "category": "games",
   "date": "2026-10-14",
@@ -2036,6 +3312,25 @@
    "game",
    "car",
    "racing"
+  ]
+ },
+ "com.pixite.assembly": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Vector & SVG Maker - Assembly is a tweak that unlocks the subscription. Version 2.4.7. Made by riftysIPAlibrary.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "d04b0ec63297f76c10a4995b6a41ca0a28ebb632cbbd0cc715076dcaa8335665",
+  "subtitle": "Vector and SVG design tool with subscription unlocked",
+  "tags": [
+   "vector",
+   "svg",
+   "design",
+   "assembly",
+   "tweak",
+   "unlocked"
   ]
  },
  "com.playkot.ageofmagic": {
@@ -2070,6 +3365,42 @@
    "city",
    "management",
    "game"
+  ]
+ },
+ "com.plr.expeditionscapes": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Austin\u2019s Odyssey is an adventure exploration game for iPhone that invites players into a richly",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "174aeece326da8196d81787a0258f3f0ab450b1205898cf9fc57c227ee024c5a",
+  "subtitle": "Adventure exploration game for iPhone",
+  "tags": [
+   "adventure",
+   "exploration",
+   "game",
+   "iphone",
+   "odyssey",
+   "austin"
+  ]
+ },
+ "com.qiiwi.backpackergo": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpacker Go! is a travel-themed game designed for iOS devices. This modified version offers unlimited cash for gameplay.",
+  "features": [
+   "Unlimited Cash"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "21e3a4d18395f3088732edfaaf1292659068453349f3f943596ddc3ec85111a4",
+  "subtitle": "Travel-themed game with unlimited cash",
+  "tags": [
+   "travel",
+   "game",
+   "unlimited cash",
+   "ios",
+   "modified",
+   "backpacker"
   ]
  },
  "com.qingbin.Addons": {
@@ -2125,6 +3456,21 @@
    "status bar"
   ]
  },
+ "com.realmzer.autoclicker": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "This tweak adds an autoclicker to injected apps.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "3d83e605d2347cf440b7393f58681a0fa453670947b845df13a49d4fc89060ac",
+  "subtitle": "Autoclicker tweak for injected apps",
+  "tags": [
+   "autoclicker",
+   "tweak",
+   "injected",
+   "apps"
+  ]
+ },
  "com.rebelancap.2ship": {
   "category": "other",
   "date": "2026-10-14",
@@ -2142,6 +3488,22 @@
    "vision pro"
   ]
  },
+ "com.redfalcon.basketballgoat.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Basketball GOAT on iOS delivers a polished basketball gaming experience that's both deep and accessible.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "2ae6a83743c562fbf64938f2fe5328a97366c617796de96f967d7d72522f5a29",
+  "subtitle": "Polished basketball gaming experience",
+  "tags": [
+   "basketball",
+   "game",
+   "sports",
+   "gaming",
+   "ios"
+  ]
+ },
  "com.rethinkingstudio.AICookBook": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2156,6 +3518,23 @@
    "nutripick",
    "food",
    "utilities"
+  ]
+ },
+ "com.revoicers.autocc": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AutoCC is an innovative iOS application designed for users who want more control and efficiency when managing automated tasks.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "0a0b09bb7f69b0800be9d5a7805456e67aee31dc9e00857e8351cac37c768d7b",
+  "subtitle": "Innovative iOS app for automated control",
+  "tags": [
+   "innovative",
+   "ios",
+   "application",
+   "control",
+   "efficiency",
+   "automation"
   ]
  },
  "com.rileytestut.AltStore": {
@@ -2210,6 +3589,23 @@
    "sources"
   ]
  },
+ "com.rovio.BadPiggies": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Build makeshift contraptions from a huge collection of parts and reach the goal without destroying your vehicle.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "04297b37e659065bcda6a757c94d1d1a41f65002e7ad4b9a21078b4ff372f033",
+  "subtitle": "Build contraptions and reach the goal",
+  "tags": [
+   "piggies",
+   "build",
+   "contraptions",
+   "parts",
+   "goal",
+   "vehicle"
+  ]
+ },
  "com.rovio.abcasual": {
   "category": "games",
   "date": "2026-10-14",
@@ -2242,6 +3638,72 @@
    "birds",
    "hack",
    "game"
+  ]
+ },
+ "com.ryan.anymex": {
+  "category": "entertainment",
+  "date": "2026-10-14",
+  "description": "AnymeX is a multiservice tracking client with support for AniList, MyAnimeList and Simkl.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8473bac22707eba86b887832f3bb9d1925bc341c6ddd9084d4c74921570f0e84",
+  "subtitle": "Multiservice tracking client",
+  "tags": [
+   "animelist",
+   "simkl",
+   "tracking",
+   "client"
+  ]
+ },
+ "com.saulawa.areaandvolumecalc.lite": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Area and Volume Calc Lite IPA is the iOS installation file of a lightweight educational calculator.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "018b1815183c6f96f248f9991f54217f5f35507b77bafed406f0f8cbc1d6110d",
+  "subtitle": "Lightweight educational calculator for iOS",
+  "tags": [
+   "area",
+   "volume",
+   "calculator",
+   "education",
+   "ios",
+   "lite"
+  ]
+ },
+ "com.serena.Antoine": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Antoine is a TrollStore-only OSLog UI for iOS and iPadOS devices. It allows you to view system logs in real time with the ability to filter logs.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "76de1d4bc9573e868e27eed7686f2885a89cea91ad1bb3e0cc941db8c46a1839",
+  "subtitle": "Real-time OSLog UI for TrollStore devices",
+  "tags": [
+   "developer",
+   "logs",
+   "trollstore",
+   "system",
+   "utility",
+   "oslog"
+  ]
+ },
+ "com.serena.AppIndex": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "TrollStore-only application manager for iPhone. View and copy app details including entitlements.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "874d4acb5495826d8652aff3a11febded37314582bca7f6108661e7f23b84bb1",
+  "subtitle": "TrollStore-only app manager for iPhone",
+  "tags": [
+   "trollstore",
+   "app-manager",
+   "entitlements",
+   "ios",
+   "developer-tools",
+   "application-details"
   ]
  },
  "com.skybornegames.adorablegarden": {
@@ -2292,6 +3754,23 @@
    "library"
   ]
  },
+ "com.soccerFitYou.App": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "B42 is a professional football training application designed for iOS 16.0 and later. Current version 7.13.4 provides structured training programs for football players seeking to improve their skills and fitness.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "322afb4acb5e4b4cc2c4c0e2bdc8164e618a4315f4e8a1d76e08b46b362f82b7",
+  "subtitle": "Pro Football Training App",
+  "tags": [
+   "football",
+   "training",
+   "soccer",
+   "fitness",
+   "sports",
+   "pro"
+  ]
+ },
  "com.sprrrint.amble": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2324,6 +3803,99 @@
    "stick",
    "humor",
    "ios"
+  ]
+ },
+ "com.supercell.magic": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Atrasis is a modded Clash of Clans private server offering unlimited gems, elixir, and gold. Type /help in the Global Chat to see available commands.",
+  "features": [
+   "Unlimited Resources",
+   "Private Server",
+   "Chat Commands"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b155d6cd640054e273d01183b89f54c30ed88f8c8a26a9774f367bd2516c0052",
+  "subtitle": "Modded Clash of Clans private server",
+  "tags": [
+   "clash of clans",
+   "private server",
+   "modded",
+   "unlimited resources",
+   "gems",
+   "gold"
+  ]
+ },
+ "com.superpixel.arcanablade": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arcana Blade is an idle RPG mobile game, version 1.9.82. The game features idle progression mechanics and RPG elements. Developed by a team of creators.",
+  "features": [
+   "Idle RPG"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "048c0dda134bcebb0fe134bf5d2627badeb8bbb89842f3608bf71e38beb431bf",
+  "subtitle": "Idle RPG adventure game",
+  "tags": [
+   "idle",
+   "rpg",
+   "adventure",
+   "mobile",
+   "game"
+  ]
+ },
+ "com.telltalegames.BAT100": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Batman: The Telltale Series is a narrative adventure game where your choices shape the story of Bruce Wayne and Gotham City. Episode 1 is included free; all remaining episodes can be downloaded within the app. Developed by the award-winning studio behind The Walking Dead series, this gritty, violent tale explores the consequences of your decisions as the Dark Knight.",
+  "features": [
+   "Free Episode 1",
+   "In-App Episode Downloads",
+   "Choice-Based Narrative"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "2b8b988d3a050d8a3e2ddd3e2a909790fe08411064781a5dfba8fe06eb171b3b",
+  "subtitle": "Choice-driven Batman adventure from Telltale Games",
+  "tags": [
+   "batman",
+   "telltale",
+   "adventure",
+   "choices",
+   "episodic",
+   "dc"
+  ]
+ },
+ "com.tigisoftware.ADManager": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppsManager v1.8.4 Cracked",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "2bfa41b0f1abf070c46dcd64a7297379f247d028a6b1b04458b4f42f04769b47",
+  "subtitle": "AppsManager 1.8.4 cracked utility",
+  "tags": [
+   "appsmanager",
+   "utility",
+   "cracked",
+   "manager",
+   "tools"
+  ]
+ },
+ "com.traplight.battleslides": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Legion \u2013 Mass Battler is a strategy game that challenges your tactical prowess with large-scale battles.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "373504eeb025c60b2cc11815414363546209b94cd619cf470944f122a7d00d1a",
+  "subtitle": "Massive strategy battles",
+  "tags": [
+   "strategy",
+   "tactical",
+   "battle",
+   "mass",
+   "legion",
+   "game"
   ]
  },
  "com.unknown.1998vintagecamera": {
@@ -2642,6 +4214,156 @@
    "edit"
   ]
  },
+ "com.unknown.aq3d": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AQ3D lets you increase the charity circle and offers unlimited viewing.",
+  "features": [
+   "Increase charity circle",
+   "Unlimited viewing"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c9487ce50fc55be9599f019f6461a901b0d30df92250b612fd0eaeaed7cc752a",
+  "subtitle": "Charity circle boost & unlimited viewing",
+  "tags": [
+   "charity",
+   "circle",
+   "unlimited",
+   "viewing",
+   "aq3d",
+   "boost"
+  ]
+ },
+ "com.unknown.audioconvert": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Audio Convert lets you change audio formats, edit audio files, cut and modify audio, and export the results.",
+  "features": [
+   "Format Conversion",
+   "Audio Editing",
+   "Cut Audio",
+   "Export Audio"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "1f7930bc7612bc934689e90c094525aced71d3df63f11637dde1f043dab19906",
+  "subtitle": "Convert and edit audio files",
+  "tags": [
+   "audio",
+   "convert",
+   "edit",
+   "cut",
+   "export",
+   "format"
+  ]
+ },
+ "com.unknown.audionoisereducerrecorder": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "\u062f\u06d5\u062a\u0648\u0627\u0646\u06cc\u062a \u0628\u06d5 \u0626\u0627\u0633\u0627\u0646\u06cc \u062a\u0627\u06cc\u0628\u06d5\u062a\u0645\u06d5\u0646\u062f\u06cc\u06d5 \u067e\u0627\u0631\u06d5\u06a9\u0627\u0646 \u0628\u06a9\u06d5\u06cc\u062a\u06c6",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-super-120b-a12b:free",
+  "src_hash": "74f557f0db6a851e3a47a16c452d03ca929f26f9fdce760ac370887e462c6a4a",
+  "subtitle": "Audio Noise Reducer & Recorder",
+  "tags": [
+   "audio",
+   "noise",
+   "reducer",
+   "recorder",
+   "karbin-store"
+  ]
+ },
+ "com.unknown.audiotrimmer": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AudioTrimmer is an application for trimming music files. It allows users to cut audio tracks to desired lengths.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "4ea720fd9ec67d5dcd0a5ec845d4cb84ca53d965b9b27a62892d4a356b6075ab",
+  "subtitle": "Trim and cut audio files",
+  "tags": [
+   "audio",
+   "trimmer",
+   "music",
+   "cut",
+   "editor",
+   "tool"
+  ]
+ },
+ "com.unknown.autoclicker": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Auto Clicker lets you automate taps. The app offers a premium mode that can be activated by purchasing and then canceling the purchase. It runs without advertisements.",
+  "features": [
+   "Premium",
+   "No Ads"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "a5d4af7a9a0e99c58fc5cf122ef7683277ff80fd1a99ddf5a96e198c7e2c9d66",
+  "subtitle": "Auto clicker with premium features, no ads",
+  "tags": [
+   "auto clicker",
+   "automation",
+   "utility",
+   "premium",
+   "no ads"
+  ]
+ },
+ "com.unknown.b612": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "B612 is an app for editing photos and videos with AI-powered editing support.",
+  "features": [
+   "Photo Editing",
+   "Video Editing",
+   "AI Editing"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "9770bd17bdba8a5af331fe5e2e521a6d790e20561dfb049e758047e6b5ec1fc8",
+  "subtitle": "AI Photo & Video Editor",
+  "tags": [
+   "photo",
+   "video",
+   "editor",
+   "ai",
+   "editing",
+   "b612"
+  ]
+ },
+ "com.unknown.bazaart": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Bazaart is an app for editing photos and videos. It offers a complete set of editing tools for both images and video clips.",
+  "features": [
+   "Photo Editing",
+   "Video Editing"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b973e35374b33209119f6d7b9073a3df3601d9592f24a7d70ed7c00692ebc64f",
+  "subtitle": "Photo and video editor with full features",
+  "tags": [
+   "photo editing",
+   "video editing",
+   "editor",
+   "media",
+   "creative",
+   "tools"
+  ]
+ },
+ "com.unofficial.balatro": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "A game that combines poker and solitaire mechanics.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "91a7e2340119c06d00b3b0dd4d6880b1d7f6bfaad3e63dea15a3654065743b4a",
+  "subtitle": "Poker meets solitaire card game",
+  "tags": [
+   "poker",
+   "solitaire",
+   "card",
+   "game"
+  ]
+ },
  "com.untitledinbrackets.untitled-ios": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2691,6 +4413,27 @@
    "education"
   ]
  },
+ "com.vertventures.stella": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Astra is a life advice application. This version includes a tweak that unlocks the subscription. Version 3.12.45. If the subscription does not appear unlocked, press the restore button. The app has been patched.",
+  "features": [
+   "Subscription Unlocked",
+   "Patched",
+   "Restore Purchases"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "343aa769a7c5025892eaadf892f8e4cef695a95bf570aeaf2f6d42217c3e94f6",
+  "subtitle": "Life advice app with subscription unlocked",
+  "tags": [
+   "life-advice",
+   "subscription-unlocked",
+   "patched",
+   "tweak",
+   "ipa",
+   "utilities"
+  ]
+ },
  "com.vigorapps.30DayFitness": {
   "category": "lifestyle",
   "date": "2026-10-14",
@@ -2707,6 +4450,23 @@
    "health",
    "exercise",
    "training"
+  ]
+ },
+ "com.vqw.aelh": {
+  "category": "lifestyle",
+  "date": "2026-10-14",
+  "description": "Awakening of Dragon tells the story of ancient dragons. Travel back to the past, where fights amongst many dragons broke out.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e51fb77f10cae328367beb5fadbacee51a3b4b164204d1a37052d7ec901b7c4f",
+  "subtitle": "The story of ancient dragons and past battles",
+  "tags": [
+   "dragon",
+   "ancient",
+   "story",
+   "battle",
+   "history",
+   "lifestyle"
   ]
  },
  "com.wallpapershub.anime": {
@@ -2727,6 +4487,61 @@
    "video"
   ]
  },
+ "com.xq.archeroii": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archeroii is a modified version of Archero 2 for iOS. The mod includes Ads SpeedUp to accelerate in-game advertisements and IGameGod cheat menu functionality. It is presented as a sequel to the original Archero action game.",
+  "features": [
+   "Ads SpeedUp",
+   "IGameGod Menu"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "77b57b0b81ac2ef6823a7de154f84fdbdd0b5c3dc9eea300619c54b150cc90a4",
+  "subtitle": "Archero 2 mod with speed and cheat features",
+  "tags": [
+   "archero",
+   "mod",
+   "cheat",
+   "speedup",
+   "action",
+   "sequel"
+  ]
+ },
+ "com.xtcarts.gametracker": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Area X provides a platform for iPhone and iPad users to track gaming trophies and access gaming news in one app. The service combines trophy management with current gaming information for players who want a unified experience.",
+  "features": [
+   "Trophy Tracking",
+   "Gaming News"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "2cec171644e84508fa7f9425f4d9cd433f5acf3c73482b1ef45576286a4f23cc",
+  "subtitle": "Track trophies and gaming news",
+  "tags": [
+   "trophies",
+   "gaming news",
+   "playstation",
+   "achievements",
+   "game tracker"
+  ]
+ },
+ "com.xu.applock": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppLockerPlus lets you lock individual apps on your iPhone to enhance privacy. It is designed for users who want stronger control over app access.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "3f9e2d1e82def27f6371a5e536fe5e7ace4f24ef806db7c3dd9f546edf80a7ea",
+  "subtitle": "Lock apps and protect iPhone privacy",
+  "tags": [
+   "app lock",
+   "privacy",
+   "security",
+   "iphone",
+   "protection"
+  ]
+ },
  "com.yoshisuga.activeGS": {
   "category": "games",
   "date": "2026-10-14",
@@ -2741,6 +4556,23 @@
    "retro",
    "gaming",
    "vintage"
+  ]
+ },
+ "com.yourname028.BarcodeScanner": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Barcode Scanner is an official Apple utility for scanning barcodes.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "6602794d97337149efb6f79ce451fb9a8bc38957cbdd37db6aff8261a9f631ae",
+  "subtitle": "Official Apple barcode scanner",
+  "tags": [
+   "barcode",
+   "scanner",
+   "apple",
+   "utility",
+   "scan",
+   "code"
   ]
  },
  "cypwn.AdGuardPro_TS.4.4.0": {
@@ -2804,6 +4636,171 @@
    "diary",
    "maker",
    "collection"
+  ]
+ },
+ "cypwn.Aphrodite_TS.0.6.12": {
+  "category": "photo-video",
+  "date": "2026-10-14",
+  "description": "Asset Catalog Editor developed by Aphrodite_TS and CyPwn.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e7e75c91fce1f1c78ca948a06e20c36564ae6bf7ccd9e9b25e13fc32726d42f1",
+  "subtitle": "Asset Catalog Editor",
+  "tags": [
+   "asset",
+   "catalog",
+   "editor",
+   "developer"
+  ]
+ },
+ "cypwn.AppCake6_TS.6.1.3": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AppCake6_TS is an IPA store featuring more search results than AppCake7 with an older user interface.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "af782134b571dfb4b0fddda32f46e88ec6122f37ef0d1e0b342f6f977e7116c4",
+  "subtitle": "IPA store with expanded search",
+  "tags": [
+   "ipa",
+   "store",
+   "search",
+   "appcake"
+  ]
+ },
+ "cypwn.AppCake7_TS.7.2.2": {
+  "category": "utilities",
+  "date": "2026-10-14",
+  "description": "IPA store with a modern user interface. Browse and download apps with fewer search results than AppCake6. Features no ads.",
+  "features": [
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5fbbedd310d4ed394d7163df6f0d7316417319a707e9cc2b872ec3d484f7772d",
+  "subtitle": "Modern IPA store",
+  "tags": [
+   "ipa",
+   "store",
+   "apps",
+   "downloads",
+   "utilities"
+  ]
+ },
+ "cypwn.AppDB_1.1.5.1.1.5": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "This app is an iOS client for the AppDB service (appdb.to). It is written in Swift 5.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "1d1cbfc0896c9dd680e2a39000abebaeeec6a0e8cb780e13a647e4ce52326b49",
+  "subtitle": "iOS client for AppDB service",
+  "tags": [
+   "appdb",
+   "client",
+   "ios",
+   "swift",
+   "developer"
+  ]
+ },
+ "cypwn.AppInstalleriOS_TS.6.0.0": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Random app installer with some cool features.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "a864ea35f3ee2c6a9b36ffde487e81bd86472c9978b1918663a11178ae13a0d4",
+  "subtitle": "Random iOS app installer",
+  "tags": [
+   "app",
+   "installer",
+   "ios",
+   "random",
+   "cool",
+   "features"
+  ]
+ },
+ "cypwn.Appabetical-0.9_TS.0.9": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "Sort your apps A to Z or by color.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fcee2cd25bafd83c7ceec39101d57fb132b4573139d6d6b07782030b0a39904f",
+  "subtitle": "Sort your apps A to Z or by color",
+  "tags": [
+   "sort",
+   "apps",
+   "organization",
+   "alphabetical",
+   "color"
+  ]
+ },
+ "cypwn.AppsManagerCracked_1.8.1.1.8.1": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppsManager version 1.8.1 is an app data manager developed by TigiSoftware. This version includes an activated crack by Paisseon. The app provides data management functionality for iOS applications.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "09975ab185f097563bb2363504a76509e4ee0bd1dd5f0e70ed23bd0a0a32123f",
+  "subtitle": "App Data Manager with crack activated",
+  "tags": [
+   "app-data-manager",
+   "utilities",
+   "cracked",
+   "tigissoftware",
+   "paisseon",
+   "ios"
+  ]
+ },
+ "cypwn.AuroraPWmanager_TS.0.9.2": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Aurora v0.9.2 is a vanilla password manager built using SwiftUI.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "10d7caa3f76b1ed93f140a56c5552f9a11b1877b3f4d4ea993f774815588a96e",
+  "subtitle": "Vanilla password manager built with SwiftUI",
+  "tags": [
+   "password",
+   "manager",
+   "swiftui",
+   "vanilla",
+   "aurora",
+   "security"
+  ]
+ },
+ "cypwn.BackupAZ4_Crack_TS.1.3.1": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BackupAZ4 is a tool that may be useful for a select few with TS and jailbroken devices. It is cracked by Anna.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "38e3a7b11a5df77e901729f8665bc0ab2c18553133edc080bfbb2274bf674d22",
+  "subtitle": "BackupAZ4 cracked for TS and jailbreak",
+  "tags": [
+   "backup",
+   "ts",
+   "jailbreak",
+   "cracked",
+   "anna",
+   "cypwn"
+  ]
+ },
+ "cypwn.BatteryLife_TS.3.2.1": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BatteryLife_TS provides advanced battery health monitoring, detailed battery information, and usage statistics for iOS devices.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "16bb25ab796a052c3f577b78a77c380ee978ceba813fb27b90b2a4fdd7180c5c",
+  "subtitle": "Advanced battery health and statistics",
+  "tags": [
+   "battery",
+   "health",
+   "monitor",
+   "statistics",
+   "info",
+   "utility"
   ]
  },
  "droom.sleepIfUCanFree": {
@@ -2875,6 +4872,23 @@
    "battle"
   ]
  },
+ "hedonic.games.arrowrush.td": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arrow Rush: Archer Roguelike is an iOS action roguelike game package that lets iPhone users play an archery\u2011focused roguelike experience.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "40371a20e8fa560349754e8283f9f7b4d30877fa6f6602deb68322ee3f778552",
+  "subtitle": "Action roguelike archery game",
+  "tags": [
+   "arrow rush",
+   "archer",
+   "roguelike",
+   "action",
+   "ios",
+   "game"
+  ]
+ },
  "inc.animation.AniClaw": {
   "category": "games",
   "date": "2026-10-14",
@@ -2891,6 +4905,23 @@
    "ipa",
    "games",
    "patched"
+  ]
+ },
+ "io.blocktackle.bcg": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "He-Man: MOTU Battle for Eternia brings the iconic Masters of the Universe universe to iOS.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "7a14f561c5f42dc4ca58f299d99508fcc79d7982c75fb1d5f65e17205233696c",
+  "subtitle": "He-Man Masters of the Universe game",
+  "tags": [
+   "he-man",
+   "motu",
+   "masters of the universe",
+   "action",
+   "adventure",
+   "ios"
   ]
  },
  "io.github.getaccretion.Accretion": {
@@ -2916,6 +4947,23 @@
    "altstore"
   ]
  },
+ "io.github.johnny901901901.applesauce": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Applesauce is an emulator for iOS that runs supported 32-bit iPhone games on modern iPhones. It does not require a jailbreak, though JIT support is needed. The app installs via sideloading.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "8ab40a1f573f788a7491985fc8c1a015e7371b9122b4f361fc7e33d0d8a18257",
+  "subtitle": "32-bit iOS game emulator",
+  "tags": [
+   "emulator",
+   "32-bit",
+   "ios-games",
+   "sideload",
+   "retro-gaming",
+   "jit"
+  ]
+ },
  "io.mindist.noise": {
   "category": "other",
   "date": "2026-10-14",
@@ -2931,6 +4979,21 @@
    "focus",
    "relax",
    "audio"
+  ]
+ },
+ "it.ned.appdb-ios": {
+  "category": "developer",
+  "date": "2026-10-14",
+  "description": "Comprehensive iOS client for AppDB, compatible with iOS 10 and up.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "993901dcaa5df39d69af6ebb0e28dadc4927ab95cecf97fcea68e32f0e762b77",
+  "subtitle": "Comprehensive iOS client for AppDB",
+  "tags": [
+   "appdb",
+   "client",
+   "ios",
+   "developer"
   ]
  },
  "jp.dcsyhi.airwall": {
@@ -2949,6 +5012,23 @@
    "customization"
   ]
  },
+ "jp.shunsuke-osawa.AutoVideoBlur": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Auto Video Blur is an iOS video editing app designed to help iPhone users apply blur and filtering effects to videos.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "660b123dc4bb9aa209a6bbcdf96cfc5cc995213ec69dde17189abeb500700775",
+  "subtitle": "Video blur and filtering editor for iOS",
+  "tags": [
+   "video",
+   "blur",
+   "filter",
+   "editing",
+   "ios",
+   "iphone"
+  ]
+ },
  "live.cclerc.Anonycord": {
   "category": "photo-video",
   "date": "2026-10-14",
@@ -2965,6 +5045,45 @@
    "camera"
   ]
  },
+ "llc.planeenglish.PlaneEnglish": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Premium features added. The IPA has been tested and compiled by TTJB Team.",
+  "features": [
+   "Premium",
+   "Tested",
+   "TTJB Team"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "c1133c35f0d87303af435553f2e908cb500cb7e9102059d3e6a5fb934d36d53d",
+  "subtitle": "Premium AR simulation IPA by TTJB",
+  "tags": [
+   "arsim",
+   "premium",
+   "ipa",
+   "ttjb",
+   "tested",
+   "compiled"
+  ]
+ },
+ "myndarc.newFitnessApp": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Athlytic is an app with subscription features unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "6af86b8d7e4953043bd881f15f5447f20faf0dc206d938dbdf32893b306c8e74",
+  "subtitle": "Athlytic with subscription unlocked",
+  "tags": [
+   "athlytic",
+   "subscription",
+   "unlocked",
+   "ipa",
+   "repo"
+  ]
+ },
  "net.ichi2.anki": {
   "category": "other",
   "date": "2026-10-14",
@@ -2979,6 +5098,23 @@
    "study",
    "learning",
    "education"
+  ]
+ },
+ "net.limneos.AudioRecordernodb": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "This tool allows you to record audio from a call using TrollStore. Developed by Limneos. No Dropbox integration.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b2440ba9fc20d1b3b2c3bd52fe8361e00d89fa8cff7c66f09b11f1b3d0bd03b7",
+  "subtitle": "Record calls with TrollStore",
+  "tags": [
+   "audio",
+   "recorder",
+   "call",
+   "trollstore",
+   "limneos",
+   "no-dropbox"
   ]
  },
  "net.sourceloc.AirTroller": {
@@ -3089,6 +5225,21 @@
    "open source"
   ]
  },
+ "org.htf65jud.balatro": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Balatro 1.0.1o is an app developed by Balatro_1.0.1o x CyPwn. It is listed under the other category.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "025bb9acad686c3eff83c07bf1318c00d53afbfb59bb3a374d57b1ed7bc05e67",
+  "subtitle": "Balatro 1.0.1o by CyPwn",
+  "tags": [
+   "balatro",
+   "cypwn",
+   "app",
+   "other"
+  ]
+ },
  "org.openani.Animeko": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -3110,6 +5261,22 @@
    "bangumi",
    "torrent",
    "offline"
+  ]
+ },
+ "rn.notes.best": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "Works with TrollStore. The app is entirely in Chinese. It functions as a Chinese app store allowing users to download and install apps.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "1fa362ebc49e2196431f8e42da8c69c72767a1d1e3949c0e6fa0d605397eb64f",
+  "subtitle": "Chinese app store for TrollStore",
+  "tags": [
+   "trollstore",
+   "chinese",
+   "appstore",
+   "download",
+   "install"
   ]
  },
  "sato.tokyo.ai-art": {
@@ -3164,6 +5331,57 @@
    "generator",
    "branding",
    "design"
+  ]
+ },
+ "uclort.com.AppInfo": {
+  "category": "other",
+  "date": "2026-10-14",
+  "description": "AppInfo is injected with Nothing by uclort.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "25b49c359293fc8ff4a67bea5a18532f5ae6ba6f12f21c51348805d753c97629",
+  "subtitle": "AppInfo \u2013 injected with Nothing",
+  "tags": [
+   "appinfo",
+   "injected",
+   "nothing",
+   "uclort"
+  ]
+ },
+ "wiki.qaq.Asspp": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Asspp_2.3 enables multi-account App Store management.",
+  "features": [],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "cbd1f78ce967c10f48dae2829dd14db8f9f4970d0748a1d84f50c83810ba2657",
+  "subtitle": "Manage multiple App Store accounts",
+  "tags": [
+   "app store",
+   "multi-account",
+   "account management",
+   "ios",
+   "utility"
+  ]
+ },
+ "xyz.cypwn.autorc": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Automatically unlock most RevenueCat-based apps. Developed by Cypwn.",
+  "features": [
+   "Auto unlock",
+   "RevenueCat support"
+  ],
+  "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
+  "src_hash": "b5cf676b098419074811c9278fded8ade59da049c6f8869b64fd7c7ebc9c3c08",
+  "subtitle": "Auto unlock RevenueCat apps",
+  "tags": [
+   "revenuecat",
+   "unlock",
+   "auto",
+   "cypwn",
+   "ios",
+   "tool"
   ]
  },
  "xyz.skitty.Aidoku": {
