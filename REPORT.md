@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-14 22:23 UTC.
+Built 2026-10-15 00:57 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4272** (4948 KB) |
+| Apps in `source.json` | **4272** (4952 KB) |
 | Apps in `curated.json` | **728** (708 KB) |
-| Listings read | 23748 |
+| Listings read | 23749 |
 | Apps listed by more than one source (newest kept) | 1797 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6609 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -20,14 +20,14 @@ Built 2026-10-14 22:23 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3727 | 3535 | 4524 | 2026-10-14 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3727 | 3532 | 4524 | 2026-10-14 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1626 | 536 | 331 | 2026-10-14 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | cached | 239 | 101 | 13 | 2025-01-01 | curated |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
+| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 8 | 0 | 2026-10-14 | discovered |
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 20 | 8 | 1 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-14 | discovered |
 | [RipeStore](https://bit.ly/RipeStore) | ok | 11 | 6 | 0 | 2026-07-01 | discovered |
-| [Altmaker by RipeStore](https://raw.githubusercontent.com/RipeStore/repos/main/AltMaker.json) | ok | 156 | 5 | 0 | 2026-10-14 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 203 | 4 | 6 | 2026-07-23 | curated |
 | [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 4 | 0 | 2026-10-14 | discovered |
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
@@ -79,7 +79,7 @@ Built 2026-10-14 22:23 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4600 | 0 | 227 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 204 | 0 | 6 | 2026-08-28 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -193,9 +193,12 @@ Built 2026-10-14 22:23 UTC.
 | App | Version | Date | From |
 |---|---|---|---|
 | Accretion | 1.0.31 | 2026-10-14 | raw.githubusercontent.com |
+| Manatan | 6.1.47 | 2026-10-14 | raw.githubusercontent.com |
+| Theft4 | 0.3.2 | 2026-10-14 | raw.githubusercontent.com |
+| Palladium | 1.4.5 | 2026-10-14 | raw.githubusercontent.com |
+| VortX | 0.5.2 | 2026-10-14 | raw.githubusercontent.com |
 | MuffinEMU | 10.1 | 2026-10-14 | raw.githubusercontent.com |
 | SideInstaller | 1.5.1 | 2026-10-14 | raw.githubusercontent.com |
-| Manatan | 6.1.45 | 2026-10-14 | raw.githubusercontent.com |
 | iTorrent | 2.2.0-1 | 2026-10-14 | raw.githubusercontent.com |
 | Gopeed-v1.8.3-ios | 1.9.3 | 2026-10-14 | raw.githubusercontent.com |
 | Flappy Bird | 4.5 | 2026-10-14 | raw.githubusercontent.com |
@@ -214,6 +217,3 @@ Built 2026-10-14 22:23 UTC.
 | iRAM+ | 1.3.0 | 2026-10-14 | raw.githubusercontent.com |
 | MeloNX | 2.7 | 2026-10-14 | raw.githubusercontent.com |
 | SideInstaller | 0.9.0 | 2026-10-14 | raw.githubusercontent.com |
-| The Blockheads | 1.7.4 | 2026-10-14 | raw.githubusercontent.com |
-| Suwatte | 6.0.1 | 2026-10-14 | raw.githubusercontent.com |
-| Palladium | 1.4.4 | 2026-10-14 | raw.githubusercontent.com |
