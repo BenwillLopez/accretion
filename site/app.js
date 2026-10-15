@@ -545,7 +545,24 @@
     { id: "altstore", name: "AltStore", note: "Signs with your Apple ID, refreshes every 7 days.", link: (u) => `altstore://install?url=${encodeURIComponent(u)}` },
     { id: "sidestore", name: "SideStore", note: "Signs with your Apple ID, refreshes on the phone.", link: (u) => `sidestore://install?url=${encodeURIComponent(u)}` },
     { id: "trollstore", name: "TrollStore", note: "Permanent installs, on the iOS versions it supports.", link: (u) => `apple-magnifier://install?url=${encodeURIComponent(u)}` },
-  ];
+  ].map((i) => ({ ...i, icon: `assets/store-${i.id}.webp` })); // each app's own icon, 96px WebP
+
+  // Small line icons for rows that aren't a store (24px grid, drawn in the current text colour)
+  const GLYPHS = {
+    download: "M12 4v11M7 10l5 5 5-5M5 19h14",
+    copy: "M9 9h10v10H9zM5 15V5h10",
+    cert: "M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6zM9 12l2 2 4-4",
+  };
+  function glyph(name) {
+    const NS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    const path = document.createElementNS(NS, "path");
+    path.setAttribute("d", GLYPHS[name]);
+    svg.append(path);
+    return svg;
+  }
+  const logo = (src) => h("img", { src, alt: "", width: 32, height: 32, loading: "lazy", decoding: "async" });
   const installer = () => INSTALLERS.find((i) => i.id === store.get("acc.installer", null)) || null;
 
   // Pick an installer. With a url it also starts the install; without one it only saves the choice.
@@ -574,17 +591,17 @@
 
   // "More ways" on the app page: every other way to get the app, one row each (like the app's install sheet)
   function moreWays(a, ipa, pref, installed) {
-    const way = (attrs, glyph, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
-      h("span", { class: "way-ic", "aria-hidden": "true" }, glyph),
+    const way = (attrs, mark, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
+      h("span", { class: `way-ic${mark.tagName === "IMG" ? " logo" : ""}`, "aria-hidden": "true" }, mark),
       h("span", { class: "way-txt" }, h("b", {}, name), note ? h("span", { class: "muted small" }, note) : null),
       h("span", { class: "way-go", "aria-hidden": "true" }, "›")));
     const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "ways-title" },
       h("h2", { id: "ways-title" }, "More ways to install"),
       h("ul", { class: "ways" },
-        way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, ipa); } }, "⬇", "Download IPA", "Save the file and sign it yourself."),
-        ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: () => { dlg.close(); installed(); } }, "◆", i.name, i.note)),
-        ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener", onclick: () => dlg.close() }, "✓", `Sign with ${c.name}`, c.note)),
-        way({ href: ipa, onclick: (e) => { e.preventDefault(); copy(ipa, "IPA link copied"); dlg.close(); } }, "⧉", "Copy IPA link", null)),
+        way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, ipa); } }, glyph("download"), "Download IPA", "Save the file and sign it yourself."),
+        ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: () => { dlg.close(); installed(); } }, logo(i.icon), i.name, i.note)),
+        ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener", onclick: () => dlg.close() }, /^assets\/[\w.-]+$/.test(c.icon || "") ? logo(c.icon) : glyph("cert"), `Sign with ${c.name}`, c.note)),
+        way({ href: ipa, onclick: (e) => { e.preventDefault(); copy(ipa, "IPA link copied"); dlg.close(); } }, glyph("copy"), "Copy IPA link", null)),
       h("div", { class: "dl-actions" }, h("button", { class: "btn ghost", type: "button", onclick: () => dlg.close() }, "Cancel")));
     dlg.addEventListener("close", () => dlg.remove());
     document.body.append(dlg);
