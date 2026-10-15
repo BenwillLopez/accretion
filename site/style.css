@@ -106,6 +106,8 @@ img { max-width: 100%; }
 
 /* hero */
 main, .detail, .foot { max-width: 1180px; margin-inline: auto; padding-inline: 16px; }
+/* Home and footer grow with the screen: 1 shelf column on phones, then 2, 3 or 4 as width allows. */
+main, .foot { max-width: 1640px; padding-inline: clamp(16px, 3vw, 40px); }
 .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: end; padding-block: 34px 22px; }
 .eyebrow { font: 12px var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
 .live { --tone: var(--good); width: 8px; height: 8px; border-radius: 50%; background: var(--tone); box-shadow: 0 0 0 0 color-mix(in srgb, var(--tone) 60%, transparent); }
@@ -233,7 +235,7 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .toggle[aria-pressed="true"] { color: var(--good); border-color: color-mix(in srgb, var(--good) 45%, var(--line)); background: color-mix(in srgb, var(--good) 10%, var(--surface)); }
 .filter-note { font-size: 13px; color: var(--muted); margin: 0 0 12px; display: flex; gap: 10px; flex-wrap: wrap; }
 
-#shelves { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 4px 28px; align-items: start; }
+#shelves { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 4px 28px; align-items: start; grid-auto-flow: row dense; }
 #shelves > #social-shelves { display: contents; }
 .shelf { margin: 8px 0 18px; min-width: 0; }
 .shelf-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
@@ -242,6 +244,14 @@ h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in 
 .shelf-pages { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 18px; }
 .shelf-pages.multi { grid-auto-columns: 88%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .shelf-pages.multi::-webkit-scrollbar { display: none; }
+/* Mouse and trackpad screens page with the arrows, so each page fills the shelf (no cut-off peek). */
+@media (hover: hover) and (pointer: fine) { .shelf-pages.multi { grid-auto-columns: 100%; } }
+/* A shelf with only one or two apps becomes a full-width strip instead of a tall, mostly empty block. */
+.shelf.short { grid-column: 1 / -1; }
+/* Wide screens show it first as a featured strip; phones keep the app's order. */
+@media (min-width: 1100px) { .shelf.short { order: -1; } }
+.shelf.short .shelf-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); column-gap: 28px; }
+.shelf.short .shelf-list li + li .row-body { border-top: 0; }
 .shelf-list { list-style: none; margin: 0; padding: 0; min-width: 0; scroll-snap-align: start; }
 .shelf-list li + li .row-body { border-top: 1px solid var(--line); }
 .shelf-tools { display: inline-flex; align-items: center; gap: 10px; }

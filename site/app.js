@@ -437,7 +437,7 @@
       { class: `shelf-pages${pages.length > 1 ? " multi" : ""}` },
       pages.map((page, p) => h("ol", { class: "shelf-list", start: String(p * LIST + 1) }, page.map((a, i) => listRow(a, ranked ? p * LIST + i + 1 : 0)))),
     );
-    const step = (dir) => scroller.scrollBy({ left: dir * scroller.clientWidth * 0.9, behavior: "smooth" });
+    const step = (dir) => scroller.scrollBy({ left: dir * scroller.clientWidth, behavior: "smooth" });
     const arrows = pages.length > 1
       ? h("span", { class: "shelf-nav" },
           h("button", { type: "button", "aria-label": `Previous ${title}`, onclick: () => step(-1) }, "‹"),
@@ -445,7 +445,7 @@
       : null;
     return h(
       "section",
-      { class: "shelf" },
+      { class: list.length <= 2 ? "shelf short" : "shelf" },
       h("div", { class: "shelf-head" }, h("h2", {}, title, note ? h("span", {}, note) : null), h("span", { class: "shelf-tools" }, arrows, seeAll ? h("a", { href: seeAll }, "See all") : null)),
       scroller,
     );
