@@ -46,14 +46,14 @@ jobs:
     env:
       HAS_APPLE_KEY: ${{ secrets.APPLE_PRIVATE_KEY != '' }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: main
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         continue-on-error: true
       - name: Install Apple key signing
         if: env.HAS_APPLE_KEY == 'true'
