@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install iPhone Apps Without a Computer (Sideload iOS)</title>
+<meta name="description" content="Sideload iOS apps without a PC: how a signing certificate lets you install iPhone apps from your phone for about a year, and how it compares to AltStore.">
+<link rel="canonical" href="https://getaccretion.app/install-without-computer.html">
+<meta property="og:site_name" content="Accretion">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install iPhone Apps Without a Computer (Sideload iOS)">
+<meta property="og:description" content="Sideload iOS apps without a PC: how a signing certificate lets you install iPhone apps from your phone for about a year.">
+<meta property="og:url" content="https://getaccretion.app/install-without-computer.html">
+<meta property="og:image" content="https://getaccretion.app/icon-512.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can I sideload iOS apps without a computer?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. With a paid signing certificate you can install a signer app once and then sign and install other apps straight from your iPhone. The free AltStore and SideStore route needs a computer for the first setup."}},
+    {"@type": "Question", "name": "What is an iOS signing certificate?", "acceptedAnswer": {"@type": "Answer", "text": "It is a set of files (a .p12 certificate, a .mobileprovision profile and a password) that lets an app signer sign an IPA so iOS accepts it. Paid certificates last about a year."}},
+    {"@type": "Question", "name": "Is it safe?", "acceptedAnswer": {"@type": "Answer", "text": "Accretion does not review third-party apps, so install only what you trust. The certificate itself only signs apps; keep its files private."}},
+    {"@type": "Question", "name": "What happens if Apple revokes my certificate?", "acceptedAnswer": {"@type": "Answer", "text": "Apps signed with it stop opening. Sellers such as Signulous replace revoked certificates; install your apps again with the new one."}},
+    {"@type": "Question", "name": "Do I need to jailbreak?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sideloading uses Apple's normal signing system and works on a stock iPhone."}}
+  ]
+}
+</script>
+</head>
+<body>
+<main class="view doc">
+  <p><a class="btn back" href="./#/">← Accretion</a></p>
+  <h1 class="view-title">Install iPhone apps without a computer</h1>
+  <p class="muted">The short version: a paid signing certificate lets your iPhone sign and install apps by itself for about a year. No computer, no weekly refresh.</p>
+
+  <h2>What sideloading is</h2>
+  <p>Sideloading means installing an iPhone app that isn't from the App Store. iOS only runs apps that are signed, so every sideloaded app has to be signed with a certificate before it will open. Normally that signing happens on a computer, which is why most guides tell you to plug your phone into a PC or Mac. You can skip the computer, but you need the right kind of certificate.</p>
+
+  <h2>Your options</h2>
+  <h3>A paid signing certificate</h3>
+  <p>You buy a certificate from a seller. It comes as a .p12 file, a .mobileprovision file and a password. You add it to a signer app on your iPhone, and the phone signs and installs apps itself.</p>
+  <ul>
+    <li><b>Computer needed:</b> no. You can do it all from the phone.</li>
+    <li><b>Lasts:</b> about a year.</li>
+    <li><b>Cost:</b> paid, set by the seller.</li>
+    <li><b>Risk:</b> Apple can revoke a certificate. Good sellers replace it.</li>
+  </ul>
+  <h3>Free AltStore or SideStore</h3>
+  <p>These use your own Apple ID instead of a bought certificate.</p>
+  <ul>
+    <li><b>Computer needed:</b> yes, once, for the first setup.</li>
+    <li><b>Lasts:</b> 7 days. Apps must be refreshed every week.</li>
+    <li><b>Cost:</b> free.</li>
+    <li><b>Limit:</b> a free Apple ID allows only a few sideloaded apps at once.</li>
+  </ul>
+  <p>If you only want to try one app, the free route is fine. If you want to install many apps, without a computer and without refreshing every week, a paid certificate is the simpler path.</p>
+
+  <h2>Recommended: Signulous plus Accretion</h2>
+  <p>Signulous sells signing certificates and installs apps from your iPhone, no computer needed. Its installer gives each app its own identity, so you can install as many apps as you like with one certificate.</p>
+  <ol>
+    <li>Use the button below: it registers your iPhone with Signulous and installs Accretion.</li>
+    <li>Find an app in Accretion and open its page.</li>
+    <li>Tap the Signulous link on that page to install the app through Signulous.</li>
+  </ol>
+  <p class="muted small">You can also add the certificate files to Accretion (Settings → Certificates → +) and sign there. Many certificates are tied to one App ID, though, so that way fits only one app at a time.</p>
+  <p><a class="btn primary" href="https://www.signulous.com/sign-apps?r=accretion&amp;appName=Accretion&amp;appIcon=https%3A%2F%2Fgetaccretion.app%2Ficon-512.png" target="_blank" rel="sponsored noopener">Install Accretion with Signulous</a></p>
+  <p>Not sure yet? Read more on the <a href="https://www.signulous.com/?r=accretion" target="_blank" rel="sponsored noopener">Signulous site</a>.</p>
+  <p class="muted small">Affiliate link: Accretion earns a commission, at no extra cost to you. Accretion is free either way, and other certificate sellers work with it too.</p>
+
+  <h2>If Apple revokes your certificate</h2>
+  <p>Apple sometimes revokes certificates. When that happens, apps signed with it stop opening. Sellers like Signulous replace a revoked certificate. Install your apps again through the seller, or, if you sign in Accretion, add the new files there and use Re-sign All from the ✨ menu in Library.</p>
+
+  <h2>Questions</h2>
+  <h3>Can I sideload iOS apps without a computer?</h3>
+  <p>Yes. With a paid certificate, you install a signer app once and then sign and install other apps from the iPhone. The free AltStore and SideStore route needs a computer for the first setup.</p>
+  <h3>What is an iOS signing certificate?</h3>
+  <p>It is a set of files (a .p12 certificate, a .mobileprovision profile and a password) that lets an app signer sign an IPA so iOS accepts it. Paid ones last about a year.</p>
+  <h3>Is it safe?</h3>
+  <p>Accretion doesn't review third-party apps, so install only what you trust. The certificate only signs apps; keep its files private.</p>
+  <h3>What happens if Apple revokes my certificate?</h3>
+  <p>Apps stop opening until you add a replacement. See the section above.</p>
+  <h3>Do I need to jailbreak?</h3>
+  <p>No. Sideloading uses Apple's normal signing system and works on a stock iPhone.</p>
+
+  <h2>Next</h2>
+  <p><a href="./#/">Browse the Accretion store</a>, or open the in-app <a href="./#/sign">Sign your own apps</a> guide to install any IPA, including ones that aren't in the store.</p>
+</main>
+</body>
+</html>

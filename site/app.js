@@ -713,7 +713,7 @@
                 h("a", { class: "btn", href: safeUrl(c.url), target: "_blank", rel: "sponsored noopener" }, "Get certificate")))),
               h("p", { class: "muted small" }, "Affiliate links: Accretion earns a commission, at no extra cost to you."))
           : h("p", { class: "muted small" }, "Pick a seller that replaces or refunds certificates Apple revokes."),
-        h("p", { class: "muted small" }, "Free alternative: AltStore or SideStore with your own Apple ID (needs a computer once, apps refresh every 7 days).")),
+        h("p", { class: "muted small" }, "Free alternative: AltStore or SideStore with your own Apple ID (needs a computer once, apps refresh every 7 days). ", h("a", { href: "install-without-computer.html" }, "Full guide"))),
       step(2, "Add it to the Accretion app",
         h("p", {},
           ours ? h("a", { class: "btn primary", href: `#/app/${encodeURIComponent(ACCRETION_ID)}` }, `Get Accretion ${ours.v}`) : null,

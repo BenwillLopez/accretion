@@ -616,6 +616,7 @@ class SitemapTest(unittest.TestCase):
             urls,
             [
                 "https://getaccretion.github.io/",
+                "https://getaccretion.github.io/install-without-computer.html",
                 "https://getaccretion.github.io/app/com.a.one/",
                 "https://getaccretion.github.io/app/com.c.three/",
             ],  # com.b&two is not a safe page name, so it has no page
@@ -637,7 +638,7 @@ class SitemapTest(unittest.TestCase):
                 index = f.read()
             files = sorted(f for f in os.listdir(out) if f.startswith("sitemap-"))
         self.assertIn("<sitemapindex", index)
-        self.assertEqual(files, ["sitemap-1.xml", "sitemap-2.xml"])
+        self.assertEqual(files, ["sitemap-1.xml", "sitemap-2.xml", "sitemap-3.xml"])
 
 
 class SupabaseSetup(unittest.TestCase):

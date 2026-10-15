@@ -106,6 +106,7 @@ def write_share_page(bid, title, desc, icon, name):
 
 SITE_URL = "https://getaccretion.app"  # used for the sitemap when SITE_URL is not set
 SITEMAP_LIMIT = 50000  # most URLs one sitemap file may list
+STATIC_PAGES = ["install-without-computer.html"]  # crawlable guide pages in site/ that belong in the sitemap
 
 
 def newest_date(app):
@@ -116,14 +117,18 @@ def newest_date(app):
 
 def sitemap(site_url, apps, out=None):
     """sitemap.xml (a sitemap index plus sitemap-N.xml files above 50,000 URLs) and robots.txt.
-    Lists the store and every per-app page; nothing public is blocked."""
+    Lists the store, the guide pages and every per-app page; nothing public is blocked."""
     out = out or OUT
     site_url = site_url.rstrip("/")
-    entries = [(f"{site_url}/", "")] + [
-        (f"{site_url}/app/{a['bundleIdentifier']}/", newest_date(a))
-        for a in apps
-        if SAFE_ID.match(a["bundleIdentifier"])
-    ]
+    entries = (
+        [(f"{site_url}/", "")]
+        + [(f"{site_url}/{page}", "") for page in STATIC_PAGES]
+        + [
+            (f"{site_url}/app/{a['bundleIdentifier']}/", newest_date(a))
+            for a in apps
+            if SAFE_ID.match(a["bundleIdentifier"])
+        ]
+    )
     head = '<?xml version="1.0" encoding="UTF-8"?>\n'
     ns = 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
 
