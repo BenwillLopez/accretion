@@ -39,23 +39,29 @@ class RouterTest(unittest.TestCase):
 
         def fake(spec, *_):
             seen.append(spec)
-            if spec == "gemini:g1":
-                raise http(503)
-            if spec == "openrouter:a/b:free":
-                raise http(429)
-            return "hello"
+            raise http(503)
 
-        with mock.patch.object(llm, "call", fake):
-            self.assertEqual(llm.ask("t", "s", "u"), "hello")
-            self.assertEqual(llm.last_model, "openrouter:c/d:free")
-            self.assertEqual(llm.ask("t", "s", "u"), "hello")
+        def fake_group(specs, *_):
+            seen.append(list(specs))
+            if len(seen) == 2:
+                raise http(429)
+            return "hello", specs[-1]
+
+        with mock.patch.object(llm, "call", fake), mock.patch.object(llm, "call_group", fake_group):
+            self.assertIsNone(llm.ask("t", "s", "u"))
+            self.assertEqual(llm.busy, {"gemini:g1", "openrouter:a/b:free", "openrouter:c/d:free"})
+            llm.busy.discard("openrouter:c/d:free")
+            llm.busy.add("openrouter:a/b:free")
+            self.assertEqual(llm.ask("t", "s", "u"), None)  # c/d alone goes to call(), which is busy again
         self.assertEqual(
-            seen, ["gemini:g1", "openrouter:a/b:free", "openrouter:c/d:free", "openrouter:c/d:free"]
+            seen, ["gemini:g1", ["openrouter:a/b:free", "openrouter:c/d:free"], "openrouter:c/d:free"]
         )
 
     def test_skips_providers_without_a_key(self):
         seen = []
+        one = {"order": ["gemini:g1", "openrouter:a/b:free"], "moderation": ""}
         with (
+            mock.patch.object(llm, "config", return_value=one),
             mock.patch.dict(os.environ, {"GEMINI_API_KEY": ""}),
             mock.patch.object(llm, "call", lambda spec, *_: seen.append(spec) or "ok"),
         ):
@@ -67,6 +73,8 @@ class RouterTest(unittest.TestCase):
         with (
             mock.patch.object(llm, "config", return_value=paid),
             mock.patch.object(llm, "call", side_effect=AssertionError("paid model called")),
+            mock.patch.object(llm, "call_group", side_effect=AssertionError("paid model called")),
+            mock.patch.object(llm, "post", side_effect=AssertionError("paid model called")),
         ):
             self.assertIsNone(llm.ask("t", "s", "u"))
 
@@ -84,9 +92,100 @@ class RouterTest(unittest.TestCase):
         self.assertIn("rejected", prompts[1])
 
     def test_schema_gives_up_after_one_retry_per_model(self):
-        with mock.patch.object(llm, "call", return_value='{"subtitle": "s", "category": "nope"}') as call:
+        bad = '{"subtitle": "s", "category": "nope"}'
+        with (
+            mock.patch.object(llm, "call", return_value=bad) as call,
+            mock.patch.object(llm, "call_group", side_effect=lambda specs, *_: (bad, specs[0])) as group,
+        ):
             self.assertIsNone(llm.ask("t", "s", "u", SCHEMA))
-        self.assertEqual(call.call_count, 2 * 3)
+        # gemini: 2 tries; group: 2 tries, then 2 more for the remaining model alone
+        self.assertEqual(call.call_count, 2 + 2)
+        self.assertEqual(group.call_count, 2)
+
+
+class GroupTest(unittest.TestCase):
+    def setUp(self):
+        llm.busy.clear()
+        mock.patch.object(llm, "config", return_value=ORDER).start()
+        mock.patch.dict(os.environ, {**KEYS, "GEMINI_API_KEY": ""}).start()
+
+    def tearDown(self):
+        mock.patch.stopall()
+
+    @staticmethod
+    def reply(text, model="a/b:free"):
+        return {"model": model, "choices": [{"message": {"content": text}}]}
+
+    def test_two_openrouter_specs_go_out_as_one_request(self):
+        bodies = []
+
+        def fake(url, headers, body):
+            bodies.append(body)
+            return self.reply("hello")
+
+        with mock.patch.object(llm, "post", fake):
+            self.assertEqual(llm.ask("t", "s", "u"), "hello")
+        self.assertEqual(len(bodies), 1)
+        self.assertEqual(bodies[0]["models"], ["a/b:free", "c/d:free"])
+        self.assertNotIn("model", bodies[0])
+
+    def test_last_model_comes_from_the_response(self):
+        with mock.patch.object(llm, "post", return_value=self.reply("hello", "c/d:free")):
+            llm.ask("t", "s", "u")
+        self.assertEqual(llm.last_model, "openrouter:c/d:free")
+        with mock.patch.object(llm, "post", return_value=self.reply("hello", "other/x")):
+            llm.ask("t", "s", "u")
+        self.assertEqual(llm.last_model, "openrouter:other/x")
+
+    def test_a_429_marks_every_model_in_the_group_busy(self):
+        with mock.patch.object(llm, "post", side_effect=http(429)) as post:
+            self.assertIsNone(llm.ask("t", "s", "u"))
+            self.assertIsNone(llm.ask("t", "s", "u"))
+        self.assertEqual(llm.busy, {"openrouter:a/b:free", "openrouter:c/d:free"})
+        self.assertEqual(post.call_count, 1)
+
+    def test_groups_hold_at_most_three_models(self):
+        five = {"order": [f"openrouter:m{i}/x:free" for i in range(5)], "moderation": ""}
+        bodies = []
+
+        def fake(url, headers, body):
+            bodies.append(body["models"])
+            raise http(503)
+
+        with mock.patch.object(llm, "config", return_value=five), mock.patch.object(llm, "post", fake):
+            llm.ask("t", "s", "u")
+        self.assertEqual([len(b) for b in bodies], [3, 2])
+
+    def test_a_model_that_answers_badly_twice_is_dropped_from_the_group(self):
+        bodies = []
+
+        def fake(url, headers, body):
+            bodies.append(body)
+            if "models" in body:
+                return self.reply('{"subtitle": "s", "category": "nope"}', "a/b:free")
+            return self.reply(GOOD, "c/d:free")
+
+        with mock.patch.object(llm, "post", fake):
+            data = llm.ask("t", "s", "u", SCHEMA)
+        self.assertEqual(data["category"], "games")
+        self.assertEqual(len(bodies), 3)
+        self.assertEqual(bodies[0]["models"], ["a/b:free", "c/d:free"])
+        self.assertEqual(bodies[2]["model"], "c/d:free")
+        self.assertNotIn("models", bodies[2])
+        self.assertEqual(llm.last_model, "openrouter:c/d:free")
+
+    def test_a_single_spec_order_sends_a_model_body(self):
+        one = {"order": ["openrouter:a/b:free"], "moderation": ""}
+        bodies = []
+
+        def fake(url, headers, body):
+            bodies.append(body)
+            return self.reply("hello")
+
+        with mock.patch.object(llm, "config", return_value=one), mock.patch.object(llm, "post", fake):
+            self.assertEqual(llm.ask("t", "s", "u"), "hello")
+        self.assertEqual(bodies[0]["model"], "a/b:free")
+        self.assertNotIn("models", bodies[0])
 
 
 class OverlayTest(unittest.TestCase):
