@@ -197,6 +197,10 @@ jobs:
   publish:
     needs: setup
     uses: ./.github/workflows/publish.yml
+    secrets:
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      # fills the private download links table; without it, other sources' downloads find nothing
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
 
   alert:
     # Scheduled runs only: opens one issue when the run fails, closes it when a later run passes.
