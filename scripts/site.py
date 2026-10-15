@@ -282,8 +282,13 @@ def main():
         project = load_json("supabase/project.json", {})
         url, key = project.get("url", ""), project.get("anonKey", "")
     if url and key:
+        config = {"supabaseUrl": url, "supabaseKey": key}
+        # "Download IPA" for other sources' apps goes through the download proxy once it is live
+        # (GitHub variable DOWNLOAD_PROXY_ORIGIN, the same one the download function gets)
+        if os.environ.get("DOWNLOAD_PROXY_ORIGIN", "").strip():
+            config["downloadProxy"] = True
         with open(os.path.join(OUT, "config.js"), "w") as f:
-            f.write(f"window.ACCRETION_CONFIG = {json.dumps({'supabaseUrl': url, 'supabaseKey': key})};\n")
+            f.write(f"window.ACCRETION_CONFIG = {json.dumps(config)};\n")
 
     gone = {
         b: g

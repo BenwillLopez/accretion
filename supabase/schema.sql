@@ -753,6 +753,21 @@ create trigger check_download before insert on public.download_log
   for each row execute function public.check_download();
 revoke execute on function public.check_download() from public, anon, authenticated;
 
+-- Every other source's file links, kept out of everything public (the site's data, the public
+-- repo, the app). The store build fills it (scripts/sync_links.py, service role); only the download
+-- function reads it, and it hands the link to the download proxy encrypted. No one else, signed in
+-- or not, can read it: RLS on, no policies, no grants.
+create table if not exists public.upstream_links (
+  bundle_id text not null check (bundle_id ~ '^[A-Za-z0-9][A-Za-z0-9._-]*$' and char_length(bundle_id) <= 200),
+  version text not null check (char_length(version) between 1 and 60),
+  url text not null check (url ~ '^https://' and char_length(url) <= 2000),
+  name text check (char_length(name) <= 200),
+  seen_at timestamptz not null default now(),
+  primary key (bundle_id, version)
+);
+alter table public.upstream_links enable row level security;
+revoke all on public.upstream_links from public, anon, authenticated;
+
 alter table public.hosted_builds enable row level security;
 alter table public.download_keys enable row level security;
 alter table public.download_log enable row level security;

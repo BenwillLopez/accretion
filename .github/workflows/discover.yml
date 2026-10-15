@@ -28,6 +28,7 @@ jobs:
     secrets:
       GH_SEARCH_TOKEN: ${{ secrets.GH_SEARCH_TOKEN }}
       FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
 
   alert:
     # Scheduled runs only: opens one issue when the run fails, closes it when a later run passes.

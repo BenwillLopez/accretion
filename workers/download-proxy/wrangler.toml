@@ -1,0 +1,10 @@
+# Deployed by .github/workflows/proxy.yml ("Store: deploy download proxy").
+# Secret DOWNLOAD_PROXY_KEY (same value as the download function's) is set by that workflow.
+name = "accretion-download-proxy"
+main = "index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+routes = [{ pattern = "dl.getaccretion.app", custom_domain = true }]
+
+[observability]
+enabled = false

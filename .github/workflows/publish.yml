@@ -17,6 +17,8 @@ on:
         required: false
       FIREBASE_SERVICE_ACCOUNT:
         required: false
+      SUPABASE_ACCESS_TOKEN:
+        required: false
 
 permissions:
   actions: write
@@ -106,6 +108,14 @@ jobs:
           # Settings > Secrets and variables > Actions > Variables (public values)
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
+          DOWNLOAD_PROXY_ORIGIN: ${{ vars.DOWNLOAD_PROXY_ORIGIN }}
+
+      # Every version's file link into the private table the download function reads (never fails the build)
+      - name: Save private download links
+        run: python scripts/sync_links.py
+        timeout-minutes: 5
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
 
       - name: Package the site
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0

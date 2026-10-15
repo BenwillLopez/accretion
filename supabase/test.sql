@@ -366,6 +366,34 @@ do $$ begin
 end $$;
 rollback;
 
+-- Other sources' file links are private: nobody but the service role reads or writes them.
+begin;
+set local role service_role;
+insert into public.upstream_links (bundle_id, version, url, name)
+  values ('com.fixture.private', '1.0', 'https://source.invalid/app.ipa', 'Fixture');
+reset role;
+select pg_temp.as_user(null);
+do $$ begin
+  assert pg_temp.fails($q$select url from public.upstream_links$q$)
+    or (select count(*) from public.upstream_links) = 0, 'anon cannot read source links';
+  assert pg_temp.fails($q$insert into public.upstream_links (bundle_id, version, url)
+    values ('com.fixture.evil', '1', 'https://evil.invalid/x.ipa')$q$), 'anon cannot add source links';
+end $$;
+reset role;
+select pg_temp.as_user('00000000-0000-0000-0000-00000000000a');
+do $$ begin
+  assert pg_temp.fails($q$select url from public.upstream_links$q$)
+    or (select count(*) from public.upstream_links) = 0, 'even an admin account cannot read source links';
+  assert pg_temp.fails($q$update public.upstream_links set url = 'https://evil.invalid/x.ipa'$q$)
+    or (select count(*) from public.upstream_links) = 0, 'signed-in users cannot change source links';
+end $$;
+reset role;
+do $$ begin
+  assert pg_temp.fails($q$insert into public.upstream_links (bundle_id, version, url)
+    values ('com.fixture.http', '1', 'http://plain.invalid/x.ipa')$q$), 'only https links are kept';
+end $$;
+rollback;
+
 -- Download issuance has a server-controlled quota and checks bans in the same transaction.
 begin;
 set local role service_role;

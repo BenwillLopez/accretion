@@ -342,6 +342,12 @@
     isMod: () => isMod(),
     renderModStats: (box) => renderModStats(box),
     link: (bundleId, url) => (hosted.has(bundleId) ? serverLink(bundleId, me.key) : url),
+    // "Download IPA" for other sources' apps, once the download proxy is on (config.js downloadProxy):
+    // the download server sends it through the proxy, named "<App>_<version>.ipa", source URL hidden
+    file: (bundleId, version) =>
+      cfg.downloadProxy && me.key && !hosted.has(bundleId)
+        ? `${serverLink(bundleId, me.key)}&version=${encodeURIComponent(version)}`
+        : null,
   };
   function rememberSpot() {
     try { sessionStorage.setItem("acc.back", location.hash && !location.hash.startsWith("#/signin") ? location.hash : "#/feed"); } catch { /* private mode */ }

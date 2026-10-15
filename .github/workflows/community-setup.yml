@@ -124,6 +124,8 @@ jobs:
           CDN_PRIVATE_KEY: ${{ secrets.CDN_PRIVATE_KEY }}
           OCI_BUILDS_HOST: ${{ vars.OCI_BUILDS_HOST }}
           OCI_LINK_SECRET: ${{ secrets.OCI_LINK_SECRET }}
+          DOWNLOAD_PROXY_KEY: ${{ secrets.DOWNLOAD_PROXY_KEY }}
+          DOWNLOAD_PROXY_ORIGIN: ${{ vars.DOWNLOAD_PROXY_ORIGIN }}
         run: |
           ref=$(jq -r .url supabase/project.json | sed -E 's#https://([^.]+)\..*#\1#')
           if [ -n "$UPLOAD_KEY" ]; then
@@ -140,6 +142,11 @@ jobs:
           if [ -n "$OCI_BUILDS_HOST" ] && [ -n "$OCI_LINK_SECRET" ]; then
             # the third download copy (Oracle Cloud server, handbook infra/)
             npx --yes supabase@2.120.0 secrets set --project-ref "$ref"               OCI_BUILDS_HOST="$OCI_BUILDS_HOST" OCI_LINK_SECRET="$OCI_LINK_SECRET"
+          fi
+          if [ -n "$DOWNLOAD_PROXY_KEY" ] && [ -n "$DOWNLOAD_PROXY_ORIGIN" ]; then
+            # other sources' apps go through the download proxy (workers/download-proxy)
+            npx --yes supabase@2.120.0 secrets set --project-ref "$ref" \
+              DOWNLOAD_PROXY_KEY="$DOWNLOAD_PROXY_KEY" DOWNLOAD_PROXY_ORIGIN="$DOWNLOAD_PROXY_ORIGIN"
           fi
           npx --yes supabase@2.120.0 functions deploy download source upload manifest \
             --project-ref "$ref" --no-verify-jwt --use-api

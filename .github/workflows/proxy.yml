@@ -1,0 +1,72 @@
+name: "Store: deploy download proxy"
+
+# Deploys workers/download-proxy (Cloudflare Worker at dl.getaccretion.app) and its shared secret.
+# A push that changes the Worker deploys it; manual runs deploy too. Skipped (with a summary saying
+# so) until the owner adds CLOUDFLARE_WORKERS_TOKEN, CLOUDFLARE_ACCOUNT_ID and DOWNLOAD_PROXY_KEY.
+on:
+  push:
+    branches: [main]
+    paths: [workers/download-proxy/**, .github/workflows/proxy.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency: download-proxy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Proxy tests
+        id: proxy-tests
+        run: node --test tests/edge/proxy.test.cjs
+      - name: Check the secrets
+        id: secrets
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          KEY: ${{ secrets.DOWNLOAD_PROXY_KEY }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$ACCOUNT" ] && [ -n "$KEY" ]; then echo "ready=yes" >> "$GITHUB_OUTPUT"; else echo "ready=no" >> "$GITHUB_OUTPUT"; fi
+      - name: Deploy the Worker
+        id: deploy
+        if: steps.secrets.outputs.ready == 'yes'
+        working-directory: workers/download-proxy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_WORKERS_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DOWNLOAD_PROXY_KEY: ${{ secrets.DOWNLOAD_PROXY_KEY }}
+        run: |
+          npx --yes wrangler@4.145.0 deploy
+          printf '%s' "$DOWNLOAD_PROXY_KEY" | npx --yes wrangler@4.145.0 secret put DOWNLOAD_PROXY_KEY
+      - name: Summary
+        if: always()
+        env:
+          STEPS: ${{ toJSON(steps) }}
+          JOB_STATUS: ${{ job.status }}
+          READY: ${{ steps.secrets.outputs.ready }}
+        run: |
+          failed=$(jq -r 'to_entries | map(select(.value.conclusion == "failure") | .key | gsub("-"; " ")) | join(", ")' <<< "$STEPS")
+          {
+            if [ "$JOB_STATUS" != success ]; then
+              echo "### The download proxy wasn't deployed"
+              echo "Failed step: ${failed:-unknown}. Open that step above to read the log."
+            elif [ "$READY" = yes ]; then
+              echo "### The download proxy is deployed"
+            else
+              echo "### The download proxy is not set up yet"
+              echo "Add CLOUDFLARE_WORKERS_TOKEN, CLOUDFLARE_ACCOUNT_ID and DOWNLOAD_PROXY_KEY (scripts/owner_secret.sh), then run this workflow."
+            fi
+            echo
+            echo "| Step | Result |"
+            echo "| --- | --- |"
+            jq -r 'to_entries[] | "| " + (.key | gsub("-"; " ")) + " | " + (.value.conclusion // "not run") + " |"' <<< "$STEPS"
+          } >> "$GITHUB_STEP_SUMMARY"

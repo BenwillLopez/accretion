@@ -1,11 +1,12 @@
-// download: hands out Accretion's own builds (Accretion Mods, the Accretion app) to account holders.
+// download: hands out Accretion's own builds (Accretion Mods, the Accretion app) to account holders,
+// and every other source's apps through the download proxy (source URLs stay private; see proxyLink).
 //
 //   GET /functions/v1/download?app=<bundle id>             with "Authorization: Bearer <user JWT>"
 //   GET /functions/v1/download?app=<bundle id>&key=<key>   for AltStore, SideStore and Feather
 //   add &version=<x> for a particular version (sources list every version); newest otherwise
 //
 // Answers with a redirect to a 5-minute link into the private "builds" bucket, or a short
-// explanation (401 not signed in, 404 not hosted, 426 Accretion too old). A browser that isn't
+// explanation (401 not signed in, 404 not in the store, 426 Accretion too old). A browser that isn't
 // signed in is sent to the app's store page instead. Deployed with --no-verify-jwt so the key
 // form works without a login; the function checks the login itself.
 //
@@ -32,9 +33,14 @@ const CDN_PRIVATE_KEY = (Deno.env.get("CDN_PRIVATE_KEY") ?? "").replace(/\\n/g, 
 // The name the browser saves the file as ("Accretion_1.0.32.ipa"), not the storage path's
 // "<version>-<sha256>.ipa". Every copy honours it: CloudFront (the dl parameter, read by the
 // distribution's viewer-response function), Supabase (its download option), Oracle (nginx, $arg_dl).
-function fileName(bundle: string, version: string): string {
-  const name = (bundle.split(".").pop() ?? "app").replace(/[^A-Za-z0-9-]/g, "") || "app";
-  return `${name}_${version.replace(/[^A-Za-z0-9.-]/g, "")}.ipa`;
+// The app's display name before any "(…)", "[…]", "|" or "•" part, its words joined by "-"
+// ("ASJTube + Bonus Tweaks (1.4.0 - mrdrvt99)" -> "ASJTube-Bonus-Tweaks"); the bundle ID's last part
+// when there is no name.
+function fileName(bundle: string, version: string, display = ""): string {
+  const words = (display.split(/[([|•]/)[0].match(/[A-Za-z0-9]+/g) ?? []).join("-").slice(0, 64).replace(/-+$/, "");
+  const name = words || (bundle.split(".").pop() ?? "").replace(/[^A-Za-z0-9-]/g, "").slice(0, 64) || "app";
+  const v = version.replace(/[^A-Za-z0-9.-]/g, "").slice(0, 32) || "0";
+  return `${name}_${v}.ipa`;
 }
 
 // a 5-minute CloudFront link, only if CloudFront answers for that file right now
@@ -88,6 +94,31 @@ async function signedLink(path: string, name: string): Promise<string | null> {
   if (!error && data) return data.signedUrl;
   console.warn(`No Supabase copy of ${path} (${error?.message ?? "unknown"}); trying the Oracle copy`);
   return await ociLink(path, name);
+}
+
+// Apps from other sources: their file links live only in the private upstream_links table (filled by
+// the store build, never public). The download goes through the download proxy (workers/download-proxy),
+// which streams the file as "<App>_<version>.ipa"; the link to it carries the source's URL encrypted
+// (AES-256-GCM, DOWNLOAD_PROXY_KEY), so the person downloading never sees where it comes from.
+const PROXY_ORIGIN = Deno.env.get("DOWNLOAD_PROXY_ORIGIN") ?? ""; // e.g. https://dl.getaccretion.app
+const PROXY_KEY = Deno.env.get("DOWNLOAD_PROXY_KEY") ?? ""; // 32 random bytes, base64url
+const PROXY_TTL = 10 * 60_000; // long enough to start, and to resume a dropped download
+
+const b64url = (bytes: Uint8Array) =>
+  btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const fromB64url = (text: string) =>
+  Uint8Array.from(atob(text.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((text.length + 3) % 4)), (c) => c.charCodeAt(0));
+
+async function proxyLink(upstream: string, name: string): Promise<string | null> {
+  if (!PROXY_ORIGIN || !PROXY_KEY) return null;
+  const key = await crypto.subtle.importKey("raw", fromB64url(PROXY_KEY), "AES-GCM", false, ["encrypt"]);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const plain = new TextEncoder().encode(JSON.stringify({ u: upstream, n: name, e: Date.now() + PROXY_TTL }));
+  const sealed = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plain));
+  const token = new Uint8Array(iv.length + sealed.length);
+  token.set(iv);
+  token.set(sealed, iv.length);
+  return `${PROXY_ORIGIN}/${encodeURIComponent(name)}?t=${b64url(token)}`;
 }
 
 const cors = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "authorization, apikey" };
@@ -182,9 +213,20 @@ Deno.serve(async (req) => {
     : builds
       .filter((b) => app !== ACCRETION || !isBeta(b.version))
       .sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
-  if (!build) return reply(404, "Accretion doesn't host this app.");
-
-  const location = await signedLink(build.path, fileName(app, build.version));
+  let location: string | null;
+  if (build) {
+    location = await signedLink(build.path, fileName(app, build.version));
+  } else {
+    // another source's app: its private link, through the download proxy
+    const { data: links, error: linksError } = await admin.from("upstream_links").select("version,url,name").eq("bundle_id", app);
+    if (linksError) return reply(503, "Couldn't check available downloads. Try again.");
+    const list = (links ?? []) as { version: string; url: string; name: string | null }[];
+    const pick = version
+      ? list.find((l) => l.version === version)
+      : list.sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
+    if (!pick) return reply(404, "This app or version isn't in the store.");
+    location = await proxyLink(pick.url, fileName(app, pick.version, pick.name ?? ""));
+  }
   if (!location) return reply(500, "Couldn't prepare the download. Try again.");
 
   const { error: logError } = await admin.from("download_log").insert({ owner, bundle_id: app, via });

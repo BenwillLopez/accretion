@@ -590,7 +590,7 @@
   }
 
   // "More ways" on the app page: every other way to get the app, one row each (like the app's install sheet)
-  function moreWays(a, ipa, pref, installed) {
+  function moreWays(a, ipa, pref, installed, file = ipa) {
     const way = (attrs, mark, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
       h("span", { class: `way-ic${mark.tagName === "IMG" ? " logo" : ""}`, "aria-hidden": "true" }, mark),
       h("span", { class: "way-txt" }, h("b", {}, name), note ? h("span", { class: "muted small" }, note) : null),
@@ -598,10 +598,10 @@
     const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "ways-title" },
       h("h2", { id: "ways-title" }, "More ways to install"),
       h("ul", { class: "ways" },
-        way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, ipa); } }, glyph("download"), "Download IPA", "Save the file and sign it yourself."),
+        way({ href: file, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, file); } }, glyph("download"), "Download IPA", "Save the file and sign it yourself."),
         ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: () => { dlg.close(); installed(); } }, logo(i.icon), i.name, i.note)),
         ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener", onclick: () => dlg.close() }, /^assets\/[\w.-]+$/.test(c.icon || "") ? logo(c.icon) : glyph("cert"), `Sign with ${c.name}`, c.note)),
-        way({ href: ipa, onclick: (e) => { e.preventDefault(); copy(ipa, "IPA link copied"); dlg.close(); } }, glyph("copy"), "Copy IPA link", null)),
+        way({ href: file, onclick: (e) => { e.preventDefault(); copy(file, "IPA link copied"); dlg.close(); } }, glyph("copy"), "Copy IPA link", null)),
       h("div", { class: "dl-actions" }, h("button", { class: "btn ghost", type: "button", onclick: () => dlg.close() }, "Cancel")));
     dlg.addEventListener("close", () => dlg.remove());
     document.body.append(dlg);
@@ -1046,9 +1046,17 @@
     return auth.link(a.i, url);
   }
 
+  // The file itself ("Download IPA"): other sources' apps go through the download proxy when it's on
+  // (named "<App>_<version>.ipa", source URL hidden); otherwise the same link installers get.
+  function fileLink(a, url, version) {
+    const auth = window.AccAuth;
+    return (auth && auth.file && version && auth.file(a.i, version.v)) || hostedLink(a, url, version);
+  }
+
   function head(a, d) {
     const latest = d && d.versions && d.versions[0];
     const ipa = latest && safeUrl(hostedLink(a, latest.url));
+    const file = latest && safeUrl(fileLink(a, latest.url, latest));
     const tint = d && /^[0-9A-F]{6}$/i.test(d.tint || "") ? `#${d.tint}` : null;
     const isSaved = saved[a.i] !== undefined;
     const tooNew = deviceIOS && a.m && !fits(a);
@@ -1062,7 +1070,7 @@
         ? h("a", { class: "btn primary", href: pref ? pref.link(ipa) : ipa, rel: "nofollow noopener", title: "Download, sign and install", onclick: (e) => { installed(); if (!pref) { e.preventDefault(); chooseInstaller(ipa, redraw); } } }, pref ? `Install with ${pref.name}` : "Install")
         : null,
       ipa && pref ? h("button", { class: "btn ghost", type: "button", onclick: () => chooseInstaller(null, redraw) }, "Change") : null,
-      ipa ? h("button", { class: "btn", type: "button", "aria-haspopup": "dialog", onclick: () => moreWays(a, ipa, pref, installed) }, "More ways ▾") : null,
+      ipa ? h("button", { class: "btn", type: "button", "aria-haspopup": "dialog", onclick: () => moreWays(a, ipa, pref, installed, file || ipa) }, "More ways ▾") : null,
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
     );
@@ -1162,7 +1170,7 @@
               {},
               h("span", {}, `v${v.v}${v.b && v.b !== v.v ? ` (${v.b})` : ""}`),
               h("span", { class: "muted" }, `${v.t} · ${bytes(v.z)}${v.min ? ` · iOS ${v.min}+` : ""}`),
-              safeUrl(v.url) ? h("a", { href: hostedLink(a, v.url, v), rel: "nofollow noopener", onclick: (e) => downloadScreen(e, a, hostedLink(a, v.url, v), v.v) }, "Download") : null,
+              safeUrl(v.url) ? h("a", { href: fileLink(a, v.url, v), rel: "nofollow noopener", onclick: (e) => downloadScreen(e, a, fileLink(a, v.url, v), v.v) }, "Download") : null,
               v.notes && v !== latest ? h("span", { class: "notes" }, v.notes) : null,
             ),
           ),
