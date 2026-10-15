@@ -18,7 +18,7 @@ function fixture(options = {}) {
         then(resolve, reject) {
           const result = table === 'download_log'
             ? { count: options.count ?? 0, error: options.quotaError ? { code: 'offline' } : null }
-            : { data: [{ path: 'app/stable.ipa', version: '1.0.30' }, { path: 'app/beta.ipa', version: '1.0.30.1' }], error: options.buildsError ? { code: 'offline' } : null };
+            : { data: options.builds ?? [{ path: 'app/stable.ipa', version: '1.0.30', sha256: 'a'.repeat(64) }, { path: 'app/beta.ipa', version: '1.0.30.1', sha256: 'b'.repeat(64) }], error: options.buildsError ? { code: 'offline' } : null };
           return Promise.resolve(result).then(resolve, reject);
         },
         async insert(row) { issued.push(row); return { error: options.logError ? { code: options.logError } : null }; },
@@ -59,4 +59,14 @@ test('access, catalogue and quota failures never disclose a signed redirect', as
     assert.equal(response.status, expected, JSON.stringify(options));
     assert.equal(response.headers.has('Location'), false);
   }
+});
+
+test('our builds without a fingerprint are never served', async () => {
+  const f = fixture({ builds: [{ path: 'app/old.ipa', version: '1.0.5', sha256: null }] });
+  const response = await f.request();
+  assert.equal(response.status, 404);
+  assert.equal(response.headers.has('Location'), false);
+  assert.equal(f.issued.length, 0);
+  const mixed = fixture({ builds: [{ path: 'app/new.ipa', version: '1.0.6', sha256: 'c'.repeat(64) }, { path: 'app/newer-unverified.ipa', version: '9.9.9', sha256: null }] });
+  assert.equal((await mixed.request()).status, 302, 'the newest verified build is served, not a newer unverified one');
 });

@@ -202,9 +202,12 @@ Deno.serve(async (req) => {
 
   // newest by version number, not upload time (an old version re-uploaded can't become "newest");
   // Accretion itself is always served at its newest version
-  const { data: rows, error: buildsError } = await admin.from("hosted_builds").select("path,version").eq("bundle_id", app);
+  const { data: rows, error: buildsError } = await admin.from("hosted_builds").select("path,version,sha256").eq("bundle_id", app);
   if (buildsError) return reply(503, "Couldn't check available builds. Try again.");
-  const builds = (rows ?? []) as { path: string; version: string }[];
+  // only builds with a fingerprint: the app checks every download against it (issue #27)
+  const all = (rows ?? []) as { path: string; version: string; sha256: string | null }[];
+  const builds = all.filter((b) => /^[0-9a-f]{64}$/.test(b.sha256 ?? ""));
+  if (all.length && !builds.length) return reply(404, "No verified build of this app is available.");
   // Accretion betas have four numbers (1.0.25.1, between 1.0.25 and 1.0.26): served only when asked
   // for by version (app-repo-beta.json links them that way), never as "the newest Accretion"
   const isBeta = (v: string) => /^\d+\.\d+\.\d+\.\d+$/.test(v);

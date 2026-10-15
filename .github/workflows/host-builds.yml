@@ -1,10 +1,9 @@
 name: "Store: copy app builds"
 
 # Copies Accretion's own builds (Accretion Mods, the Accretion app) into the private Supabase
-# bucket that the download function serves. Every 12 hours and on manual runs.
+# bucket that the download function serves. Manual runs only: releases go through the upload
+# function, and the copier takes only builds whose source publishes a matching sha256 (issue #27).
 on:
-  schedule:
-    - cron: "41 */12 * * *"
   workflow_dispatch:
 
 concurrency:

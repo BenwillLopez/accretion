@@ -713,6 +713,13 @@ create index if not exists hosted_builds_bundle on public.hosted_builds (bundle_
 -- Stop deployment on conflicting historical rows rather than deleting a published record.
 create unique index if not exists hosted_builds_bundle_version on public.hosted_builds (bundle_id, version);
 alter table public.hosted_builds add column if not exists sha256 text check (sha256 ~ '^[0-9a-f]{64}$');
+-- Every new build carries its fingerprint (the app checks downloads against it). NOT VALID keeps
+-- the few early rows from before fingerprints; the download function never serves those.
+do $$ begin
+  if not exists (select 1 from pg_constraint where conname = 'hosted_builds_sha256_required') then
+    alter table public.hosted_builds add constraint hosted_builds_sha256_required check (sha256 is not null) not valid;
+  end if;
+end $$;
 
 create table if not exists public.download_keys (
   owner uuid primary key references auth.users (id) on delete cascade default auth.uid(),

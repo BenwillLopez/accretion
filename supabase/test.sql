@@ -330,6 +330,15 @@ do $$ begin
 end $$;
 rollback;
 
+-- A new build must carry its fingerprint.
+begin;
+set local role service_role;
+do $$ begin
+  assert pg_temp.fails($q$insert into public.hosted_builds (bundle_id, version, path)
+    values ('com.fixture.nohash', '1.0.0', 'com.fixture.nohash/1.0.0.ipa')$q$), 'a build without sha256 is refused';
+end $$;
+rollback;
+
 -- A version has exactly one published object, even if two upload jobs finish together.
 begin;
 set local role service_role;
