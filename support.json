@@ -11,7 +11,7 @@
     {
       "name": "Signulous",
       "note": "Install apps from your iPhone for a year, no computer needed.",
-      "url": "https://www.signulous.com/?r=accretion",
+      "url": "https://www.signulous.com/sign-apps?r=accretion&appName=Accretion&appIcon=https%3A%2F%2Fgetaccretion.app%2Ficon-512.png",
       "app_url": "https://www.signulous.com/sign-apps?r=accretion&appName={name}&appIcon={icon}"
     }
   ]
