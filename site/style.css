@@ -118,9 +118,26 @@ main, .foot { max-width: 1640px; padding-inline: clamp(16px, 3vw, 40px); }
 h1 { font: 700 clamp(28px, 4.6vw, 46px)/1.08 var(--display); margin: 0 0 12px; text-wrap: balance; letter-spacing: -.01em; }
 h1, .stats dd { background: linear-gradient(100deg, var(--fg) 30%, color-mix(in srgb, var(--accent) 70%, var(--accent-2))); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { color: var(--muted); margin: 0; max-width: 58ch; }
-/* The README's live index card (assets/card-*.svg, rebuilt with every store build), under the headline. */
-.hero-card { display: block; margin: 4px 0 16px; max-width: 860px; }
+/* Hero right side: the four stat tiles (phones and tablets, like the app) and the README's live
+   index card (assets/card-*.svg, rebuilt with every store build). */
+.hero-side { display: grid; gap: 14px; min-width: 0; }
+.hero-card { display: block; margin: 0; max-width: 860px; }
 .hero-card img { display: block; width: 100%; height: auto; }
+/* Below desktop width the side column dissolves: tiles beside the text, the card full width under both. */
+@media (max-width: 1099px) {
+  .hero-side { display: contents; }
+  .hero-card { grid-column: 1 / -1; }
+}
+/* Desktop: text left, card right, centred on each other; the card already shows the tile numbers. */
+@media (min-width: 1100px) {
+  .hero { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(32px, 4vw, 72px); padding-block: 52px 40px; }
+  .hero h1 { font-size: clamp(40px, 3.4vw, 58px); margin-bottom: 16px; }
+  .hero .lede { font-size: 17px; line-height: 1.55; max-width: 44ch; }
+  .hero-cta { margin-top: 22px; }
+  .hero-side { position: relative; isolation: isolate; }
+  .hero-side .stats { display: none; }
+  .hero-side::before { content: ""; position: absolute; inset: -6% -3%; z-index: -1; border-radius: 40px; background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 20%, transparent), transparent 80%); filter: blur(28px); }
+}
 .lede b { color: var(--fg); }
 .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; }
 .stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
