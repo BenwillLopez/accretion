@@ -9,6 +9,7 @@
     {"type": "AAAA", "name": "@", "content": "2606:50c0:8001::153"},
     {"type": "AAAA", "name": "@", "content": "2606:50c0:8002::153"},
     {"type": "AAAA", "name": "@", "content": "2606:50c0:8003::153"},
-    {"type": "CNAME", "name": "www", "content": "getaccretion.github.io"}
+    {"type": "CNAME", "name": "www", "content": "getaccretion.github.io"},
+    {"type": "TXT", "name": "@", "content": "google-site-verification=ZFmXWwLhE5Q5E2Yb5ZvgOyj7sqt7T1I-4mVWxD6r2s0"}
   ]
 }
