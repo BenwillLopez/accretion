@@ -1,0 +1,16 @@
+title = "Accretion site gitleaks config"
+
+[extend]
+useDefault = true
+
+# Public by design: the Supabase anon key (role "anon") ships in the site and is
+# protected by row level security, not by secrecy.
+[[allowlists]]
+description = "Supabase anon key in the site's project settings"
+paths = ['''^supabase/project\.json$''']
+
+# False positive: a third-party AltStore source cached as JSON (the match is a
+# bundle identifier, not a credential).
+[[allowlists]]
+description = "Cached third-party source JSON"
+paths = ['''^cache/[0-9a-f]{16}\.json$''']
