@@ -2,14 +2,14 @@
  "apps": 4272,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-15 00:57 UTC",
+ "updated": "2026-10-15 01:17 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-15T00:57:19Z",
+ "built_at": "2026-10-15T01:17:28Z",
  "sources_total": 163,
  "sources_cached": 1,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23749,
+ "listings": 23748,
  "duplicates": 1797,
  "rejected": 6609,
  "excluded": 57,
@@ -53,6 +53,11 @@
  ],
  "recent": [
   {
+   "name": "MuffinEMU",
+   "version": "10.2",
+   "date": "2026-10-15"
+  },
+  {
    "name": "Accretion",
    "version": "1.0.31",
    "date": "2026-10-14"
@@ -75,11 +80,6 @@
   {
    "name": "VortX",
    "version": "0.5.2",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "MuffinEMU",
-   "version": "10.1",
    "date": "2026-10-14"
   },
   {
