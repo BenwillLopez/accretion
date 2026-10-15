@@ -52,6 +52,39 @@
    "account"
   ]
  },
+ "Lilliana.AzulaApp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Azula is a utility app designed for injecting dylibs into IPA files. It supports iOS 14 through iOS 16 and macOS 11 through macOS 13. Use this tool to manage your application modifications efficiently on supported operating systems.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "529e4f1c2c75a76e3ac81b291d6a0d7a014a0a19b35725b23fa6ddf5fd63280b",
+  "subtitle": "Inject dylibs into IPA files",
+  "tags": [
+   "azula",
+   "dylib",
+   "ipa",
+   "inject",
+   "developer",
+   "utility"
+  ]
+ },
+ "Quanticapps.Athan.watchkitapp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Offers the most precise prayer times along with a range of other features including the Quran, Tasbeeh, Islamic Calendar, and a compass for Qiblah direction.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0fd566800e52e7e53c31b309564b821e8eff5b93f4d6354af0ece501d929a9b7",
+  "subtitle": "Precise prayer times, Quran, Qiblah and Islamic calendar",
+  "tags": [
+   "prayer times",
+   "quran",
+   "tasbeeh",
+   "islamic calendar",
+   "qiblah"
+  ]
+ },
  "adguardhome.remote.app": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -84,6 +117,27 @@
    "europe",
    "history",
    "game"
+  ]
+ },
+ "ai.devl.aurora": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Aurora lets you play RPG Maker games on your iPhone and iPad. Supports XP, VX, VX Ace, MV, and MZ versions. Features multiplayer, overlays, upscaling, and full save management to enhance your gameplay experience.",
+  "features": [
+   "Multiplayer",
+   "Overlays",
+   "Upscaling",
+   "Save Management"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d855cdda113567542cc6be021676f4edd168f155208c12e9885a989dbfb810fd",
+  "subtitle": "Play RPG Maker games on iPhone and iPad",
+  "tags": [
+   "rpg",
+   "maker",
+   "games",
+   "emulator",
+   "play"
   ]
  },
  "ani.baka": {
@@ -143,6 +197,119 @@
    "app"
   ]
  },
+ "app.bannrs.ios": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bannrs is an LED banner maker app. Create custom LED banners easily on your device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "df14dac732004fed722f115d7027ab297a2ba9d7c63e0e279d564d6858b43f96",
+  "subtitle": "LED Banner Maker",
+  "tags": [
+   "banner",
+   "led",
+   "maker",
+   "display",
+   "sign",
+   "utilities"
+  ]
+ },
+ "app.batsign.ios": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BatSign is an on-device signing store with App Store-style automatic updates, background signing and certificate renewal. Built on the open-source Feather project.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e2831549e89d8fa959fd79bb2fe8efeda6900aab7ae6137944d293b54c2e466a",
+  "subtitle": "On-device signing store with automatic updates",
+  "tags": [
+   "signing",
+   "store",
+   "updates",
+   "certificates",
+   "feather"
+  ]
+ },
+ "appcake2.iphonecake.com": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "iOS app for iPhoneCake featuring a newer user interface, dark mode support, and a slightly more user-friendly experience. This version features fewer search results than AppCake v6.1.3 and combines AppCake 6 and AppCake 7 into a single release.",
+  "features": [
+   "Dark Mode",
+   "Newer UI"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c34bf852336592c73874aa12d0ce22f07f0bb8e0240eb606e7db4ad4c56f4d33",
+  "subtitle": "iOS app for iPhoneCake with dark mode support",
+  "tags": [
+   "iphonecake",
+   "appcake",
+   "ipa",
+   "library",
+   "utilities"
+  ]
+ },
+ "archery.clash.game": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archery Clash is a mobile game that puts your archery skills to the test. Developed by a talented team of game enthusiasts, this thrilling title challenges players to master precision and accuracy.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9db612534c251dced6f84681a00c6e814b457b64cd839e42dc588ab503ebbd9e",
+  "subtitle": "Test your archery skills in this mobile game",
+  "tags": [
+   "archery",
+   "clash",
+   "game",
+   "mobile",
+   "sports"
+  ]
+ },
+ "ca.bomberfish.AppCommander": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppCommander serves as a swiss army knife for your iPhone applications. Supported iOS versions include 15.0 through 16.6.1 and 17.0.0. TrollStore is required to use this application, and support for MDC-only devices has been dropped. Warning: this application could brick your device. Current working functions include listing and opening apps. Features currently broken or missing include backups, data management, IPA decryption, and IPA export.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "01595770c00b1d5a3d8f7ad75a7b7dd618be6f68b3abf77d210e92ea821789e3",
+  "subtitle": "A utility tool for managing iOS apps",
+  "tags": [
+   "apps",
+   "manager",
+   "utility",
+   "trollstore",
+   "system"
+  ]
+ },
+ "cn.bswbw.AppsDump": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "Decrypt IPA files. To initiate the decryption process, it is imperative to open the desired app at least once.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "ead6dfb602dab15f40debf23097631736f9c196c6246c88e367e3231b897b184",
+  "subtitle": "Decrypt IPA files",
+  "tags": [
+   "ipa",
+   "decrypt",
+   "developer",
+   "files"
+  ]
+ },
+ "cn.gblw.AppsDump": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppsDump3_4.0.9 is a utility application developed by AppsDump3_4.0.9 x CyPwn.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "261e396ec4a7c691b9661ff2866620ef341939b0dbde3320761cf4e9202800df",
+  "subtitle": "AppsDump3 application utility",
+  "tags": [
+   "appsdump3",
+   "utility",
+   "cypwn"
+  ]
+ },
  "co.appnation.geniechat.watchapp": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -157,6 +324,90 @@
    "genie",
    "assistant",
    "chat"
+  ]
+ },
+ "co.appnation.interiordesigner": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Arch is an application developed by Unknown developer, shared by @binnichtaktivsipas.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d955d0d3130819cdce7c316b0ace8a64c4b5e06e33fea372993993c2fcbe794a",
+  "subtitle": "An application by Unknown developer",
+  "tags": [
+   "arch",
+   "unknown developer",
+   "utility"
+  ]
+ },
+ "co.bazaart.app": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Bazaart is a photo editing and graphic design application injected with premium features. Create professional designs, edit photos, and build collages with access to all premium tools included in this version.",
+  "features": [
+   "Injected with Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "17d471a38efd5215ddd4d67779acf41326c1977c70ed3624cd882a39df5c7b1c",
+  "subtitle": "Bazaart photo editor and graphic design",
+  "tags": [
+   "photo editor",
+   "graphic design",
+   "collage",
+   "premium",
+   "art",
+   "edit"
+  ]
+ },
+ "co.codeleap.bearable": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Bearable is a symptom tracker application designed to help users log and monitor health conditions. Keep track of daily symptoms, maintain health records, and manage personal wellness data effectively within a single interface. Requires iOS 15.1 or later.",
+  "features": [
+   "Subscription"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0e7051924657594feb09715604acec5cebe5eafafcd81cc561839950a6fe273c",
+  "subtitle": "Track symptoms and manage health records",
+  "tags": [
+   "health",
+   "symptom",
+   "tracker",
+   "wellness",
+   "medical"
+  ]
+ },
+ "co.imba.archero": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archer Hunter is a roguelike game featuring addictive gameplay and challenging levels. Step into the role of an archer and test your skills as you progress through various encounters and battles.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "08a094d7ecd6c5789c43f11205fc8b2057d3e6a6c2b7c43398160483527af0df",
+  "subtitle": "Roguelike archer adventure game",
+  "tags": [
+   "archer",
+   "hunter",
+   "roguelike",
+   "game",
+   "action",
+   "adventure"
+  ]
+ },
+ "com.34306.waifuts": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Batteried is a utility app designed to provide information about your device battery. It displays battery status and related details to help you keep track of your power levels.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "632e7799ccda7e567d64027b2ff03800b0ae20d862e10ce86a4a08d6c2e6d16d",
+  "subtitle": "Battery monitoring and status tool",
+  "tags": [
+   "battery",
+   "power",
+   "status",
+   "monitor",
+   "utilities"
   ]
  },
  "com.365scores.365scroesapp": {
@@ -216,6 +467,23 @@
    "virtual"
   ]
  },
+ "com.DoorTeam.BagMaster": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BagMaster Isekai Bag Battle IPA is the iOS installation package for BagMaster Isekai, allowing users to install and play the bag battle game on Apple mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c1049ed8017b7a2fb02c68f14ba6104485c5b548e883016e7521b2e5074eea17",
+  "subtitle": "BagMaster Isekai Bag Battle iOS installation package",
+  "tags": [
+   "bagmaster",
+   "isekai",
+   "bag",
+   "battle",
+   "game",
+   "ipa"
+  ]
+ },
  "com.JindoBlu.FourPlayersIOS": {
   "category": "games",
   "date": "2026-10-14",
@@ -270,6 +538,24 @@
    "game"
   ]
  },
+ "com.PIXELCELLS.AntColony2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AntColony IPA mod tested and compiled by the TTJB Team.",
+  "features": [
+   "Mods",
+   "IPA verified"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cbb37d07e2be4947bf7973b0eedc9a2e649781ff3860536057ae9b0fea7960ad",
+  "subtitle": "AntColony IPA mod",
+  "tags": [
+   "antcolony",
+   "mods",
+   "ipa",
+   "ttjb"
+  ]
+ },
  "com.PixelFade.ACEAcademy": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -285,6 +571,54 @@
    "story",
    "narrative",
    "fiction"
+  ]
+ },
+ "com.RayanKhan.APNS-Demo": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "APNS_Demo is a utility application built with SwiftUI designed to help you test notifications. Use this app to evaluate and troubleshoot notification functionality in your development workflow.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "71d5c9394c9f3db92a15212faf65ac9472b2949b680690108e899df063ca2836",
+  "subtitle": "Test notifications using SwiftUI",
+  "tags": [
+   "notifications",
+   "swiftui",
+   "testing",
+   "apns",
+   "developer"
+  ]
+ },
+ "com.TDMbest.balls": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Play Balls by Dani, ported to iOS. This is the only port of this game available for iOS devices. Developed as a first unity port project.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "693ae7e1cb08fee37131e3317761cb464679698f0e36081ff9d407c237e6c9d0",
+  "subtitle": "Port of the game Balls by Dani",
+  "tags": [
+   "balls",
+   "dani",
+   "port",
+   "unity",
+   "game"
+  ]
+ },
+ "com.TeamSparta.battleshipgo": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Ship Go: Monster Wave is an action-packed iOS naval combat game that blends classic naval warfare elements.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "d63508eb742ca2f0353743da6b30c24e5f2b187abe35817d5e76cdc937d51b32",
+  "subtitle": "Action-packed iOS naval combat game",
+  "tags": [
+   "battleship",
+   "naval",
+   "combat",
+   "action",
+   "game"
   ]
  },
  "com.aagame.aagame": {
@@ -592,6 +926,25 @@
    "utilities"
   ]
  },
+ "com.aichatbot.assistant": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AIChatbot is a chat assistant application. This version includes Pro features and has been tested and compiled by the developer team.",
+  "features": [
+   "Pro Version",
+   "Tested and Compiled"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "749c8948c689cd6026ee2ba2c87a550423b0f802bcec42489c4a92a7b3f1dd39",
+  "subtitle": "Pro AI chat assistant",
+  "tags": [
+   "aichatbot",
+   "assistant",
+   "chat",
+   "pro",
+   "utilities"
+  ]
+ },
  "com.aiporn.aichat": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -865,6 +1218,22 @@
    "shows"
   ]
  },
+ "com.antilost.app": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AntiLost is an iOS utility app designed to help you locate your misplaced phone by clapping.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "38e53bd7c0f8daf7d3c57cef514e409d54de68757baa67df29286298c9d28026",
+  "subtitle": "Clap to Find Phone utility",
+  "tags": [
+   "antilost",
+   "utility",
+   "finder",
+   "phone",
+   "clap"
+  ]
+ },
  "com.apalonapps.alarmclockfree": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -884,6 +1253,174 @@
    "app"
   ]
  },
+ "com.apple.terminal": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "This is the official macOS terminal ported to iOS. Requires TrollStore and CVE-2022-46689 to run.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "26728f8da3fe3c6d59899c7d4e7c086c1a953546a4ba8e987019936a6ba0e381",
+  "subtitle": "Official macOS terminal ported to iOS",
+  "tags": [
+   "terminal",
+   "macos",
+   "ios",
+   "command line",
+   "developer",
+   "shell"
+  ]
+ },
+ "com.appsci.sleep": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Avrora offers sleep sounds and stories to help users rest. This version has the subscription unlocked. Please note that login functionality does not work.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f92bcce628e995309ae166682593009ec2a931df1ce170ae844f9faa72a6f2a9",
+  "subtitle": "Sleep sounds and stories with subscription unlocked",
+  "tags": [
+   "sleep",
+   "sounds",
+   "stories",
+   "relaxation",
+   "audio"
+  ]
+ },
+ "com.ar.trace.drawing": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "An application dedicated to creating images. Through this app, you can develop and improve your drawing skills.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ac8c288251f0cee91132e7a4b3cf12f1d0897988f80da56b243a838e703567ad",
+  "subtitle": "Draw and create images easily",
+  "tags": [
+   "drawing",
+   "art",
+   "create",
+   "images",
+   "design",
+   "sketch"
+  ]
+ },
+ "com.archery.go.bow.arrow.king.sports.game": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archery Go - Bow&Arrow King is an archery game where you test your shooting skills. This version includes a modified tweak menu with VIP status unlocked, unlimited coins, level 99 progression, and advertisements removed. If the menu does not appear upon launching, simply restart the application to load it properly.",
+  "features": [
+   "No Ads",
+   "VIP Unlocked",
+   "Unlimited Coins",
+   "Level 99"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "ac5fd0df77e80b324289243d65880b34ca0cc5bf482905262732182d6971cf53",
+  "subtitle": "Bow and arrow archery game",
+  "tags": [
+   "archery",
+   "bow",
+   "arrow",
+   "sports",
+   "king",
+   "game"
+  ]
+ },
+ "com.armsx2.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "ARMSX2 is a free and open-source PlayStation 2 emulator based on PCSX2. It features native ARM64 JIT recompilers, allowing you to play PS2 games on your phone, PC, or gaming handheld.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9af5120cffc8a0eb838ece37212eccd6444a72dcef16f4497db0ab4396e9ade2",
+  "subtitle": "Play PlayStation 2 games on your devices",
+  "tags": [
+   "emulator",
+   "ps2",
+   "playstation",
+   "gaming",
+   "pcsx2"
+  ]
+ },
+ "com.armsx2.ios.nightly": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Test the newest ARMSX2 features, built from the latest code most days. These builds are less tested than official releases, so bugs or startup issues may occur. Nightly installs as a separate app alongside the stable release, meaning save states, memory cards and settings are kept entirely independent and do not interfere with your working setup. Requires an iPhone or iPad running iOS 17 or later, a JIT-capable setup, plus your own PS2 BIOS and game files.",
+  "features": [
+   "Installs alongside stable",
+   "Independent saves",
+   "Daily code updates"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6427400e5c40653c9d6324e920b14d4ac8b0d6205b20b121f2f1f43630d7e699",
+  "subtitle": "Latest experimental builds built from source code",
+  "tags": [
+   "ps2",
+   "emulator",
+   "nightly",
+   "gaming",
+   "console"
+  ]
+ },
+ "com.atrasis.original": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "This is a modded Clash of Clans private server. You have unlimited gems, elixir and gold. Write /help in the Global Chat for comands.",
+  "features": [
+   "Unlimited gems",
+   "Unlimited elixir",
+   "Unlimited gold",
+   "Global chat commands"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b155d6cd640054e273d01183b89f54c30ed88f8c8a26a9774f367bd2516c0052",
+  "subtitle": "Modded Clash of Clans private server",
+  "tags": [
+   "clash of clans",
+   "private server",
+   "mod",
+   "strategy",
+   "game"
+  ]
+ },
+ "com.audiomack.iphone": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Audiomack app with unlocked subscription features. This IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fec26334bc716260ece6a065ef8e3ab1aca0d19b879d859a792b6b7df767c091",
+  "subtitle": "Audio streaming and music app",
+  "tags": [
+   "music",
+   "audio",
+   "streaming",
+   "unlocked",
+   "player"
+  ]
+ },
+ "com.autodesk.autocadws": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "AutoCAD is available with Pro features injected.",
+  "features": [
+   "Injected with Pro"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e8461ef93de3f43a5c5fb34181abed6e004e1c8556be4092701c4068ab99c66f",
+  "subtitle": "AutoCAD mobile app",
+  "tags": [
+   "autocad",
+   "cad",
+   "design",
+   "pro",
+   "drawing",
+   "tools"
+  ]
+ },
  "com.autonavi.amap": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -899,6 +1436,55 @@
    "gps",
    "transit",
    "location"
+  ]
+ },
+ "com.avalar.atwo.epl.as": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Avalar: Raid of Shadow is a mobile fantasy role-playing game designed for iPhone. Immerse yourself in an engaging fantasy adventure with role-playing gameplay mechanics. Experience epic battles, complete quests, and explore a rich game world directly on your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f53f50822cc42a295caeb01429f86d8724b46452fc3e6e614d0751564732e834",
+  "subtitle": "Mobile fantasy RPG for iOS devices",
+  "tags": [
+   "rpg",
+   "fantasy",
+   "game",
+   "mobile",
+   "adventure",
+   "action"
+  ]
+ },
+ "com.avangelista.Appabetical": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "In the fast-paced digital world we live in, our smartphones have become an essential part of our lives. With the multitude of applications available, keeping your device organized is crucial. Appabetical helps you manage and arrange your mobile applications efficiently for quick access and better navigation.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2c3beb626cf8a750b7f97e446aa8b9b79ae1f8f585865e6d556d9d098ea8178b",
+  "subtitle": "Organize and manage your mobile applications",
+  "tags": [
+   "apps",
+   "organize",
+   "manager",
+   "utilities",
+   "mobile"
+  ]
+ },
+ "com.awesomepiece.axisblade": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "AXIS BLADE is an action-packed RPG game that has captivated iOS gamers with its fast-paced gameplay and stunning visuals.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fe56c7db2d99f80bcaac797453643ba9ab88cadf5be6de500b0108115e699a8a",
+  "subtitle": "Action-packed RPG with fast-paced gameplay",
+  "tags": [
+   "axis blade",
+   "rpg",
+   "action",
+   "game",
+   "ios"
   ]
  },
  "com.axiel7.AniHyou": {
@@ -917,6 +1503,58 @@
    "open-source"
   ]
  },
+ "com.badoo.BadooSPP": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Badoo is a social networking and dating application. This version is injected with Premium features. Connect with people nearby or across the world, chat, and meet new friends.",
+  "features": [
+   "Premium Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c7912735d206b54110aab3f56af5d92f04c00b96f6729f7fdee4eafdbba28862",
+  "subtitle": "Badoo IPA with injected Premium",
+  "tags": [
+   "badoo",
+   "dating",
+   "social",
+   "chat",
+   "meet",
+   "premium"
+  ]
+ },
+ "com.baidu.map.watchkitapp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BaiduMap injected with nothing. This application is provided by OwO Source.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "965738954a0a63f089d0fcb303ad4da1f75857fe48f8273ede1632a6c5569357",
+  "subtitle": "BaiduMap modification",
+  "tags": [
+   "map",
+   "navigation",
+   "baidu",
+   "utilities"
+  ]
+ },
+ "com.bandlab.bandlab.iphone": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "BandLab app injected with Boost Membership. Use this application to access enhanced features provided by the injected membership upgrade.",
+  "features": [
+   "Boost Membership"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4cf5d9715e40b8e3dc0cbf8d53d66be1e29ac39ba63a149f139ef41ad2ede4b4",
+  "subtitle": "BandLab with Boost Membership",
+  "tags": [
+   "bandlab",
+   "boost",
+   "membership",
+   "music",
+   "audio"
+  ]
+ },
  "com.barnabas.absorb": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -931,6 +1569,59 @@
    "audiobookshelf",
    "client",
    "audio"
+  ]
+ },
+ "com.battlecamp.monsters": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Camp is a dynamic game that transports players to a vibrant virtual world, offering a fusion of strategy, adventure, and community-driven engagement.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d78a9a494388bd5cad4a1f78ba60b7d96dd432d9fc9d0b2e65e7960d103b4cb9",
+  "subtitle": "A fusion of strategy, adventure, and community",
+  "tags": [
+   "strategy",
+   "adventure",
+   "community",
+   "battle",
+   "camp",
+   "game"
+  ]
+ },
+ "com.battleon.aq3d": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Adventure Quest 3D MMO RPG is a captivating massively multiplayer online role-playing game that promises to take you on an adventure.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "b967a2e2f081625e262db14196185cdffc3128168c08842f63ac319cc155d742",
+  "subtitle": "Adventure Quest 3D MMO RPG",
+  "tags": [
+   "rpg",
+   "mmo",
+   "adventure",
+   "game",
+   "multiplayer",
+   "action"
+  ]
+ },
+ "com.benchu.ARMCPUZ": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "ARMCPUZ provides detailed information about your device hardware and processor. This version includes injected pro features.",
+  "features": [
+   "Pro Version"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "42bb2cf126b27ae17368f57ce27c797cced79a894325f45cb5551f9b888a6f90",
+  "subtitle": "CPU and hardware information utility",
+  "tags": [
+   "arm",
+   "cpuz",
+   "hardware",
+   "processor",
+   "device",
+   "info"
   ]
  },
  "com.bgames.ageofrun": {
@@ -983,6 +1674,42 @@
    "chat"
   ]
  },
+ "com.christianselig.Apollo": {
+  "category": "social",
+  "date": "2026-10-15",
+  "description": "Apollo is a Reddit app built for customizability, smooth navigation, and gestures, designed specifically for iOS. It features a Jump Bar for fast subreddit hopping, a super-charged Media Viewer for images, GIFs, videos, and albums, and a tabbed interface for easy navigation. Write posts and comments using the powerful Markdown composer and upload directly to Imgur. Customize your browsing experience with large or compact posts, automatic dark mode, and fully customizable gestures. Built with input from thousands of users, Apollo offers Safari View Controller for browsing links, inline media previews in comments, 3D Touch support, and an organized inbox.",
+  "features": [
+   "Jump Bar",
+   "Media Viewer",
+   "Dark Mode",
+   "Markdown Composer",
+   "Customizable Gestures"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "37ec9aedfe58fcae9dc7bfb9533a4480aad77f77a38c968fc00ec74aefc2da33",
+  "subtitle": "A custom and fast Reddit client for iOS",
+  "tags": [
+   "reddit",
+   "client",
+   "social",
+   "browser",
+   "forum"
+  ]
+ },
+ "com.cokepokes.AppStorePlus": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppStore++ with new API",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "f808a500d4db5dbfe4588bdcdce1b899d20018c6fb126770f14f05422e8f2642",
+  "subtitle": "AppStore++ with new API",
+  "tags": [
+   "appstore",
+   "api",
+   "update"
+  ]
+ },
  "com.connect.fps.shooter": {
   "category": "games",
   "date": "2026-10-14",
@@ -1022,6 +1749,40 @@
    "object"
   ]
  },
+ "com.darkpigeon.awaken": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Step into a world of mystery, action, and destiny with AWAKEN: AstralBlade for iOS. Experience an action-packed adventure in a stunning universe where you uncover secrets and fight through challenges.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "162e31b98d0fff861eea1f8a145390b2ea9555099122889f6c71584486a9faa3",
+  "subtitle": "Step into a world of mystery, action, and destiny",
+  "tags": [
+   "awaken",
+   "astralblade",
+   "action",
+   "adventure",
+   "game",
+   "ios"
+  ]
+ },
+ "com.dawinstone.b2ba": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "B2BApocalypse is a modified app version that comes injected with mods.",
+  "features": [
+   "Mods Injected"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6bf32d2149348bf57c46717bfdad266f2927128a65e957eec5840358c2088fac",
+  "subtitle": "Modified app version",
+  "tags": [
+   "b2bapocalypse",
+   "mods",
+   "injected",
+   "app"
+  ]
+ },
  "com.daymore.Across": {
   "category": "other",
   "date": "2026-10-14",
@@ -1052,6 +1813,90 @@
    "speed",
    "utility",
    "ts"
+  ]
+ },
+ "com.developlab.BatteryInfo": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "TS app to check battery information",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a047ea9296424dbc86b35bba3408fac4733a58a9e47c950f3b9505cb43413962",
+  "subtitle": "Check battery information",
+  "tags": [
+   "battery",
+   "info",
+   "utilities",
+   "power",
+   "status"
+  ]
+ },
+ "com.dino.weapon.backpack": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Hero: Merge Weapons is a strategy-focused game that transforms inventory management into a core mechanic. Players combine and organize weapons within their backpack to overcome challenges. The game requires tactical arrangement and merging of items to succeed in combat and exploration.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8cc7df972769112bc23c0ad048d420d81efd8a4440ea7abf84eea8efa4a46f94",
+  "subtitle": "Inventory management strategy and merging game",
+  "tags": [
+   "strategy",
+   "inventory",
+   "merge",
+   "weapons",
+   "backpack",
+   "hero"
+  ]
+ },
+ "com.eastmoon.gk2live": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Step into the polished shoes of a valiant hero tasked with navigating an enchanting adventure in Arcane Knight.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "994b087c7277be0a7224e98d885aec4a94478308678a0d78d116fbc7ecd0f834",
+  "subtitle": "Embark on an enchanting adventure as a valiant hero",
+  "tags": [
+   "arcane",
+   "knight",
+   "adventure",
+   "hero",
+   "ipa"
+  ]
+ },
+ "com.elevateapp.kamino.kamino": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Balance Meditation and Sleep is an application designed to help users with meditation and sleep routines. This version features the subscription unlocked, providing full access to all available content and guided sessions within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b34380cc4ef15d0406745b2c5152e4c3bf33f28c6c9d8d7ba4aecb2efd32fe60",
+  "subtitle": "Meditation and sleep with subscription unlocked",
+  "tags": [
+   "balance",
+   "meditation",
+   "sleep",
+   "relaxation",
+   "mindfulness"
+  ]
+ },
+ "com.endavomedia.dmiondemand": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Awaan is a popular iOS streaming application designed for users who enjoy Arabic entertainment content.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "07c832ef7ba68dbc52aa0eae7e0f4a3e570ef8310e1b62c62b1d5c8d656df301",
+  "subtitle": "Arabic entertainment streaming application",
+  "tags": [
+   "awaan",
+   "streaming",
+   "arabic",
+   "entertainment",
+   "video",
+   "shows"
   ]
  },
  "com.enjoy.aichat.chatbot.openchat": {
@@ -1099,6 +1944,25 @@
    "chat",
    "artificial intelligence",
    "iphone"
+  ]
+ },
+ "com.eu.eud3": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "ATHENA: Blood Twins modded features by kamohacks. Includes damage multiplier and defense multiplier enhancements for the game.",
+  "features": [
+   "Damage Multiplier",
+   "Defense Multiplier"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "c8344123b6563c6474b45e3a9ab17099e74354c163c659ec2d41ffd4186e42fa",
+  "subtitle": "Hack features for ATHENA Blood Twins",
+  "tags": [
+   "athena",
+   "blood twins",
+   "hack",
+   "mod",
+   "kamohacks"
   ]
  },
  "com.example.acela": {
@@ -1245,6 +2109,72 @@
    "tools"
   ]
  },
+ "com.github.auties00.artemis": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Artemis is an alternative and open source streaming client for HIDIVE.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "dd8c3c2222ba8d6ec1603ac0e43961a677b9340b63dae3a7619437503ad6a389",
+  "subtitle": "Alternative streaming client for HIDIVE",
+  "tags": [
+   "artemis",
+   "streaming",
+   "hidive",
+   "open source",
+   "client",
+   "entertainment"
+  ]
+ },
+ "com.gocas.byroon": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Vocabulary Builder By Atlas helps you learn and expand your English vocabulary. Access subscription features by pressing store purchase within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6821bbd3d45ee10c3c86b6641796b2bb164669c81e5f4201437acd35d9601aa0",
+  "subtitle": "Build your vocabulary and learn English",
+  "tags": [
+   "vocabulary",
+   "english",
+   "learning",
+   "builder",
+   "education"
+  ]
+ },
+ "com.google.ios.youtube.asjtube.1.4.0": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "ASJTube is a modded version of YouTube created by asjrx, featuring bonus tweaks added by mrdrvt99. Included bonus tweaks are YouPiP, YTABConfig, and YouQ.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e4e67776d294f3fb9fbe3a71f5e78454e9221438e1f9879da5fc78a605d6b99f",
+  "subtitle": "Modded version of YouTube with bonus tweaks",
+  "tags": [
+   "youtube",
+   "mod",
+   "tweaks",
+   "video",
+   "streaming"
+  ]
+ },
+ "com.google.ios.youtube.asjtube.1.4.0.ios16": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "ASJTube is a modded version of YouTube created by asjrx with support for iOS 16 and later.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d85df64cda25ba6279e175da0f4be0ed5719b33ac1885f36955f9d9882d201ed",
+  "subtitle": "Modded version of YouTube for iOS 16 and later",
+  "tags": [
+   "youtube",
+   "video",
+   "mod",
+   "media"
+  ]
+ },
  "com.guistudios.advance.car.parking.car.driver.simulator": {
   "category": "games",
   "date": "2026-10-14",
@@ -1279,6 +2209,43 @@
    "film"
   ]
  },
+ "com.habby.archero": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archero is an action-adventure game initially released for mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e65448e2e7fe66d32e64fae26c52c71b65400b6779f26e10d60b03b6887bc3d9",
+  "subtitle": "Action-adventure mobile game",
+  "tags": [
+   "archero",
+   "action",
+   "adventure",
+   "game",
+   "mobile"
+  ]
+ },
+ "com.happykamp.aquariumland": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Aquarium Land for iOS lets players dive into the vibrant world of aquariums.",
+  "features": [
+   "Freeze Money",
+   "Freeze Diamond",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "be3109434990854f0515b200569b533e068abad945fa1ff824f033abd79005f4",
+  "subtitle": "Dive into the vibrant world of aquariums",
+  "tags": [
+   "aquarium",
+   "land",
+   "game",
+   "underwater",
+   "fish",
+   "simulation"
+  ]
+ },
  "com.hassantaleb.mockup": {
   "category": "other",
   "date": "2026-10-14",
@@ -1294,6 +2261,22 @@
    "pro",
    "injected",
    "utilities"
+  ]
+ },
+ "com.hdnwbtb.uixnoe": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AssppPro helps you download apps and IPA files from multiple Apple ID accounts. You can also download older versions of applications. Please note that the IPA files downloaded using this application are encrypted and have not been decrypted.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "594eb6ad740141b495313e13cd987becba24383597b44f55a3de4419f0fe6df0",
+  "subtitle": "Download apps and IPA files from multiple Apple accounts",
+  "tags": [
+   "ipa",
+   "appleid",
+   "download",
+   "apps",
+   "utility"
   ]
  },
  "com.headupgames.agadah": {
@@ -1313,6 +2296,42 @@
    "ttjb",
    "tools",
    "collection"
+  ]
+ },
+ "com.headupgames.bridgeconstructorstudio": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bridge Constructor Studio is a captivating engineering puzzle game designed for players who love challenges and creativity.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2d951373cbbaee1dc7558f62b65e807f45aae64f1b588673b77efbefb7e082dc",
+  "subtitle": "Engineering puzzle game for challenges and creativity",
+  "tags": [
+   "bridge",
+   "constructor",
+   "puzzle",
+   "engineering",
+   "studio",
+   "game"
+  ]
+ },
+ "com.hemin.mp3editor": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AudioEditor is an audio editing application. This version includes injected in-app purchases.",
+  "features": [
+   "Injected IAP"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3bf2b078517353b1d7850d664341fbd9c1aa868a7d361933fb49f1af7d0d8b61",
+  "subtitle": "Audio editing app",
+  "tags": [
+   "audio",
+   "editor",
+   "sound",
+   "music",
+   "utilities",
+   "tool"
   ]
  },
  "com.hitpaw.photoenhancer": {
@@ -1598,6 +2617,138 @@
    "analogue"
   ]
  },
+ "com.ipaomtk.army.defence.152523": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Army Defence! is a fast-paced military strategy and defense game designed for iOS devices. Plan your defenses, command your forces, and protect your base from incoming threats in this tactical action game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6eda83e746ec5ccd9686d989151bfe93a32ab091be114de060bd624056974147",
+  "subtitle": "Fast-paced military strategy and defense game",
+  "tags": [
+   "army",
+   "defence",
+   "strategy",
+   "military",
+   "action",
+   "game"
+  ]
+ },
+ "com.ipaomtk.backpack.defense.zombie.td.154155": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Defense: Zombie is a unique survival strategy game for iOS devices. Plan your defenses and survive against the zombie threat.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "de0265eec69c842f6e9c34842064cc9aa086ad1b4ac375107a6da99982ccccf2",
+  "subtitle": "A unique survival strategy game for iOS",
+  "tags": [
+   "defense",
+   "zombie",
+   "strategy",
+   "survival",
+   "game"
+  ]
+ },
+ "com.ipaomtk.baseball.boy.158396": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baseball Boy! is the iOS installable version of the popular arcade-style baseball game. Swing for distance and test your skills in this mobile arcade experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "13f8f2e2dbf93e41e0c57f60f7c95ef270e43a14347cf1c312f1eb691760db2b",
+  "subtitle": "Arcade-style baseball game for iOS",
+  "tags": [
+   "baseball",
+   "arcade",
+   "sports",
+   "game",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.baseball.rising.star.151605": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baseball Rising Star is an iOS game. Install and play Baseball Rising Star on your Apple device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a9b33d6b507102a211f6d591d32d0adf6f01610b0a6c80797aeff7fd16c01525",
+  "subtitle": "Play the Baseball Rising Star game",
+  "tags": [
+   "baseball",
+   "sports",
+   "game",
+   "rising",
+   "star",
+   "ipa"
+  ]
+ },
+ "com.ipaomtk.basketball.clash.multiplayer.152330": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Basketball Clash: Multiplayer is an iOS sports game package designed for iPhone users to enjoy basketball gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "462d25aef2453d806aa8b89da86c7e6995907da3b051523bb5963d6f1f257017",
+  "subtitle": "Multiplayer iOS sports game package",
+  "tags": [
+   "basketball",
+   "multiplayer",
+   "sports",
+   "game",
+   "ios"
+  ]
+ },
+ "com.ipaomtk.battle.guys.royale.154182": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Guys : Royale is an iOS multiplayer party royale game package that allows iPhone users to play together.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9e1ae896a8f664efe0e4c1c5dda21f238fbeed753f7d4759c96c0bf884809f48",
+  "subtitle": "Multiplayer party royale game",
+  "tags": [
+   "battle",
+   "guys",
+   "royale",
+   "multiplayer",
+   "party",
+   "game"
+  ]
+ },
+ "com.ipaomtk.battlemons.156235": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battlemons IPA is the iOS installation file for the monster-collecting role-playing game Battlemons, designed for iPhone and iPad devices. Collect monsters and experience the RPG adventure on your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c6687a86c8f19f35a1898de694b9c27c671f613f9bb1d7a89c9b0dee96ac5abc",
+  "subtitle": "Monster-collecting role-playing game for iOS",
+  "tags": [
+   "battlemons",
+   "rpg",
+   "monster",
+   "game",
+   "ipa",
+   "ios"
+  ]
+ },
+ "com.iphonecake.appcakej": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "AppCake is an unofficial app store providing access to thousands of free applications and games. As a top alternative to the official store, it allows users to browse and download a wide variety of software directly to their devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b6b37000ba4e0aee21b20fb24e0e7e18497ec9a3073d860a57a24728b83ea5a9",
+  "subtitle": "Alternative app store for iOS devices",
+  "tags": [
+   "app store",
+   "games",
+   "apps",
+   "alternative",
+   "free"
+  ]
+ },
  "com.jacekdojwa.abg": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -1667,6 +2818,24 @@
    "security"
   ]
  },
+ "com.kimen.aptvpro": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "APTV with Pro unlocked. Requires minimum OS version 14.0.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "7378eaa23e530e0d4fcb691fd235ba7c8afb5e3dccf500b59a86b6cf2bdb9cfd",
+  "subtitle": "APTV app",
+  "tags": [
+   "aptv",
+   "streaming",
+   "media",
+   "player",
+   "video"
+  ]
+ },
  "com.kongregate.mobile.adventurecapitalist": {
   "category": "games",
   "date": "2026-10-14",
@@ -1699,6 +2868,23 @@
    "communism",
    "game",
    "adventure"
+  ]
+ },
+ "com.kuro121vn.battletask": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BattleTask is a gamified to-do list and role-playing game designed to help you manage tasks. Organize your daily activities and turn your productivity into a game.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bd3fa62692d8b21949ecd1c5376081bf2e70f6d1cab9cc486417e16a6fdbae1c",
+  "subtitle": "Gamified To-Do RPG",
+  "tags": [
+   "battletask",
+   "rpg",
+   "todo",
+   "gamified",
+   "productivity",
+   "game"
   ]
  },
  "com.lagagggggg.MyBatteries": {
@@ -1775,6 +2961,75 @@
    "danmaku"
   ]
  },
+ "com.lilucat.applock.us": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Privacy app designed to help keep your sensitive apps private and secure on your device.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "20229dbd3d0fd47a238c6d8d3caeb486deb817085c087a1047cdf560231d8ff0",
+  "subtitle": "Keep your sensitive apps private and secure",
+  "tags": [
+   "privacy",
+   "security",
+   "applock",
+   "lock",
+   "protection"
+  ]
+ },
+ "com.linecorp.b612": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "B612 is available with subscription unlocked for users. This app comes with injected features to access premium content without a paid subscription.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "216abe11aa8d77e5160d4dbb33bfb57d1d10ba908f61d52183dafdd3f0484187",
+  "subtitle": "B612 app with subscription unlocked",
+  "tags": [
+   "b612",
+   "camera",
+   "photo",
+   "editor",
+   "unlocked",
+   "utility"
+  ]
+ },
+ "com.livingcodelabs.bakerbusiness3": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Baker Business 3 is an idle business simulation game for iPhone that places players in charge of running their own bakery business.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f77761266d9aa95ecc13e05599242644f18375ab2ef0c03aa1035a28408f5707",
+  "subtitle": "Idle business simulation game for iPhone",
+  "tags": [
+   "baker",
+   "business",
+   "simulation",
+   "idle",
+   "game"
+  ]
+ },
+ "com.livintis.aiartapp": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Artistai provides premium features. The IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2252f62da3fb2c2d1d902a80ce62f9a6f637aea8df0b96a3796a69d27ac37152",
+  "subtitle": "Premium art tools for creators",
+  "tags": [
+   "artistai",
+   "premium",
+   "ttjb",
+   "art",
+   "ipa"
+  ]
+ },
  "com.londonappstudio.Charging-Animation": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -1810,6 +3065,41 @@
    "style"
   ]
  },
+ "com.loop.apple.grapple": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Welcome to the exciting world of Apple Grapple Survivor, a thrilling new game designed specifically for iOS devices. As mobile gaming",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "449309c9f86712c7e2eb0ea941ee2f3422b4c1b586f5bb924ddbde1d58d47675",
+  "subtitle": "An exciting new game for iOS devices",
+  "tags": [
+   "apple",
+   "grapple",
+   "survivor",
+   "game",
+   "mobile",
+   "ios"
+  ]
+ },
+ "com.luckyclan.artstudio2.ios": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "ArtstudioPro with Pro features unlocked. This IPA has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Pro Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "40417ec4fe7a26d684519657abea157dcb9d8bd77d580490c26292cd4676e418",
+  "subtitle": "ArtstudioPro IPA version",
+  "tags": [
+   "artstudio",
+   "pro",
+   "ipa",
+   "ttjb",
+   "graphics"
+  ]
+ },
  "com.lunosoft.ttheroes": {
   "category": "games",
   "date": "2026-10-14",
@@ -1840,6 +3130,23 @@
    "pursuit",
    "action",
    "cars",
+   "game"
+  ]
+ },
+ "com.maf.BackpackRush": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Rush: Merge Defense is an iOS game that combines merge mechanics with strategic defense gameplay. Manage your backpack inventory, merge items, and build your defense to survive challenges.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5aac7dab66acfe6eb29e937c0da9dea52505a21277ff3318a5aec17681b6b523",
+  "subtitle": "A fun and strategic merge defense adventure",
+  "tags": [
+   "backpack",
+   "rush",
+   "merge",
+   "defense",
+   "strategy",
    "game"
   ]
  },
@@ -1881,6 +3188,40 @@
    "lockscreen",
    "wallpaper",
    "theme"
+  ]
+ },
+ "com.mangolabs.copypaste": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AutoPaste Keyboard is a tweak that unlocks subscription features. To activate the unlocked features, press restore purchase within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "43ab14040a3b69d5c8e3707a8cab30810836dfdb46e71f8abc1d8a0bc240561b",
+  "subtitle": "Keyboard tweak for subscription access",
+  "tags": [
+   "keyboard",
+   "autopaste",
+   "tweak",
+   "utility"
+  ]
+ },
+ "com.mbh.athkari": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Athkari is an installation file for iPhone and iPad designed to help users remember God and find peace through remembrance. This app provides a digital space for daily supplications and religious reminders.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "8198a33877aa53bc8536b4558de9df581312cd13c3246e744d2fc3817fa9fc71",
+  "subtitle": "Athkari IPA for iPhone and iPad",
+  "tags": [
+   "athkari",
+   "islamic",
+   "supplications",
+   "remembrance",
+   "iphone",
+   "ipad"
   ]
  },
  "com.miniclip.8ballpoolmult": {
@@ -1934,6 +3275,38 @@
    "ios"
   ]
  },
+ "com.mudsplasher.AppleGotTrolled": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "This tool for CVE-2022-46689 and TrollStore un-blacklists enterprise certificate signed apps.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "a21e3b09f23a7391fcd5e8653df9b51bf889572866dc6739268a4998839079e8",
+  "subtitle": "Un-blacklists enterprise certificate signed apps",
+  "tags": [
+   "trollstore",
+   "enterprise",
+   "certificate",
+   "tool"
+  ]
+ },
+ "com.mwm.bananai": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Bananai is an application featuring an injected subscription unlocked modification. This release provides access to all premium subscription content directly within the app without requiring an active purchase.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7a09a61f63fe1a3682758f421318c40f040616d24e57eac28cbc9a73a0bbb557",
+  "subtitle": "Subscription unlocked version",
+  "tags": [
+   "bananai",
+   "unlocked",
+   "subscription",
+   "app"
+  ]
+ },
  "com.ndemiccreations.survivors": {
   "category": "other",
   "date": "2026-10-14",
@@ -1952,6 +3325,89 @@
    "ttjb"
   ]
  },
+ "com.nextep.learning.kids.games": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Bebi: Baby Games for Preschool. Sideloading and certificate options available.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8f05ad90bec83144b1670e315f6395123ba9f082c7031797ae2b164310c3d5af",
+  "subtitle": "Baby Games for Preschool",
+  "tags": [
+   "baby",
+   "games",
+   "preschool",
+   "kids",
+   "learning"
+  ]
+ },
+ "com.ngame.allstar.eu": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arena of Valor iOS is a game developed by Tencent Games that has quickly gained popularity among mobile gamers. Experience strategic gameplay and team battles directly on your mobile device.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "ee8a69243c2a65046d2a8456a4326218fe4191d2cacb9ddced2bf84fa702af67",
+  "subtitle": "Popular mobile game developed by Tencent Games",
+  "tags": [
+   "arena of valor",
+   "tencent",
+   "game",
+   "mobile",
+   "strategy"
+  ]
+ },
+ "com.niceios.Battery.Battery": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "In today's fast-paced digital world, our devices have become an integral part of our lives. Whether it is for work or leisure, we rely heavily on them throughout the day. Battery management is essential to keep your device running smoothly.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "87e659f1eabef1bd9e57746ab23e180f8a583489192bb61cf9193a55d717470d",
+  "subtitle": "Monitor your device battery",
+  "tags": [
+   "battery",
+   "power",
+   "monitor",
+   "device",
+   "utilities"
+  ]
+ },
+ "com.onicore.backpack.rush": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpack Rush is a mobile game designed to provide entertainment. Available as an IPA mod for iOS devices, this title aims to capture players attention with engaging gameplay.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "45404026f8f75ab4f238a82d4dd21d9bf3afda237328d842b31fd7d836767626",
+  "subtitle": "An iOS game for entertainment",
+  "tags": [
+   "backpack",
+   "rush",
+   "game",
+   "ios",
+   "entertainment"
+  ]
+ },
+ "com.optiflow.imposter": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "BAM provides modified IPA files tested and compiled by the TTJB Team. Access a collection of custom applications directly from the repository.",
+  "features": [
+   "Modified IPA files",
+   "Compiled by TTJB Team"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "67ade1dd9f665193c2e2f62ff089229d0681667942ad497448f5971b07fe648d",
+  "subtitle": "IPA mods and compiled apps",
+  "tags": [
+   "bam",
+   "mods",
+   "ipa",
+   "ttjb",
+   "apps"
+  ]
+ },
  "com.os.airforce": {
   "category": "games",
   "date": "2026-10-14",
@@ -1967,6 +3423,21 @@
    "war",
    "flight",
    "arcade"
+  ]
+ },
+ "com.panteon.arcanearena": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Tower defense games have long been a staple of mobile gaming, offering thrilling strategy, tense battles, and addictive replay value.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "aacd7096bbd9580d8aa8d50759fcde4d26c516eb8b475d90768637a361b80d16",
+  "subtitle": "Tower defense strategy game",
+  "tags": [
+   "tower defense",
+   "strategy",
+   "games",
+   "battle"
   ]
  },
  "com.perfectcorp.yat": {
@@ -2021,6 +3492,39 @@
    "app"
   ]
  },
+ "com.pikpok.br.iosstore": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Barbie Horse Ride and Rescue IPA is the iOS installation file for a cozy adventure simulation game. Explore, ride horses, and complete rescue missions in an engaging virtual environment designed for Apple devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4c71953e106c5e0cec1818170e2a06d259f8aeadf60711b871cfbf84d87ff84c",
+  "subtitle": "Cozy adventure simulation game",
+  "tags": [
+   "barbie",
+   "horse",
+   "ride",
+   "rescue",
+   "adventure",
+   "simulation"
+  ]
+ },
+ "com.pixeldev.APEXRacers": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Apex Racer is a racing game that offers thrilling experiences at your fingertips.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "61aa381204a63b362f2e0e98014832e41c1ad563163a32df32ce4a582da23763",
+  "subtitle": "Racing game experience",
+  "tags": [
+   "racing",
+   "game",
+   "cars",
+   "speed",
+   "apex"
+  ]
+ },
  "com.pixelperfectdude.htdrive": {
   "category": "games",
   "date": "2026-10-14",
@@ -2036,6 +3540,41 @@
    "game",
    "car",
    "racing"
+  ]
+ },
+ "com.pixite.assembly": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Create vector graphics and SVGs easily with Assembly. This version includes subscription unlocked features. Design logos, icons, and illustrations directly on your device with professional tools and precise control over your vector artwork.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d04b0ec63297f76c10a4995b6a41ca0a28ebb632cbbd0cc715076dcaa8335665",
+  "subtitle": "Vector and SVG maker",
+  "tags": [
+   "vector",
+   "svg",
+   "maker",
+   "design",
+   "graphics"
+  ]
+ },
+ "com.playhardlab.defenders": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Astro Defenders : Capt.Couch is an engaging action-defense game designed for iPhone. Defend your base and engage in strategic battles against incoming threats across space.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "d47b3b28bbc71f05a50a125e52c14779addf50b80f5b5d4aadac05935f9a3719",
+  "subtitle": "Action-defense game for iPhone",
+  "tags": [
+   "action",
+   "defense",
+   "strategy",
+   "space",
+   "game",
+   "iphone"
   ]
  },
  "com.playkot.ageofmagic": {
@@ -2070,6 +3609,42 @@
    "city",
    "management",
    "game"
+  ]
+ },
+ "com.plr.expeditionscapes": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Austin\u2019s Odyssey is an adventure exploration game for iPhone that invites players into a richly detailed world. Explore and adventure through an immersive experience designed for mobile devices.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "174aeece326da8196d81787a0258f3f0ab450b1205898cf9fc57c227ee024c5a",
+  "subtitle": "An adventure exploration game for iPhone",
+  "tags": [
+   "adventure",
+   "exploration",
+   "game",
+   "iphone",
+   "austin",
+   "odyssey"
+  ]
+ },
+ "com.qiiwi.backpackergo": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Backpacker Go! offers a refreshing change of pace for iOS users. Experience a travel-themed game designed specifically for Apple devices, featuring unlimited cash for your gameplay.",
+  "features": [
+   "Cash Unlimited"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "21e3a4d18395f3088732edfaaf1292659068453349f3f943596ddc3ec85111a4",
+  "subtitle": "A travel-themed game for iOS devices",
+  "tags": [
+   "backpacker",
+   "travel",
+   "game",
+   "ios",
+   "cash",
+   "mod"
   ]
  },
  "com.qingbin.Addons": {
@@ -2125,6 +3700,21 @@
    "status bar"
   ]
  },
+ "com.realmzer.autoclicker": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "This tweak adds an autoclicker function to injected apps.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "3d83e605d2347cf440b7393f58681a0fa453670947b845df13a49d4fc89060ac",
+  "subtitle": "Add an autoclicker to injected apps",
+  "tags": [
+   "autoclicker",
+   "tweak",
+   "clicker",
+   "utility"
+  ]
+ },
  "com.rebelancap.2ship": {
   "category": "other",
   "date": "2026-10-14",
@@ -2142,6 +3732,21 @@
    "vision pro"
   ]
  },
+ "com.redfalcon.basketballgoat.ios": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Basketball GOAT on iOS delivers a polished basketball gaming experience that is both deep and accessible.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2ae6a83743c562fbf64938f2fe5328a97366c617796de96f967d7d72522f5a29",
+  "subtitle": "A polished and accessible basketball gaming experience",
+  "tags": [
+   "basketball",
+   "sports",
+   "game",
+   "mobile"
+  ]
+ },
  "com.rethinkingstudio.AICookBook": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2155,6 +3760,22 @@
    "planner",
    "nutripick",
    "food",
+   "utilities"
+  ]
+ },
+ "com.revoicers.autocc": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AutoCC is an iOS application designed for users who want more control and efficiency when managing automated tasks.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "0a0b09bb7f69b0800be9d5a7805456e67aee31dc9e00857e8351cac37c768d7b",
+  "subtitle": "Control and efficiency for automated management",
+  "tags": [
+   "autocc",
+   "automation",
+   "management",
+   "efficiency",
    "utilities"
   ]
  },
@@ -2210,6 +3831,23 @@
    "sources"
   ]
  },
+ "com.rovio.BadPiggies": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Build makeshift contraptions from a huge collection of parts and make it to the goal without blowing your vehicle to pieces.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "04297b37e659065bcda6a757c94d1d1a41f65002e7ad4b9a21078b4ff372f033",
+  "subtitle": "Build makeshift contraptions and reach the goal",
+  "tags": [
+   "piggies",
+   "vehicles",
+   "contraptions",
+   "builder",
+   "puzzle",
+   "physics"
+  ]
+ },
  "com.rovio.abcasual": {
   "category": "games",
   "date": "2026-10-14",
@@ -2242,6 +3880,76 @@
    "birds",
    "hack",
    "game"
+  ]
+ },
+ "com.ryan.anymex": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "AnymeX is a multiservice tracking client designed for anime and manga fans. It features built-in support for AniList, MyAnimeList and Simkl, allowing you to manage and track your watchlist across multiple platforms from one application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "8473bac22707eba86b887832f3bb9d1925bc341c6ddd9084d4c74921570f0e84",
+  "subtitle": "Multiservice anime tracking client",
+  "tags": [
+   "anime",
+   "tracker",
+   "anilist",
+   "myanimelist",
+   "simkl",
+   "manga"
+  ]
+ },
+ "com.saulawa.areaandvolumecalc.lite": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Area and Volume Calc Lite is an iOS educational calculator application designed to help users compute area and volume measurements. This lightweight tool provides a straightforward calculation experience for geometric values.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "018b1815183c6f96f248f9991f54217f5f35507b77bafed406f0f8cbc1d6110d",
+  "subtitle": "Lightweight educational calculator for area and volume",
+  "tags": [
+   "calculator",
+   "area",
+   "volume",
+   "education",
+   "geometry",
+   "math"
+  ]
+ },
+ "com.serena.Antoine": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "Antoine is a TrollStore-only utility designed for iOS and iPadOS devices. It provides an OSLog user interface that allows you to view system logs in real time. Additionally, the application includes the ability to filter logs as needed.",
+  "features": [
+   "TrollStore-only",
+   "Real time logs",
+   "Log filtering"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "76de1d4bc9573e868e27eed7686f2885a89cea91ad1bb3e0cc941db8c46a1839",
+  "subtitle": "Real time OSLog UI for iOS and iPadOS",
+  "tags": [
+   "oslog",
+   "system logs",
+   "trollstore",
+   "developer",
+   "utilities"
+  ]
+ },
+ "com.serena.AppIndex": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "This application is TrollStore-only. It functions as an applications manager for iPhones. The app allows users to view and copy a variety of app details, including entitlements.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "874d4acb5495826d8652aff3a11febded37314582bca7f6108661e7f23b84bb1",
+  "subtitle": "An applications manager for iPhones",
+  "tags": [
+   "trollstore",
+   "manager",
+   "apps",
+   "details",
+   "entitlements"
   ]
  },
  "com.skybornegames.adorablegarden": {
@@ -2292,6 +4000,39 @@
    "library"
   ]
  },
+ "com.soccerFitYou.App": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "B42 is a pro football training application designed for iOS 16.0 and later. Version 7.13.4 provides structured training programs to help football players improve their skills, fitness, and overall performance on the field.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "322afb4acb5e4b4cc2c4c0e2bdc8164e618a4315f4e8a1d76e08b46b362f82b7",
+  "subtitle": "Pro Football Training",
+  "tags": [
+   "football",
+   "training",
+   "sports",
+   "fitness",
+   "workout",
+   "soccer"
+  ]
+ },
+ "com.sozap.badmen": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Armed Heist is an action-packed multiplayer shooter game where you participate in shooting missions. Experience multiplayer gameplay and combat action.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "f4269d3b746e8827c230d3e6a0ce9579e251d1fe17064ff5f6429a3d2d194a9e",
+  "subtitle": "Action-packed multiplayer shooter",
+  "tags": [
+   "action",
+   "shooter",
+   "multiplayer",
+   "game",
+   "combat"
+  ]
+ },
  "com.sprrrint.amble": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2324,6 +4065,93 @@
    "stick",
    "humor",
    "ios"
+  ]
+ },
+ "com.supercell.magic": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "This is a modded Clash of Clans private server. You have unlimited gems, elixir and gold. Write /help in the Global Chat for comands.",
+  "features": [
+   "Unlimited gems",
+   "Unlimited elixir",
+   "Unlimited gold",
+   "Global chat commands"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b155d6cd640054e273d01183b89f54c30ed88f8c8a26a9774f367bd2516c0052",
+  "subtitle": "Modded Clash of Clans private server",
+  "tags": [
+   "clash of clans",
+   "private server",
+   "modded",
+   "strategy",
+   "gaming",
+   "server"
+  ]
+ },
+ "com.superpixel.arcanablade": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arcana Blade Idle RPG is a mobile game. Developed by a talented team, this release offers an engaging idle role-playing game experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "048c0dda134bcebb0fe134bf5d2627badeb8bbb89842f3608bf71e38beb431bf",
+  "subtitle": "Idle RPG adventure",
+  "tags": [
+   "rpg",
+   "idle",
+   "action",
+   "game",
+   "adventure"
+  ]
+ },
+ "com.telltalegames.BAT100": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Enter the fractured psyche of Bruce Wayne and discover the powerful and far-reaching consequences of your choices as the Dark Knight. Make discoveries that will shatter Bruce Wayne's world and the fragile stability of a corrupt Gotham City. Your actions and choices determine the fate of the Batman. Episode 1 is free, and all episodes are available to download via in-app purchase. Episode data can also be extracted and copied into the app documents folder.",
+  "features": [
+   "Episode 1 Free"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2b8b988d3a050d8a3e2ddd3e2a909790fe08411064781a5dfba8fe06eb171b3b",
+  "subtitle": "Enter the fractured psyche of Bruce Wayne",
+  "tags": [
+   "batman",
+   "telltale",
+   "action",
+   "adventure",
+   "choices",
+   "gotham"
+  ]
+ },
+ "com.tigisoftware.ADManager": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppsManager v1.8.4 Cracked utility application.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "2bfa41b0f1abf070c46dcd64a7297379f247d028a6b1b04458b4f42f04769b47",
+  "subtitle": "AppsManager v1.8.4 Cracked",
+  "tags": [
+   "manager",
+   "apps",
+   "utility"
+  ]
+ },
+ "com.traplight.battleslides": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Battle Legion - Mass Battler is a strategy game that challenges your tactical prowess.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "373504eeb025c60b2cc11815414363546209b94cd619cf470944f122a7d00d1a",
+  "subtitle": "Challenge your tactical prowess in strategy battles",
+  "tags": [
+   "strategy",
+   "battler",
+   "tactical",
+   "battle",
+   "game"
   ]
  },
  "com.unknown.1998vintagecamera": {
@@ -2642,6 +4470,204 @@
    "edit"
   ]
  },
+ "com.unknown.aq3d": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "AQ3D provides gameplay modifications including increased movement speed and unlimited jumping.",
+  "features": [
+   "Increased Speed",
+   "Unlimited Jump"
+  ],
+  "model": "gemini:gemini-3.5-flash",
+  "src_hash": "c9487ce50fc55be9599f019f6461a901b0d30df92250b612fd0eaeaed7cc752a",
+  "subtitle": "Increased movement speed and unlimited jumping",
+  "tags": [
+   "aq3d",
+   "speed",
+   "jump",
+   "game"
+  ]
+ },
+ "com.unknown.artranslator": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Translate text across more than 100 different languages with this mobile application. Features are fully unlocked for user convenience.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b6f72fb95a284c180d2aebe87a2c9d88441415ddf4ae9aa0ad8ad96dd9a50094",
+  "subtitle": "Translate over 100 languages",
+  "tags": [
+   "translator",
+   "languages",
+   "translation",
+   "utilities",
+   "tools"
+  ]
+ },
+ "com.unknown.audioconvert": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Convert audio files between all formats. Edit audio files easily. Trim and modify sound files and export them.",
+  "features": [
+   "Audio conversion",
+   "Audio editing",
+   "Audio trimming",
+   "File export"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1f7930bc7612bc934689e90c094525aced71d3df63f11637dde1f043dab19906",
+  "subtitle": "Convert and edit audio files",
+  "tags": [
+   "audio",
+   "converter",
+   "editor",
+   "sound",
+   "trimmer",
+   "music"
+  ]
+ },
+ "com.unknown.audionoisereducerrecorder": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Audio Noise Reducer and Recorder app allows you to easily unlock paid features.",
+  "features": [
+   "Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "74f557f0db6a851e3a47a16c452d03ca929f26f9fdce760ac370887e462c6a4a",
+  "subtitle": "Audio Noise Reducer and Recorder",
+  "tags": [
+   "audio",
+   "noise",
+   "reducer",
+   "recorder",
+   "sound"
+  ]
+ },
+ "com.unknown.audiotrimmer": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "\u0626\u06d5\u067e\u06b5\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9 \u0628\u06c6 \u0628\u0695\u06cc\u0646\u06cc \u0645\u06c6\u0633\u06cc\u0642\u0627",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4ea720fd9ec67d5dcd0a5ec845d4cb84ca53d965b9b27a62892d4a356b6075ab",
+  "subtitle": "\u0626\u06d5\u067e\u06b5\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9 \u0628\u06c6 \u0628\u0695\u06cc\u0646\u06cc \u0645\u06c6\u0633\u06cc\u0642\u0627",
+  "tags": [
+   "audio",
+   "music",
+   "trimmer",
+   "cutter",
+   "sound"
+  ]
+ },
+ "com.unknown.autoclicker": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Auto Clicker is an application with premium features enabled. Activate premium by choosing the buy option and then cancelling. The application includes no ads.",
+  "features": [
+   "Activate Premium",
+   "No Ads"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "a5d4af7a9a0e99c58fc5cf122ef7683277ff80fd1a99ddf5a96e198c7e2c9d66",
+  "subtitle": "Auto clicker with premium features",
+  "tags": [
+   "auto",
+   "clicker",
+   "premium",
+   "tap",
+   "utility"
+  ]
+ },
+ "com.unknown.autogunheroes": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "AutoGun Heroes is an action game featuring endless gear, one hit kill mechanics, and a player character that cannot die.",
+  "features": [
+   "Endless gear",
+   "One hit kill",
+   "Player immortality"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "4a3fb623533e15ab7b20c9d3991a3f680b6ec6918471bc89821d24baf5e13cb4",
+  "subtitle": "AutoGun Heroes action game",
+  "tags": [
+   "action",
+   "heroes",
+   "game",
+   "gear",
+   "battle"
+  ]
+ },
+ "com.unknown.b612": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "\u0628\u06c6 \u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5 \u0648 \u06a4\u06cc\u062f\u06cc\u06c6\u060c \u067e\u0634\u062a\u06af\u06cc\u0631\u06cc \u0644\u06d5 \u0632\u06cc\u0631\u06d5\u06a9\u06cc \u062f\u06d5\u0633\u062a\u06a9\u0631\u062f \u062f\u06d5\u06a9\u0627\u062a",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "9770bd17bdba8a5af331fe5e2e521a6d790e20561dfb049e758047e6b5ec1fc8",
+  "subtitle": "\u0628\u06c6 \u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5 \u0648 \u06a4\u06cc\u062f\u06cc\u06c6",
+  "tags": [
+   "\u0648\u06ce\u0646\u06d5",
+   "\u06a4\u06cc\u062f\u06cc\u06c6",
+   "\u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc",
+   "\u0632\u06cc\u0631\u06d5\u06a9\u06cc \u062f\u06d5\u0633\u062a\u06a9\u0631\u062f"
+  ]
+ },
+ "com.unknown.baseball9": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "BASEBALL 9 is a sports game offering various unlimited in-game resources for players. Enjoy unlimited currency, stamina, gems, recruitment tickets, and gold badges to enhance your gameplay experience.",
+  "features": [
+   "Unlimited Currency",
+   "Unlimited Stamina",
+   "Unlimited Gems",
+   "Unlimited Recruitment Tickets",
+   "Unlimited Gold Badges"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "985ce33210c9c5b032aac821bc84cb9c6549a5b08d5552a3f5f01364301a9397",
+  "subtitle": "Baseball game with unlimited resources",
+  "tags": [
+   "baseball",
+   "sports",
+   "game",
+   "unlimited"
+  ]
+ },
+ "com.unknown.bazaart": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "\u0626\u06d5\u067e\u06b5\u06cc\u06a9\u06d5\u06cc\u0634\u0646\u06ce\u06a9\u06d5 \u0628\u06c6 \u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5 \u0648 \u06a4\u06cc\u062f\u06cc\u06c6\u060c \u0628\u06d5 \u062a\u0627\u06cc\u0628\u06d5\u062a\u0645\u06d5\u0646\u062f\u06cc \u062a\u06d5\u0648\u0627\u0648\u06d5\u0648\u06d5",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b973e35374b33209119f6d7b9073a3df3601d9592f24a7d70ed7c00692ebc64f",
+  "subtitle": "\u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc\u06a9\u0631\u062f\u0646\u06cc \u0648\u06ce\u0646\u06d5 \u0648 \u06a4\u06cc\u062f\u06cc\u06c6",
+  "tags": [
+   "\u0648\u06ce\u0646\u06d5",
+   "\u06a4\u06cc\u062f\u06cc\u06c6",
+   "\u062f\u06d5\u0633\u062a\u06a9\u0627\u0631\u06cc",
+   "\u0626\u06d5\u067e\u06b5\u06cc\u06a9\u06d5\u06cc\u0634\u0646"
+  ]
+ },
+ "com.unofficial.balatro": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "When poker meets solitaire.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "91a7e2340119c06d00b3b0dd4d6880b1d7f6bfaad3e63dea15a3654065743b4a",
+  "subtitle": "When poker meets solitaire",
+  "tags": [
+   "poker",
+   "solitaire",
+   "cards",
+   "game",
+   "strategy"
+  ]
+ },
  "com.untitledinbrackets.untitled-ios": {
   "category": "utilities",
   "date": "2026-10-14",
@@ -2654,6 +4680,24 @@
    "utility",
    "untitled",
    "tool"
+  ]
+ },
+ "com.v43years.avatarify2": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Avatarify is an application tested and compiled by the TTJB Team. This version includes Pro features. Enjoy the application with the added functions provided in this release.",
+  "features": [
+   "Pro Version"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "872a61518f03a0bd9da112195e99583889ffb13fa8fff3e354a3932042c4e053",
+  "subtitle": "Pro version available",
+  "tags": [
+   "avatarify",
+   "pro",
+   "utilities",
+   "ipa",
+   "ttjb"
   ]
  },
  "com.vasu.math.scanner.math.solver": {
@@ -2691,6 +4735,24 @@
    "education"
   ]
  },
+ "com.vertventures.stella": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Astra provides life advice. This version includes the subscription unlocked tweak. If the subscription is not unlocked automatically, press restore within the app.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "343aa769a7c5025892eaadf892f8e4cef695a95bf570aeaf2f6d42217c3e94f6",
+  "subtitle": "Life advice app with subscription unlocked",
+  "tags": [
+   "life",
+   "advice",
+   "astrology",
+   "utilities",
+   "tweaked"
+  ]
+ },
  "com.vigorapps.30DayFitness": {
   "category": "lifestyle",
   "date": "2026-10-14",
@@ -2707,6 +4769,23 @@
    "health",
    "exercise",
    "training"
+  ]
+ },
+ "com.vqw.aelh": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Awakening of Dragon tells the story of ancient dragons. Travel back to the past, where fights amongst many dragons took place.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e51fb77f10cae328367beb5fadbacee51a3b4b164204d1a37052d7ec901b7c4f",
+  "subtitle": "The story of ancient dragons",
+  "tags": [
+   "dragon",
+   "ancient",
+   "story",
+   "past",
+   "fights",
+   "travel"
   ]
  },
  "com.wallpapershub.anime": {
@@ -2727,6 +4806,57 @@
    "video"
   ]
  },
+ "com.xq.archeroii": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Archero 2 IPA MOD stands out as a highly anticipated sequel to the original Archero game on iOS. This modified version includes built-in features such as Ads SpeedUp and IGameGod integration.",
+  "features": [
+   "Ads SpeedUp",
+   "IGameGod included"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "77b57b0b81ac2ef6823a7de154f84fdbdd0b5c3dc9eea300619c54b150cc90a4",
+  "subtitle": "Archero 2 IPA MOD with Ads SpeedUp and IGameGod",
+  "tags": [
+   "archero",
+   "action",
+   "mod",
+   "game",
+   "ios"
+  ]
+ },
+ "com.xtcarts.gametracker": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Area X is a single platform combining trophies and gaming news for iPhone and iPad users.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "2cec171644e84508fa7f9425f4d9cd433f5acf3c73482b1ef45576286a4f23cc",
+  "subtitle": "Trophies and gaming news for iPhone and iPad",
+  "tags": [
+   "gaming",
+   "trophies",
+   "news",
+   "entertainment"
+  ]
+ },
+ "com.xu.applock": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "App Lock \u2013 Lock Apps IPA is designed for iPhone users who want stronger control and security over their applications. Lock specific apps on your device to protect your personal information and maintain your privacy at all times.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "3f9e2d1e82def27f6371a5e536fe5e7ace4f24ef806db7c3dd9f546edf80a7ea",
+  "subtitle": "Enhances iPhone privacy instantly",
+  "tags": [
+   "applock",
+   "privacy",
+   "security",
+   "lock",
+   "iphone",
+   "utilities"
+  ]
+ },
  "com.yoshisuga.activeGS": {
   "category": "games",
   "date": "2026-10-14",
@@ -2741,6 +4871,22 @@
    "retro",
    "gaming",
    "vintage"
+  ]
+ },
+ "com.yourname028.BarcodeScanner": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "An official barcode scanner application developed by Apple.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "6602794d97337149efb6f79ce451fb9a8bc38957cbdd37db6aff8261a9f631ae",
+  "subtitle": "Official barcode scanner from Apple",
+  "tags": [
+   "barcode",
+   "scanner",
+   "apple",
+   "official",
+   "utilities"
   ]
  },
  "cypwn.AdGuardPro_TS.4.4.0": {
@@ -2804,6 +4950,188 @@
    "diary",
    "maker",
    "collection"
+  ]
+ },
+ "cypwn.Aphrodite_TS.0.6.12": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Asset Catalog Editor developed by Aphrodite_TS and CyPwn.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "e7e75c91fce1f1c78ca948a06e20c36564ae6bf7ccd9e9b25e13fc32726d42f1",
+  "subtitle": "Asset Catalog Editor",
+  "tags": [
+   "asset",
+   "catalog",
+   "editor",
+   "developer"
+  ]
+ },
+ "cypwn.AppCake6_TS.6.1.3": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppCake6_TS is an IPA store developed by AppCake6_TS x CyPwn. It offers a larger number of search results compared to AppCake7, though it features an older user interface.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "af782134b571dfb4b0fddda32f46e88ec6122f37ef0d1e0b342f6f977e7116c4",
+  "subtitle": "IPA store with many search results",
+  "tags": [
+   "ipa",
+   "store",
+   "search",
+   "appcake",
+   "utilities"
+  ]
+ },
+ "cypwn.AppCake7_TS.7.2.2": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "IPA store with a modern user interface. Features fewer search results than AppCake6 and includes no advertisements.",
+  "features": [
+   "No Ads",
+   "Modern UI",
+   "IPA store"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5fbbedd310d4ed394d7163df6f0d7316417319a707e9cc2b872ec3d484f7772d",
+  "subtitle": "Modern IPA store",
+  "tags": [
+   "ipa",
+   "store",
+   "appcake",
+   "utilities"
+  ]
+ },
+ "cypwn.AppDB_1.1.5.1.1.5": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "A fully-featured iOS client for appdb written in Swift 5.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1d1cbfc0896c9dd680e2a39000abebaeeec6a0e8cb780e13a647e4ce52326b49",
+  "subtitle": "iOS client for appdb",
+  "tags": [
+   "appdb",
+   "client",
+   "swift",
+   "ios",
+   "developer"
+  ]
+ },
+ "cypwn.AppInstalleriOS_TS.6.0.0": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Random app installer with some cool features. Developed by AppInstalleriOS_TS and CyPwn.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "a864ea35f3ee2c6a9b36ffde487e81bd86472c9978b1918663a11178ae13a0d4",
+  "subtitle": "Random app installer with cool features",
+  "tags": [
+   "installer",
+   "apps",
+   "tool",
+   "utility"
+  ]
+ },
+ "cypwn.Appabetical-0.9_TS.0.9": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Sort your apps A to Z or by color.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "fcee2cd25bafd83c7ceec39101d57fb132b4573139d6d6b07782030b0a39904f",
+  "subtitle": "Sort your apps A to Z or by color",
+  "tags": [
+   "sort",
+   "apps",
+   "alphabetical",
+   "color",
+   "organize"
+  ]
+ },
+ "cypwn.AppsManagerCracked_1.8.1.1.8.1": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "AppsManager v1.8.1 is an app data manager developed by TigiSoftware. This version includes an activated crack by Paisseon.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "09975ab185f097563bb2363504a76509e4ee0bd1dd5f0e70ed23bd0a0a32123f",
+  "subtitle": "App data manager for iOS",
+  "tags": [
+   "appsmanager",
+   "manager",
+   "tigisoftware",
+   "utilities",
+   "data"
+  ]
+ },
+ "cypwn.AuroraPWmanager_TS.0.9.2": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Aurora version 0.9.2 is a vanilla password manager developed using SwiftUI. It provides straightforward password management capabilities in a native interface.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "10d7caa3f76b1ed93f140a56c5552f9a11b1877b3f4d4ea993f774815588a96e",
+  "subtitle": "A vanilla password manager made in SwiftUI",
+  "tags": [
+   "password",
+   "manager",
+   "security",
+   "swiftui",
+   "utilities",
+   "aurora"
+  ]
+ },
+ "cypwn.BackupAZ4_Crack_TS.1.3.1": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "BackupAZ4 is a utility tool designed for users with TS and jailbroken devices. Cracked by Anna, this application helps you manage your backups directly on your compatible device.",
+  "features": [
+   "Cracked by Anna",
+   "TS support",
+   "Jailbreak support"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "38e3a7b11a5df77e901729f8665bc0ab2c18553133edc080bfbb2274bf674d22",
+  "subtitle": "Backup your device with TS and jailbreak support",
+  "tags": [
+   "backup",
+   "utility",
+   "jailbreak",
+   "ts",
+   "backupaz4"
+  ]
+ },
+ "cypwn.BatteryLife_TS.3.2.1": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Advanced battery health, info, and statistics.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "16bb25ab796a052c3f577b78a77c380ee978ceba813fb27b90b2a4fdd7180c5c",
+  "subtitle": "Advanced battery health, info, and statistics",
+  "tags": [
+   "battery",
+   "health",
+   "info",
+   "statistics",
+   "power"
+  ]
+ },
+ "dev.vodik7.atvtools.atvTools": {
+  "category": "entertainment",
+  "date": "2026-10-15",
+  "description": "Must-have app for Android and Google TV designed to enhance your television experience.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "5a9c86082891a2f508087269e0ae33d9b323747cdfd56d7d8dd567488b965039",
+  "subtitle": "Essential app for Android and Google TV",
+  "tags": [
+   "tv",
+   "android",
+   "google",
+   "entertainment",
+   "tools"
   ]
  },
  "droom.sleepIfUCanFree": {
@@ -2875,6 +5203,23 @@
    "battle"
   ]
  },
+ "hedonic.games.arrowrush.td": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Arrow Rush: Archer Roguelike is an action roguelike game package for iOS devices. Experience fast-paced archer combat and roguelike gameplay mechanics on your iPhone.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "40371a20e8fa560349754e8283f9f7b4d30877fa6f6602deb68322ee3f778552",
+  "subtitle": "Action roguelike game for iPhone",
+  "tags": [
+   "arrow",
+   "rush",
+   "archer",
+   "roguelike",
+   "action",
+   "game"
+  ]
+ },
  "inc.animation.AniClaw": {
   "category": "games",
   "date": "2026-10-14",
@@ -2891,6 +5236,22 @@
    "ipa",
    "games",
    "patched"
+  ]
+ },
+ "io.blocktackle.bcg": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "He-Man: MOTU Battle for Eternia brings the iconic universe of Masters of the Universe to iOS devices, allowing players to experience action set in the Eternia setting.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "7a14f561c5f42dc4ca58f299d99508fcc79d7982c75fb1d5f65e17205233696c",
+  "subtitle": "Masters of the Universe Battle for Eternia on iOS",
+  "tags": [
+   "he-man",
+   "motu",
+   "eternia",
+   "action",
+   "game"
   ]
  },
  "io.github.getaccretion.Accretion": {
@@ -2916,6 +5277,22 @@
    "altstore"
   ]
  },
+ "io.github.johnny901901901.applesauce": {
+  "category": "games",
+  "date": "2026-10-15",
+  "description": "Applesauce is a playful emulator for iOS. It plays supported 32-bit iPhone games on modern iPhones. No jailbreak is required, though JIT is needed.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "8ab40a1f573f788a7491985fc8c1a015e7371b9122b4f361fc7e33d0d8a18257",
+  "subtitle": "A playful emulator for iOS",
+  "tags": [
+   "emulator",
+   "games",
+   "32-bit",
+   "iphone",
+   "retro"
+  ]
+ },
  "io.mindist.noise": {
   "category": "other",
   "date": "2026-10-14",
@@ -2931,6 +5308,21 @@
    "focus",
    "relax",
    "audio"
+  ]
+ },
+ "it.ned.appdb-ios": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "Comprehensive iOS client for AppDB, compatible with iOS 10 and up.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "993901dcaa5df39d69af6ebb0e28dadc4927ab95cecf97fcea68e32f0e762b77",
+  "subtitle": "Comprehensive iOS client for AppDB",
+  "tags": [
+   "appdb",
+   "client",
+   "ios",
+   "developer"
   ]
  },
  "jp.dcsyhi.airwall": {
@@ -2949,6 +5341,22 @@
    "customization"
   ]
  },
+ "jp.shunsuke-osawa.AutoVideoBlur": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "Auto Video Blur is an iOS video editing application designed to help iPhone users apply filtering and blur effects to their videos.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "660b123dc4bb9aa209a6bbcdf96cfc5cc995213ec69dde17189abeb500700775",
+  "subtitle": "Video editing app designed for iPhone users",
+  "tags": [
+   "video",
+   "blur",
+   "editor",
+   "filter",
+   "ios"
+  ]
+ },
  "live.cclerc.Anonycord": {
   "category": "photo-video",
   "date": "2026-10-14",
@@ -2965,6 +5373,41 @@
    "camera"
   ]
  },
+ "llc.planeenglish.PlaneEnglish": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "ARSim is an application with added premium functions. The IPA file has been tested and compiled by the TTJB Team.",
+  "features": [
+   "Premium"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "c1133c35f0d87303af435553f2e908cb500cb7e9102059d3e6a5fb934d36d53d",
+  "subtitle": "ARSim IPA mod",
+  "tags": [
+   "arsim",
+   "ipa",
+   "premium",
+   "ttjb"
+  ]
+ },
+ "myndarc.newFitnessApp": {
+  "category": "lifestyle",
+  "date": "2026-10-15",
+  "description": "Athlytic app with subscription unlocked.",
+  "features": [
+   "Subscription Unlocked"
+  ],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "6af86b8d7e4953043bd881f15f5447f20faf0dc206d938dbdf32893b306c8e74",
+  "subtitle": "Athlytic IPA",
+  "tags": [
+   "athlytic",
+   "fitness",
+   "health",
+   "tracker",
+   "unlocked"
+  ]
+ },
  "net.ichi2.anki": {
   "category": "other",
   "date": "2026-10-14",
@@ -2979,6 +5422,41 @@
    "study",
    "learning",
    "education"
+  ]
+ },
+ "net.limneos.AudioRecorder": {
+  "category": "photo-video",
+  "date": "2026-10-15",
+  "description": "AudioRecorderTS provides extensive customization options similar to its jailbroken version. Features include toggling the recorder and biometric authentication support.",
+  "features": [
+   "Biometric Authentication",
+   "Toggle Recorder"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "bdb33c5f673f0c8d0fe010ec914f500d6d3868a945399470eeb781f7aa3732a6",
+  "subtitle": "Audio recording with extensive customization options",
+  "tags": [
+   "audio",
+   "recorder",
+   "customization",
+   "biometric",
+   "tools"
+  ]
+ },
+ "net.limneos.AudioRecordernodb": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "This tool allows you to record audio from a call using TrollStore.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b2440ba9fc20d1b3b2c3bd52fe8361e00d89fa8cff7c66f09b11f1b3d0bd03b7",
+  "subtitle": "Record call audio using TrollStore",
+  "tags": [
+   "audiorecorder",
+   "callrecorder",
+   "audio",
+   "trollstore",
+   "recorder"
   ]
  },
  "net.sourceloc.AirTroller": {
@@ -3089,6 +5567,19 @@
    "open source"
   ]
  },
+ "org.htf65jud.balatro": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "Balatro version 1.0.1o application.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "025bb9acad686c3eff83c07bf1318c00d53afbfb59bb3a374d57b1ed7bc05e67",
+  "subtitle": "Balatro 1.0.1o",
+  "tags": [
+   "balatro",
+   "game"
+  ]
+ },
  "org.openani.Animeko": {
   "category": "entertainment",
   "date": "2026-10-14",
@@ -3110,6 +5601,22 @@
    "bangumi",
    "torrent",
    "offline"
+  ]
+ },
+ "rn.notes.best": {
+  "category": "developer",
+  "date": "2026-10-15",
+  "description": "AsTools is a developer utility from the Chinese app store that lets you download and install apps. Please note that this app is entirely in Chinese. Compatibility has only been verified for TrollStore.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "1fa362ebc49e2196431f8e42da8c69c72767a1d1e3949c0e6fa0d605397eb64f",
+  "subtitle": "Download and install apps via TrollStore",
+  "tags": [
+   "trollstore",
+   "installer",
+   "downloader",
+   "chinese",
+   "developer"
   ]
  },
  "sato.tokyo.ai-art": {
@@ -3164,6 +5671,55 @@
    "generator",
    "branding",
    "design"
+  ]
+ },
+ "uclort.com.AppInfo": {
+  "category": "other",
+  "date": "2026-10-15",
+  "description": "AppInfo provides details on injected applications. The app was created by OwO Source and injected with Nothing by uclort.",
+  "features": [],
+  "model": "gemini:gemini-flash-lite-latest",
+  "src_hash": "25b49c359293fc8ff4a67bea5a18532f5ae6ba6f12f21c51348805d753c97629",
+  "subtitle": "View injected application details",
+  "tags": [
+   "appinfo",
+   "developer",
+   "details",
+   "utility",
+   "tools"
+  ]
+ },
+ "wiki.qaq.Asspp": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Asspp_2.3 is an application designed for multi-account App Store management. Developed by Asspp_2.3 x CyPwn, this tool provides functionality to manage multiple accounts within the App Store efficiently.",
+  "features": [],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "cbd1f78ce967c10f48dae2829dd14db8f9f4970d0748a1d84f50c83810ba2657",
+  "subtitle": "Multi-account App Store management",
+  "tags": [
+   "app store",
+   "management",
+   "multi account",
+   "utility"
+  ]
+ },
+ "xyz.cypwn.autorc": {
+  "category": "utilities",
+  "date": "2026-10-15",
+  "description": "Automatically unlock most RevenueCat-based apps. This tool functions to bypass payment structures in supported applications.",
+  "features": [
+   "Automatic unlocking"
+  ],
+  "model": "gemini:gemini-3.5-flash-lite",
+  "src_hash": "b5cf676b098419074811c9278fded8ade59da049c6f8869b64fd7c7ebc9c3c08",
+  "subtitle": "Automatically unlock most RevenueCat-based apps",
+  "tags": [
+   "autorevenuecat",
+   "revenuecat",
+   "unlock",
+   "bypass",
+   "utility"
   ]
  },
  "xyz.skitty.Aidoku": {
