@@ -1,9 +1,11 @@
 """One door to the free language models (Google Gemini and OpenRouter ":free" models).
 
 ask() tries the models in ai/models.json in order and returns the first usable answer, or None.
-A model that answers 429 (rate limited), 503 (busy) or 404 (gone) is skipped for the rest of the
-run. Providers without a key (GEMINI_API_KEY, OPENROUTER_API_KEY) are skipped. Only free models are
-ever called: OpenRouter ids must end in ":free". llm.last_model names the model that answered.
+Up to 3 neighbouring OpenRouter models go out as ONE request (OpenRouter's "models" fallback list
+tries them in order). A model that answers 429 (rate limited), 503 (busy) or 404 (gone) is skipped
+for the rest of the run; when a grouped request fails, all of its models are. Providers without a
+key (GEMINI_API_KEY, OPENROUTER_API_KEY) are skipped. Only free models are ever called: OpenRouter
+ids must end in ":free". llm.last_model names the model that answered.
 embed() gives free Gemini embeddings; ask_image() asks the Gemini models about one image.
 """
 
@@ -22,6 +24,7 @@ GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{}:generat
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 KEYS = {"gemini": "GEMINI_API_KEY", "openrouter": "OPENROUTER_API_KEY"}
 BUSY_CODES = (404, 429, 503)
+GROUP_MAX = 3  # most OpenRouter models one request may list
 
 last_model = None  # "provider:model" that answered the latest ask(), None when none did
 busy = set()  # models to leave alone for the rest of this run
@@ -78,6 +81,24 @@ def call(spec, system, user, max_tokens):
     return (data["choices"][0]["message"]["content"] or "").strip()
 
 
+def call_group(specs, system, user, max_tokens):
+    """One OpenRouter request listing several models (tried in order): (answer text, spec that
+    answered). Raises HTTPError, URLError or ValueError."""
+    key = os.environ.get(KEYS["openrouter"], "").strip()
+    body = {
+        "models": [spec.partition(":")[2] for spec in specs],
+        "max_tokens": max_tokens,
+        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+    }
+    data = post(OPENROUTER_URL, {"Authorization": f"Bearer {key}"}, body)
+    text = (data["choices"][0]["message"]["content"] or "").strip()
+    returned = str(data.get("model") or "")
+    for spec in specs:
+        if spec.partition(":")[2].removesuffix(":free") == returned.removesuffix(":free"):
+            return text, spec
+    return text, "openrouter:" + returned
+
+
 def parse(raw, schema):
     """(dict, None) for a reply that is JSON matching the schema, else (None, what was wrong).
     Schema: key -> "str", "bool", "int", "list", or a list of allowed values."""
@@ -120,31 +141,50 @@ def ask(task, system, user, schema=None, max_tokens=800):
             )
             + "."
         )
-    for spec in order:
-        if spec in busy or not usable(spec):
-            continue
-        prompt, error = user, None
-        for _ in range(2 if schema else 1):
-            try:
-                raw = call(spec, system, prompt, max_tokens)
-            except urllib.error.HTTPError as e:
-                if e.code in BUSY_CODES:
-                    busy.add(spec)
-                print(f"llm[{task}]: {spec} answered {e.code}", file=sys.stderr)
-                break
-            except (urllib.error.URLError, KeyError, IndexError, ValueError, TimeoutError, OSError) as e:
-                print(f"llm[{task}]: {spec} failed ({type(e).__name__})", file=sys.stderr)
-                break
-            if not schema:
-                if raw:
-                    last_model = spec
-                    return raw
-                break
-            data, error = parse(raw, schema)
-            if data is not None:
-                last_model = spec
-                return data
-            prompt = f"{user}\n\nYour last reply was rejected: {error}. Reply with valid JSON only."
+    specs = [spec for spec in order if spec not in busy and usable(spec)]
+    i = 0
+    while i < len(specs):
+        group = specs[i : i + 1]
+        if group[0].startswith("openrouter:"):
+            while (
+                len(group) < GROUP_MAX
+                and i + len(group) < len(specs)
+                and specs[i + len(group)].startswith("openrouter:")
+            ):
+                group.append(specs[i + len(group)])
+        i += len(group)
+        while group:
+            prompt, answered = user, None
+            for _ in range(2 if schema else 1):
+                try:
+                    if len(group) > 1:
+                        raw, answered = call_group(group, system, prompt, max_tokens)
+                    else:
+                        answered = group[0]
+                        raw = call(answered, system, prompt, max_tokens)
+                except urllib.error.HTTPError as e:
+                    if e.code in BUSY_CODES:
+                        busy.update(group)
+                    print(f"llm[{task}]: {', '.join(group)} answered {e.code}", file=sys.stderr)
+                    group = []
+                    break
+                except (urllib.error.URLError, KeyError, IndexError, ValueError, TimeoutError, OSError) as e:
+                    print(f"llm[{task}]: {', '.join(group)} failed ({type(e).__name__})", file=sys.stderr)
+                    group = []
+                    break
+                if not schema:
+                    if raw:
+                        last_model = answered
+                        return raw
+                    break
+                data, error = parse(raw, schema)
+                if data is not None:
+                    last_model = answered
+                    return data
+                prompt = f"{user}\n\nYour last reply was rejected: {error}. Reply with valid JSON only."
+            # the model that answered gave nothing usable: the rest of the group goes out again
+            if group:
+                group.remove(answered if answered in group else group[0])
     return None
 
 
