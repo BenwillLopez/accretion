@@ -2,18 +2,18 @@
  "apps": 4262,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-15 04:58 UTC",
+ "updated": "2026-10-15 08:53 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-15T04:58:56Z",
+ "built_at": "2026-10-15T08:53:33Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23740,
+ "listings": 23739,
  "duplicates": 1796,
  "rejected": 6619,
  "excluded": 57,
- "dead_links_removed": 8761,
+ "dead_links_removed": 8782,
  "links_on_hold": 0,
  "developers": 700,
  "updated_7d": 823,
@@ -53,8 +53,23 @@
  ],
  "recent": [
   {
+   "name": "Swift Radio+",
+   "version": "4.0.0-mod1.0.0",
+   "date": "2026-10-15"
+  },
+  {
+   "name": "SideInstaller",
+   "version": "1.5.2",
+   "date": "2026-10-15"
+  },
+  {
    "name": "MuffinEMU",
    "version": "10.2",
+   "date": "2026-10-15"
+  },
+  {
+   "name": "iCube",
+   "version": "1.0.0-beta9-ios",
    "date": "2026-10-15"
   },
   {
@@ -75,21 +90,6 @@
   {
    "name": "Palladium",
    "version": "1.4.5",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "VortX",
-   "version": "0.5.2",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "SideInstaller",
-   "version": "1.5.1",
-   "date": "2026-10-14"
-  },
-  {
-   "name": "iTorrent",
-   "version": "2.2.0-1",
    "date": "2026-10-14"
   }
  ],
@@ -180,11 +180,11 @@
   },
   {
    "month": "2026-08",
-   "apps": 3857
+   "apps": 3856
   },
   {
    "month": "2026-09",
-   "apps": 4003
+   "apps": 4002
   },
   {
    "month": "2026-10",
