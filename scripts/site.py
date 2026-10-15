@@ -21,6 +21,7 @@ import json
 import os
 import re
 import shutil
+import urllib.parse
 
 from common import hide_nsfw_icons, load_json, nsfw_icon_keys, path, read_list
 from merge import PLACEHOLDER_ICON
@@ -28,6 +29,43 @@ from merge import PLACEHOLDER_ICON
 SHARDS = 128
 ACCRETION_APP = "io.github.getaccretion.Accretion"
 OUT = path("_site")
+
+
+def private_links():
+    """PRIVATE_LINKS (GitHub variable): publish download-server links instead of source URLs"""
+    return os.environ.get("PRIVATE_LINKS", "").strip().lower() in ("1", "true", "yes", "on")
+
+
+def supabase_settings():
+    url, key = os.environ.get("SUPABASE_URL", "").strip(), os.environ.get("SUPABASE_ANON_KEY", "").strip()
+    if not (url and key):  # written by the "Store: set up backend" workflow
+        project = load_json("supabase/project.json", {})
+        url, key = project.get("url", ""), project.get("anonKey", "")
+    return url.rstrip("/"), key
+
+
+def server_link(base, bundle_id, version):
+    """The download server's link for one version: it needs a login or personal key, checks it,
+    then sends the file through the download proxy. The source's own URL is never published."""
+    q = urllib.parse.urlencode({"app": bundle_id, "version": version})
+    return f"{base}/functions/v1/download?{q}"
+
+
+def private_source(source, base):
+    """A copy of an AltStore source with every download pointed at the download server"""
+    copy = json.loads(json.dumps(source))
+    for app in copy.get("apps", []):
+        bid = app.get("bundleIdentifier", "")
+        versions = app.get("versions") or []
+        for v in versions:
+            v["downloadURL"] = server_link(base, bid, v.get("version", ""))
+        if "downloadURL" in app:
+            app["downloadURL"] = (
+                versions[0]["downloadURL"] if versions else server_link(base, bid, app.get("version", ""))
+            )
+    return copy
+
+
 # Apps from this source are built by Accretion: the store shows them with an "Accretion Mod" badge.
 MODS_SOURCE = "https://raw.githubusercontent.com/AccretionMods/mods/main/mods.json"
 
@@ -166,6 +204,17 @@ def popularity(bid, carriers, picks):
     return carriers.get(bid, 0) + (WEB_PICK if bid in picks else 0)
 
 
+def publish_source(name, dest, private, base):
+    """source.json / curated.json as published: as built, or with download-server links"""
+    if not private:
+        shutil.copy(path(name), dest)
+        return
+    with open(dest, "w", encoding="utf-8") as f:
+        json.dump(
+            private_source(load_json(name, {"apps": []}), base), f, ensure_ascii=False, separators=(",", ":")
+        )
+
+
 def main():
     source = load_json("source.json", None)
     if not source:
@@ -181,6 +230,12 @@ def main():
     extras = load_json("_build/ai_extras.json", {})  # features and tags from ai/listings.json
     similar = load_json("ai/similar.json", {})  # bundle id -> similar bundle ids (ai_jobs.py similar)
     known = {a["bundleIdentifier"] for a in source["apps"]}
+    private = private_links()
+    base, _ = supabase_settings()
+    if private and not base:
+        raise SystemExit("PRIVATE_LINKS is on but the Supabase URL is unknown")
+    if private:  # source names stay public, their URLs don't
+        info["sources"] = [{k: v for k, v in s.items() if k != "url"} for s in info["sources"]]
     # icons flagged nsfw by ai_jobs.py images show the placeholder (the app stays)
     hide_nsfw_icons(source["apps"], PLACEHOLDER_ICON, nsfw_icon_keys())
 
@@ -234,7 +289,7 @@ def main():
                         "z": v.get("size") or 0,
                         "min": v.get("minOSVersion", ""),
                         "notes": v.get("localizedDescription", ""),
-                        "url": v["downloadURL"],
+                        "url": server_link(base, bid, v["version"]) if private else v["downloadURL"],
                     }
                     for v in a["versions"]
                 ],
@@ -254,7 +309,7 @@ def main():
         dump(f"data/apps/{i:03d}.json", {a["i"]: a for a in items})
     dump("data/stats.json", stats)
     for name in ("source.json", "curated.json"):
-        shutil.copy(path(name), os.path.join(OUT, name))
+        publish_source(name, os.path.join(OUT, name), private, base)
     # app icons hosted by Accretion (scripts/icons.py keeps them in cache/icons)
     os.makedirs(os.path.join(OUT, "icons"), exist_ok=True)
     published = 0
@@ -277,12 +332,11 @@ def main():
     for name in os.listdir(path("assets")):
         shutil.copy(path(f"assets/{name}"), os.path.join(OUT, "assets", name))
     # community features: public Supabase settings (the anon key is meant to be public)
-    url, key = os.environ.get("SUPABASE_URL", "").strip(), os.environ.get("SUPABASE_ANON_KEY", "").strip()
-    if not (url and key):  # written by the "Store: set up backend" workflow
-        project = load_json("supabase/project.json", {})
-        url, key = project.get("url", ""), project.get("anonKey", "")
+    url, key = supabase_settings()
     if url and key:
         config = {"supabaseUrl": url, "supabaseKey": key}
+        if private:
+            config["privateLinks"] = True
         # "Download IPA" for other sources' apps goes through the download proxy once it is live
         # (GitHub variable DOWNLOAD_PROXY_ORIGIN, the same one the download function gets)
         if os.environ.get("DOWNLOAD_PROXY_ORIGIN", "").strip():
@@ -310,7 +364,7 @@ def main():
             '<a href="../">Accretion has moved</a>\n'
         )
     for name in ("source.json", "curated.json"):
-        shutil.copy(path(name), os.path.join(legacy, name))
+        publish_source(name, os.path.join(legacy, name), private, base)
 
     # GitHub Pages: serve files as-is (no Jekyll processing)
     open(os.path.join(OUT, ".nojekyll"), "w").close()

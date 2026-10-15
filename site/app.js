@@ -513,13 +513,13 @@
           h(
             "li",
             {},
-            h("div", { class: "src-main" }, h("span", { class: "src-name" }, s.name, s.core ? h("em", { class: "badge core" }, "core") : null), h("code", { class: "src-url" }, s.url)),
+            h("div", { class: "src-main" }, h("span", { class: "src-name" }, s.name, s.core ? h("em", { class: "badge core" }, "core") : null), s.url ? h("code", { class: "src-url" }, s.url) : null),
             h("span", { class: "src-n" }, h("b", {}, fmt(s.n)), " apps"),
             h(
               "div",
               { class: "src-act" },
               s.n ? h("a", { class: "btn", href: homeHash({ q: "", c: "all", s: "updated", src: s.i, fit: state.f.fit, saved: false }) }, "Browse") : null,
-              h("button", { class: "btn ghost", type: "button", onclick: () => copy(s.url, "Source link copied") }, "Copy"),
+              s.url ? h("button", { class: "btn ghost", type: "button", onclick: () => copy(s.url, "Source link copied") }, "Copy") : null,
             ),
           ),
         ),
@@ -1039,10 +1039,13 @@
   }
 
   // Accretion's own builds download through the download server with the visitor's personal key
-  // (social.js). The server only has the newest version, so older ones keep their links.
+  // (social.js). The server only has the newest version, so older ones keep their links. With
+  // private links every version's link is already a download-server link: it only needs the key.
   function hostedLink(a, url, version) {
     const auth = window.AccAuth;
-    if (!auth || !auth.link || (version && a.v && version.v !== a.v)) return url;
+    if (!auth || !auth.link) return url;
+    if (/\/functions\/v1\/download\?/.test(url)) return auth.link(a.i, url);
+    if (version && a.v && version.v !== a.v) return url;
     return auth.link(a.i, url);
   }
 
@@ -1213,19 +1216,27 @@
   // ---- add-source dialog -------------------------------------------------------------
   function updateAdd() {
     const which = document.querySelector('input[name="list"]:checked').value;
-    const url = SOURCE_URL[which];
-    $("add-url").textContent = url;
+    const pub = SOURCE_URL[which];
+    // with private links, apps that can't sign in need your personal copy (it carries your key);
+    // the Accretion app signs in itself, so it keeps the public list
+    const priv = (window.ACCRETION_CONFIG || {}).privateLinks;
+    const auth = window.AccAuth;
+    const personal = priv && auth && auth.personalSource ? auth.personalSource(which === "full" ? "store" : "curated") : null;
+    const url = personal || pub;
+    $("add-url").dataset.url = url;
+    $("add-url").textContent = personal ? url.replace(/key=([0-9a-f]{6})[0-9a-f]+/, "key=$1…") : url;
+    $("add-note").hidden = !(priv && !personal);
     $("add-altstore").href = `altstore://source?url=${encodeURIComponent(url)}`;
     $("add-sidestore").href = `sidestore://source?url=${encodeURIComponent(url)}`;
     $("add-feather").href = featherSource(url);
-    $("add-accretion").href = accretionSource(url);
+    $("add-accretion").href = accretionSource(pub);
   }
   $("open-add").addEventListener("click", () => {
     updateAdd();
     $("add").showModal();
   });
   document.querySelectorAll('input[name="list"]').forEach((r) => r.addEventListener("change", updateAdd));
-  $("add-copy").addEventListener("click", () => copy($("add-url").textContent, "Source link copied"));
+  $("add-copy").addEventListener("click", () => copy($("add-url").dataset.url || $("add-url").textContent, "Source link copied"));
 
   // ---- inputs ---------------------------------------------------------------------------
   let timer;

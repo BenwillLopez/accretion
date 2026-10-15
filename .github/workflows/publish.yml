@@ -109,6 +109,8 @@ jobs:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
           DOWNLOAD_PROXY_ORIGIN: ${{ vars.DOWNLOAD_PROXY_ORIGIN }}
+          # on: publish download-server links instead of source URLs (handbook issue #25, phase 2)
+          PRIVATE_LINKS: ${{ vars.PRIVATE_LINKS }}
 
       # Every version's file link into the private table the download function reads (never fails the build)
       - name: Save private download links

@@ -341,7 +341,13 @@
     require: requireUser,
     isMod: () => isMod(),
     renderModStats: (box) => renderModStats(box),
-    link: (bundleId, url) => (hosted.has(bundleId) ? serverLink(bundleId, me.key) : url),
+    // store data links to the download server (no source URLs are published): add your key
+    link: (bundleId, url) =>
+      String(url).startsWith(`${cfg.supabaseUrl}/functions/v1/download?`)
+        ? (me.key && !/[?&]key=/.test(url) ? `${url}&key=${me.key}` : url)
+        : hosted.has(bundleId) ? serverLink(bundleId, me.key) : url,
+    // your personal copy of the whole store (name "store" or "curated") for AltStore, SideStore, Feather
+    personalSource: (name) => (me.key ? sourceLink(name, me.key) : null),
     // "Download IPA" for other sources' apps, once the download proxy is on (config.js downloadProxy):
     // the download server sends it through the proxy, named "<App>_<version>.ipa", source URL hidden
     file: (bundleId, version) =>
@@ -657,9 +663,11 @@
         h("button", { class: "btn", type: "button", onclick: () => A.copy(url, "Link copied") }, "Copy"));
       box.replaceChildren(
         h("h2", {}, "Your download links"),
-        h("p", { class: "muted small" }, "Add these to AltStore, SideStore, Feather or ESign to get Accretion Mods and the Accretion app there. They're personal: anyone with them downloads as you, so don't share them."),
+        h("p", { class: "muted small" }, "Add these to AltStore, SideStore, Feather or ESign to get Accretion's apps there. They're personal: anyone with them downloads as you, so don't share them."),
         row("Accretion Mods", sourceLink("mods", me.key)),
         row("Accretion app", sourceLink("app", me.key)),
+        cfg.privateLinks ? row("Whole store", sourceLink("store", me.key)) : null,
+        cfg.privateLinks ? row("Core list", sourceLink("curated", me.key)) : null,
         h("div", { class: "actions" }, h("button", { class: "btn ghost", type: "button", onclick: async () => {
           if (!window.confirm("Replace your key? Your current links stop working, so you'll need to add the new ones again.")) return;
           try { me.key = await api.downloadKey(true); draw(); A.toast("New links ready"); } catch (err) { A.toast(err.message); }
