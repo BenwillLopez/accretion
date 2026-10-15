@@ -572,6 +572,25 @@
     dlg.showModal();
   }
 
+  // "More ways" on the app page: every other way to get the app, one row each (like the app's install sheet)
+  function moreWays(a, ipa, pref, installed) {
+    const way = (attrs, glyph, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
+      h("span", { class: "way-ic", "aria-hidden": "true" }, glyph),
+      h("span", { class: "way-txt" }, h("b", {}, name), note ? h("span", { class: "muted small" }, note) : null),
+      h("span", { class: "way-go", "aria-hidden": "true" }, "›")));
+    const dlg = h("dialog", { class: "dl-screen", "aria-labelledby": "ways-title" },
+      h("h2", { id: "ways-title" }, "More ways to install"),
+      h("ul", { class: "ways" },
+        way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, ipa); } }, "⬇", "Download IPA", "Save the file and sign it yourself."),
+        ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: () => { dlg.close(); installed(); } }, "◆", i.name, i.note)),
+        ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener", onclick: () => dlg.close() }, "✓", `Sign with ${c.name}`, c.note)),
+        way({ href: ipa, onclick: (e) => { e.preventDefault(); copy(ipa, "IPA link copied"); dlg.close(); } }, "⧉", "Copy IPA link", null)),
+      h("div", { class: "dl-actions" }, h("button", { class: "btn ghost", type: "button", onclick: () => dlg.close() }, "Cancel")));
+    dlg.addEventListener("close", () => dlg.remove());
+    document.body.append(dlg);
+    dlg.showModal();
+  }
+
   function installButtons(url) {
     const main = installer() || INSTALLERS[0]; // the Accretion app unless the visitor picked another
     return [
@@ -1017,26 +1036,9 @@
         ? h("a", { class: "btn primary", href: pref ? pref.link(ipa) : ipa, rel: "nofollow noopener", title: "Download, sign and install", onclick: (e) => { installed(); if (!pref) { e.preventDefault(); chooseInstaller(ipa, redraw); } } }, pref ? `Install with ${pref.name}` : "Install")
         : null,
       ipa && pref ? h("button", { class: "btn ghost", type: "button", onclick: () => chooseInstaller(null, redraw) }, "Change") : null,
-    );
-    // Every other way to get the app, one row each (like the app's install sheet)
-    const way = (attrs, glyph, name, note) => h("li", {}, h("a", { class: "way", ...attrs },
-      h("span", { class: "way-ic", "aria-hidden": "true" }, glyph),
-      h("span", { class: "way-txt" }, h("b", {}, name), note ? h("span", { class: "muted small" }, note) : null),
-      h("span", { class: "way-go", "aria-hidden": "true" }, "›")));
-    const ways = ipa
-      ? h("div", { class: "ways-box" },
-          h("h2", { class: "ways-head" }, "Install another way"),
-          h("ul", { class: "ways" },
-            way({ href: ipa, rel: "nofollow noopener", onclick: (e) => { installed(); downloadScreen(e, a, ipa); } }, "⬇", "Download IPA", "Save the file and sign it yourself."),
-            ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: installed }, "◆", i.name, i.note)),
-            ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener" }, "✓", `Sign with ${c.name}`, c.note))))
-      : null;
-    const more = h(
-      "div",
-      { class: "actions small-actions" },
+      ipa ? h("button", { class: "btn", type: "button", "aria-haspopup": "dialog", onclick: () => moreWays(a, ipa, pref, installed) }, "More ways ▾") : null,
       h("button", { class: `btn${isSaved ? " on" : ""}`, type: "button", "aria-pressed": String(isSaved), onclick: (e) => { toggleSave(a); const on = saved[a.i] !== undefined; e.currentTarget.classList.toggle("on", on); e.currentTarget.setAttribute("aria-pressed", String(on)); e.currentTarget.textContent = on ? "Saved" : "Save"; } }, isSaved ? "Saved" : "Save"),
       h("button", { class: "btn ghost", type: "button", onclick: () => share(a) }, "Share"),
-      ipa ? h("button", { class: "btn ghost", type: "button", "data-download": "", onclick: () => copy(ipa, "IPA link copied") }, "Copy IPA link") : null,
     );
     if (isSaved && hasUpdate(a)) {
       saved[a.i] = a.v; // seen now
@@ -1054,9 +1056,7 @@
         h("p", { class: "d-dev" }, h("a", { href: homeHash({ q: a.d, c: "all", s: "updated", src: null, fit: state.f.fit, saved: false }) }, a.d)),
         a.s ? h("p", { class: "d-sub" }, a.s) : null,
         tooNew ? h("p", { class: "warn" }, `Needs iOS ${a.m} or later. This device is on ${deviceIOS}.`) : null,
-        d && ipa ? actions : null,
-        d ? ways : null,
-        d ? more : null,
+        d ? actions : null,
         d && ipa ? h("p", { class: "cert-line" }, h("a", { href: "#/sign" }, "How to sign your own apps →")) : null,
       ),
       h("div", { class: "qr", id: "qr", hidden: true }),
