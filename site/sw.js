@@ -1,7 +1,7 @@
 // Offline support. Pages, scripts and app data load from the network first so the
 // store is always current; the cached copy is used only when the network fails.
-const CACHE = "accretion-v1";
-const SHELL = ["./", "index.html", "app.js", "style.css", "icon-192.png", "manifest.webmanifest"];
+const CACHE = "accretion-v2";
+const SHELL = ["./", "index.html", "app.js", "social.js", "config.js", "style.css", "icon-192.png", "manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

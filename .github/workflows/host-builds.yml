@@ -1,7 +1,7 @@
 name: Host builds
 
 # Copies Accretion's own builds (Accretion Mods, the Accretion app) into the private Supabase
-# bucket that the download function serves. Daily, and on demand after a release.
+# bucket that the download function serves. Every 12 hours and on manual runs.
 on:
   schedule:
     - cron: "41 */12 * * *"

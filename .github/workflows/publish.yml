@@ -1,7 +1,8 @@
 name: Publish
 
 # Shared pipeline behind build.yml, discover.yml and links.yml.
-# Steps run in order: discover -> check links -> merge -> validate -> commit.
+# Steps run in order: validate code -> discover -> check links -> merge (cards) -> icons -> PNG cards
+# -> site -> Pages artifact + Firebase mirror -> commit (checked_push); the pages job then deploys.
 on:
   workflow_call:
     inputs:
@@ -137,7 +138,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A -- $existing
-          git commit -m "${{ inputs.discover && 'Discover sources and rebuild' || inputs.check_links && 'Check links and rebuild' || 'Rebuild source' }}" -m "Co-Authored-By: Codex <noreply@openai.com>"
+          git commit -m "${{ inputs.discover && 'Discover sources and rebuild' || inputs.check_links && 'Check links and rebuild' || 'Rebuild source' }}"
           python scripts/checked_push.py store
 
   # The web store. Needs Settings > Pages > Source: GitHub Actions (one time).

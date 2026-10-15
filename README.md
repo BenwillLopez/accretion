@@ -23,7 +23,7 @@ automatically.
 
 ## Browse the store
 
-**[getaccretion.github.io](https://getaccretion.github.io/)**: search every app, filter by
+**[getaccretion.app](https://getaccretion.app/)**: search every app, filter by
 category, see versions, sizes and what's new, and download or open apps in AltStore or SideStore. It is
 rebuilt with the source every 6 hours. Downloading needs a free account: the website and the
 Accretion app show the download and install buttons once you sign in. For third-party apps this is
@@ -41,7 +41,7 @@ nothing show up for moderators, so missing apps and sources can be added first.
 
 ## Sign your own apps
 
-[`#/sign`](https://getaccretion.github.io/#/sign) walks through installing any app on an iPhone
+[`#/sign`](https://getaccretion.app/#/sign) walks through installing any app on an iPhone
 with the **Accretion app**, on-device and without the 7-day limit. The Accretion app is free and
 open source and built on Feather, so Feather still works the same way. Get a certificate (the
 support.json certificate links), add it to the Accretion app or Feather in one tap (the page builds
@@ -100,7 +100,7 @@ Moderation → Supporters.
 
 ## Add the source
 
-There are two links. Pick one:
+There are two links. Pick one (the old `getaccretion.github.io` links keep working: they redirect here):
 
 | Link | What it has | Size |
 |---|---|---|
@@ -108,10 +108,10 @@ There are two links. Pick one:
 | **Accretion Core** (curated) | Only the hand-picked sources in [`sources.txt`](sources.txt) | small, refreshes fast |
 
 ```
-https://getaccretion.github.io/source.json
+https://getaccretion.app/source.json
 ```
 ```
-https://getaccretion.github.io/curated.json
+https://getaccretion.app/curated.json
 ```
 
 | App | How to add |
