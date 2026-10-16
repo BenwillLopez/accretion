@@ -601,7 +601,8 @@
         way({ href: file, rel: "nofollow noopener", onclick: (e) => { dlg.close(); installed(); downloadScreen(e, a, file); } }, glyph("download"), "Download IPA", "Save the file and sign it yourself."),
         ...INSTALLERS.filter((i) => i !== pref).map((i) => way({ href: i.link(ipa), onclick: () => { dlg.close(); installed(); } }, logo(i.icon), i.name, i.note)),
         ...certs().map((c) => way({ href: certUrl(c, a), target: "_blank", rel: "sponsored noopener", onclick: () => dlg.close() }, /^assets\/[\w.-]+$/.test(c.icon || "") ? logo(c.icon) : glyph("cert"), `Sign with ${c.name}`, c.note)),
-        way({ href: file, onclick: (e) => { e.preventDefault(); copy(file, "IPA link copied"); dlg.close(); } }, glyph("copy"), "Copy IPA link", null)),
+        // the copied link never carries your personal key: whoever opens it signs in as themselves
+        way({ href: file, onclick: (e) => { e.preventDefault(); copy(String(file).replace(/[?&]key=[0-9a-f]+/, ""), "IPA link copied"); dlg.close(); } }, glyph("copy"), "Copy IPA link", null)),
       h("div", { class: "dl-actions" }, h("button", { class: "btn ghost", type: "button", onclick: () => dlg.close() }, "Cancel")));
     dlg.addEventListener("close", () => dlg.remove());
     document.body.append(dlg);
