@@ -1,42 +1,42 @@
 {
- "apps": 4268,
+ "apps": 4238,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-16 01:41 UTC",
+ "updated": "2026-10-16 04:48 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-16T01:41:05Z",
+ "built_at": "2026-10-16T04:48:34Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23745,
+ "listings": 23716,
  "duplicates": 1797,
- "rejected": 6614,
+ "rejected": 6644,
  "excluded": 57,
- "dead_links_removed": 8782,
+ "dead_links_removed": 8885,
  "links_on_hold": 0,
  "developers": 700,
- "updated_7d": 804,
- "updated_30d": 1259,
+ "updated_7d": 803,
+ "updated_30d": 1225,
  "curated_size_mb": 0.7,
  "categories": {
-  "other": 1911,
-  "games": 1021,
-  "utilities": 434,
-  "photo-video": 341,
+  "other": 1905,
+  "games": 1017,
+  "utilities": 431,
+  "photo-video": 328,
   "entertainment": 213,
-  "lifestyle": 154,
+  "lifestyle": 151,
   "developer": 127,
-  "social": 67
+  "social": 66
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3527
+   "apps": 3487
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 537
+   "apps": 547
   },
   {
    "name": "MySign IPA's",
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3503
+   "apps": 3502
   },
   {
    "month": "2026-05",
-   "apps": 3578
+   "apps": 3577
   },
   {
    "month": "2026-06",
@@ -180,17 +180,17 @@
   },
   {
    "month": "2026-08",
-   "apps": 3855
+   "apps": 3854
   },
   {
    "month": "2026-09",
-   "apps": 4001
+   "apps": 3978
   },
   {
    "month": "2026-10",
-   "apps": 4268
+   "apps": 4238
   }
  ],
- "new_30d": 382,
- "new_12m": 1683
+ "new_30d": 353,
+ "new_12m": 1653
 }
