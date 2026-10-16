@@ -54,6 +54,16 @@ class PrivateLinks(unittest.TestCase):
         self.assertIn("version=1.0", out["apps"][1]["downloadURL"])
         self.assertIn("secret.invalid", str(SOURCE), "the input is not changed")
 
+    def test_config_values_are_all_text(self):
+        # the app parses config.js as text only: a bool there breaks sign-in in every installed copy
+        for private in (False, True):
+            for proxy in (False, True):
+                config = store_site.public_config("https://x.supabase.co", "anon", private, proxy)
+                self.assertTrue(all(isinstance(v, str) for v in config.values()), config)
+        on = store_site.public_config("https://x.supabase.co", "anon", True, True)
+        self.assertEqual((on["privateLinks"], on["downloadProxy"]), ("1", "1"))
+        self.assertNotIn("downloadProxy", store_site.public_config("https://x.supabase.co", "anon"))
+
     def test_switch_reads_the_variable(self):
         for value, on in (("true", True), ("1", True), ("on", True), ("", False), ("false", False)):
             os.environ["PRIVATE_LINKS"] = value
