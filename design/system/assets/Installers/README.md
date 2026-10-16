@@ -1,0 +1,1 @@
+Logos of the installers and certificate sellers the store links to, 96px WebP, shown at 32px in the More ways list and the installer picker. `accretion` is Accretion's own; `altstore`, `sidestore`, `feather`, `trollstore` and `signulous` belong to their projects and identify them only. Never recolour, crop or restyle them.

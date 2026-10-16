@@ -1,0 +1,52 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Accretion</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .violet { fill: var(--accent); }
+  .blend { fill: var(--headline-end); }
+  .cyan { fill: var(--accent-2); }
+  .blk { rx: var(--radius-xl); }
+  .ring { fill: none; stroke: var(--bg); stroke-width: var(--space-4); }
+  .sun { fill: var(--fg); }
+  .words { position: absolute; left: var(--space-24); bottom: var(--space-24); max-width: 440px; }
+  .name { margin: 0; font: 700 80px/.95 var(--font-display); letter-spacing: -.01em; color: var(--fg); }
+  .tag { margin: var(--space-10) 0 0 2px; font-size: 14px; line-height: 20px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      accent 168×256 bled off the top (the brand violet, largest) · headline-end 112×128 (the violet-to-cyan blend) · accent-2 168×184 bled off the right — ≈29% of 960×288; bottoms on one line space-48 above the edge
+  arrangement three bars stepping down then up, like matter settling onto a disk, space-16 gutters
+  pattern     a literal motif, the accretion disk of the icon: four tilted rings cut out of the blocks in the ground (bg), around one fg star; chosen because the mark is a star inside rings
+  scales      gutters space-16; ring stroke space-4; ring radii step 32 by 10; block corners radius-xl; star r 20
+-->
+<rect class="violet blk" x="24" y="-16" width="168" height="256" rx="14"/>
+<rect class="blend blk" x="208" y="112" width="112" height="128" rx="14"/>
+<rect class="cyan blk" x="336" y="56" width="168" height="184" rx="14"/>
+<g transform="rotate(-18 232 150)">
+<ellipse class="ring" cx="232" cy="150" rx="56" ry="18"/>
+<ellipse class="ring" cx="232" cy="150" rx="88" ry="28"/>
+<ellipse class="ring" cx="232" cy="150" rx="120" ry="38"/>
+<ellipse class="ring" cx="232" cy="150" rx="152" ry="48"/>
+</g>
+<circle class="sun" cx="232" cy="150" r="20"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Accretion</h1>
+<p class="tag">Every source, pulled into one.</p>
+</div>
+</div>
+</body>
+</html>

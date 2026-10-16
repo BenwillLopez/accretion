@@ -1,0 +1,66 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-10-15T23:18:20Z" },
+  "title": "Accretion",
+  "namespace": "Accretion",
+  "libraries": [],
+  "sections": {},
+  "groups": ["Logos", "Icons", "Installers", "Images"],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": ["accretion-icon.png", "accretion-banner.png", "accretion-social-card.png"],
+      "files": {
+        "accretion-icon.png": { "name": "accretion-icon.png", "blob": "bb3bf1e86fcb8bef37b0181d8d984c97", "size": 276488, "type": "image/png" },
+        "accretion-banner.png": { "name": "accretion-banner.png", "blob": "70d06bc1fa1a1ad376b78022954c1542", "size": 135505, "type": "image/png" },
+        "accretion-social-card.png": { "name": "accretion-social-card.png", "blob": "de922d30c859538d2bce0e6c4cb90c47", "size": 243573, "type": "image/png" }
+      }
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "xs",
+      "order": ["search.svg", "heart.svg", "bell.svg", "download.svg", "copy.svg", "cert.svg"],
+      "files": {
+        "search.svg": { "name": "search.svg", "blob": "1f364c146a0f40a6150fe0f790c9d1ba", "size": 249, "type": "image/svg+xml" },
+        "heart.svg": { "name": "heart.svg", "blob": "38afe76520b006561899fb5099be5ee0", "size": 253, "type": "image/svg+xml" },
+        "bell.svg": { "name": "bell.svg", "blob": "28de815595424b904c9acafba568811e", "size": 247, "type": "image/svg+xml" },
+        "download.svg": { "name": "download.svg", "blob": "69d41b71492ad995a18496ae6b625670", "size": 229, "type": "image/svg+xml" },
+        "copy.svg": { "name": "copy.svg", "blob": "78618e7f7b31dd3db9f9b922361828fb", "size": 223, "type": "image/svg+xml" },
+        "cert.svg": { "name": "cert.svg", "blob": "03e77c7a48753da36f5ddf81c86d56aa", "size": 251, "type": "image/svg+xml" }
+      }
+    },
+    "Installers": {
+      "name": "Installers",
+      "tile": "s",
+      "order": ["accretion.webp", "feather.webp", "altstore.webp", "sidestore.webp", "trollstore.webp", "signulous.webp"],
+      "files": {
+        "accretion.webp": { "name": "accretion.webp", "blob": "144afefc150f7bf62c216290d564fee9", "size": 1262, "type": "image/webp" },
+        "feather.webp": { "name": "feather.webp", "blob": "4524ee43852df10c3c96547bb8190083", "size": 1010, "type": "image/webp" },
+        "altstore.webp": { "name": "altstore.webp", "blob": "15944c3705b551df6f96ea934b7c497c", "size": 736, "type": "image/webp" },
+        "sidestore.webp": { "name": "sidestore.webp", "blob": "c83b16e59892633f07bfc21bef9f149d", "size": 1170, "type": "image/webp" },
+        "trollstore.webp": { "name": "trollstore.webp", "blob": "5eabe48cdc1fd0e6f15f2902d71877b3", "size": 2556, "type": "image/webp" },
+        "signulous.webp": { "name": "signulous.webp", "blob": "1a7b8b7939c41cd8df7aa93015c7223a", "size": 1790, "type": "image/webp" }
+      }
+    },
+    "Images": {
+      "name": "Images",
+      "tile": "l",
+      "order": ["index-card-dark.svg", "index-card-light.svg", "app-placeholder.png"],
+      "files": {
+        "index-card-dark.svg": { "name": "index-card-dark.svg", "blob": "1eed08af3d8e54c2f7257b157d40b1e4", "size": 13439, "type": "image/svg+xml" },
+        "index-card-light.svg": { "name": "index-card-light.svg", "blob": "80299d17a30ada960b1028feeece27fe", "size": 13438, "type": "image/svg+xml" },
+        "app-placeholder.png": { "name": "app-placeholder.png", "blob": "5ca0c38d60034449893dd950c833a7f7", "size": 17390, "type": "image/png" }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": { "sections": [] },
+  "lastChange": {
+    "by": "Benwill",
+    "at": "2026-10-15T23:18:20Z",
+    "via": "GitHub · GETAccretion/getaccretion.github.io@076e820 + accretion-app@d95d01c",
+    "note": "First build: extracted from the store and app, refined for contrast and one spacing and radius scale"
+  }
+}

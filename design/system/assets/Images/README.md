@@ -1,0 +1,1 @@
+`index-card-dark.svg` and `index-card-light.svg` are the live index card on the home page and in the repository README, rebuilt with every store build (these copies are a snapshot of 2026-10-15). It still draws its own 24px grid and system fonts. `app-placeholder.png` stands in for an app with no icon (512px).

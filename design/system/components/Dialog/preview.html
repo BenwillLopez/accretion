@@ -1,0 +1,26 @@
+<!-- @dsCard group="Containers" height=400 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dialog</title>
+<style>body{padding:16px}</style>
+</head>
+<body>
+<div class="add" role="dialog" aria-labelledby="t" style="margin:0 auto">
+  <form class="add-inner" onsubmit="return false">
+    <h2 id="t">Add Accretion to your app</h2>
+    <p class="muted">Pick a list, then open it in your app or copy the link.</p>
+    <div class="seg" role="radiogroup" aria-label="Which list">
+      <label><input type="radio" name="list" checked> <span><b>Full</b> every source</span></label>
+      <label><input type="radio" name="list"> <span><b>Core</b> hand-picked, lighter</span></label>
+    </div>
+    <code class="url">https://getaccretion.app/source.json</code>
+    <div class="actions">
+      <a class="btn primary" href="#">Open in Accretion</a><a class="btn" href="#">Open in AltStore</a><button class="btn" type="button">Copy link</button>
+    </div>
+    <button class="btn ghost" type="button" style="justify-self:end">Close</button>
+  </form>
+</div>
+</body>
+</html>

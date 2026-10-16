@@ -12,3 +12,6 @@ CLAUDE.local.md
 AGENTS.md
 REPLICATE.md
 PRIVATE.md
+
+# local design-system previews (design/system/tools/preview.py)
+design/system/_preview/
