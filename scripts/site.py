@@ -51,6 +51,13 @@ def server_link(base, bundle_id, version):
     return f"{base}/functions/v1/download?{q}"
 
 
+def private_sources(sources):
+    """The store's source list without URLs. "url" stays, as an empty string: every Accretion app
+    version requires the field when it reads data/store.json, so dropping it would empty their
+    Store tab; the site and newer apps hide an empty one."""
+    return [{**s, "url": ""} for s in sources]
+
+
 def private_source(source, base):
     """A copy of an AltStore source with every download pointed at the download server"""
     copy = json.loads(json.dumps(source))
@@ -249,7 +256,7 @@ def main():
     if private and not base:
         raise SystemExit("PRIVATE_LINKS is on but the Supabase URL is unknown")
     if private:  # source names stay public, their URLs don't
-        info["sources"] = [{k: v for k, v in s.items() if k != "url"} for s in info["sources"]]
+        info["sources"] = private_sources(info["sources"])
     # icons flagged nsfw by ai_jobs.py images show the placeholder (the app stays)
     hide_nsfw_icons(source["apps"], PLACEHOLDER_ICON, nsfw_icon_keys())
 

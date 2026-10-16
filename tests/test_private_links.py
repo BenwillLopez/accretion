@@ -64,6 +64,13 @@ class PrivateLinks(unittest.TestCase):
         self.assertEqual((on["privateLinks"], on["downloadProxy"]), ("1", "1"))
         self.assertNotIn("downloadProxy", store_site.public_config("https://x.supabase.co", "anon"))
 
+    def test_store_sources_keep_an_empty_url(self):
+        # the app decodes store.json with a required "url" on every source
+        out = store_site.private_sources(
+            [{"name": "A", "url": "https://secret.invalid/a.json", "core": True}]
+        )
+        self.assertEqual(out, [{"name": "A", "url": "", "core": True}])
+
     def test_switch_reads_the_variable(self):
         for value, on in (("true", True), ("1", True), ("on", True), ("", False), ("false", False)):
             os.environ["PRIVATE_LINKS"] = value
