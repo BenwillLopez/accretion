@@ -2,16 +2,16 @@
  "apps": 4252,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-16 16:53 UTC",
+ "updated": "2026-10-16 21:29 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-16T16:53:02Z",
+ "built_at": "2026-10-16T21:29:19Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23727,
+ "listings": 23730,
  "duplicates": 1797,
- "rejected": 6635,
+ "rejected": 6634,
  "excluded": 57,
  "dead_links_removed": 8893,
  "links_on_hold": 0,
@@ -32,7 +32,7 @@
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3502
+   "apps": 3501
   },
   {
    "name": "dsewerek's general apps",
@@ -52,6 +52,11 @@
   }
  ],
  "recent": [
+  {
+   "name": "SideInstaller",
+   "version": "1.5.3",
+   "date": "2026-10-16"
+  },
   {
    "name": "UTM",
    "version": "5.0.7",
@@ -85,11 +90,6 @@
   {
    "name": "iCube",
    "version": "1.0.0-beta9-ios",
-   "date": "2026-10-16"
-  },
-  {
-   "name": "StikDebug",
-   "version": "3.1.15",
    "date": "2026-10-16"
   }
  ],
@@ -164,11 +164,11 @@
   },
   {
    "month": "2026-04",
-   "apps": 3503
+   "apps": 3502
   },
   {
    "month": "2026-05",
-   "apps": 3578
+   "apps": 3577
   },
   {
    "month": "2026-06",

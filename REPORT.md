@@ -1,14 +1,14 @@
 # Source report
 
-Built 2026-10-16 16:53 UTC.
+Built 2026-10-16 21:29 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4252** (4911 KB) |
+| Apps in `source.json` | **4252** (4912 KB) |
 | Apps in `curated.json` | **728** (709 KB) |
-| Listings read | 23727 |
+| Listings read | 23730 |
 | Apps listed by more than one source (newest kept) | 1797 |
-| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6635 |
+| Listings skipped (http-only, no icon, no date, bad bundle ID) | 6634 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
 | Dead download links held back (retested every build) | 8893 |
 | Links on hold (whole host failing, kept for now) | 0 |
@@ -20,7 +20,7 @@ Built 2026-10-16 16:53 UTC.
 
 | Source | Status | Listed | Used | Skipped | Latest release | List |
 |---|---|---:|---:|---:|---|---|
-| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3707 | 3502 | 4550 | 2026-10-16 | discovered |
+| [fastsign (organized)](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/fastsign.json) | ok | 3707 | 3501 | 4550 | 2026-10-16 | discovered |
 | [dsewerek's general apps](https://raw.githubusercontent.com/dsewerek/dsewerek-s-source/main/general.json) | ok | 1626 | 545 | 331 | 2026-10-16 | discovered |
 | [MySign IPA's](https://raw.githubusercontent.com/Gliddd4/gliddd4-repo/refs/heads/main/app.json) | cached | 239 | 101 | 13 | 2025-01-01 | curated |
 | [Quark Source++](https://raw.githubusercontent.com/quarksources/quarksources.github.io/main/quarksource%2B%2B.json) | ok | 22 | 9 | 0 | 2021-11-18 | discovered |
@@ -28,13 +28,13 @@ Built 2026-10-16 16:53 UTC.
 | [iDevPatcher](https://raw.githubusercontent.com/Astear17/iDevicePatcher/main/repo.json) | ok | 20 | 8 | 1 | 2025-12-12 | discovered |
 | [Laincat 工具箱](https://raw.githubusercontent.com/laincat/AltStore/main/apps.json) | ok | 9 | 8 | 0 | 2026-10-16 | discovered |
 | [RipeStore](https://bit.ly/RipeStore) | ok | 11 | 6 | 0 | 2026-07-01 | discovered |
+| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 5 | 0 | 2026-10-16 | discovered |
 | [CyPwn IPA Library](https://repos.gabrx.eu.org/cypwn.json) | ok | 203 | 4 | 6 | 2026-07-23 | curated |
-| [AltGallery](https://raw.githubusercontent.com/bebound/AltGallery/master/all-apps.json) | ok | 43 | 4 | 0 | 2026-10-16 | discovered |
 | [AltStore Complete](https://bit.ly/Altstore-complete) | ok | 8 | 4 | 0 | 2025-05-12 | discovered |
 | [Quantum Source](https://bit.ly/Quantumsource) | ok | 35 | 3 | 3 | 2025-12-30 | discovered |
 | [Provenance Emulator](https://provenance-emu.com/apps.json) | ok | 4 | 3 | 0 | 2026-10-16 | discovered |
 | [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 32 | 2 | 3 | 2025-05-20 | curated |
-| [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-15 | discovered |
+| [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-16 | discovered |
 | [iAnyFeature's Source](https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json) | ok | 2 | 2 | 0 | 2026-10-09 | discovered |
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9387 | 1 | 161 | 2026-10-16 | discovered |
 | [CyPwn IPA Library](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/CyPwn%20iPA%20Library/source.json) | ok | 193 | 1 | 6 | 2025-09-01 | discovered |
@@ -80,7 +80,7 @@ Built 2026-10-16 16:53 UTC.
 | [AppTesters IPA Repo](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/source.json) | ok | 4600 | 0 | 227 | 2025-09-05 | discovered |
 | [Neoncat-OG IPA Library](https://raw.githubusercontent.com/Neoncat-OG/TrollStore-IPAs/main/apps_esign.json) | ok | 1988 | 0 | 0 | 2026-04-11 | curated |
 | [swaggyP36000 IPA Library](https://raw.githubusercontent.com/swaggyP36000/TrollStore-IPAs/main/apps_esign.json) | ok | 623 | 0 | 0 | 2023-12-27 | curated |
-| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 200 | 0 | 7 | 2026-04-17 | discovered |
+| [CyPwn IPA Library](https://ipa.cypwn.xyz/cypwn.json) | ok | 203 | 0 | 6 | 2026-07-23 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 158 | 0 | 0 | 2026-10-10 | curated |
 | [Omni-Development IPA Repo](https://raw.githubusercontent.com/Omni-Development/The-Omni-Repository/refs/heads/main/app-repo.json) | ok | 103 | 0 | 13 | 2024-11-17 | discovered |
 | [Sidelix App Store](https://repos.gabrx.eu.org/nabzclan.json) | ok | 37 | 0 | 1275 | 2026-09-30 | curated |
@@ -134,7 +134,7 @@ Built 2026-10-16 16:53 UTC.
 | [WSF Source](https://raw.githubusercontent.com/WSF-Team/WSF/main/repo/app-repo.json) | ok | 1 | 0 | 6 | 2024-12-10 | discovered |
 | [WSF Source](https://raw.githubusercontent.com/WhySooooFurious/Ultimate-Sideloading-Guide/refs/heads/main/raw-files/app-repo.json) | ok | 1 | 0 | 4 | 2024-12-10 | curated |
 | [YouTubeRebornPlus Source](https://raw.githubusercontent.com/arichornlover/arichornlover.github.io/refs/heads/main/apps2.json) | ok | 1 | 0 | 0 | 2025-06-12 | curated |
-| [ARMSX2](https://raw.githubusercontent.com/bebound/AltGallery/master/apps/ARMSX2/apps.json) | ok | 1 | 0 | 0 | 2026-10-11 | discovered |
+| [ARMSX2](https://raw.githubusercontent.com/bebound/AltGallery/master/apps/ARMSX2/apps.json) | ok | 1 | 0 | 0 | 2026-10-16 | discovered |
 | [AirCard-iOS](https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AirCard/apps.json) | ok | 1 | 0 | 0 | 2026-10-04 | discovered |
 | [AniBaka](https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AniBaka/apps.json) | ok | 1 | 0 | 0 | 2026-10-07 | discovered |
 | [AnimeFlow](https://raw.githubusercontent.com/bebound/AltGallery/master/apps/AnimeFlow/apps.json) | ok | 1 | 0 | 0 | 2026-10-12 | discovered |
@@ -193,6 +193,7 @@ Built 2026-10-16 16:53 UTC.
 
 | App | Version | Date | From |
 |---|---|---|---|
+| SideInstaller | 1.5.3 | 2026-10-16 | raw.githubusercontent.com |
 | UTM | 5.0.7 | 2026-10-16 | raw.githubusercontent.com |
 | UTM SE | 5.0.7 | 2026-10-16 | raw.githubusercontent.com |
 | Accretion | 1.0.34 | 2026-10-16 | raw.githubusercontent.com |
@@ -211,10 +212,9 @@ Built 2026-10-16 16:53 UTC.
 | Picoboom | 1.0.55 | 2026-10-16 | raw.githubusercontent.com |
 | Travel Town | 2.12.1782 | 2026-10-16 | raw.githubusercontent.com |
 | Ornament | 4.22.1 | 2026-10-16 | raw.githubusercontent.com |
+| ARMSX2 | nightly-20261016 | 2026-10-16 | raw.githubusercontent.com |
 | ZhihuMinusMinus | 0.9.1 | 2026-10-16 | raw.githubusercontent.com |
 | Fitness Wrapped | 4.1.5 | 2026-10-16 | raw.githubusercontent.com |
 | Planty | 1.23.45 | 2026-10-16 | raw.githubusercontent.com |
 | RepCount | 10.10.0 | 2026-10-16 | raw.githubusercontent.com |
 | Idle Ninja Online | 2.770 | 2026-10-16 | raw.githubusercontent.com |
-| Toca World | 1.140 | 2026-10-16 | raw.githubusercontent.com |
-| DaTrack | 2.9 | 2026-10-16 | raw.githubusercontent.com |
