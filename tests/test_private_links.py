@@ -57,11 +57,12 @@ class PrivateLinks(unittest.TestCase):
     def test_config_values_are_all_text(self):
         # the app parses config.js as text only: a bool there breaks sign-in in every installed copy
         for private in (False, True):
-            for proxy in (False, True):
+            for proxy in ("", "https://dl.x.invalid/"):
                 config = store_site.public_config("https://x.supabase.co", "anon", private, proxy)
                 self.assertTrue(all(isinstance(v, str) for v in config.values()), config)
-        on = store_site.public_config("https://x.supabase.co", "anon", True, True)
+        on = store_site.public_config("https://x.supabase.co", "anon", True, "https://dl.x.invalid/")
         self.assertEqual((on["privateLinks"], on["downloadProxy"]), ("1", "1"))
+        self.assertEqual(on["downloadOrigin"], "https://dl.x.invalid", "the site's download address")
         self.assertNotIn("downloadProxy", store_site.public_config("https://x.supabase.co", "anon"))
 
     def test_store_sources_keep_an_empty_url(self):

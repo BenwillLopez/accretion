@@ -13,19 +13,19 @@ const KEY = Buffer.alloc(32, 7).toString('base64url'); // fictional test key
 const ORIGIN = 'https://dl.fictional.invalid';
 const UPSTREAM = 'https://source.fictional.invalid/files/ASJTube_21.40.5_1.4.ipa';
 
-function downloadFunction(links) {
+function downloadFunction(links, hosted = []) {
   let handler;
   const issued = [];
   const admin = {
     auth: { getUser: async () => ({ data: { user: { id: 'fictional-user' } } }) },
-    storage: { from: () => ({ createSignedUrl: async () => ({ data: null, error: { message: 'none' } }) }) },
+    storage: { from: () => ({ createSignedUrl: async (p) => (hosted.length ? { data: { signedUrl: `https://copy.fictional.invalid/${p}` }, error: null } : { data: null, error: { message: 'none' } }) }) },
     from(table) {
       const query = {
         select() { return this; }, eq() { return this; }, gte() { return this; },
         async maybeSingle() { return { data: { banned: false }, error: null }; },
         then(resolve, reject) {
           const result = table === 'download_log' ? { count: 0, error: null }
-            : table === 'hosted_builds' ? { data: [], error: null }
+            : table === 'hosted_builds' ? { data: hosted, error: null }
             : { data: links, error: null };
           return Promise.resolve(result).then(resolve, reject);
         },
@@ -140,4 +140,53 @@ test('a failing source becomes a short message, not its own page', async () => {
     assert.equal(r.status, 502);
     assert.ok(!(await r.text()).includes('secret page'));
   }, () => new Response('secret page', { status: 404 }));
+});
+
+test('our own builds go through the proxy too: only the proxy address is shown', async () => {
+  const sha = 'a'.repeat(64);
+  const f = downloadFunction([], [{ path: `com.fixture/1.2-${sha}.ipa`, version: '1.2', sha256: sha }]);
+  const location = (await f.get('app=com.fixture')).headers.get('Location');
+  assert.ok(location.startsWith(`${ORIGIN}/fixture_1.2.ipa?t=`), location);
+  assert.ok(!location.includes('copy.fictional.invalid'), 'the storage host is not in the link');
+  const proxy = await worker();
+  await withUpstream(async (seen) => {
+    const r = await proxy.fetch(new Request(location), { DOWNLOAD_PROXY_KEY: KEY });
+    assert.equal(r.status, 200);
+    assert.equal(r.headers.get('Content-Disposition'), 'attachment; filename="fixture_1.2.ipa"');
+    assert.equal(seen[0].url, `https://copy.fictional.invalid/com.fixture/1.2-${sha}.ipa`);
+  }, () => new Response('IPA!'));
+});
+
+test('/download is the download function under our address, its answer passed on', async () => {
+  const proxy = await worker();
+  const env = { DOWNLOAD_PROXY_KEY: KEY, DOWNLOAD_FUNCTION: 'https://fn.fictional.invalid/functions/v1/download' };
+  await withUpstream(async (seen) => {
+    const r = await proxy.fetch(new Request(`${ORIGIN}/download?app=com.fixture&key=k`, {
+      headers: { Authorization: 'Bearer fictional', Cookie: 'c=1', Accept: 'text/html' },
+    }), env);
+    assert.equal(r.status, 302);
+    assert.equal(r.headers.get('Location'), `${ORIGIN}/fixture_1.2.ipa?t=x`);
+    assert.equal(r.headers.get('Set-Cookie'), null);
+    assert.equal(seen[0].url, 'https://fn.fictional.invalid/functions/v1/download?app=com.fixture&key=k');
+    assert.equal(seen[0].init.redirect, 'manual', 'the redirect is passed on, not followed');
+    assert.equal(seen[0].init.headers.authorization, 'Bearer fictional');
+    assert.equal(seen[0].init.headers.accept, 'text/html');
+    assert.equal(seen[0].init.headers.cookie, undefined, 'nothing else is forwarded');
+    const refused = await proxy.fetch(new Request(`${ORIGIN}/download?app=x`, { method: 'POST' }), env);
+    assert.equal(refused.status, 405);
+  }, () => new Response(null, { status: 302, headers: { Location: `${ORIGIN}/fixture_1.2.ipa?t=x`, 'Set-Cookie': 'a=1' } }));
+});
+
+test('/manifest points iOS at an IPA on the device or its network, nowhere else', async () => {
+  const proxy = await worker();
+  const ask = (fetchurl, name = 'Alarmy <&>') => proxy.fetch(new Request(`${ORIGIN}/manifest?bundleid=com.fixture&name=${encodeURIComponent(name)}&version=1.0&fetchurl=${encodeURIComponent(fetchurl)}`), {});
+  const ok = await ask('http://192.168.1.104:8080/tempsigned.ipa');
+  assert.equal(ok.status, 200);
+  assert.equal(ok.headers.get('Content-Type'), 'application/xml; charset=utf-8');
+  const plist = await ok.text();
+  assert.ok(plist.includes('<string>http://192.168.1.104:8080/tempsigned.ipa</string>'));
+  assert.ok(plist.includes('<string>Alarmy &lt;&amp;&gt;</string>'), 'the name is escaped');
+  for (const bad of ['https://evil.invalid/a.ipa', 'http://8.8.8.8/a.ipa', 'http://127.0.0.1/a.zip', 'ftp://127.0.0.1/a.ipa', 'nonsense']) {
+    assert.equal((await ask(bad)).status, 400, bad);
+  }
 });

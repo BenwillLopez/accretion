@@ -5,7 +5,7 @@
 //   GET /functions/v1/download?app=<bundle id>&key=<key>   for AltStore, SideStore and Feather
 //   add &version=<x> for a particular version (sources list every version); newest otherwise
 //
-// Answers with a redirect to a 5-minute link into the private "builds" bucket, or a short
+// Answers with a redirect to a 10-minute link (through the download proxy when it is set up), or a short
 // explanation (401 not signed in, 404 not in the store, 426 Accretion too old). A browser that isn't
 // signed in is sent to the app's store page instead. Deployed with --no-verify-jwt so the key
 // form works without a login; the function checks the login itself.
@@ -43,7 +43,11 @@ function fileName(bundle: string, version: string, display = ""): string {
   return `${name}_${v}.ipa`;
 }
 
-// a 5-minute CloudFront link, only if CloudFront answers for that file right now
+// every build link lasts 10 minutes: long enough to start, and to resume a dropped download
+// (through the download proxy too, whose links last as long)
+const LINK_SECONDS = 600;
+
+// a CloudFront link, only if CloudFront answers for that file right now
 async function cdnLink(path: string, name: string): Promise<string | null> {
   if (!CDN_DOMAIN || !CDN_KEY_PAIR_ID || !CDN_PRIVATE_KEY) return null;
   try {
@@ -52,7 +56,7 @@ async function cdnLink(path: string, name: string): Promise<string | null> {
       url: `https://${CDN_DOMAIN}/${path.split("/").map(encodeURIComponent).join("/")}?dl=${encodeURIComponent(name)}`,
       keyPairId: CDN_KEY_PAIR_ID,
       privateKey: CDN_PRIVATE_KEY,
-      dateLessThan: new Date(Date.now() + 300_000).toISOString(),
+      dateLessThan: new Date(Date.now() + LINK_SECONDS * 1000).toISOString(),
     });
     const check = await fetch(link, { method: "HEAD", signal: AbortSignal.timeout(4000) });
     if (check.ok) return link;
@@ -71,7 +75,7 @@ const OCI_LINK_SECRET = Deno.env.get("OCI_LINK_SECRET") ?? "";
 async function ociLink(path: string, name: string): Promise<string | null> {
   if (!OCI_BUILDS_HOST || !OCI_LINK_SECRET) return null;
   try {
-    const expires = Math.floor(Date.now() / 1000) + 300;
+    const expires = Math.floor(Date.now() / 1000) + LINK_SECONDS;
     const uri = `/builds/${path}`;
     const digest = createHash("md5").update(`${expires}${uri} ${OCI_LINK_SECRET}`).digest("base64")
       .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -85,15 +89,21 @@ async function ociLink(path: string, name: string): Promise<string | null> {
   return null;
 }
 
-// a 5-minute link to one build: CloudFront when it's healthy, then the Supabase copy, then the
-// Oracle copy
-async function signedLink(path: string, name: string): Promise<string | null> {
+// a link to one build: CloudFront when it's healthy, then the Supabase copy, then the Oracle copy
+async function copyLink(path: string, name: string): Promise<string | null> {
   const cdn = await cdnLink(path, name);
   if (cdn) return cdn;
-  const { data, error } = await admin.storage.from("builds").createSignedUrl(path, 300, { download: name });
+  const { data, error } = await admin.storage.from("builds").createSignedUrl(path, LINK_SECONDS, { download: name });
   if (!error && data) return data.signedUrl;
   console.warn(`No Supabase copy of ${path} (${error?.message ?? "unknown"}); trying the Oracle copy`);
   return await ociLink(path, name);
+}
+
+// Our own builds go through the download proxy as well, so the person downloading sees only
+// dl.getaccretion.app, whichever copy serves the file; the copy's own link when the proxy isn't set up.
+async function signedLink(path: string, name: string): Promise<string | null> {
+  const link = await copyLink(path, name);
+  return link && ((await proxyLink(link, name)) ?? link);
 }
 
 // Apps from other sources: their file links live only in the private upstream_links table (filled by

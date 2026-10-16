@@ -336,6 +336,12 @@
   const serverLink = (bundleId, key) =>
     `${cfg.supabaseUrl}/functions/v1/download?app=${encodeURIComponent(bundleId)}${key ? `&key=${key}` : ""}`;
   const sourceLink = (name, key) => `${cfg.supabaseUrl}/functions/v1/source?name=${name}&key=${key}`;
+  // the download server under our own address once the download proxy is live (config.js
+  // downloadOrigin), so people see dl.getaccretion.app instead of the Supabase host
+  const front = (url) =>
+    cfg.downloadOrigin && url.startsWith(`${cfg.supabaseUrl}/functions/v1/download?`)
+      ? `${cfg.downloadOrigin}/download?${url.slice(url.indexOf("?") + 1)}`
+      : url;
   window.AccAuth = {
     signedIn: () => Boolean(me.user),
     require: requireUser,
@@ -344,15 +350,15 @@
     // store data links to the download server (no source URLs are published): add your key
     link: (bundleId, url) =>
       String(url).startsWith(`${cfg.supabaseUrl}/functions/v1/download?`)
-        ? (me.key && !/[?&]key=/.test(url) ? `${url}&key=${me.key}` : url)
-        : hosted.has(bundleId) ? serverLink(bundleId, me.key) : url,
+        ? front(me.key && !/[?&]key=/.test(url) ? `${url}&key=${me.key}` : String(url))
+        : hosted.has(bundleId) ? front(serverLink(bundleId, me.key)) : url,
     // your personal copy of the whole store (name "store" or "curated") for AltStore, SideStore, Feather
     personalSource: (name) => (me.key ? sourceLink(name, me.key) : null),
     // "Download IPA" for other sources' apps, once the download proxy is on (config.js downloadProxy):
     // the download server sends it through the proxy, named "<App>_<version>.ipa", source URL hidden
     file: (bundleId, version) =>
       cfg.downloadProxy && me.key && !hosted.has(bundleId)
-        ? `${serverLink(bundleId, me.key)}&version=${encodeURIComponent(version)}`
+        ? front(`${serverLink(bundleId, me.key)}&version=${encodeURIComponent(version)}`)
         : null,
   };
   function rememberSpot() {

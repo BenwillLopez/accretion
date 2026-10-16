@@ -211,17 +211,19 @@ def popularity(bid, carriers, picks):
     return carriers.get(bid, 0) + (WEB_PICK if bid in picks else 0)
 
 
-def public_config(url, key, private=False, download_proxy=False):
+def public_config(url, key, private=False, download_proxy=""):
     """window.ACCRETION_CONFIG in config.js. Every value is a string: the Accretion app reads this
     file too and treats it as text only, so a true/false value there breaks sign-in in every
     installed copy. Flags are "1" when on and left out when off."""
     config = {"supabaseUrl": url, "supabaseKey": key}
     if private:
         config["privateLinks"] = "1"
-    # "Download IPA" for other sources' apps goes through the download proxy once it is live
-    # (GitHub variable DOWNLOAD_PROXY_ORIGIN, the same one the download function gets)
+    # "Download IPA" for other sources' apps goes through the download proxy once it is live, and
+    # the site's download links use its address (GitHub variable DOWNLOAD_PROXY_ORIGIN, the same
+    # one the download function gets, e.g. https://dl.getaccretion.app)
     if download_proxy:
         config["downloadProxy"] = "1"
+        config["downloadOrigin"] = download_proxy.rstrip("/")
     return config
 
 
@@ -355,7 +357,7 @@ def main():
     # community features: public Supabase settings (the anon key is meant to be public)
     url, key = supabase_settings()
     if url and key:
-        proxy = bool(os.environ.get("DOWNLOAD_PROXY_ORIGIN", "").strip())
+        proxy = os.environ.get("DOWNLOAD_PROXY_ORIGIN", "").strip()
         config = public_config(url, key, private=private, download_proxy=proxy)
         with open(os.path.join(OUT, "config.js"), "w") as f:
             f.write(f"window.ACCRETION_CONFIG = {json.dumps(config)};\n")
