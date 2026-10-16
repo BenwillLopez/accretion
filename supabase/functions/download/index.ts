@@ -217,6 +217,7 @@ Deno.serve(async (req) => {
       .filter((b) => app !== ACCRETION || !isBeta(b.version))
       .sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
   let location: string | null;
+  let served = app;
   if (build) {
     location = await signedLink(build.path, fileName(app, build.version));
   } else {
@@ -227,12 +228,24 @@ Deno.serve(async (req) => {
     const pick = version
       ? list.find((l) => l.version === version)
       : list.sort((a, b) => (older(a.version, b.version) ? 1 : older(b.version, a.version) ? -1 : 0))[0];
-    if (!pick) return reply(404, "This app or version isn't in the store.");
-    location = await proxyLink(pick.url, fileName(app, pick.version, pick.name ?? ""));
+    if (pick) {
+      location = await proxyLink(pick.url, fileName(app, pick.version, pick.name ?? ""));
+    } else {
+      // Accretion 1.0.33 asks for its own update under its own bundle ID, which differs when a signer
+      // re-signed it (fixed in the app afterwards). The app tags its requests with av=: an unknown app
+      // at exactly a version we published for Accretion gets that fingerprinted Accretion build.
+      const own = appVersion && version
+        ? ((await admin.from("hosted_builds").select("path,version,sha256").eq("bundle_id", ACCRETION)).data ?? []) as typeof all
+        : [];
+      const self = own.find((b) => b.version === version && /^[0-9a-f]{64}$/.test(b.sha256 ?? ""));
+      if (!self) return reply(404, "This app or version isn't in the store.");
+      served = ACCRETION;
+      location = await signedLink(self.path, fileName(ACCRETION, self.version));
+    }
   }
   if (!location) return reply(500, "Couldn't prepare the download. Try again.");
 
-  const { error: logError } = await admin.from("download_log").insert({ owner, bundle_id: app, via });
+  const { error: logError } = await admin.from("download_log").insert({ owner, bundle_id: served, via });
   if (logError?.code === "PT403") return reply(403, "This account can't download right now.");
   if (logError?.code === "PT429") return reply(429, "Too many downloads. Try again in a few minutes.");
   if (logError) return reply(503, "Couldn't record the download. Try again.");
