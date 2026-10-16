@@ -1,42 +1,42 @@
 {
- "apps": 4238,
+ "apps": 4252,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-16 04:48 UTC",
+ "updated": "2026-10-16 11:44 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-16T04:48:34Z",
+ "built_at": "2026-10-16T11:44:37Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23716,
+ "listings": 23730,
  "duplicates": 1797,
- "rejected": 6644,
+ "rejected": 6635,
  "excluded": 57,
- "dead_links_removed": 8885,
+ "dead_links_removed": 8894,
  "links_on_hold": 0,
  "developers": 700,
- "updated_7d": 803,
- "updated_30d": 1225,
+ "updated_7d": 835,
+ "updated_30d": 1244,
  "curated_size_mb": 0.7,
  "categories": {
   "other": 1905,
-  "games": 1017,
+  "games": 1019,
   "utilities": 431,
-  "photo-video": 328,
-  "entertainment": 213,
-  "lifestyle": 151,
+  "photo-video": 340,
+  "entertainment": 212,
+  "lifestyle": 152,
   "developer": 127,
   "social": 66
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3487
+   "apps": 3504
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 547
+   "apps": 545
   },
   {
    "name": "MySign IPA's",
@@ -53,44 +53,44 @@
  ],
  "recent": [
   {
+   "name": "UTM",
+   "version": "5.0.7",
+   "date": "2026-10-16"
+  },
+  {
+   "name": "UTM SE",
+   "version": "5.0.7",
+   "date": "2026-10-16"
+  },
+  {
    "name": "Accretion",
    "version": "1.0.34",
    "date": "2026-10-16"
   },
   {
-   "name": "MuffinEMU",
-   "version": "10.3",
-   "date": "2026-10-15"
+   "name": "Facebook",
+   "version": "583.0.0",
+   "date": "2026-10-16"
   },
   {
-   "name": "Swift Radio+",
-   "version": "4.0.0-mod1.0.0",
-   "date": "2026-10-15"
+   "name": "Messenger",
+   "version": "583.0.0",
+   "date": "2026-10-16"
   },
   {
-   "name": "SideInstaller",
-   "version": "1.5.2",
-   "date": "2026-10-15"
-  },
-  {
-   "name": "Bunny",
-   "version": "349.0",
-   "date": "2026-10-15"
-  },
-  {
-   "name": "Alarmy",
-   "version": "26.36.2",
-   "date": "2026-10-15"
-  },
-  {
-   "name": "Provenance Alpha",
-   "version": "3.4.0",
-   "date": "2026-10-15"
+   "name": "HiWidget",
+   "version": "5.1.15",
+   "date": "2026-10-16"
   },
   {
    "name": "iCube",
    "version": "1.0.0-beta9-ios",
-   "date": "2026-10-15"
+   "date": "2026-10-16"
+  },
+  {
+   "name": "StikDebug",
+   "version": "3.1.15",
+   "date": "2026-10-16"
   }
  ],
  "timeline": [
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2246
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2424
+   "apps": 2423
   },
   {
    "month": "2025-08",
-   "apps": 2510
+   "apps": 2509
   },
   {
    "month": "2025-09",
-   "apps": 2560
+   "apps": 2559
   },
   {
    "month": "2025-10",
-   "apps": 2625
+   "apps": 2624
   },
   {
    "month": "2025-11",
-   "apps": 2687
+   "apps": 2686
   },
   {
    "month": "2025-12",
-   "apps": 2821
+   "apps": 2820
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2955
   },
   {
    "month": "2026-02",
@@ -176,21 +176,21 @@
   },
   {
    "month": "2026-07",
-   "apps": 3821
+   "apps": 3820
   },
   {
    "month": "2026-08",
-   "apps": 3854
+   "apps": 3853
   },
   {
    "month": "2026-09",
-   "apps": 3978
+   "apps": 3977
   },
   {
    "month": "2026-10",
-   "apps": 4238
+   "apps": 4252
   }
  ],
- "new_30d": 353,
- "new_12m": 1653
+ "new_30d": 368,
+ "new_12m": 1668
 }
