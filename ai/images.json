@@ -20,6 +20,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/00b3a133fa9addaf.jpg"
  },
+ "12a64d6e9044474f555fcd55f3e958399ff23087ce0766539b8de9bccf7b94ae": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features a stylized letter B with a colorful gradient design.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02dd08559b643e70.jpg"
+ },
  "1578d15a57155fdb450b9b64cfbd33e33cc7e9eb8be351c3ec109c5aa470884a": {
   "date": "2026-10-15",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -69,6 +76,20 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/01ff90327872e7a0.jpg"
  },
+ "363eedf16936b8a6b481877d8bb66a8272c71a602b58a5754353a494c447b0bd": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon displays a cute illustrated character next to an hourglass.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/027efdcf35fb7595.jpg"
+ },
+ "38a3ffc7cdf6427cf54f9e7eb5abd9823aecb4ee3501c3dcbecbe5e66fdcbfe5": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays a standard orange traffic cone design.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0244557e2059b8fc.jpg"
+ },
  "3996c4ffbe629a95c8940b4cf45eba8780b87a872a3251a014e794550955cd57": {
   "date": "2026-10-15",
   "model": "gemini:gemini-flash-lite-latest",
@@ -90,6 +111,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/0229a667e50412f8.jpg"
  },
+ "4813f41e9d334f10f91693c1a9e37a538a4a1c92952645d2580bb16a33f334c4": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "The app icon depicts a fantasy character in action.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/029479da16c51600.jpg"
+ },
  "4c8fe3ef10a012af12582bb5f35408d3b99b088ba5bd4e5667ba7f86d3194197": {
   "date": "2026-10-15",
   "model": "gemini:gemini-flash-lite-latest",
@@ -110,6 +138,13 @@
   "note": "The app icon features a stylized white symbol on a black background.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/00e53cabf2a29f06.jpg"
+ },
+ "5f052f7aea3c10778b305f658a24255dab7a018c1e9da5d75bc46c662ad96eb1": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The image is a valid app icon featuring a stylized character with a cap and hoodie.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02d651af927fe3c0.jpg"
  },
  "60bc4d278be6daf1fc63fc9835b6017993cd764ba0f5509f3d1c92e7b72962fc": {
   "date": "2026-10-15",
@@ -188,6 +223,13 @@
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/0077f23912e7d7fe.jpg"
  },
+ "92c9da0c7bfe97cded1d32faa1938881954900cb6d5f09ca887429fb6ed0c9ce": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-flash-lite-latest",
+  "note": "App icon shows an illustrated male torso on a red background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/025823ac77e1c0ab.jpg"
+ },
  "9c3b864c3a5eb9ba0e2d07a98eb65b1030c7f35a211fe6cea91b3d4c902f680b": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -201,6 +243,13 @@
   "note": "The app icon displays a character with a microphone and '4th ANNIV.' text.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/00691c783cf7518f.jpg"
+ },
+ "a0ded97bde6004b2a765eb1d217f1afd8ec921f9b23463c506337a8a4b41aa39": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon depicts a cartoon purple character holding a sword.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02dc232bcc5c2f54.jpg"
  },
  "a2a31708b57c7038e4cbe7209a47e259a4908220eaec8607b3d29cb0eb210810": {
   "date": "2026-10-14",
@@ -230,6 +279,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/0077f23912e7d7fe.jpg"
  },
+ "b069cd4502002b3641f3c9ada9beb14703af5d54385d8e425fd7db33145c723f": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features detailed fantasy artwork of two anime-style characters looking over a landscape.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02d12fb6696c0cb1.jpg"
+ },
  "bcf0dde1dc12375b00335752e0ebf19bd66fc332d8077e759830077cce38420b": {
   "date": "2026-10-15",
   "model": "gemini:gemini-3.5-flash",
@@ -243,6 +299,13 @@
   "note": "The app icon is properly rendered with a design.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/004b74639080e00d.jpg"
+ },
+ "c73550378d76e40a12d412f8429e15d6d934d0537b2eb3ab4f481d627cc9154b": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a stylized green letter 'S' logo on a dark background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02ec093d911747ca.jpg"
  },
  "caebc3cde74363ecfeeed17ef0a9285269d5e0b23d5ed5b3edd26a8a92508155": {
   "date": "2026-10-15",
@@ -306,6 +369,13 @@
   "note": "The app icon displays a circular graphic featuring an emoji with a skeptical expression.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/011b0601437d947c.jpg"
+ },
+ "e85ef3987c93b58a47fb67867544e78c49e138dc5a96f673f75ea3ed24f40a2d": {
+  "date": "2026-10-16",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a colorful cartoon monster emblem against a patterned background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02ac6ab64bc5ed18.jpg"
  },
  "e97bad5f8d7cd4f68e0a2e43272db5ea09c2a2c50575c0ce3e5730f1329b8f97": {
   "date": "2026-10-14",
