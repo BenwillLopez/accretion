@@ -1,12 +1,12 @@
 # Source report
 
-Built 2026-10-17 15:49 UTC.
+Built 2026-10-17 20:50 UTC.
 
 | | |
 |---|---|
-| Apps in `source.json` | **4254** (4918 KB) |
+| Apps in `source.json` | **4254** (4917 KB) |
 | Apps in `curated.json` | **728** (709 KB) |
-| Listings read | 23734 |
+| Listings read | 23735 |
 | Apps listed by more than one source (newest kept) | 1798 |
 | Listings skipped (http-only, no icon, no date, bad bundle ID) | 6632 |
 | Listings excluded (Patreon-only or AltStore PAL, cannot install here) | 57 |
@@ -36,7 +36,7 @@ Built 2026-10-17 15:49 UTC.
 | [Quantum Source++](https://quarksources.github.io/dist/quantumsource%2B%2B.min.json) | ok | 32 | 2 | 3 | 2025-05-20 | curated |
 | [FrizzleM's AltSource](https://raw.githubusercontent.com/FrizzleM/SideInstaller/main/frizzlem.json) | ok | 2 | 2 | 0 | 2026-10-16 | discovered |
 | [iAnyFeature's Source](https://raw.githubusercontent.com/Leo7247/iAnyFeature/main/source.json) | ok | 2 | 2 | 0 | 2026-10-09 | discovered |
-| [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9388 | 1 | 161 | 2026-10-17 | discovered |
+| [AppTesters IPA Repo](https://raw.githubusercontent.com/RipeStore/repos/main/apptesters.json) | ok | 9389 | 1 | 161 | 2026-10-18 | discovered |
 | [CyPwn IPA Library](https://raw.githubusercontent.com/luh-99/SideStoreAndAltStore-Sources/main/CyPwn%20iPA%20Library/source.json) | ok | 193 | 1 | 6 | 2025-09-01 | discovered |
 | [OwO Source](https://repo.owo.network/) | ok | 159 | 1 | 0 | 2026-10-17 | curated |
 | [Sideloading Hub](https://raw.githubusercontent.com/SimoGHcoder/iosrepo/main/apps.json) | ok | 5 | 1 | 0 | 2026-10-17 | discovered |
