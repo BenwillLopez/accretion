@@ -27,6 +27,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/02dd08559b643e70.jpg"
  },
+ "1414f5d3aec4d4e4fe327f404dfdc443202949199ccf9f046fb53551787030f4": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon is valid and properly displayed.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03899f50d6daac6e.jpg"
+ },
  "1578d15a57155fdb450b9b64cfbd33e33cc7e9eb8be351c3ec109c5aa470884a": {
   "date": "2026-10-15",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -68,6 +75,20 @@
   "note": "The app icon displays a katana sword with the word RONIN clearly.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/001b501af8bb93b2.jpg"
+ },
+ "2d10a517800dd2e4d83425ed63b416c40f3de2b49f9af4d4a4600fc021dc637e": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon features a stylized letter 'U' with a pink and blue gradient on a dark background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0302643eda387f90.jpg"
+ },
+ "2da01e2f9a68f7592ab12293a9a0c94744f1461b89821599863eef80352db653": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon displays the stylized GTA V logo on a dark background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03fae75ff71e906b.jpg"
  },
  "2f0bdd0d40217f85ace7edd3c92023bf582c8441838a0df394e8887788fc2b8f": {
   "date": "2026-10-15",
@@ -111,6 +132,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/0229a667e50412f8.jpg"
  },
+ "447b554371a5496b329446bf3e0aa1a93b70173a0214fb53874ad56565633f58": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon depicts a vintage digital camera LCD screen with text 'PRO CCD'.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/0317f13d3f85d864.jpg"
+ },
  "4813f41e9d334f10f91693c1a9e37a538a4a1c92952645d2580bb16a33f334c4": {
   "date": "2026-10-16",
   "model": "gemini:gemini-flash-lite-latest",
@@ -118,12 +146,26 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/029479da16c51600.jpg"
  },
+ "4bfc99ac2346ec5280607efcd7e7f8b1445557e9f366f92345ec6d0f24a6fe40": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon is a standard game icon featuring a developer character and the title Dev Tycoon.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03d326c4d987b1f2.jpg"
+ },
  "4c8fe3ef10a012af12582bb5f35408d3b99b088ba5bd4e5667ba7f86d3194197": {
   "date": "2026-10-15",
   "model": "gemini:gemini-flash-lite-latest",
   "note": "The app icon depicts a music note symbol on layered cards with a blue background.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/00c0f502756fc084.jpg"
+ },
+ "4e817a1d0d9676bdd8ce7b126b48f88cfb4078acd0166992c4f6a8c8ffba0b99": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays a stylized white illustration of a profile on a blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/030d177f6eb41330.jpg"
  },
  "4f1021c9f6a52480d03bdbe44a40597e583e1574518a94662a1850cb2131fa4b": {
   "date": "2026-10-14",
@@ -139,6 +181,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/00e53cabf2a29f06.jpg"
  },
+ "55a3ef4a21dcb62cd106f98c6e07eb3d93ff5f08573c62cbf5fc1bcb03177e6b": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon depicts a stylized classical statue bust.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02fd477cc40f3f95.jpg"
+ },
  "5f052f7aea3c10778b305f658a24255dab7a018c1e9da5d75bc46c662ad96eb1": {
   "date": "2026-10-16",
   "model": "gemini:gemini-3.5-flash",
@@ -152,6 +201,27 @@
   "note": "The image is a normal app icon featuring a blue Chrome-style logo.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/01edbad81ab961d7.jpg"
+ },
+ "64c7b2d57261c670004aa736c6f068dd40561b9702f8a837de39114a10e3de14": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The icon depicts the number 12 in a classic app style.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/02f679df8cc5feb5.jpg"
+ },
+ "6894612641f1bb20958b54c5917857cd9255d0efc35d74865e4d67490bf6865a": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon is a normal app icon featuring the Spotify logo.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03898c63ac671ddd.jpg"
+ },
+ "68af66168553603fde9aa48dc082fbdbbc2442b2e6fcb8e32da25b613a96b0e7": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The icon depicts a smiling couple in a 3D animated style.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03883091e948797d.jpg"
  },
  "6f22be1ebb22986dcb727123b964c8f27478f1f2d07b40f844d1181a20e76a39": {
   "date": "2026-10-15",
@@ -195,6 +265,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/00e388b3dc72a1f4.jpg"
  },
+ "8569ed616766c535273912a94927f018fe793c39f89e4db6b2670f76b9af3159": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a red recording button with '[REC]' text.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/04432a6be47353c7.jpg"
+ },
  "8749aa8505eeee6610307335ae35c905963c4140af41468ad90be5dd407402a4": {
   "date": "2026-10-15",
   "model": "gemini:gemini-3.5-flash",
@@ -216,6 +293,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/015950c67c8b1caa.jpg"
  },
+ "90db75d296c8d7a8ec92705aba02d08580383c317cc847d39f9a600be9635362": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon features a clear, custom geometric logo on a blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/040a79f6e56b0e23.jpg"
+ },
  "929d2ff22d3dcb8195ca90bcbbc96cbb71b3b37612b419e21dd00f1ddfc32947": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -229,6 +313,20 @@
   "note": "App icon shows an illustrated male torso on a red background.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/025823ac77e1c0ab.jpg"
+ },
+ "986bb642654ae8c4ee80a3c5d0024964c4f7e14a3df8b60886e08bca0c30cbcf": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The icon depicts a remote control against a red background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03be7b18ac0413cb.jpg"
+ },
+ "9c0a7fabd009faabace825f2dd098436dfb790d30f51febe59a2f847633f107c": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays a Ferris wheel graphic with the game title RollerCoaster Tycoon Touch.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/038b889681e816d7.jpg"
  },
  "9c3b864c3a5eb9ba0e2d07a98eb65b1030c7f35a211fe6cea91b3d4c902f680b": {
   "date": "2026-10-14",
@@ -279,6 +377,13 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/0077f23912e7d7fe.jpg"
  },
+ "add172c49d9f1f81350a9498fb5e37fd3177f7711d9642668ef352048b5c17f3": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon depicts a guard escorting a prisoner within a prison compound with the text 'Prison Empire'.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03e3695a4bf9623d.jpg"
+ },
  "b069cd4502002b3641f3c9ada9beb14703af5d54385d8e425fd7db33145c723f": {
   "date": "2026-10-16",
   "model": "gemini:gemini-3.5-flash",
@@ -300,6 +405,20 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/004b74639080e00d.jpg"
  },
+ "c1d13f2a31013e44a90dd464f8c45f74203e21cc5c50f83a45df1fb26ff42253": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays a red character with glowing yellow eyes against a blue background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/034790536fe73a11.jpg"
+ },
+ "c65750f0193ad21a816e47b32a1237f2521c0893915cfeb1cdf608e17278fda2": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The icon displays the official DoorDash logo clearly.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/040e44ba4cab66ef.jpg"
+ },
  "c73550378d76e40a12d412f8429e15d6d934d0537b2eb3ab4f481d627cc9154b": {
   "date": "2026-10-16",
   "model": "gemini:gemini-3.5-flash",
@@ -320,6 +439,20 @@
   "note": "The icon features a pink gear with a wrench inside.",
   "status": "ok",
   "url": "https://getaccretion.app/icons/0032655a55661175.jpg"
+ },
+ "d23c124aaf6326f6e1ee570211e45c54baabcf46a00f94fb890d0b5a7d47b1ea": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features a white eraser illustration on a purple and blue gradient background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/04475973caaf71cc.jpg"
+ },
+ "d4c20195390edd7e467310eaf29929d7f79331b56ce3382970bcb6fce24eb8a9": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash",
+  "note": "The app icon features a stylized illustration of a character wearing a gas mask in a post-apocalyptic setting.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03e4101f9e02442b.jpg"
  },
  "d57ad1b88c431af31147c2c8af4933d53ba27ed365be7246044220c3f8ad5c79": {
   "date": "2026-10-14",
@@ -363,6 +496,20 @@
   "status": "ok",
   "url": "https://getaccretion.app/icons/018c64391dc45051.jpg"
  },
+ "e2d7a22c44057eb143156d2dcf26b78022a366420caca67b40ac82535371a526": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon displays an image of the moon against a purple background.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03b9521dc4a27f19.jpg"
+ },
+ "e36d178286e9c9b16e5ddf1ce9a16263acb8c69ea8cb72b2805a0a0088a5ef4b": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon depicts a first-person shooter action scene with a number 2 overlay.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03d668be722f15f1.jpg"
+ },
  "e62efff45646f83ce03a9aa65f03fefe3f91734b2aa700ea7806aaa2a8c40f56": {
   "date": "2026-10-14",
   "model": "gemini:gemini-3.5-flash-lite",
@@ -383,6 +530,13 @@
   "note": "The app icon displays game controller buttons on a blue gradient background.",
   "status": "ok",
   "url": "https://getaccretion.github.io/icons/00b3a133fa9addaf.jpg"
+ },
+ "f1cfe11f66940be51aaac103f93f1fb7ff9666c10a39383399e2f50adf206926": {
+  "date": "2026-10-17",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "note": "The app icon depicts a stylized war scene with a soldier holding a rifle.",
+  "status": "ok",
+  "url": "https://getaccretion.app/icons/03d29a6a933f0447.jpg"
  },
  "f546fb5744c6195c73f7d57073b8bfed31c144c04d0184d29f4bebe20a9bcf19": {
   "date": "2026-10-15",
