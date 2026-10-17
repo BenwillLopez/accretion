@@ -2,18 +2,18 @@
  "apps": 4254,
  "curated_apps": 728,
  "sources": 163,
- "updated": "2026-10-17 04:46 UTC",
+ "updated": "2026-10-17 11:03 UTC",
  "size_mb": 4.8,
- "built_at": "2026-10-17T04:46:53Z",
+ "built_at": "2026-10-17T11:03:43Z",
  "sources_total": 163,
  "sources_cached": 2,
  "sources_failed": 0,
  "sources_discovered": 130,
- "listings": 23736,
+ "listings": 23735,
  "duplicates": 1798,
- "rejected": 6631,
+ "rejected": 6632,
  "excluded": 57,
- "dead_links_removed": 8893,
+ "dead_links_removed": 8895,
  "links_on_hold": 0,
  "developers": 699,
  "updated_7d": 526,
@@ -22,21 +22,21 @@
  "categories": {
   "other": 1905,
   "games": 1020,
-  "utilities": 430,
-  "photo-video": 339,
-  "entertainment": 212,
+  "utilities": 432,
+  "photo-video": 340,
+  "entertainment": 211,
   "lifestyle": 153,
-  "developer": 129,
+  "developer": 127,
   "social": 66
  },
  "top_sources": [
   {
    "name": "fastsign (organized)",
-   "apps": 3511
+   "apps": 3512
   },
   {
    "name": "dsewerek's general apps",
-   "apps": 537
+   "apps": 539
   },
   {
    "name": "MySign IPA's",
@@ -108,51 +108,51 @@
   },
   {
    "month": "2025-02",
-   "apps": 2247
+   "apps": 2246
   },
   {
    "month": "2025-03",
-   "apps": 2276
+   "apps": 2275
   },
   {
    "month": "2025-04",
-   "apps": 2311
+   "apps": 2310
   },
   {
    "month": "2025-05",
-   "apps": 2363
+   "apps": 2362
   },
   {
    "month": "2025-06",
-   "apps": 2392
+   "apps": 2391
   },
   {
    "month": "2025-07",
-   "apps": 2424
+   "apps": 2423
   },
   {
    "month": "2025-08",
-   "apps": 2510
+   "apps": 2509
   },
   {
    "month": "2025-09",
-   "apps": 2560
+   "apps": 2559
   },
   {
    "month": "2025-10",
-   "apps": 2625
+   "apps": 2624
   },
   {
    "month": "2025-11",
-   "apps": 2687
+   "apps": 2686
   },
   {
    "month": "2025-12",
-   "apps": 2821
+   "apps": 2820
   },
   {
    "month": "2026-01",
-   "apps": 2956
+   "apps": 2955
   },
   {
    "month": "2026-02",
@@ -192,5 +192,5 @@
   }
  ],
  "new_30d": 370,
- "new_12m": 1666
+ "new_12m": 1667
 }
