@@ -1,8 +1,38 @@
 [
  [
+  "ca.bomberfish.Whitelist",
+  "cypwn.Whitelist.1.1.0",
+  1.0
+ ],
+ [
+  "com.FaizanDurrani.Paperback",
+  "dev.faizandurrani.moe.paperback.app",
+  1.0
+ ],
+ [
+  "com.atrasis.original",
+  "com.supercell.magic",
+  1.0
+ ],
+ [
+  "com.spotify.client.ios.chroma.pw.0.51.0.beta.1.not.patched.9.1.78.eeveespotifyreincarnated",
+  "com.spotify.client.ios.chroma.pw.0.51.0.beta.1.not.patched.9.1.90.eeveespotifyreincarnated",
+  1.0
+ ],
+ [
+  "com.spotify.client.ios.spoti.pw.0.20.0.not.patched.9.1.84",
+  "com.spotify.client.ios.spoti.pw.0.20.0.patched.9.1.84",
+  0.9979
+ ],
+ [
   "com.google.ios.youtube.ytplus.cracked.bonus.mrdrvt99.6.0.beta.1",
   "com.google.ios.youtube.ytplus.cracked.bonus.mrdrvt99.6.0.beta.2",
   0.9978
+ ],
+ [
+  "com.aigch.getMoreRam",
+  "com.stos.Entitlement",
+  0.9974
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.1.ios15",
@@ -40,6 +70,16 @@
   0.9946
  ],
  [
+  "com.spotify.client.ios.taurus.0.50.1.not.patched.9.1.78",
+  "com.spotify.client.ios.taurus.0.50.1.patched.9.1.78",
+  0.9941
+ ],
+ [
+  "com.google.ios.youtube.music.maxmusic",
+  "com.google.ios.youtube.music.maxmusic.no.youmusicpip",
+  0.9938
+ ],
+ [
   "com.google.ios.youtube.youproextra.0.3.moe.21.24.3",
   "com.google.ios.youtube.youproextra.0.3.moe.21.24.3.patched",
   0.9935
@@ -48,6 +88,16 @@
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.1.ios16",
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.ios15",
   0.9933
+ ],
+ [
+  "com.spotify.client.ios.vitrine.eeveespotifyreincarnated.beta.patched.9.1.88",
+  "com.spotify.client.ios.vitrine.eeveespotifyreincarnated.not.patched.9.1.88",
+  0.9932
+ ],
+ [
+  "com.spotify.client.ios.vitrine.1.0.0.beta.13.not.patched.9.1.90",
+  "com.spotify.client.ios.vitrine.1.0.0.beta.13.patched.9.1.90",
+  0.9928
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.bonus.6.0.beta.1.ipvault",
@@ -80,6 +130,11 @@
   0.9912
  ],
  [
+  "com.utmapp.UTM-SE454",
+  "com.utmapp.UTM454",
+  0.991
+ ],
+ [
   "com.google.ios.youtube.ytplus.cracked.bonus.mark02-2012.5.2.2.21.24.3",
   "com.google.ios.youtube.ytplus.cracked.bonus.mark02-2012.5.2.2.21.33.6",
   0.9902
@@ -90,9 +145,19 @@
   0.9893
  ],
  [
+  "cypwn.NovusPhone_36-b1_arm64_TS.36",
+  "cypwn.NovusPhone_36-b1_arm64e_TS.36",
+  0.9893
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.9.4",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.9.9",
   0.9888
+ ],
+ [
+  "cypwn.SuperMario64_30FPS_1.2.1.1.2.1",
+  "cypwn.SuperMario64_60FPS_1.2.1.1.2.1",
+  0.9884
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.37.5",
@@ -100,9 +165,39 @@
   0.9883
  ],
  [
+  "com.spotify.client.ios.spoti.pw.eeveespotifyreincarnated.0.23.0.beta.not.patched.9.1.86",
+  "com.spotify.client.ios.spoti.pw.eeveespotifyreincarnated.0.23.0.beta.patched.9.1.86",
+  0.9882
+ ],
+ [
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.16.2",
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.24.3",
   0.9881
+ ],
+ [
+  "com.spotify.client.ios.spoti.pw.0.21.1.not.patched.9.1.84",
+  "com.spotify.client.ios.spoti.pw.0.21.1.patched.9.1.84",
+  0.9877
+ ],
+ [
+  "com.spotify.client.ios.spoti.pw.eevee.0.22.0.not.patched.9.1.86",
+  "com.spotify.client.ios.spoti.pw.eevee.0.22.0.patched.9.1.86",
+  0.9877
+ ],
+ [
+  "com.sparklechan.swiftyrh16",
+  "com.sparklechan.swiftyrl16",
+  0.9876
+ ],
+ [
+  "com.spotify.client.ios.eevee.6.8.8.patched.9.1.82.iosdecrypted",
+  "com.spotify.client.ios.eeveespotifyreincarnated.6.8.8.patched.9.1.82.iosdecrypted",
+  0.9875
+ ],
+ [
+  "com.spotify.client.ios.eevee.6.8.8.liquidglass.patched.9.1.76",
+  "com.spotify.client.ios.eeveespotifyreincarnated.6.8.8.liquidglass.patched.9.1.76",
+  0.987
  ],
  [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.10.0",
@@ -128,6 +223,16 @@
   "com.google.ios.youtube.ytplusytweaks.ios.sdk.14",
   "com.google.ios.youtube.ytplusytweaks.ios.sdk.16.5.latest",
   0.9857
+ ],
+ [
+  "cypwn.PostBox-Pocket.0.8.1",
+  "cypwn.PostBox-Pocket_TS.0.8.1",
+  0.9855
+ ],
+ [
+  "com.spotify.client.ios.eevee.6.8.8.liquidglass.9.1.76",
+  "com.spotify.client.ios.eeveespotifyreincarnated.6.8.8.liquidglass.9.1.76",
+  0.9854
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.1.21.38.2",
@@ -175,9 +280,29 @@
   0.984
  ],
  [
+  "com.google.ios.youtube.youmod.2.0.0.jayden",
+  "com.google.ios.youtube.youmod.2.0.0.mrdrvt99",
+  0.9839
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.drifty",
+  "com.google.ios.youtube.youmod.2.0.0.mrdrvt99",
+  0.9838
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.17.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.21.0",
   0.9838
+ ],
+ [
+  "com.spotify.client.ios.eeveespotifyreincarnated.7.0.0.not.patched.9.1.90.ipavault",
+  "com.spotify.client.ios.eeveespotifyreincarnated.7.0.0.patched.9.1.90.ipavault",
+  0.9838
+ ],
+ [
+  "com.google.ios.youtube.youproextra.0.3.moe",
+  "com.google.ios.youtube.youproextra.0.3.moe.21.24.3",
+  0.9837
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.bonus.mark02-2012.5.2.2.21.24.3",
@@ -217,6 +342,11 @@
  [
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.ios15",
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.latest",
+  0.983
+ ],
+ [
+  "com.sparklechan.swiftyrh",
+  "com.sparklechan.swiftyrl",
   0.983
  ],
  [
@@ -315,6 +445,11 @@
   0.9813
  ],
  [
+  "com.spotify.client.ios.chroma.pw.0.50.0.beta.not.patched.9.1.78",
+  "com.spotify.client.ios.chroma.pw.0.50.0.cracked.patched.9.1.78",
+  0.9813
+ ],
+ [
   "com.TDMbest.doom2",
   "com.TDMbest.doomfinal",
   0.9812
@@ -410,6 +545,11 @@
   0.9802
  ],
  [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.jayden",
+  0.9801
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.11.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.20.0",
   0.98
@@ -460,6 +600,11 @@
   0.9794
  ],
  [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.drifty",
+  0.9793
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.itzzace0.5.7.6",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.11.0",
   0.9793
@@ -500,8 +645,18 @@
   0.9788
  ],
  [
+  "com.spotify.client.ios.spoti.pw.eevee.0.22.0.patched.9.1.86",
+  "com.spotify.client.ios.spoti.pw.eeveespotifyreincarnated.0.23.0.beta.patched.9.1.86",
+  0.9788
+ ],
+ [
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.latest",
   "com.google.ios.youtube.ytplus.cracked.bonus.6.0.beta.2.ipvault",
+  0.9787
+ ],
+ [
+  "com.spotify.client.ios.eeveespotifyreincarnated.7.0.0.patched.9.1.88",
+  "com.spotify.client.ios.eeveespotifyreincarnated.7.0.0.patched.9.1.90.ipavault",
   0.9787
  ],
  [
@@ -520,9 +675,19 @@
   0.9785
  ],
  [
+  "com.google.ios.youtube.youproextra.0.3.moe",
+  "com.google.ios.youtube.youproextra.0.3.moe.21.24.3.patched",
+  0.9783
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.10.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.18.0",
   0.9783
+ ],
+ [
+  "com.sparklechan.swiftyrl16",
+  "com.sparklechan.swiftyts16",
+  0.9781
  ],
  [
   "com.google.ios.youtube.youmod.2.0.0.ipavault",
@@ -542,6 +707,11 @@
  [
   "com.shadowmario.psychengine10",
   "com.shadowmario.psychengine10pre",
+  0.978
+ ],
+ [
+  "com.spotify.client.ios.eeveespotifyreincarnated.6.8.8.liquidglass.9.1.76",
+  "com.spotify.client.ios.eeveespotifyreincarnated.6.8.8.liquidglass.patched.9.1.76",
   0.978
  ],
  [
@@ -585,6 +755,11 @@
   0.9775
  ],
  [
+  "com.sparklechan.swiftysa",
+  "com.sparklechan.swiftysa16",
+  0.9775
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.10.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.19.0",
   0.9774
@@ -603,6 +778,11 @@
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.19.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.9.4",
   0.9771
+ ],
+ [
+  "com.spotify.client.ios.spoti.pw.eevee.0.22.0.not.patched.9.1.86",
+  "com.spotify.client.ios.spoti.pw.eeveespotifyreincarnated.0.23.0.beta.not.patched.9.1.86",
+  0.9769
  ],
  [
   "com.google.ios.youtube.ytkillerplus.cracked.itzzace0.5.7.6",
@@ -628,6 +808,11 @@
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.14.0",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.21.0",
   0.9764
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.mrdrvt99",
+  0.976
  ],
  [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.11.0",
@@ -663,6 +848,16 @@
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.21.39.4.itzzace0.bonus.tweaks",
   "com.google.ios.youtube.ytplus.cracked.bonus.6.0.beta.1.ipvault",
   0.9756
+ ],
+ [
+  "com.sparklechan.swiftyrl",
+  "com.sparklechan.swiftyts",
+  0.9756
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.ballermc.ios16",
+  0.9755
  ],
  [
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.16.2",
@@ -715,8 +910,23 @@
   0.9748
  ],
  [
+  "com.sparklechan.swiftyrh",
+  "com.sparklechan.swiftyrh16",
+  0.9748
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.ballermc.ios15",
+  0.9746
+ ],
+ [
   "com.google.ios.youtube.ytkillerplus.cracked.itzzace0.5.7.6",
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.14.0",
+  0.9745
+ ],
+ [
+  "com.spotify.client.ios.eevee.6.8.8.liquidglass.9.1.76",
+  "com.spotify.client.ios.eevee.6.8.8.liquidglass.patched.9.1.76",
   0.9745
  ],
  [
@@ -727,6 +937,11 @@
  [
   "com.google.ios.youtube.ytplus.cracked.5.2.2.20.21.6",
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.37.5",
+  0.9743
+ ],
+ [
+  "com.spotify.client.ios.taurus.0.50.1.9.1.90",
+  "com.spotify.client.ios.taurus.0.50.1.patched.9.1.78",
   0.9743
  ],
  [
@@ -758,6 +973,11 @@
   "com.google.ios.youtube.ytplus.cracked.bonus.5.2.2.Mark02-2012.20.21.6",
   "com.google.ios.youtube.ytplus.cracked.bonus.5.2.2.iOSDecrypted.21.24.3",
   0.9739
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.ipavault",
+  "com.google.ios.youtube.youmod.2.0.0.mrdrvt99",
+  0.9738
  ],
  [
   "com.google.ios.youtube.youmod.2.0.0.iosdecrypted",
@@ -800,8 +1020,18 @@
   0.9731
  ],
  [
+  "com.sparklechan.swiftyrh16",
+  "com.sparklechan.swiftyts16",
+  0.973
+ ],
+ [
   "com.google.ios.youtube.ytplus.cracked.5.2.2.21.24.3",
   "com.google.ios.youtube.ytplus.cracked.bonus.mrdrvt99.5.2.2.21.24.3",
+  0.9729
+ ],
+ [
+  "com.spotify.client.ios.taurus.0.50.1.9.1.90",
+  "com.spotify.client.ios.taurus.0.50.1.not.patched.9.1.78",
   0.9729
  ],
  [
@@ -855,6 +1085,11 @@
   0.9716
  ],
  [
+  "com.sparklechan.swiftyrl",
+  "com.sparklechan.swiftyrl16",
+  0.9716
+ ],
+ [
   "com.google.ios.youtube.music.ytmusicultimateplus.no.youmusicpip.patched.ipavault",
   "com.google.ios.youtube.music.ytmusicultimateplus.no.youmusicpip.patched.jacks.apps",
   0.9713
@@ -867,6 +1102,11 @@
  [
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.ios16",
   "com.google.ios.youtube.ytplus.cracked.bonus.mrdrvt99.6.0.beta.1.ios16",
+  0.9711
+ ],
+ [
+  "com.sparklechan.swiftyrh",
+  "com.sparklechan.swiftyts",
   0.9711
  ],
  [
@@ -883,6 +1123,11 @@
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.1.ios16",
   "com.google.ios.youtube.ytplus.cracked.6.0.beta.2.21.39.4.itzzace0.bonus.tweaks",
   0.9706
+ ],
+ [
+  "com.google.ios.youtube.youmod.2.0.0.ballermc",
+  "com.google.ios.youtube.youmod.2.0.0.ipavault",
+  0.9703
  ],
  [
   "com.google.ios.youtube.ytkillerplus.cracked.lowiqentity.5.17.0",
